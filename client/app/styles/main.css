@@ -26,3 +26,11 @@ body {
   transition: all cubic-bezier(1, 0.01, 0.57, 1) 2s;
   opacity: 1;
 }
+.gallery-fast {
+  transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.25s;
+  opacity: 0;
+}
+.gallery-fast.displayed {
+  transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.25s;
+  opacity: 1;
+}
