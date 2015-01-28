@@ -19,13 +19,20 @@ angular.module('nightwalkerApp')
         var manualChange = (function () {
           grayPant.removeClass('gallery-animate');
           $window.addEventListener('deviceorientation', function(eventData) {
-            // gamma is the left-to-right tilt in degrees, where right is positive
+
             var tiltLR = eventData.gamma;
-            // beta is the front-to-back tilt in degrees, where front is positive
             var tiltFB = eventData.beta;
-            // alpha is the compass direction the device is facing in degrees
             var dir = eventData.alpha
           
+
+            var colorChange = function (className) {
+              if (!colorPant.hasClass(className)) {
+                colorPant.removeAttr('class');
+                colorPant.addClass('pant-sprite');
+                colorPant.addClass(className);
+              };
+            }
+
             var checkTilt = function (valueMax, valueMin, tiltMax, tiltMin) {
               var percent = (tiltLR - tiltMin) / (tiltMax - tiltMin);
               var opacityValue = percent * (valueMax - valueMin) + valueMin;
@@ -35,40 +42,23 @@ angular.module('nightwalkerApp')
               if (opacityValue > .9) {
                 opacityValue = 1;
               }
-              return opacityValue;
+              grayPant.css('opacity', opacityValue);
             }
 
-            list.html(tiltLR);
-
+            
             switch (true) {
 
-              case tiltLR >= -6 && tiltLR < -5:
-                //Only add the BLUE class when neccesary
-                colorPant.removeAttr('class');
-                colorPant.addClass('pant-sprite');
-                colorPant.addClass('blue-pant');
-                break;
-
-              case tiltLR >= 5 && tiltLR < 6:
-                //Only add the BLUE class when neccesary
-                colorPant.removeAttr('class');
-                colorPant.addClass('pant-sprite');
-                colorPant.addClass('red-pant');
-                break;
-
-              case tiltLR > -30 && tiltLR < 0:
-                //Change gray opacity when it is tilted to the left
-                var opacityValue = checkTilt(1, 0, 0, -30);
-                list.html(opacityValue);
-                grayPant.css('opacity', opacityValue);
+              case tiltLR > -30 && tiltLR < -1:
+                //Tilt to the left for blue
+                colorChange('blue-pant');
+                checkTilt(1, 0, 0, -30);
                 break
 
 
-              case tiltLR >= 0 && tiltLR < 30:
-                //Change gray opacity when it is tilted to the right
-                var opacityValue = checkTilt(1, 0, 0, 30);
-                list.html(opacityValue);
-                grayPant.css('opacity', opacityValue);
+              case tiltLR >= 1 && tiltLR < 30:
+                //Tilt to the right for red
+                colorChange('red-pant');
+                checkTilt(1, 0, 0, 30);
                 break
             } 
           }, false);
