@@ -13,6 +13,7 @@ angular.module('nightwalkerApp')
     var grayPant = angular.element('<div id="bottom-gallery" class="pant-sprite gray-pant gallery-animate">Some More words here</div>');
     var colorPant = angular.element('<div id="top-gallery" class="pant-sprite">Some words here</div>');
     var list = angular.element('<p style="margin-bottom:50px">Words here</p>');
+    var list2 = angular.element('<p style="margin-bottom:50px">Words here</p>');
   
     var link = function (scope, element, attrs) {
       if ($window.DeviceOrientationEvent && screen.width <= 980) {
@@ -26,48 +27,149 @@ angular.module('nightwalkerApp')
             };
           }
 
-          var checkTilt = function (input, valueMax, valueMin, tiltMax, tiltMin) {
-            var percent = (input - tiltMin) / (tiltMax - tiltMin);
-            var opacityValue = percent * (valueMax - valueMin) + valueMin;
+
+          var checkTilt = function (input, fromMin, fromMax, toMin, toMax, nextColorClass) {
+            var opacityValue = (input - fromMax) / (fromMin - fromMax) * (toMin - toMax) + toMax;
+
             if (opacityValue < .1) {
               opacityValue = 0;
             }
+
             if (opacityValue > .9) {
               opacityValue = 1;
             }
-            grayPant.css('opacity', opacityValue);
+
+            if (opacityValue === 1) {
+              colorChange(nextColorClass);
+            }
+
+            // grayPant.css('opacity', opacityValue);
+            list2.html('The opacity value is ' + opacityValue);
+
           }
+
         
           $window.addEventListener('deviceorientation', function(eventData) {
 
             var tiltLR = eventData.gamma;
             var tiltFB = eventData.beta;
             var dir = eventData.alpha
-            list.html(dir);
+
+            list.html('The dir is ' + dir);
+
             switch (true) {
-              case tiltFB < -5:
-                //Tilting backwards
-                colorChange('blue-pant');
-                checkTilt(tiltFB, 1, 0, 0, -20);
+
+              case dir >= 0 && dir < 22.5:
+                //Red
+                colorChange('red-pant');
+                break
+
+              case dir >= 45 && dir < 67.5:
+                //Orage
+                checkTilt(dir, 45, 67.5, 0, 1, 'blue-pant');
+                break
+
+              case dir >= 90 && dir < 112.5:
+                //Yellow
+                checkTilt(dir, 90, 112.5, 0, 1, 'red-pant');
                 break
               
-              case tiltLR > -30 && tiltLR < -1:
-                //Tilt to the left for blue
-                colorChange('blue-pant');
-                checkTilt(tiltLR, 1, 0, 0, -30);
+              case dir >= 135 && dir < 157.5:
+                //Green
+                checkTilt(dir, 135, 157.5, 0, 1, 'blue-pant');
+                break
+              
+              case dir >= 180 && dir < 202.5:
+                //Blue
+                checkTilt(dir, 180, 202.5, 0, 1, 'red-pant');
+                break
+
+============================================
+
+              case dir >= 225 && dir < 270:
+                //Purple
+                checkTilt(dir, 180, 270, 0, 1, 'blue-pant');
+                break
+
+              case dir >= 270 && dir < 315:
+                //Pink
+                checkTilt(dir, 270, 315, 0, 1, 'red-pant');
+                break
+
+              case dir >= 315 && dir < 360:
+                //Pink2
+                checkTilt(dir, 315, 360, 0, 1, 'blue-pant');
                 break
 
 
-              case tiltLR >= 1 && tiltLR < 30:
-                //Tilt to the right for red
-                colorChange('red-pant');
-                checkTilt(tiltLR, 1, 0, 0, 30);
+
+
+              //Increasing opacity
+              case dir >= 22.5 && dir < 33.75:
+                checkTilt(dir, 22.5, 33.75, 0, 1, 'blue-pant');
                 break
-            } 
+
+              case dir >= 67.5 && dir < 78.75:
+                checkTilt(dir, 67.5, 78.75, 0, 1, 'blue-pant');
+                break
+
+              case dir >= 112.5 && dir < 123.75:
+                checkTilt(dir, 112.5, 123.75, 0, 1, 'blue-pant');
+                break
+
+              case dir >= 157.5 && dir < 168.75:
+                checkTilt(dir, 157.5, 168.75, 0, 1, 'blue-pant');
+                break
+
+              case dir >= 202.5 && dir < 213.75:
+                checkTilt(dir, 202.5, 213.75, 0, 1, 'blue-pant');
+                break
+
+
+              //Decreasing opacity
+              case dir >= 33.75 && dir < 45:
+                checkTilt(dir, 33.75, 45, 1, 0, 'blue-pant');
+                break   
+
+              case dir >= 78.75 && dir < 90:
+                checkTilt(dir, 78.75, 90, 1, 0, 'blue-pant');
+                break              
+
+              case dir >= 123.75 && dir < 135:
+                checkTilt(dir, 123.75, 135, 1, 0, 'blue-pant');
+                break    
+
+              case dir >= 168.75 && dir < 180:
+                checkTilt(dir, 168.75, 180, 1, 0, 'blue-pant');
+                break    
+
+              case dir >= 213.75 && dir < 225:
+                checkTilt(dir, 213.75, 225, 1, 0, 'blue-pant');
+                break              
+
+
+
+
+            }
+            
+
           }, false);
-          grayPant.removeClass('gallery-animate');
+
+
+          //grayPant.removeClass('gallery-animate');
+
+
         })();
+
+        //End of mobile device function
       } else {
+
+
+
+
+
+        
+
         //Not supported or screen is too big
         var autoChange = (function () {
 
@@ -88,10 +190,20 @@ angular.module('nightwalkerApp')
             console.log('The index is ' + index);
           }
         })();
+
         autoChange();
         $interval(autoChange, 3000);
+        //End of desktop callback
       }
+
+
+
+
+      //End of link function
     }
+
+
+
 
     return {
       restrict: 'E',
@@ -99,6 +211,7 @@ angular.module('nightwalkerApp')
       template: '<div></div>',
       compile: function (tElem) {
         tElem.append(list);
+        tElem.append(list2);
         tElem.append(colorPant);
         tElem.append(grayPant);
         return link;
