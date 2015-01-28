@@ -47,22 +47,25 @@ angular.module('nightwalkerApp')
           case tiltLR < -40:
             //BLUE
             break;
-          case tiltLR >= -41 && tiltLR < -32:
+          case tiltLR >= -37 && tiltLR < -29:
             //PURPLE
             break;
-          case tiltLR >= -29 && tiltLR < -20:
+          case tiltLR >= -26 && tiltLR < -18:
             //PINK
             break;
-          case tiltLR >= -17 && tiltLR < -8:
+          case tiltLR >= -15 && tiltLR < -7:
             //POWDER PINK
             break;
-          case tiltLR >= -5 && tiltLR  < 3:
+          case tiltLR >= -4 && tiltLR  < 4:
             //RED
             break;
-          case tiltLR >= 6 && tiltLR < 15:
+          case tiltLR >= 7 && tiltLR < 15:
             //ORANGE
             break;
-          case tiltLR >= 18 && tiltLR  < 27:
+          case tiltLR >= 18 && tiltLR < 26:
+            //ORANGE
+            break;
+          case tiltLR >= 29 && tiltLR  < 37:
             //YELLOW
             break;
           case tiltLR > 40:
@@ -70,12 +73,13 @@ angular.module('nightwalkerApp')
             break;
 
           case tiltLR >= -40 && tiltLR < -37:
-          case tiltLR >= -28 && tiltLR < -25:
-          case tiltLR >= -16 && tiltLR < -13:
-          case tiltLR >= -4 && tiltLR < -1:
-          case tiltLR >= 7 && tiltLR < 10:
-          case tiltLR >= 19 && tiltLR < 22:
-          case tiltLR >= 31 && tiltLR < 34:
+          case tiltLR >= -29 && tiltLR < -26:
+          case tiltLR >= -18 && tiltLR < -15:
+          case tiltLR >= -7 && tiltLR < -4:
+          case tiltLR >= 4 && tiltLR < 7:
+          case tiltLR >= 15 && tiltLR < 18:
+          case tiltLR >= 26 && tiltLR < 29:
+          case tiltLR >= 37 && tiltLR < 40:
             //GRAY
             break
         } 
