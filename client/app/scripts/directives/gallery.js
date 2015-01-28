@@ -17,53 +17,56 @@ angular.module('nightwalkerApp')
     var link = function (scope, element, attrs) {
       if ($window.DeviceOrientationEvent && screen.width <= 980) {
         var manualChange = (function () {
-          grayPant.removeClass('gallery-animate');
+
+          var colorChange = function (className) {
+            if (!colorPant.hasClass(className)) {
+              colorPant.removeAttr('class');
+              colorPant.addClass('pant-sprite');
+              colorPant.addClass(className);
+            };
+          }
+
+          var checkTilt = function (input, valueMax, valueMin, tiltMax, tiltMin) {
+            var percent = (input - tiltMin) / (tiltMax - tiltMin);
+            var opacityValue = percent * (valueMax - valueMin) + valueMin;
+            if (opacityValue < .1) {
+              opacityValue = 0;
+            }
+            if (opacityValue > .9) {
+              opacityValue = 1;
+            }
+            grayPant.css('opacity', opacityValue);
+          }
+        
           $window.addEventListener('deviceorientation', function(eventData) {
 
             var tiltLR = eventData.gamma;
             var tiltFB = eventData.beta;
             var dir = eventData.alpha
-          
 
-            var colorChange = function (className) {
-              if (!colorPant.hasClass(className)) {
-                colorPant.removeAttr('class');
-                colorPant.addClass('pant-sprite');
-                colorPant.addClass(className);
-              };
-            }
-
-            var checkTilt = function (valueMax, valueMin, tiltMax, tiltMin) {
-              var percent = (tiltLR - tiltMin) / (tiltMax - tiltMin);
-              var opacityValue = percent * (valueMax - valueMin) + valueMin;
-              if (opacityValue < .1) {
-                opacityValue = 0;
-              }
-              if (opacityValue > .9) {
-                opacityValue = 1;
-              }
-              grayPant.css('opacity', opacityValue);
-            }
-
-            
             switch (true) {
-
+              case tiltFB < -5:
+                //Tilting backwards
+                colorChange('blue-pant');
+                checkTilt(tiltFB, 1, 0, 0, -20);
+                break
+              
               case tiltLR > -30 && tiltLR < -1:
                 //Tilt to the left for blue
                 colorChange('blue-pant');
-                checkTilt(1, 0, 0, -30);
+                checkTilt(tiltLR, 1, 0, 0, -30);
                 break
 
 
               case tiltLR >= 1 && tiltLR < 30:
                 //Tilt to the right for red
                 colorChange('red-pant');
-                checkTilt(1, 0, 0, 30);
+                checkTilt(tiltLR, 1, 0, 0, 30);
                 break
             } 
           }, false);
+          grayPant.removeClass('gallery-animate');
         })();
-
       } else {
         //Not supported or screen is too big
         var autoChange = (function () {
@@ -83,15 +86,13 @@ angular.module('nightwalkerApp')
               colorPant.addClass(classes[index]);
             }, 2000);
             console.log('The index is ' + index);
-
           }
         })();
-
         autoChange();
         $interval(autoChange, 3000);
       }
-    
-    } 
+    }
+
     return {
       restrict: 'E',
       replace: true,
