@@ -18,6 +18,9 @@ body {
 .red-pant {
   background-position: 100% 0;
 }
+.not-opaque {
+  opacity: 0;
+}
 .gallery-animate {
   transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
   opacity: 0;
@@ -26,11 +29,10 @@ body {
   transition: all cubic-bezier(1, 0.01, 0.57, 1) 2s;
   opacity: 1;
 }
-.gallery-fast {
-  transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.125s;
-  opacity: 0;
-}
-.gallery-fast.displayed {
-  transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.2s;
-  opacity: 1;
-}
+/*.gallery-fast
+  transition all cubic-bezier(1,.01,.33,1) .125s
+  opacity 0
+  
+.gallery-fast.displayed
+  transition all cubic-bezier(1,.01,.33,1) .2s
+  opacity 1*/

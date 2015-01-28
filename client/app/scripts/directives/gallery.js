@@ -10,133 +10,109 @@
 angular.module('nightwalkerApp')
   .directive('siteGallery', function ($location, $interval, $timeout, $window) {
   
-    var grayPant = angular.element('<div id="bottom-gallery" class="pant-sprite gray-pant">Some More words here</div>');
-    var colorPant = angular.element('<div id="top-gallery" class="pant-sprite blue-pant">Some words here</div>');
-    var list = angular.element('<p></p>');
-
-    var autoChange = (function () {
-      var index = 0;
-      var classes = ['blue-pant', 'red-pant'];
-      colorPant.addClass(classes[index])
-      grayPant.addClass('gallery-animate');
-
-      return function () {
-        grayPant.addClass('displayed');
-        $timeout(function () {
-          grayPant.removeClass('displayed');
-          colorPant.removeClass(classes[index]);
-          if (++index === classes.length) {
-            index = 0;
-          }
-          colorPant.addClass(classes[index]);
-        }, 2000);
-        console.log('The index is ' + index);
-      }
-    }()); 
-
-    var manualChange = (function () {
-      // Listen for the deviceorientation event and handle the raw data
-      $window.addEventListener('deviceorientation', function(eventData) {
-
-        grayPant.addClass('gallery-fast');
-        // gamma is the left-to-right tilt in degrees, where right is positive
-        var tiltLR = eventData.gamma;
-        // beta is the front-to-back tilt in degrees, where front is positive
-        var tiltFB = eventData.beta;
-        // alpha is the compass direction the device is facing in degrees
-        var dir = eventData.alpha
-        console.log(tiltLR);
-
-        switch (true) {
-          case tiltLR < -40:
-            //BLUE
-            colorPant.removeAttr('class');
-            colorPant.addClass('pant-sprite');
-            colorPant.addClass('blue-pant');
-            grayPant.removeClass('displayed');
-            break;
-          case tiltLR >= -37 && tiltLR < -29:
-            //PURPLE
-            colorPant.removeAttr('class');
-            colorPant.addClass('pant-sprite');
-            colorPant.addClass('red-pant');
-            grayPant.removeClass('displayed');
-            break;
-          case tiltLR >= -26 && tiltLR < -18:
-            //PINK
-            colorPant.removeAttr('class');
-            colorPant.addClass('pant-sprite');
-            colorPant.addClass('blue-pant');
-            grayPant.removeClass('displayed');
-            break;
-          case tiltLR >= -15 && tiltLR < -7:
-            //POWDER PINK
-            colorPant.removeAttr('class');
-            colorPant.addClass('pant-sprite');
-            colorPant.addClass('red-pant');
-            grayPant.removeClass('displayed');
-            break;
-          case tiltLR >= -4 && tiltLR  < 4:
-            //RED
-            colorPant.removeAttr('class');
-            colorPant.addClass('pant-sprite');
-            colorPant.addClass('blue-pant');
-            grayPant.removeClass('displayed');
-            break;
-          case tiltLR >= 7 && tiltLR < 15:
-            //ORANGE
-            colorPant.removeAttr('class');
-            colorPant.addClass('pant-sprite');
-            colorPant.addClass('red-pant');
-            grayPant.removeClass('displayed');
-            break;
-          case tiltLR >= 18 && tiltLR < 26:
-            //ORANGE
-            colorPant.removeAttr('class');
-            colorPant.addClass('pant-sprite');
-            colorPant.addClass('blue-pant');
-            grayPant.removeClass('displayed');
-            break;
-          case tiltLR >= 29 && tiltLR  < 37:
-            //YELLOW
-            colorPant.removeAttr('class');
-            colorPant.addClass('pant-sprite');
-            colorPant.addClass('blue-pant');
-            grayPant.removeClass('displayed');
-            break;
-          case tiltLR > 40:
-             //GREEN
-             grayPant.removeClass('displayed');
-            grayPant.removeClass('displayed');
-            break;
-
-          case tiltLR >= -40 && tiltLR < -37:
-          case tiltLR >= -29 && tiltLR < -26:
-          case tiltLR >= -18 && tiltLR < -15:
-          case tiltLR >= -7 && tiltLR < -4:
-          case tiltLR >= 4 && tiltLR < 7:
-          case tiltLR >= 15 && tiltLR < 18:
-          case tiltLR >= 26 && tiltLR < 29:
-          case tiltLR >= 37 && tiltLR < 40:
-            grayPant.addClass('displayed');
-            console.log('something');
-            //GRAY
-            break
-        } 
-      }, false);
-    });
-
+    var grayPant = angular.element('<div id="bottom-gallery" class="pant-sprite gray-pant gallery-animate">Some More words here</div>');
+    var colorPant = angular.element('<div id="top-gallery" class="pant-sprite">Some words here</div>');
+    var list = angular.element('<p style="margin-bottom:50px">Words here</p>');
   
     var link = function (scope, element, attrs) {
       if ($window.DeviceOrientationEvent && screen.width <= 980) {
-        manualChange();
+        var manualChange = (function () {
+          grayPant.removeClass('gallery-animate');
+          $window.addEventListener('deviceorientation', function(eventData) {
+            // gamma is the left-to-right tilt in degrees, where right is positive
+            var tiltLR = eventData.gamma;
+            // beta is the front-to-back tilt in degrees, where front is positive
+            var tiltFB = eventData.beta;
+            // alpha is the compass direction the device is facing in degrees
+            var dir = eventData.alpha
+            
+
+            list.html(tiltLR);
+            switch (true) {
+
+              case tiltLR >= -10 && tiltLR < -9:
+                //Only add the BLUE class when neccesary
+                colorPant.removeAttr('class');
+                colorPant.addClass('pant-sprite');
+                colorPant.addClass('blue-pant');
+                break;
+
+              case tiltLR >= -30 && tiltLR < -10:
+                //Change gray opacity when it is tilted to the left
+                var valueMax = 1
+                var valueMin = 0
+                var tiltMax = -30
+                var tiltMin = -10
+                var percent = (tiltLR - tiltMin) / (tiltMax - tiltMin);
+                var opacityValue = percent * (valueMax - valueMin) + valueMin;
+                if (opacityValue < .1) {
+                  opacityValue = 0;
+                }
+                if (opacityValue > .9) {
+                  opacityValue = 1;
+                }
+                list.html(opacityValue);
+                grayPant.css('opacity', opacityValue);
+                break
+
+
+              case tiltLR >= 9 && tiltLR < 30:
+                //Change gray opacity when it is tilted to the right
+                var valueMax = 1
+                var valueMin = 0
+                var tiltMax = 30
+                var tiltMin = 10
+                var percent = (tiltLR - tiltMin) / (tiltMax - tiltMin);
+                var opacityValue = percent * (valueMax - valueMin) + valueMin;
+                if (opacityValue < .1) {
+                  opacityValue = 0;
+                }
+                if (opacityValue > .9) {
+                  opacityValue = 1;
+                }
+                list.html(opacityValue);
+                grayPant.css('opacity', opacityValue);
+                break
+
+              case tiltLR >= 35 && tiltLR < 36:
+                //Only add the BLUE class when neccesary
+                colorPant.removeAttr('class');
+                colorPant.addClass('pant-sprite');
+                colorPant.addClass('red-pant');
+                break;
+            } 
+          }, false);
+        })();
+
       } else {
+        grayPant.addClass('gallery-animate');
         //Not supported or screen is too big
+        var autoChange = (function () {
+
+          var index = 0;
+          var classes = ['blue-pant', 'red-pant'];
+          colorPant.addClass(classes[index])
+
+          return function () {
+            grayPant.addClass('displayed');
+            $timeout(function () {
+              grayPant.removeClass('displayed');
+              colorPant.removeClass(classes[index]);
+              if (++index === classes.length) {
+                index = 0;
+              }
+              colorPant.addClass(classes[index]);
+            }, 2000);
+            console.log('The index is ' + index);
+
+          }
+        })();
+
         autoChange();
         $interval(autoChange, 3000);
       }
+    
     } 
-
     return {
       restrict: 'E',
       replace: true,
