@@ -1,0 +1,28 @@
+body {
+  background: #fff;
+}
+.pant-sprite {
+  position: absolute;
+  width: 40%;
+  max-width: 350px;
+  padding-bottom: 50%;
+  background-image: url("../images/final_sprites/gallery_sprite.jpg");
+  background-size: 300%;
+}
+.blue-pant {
+  background-position: 0 0;
+}
+.gray-pant {
+  background-position: 50% 0;
+}
+.red-pant {
+  background-position: 100% 0;
+}
+.gallery-animate {
+  transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
+  opacity: 0;
+}
+.gallery-animate.displayed {
+  transition: all cubic-bezier(1, 0.01, 0.57, 1) 2s;
+  opacity: 1;
+}

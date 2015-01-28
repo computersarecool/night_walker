@@ -1,0 +1,35 @@
+@import 'gallery_sprite'
+
+body
+  background white
+  
+.pant-sprite
+  position absolute
+  width 40%
+  max-width: 350px //Set to max res of image
+  padding-bottom: 50%
+  background-image url('../images/final_sprites/gallery_sprite.jpg')
+  background-size: 300%
+
+.blue-pant
+  background-position 0 0
+
+.gray-pant //Gray
+  background-position 50% 0
+  
+.red-pant
+  background-position 100% 0
+
+//Animation
+
+.gallery-animate
+  // transition all cubic-bezier(1,.01,.33,1) 1.5s
+  //transition all linear 1.5s
+  
+.gallery-animate
+  transition all cubic-bezier(1,.01,.33,1) .5s
+  opacity 0
+
+.gallery-animate.displayed
+  transition all cubic-bezier(1,.01,.57,1) 2s
+  opacity 1

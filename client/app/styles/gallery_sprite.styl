@@ -1,0 +1,36 @@
+/*
+$front_waist_blue = -4px -4px 404px 998px
+$front_waist_grayscale = -416px -4px 404px 998px
+$front_waist_red = -828px -4px 404px 998px
+
+sprite-width($sprite)
+  width $sprite[2]
+
+sprite-height($sprite)
+  height $sprite[3]
+
+sprite-position($sprite)
+  background-position $sprite[0]  $sprite[1]
+
+sprite($sprite)
+  sprite-position($sprite)
+  background-repeat no-repeat
+  overflow hidden
+  display block
+  sprite-width($sprite)
+  sprite-height($sprite)
+
+.pant
+  background-image url('../images/final_sprites/gallery_sprite.jpg')
+
+
+/*.blue-pant
+    sprite($front_waist_blue)
+
+.gray-pant
+    sprite($front_waist_grayscale)    
+
+.front-waist-blue
+  sprite($front_waist_blue)
+  
+*/

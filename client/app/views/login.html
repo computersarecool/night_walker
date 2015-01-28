@@ -1,0 +1,51 @@
+<div>
+    <div>
+        <h3>Signup as a New User</h3>
+        <hr>
+        <br>
+    </div>
+ 
+    <div>
+        
+        <form>
+        <!-- Text input-->
+            <div>
+                <label for="firstname">First Name</label>  
+                <input id="firstname" name="firstname" ng-model="signup.user.firstname" type="text" placeholder="Cole">
+            </div>
+     
+            <!-- Text input-->
+            <div>
+                <label for="lastname">Last Name</label>  
+                <input id="lastname" name="lastname" ng-model="signup.user.lastname" type="text" placeholder="Morrison">
+            </div>
+     
+            <!-- Text input-->
+            <div>
+                <label for="email">Email</label>  
+                <input id="email" name="email" ng-model="signup.user.email" type="text" placeholder="me@jcolemorrison.com">
+            </div>
+     
+            <!-- Password input-->
+            <div>
+                <label for="password1">Password</label>
+                <input id="password1" name="password1" ng-model="signup.user.password1" type="password">
+            </div>
+     
+            <!-- Password input-->
+            <div>
+                <label for="password2">Retype Password</label>
+                <input id="password2" name="password2" ng-model="signup.user.password2" type="password">    
+            </div>
+     
+            <!-- Button -->
+            <div>
+                <label for="signup"></label>
+                <button ng-click="signup.submit()" id="signup" name="signup">Signup!</button>
+            </div>
+ 
+        </form>
+
+    </div>
+ 
+</div>
