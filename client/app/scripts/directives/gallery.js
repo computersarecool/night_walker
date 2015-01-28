@@ -43,7 +43,7 @@ angular.module('nightwalkerApp')
             var tiltLR = eventData.gamma;
             var tiltFB = eventData.beta;
             var dir = eventData.alpha
-
+            list.html(dir);
             switch (true) {
               case tiltFB < -5:
                 //Tilting backwards
