@@ -53,111 +53,114 @@ angular.module('nightwalkerApp')
 
             switch (true) {
 
-              case dir >= 0 && dir < 22.5:
+              case dir >= 0 && dir < 15:
                 //Red
                 colorChange('blue-pant');
                 break
 
-              case dir >= 45 && dir < 67.5:
+              case dir >= 45 && dir < 60:
                 //Orage
                 colorChange('red-pant');
                 break
 
-              case dir >= 90 && dir < 112.5:
+              case dir >= 90 && dir < 105:
                 //Yellow
                 colorChange('blue-pant');
                 break
               
-              case dir >= 135 && dir < 157.5:
+              case dir >= 135 && dir < 150:
                 //Green
                 colorChange('red-pant');
                 break
               
-              case dir >= 180 && dir < 202.5:
+              case dir >= 180 && dir < 195:
                 //Blue
                 colorChange('blue-pant');
                 break
 
-              case dir >= 225 && dir < 247.5:
+              case dir >= 225 && dir < 240:
                 //Purple
                 colorChange('red-pant');
                 break
 
-              case dir >= 270 && dir < 292.5:
+              case dir >= 270 && dir < 285:
                 //Pink
                 colorChange('blue-pant');
                 break
 
-              case dir >= 315 && dir < 337.5:
+              case dir >= 315 && dir < 330:
                 //Pink2
                 colorChange('red-pant');
                 break
 
         //Increasing opacity
-              case dir >= 22.5 && dir < 33.75:
-                checkTilt(dir, 22.5, 33.75, 0, 1, 'blue-pant');
+              case dir >= 15 && dir < 30:
+                checkTilt(dir, 15, 30, 0, 1, 'blue-pant');
                 break
 
-              case dir >= 67.5 && dir < 78.75:
-                checkTilt(dir, 67.5, 78.75, 0, 1, 'red-pant');
+              case dir >= 60 && dir < 75:
+                checkTilt(dir, 60, 75, 0, 1, 'red-pant');
                 break
 
-              case dir >= 112.5 && dir < 123.75:
-                checkTilt(dir, 112.5, 123.75, 0, 1, 'blue-pant');
+              case dir >= 105 && dir < 120:
+                checkTilt(dir, 105, 120, 0, 1, 'blue-pant');
                 break
 
-              case dir >= 157.5 && dir < 168.75:
-                checkTilt(dir, 157.5, 168.75, 0, 1, 'red-pant');
+              case dir >= 150 && dir < 165:
+                checkTilt(dir, 150, 165, 0, 1, 'red-pant');
                 break
 
-              case dir >= 202.5 && dir < 213.75:
-                checkTilt(dir, 202.5, 213.75, 0, 1, 'blue-pant');
+              case dir >= 195 && dir < 210:
+                checkTilt(dir, 195, 210, 0, 1, 'blue-pant');
                 break
 
-              case dir >= 247.5 && dir < 258.75:
-                checkTilt(dir, 247.5, 258.75, 0, 1, 'red-pant');
+              case dir >= 240 && dir < 255:
+                checkTilt(dir, 240, 255, 0, 1, 'red-pant');
                 break
 
-              case dir >= 292.5 && dir < 303.75:
-                checkTilt(dir, 292.5, 303.75, 0, 1, 'blue-pant');
+              case dir >= 285 && dir < 300:
+                checkTilt(dir, 285, 300, 0, 1, 'red-pant');
                 break
 
-              case dir >= 337.5 && dir < 348.75:
-                checkTilt(dir, 337.5, 348.75, 0, 1, 'red-pant');
+              case dir >= 330 && dir < 345:
+                checkTilt(dir, 330, 345, 0, 1, 'red-pant');
                 break
+
+
 
         //Decreasing opacity
-              case dir >= 33.75 && dir < 45:
-                checkTilt(dir, 33.75, 45, 1, 0, 'red-pant');
+              case dir >= 30 && dir < 45:
+                checkTilt(dir, 30, 45, 1, 0, 'red-pant');
                 break   
 
-              case dir >= 78.75 && dir < 90:
-                checkTilt(dir, 78.75, 90, 1, 0, 'blue-pant');
-                break              
-
-              case dir >= 123.75 && dir < 135:
-                checkTilt(dir, 123.75, 135, 1, 0, 'red-pant');
-                break    
-
-              case dir >= 168.75 && dir < 180:
-                checkTilt(dir, 168.75, 180, 1, 0, 'blue-pant');
-                break    
-
-              case dir >= 213.75 && dir < 225:
-                checkTilt(dir, 213.75, 225, 1, 0, 'red-pant');
-                break   
-
-              case dir >= 258.75 && dir < 270:
-                checkTilt(dir, 258.75, 270, 1, 0, 'blue-pant');
-                break  
-
-              case dir >= 303.75 && dir < 315:
-                checkTilt(dir, 303.75, 315, 1, 0, 'red-pant');
+              case dir >= 75 && dir < 90:
+                checkTilt(dir, 75, 90, 1, 0, 'blue-pant');
                 break 
 
-              case dir >= 348.75 && dir < 360:
-                checkTilt(dir, 348.75, 360, 1, 0, 'blue-pant');
+              case dir >= 120 && dir < 135:
+                checkTilt(dir, 120, 135, 1, 0, 'red-pant');
                 break   
+
+              case dir >= 165 && dir < 180:
+                checkTilt(dir, 165, 180, 1, 0, 'blue-pant');
+                break   
+
+              case dir >= 210 && dir < 225:
+                checkTilt(dir, 210, 225, 1, 0, 'red-pant');
+                break  
+
+              case dir >= 255 && dir < 270:
+                checkTilt(dir, 255, 270, 1, 0, 'red-pant');
+                break  
+
+              case dir >= 300 && dir < 315:
+                checkTilt(dir, 300, 315, 1, 0, 'red-pant');
+                break  
+
+              case dir >= 345 && dir < 360:
+                checkTilt(dir, 345, 360, 1, 0, 'red-pant');
+                break   
+  
             }
             
 
