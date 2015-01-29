@@ -25,14 +25,20 @@ body
   
 //Animation
 .gallery-animate
-  transition all cubic-bezier(1,.01,.33,1) .5s
+  transition all cubic-bezier(1, .01, .33, 1) .5s
   opacity 0
 
 .gallery-animate.displayed
-  transition all cubic-bezier(1,.01,.57,1) 2s
+  transition all cubic-bezier(1, .01, .57,1) 2s
   opacity 1
 
+.fast-gray
+  transition all cubic-bezier(.83, .04, .65, .93) .4s
+  opacity 1
 
+.fast-no-gray
+  transition all cubic-bezier(.83, .04, .65, .93) .4s
+  opacity 0
   
 
 /*.gallery-fast

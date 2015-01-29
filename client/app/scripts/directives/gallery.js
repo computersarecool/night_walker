@@ -24,7 +24,11 @@ angular.module('nightwalkerApp')
               colorPant.removeAttr('class');
               colorPant.addClass('pant-sprite');
               colorPant.addClass(className);
-            };
+            }
+            if (grayPant.hasClass('fast-gray')) {
+              grayPant.removeClass('fast-gray');
+              grayPant.addClass('fast-no-gray');
+            }
           }
 
 
@@ -43,6 +47,12 @@ angular.module('nightwalkerApp')
             list2.html('The opacity value is ' + opacityValue);
           }
 
+          var checkAdd = function (oldClass, newClass) {
+            if (!grayPant.hasClass(newClass)) {
+              grayPant.removeClass(oldClass);
+              grayPant.addClass(newClass);
+            }
+          }
         
           $window.addEventListener('deviceorientation', function(eventData) {
             var tiltLR = eventData.gamma;
@@ -53,122 +63,83 @@ angular.module('nightwalkerApp')
 
             switch (true) {
 
-              case dir >= 0 && dir < 15:
+              case dir >= 0 && dir < 30:
                 //Red
                 colorChange('blue-pant');
                 break
 
-              case dir >= 45 && dir < 60:
+              case dir >= 45 && dir < 75:
                 //Orage
                 colorChange('red-pant');
                 break
 
-              case dir >= 90 && dir < 105:
+              case dir >= 90 && dir < 120:
                 //Yellow
                 colorChange('blue-pant');
                 break
               
-              case dir >= 135 && dir < 150:
+              case dir >= 135 && dir < 165:
                 //Green
                 colorChange('red-pant');
                 break
               
-              case dir >= 180 && dir < 195:
+              case dir >= 180 && dir < 210:
                 //Blue
                 colorChange('blue-pant');
                 break
 
-              case dir >= 225 && dir < 240:
+              case dir >= 225 && dir < 255:
                 //Purple
                 colorChange('red-pant');
                 break
 
-              case dir >= 270 && dir < 285:
+              case dir >= 270 && dir < 300:
                 //Pink
                 colorChange('blue-pant');
                 break
 
-              case dir >= 315 && dir < 330:
+              case dir >= 315 && dir < 345:
                 //Pink2
                 colorChange('red-pant');
                 break
 
-        //Increasing opacity
-              case dir >= 15 && dir < 30:
-                checkTilt(dir, 15, 30, 0, 1.4, 'blue-pant');
-                break
-
-              case dir >= 60 && dir < 75:
-                checkTilt(dir, 60, 75, 0, 1.4, 'red-pant');
-                break
-
-              case dir >= 105 && dir < 120:
-                checkTilt(dir, 105, 120, 0, 1.4, 'blue-pant');
-                break
-
-              case dir >= 150 && dir < 165:
-                checkTilt(dir, 150, 165, 0, 1.4, 'red-pant');
-                break
-
-              case dir >= 195 && dir < 210:
-                checkTilt(dir, 195, 210, 0, 1.4, 'blue-pant');
-                break
-
-              case dir >= 240 && dir < 255:
-                checkTilt(dir, 240, 255, 0, 1.4, 'red-pant');
-                break
-
-              case dir >= 285 && dir < 300:
-                checkTilt(dir, 285, 300, 0, 1.4, 'red-pant');
-                break
-
-              case dir >= 330 && dir < 345:
-                checkTilt(dir, 330, 345, 0, 1.4, 'red-pant');
-                break
-
-
-
-        //Decreasing opacity
+        //Change class
               case dir >= 30 && dir < 45:
-                checkTilt(dir, 30, 45, 1, 0, 'red-pant');
+                checkAdd('fast-no-gray', 'fast-gray');
                 break   
 
               case dir >= 75 && dir < 90:
-                checkTilt(dir, 75, 90, 1, 0, 'blue-pant');
+                checkAdd('fast-no-gray', 'fast-gray');
                 break 
 
               case dir >= 120 && dir < 135:
-                checkTilt(dir, 120, 135, 1, 0, 'red-pant');
+                checkAdd('fast-no-gray', 'fast-gray');
                 break   
 
               case dir >= 165 && dir < 180:
-                checkTilt(dir, 165, 180, 1, 0, 'blue-pant');
+                checkAdd('fast-no-gray', 'fast-gray');
                 break   
 
               case dir >= 210 && dir < 225:
-                checkTilt(dir, 210, 225, 1, 0, 'red-pant');
+                checkAdd('fast-no-gray', 'fast-gray');
                 break  
 
               case dir >= 255 && dir < 270:
-                checkTilt(dir, 255, 270, 1, 0, 'red-pant');
+                checkAdd('fast-no-gray', 'fast-gray');
                 break  
 
               case dir >= 300 && dir < 315:
-                checkTilt(dir, 300, 315, 1, 0, 'red-pant');
+                checkAdd('fast-no-gray', 'fast-gray');
                 break  
 
               case dir >= 345 && dir < 360:
-                checkTilt(dir, 345, 360, 1, 0, 'red-pant');
+                checkAdd('fast-no-gray', 'fast-gray');
                 break   
   
             }
             
 
           }, false);
-
-
-          //grayPant.removeClass('gallery-animate');
-
 
         })();
 
