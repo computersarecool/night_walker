@@ -33,7 +33,7 @@ angular.module('nightwalkerApp')
             if (opacityValue < .2) {
               opacityValue = 0;
             }
-            if (opacityValue > .8) {
+            if (opacityValue > .7) {
               opacityValue = 1;
             }
             if (opacityValue === 1) {
@@ -95,35 +95,35 @@ angular.module('nightwalkerApp')
 
         //Increasing opacity
               case dir >= 15 && dir < 30:
-                checkTilt(dir, 15, 30, 0, 1, 'blue-pant');
+                checkTilt(dir, 15, 30, 0, 1.4, 'blue-pant');
                 break
 
               case dir >= 60 && dir < 75:
-                checkTilt(dir, 60, 75, 0, 1, 'red-pant');
+                checkTilt(dir, 60, 75, 0, 1.4, 'red-pant');
                 break
 
               case dir >= 105 && dir < 120:
-                checkTilt(dir, 105, 120, 0, 1, 'blue-pant');
+                checkTilt(dir, 105, 120, 0, 1.4, 'blue-pant');
                 break
 
               case dir >= 150 && dir < 165:
-                checkTilt(dir, 150, 165, 0, 1, 'red-pant');
+                checkTilt(dir, 150, 165, 0, 1.4, 'red-pant');
                 break
 
               case dir >= 195 && dir < 210:
-                checkTilt(dir, 195, 210, 0, 1, 'blue-pant');
+                checkTilt(dir, 195, 210, 0, 1.4, 'blue-pant');
                 break
 
               case dir >= 240 && dir < 255:
-                checkTilt(dir, 240, 255, 0, 1, 'red-pant');
+                checkTilt(dir, 240, 255, 0, 1.4, 'red-pant');
                 break
 
               case dir >= 285 && dir < 300:
-                checkTilt(dir, 285, 300, 0, 1, 'red-pant');
+                checkTilt(dir, 285, 300, 0, 1.4, 'red-pant');
                 break
 
               case dir >= 330 && dir < 345:
-                checkTilt(dir, 330, 345, 0, 1, 'red-pant');
+                checkTilt(dir, 330, 345, 0, 1.4, 'red-pant');
                 break
 
 
