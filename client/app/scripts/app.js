@@ -45,11 +45,11 @@ angular
         controller: 'ContactCtrl'
       })
       .when('/product/:flavor', {
-        templateUrl: 'views/product.html',
+        templateUrl:'/views/product.html',
         controller: 'ProductCtrl',
         resolve: {
-          product: function($route, productService) {
-            return productService.getIndividual($route.current.param.flavor);
+          product: function (productService, $route) {
+            return productService.getIndividual($route.current.params.flavor);
           }
         }
       })

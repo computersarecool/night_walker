@@ -8,10 +8,9 @@
  * Controller of the nightwalkerApp
  */
 angular.module('nightwalkerApp')
-  .controller('ProductCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('ProductCtrl', function ($scope, $routeParams, product) {
+
+    $scope.message = $routeParams.flavor; 
+    $scope.product = product;
+
   });

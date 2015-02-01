@@ -18,8 +18,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
-var router = require('./router')(app);
 
+app.get('/product/:flavor', function (req, res) {
+  res.json({
+    "color": "Cherry"
+  })
+});
+
+var router = require('./router')(app);
 
 //Development
 if (app.get('env') === 'development') {
