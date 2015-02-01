@@ -1,1 +1,3 @@
-<p>This is the shop view. Right here</p>
+<div ng-repeat="pant in products" class="pant container" ng-style="{'background-color':'{{pant.flavor}}'}">
+    <div class="pant-text">The flavor: {{pant.flavor}}</div>
+</div>

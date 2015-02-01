@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var UserModel = require('./schemas/users');
+var ProductModel = require('./schemas/products');
 var credentials = require('../../config/credentials');
 
 //Connections
@@ -33,3 +34,4 @@ db.once('open', function callback () {
 });
 
 exports.users = UserModel;
+exports.Products = ProductModel;
