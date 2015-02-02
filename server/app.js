@@ -54,8 +54,6 @@ app.get('/me', function (req, res) {
 });
 
 app.get('/api/product/:flavor', function (req, res) {
-  console.log('This is it');
-  console.log(req.cookies);
   res.json({
     "color": "Cherry, my lady"
   })

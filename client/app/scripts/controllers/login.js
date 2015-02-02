@@ -26,7 +26,7 @@ angular.module('nightwalkerApp')
     $scope.findMe = function () {
       $http.get('/me')
         .success(function (data) {
-          console.log('there is nothing here');
+          console.log('there is something here');
           console.log(data);
         })
         .error(function (data) {

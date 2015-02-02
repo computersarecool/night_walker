@@ -54,7 +54,6 @@ angular
         controller: 'LoginCtrl'
       })
 
-
       .otherwise({
         redirectTo: '/'
       });
