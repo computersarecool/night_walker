@@ -46,8 +46,20 @@ function authenticate (req, res, next) {
 }
 
 //Temporary routes
-app.use('/me', expressJwt({secret: jwtSecret}));
+app.use('/me', expressJwt({secret: jwtSecret}), function (err, req, res, next) {
+  if (err) {
+    console.log(err);
+    console.log('Something happened');
+    throw err;
+  }
+  next();
+});
+
 app.get('/me', function (req, res) {
+  console.log(req);
+  console.log('BREAK');
+  console.log('BREAK');
+  console.log(req.user);
   res.send({
     "name": "Congrats"
   })
@@ -62,7 +74,7 @@ app.get('/api/product/:flavor', function (req, res) {
 
 app.post('/login/login', authenticate, function (req, res) {
   var token = jwt.sign({
-    username: user.username
+    username: user.username,
   }, jwtSecret);
 
   res.send({
@@ -85,7 +97,7 @@ if (app.get('env') === 'development') {
   app.use(express.static(path.join(__dirname, '../client/.tmp')));
   app.use(express.static(path.join(__dirname, '../client/app')));
   app.get('*', function (req, res, next) {
-    res.sendfile('index.html', {root:'../client/app/'});
+    res.sendFile('index.html', {root:'../client/app/'});
   });
   //Error handling
   app.use(function (err, req, res, next) {
