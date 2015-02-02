@@ -15,6 +15,7 @@ angular.module('nightwalkerApp')
       console.log(username, password);
       UserFactory.login(username, password).then(function success (response) {
         $scope.user = response.data.user;
+        console.log('The user is', $scope.user);
         alert('you now have a token');
       }, handleError);
     };

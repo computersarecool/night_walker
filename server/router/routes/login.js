@@ -17,6 +17,8 @@ function authenticate (req, res, next) {
     res.status(400).end('Must provide username or password');
   }
 
+
+  // Actually need to check username and password
   Users.findOne({
     'username': body.username
   }, function (err, user) {
@@ -33,7 +35,6 @@ function authenticate (req, res, next) {
       console.log('THAT USER IS NOT HERE');
       //Make this actually check for bad username or password
       res.status(401).end('Username or password incorrect');
-      next();
     }  
   });
 }

@@ -21,6 +21,7 @@ angular.module('nightwalkerApp')
         password: password
       }).then(function success (response) {
         AuthTokenFactory.setToken(response.data.token);
+        console.log(response);
         return response;
       });
     };
