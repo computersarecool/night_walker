@@ -9,12 +9,6 @@ var jwtSecret = require('../../../config/credentials').jwtSecret;
 
 var router = express.Router();
 
-// This is where the verification happens
-/*var user = {
-  username: 'test',
-  password: 'testt'
-}
-*/
 function authenticate (req, res, next) {
   var body = req.body;
 
@@ -37,16 +31,11 @@ function authenticate (req, res, next) {
     }
     if (!user) {
       console.log('THAT USER IS NOT HERE');
+      //Make this actually check for bad username or password
+      res.status(401).end('Username or password incorrect');
       next();
     }  
   });
-
-
-/*  if (body.username !== user.username || body.password !== user.password) {
-    console.log('yes sir indeed');
-    res.status(401).end('Username or password incorrect');
-  }
-*/
 }
 
 
