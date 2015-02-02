@@ -8,16 +8,25 @@
  * Factory in the nightwalkerApp.
  */
 angular.module('nightwalkerApp')
-  .factory('AuthToken', function () {
-    // Service logic
-    // ...
+  .factory('AuthToken', function ($window) {
+    var store = $window.localStorage;
+    var key = 'auth-token';
 
-    var meaningOfLife = 42;
-
-    // Public API here
     return {
-      someMethod: function () {
-        return meaningOfLife;
+      getToken: getToken,
+      setToken: setToken
+    };
+
+    function getToken () {
+      return store.getItem(key);
+    };
+
+    function setToken (token) {
+      if (token) {
+        store.setItem(key, token);
+      } else {
+        store.removeItem(key);
       }
     };
+
   });

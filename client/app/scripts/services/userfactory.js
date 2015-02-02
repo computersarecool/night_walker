@@ -10,11 +10,16 @@
 angular.module('nightwalkerApp')
   .factory('UserFactory', function ($http) {
     return {
-      login: function (username, password) {
-        return $http.post('/login/login', {
-          username: username,
-          password: password
-        });
-      }
+      login: login 
     };
+
+    function login (username, password) {
+      return $http.post('/login/login', {
+        username: username,
+        password: password
+      }).then(function success (response) {
+        AuthTokenFactory.setToken(response.data.token);
+        return response;
+      });
+    }
   });
