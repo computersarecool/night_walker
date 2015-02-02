@@ -8,7 +8,7 @@
  * Factory in the nightwalkerApp.
  */
 angular.module('nightwalkerApp')
-  .factory('productService', function ($http, $q, $resource) {
+  .factory('productService', function ($http, $q) {
     return {
       getProducts: function () {
         var deferred = $q.defer();
@@ -22,21 +22,17 @@ angular.module('nightwalkerApp')
           });
         return deferred.promise;
       },
-      getIndividual: function (thing) {
-        (function () {
-          console.log(thing);
-        })();
-        // var deferred = $q.defer();
-        // $http.get('/product/' + flavor)
-        //   .success(function (data, status, headers, config) {
-        //     deferred.resolve(data);
-        //   })
-        //   .error(function (data, stauts, headers, config) {
-        //     deferred.reject(data);
-        //     console.log('There was an error retrieving the indvidual product');
-        //   })
-        // return deferred.promise;
-        return thing;
+      getIndividual: function (flavor) {
+        var deferred = $q.defer();
+        $http.get('/api/product/' + flavor)
+          .success(function (data, status, headers, config) {
+            deferred.resolve(data);
+          })
+          .error(function (data, stauts, headers, config) {
+            deferred.reject(data);
+            console.log('There was an error retrieving the indvidual product');
+          })
+        return deferred.promise;
       }
     };
   });

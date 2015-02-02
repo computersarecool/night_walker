@@ -8,9 +8,7 @@
  * Controller of the nightwalkerApp
  */
 angular.module('nightwalkerApp')
-  .controller('ProductCtrl', function ($scope, $routeParams, product) {
-
-    $scope.message = $routeParams.flavor; 
+  .controller('ProductCtrl', function ($scope, $cookies, product) {
     $scope.product = product;
-
+    $cookies.favorite = 'The best';
   });

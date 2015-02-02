@@ -6,9 +6,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var jwt = require('jsonwebtoken');
 
 var app = express();
-
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -18,12 +18,48 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
+// Temp Functions
+function authenticate (req, res, next) {
+  var body = req.body;
+  if (!body.username || !body.password) {
+    res.status(400).end('Must provide username or password');
+  }
+  if (body.username !== user.username || body.password !== user.password) {
+    res.status(401).end('Username or password incorrect');
+  }
+  next();
+}
 
-app.get('/product/:flavor', function (req, res) {
+//Temporary variables
+var jwtSecret = 'sososecret';
+
+var user = {
+  username: 'test',
+  password: 'testt'
+}
+
+//Temporary routes
+app.get('/api/product/:flavor', function (req, res) {
+  console.log('This is it');
+  console.log(req.cookies);
   res.json({
-    "color": "Cherry"
+    "color": "Cherry, my lady"
   })
 });
+
+
+app.post('/login/login', authenticate, function (req, res) {
+  var token = jwt.sign({
+    username: user.username
+  }, jwtSecret);
+
+  res.send({
+    user: user.username,
+    token: token
+  });
+
+});
+
 
 var router = require('./router')(app);
 
@@ -41,8 +77,6 @@ if (app.get('env') === 'development') {
     res.status(err.status || 500).send('There is an error with request');
   });
 }
-
-
 
 
 //Production

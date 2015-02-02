@@ -27,6 +27,10 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/contact', {
+        templateUrl: 'views/contact.html',
+        controller: 'ContactCtrl'
+      })      
       .when('/shop', {
         templateUrl: 'views/shop.html',
         controller: 'ShopCtrl',
@@ -35,14 +39,6 @@ angular
             return productService.getProducts();
           }
         }
-      })
-      .when('/login', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
-      })
-      .when('/contact', {
-        templateUrl: 'views/contact.html',
-        controller: 'ContactCtrl'
       })
       .when('/product/:flavor', {
         templateUrl:'/views/product.html',
@@ -53,13 +49,23 @@ angular
           }
         }
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      })
+
+
       .otherwise({
         redirectTo: '/'
       });
 
+
+
     $locationProvider.html5Mode({
       enabled: true, 
-      requireBase: false
+      requireBase: true
     })
+
+
     
   });
