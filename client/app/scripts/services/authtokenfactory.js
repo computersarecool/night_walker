@@ -8,7 +8,7 @@
  * Factory in the nightwalkerApp.
  */
 angular.module('nightwalkerApp')
-  .factory('AuthToken', function ($window) {
+  .factory('AuthTokenFactory', function ($window) {
     var store = $window.localStorage;
     var key = 'auth-token';
 

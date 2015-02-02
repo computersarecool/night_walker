@@ -8,9 +8,11 @@
  * Factory in the nightwalkerApp.
  */
 angular.module('nightwalkerApp')
-  .factory('UserFactory', function ($http) {
+  .factory('UserFactory', function ($http, $q, AuthTokenFactory) {
     return {
-      login: login 
+      login: login,
+      logout: logout,
+      getUser: getUser
     };
 
     function login (username, password) {
@@ -21,5 +23,18 @@ angular.module('nightwalkerApp')
         AuthTokenFactory.setToken(response.data.token);
         return response;
       });
+    };
+
+    function logout () {
+     AuthTokenFactory.setToken();
+    };
+
+    function getUser () {
+      if (AuthTokenFactory.getToken()) {
+        return $http.get('/me');
+      } else {
+        return $q.reject({data: 'Client has no auth token'});
+      }
     }
+
   });

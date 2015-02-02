@@ -15,12 +15,27 @@ angular.module('nightwalkerApp')
       console.log(username, password);
       UserFactory.login(username, password).then(function success(response) {
         $scope.user = response.data.user;
-        alert(response.data.token);
+        alert('you now have a token');
       }, handleError);
+    };
+
+    $scope.logout = function () {
+      UserFactory.logout();
+    };
+
+    $scope.findMe = function () {
+      $http.get('/me')
+        .success(function (data) {
+          console.log('there is nothing here');
+          console.log(data);
+        })
+        .error(function (data) {
+          console.log('there is an error here');
+        })
     }
 
     function handleError (response) {
-      alert('Error: ' + response.data);
-    }
+      alert('Wham Error: ' + response.data);
+    };
 
   });  

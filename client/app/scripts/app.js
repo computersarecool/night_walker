@@ -17,7 +17,7 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider, $locationProvider) {
+  .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/gallery.html',
@@ -60,11 +60,12 @@ angular
       });
 
 
+    $httpProvider.interceptors.push('AuthInterceptorFactory');
 
     $locationProvider.html5Mode({
       enabled: true, 
       requireBase: true
-    })
+    });
 
 
     

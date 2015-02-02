@@ -8,10 +8,9 @@
  * Controller of the nightwalkerApp
  */
 angular.module('nightwalkerApp')
-  .controller('MainCtrl', function ($scope) {
-/*    this.isHidden = false;
-    this.fadeIt = function () {
-        // this.isHidden = !this.isHidden;
-        console.log('something');
-    }*/
+  .controller('MainCtrl', function ($scope, UserFactory) {
+    //Initialize
+/*    UserFactory.getUser().then(function success (response) {
+      this.user = response.data;
+    });*/
   });
