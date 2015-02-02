@@ -9,11 +9,11 @@
  */
 
 angular.module('nightwalkerApp')
-  .controller('LoginCtrl', function ($scope, $http, $location, UserFactory) {
+  .controller('LoginCtrl', function ($scope, $http, UserFactory) {
 
     $scope.login = function (username, password) {
       console.log(username, password);
-      UserFactory.login(username, password).then(function success(response) {
+      UserFactory.login(username, password).then(function success (response) {
         $scope.user = response.data.user;
         alert('you now have a token');
       }, handleError);

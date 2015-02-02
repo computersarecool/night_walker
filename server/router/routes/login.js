@@ -6,14 +6,12 @@ var jwtSecret = require('../../../config/credentials').jwtSecret;
 
 var router = express.Router();
 
-
+// This is where the verification happens
 var user = {
   username: 'test',
   password: 'testt'
 }
 
-
-// Temp Functions
 function authenticate (req, res, next) {
   var body = req.body;
   console.log(req.body);
