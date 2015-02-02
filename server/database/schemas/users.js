@@ -5,21 +5,26 @@ var Schema = mongoose.Schema;
 //Use Schema
 var userSchema = new Schema({
   firstname: {
-    type: String,
-    required: true
+    type: String
+    // required: true
   },
   lastname: {
-    type: String,
-    required: true
+    type: String
+    // required: true
+  },
+  username: {
+    type: String
+    // required: true,
+    // unique: true
   },
   email: {
-    type: String,
-    required: true,
-    unique: true
+    type: String
+    // required: true,
+    // unique: true
   },
   password: {
-    type: String,
-    required: true
+    type: String
+    // required: true
   },
   profile: {
     //bonus
@@ -27,7 +32,7 @@ var userSchema = new Schema({
 });
 
 //A method that is called every time a user document is saved...
-userSchema.pre('save', function (next) {
+userSchema.pre('save', function (next) { 
   var user = this;
     //If the password hasn't been modified continue
     if (!user.isModified('password')) {

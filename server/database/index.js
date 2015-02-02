@@ -7,21 +7,21 @@ var credentials = require('../../config/credentials');
 var developmentDb = credentials.testConnection;
 var productionDb = credentials.mongoConnection;
 
-var userDb;
+var database;
 
 //If in development
 if (process.env.NODE_ENV === 'development') {
-  //set userDB to development one
-  userDb = developmentDb;
+  //set database to development one
+  database = developmentDb;
 }
 
 //If in production
 if (process.env.NODE_ENV === 'production') {
-  userDb = productionDb;
+  database = productionDb;
 }
 
 //Connect to the database
-mongoose.connect(userDb);
+mongoose.connect(database);
 
 //Get an instance of the connection to our database
 var db = mongoose.connection;
@@ -30,7 +30,7 @@ db.on('error', console.error.bind(console, 'Connection error:'));
 
 //Open connection
 db.once('open', function callback () {
-  console.log('Database connection successfully opened at ' + userDb);
+  console.log('Database connection successfully opened at ' + database);
 });
 
 exports.users = UserModel;

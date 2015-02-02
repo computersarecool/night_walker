@@ -1,29 +1,52 @@
 var express = require('express');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
+var db = require('../../database');
+
+var Users = db.users;
 var jwtSecret = require('../../../config/credentials').jwtSecret;
 
 
 var router = express.Router();
 
 // This is where the verification happens
-var user = {
+/*var user = {
   username: 'test',
   password: 'testt'
 }
-
+*/
 function authenticate (req, res, next) {
   var body = req.body;
-  console.log(req.body);
+
   if (!body.username || !body.password) {
     console.log('yes indeed');
     res.status(400).end('Must provide username or password');
   }
-  if (body.username !== user.username || body.password !== user.password) {
+
+  Users.findOne({
+    'username': body.username
+  }, function (err, user) {
+    if (err) {
+      console.log('There was a database retrieval error');
+      throw err;
+    }
+    if (user) {
+      console.log('YES THERE IS A USER');
+      req.user = user;
+      next();
+    }
+    if (!user) {
+      console.log('THAT USER IS NOT HERE');
+      next();
+    }  
+  });
+
+
+/*  if (body.username !== user.username || body.password !== user.password) {
     console.log('yes sir indeed');
     res.status(401).end('Username or password incorrect');
   }
-  next();
+*/
 }
 
 
@@ -31,11 +54,11 @@ function authenticate (req, res, next) {
 router.post('/login', authenticate, function (req, res) {
 
   var token = jwt.sign({
-    username: user.username,
+    username: req.user.username,
   }, jwtSecret);
 
   res.send({
-    user: user.username,
+    user: req.user.username,
     token: token
   });
 
