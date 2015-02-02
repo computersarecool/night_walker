@@ -31,6 +31,7 @@ angular.module('nightwalkerApp')
         })
         .error(function (data) {
           console.log('there is an error here');
+          console.log(data);
         })
     }
 

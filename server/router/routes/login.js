@@ -1,4 +1,57 @@
 var express = require('express');
+var jwt = require('jsonwebtoken');
+var expressJwt = require('express-jwt');
+var jwtSecret = require('../../../config/credentials').jwtSecret;
+
+
+var router = express.Router();
+
+
+var user = {
+  username: 'test',
+  password: 'testt'
+}
+
+
+// Temp Functions
+function authenticate (req, res, next) {
+  var body = req.body;
+  console.log(req.body);
+  if (!body.username || !body.password) {
+    console.log('yes indeed');
+    res.status(400).end('Must provide username or password');
+  }
+  if (body.username !== user.username || body.password !== user.password) {
+    console.log('yes sir indeed');
+    res.status(401).end('Username or password incorrect');
+  }
+  next();
+}
+
+
+
+router.post('/login', authenticate, function (req, res) {
+
+  var token = jwt.sign({
+    username: user.username,
+  }, jwtSecret);
+
+  res.send({
+    user: user.username,
+    token: token
+  });
+
+});
+
+
+
+
+
+
+
+
+
+/*var express = require('express');
 var router = express.Router();
 var moment = require('moment');
 var _ = require('underscore');
@@ -66,5 +119,5 @@ router.post('/', function (req, res) {
         };
       });
 });
-
+*/
 module.exports = router;
