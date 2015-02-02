@@ -5,6 +5,7 @@ var expressJwt = require('express-jwt');
 var jwtSecret = require('../../../config/credentials').jwtSecret;
 
 router.use('/', expressJwt({secret: jwtSecret}), function (err, req, res, next) {
+  //This sets req.user with the decoded JWT.(i.e. the JWT)
   if (err) {
     console.log('An error happened');
     throw err;
