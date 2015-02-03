@@ -36,7 +36,7 @@ angular.module('nightwalkerApp')
     }
 
     function handleError (response) {
-      alert('Wham Error: ' + response.data);
+      alert('Login Error: ' + response.data);
     };
 
   });  

@@ -4,20 +4,8 @@ var Schema = mongoose.Schema;
 
 //User Schema
 var userSchema = new Schema({
-  firstname: {
-    type: String
-    // required: true
-  },
-  lastname: {
-    type: String
-    // required: true
-  },
+
   username: {
-    type: String
-    // required: true,
-    // unique: true
-  },
-  email: {
     type: String
     // required: true,
     // unique: true
@@ -25,11 +13,28 @@ var userSchema = new Schema({
   password: {
     type: String
     // required: true
-  },
-  profile: {
-    //bonus
-  }
+  } 
 });
+  
+/*  firstname: {
+    type: String
+    // required: true
+  },
+  lastname: {
+    type: String
+    // required: true
+  },*/
+
+/*  email: {
+    type: String
+    // required: true,
+    // unique: true
+  },*/
+
+/*  profile: {
+    //bonus
+  }*/
+
 /*
 //A method that is called every time a user document is saved...
 userSchema.pre('save', function (next) { 

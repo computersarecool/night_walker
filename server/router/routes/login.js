@@ -10,6 +10,23 @@ require('../../inner_config/passport')(passport);
 
 var router = express.Router();
 
+router.post('/signup', passport.authenticate('local-signup', {session: false}), function (req, res) {
+  console.log('The new user has been signed up');
+
+  var token = jwt.sign({
+    //This is where the jwt is created
+    funThing: 'This is your new JWT',
+    username: req.user.username
+  }, jwtSecret);
+
+  res.send({
+    user: req.user.username,
+    token: token
+  });
+
+});
+
+
 router.post('/login', passport.authenticate('local-login', {session: false}), function (req, res) {
   
   console.log('Here we go');

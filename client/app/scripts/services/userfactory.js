@@ -12,6 +12,7 @@ angular.module('nightwalkerApp')
     return {
       login: login,
       logout: logout,
+      signup: signup,
       getUser: getUser
     };
 
@@ -22,6 +23,18 @@ angular.module('nightwalkerApp')
       }).then(function success (response) {
         AuthTokenFactory.setToken(response.data.token);
         console.log(response);
+        return response;
+      });
+    };
+
+    function signup (username, password) {
+      console.log('signing up');
+      return $http.post('/login/signup', {
+        username: username,
+        password: password
+      }).then(function success (response) {
+        AuthTokenFactory.setToken(response.data.token);
+        console.log('The user should have a token now');
         return response;
       });
     };
