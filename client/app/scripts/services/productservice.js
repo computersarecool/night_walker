@@ -16,6 +16,7 @@ angular.module('nightwalkerApp')
 
     function getProducts () {
       var deferred = $q.defer();
+ 
       $http.get('/allproducts')
         .success(function (data, status, headers, config) {
           deferred.resolve(data);
@@ -24,11 +25,14 @@ angular.module('nightwalkerApp')
           deferred.reject(data);
           console.log('there was an error');
         });
+ 
       return deferred.promise;
+ 
     };
 
     function getIndividual (flavor) {
       var deferred = $q.defer();
+      
       $http.get('/api/product/' + flavor)
         .success(function (data, status, headers, config) {
           deferred.resolve(data);
@@ -37,7 +41,9 @@ angular.module('nightwalkerApp')
           deferred.reject(data);
           console.log('There was an error retrieving the indvidual product');
         })
+      
       return deferred.promise;
+    
     };
 
   });

@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var Schema = mongoose.Schema;
 
-//Use Schema
+//User Schema
 var userSchema = new Schema({
   firstname: {
     type: String
@@ -30,7 +30,7 @@ var userSchema = new Schema({
     //bonus
   }
 });
-
+/*
 //A method that is called every time a user document is saved...
 userSchema.pre('save', function (next) { 
   var user = this;
@@ -44,10 +44,10 @@ userSchema.pre('save', function (next) {
       next();
     });
 });
-
+*/
 
 //Password verification helper
-userSchema.method.comparePassword = function (triedPassword, callback) {
+/*userSchema.method.comparePassword = function (triedPassword, callback) {
   bcrypt.compare(triedPassword, this.password, function (err, isMatch) {
     if (err) {
       return callback(err)
@@ -55,6 +55,23 @@ userSchema.method.comparePassword = function (triedPassword, callback) {
     callback(null, isMatch);
   });
 };
+*/
+
+userSchema.methods.checkPassword = function (triedPassword, callback) {
+  // Right password
+  if (triedPassword === this.password) {
+    console.log('The password is right');
+    return callback(null, true);
+  }
+
+  // Wrong password
+  console.log('The password is wrong');
+  return callback(null, false);
+
+};
+
+
+
 
 var User = mongoose.model('User', userSchema);
 

@@ -9,12 +9,15 @@ var jwtSecret = require('../../../config/credentials').jwtSecret;
 
 var router = express.Router();
 
+
+
 function authenticate (req, res, next) {
   var body = req.body;
 
 
   if (!body.username || !body.password) {
-    res.status(400).end('Must provide username or password');
+    res.status(400).end('Must provide username or password'); 
+    return
   }
 
 
@@ -32,22 +35,39 @@ function authenticate (req, res, next) {
       });
     }
 
-    if (user) {
-      console.log('YES THERE IS A USER');
-      //Make this actually check for bad username or password
-      req.user = user;
-      next();
-    }
-
     if (!user) {
       
       console.log('THAT USER IS NOT HERE');
-      res.status(401).end('Username or password incorrect');
+      res.status(401).end('Invalid user');
 
+    }    
+
+    if (user) {
+      console.log('Yes there is a user');
+
+      user.checkPassword (body.password, function (err, auth) {
+        if (err) {
+          throw err
+        }
+
+        if (!auth) {
+          res.status(401).end('Wrong password'); 
+          return
+        }
+
+        if (auth) {
+          req.user = user;
+          next();
+        }
+
+      });
     }
+
 
   });
 }
+
+
 
 router.post('/login', authenticate, function (req, res) {
 
