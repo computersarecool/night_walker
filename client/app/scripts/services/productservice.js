@@ -32,8 +32,8 @@ angular.module('nightwalkerApp')
 
     function getIndividual (flavor) {
       var deferred = $q.defer();
-      
-      $http.get('/api/product/' + flavor)
+      console.log('flavor');
+      $http.get('/product/' + flavor)
         .success(function (data, status, headers, config) {
           deferred.resolve(data);
         })

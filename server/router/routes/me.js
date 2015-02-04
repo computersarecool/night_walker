@@ -14,7 +14,10 @@ router.use('/', expressJwt({secret: jwtSecret}), function (err, req, res, next) 
   next();
 });
 
+
+
 router.get('/', function (req, res) {
+  // Fetch info from database
   if (req.user.username === 'johnDoe') {
     
     console.log('John Doe is here');

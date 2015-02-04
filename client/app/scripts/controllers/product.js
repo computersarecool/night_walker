@@ -8,7 +8,6 @@
  * Controller of the nightwalkerApp
  */
 angular.module('nightwalkerApp')
-  .controller('ProductCtrl', function ($scope, $cookies, product) {
+  .controller('ProductCtrl', function ($scope, product) {
     $scope.product = product;
-    $cookies.favorite = 'The best';
   });

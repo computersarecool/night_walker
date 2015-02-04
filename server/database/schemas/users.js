@@ -15,25 +15,7 @@ var userSchema = new Schema({
     // required: true
   } 
 });
-  
-/*  firstname: {
-    type: String
-    // required: true
-  },
-  lastname: {
-    type: String
-    // required: true
-  },*/
 
-/*  email: {
-    type: String
-    // required: true,
-    // unique: true
-  },*/
-
-/*  profile: {
-    //bonus
-  }*/
 
 /*
 //A method that is called every time a user document is saved...

@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var moment = require('moment');
-var db = require('../../database');
-var Products = db.Products;
-router.get('/', function (req, res) {
-  res.json([
+
+router.get('/:flavor', function (req, res) {
+  // Check database for the product matching the flavor parameter
+  var flavor = req.params.flavor;
+  var pants = [
     {
       "color" : "red",
       "flavor" : "cherry",
@@ -61,7 +61,14 @@ router.get('/', function (req, res) {
       "offset": "50px",
       "size": "30x30"
     }
-  ])
+  ];
+  for (var i = 0; i < pants.length; i++) {
+    if (pants[i]['flavor'] === flavor) {
+      var thing = pants[i];
+    }
+  }
+  console.log(thing);
+  res.json(thing);
 });
 
 module.exports = router;
