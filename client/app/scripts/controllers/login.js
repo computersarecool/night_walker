@@ -9,7 +9,11 @@
  */
 
 angular.module('nightwalkerApp')
-  .controller('LoginCtrl', function ($scope, $http, UserFactory) {
+  .controller('LoginCtrl', function ($scope, $http, $location, AuthTokenFactory, UserFactory) {
+
+    if (AuthTokenFactory.getToken()) {
+      $location.path('/account');
+    };
 
     $scope.login = function (username, password) {
       UserFactory.login(username, password).then(function success (response) {

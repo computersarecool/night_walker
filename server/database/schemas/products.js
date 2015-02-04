@@ -13,8 +13,7 @@ var productSchema = new Schema({
   },
   edition: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   }
 });
 
