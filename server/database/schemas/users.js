@@ -16,7 +16,7 @@ var userSchema = new Schema({
   username: {
     type: String
   },
-  emailAddress: {
+/*  emailAddress: {
     type: String
   },
   streetAddress: {
@@ -32,23 +32,23 @@ var userSchema = new Schema({
   lastName: String,
   middleName: String,
   creditCarts: {
-    type: [creditCards]
+    type: Array
   },
-  paymentAccounts: [paymentAccounts],
+  paymentAccounts: Array,
   cart: {
     type: Array
   },
   helpRequests: {
     type: Array
-  }
+  },
   created: {
     type: Date,
     default: Date.now
-  },   
+  }, */  
   password: {
     type: String
   } 
-  
+
 });
 
 

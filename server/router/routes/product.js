@@ -10,6 +10,8 @@ router.get('/:flavor', function (req, res) {
       "flavor" : "cherry",
       "collection": "Alterating Current",
       "offset": "50px",
+      "id": 1,
+      "sku": 10,
       "size": "30x30"
     },
     {
@@ -17,6 +19,8 @@ router.get('/:flavor', function (req, res) {
       "flavor" : "lemon",
       "collection": "Alterating Current",
       "offset": "50px",
+      "id": 2,
+      "sku": 11,
       "size": "30x30"
     },
     {
@@ -24,6 +28,8 @@ router.get('/:flavor', function (req, res) {
       "flavor" : "electricity",
       "collection": "Alterating Current",
       "offset": "50px",
+      "id": 3,
+      "sku": 12,
       "size": "30x30"
     },
     {
@@ -31,6 +37,8 @@ router.get('/:flavor', function (req, res) {
       "flavor" : "nectarine",
       "collection": "Alterating Current",
       "offset": "50px",
+      "id": 4,
+      "sku": 13,
       "size": "30x30"
     },
     {
@@ -38,6 +46,8 @@ router.get('/:flavor', function (req, res) {
       "flavor" : "apple",
       "collection": "Alterating Current",
       "offset": "50px",
+      "id": 5,
+      "sku": 14,
       "size": "30x30"
     },
     {
@@ -45,6 +55,8 @@ router.get('/:flavor', function (req, res) {
       "flavor" : "plum",
       "collection": "Alterating Current",
       "offset": "50px",
+      "id": 6,
+      "sku": 15,
       "size": "30x30"
     },
     {
@@ -52,6 +64,8 @@ router.get('/:flavor', function (req, res) {
       "flavor" : "powder",
       "collection": "Alterating Current",
       "offset": "50px",
+      "id": 7,
+      "sku": 16,
       "size": "30x30"
     },
     {
@@ -59,6 +73,8 @@ router.get('/:flavor', function (req, res) {
       "flavor" : "pink",
       "collection": "Alterating Current",
       "offset": "50px",
+      "id": 8,
+      "sku": 17,
       "size": "30x30"
     }
   ];

@@ -17,7 +17,7 @@ var productSchema = new Schema({
     type: String,
     required: true
   },
-  images: {
+/*  images: {
     back: {type: String},
     front: {type: String},
     detail: {type: String},
@@ -51,7 +51,7 @@ var productSchema = new Schema({
   },
   deliveryInstructions: {
     type: String
-  },
+  },*/
   price: {
     type: Number
   }
