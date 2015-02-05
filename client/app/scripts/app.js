@@ -15,10 +15,9 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch',
-    'angular-stripe'
+    'ngTouch'
   ])
-  .config(function ($routeProvider, $locationProvider, $httpProvider, stripeProvider) {
+  .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/gallery.html',
@@ -68,11 +67,14 @@ angular
 
     $httpProvider.interceptors.push('AuthInterceptorFactory');
 
+    Stripe.setPublishableKey('pk_test_uEnw6EZC8otddMKeJUiZsHFz');
+
+
+
     $locationProvider.html5Mode({
       enabled: true, 
       requireBase: true
     });
 
-    stripeProvider.setPublishableKey('pk_test_uEnw6EZC8otddMKeJUiZsHFz');
     
   });
