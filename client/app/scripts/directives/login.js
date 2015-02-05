@@ -7,13 +7,13 @@
  * # loginDirective
  */
 angular.module('nightwalkerApp')
-  .directive('siteLogin', function () {
+  .directive('siteLogin', function (UserFactory) {
     return {
       templateUrl: 'partials/login.html', 
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
-        scope.login = function () {
-            console.log('Someone has logged in');
+        scope.login = function (username, password) {
+            UserFactory.login(username, password);
         };
         
       }
