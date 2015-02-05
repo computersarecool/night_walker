@@ -19,9 +19,7 @@ angular.module('nightwalkerApp')
     } 
 
     $scope.runner = function (status, response) {
-      console.log('at least you made it here');
       console.log(arguments)
-
     }
 
   });

@@ -19,10 +19,12 @@ angular.module('nightwalkerApp')
             button.prop('disable', false);
             var args = arguments;
             scope.$apply(function () {
-              scope[attributes.stripeForm].apply(scope, args);
+              scope[attrs.stripeForm].apply(scope, args);
             });
           });
         });
       }
     };
   });
+
+
