@@ -10,17 +10,16 @@
 angular.module('nightwalkerApp')
   .controller('ProductCtrl', function ($scope, $cookies, product) {
     $scope.product = product;
-    $scope.addToCart = function (thing) {
-      console.log(thing);
-    };
+    $scope.addToCart = addToCart;
 
     function addToCart (id) {
-        var cart = JSON.stringify($cookies.cart);
-        if (cart.length) {
-          cart.push(id);
-        } else {
-          $cookies.cart = [id];
-        }
+      if ($cookies.cart) {
+        var cart = angular.fromJson(($cookies.cart));
+        cart.push(id);
+        $cookies.cart = angular.toJson(cart);
+      } else {
+        $cookies.cart = angular.toJson([id]);
+      }
     }
 
   });
