@@ -15,11 +15,21 @@ angular.module('nightwalkerApp')
       $location.path('/account');
     };
 
+    $scope.signup = function () {
+      UserFactory.signup(username, password).then(function success (response) {
+        $scope.user = response.data.user;
+        console.log('you are signing up');
+        console.log('you now have a token');
+      });
+    };
+
+    $scope.hasAccount = true;
+
     $scope.login = function (username, password) {
       UserFactory.login(username, password).then(function success (response) {
         $scope.user = response.data.user;
         console.log('The user is', $scope.user);
-        alert('you now have a token');
+        console.log('you now have a token');
       }, handleError);
     };
 

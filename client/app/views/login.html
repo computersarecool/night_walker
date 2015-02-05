@@ -1,14 +1,7 @@
-<div>
-    <form ng-submit="login(username, password)">
-        <label>User<input type="text" ng-model="username"></label>
-        <label>Password<input type="text" ng-model="password"></label>
-        <button type="submit">Login</button>
-    </form>
-</div>
-<div>
-    <button ng-click="logout()">Logout</button>
-    <div ng-click="findMe()">Find me </div>
-</div>
-<div>
-    Hello {{user}}
-</div>
+<p>
+    Greetings, you need to sign up or login
+</p>
+<site-signup ng-hide="!hasAccount">
+</site-signup>
+<site-login ng-hide="hasAccount">
+</site-login>

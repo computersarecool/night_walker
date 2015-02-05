@@ -11,7 +11,13 @@ require('../../inner_config/passport')(passport);
 var router = express.Router();
 
 router.post('/signup', passport.authenticate('local-signup', {session: false}), function (req, res) {
+  
   console.log('The new user has been signed up');
+  
+  if (req.cookies.cart) {  
+    var cartProducts = JSON.parse(req.cookies.cart);
+    //Transfer cart products
+  }
 
   var token = jwt.sign({
     //This is where the jwt is created
@@ -31,6 +37,11 @@ router.post('/login', passport.authenticate('local-login', {session: false}), fu
   
   console.log('Here we go');
   console.log(req.user);
+
+  if (req.cookies.cart) {  
+    var cartProducts = JSON.parse(req.cookies.cart);
+    //Transfer cart products
+  }
 
   var token = jwt.sign({
     //This is where the jwt is created
