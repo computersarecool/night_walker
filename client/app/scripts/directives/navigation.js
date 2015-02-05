@@ -11,8 +11,5 @@ angular.module('nightwalkerApp')
     return {
       templateUrl: 'partials/navigation.html',
       restrict: 'E',
-/*      link: function postLink(scope, element, attrs) {
-        element.text('this is the navigation directive');
-      }*/
     };
   });
