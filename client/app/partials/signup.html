@@ -1,0 +1,19 @@
+<div>
+    This is the signup form
+</div>
+<form ng-submit="signup(username, password)">
+    <input type="text"> Email<br>
+    <input type="text"> First Name<br>
+    <input type="text"> Last Name<br>
+    <input type="text" ng-model="username">Username<br>
+    <input type="text" name="the big password" ng-model="password">
+    <input type="text"> Date of Birth<br>
+    <input type="text"> Gender<br>
+    <input type="checkbox">Sign me up for email<br>
+    <button>Submit</button>
+</form>
+<br>
+<p ng-click="hasAccount = !hasAccount">
+    Or login?
+</p>
+<p>By signing up you agree to our Terms and conditions (don't worry, we are cool)</p>
