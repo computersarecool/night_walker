@@ -15,7 +15,9 @@ angular.module('nightwalkerApp')
       'Karma'
     ];
 
-    $scope.user = UserFactory;
+    $scope.user = UserFactory.profile().then(function (response) {
+      $scope.user = response.data;
+    });
 
     $scope.switchLog = function () {
       $scope.user.loggedIn = !$scope.user.loggedIn;

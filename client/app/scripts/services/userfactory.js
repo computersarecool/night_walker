@@ -61,23 +61,14 @@ angular.module('nightwalkerApp')
     };
 
 
-    var profile = {};
+    // var profile = {};
 
-    (function () {
-      var deferred = $q.defer();
-
-      $http.get('/gimme')
-        .success(function (data, status, headers, config) {
-          deferred.resolve(data);
-          console.log(data);
-          profile.name = data.name;
-          profile.loggedIn = data.loggedIn;
-        })
-        .error(function (data, status, headers, config) {
-          deferred.reject({data: 'There was some sort of database error'});
+    function profile () {
+      return $http.get('/gimme')
+        .then(function success (response) {
+          return response;
         });
-        return deferred.promise;
-    })();    
+    };    
 
 
 
