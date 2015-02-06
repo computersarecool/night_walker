@@ -9,11 +9,30 @@
  */
 angular.module('nightwalkerApp')
   .factory('UserFactory', function ($http, $q, $cookieStore, AuthTokenFactory) {
+
+    var user = {
+      age: 'Willy',
+      loggedIn: false
+    }
+
     return {
       login: login,
+      user: user,
+      funUser: funUser,
       logout: logout,
       signup: signup,
       getUser: getUser
+    };
+
+
+    function funUser () {
+      return {
+        age: 'Willy',
+        loggedIn: true,
+        cart: [
+          4, 5, 6, 7
+        ]
+      }
     };
 
     function login (username, password) {

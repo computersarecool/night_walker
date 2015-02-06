@@ -1,7 +1,20 @@
 <h1>
     <a ng-href='/'>NightWalker</a>
 </h1>
-<span class='cart login'><a ng-href='/cart'>Cart here</a></span>
-<span class='login'><a ng-href='/login'>Login Here</span>
-<span class='login'><a ng-href='/signup'>Signup Here</span>
-<span class='login'><a ng-href='/checkout'>Checkout</span>
+<div>
+<p>
+    You are currently {{user.loggedIn}}
+</p>
+
+    <span ng-show="user.loggedIn">
+        <span class='cart login'><a ng-href='/cart'>Cart here</a></span>
+        <span>|</span>
+        <span class='login'><a ng-href='/checkout'>Checkout</a></span>
+    </span>
+    <span ng-show="!user.loggedIn">
+        <span class='login'><a ng-href='/login'>Sign In</a></span>
+        <span>|</span>
+        <span class='login'><a ng-href='/signup'>Join</a></span>
+    </span>
+    
+</div>

@@ -10,6 +10,8 @@ angular.module('nightwalkerApp')
   .directive('siteHeader', function () {
     return {
       templateUrl: 'partials/header.html',
-      restrict: 'E',
+      scope: 'hi there',
+      controller: 'HeaderCtrl',
+      restrict: 'E'
     };
   });

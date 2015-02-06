@@ -189,8 +189,6 @@ angular.module('nightwalkerApp')
 
     return {
       restrict: 'E',
-      replace: true,
-      template: '<div></div>',
       compile: function (tElem) {
         tElem.append(list);
         tElem.append(list2);
