@@ -61,8 +61,6 @@ angular.module('nightwalkerApp')
     };
 
 
-    // var profile = {};
-
     function profile () {
       return $http.get('/gimme')
         .then(function success (response) {

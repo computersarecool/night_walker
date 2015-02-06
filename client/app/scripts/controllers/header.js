@@ -19,6 +19,10 @@ angular.module('nightwalkerApp')
       $scope.user = response.data;
     });
 
+    $scope.plug = function () {
+      $scope.user.name = 'Name Not caz';
+    };
+
     $scope.switchLog = function () {
       $scope.user.loggedIn = !$scope.user.loggedIn;
     };
