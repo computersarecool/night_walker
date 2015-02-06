@@ -10,18 +10,6 @@
 angular.module('nightwalkerApp')
   .factory('UserFactory', function ($http, $q, $cookieStore, AuthTokenFactory) {
 
-    var user = {
-      name: 'Willy',
-      loggedIn: false
-    }
-
-    return {
-      login: login,
-      user: user,
-      logout: logout,
-      signup: signup,
-      getUser: getUser
-    };
 
     function login (username, password) {
       return $http.post('/login/login', {
@@ -35,6 +23,7 @@ angular.module('nightwalkerApp')
       });
     };
 
+
     function signup (username, password) {
       return $http.post('/login/signup', {
         username: username,
@@ -47,16 +36,18 @@ angular.module('nightwalkerApp')
       });
     };
 
+
     function logout () {
      AuthTokenFactory.setToken();
     };
+
 
     function getUser () {
       var deferred = $q.defer();
 
       if (AuthTokenFactory.getToken()) {
         $http.get('/me')
-          .sucess(function (data, status, headers, config) {
+          .success(function (data, status, headers, config) {
             deferred.resolve(data);
           })
           .error(function (data, status, headers, config) {
@@ -67,7 +58,39 @@ angular.module('nightwalkerApp')
       }
 
       return deferred.promise;
+    };
 
-    }
+
+    var profile = {};
+
+    (function () {
+      var deferred = $q.defer();
+
+      $http.get('/gimme')
+        .success(function (data, status, headers, config) {
+          deferred.resolve(data);
+          console.log(data);
+          profile.name = data.name;
+          profile.loggedIn = data.loggedIn;
+        })
+        .error(function (data, status, headers, config) {
+          deferred.reject({data: 'There was some sort of database error'});
+        });
+        return deferred.promise;
+    })();    
+
+
+
+
+    var user = {
+      profile: profile,
+      login: login,
+      logout: logout,
+      signup: signup,
+      getUser: getUser
+    };
+
+
+    return user;
 
   });
