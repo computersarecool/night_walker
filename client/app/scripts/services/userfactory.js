@@ -44,6 +44,7 @@ angular.module('nightwalkerApp')
 
     function logout () {
      AuthTokenFactory.setToken();
+     user.currentUser = null;
     };
 
     function checkToken () {
@@ -59,7 +60,7 @@ angular.module('nightwalkerApp')
             throw httpError.status + " : " + httpError.data;
           });
         } else {
-          user.currentUser = null
+          user.currentUser = null;
       };
     };
 
