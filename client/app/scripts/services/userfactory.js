@@ -19,9 +19,9 @@ angular.module('nightwalkerApp')
       }).then(function success (response) {
         // Store items from cookies if they exist and put in db
         $cookieStore.remove('cart');
-        AuthTokenFactory.setToken(response.data.user.token);
+        AuthTokenFactory.setToken(response.data.token);
         user.currentUser = response.data.user;
-
+        console.log('here', response);
       });
     };
 
@@ -32,7 +32,7 @@ angular.module('nightwalkerApp')
       }).then(function success (response) {
         // Store items from cookies if exist and put in db
         $cookieStore.remove('cart');
-        AuthTokenFactory.setToken(response.data.user.token);
+        AuthTokenFactory.setToken(response.data.token);
         user.currentUser = response.data.user;
       }, function (httpError) {
         throw httpError.status + " : " + httpError.data;
@@ -46,7 +46,6 @@ angular.module('nightwalkerApp')
     function checkToken () {
       AuthTokenFactory.getToken();
     };
-
 
     function getUser () {
       if (AuthTokenFactory.getToken()) {

@@ -20,21 +20,15 @@ router.post('/signup', function (req, res, next) {
     if (req.cookies.cart) {  
       var cartProducts = JSON.parse(req.cookies.cart);
     }
-
     //This is where the jwt is created
     var token = jwt.sign({  
       funThing: 'This is your new JWT',
       username: user.username
     }, jwtSecret);
 
-
-    var newUser = {
-      firstName: user.username,
-      loggedIn: false,
-      token: token
-    }
     res.json({
-      user : newUser
+      user : user,
+      token: token
     });
 
   })(req, res, next);
@@ -60,14 +54,9 @@ router.post('/login', function (req, res, next) {
       username: user.username
     }, jwtSecret);
 
-    var newUser = {
-      firstName: user.username,
-      loggedIn: true,
-      token: token
-    };
-
     res.json({
-      user : newUser
+      user : user,
+      token: token
     });
 
   })(req, res, next);

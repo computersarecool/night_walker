@@ -2,14 +2,6 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var Schema = mongoose.Schema;
 
-//Neccesary schemas to make:
-  // -orders
-  // -Items
-  // -coupon
-  // -help request
-  // -Credit card arrays
-
-
 //User Schema
 var userSchema = new Schema({
 
@@ -22,7 +14,8 @@ var userSchema = new Schema({
     default: 'test@example.com'
   },
   firstName: {
-    type: String
+    type: String,
+    default: 'Chaz'
   },
   lastName: {
     type: String
@@ -30,6 +23,10 @@ var userSchema = new Schema({
   cart: {
     type: Array,
     default: [22, 33 , 44]
+  },
+  loggedIn: {
+    type: Boolean,
+    default: true
   },
   password: {
     type: String

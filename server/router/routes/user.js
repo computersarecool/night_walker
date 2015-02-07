@@ -24,21 +24,18 @@ router.use('/', expressJwt({
 
 router.get('/', function (req, res) {
   // Fetch info from database
-  if (req.user) {
+  Users.findOne({username:req.user.username}, function (err, user) {
+    if (err) {
+      throw err
+    }
+    if (!user) {
+      res.send(401, 'No user found');
+    }
+    console.log(user);
     res.json({
-      //user: req.user
-      user: {
-        firstName: "Cecil",
-        lastName: "Rogers",
-        cart: [123, 444],
-        password: 'testPassword',
-        loggedIn: true
-      }
+      user: user
     });
-  } else {
-    // Delete the storage key
-    res.send(401, 'Not Logged In...');
-  }
+  });
 });
 
 module.exports = router;
