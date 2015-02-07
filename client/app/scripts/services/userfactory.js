@@ -12,10 +12,13 @@ angular.module('nightwalkerApp')
 
     var user = {};
 
-    function signup (username, password) {
+    function signup (username, password, firstName, lastName, email) {
       return $http.post('/login/signup', {
         username: username,
-        password: password
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        email: email
       }).then(function success (response) {
         // Store items from cookies if they exist and put in db
         $cookieStore.remove('cart');

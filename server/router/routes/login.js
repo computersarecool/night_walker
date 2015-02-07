@@ -14,7 +14,8 @@ router.post('/signup', function (req, res, next) {
       return next(err);
     }
     if (!user) {
-      console.log('There is no user here');
+      res.status(401).send(info);
+      return
     }
     // Transfer cart products
     if (req.cookies.cart) {  
@@ -41,7 +42,7 @@ router.post('/login', function (req, res, next) {
       return next(err);
     }
     if (!user) {
-      res.status(401).send('Not a valid user, sorry');
+      res.status(401).send(info);
       return
     }
     // Transfer cart products

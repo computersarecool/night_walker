@@ -16,7 +16,7 @@ router.use('/', expressJwt({
   }
   if (err) {
     // Delete the storage key
-    res.send(401, 'invalid token...');
+    res.status(401).send('invalid token...');
   }
   next();
 });
@@ -29,9 +29,9 @@ router.get('/', function (req, res) {
       throw err
     }
     if (!user) {
-      res.send(401, 'No user found');
+      res.status(401).send('invalid token...');
+      //return
     }
-    console.log(user);
     res.json({
       user: user
     });
