@@ -19,18 +19,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(passport.initialize());
 
-
-app.get('/gimme', function (req, res) {
-  console.log('Boom yes');
-  console.log('Boom yes');
-  console.log('Boom yes');
-  console.log('Boom yes');
-  res.json({
-    "name": "caz",
-    "loggedIn": false
-  });
-});
-
 var router = require('./router')(app);
 
 //Development

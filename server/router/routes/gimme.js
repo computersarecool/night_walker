@@ -4,7 +4,7 @@ var expressJwt = require('express-jwt');
 
 var jwtSecret = require('../../../config/credentials').jwtSecret;
 
-router.use('/', expressJwt({secret: jwtSecret}), function (err, req, res, next) {
+/*router.use('/', expressJwt({secret: jwtSecret}), function (err, req, res, next) {
   // This sets req.user with the decoded JWT.(i.e. the JWT)
   // To be used later to authenticate user
   if (err) {
@@ -14,23 +14,20 @@ router.use('/', expressJwt({secret: jwtSecret}), function (err, req, res, next) 
   next();
 });
 
-
-
+*/
 router.get('/', function (req, res) {
   // Fetch info from database
-  if (req.user.username === 'johnDoe') {
-    
-    console.log('John Doe is here');
-
-    res.send({
-      "name": 'Hi there john'
-    })
-
-  }
-
-  res.send({
-    "name": "Congrats"
-  })
+  // if (req.user.username === 'johnDoe') {
+  //   console.log('John Doe is here');
+  //   res.send({
+  //     "name": 'Hi there john'
+  //   })
+  // } else { 
+    res.json({
+      "name": "Cecil",
+      "loggedIn": false
+    });
+  //}
 
 });
 

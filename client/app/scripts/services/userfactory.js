@@ -16,11 +16,15 @@ angular.module('nightwalkerApp')
         username: username,
         password: password
       }).then(function success (response) {
+        // Store items from cookies if exist
         $cookieStore.remove('cart');
         AuthTokenFactory.setToken(response.data.token);
-        console.log(response);
         return response;
       });
+    };
+
+    function logout () {
+     AuthTokenFactory.setToken();
     };
 
 
@@ -29,50 +33,35 @@ angular.module('nightwalkerApp')
         username: username,
         password: password
       }).then(function success (response) {
+        // Store items from cookies if they exist
         $cookieStore.remove('cart');
         AuthTokenFactory.setToken(response.data.token);
-        console.log('The user should have a token now');
         return response;
       });
     };
 
 
-    function logout () {
-     AuthTokenFactory.setToken();
-    };
-
-
     function getUser () {
-      var deferred = $q.defer();
-
       if (AuthTokenFactory.getToken()) {
-        $http.get('/me')
-          .success(function (data, status, headers, config) {
-            deferred.resolve(data);
-          })
-          .error(function (data, status, headers, config) {
-            deferred.reject(data);
+        return $http.get('/gimme')
+          .then (function success (response) {
+            return response.data;
+          }, function (httpError) {
+            throw httpError.status + " : " + httpError.data;
           });
-      } else {
-        return $q.reject({data: 'Client has no auth token'});
-      }
-
-      return deferred.promise;
-    };
-
-
-    function profile () {
-      return $http.get('/gimme')
-        .then(function success (response) {
-          return response;
-        });
-    };    
-
+        } else {
+          // Figure out how to return false from here
+          var deferred = $q.defer();
+          deferred.resolve({
+            user: null
+          });
+          return deferred.promise;
+        };
+      };
 
 
 
     var user = {
-      profile: profile,
       login: login,
       logout: logout,
       signup: signup,

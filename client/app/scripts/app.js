@@ -53,6 +53,10 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
+      .when('/signup', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      })      
       .when('/account', {
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl'

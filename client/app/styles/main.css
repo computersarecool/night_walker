@@ -20,11 +20,6 @@ body {
   bottom: 0;
   text-align: center;
 }
-.login {
-  height: 50px;
-  width: 50px;
-  float: right;
-}
 .pant-sprite {
   position: absolute;
   width: 40%;
