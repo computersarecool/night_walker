@@ -45,6 +45,7 @@ angular.module('nightwalkerApp')
       if (AuthTokenFactory.getToken()) {
         return $http.get('/gimme')
           .then (function success (response) {
+            console.log(response.data.user);
             return response.data;
           }, function (httpError) {
             throw httpError.status + " : " + httpError.data;
