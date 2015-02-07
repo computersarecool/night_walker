@@ -11,11 +11,11 @@ angular.module('nightwalkerApp')
     return {
       templateUrl: 'partials/signup.html', 
       restrict: 'E',
-      link: function postLink(scope, element, attrs) {
+      controller: 'LoginCtrl'
+/*      link: function postLink(scope, element, attrs) {
         scope.signup = function (username, password) {
             UserFactory.signup(username, password);
         };
-        
+        */
       }
-    };
   });

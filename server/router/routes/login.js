@@ -1,59 +1,76 @@
 var express = require('express');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
-var db = require('../../database');
 var passport = require('passport');
-var Users = db.users;
 var jwtSecret = require('../../../config/credentials').jwtSecret;
 
 require('../../inner_config/passport')(passport);
 
 var router = express.Router();
 
-router.post('/signup', passport.authenticate('local-signup', {session: false}), function (req, res) {
-  
-  console.log('The new user has been signed up');
-  
-  if (req.cookies.cart) {  
-    var cartProducts = JSON.parse(req.cookies.cart);
-    //Transfer cart products
-  }
+router.post('/signup', function (req, res, next) {
+  passport.authenticate('local-signup', {session: false}, function (err, user, info) {  
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      console.log('There is no user here');
+    }
+    // Transfer cart products
+    if (req.cookies.cart) {  
+      var cartProducts = JSON.parse(req.cookies.cart);
+    }
 
-  var token = jwt.sign({
     //This is where the jwt is created
-    funThing: 'This is your new JWT',
-    username: req.user.username
-  }, jwtSecret);
+    var token = jwt.sign({  
+      funThing: 'This is your new JWT',
+      username: user.username
+    }, jwtSecret);
 
-  res.send({
-    user: req.user.username,
-    token: token
-  });
 
+    var newUser = {
+      firstName: user.username,
+      loggedIn: false,
+      token: token
+    }
+    res.json({
+      user : newUser
+    });
+
+  })(req, res, next);
 });
 
 
-router.post('/login', passport.authenticate('local-login', {session: false}), function (req, res) {
-  
-  console.log('Here we go');
-  console.log(req.user);
+router.post('/login', function (req, res, next) {
+  passport.authenticate('local-login', {session: false}, function (err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      res.status(401).send('Not a valid user, sorry');
+      return
+    }
+    // Transfer cart products
+    if (req.cookies.cart) {  
+      var cartProducts = JSON.parse(req.cookies.cart);
+    }
+    // This is where the jwt is created
+    var token = jwt.sign({
+      funThing: 'This is your personal JWT',
+      username: user.username
+    }, jwtSecret);
 
-  if (req.cookies.cart) {  
-    var cartProducts = JSON.parse(req.cookies.cart);
-    //Transfer cart products
-  }
+    var newUser = {
+      firstName: user.username,
+      loggedIn: true,
+      token: token
+    };
 
-  var token = jwt.sign({
-    //This is where the jwt is created
-    funThing: 'This is your personal JWT',
-    username: req.user.username
-  }, jwtSecret);
+    res.json({
+      user : newUser
+    });
 
-  res.send({
-    user: req.user.username,
-    token: token
-  });
-
+  })(req, res, next);
 });
 
 module.exports = router;

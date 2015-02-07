@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var expressJwt = require('express-jwt');
-
+var Users = require('../../database/schemas/users');
 var jwtSecret = require('../../../config/credentials').jwtSecret;
 
 router.use('/', expressJwt({
@@ -9,10 +9,14 @@ router.use('/', expressJwt({
   credentialsRequired: false
 }), function (err, req, res, next) {
   // This sets req.user with the decoded JWT.(i.e. the JWT)
-  // To be used later to authenticate user
-  if (err) {
-    console.log('Token has been tampered with');
+  if (err.name === 'UnauthorizedError') {
+    // Delete the storage key
+    res.send(401, 'invalid token...');
     throw err;
+  }
+  if (err) {
+    // Delete the storage key
+    res.send(401, 'invalid token...');
   }
   next();
 });
@@ -21,19 +25,19 @@ router.use('/', expressJwt({
 router.get('/', function (req, res) {
   // Fetch info from database
   if (req.user) {
-    console.log('Logged in');
     res.json({
-      "name": "Cecil",
-      "loggedIn": false
+      //user: req.user
+      user: {
+        firstName: "Cecil",
+        lastName: "Rogers",
+        cart: [123, 444],
+        password: 'testPassword',
+        loggedIn: true
+      }
     });
   } else {
-    console.log('Not Logged in');
-    res.json({
-      user : {
-        "name": "noCharles",
-        "loggedIn": true
-      }
-    })
+    // Delete the storage key
+    res.send(401, 'Not Logged In...');
   }
 });
 

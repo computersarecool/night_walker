@@ -15,21 +15,14 @@ angular.module('nightwalkerApp')
       'Karma'
     ];
 
-    UserFactory.getUser().then(function (response) {
-        $scope.user = response.user;
+    
+    $scope.user = UserFactory.currentUser;
+
+
+    $scope.$watch(function () {
+      return UserFactory.currentUser;
+    }, function () {
+      $scope.user = UserFactory.currentUser;
     });
-
-    $scope.plug = function () {
-      if ($scope.user) {
-        $scope.user.name = 'Name Not caz';
-      };
-    };
-
-    $scope.switchLog = function () {
-      if ($scope.user) {
-        $scope.user.loggedIn = !$scope.user.loggedIn;
-      };
-    };
-
 
   });

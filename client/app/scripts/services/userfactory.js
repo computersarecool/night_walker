@@ -10,16 +10,32 @@
 angular.module('nightwalkerApp')
   .factory('UserFactory', function ($http, $q, $cookieStore, AuthTokenFactory) {
 
+    var user = {};
+
+    function signup (username, password) {
+      return $http.post('/login/signup', {
+        username: username,
+        password: password
+      }).then(function success (response) {
+        // Store items from cookies if they exist and put in db
+        $cookieStore.remove('cart');
+        AuthTokenFactory.setToken(response.data.user.token);
+        user.currentUser = response.data.user;
+
+      });
+    };
 
     function login (username, password) {
       return $http.post('/login/login', {
         username: username,
         password: password
       }).then(function success (response) {
-        // Store items from cookies if exist
+        // Store items from cookies if exist and put in db
         $cookieStore.remove('cart');
-        AuthTokenFactory.setToken(response.data.token);
-        return response;
+        AuthTokenFactory.setToken(response.data.user.token);
+        user.currentUser = response.data.user;
+      }, function (httpError) {
+        throw httpError.status + " : " + httpError.data;
       });
     };
 
@@ -27,46 +43,33 @@ angular.module('nightwalkerApp')
      AuthTokenFactory.setToken();
     };
 
-
-    function signup (username, password) {
-      return $http.post('/login/signup', {
-        username: username,
-        password: password
-      }).then(function success (response) {
-        // Store items from cookies if they exist
-        $cookieStore.remove('cart');
-        AuthTokenFactory.setToken(response.data.token);
-        return response;
-      });
+    function checkToken () {
+      AuthTokenFactory.getToken();
     };
 
 
     function getUser () {
       if (AuthTokenFactory.getToken()) {
-        return $http.get('/gimme')
+        return $http.get('/user')
           .then (function success (response) {
-            console.log(response.data.user);
-            return response.data;
+            user.currentUser = response.data.user;
           }, function (httpError) {
             throw httpError.status + " : " + httpError.data;
           });
         } else {
-          // Figure out how to return false from here
-          var deferred = $q.defer();
-          deferred.resolve({
-            user: null
-          });
-          return deferred.promise;
-        };
+          user.currentUser = null
       };
+    };
 
-
+    getUser();
 
     var user = {
       login: login,
       logout: logout,
       signup: signup,
-      getUser: getUser
+      checkToken: checkToken,
+      getUser: getUser,
+      currentUser: null
     };
 
 

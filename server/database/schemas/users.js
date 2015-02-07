@@ -14,8 +14,27 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
 
   username: {
+    type: String,
+    default: 'testUsername'
+  },
+  email: {
+    type: String,
+    default: 'test@example.com'
+  },
+  firstName: {
     type: String
   },
+  lastName: {
+    type: String
+  },
+  cart: {
+    type: Array,
+    default: [22, 33 , 44]
+  },
+  password: {
+    type: String
+  } 
+});  
 /*  emailAddress: {
     type: String
   },
@@ -45,11 +64,9 @@ var userSchema = new Schema({
     type: Date,
     default: Date.now
   }, */  
-  password: {
-    type: String
-  } 
 
-});
+
+
 
 
 //Encrypt before save userSchema.pre('save')

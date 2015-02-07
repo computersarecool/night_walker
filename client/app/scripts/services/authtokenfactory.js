@@ -18,7 +18,6 @@ angular.module('nightwalkerApp')
     };
 
     function getToken () {
-      console.log(store.getItem(key));
       return store.getItem(key);
     };
 
