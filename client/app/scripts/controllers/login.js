@@ -33,6 +33,7 @@ angular.module('nightwalkerApp')
       return UserFactory.currentUser;
     }, function () {
       $scope.user = UserFactory.currentUser;
+      console.log($scope.user);
     });
 
   });  
