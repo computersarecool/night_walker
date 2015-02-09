@@ -29,11 +29,17 @@ angular.module('nightwalkerApp')
       UserFactory.logout();
     };
 
+    if ($location.path() === '/signup') {
+      $scope.showLogin = false;
+    } else {
+      $scope.showLogin = true;
+    }
+
     $scope.$watch(function () {
       return UserFactory.currentUser;
     }, function () {
       $scope.user = UserFactory.currentUser;
-      console.log($scope.user);
     });
+
 
   });  

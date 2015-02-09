@@ -1,4 +1,4 @@
-<div ng-show="user.show">
+<div ng-show="showLogin">
     <div>
         <form ng-submit="login(username, password)">
             <label>User<input type="text" ng-model="username"></label>
@@ -13,12 +13,12 @@
     <div>
         Test Hello {{user.firstName}}
     </div>
-    <div ng-click="user.show = !user.show">
+    <div ng-click="showLogin = !showLogin">
         Need to sign up?
     </div>
 </div>
 
-<div ng-show="!user.show">
+<div ng-show="!showLogin">
     <div>
         This is the signup form
     </div>
@@ -31,7 +31,7 @@
         <button>Submit</button>
     </form>
     <br>
-    <p ng-click="user.show = !user.show">
+    <p ng-click="showLogin = !showLogin">
         Or login?
     </p>
     <p>

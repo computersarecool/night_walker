@@ -10,7 +10,7 @@ angular.module('nightwalkerApp')
   .directive('siteHeader', function () {
     return {
       templateUrl: 'partials/header.html',
-      controller: 'HeaderCtrl',
+      controller: 'LoginCtrl',
       restrict: 'E'
     };
   });
