@@ -47,7 +47,7 @@ angular.module('nightwalkerApp')
     };
 
     function checkToken () {
-      AuthTokenFactory.getToken();
+      return AuthTokenFactory.getToken();
     };
 
     function addToCart (items) {
