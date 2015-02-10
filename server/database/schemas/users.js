@@ -21,8 +21,7 @@ var userSchema = new Schema({
     type: String
   },
   cart: {
-    type: Array,
-    default: [22, 33 , 44]
+    type: Array
   },
   loggedIn: {
     type: Boolean,

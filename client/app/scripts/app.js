@@ -74,7 +74,6 @@ angular
     Stripe.setPublishableKey('pk_test_uEnw6EZC8otddMKeJUiZsHFz');
 
 
-
     $locationProvider.html5Mode({
       enabled: true, 
       requireBase: true

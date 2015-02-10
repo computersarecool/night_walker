@@ -34,10 +34,10 @@ angular.module('nightwalkerApp')
         password: password
       }).then(function success (response) {
         // Store items from cookies if exist and put in db
-        $cookieStore.remove('cart');
         AuthTokenFactory.setToken(response.data.token);
         user.currentUser = response.data.user;
         user.currentUser.show = true;
+        $cookieStore.remove('cart');
       }, function (httpError) {
         throw httpError.status + " : " + httpError.data;
       });
@@ -50,6 +50,16 @@ angular.module('nightwalkerApp')
 
     function checkToken () {
       AuthTokenFactory.getToken();
+    };
+
+    function addToCart (items) {
+      return $http.post('/addproduct', {
+        items: items
+      }).then(function success (response) {
+        console.log('The item has been added to db cart');
+      }, function (httpError) {
+        throw httpError.status + " : " + httpError.data;        
+      });
     };
 
     function getUser () {
@@ -69,6 +79,7 @@ angular.module('nightwalkerApp')
     getUser();
 
     var user = {
+      addToCart : addToCart,
       login: login,
       logout: logout,
       signup: signup,

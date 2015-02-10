@@ -8,18 +8,23 @@
  * Controller of the nightwalkerApp
  */
 angular.module('nightwalkerApp')
-  .controller('ProductCtrl', function ($scope, $cookieStore, product) {
+  .controller('ProductCtrl', function ($scope, $cookieStore, UserFactory, product) {
     $scope.product = product;
-    $scope.addToCart = addToCart;
 
-    function addToCart (id) {
-      var cart = $cookieStore.get('cart');
-      if (cart) {
-        cart.push(id);
-        $cookieStore.put('cart', cart);
+    $scope.addToCart = function (item) {
+      if (UserFactory.currentUser) {
+        UserFactory.addToCart(item);
       } else {
-        $cookieStore.put('cart', [id]);
+        var cart = $cookieStore.get('cart');
+        if (cart) {
+          cart.push(item);
+          $cookieStore.put('cart', cart);
+        } else {
+          var cart = [];
+          cart.push(item);
+          $cookieStore.put('cart', cart);
+        }
       }
-    }
+    };
 
   });
