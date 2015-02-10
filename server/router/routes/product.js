@@ -83,7 +83,6 @@ router.get('/:flavor', function (req, res) {
       var thing = pants[i];
     }
   }
-  console.log(thing);
   res.json(thing);
 });
 
