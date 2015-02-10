@@ -169,7 +169,6 @@ angular.module('nightwalkerApp')
               }
               colorPant.addClass(classes[index]);
             }, 2000);
-            console.log('The index is ' + index);
           }
         })();
 

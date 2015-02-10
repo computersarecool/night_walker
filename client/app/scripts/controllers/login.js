@@ -29,6 +29,14 @@ angular.module('nightwalkerApp')
       UserFactory.logout();
     };
 
+    $scope.changeLogin = function () {
+      if ($location.path() === '/signup') {
+        $location.path('/login');
+      }
+      else {
+        $location.path('/signup');
+      }
+    };
 
     // Add redirect if already logged in
     if ($location.path() === '/signup') {
