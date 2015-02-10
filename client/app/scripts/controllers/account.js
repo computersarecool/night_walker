@@ -16,13 +16,15 @@ angular.module('nightwalkerApp')
     ];
 
     if (!UserFactory.checkToken()) {
-      console.log('not logged in');
       $location.path('/login');
     }
 
-    $scope.info = {
-      firstName: 'Charlie',
-      lastName: 'Laster'
-    };
+    $scope.user = UserFactory.currentUser;
+
+    $scope.$watch(function () {
+      return UserFactory.currentUser;
+    }, function () {
+      $scope.user = UserFactory.currentUser;
+    });
 
   });
