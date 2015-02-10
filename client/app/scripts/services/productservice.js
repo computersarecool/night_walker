@@ -14,36 +14,24 @@ angular.module('nightwalkerApp')
       getIndividual: getIndividual
     };
 
-    function getProducts () {
-      var deferred = $q.defer();
- 
-      $http.get('/allproducts')
-        .success(function (data, status, headers, config) {
-          deferred.resolve(data);
-        }).
-        error(function (data, status, headers, config) {
-          deferred.reject(data);
-          console.log('there was an error');
+    function getProducts () { 
+      return $http.get('/allproducts')
+        .then(function success (response) {
+          return response.data;
+        }, function (httpError) {
+          throw httpError.status + " : " + httpError.data;        
         });
- 
-      return deferred.promise;
- 
     };
 
+
     function getIndividual (flavor) {
-      var deferred = $q.defer();
-      console.log('flavor');
-      $http.get('/product/' + flavor)
-        .success(function (data, status, headers, config) {
-          deferred.resolve(data);
-        })
-        .error(function (data, stauts, headers, config) {
-          deferred.reject(data);
-          console.log('There was an error retrieving the indvidual product');
-        })
-      
-      return deferred.promise;
-    
+      return $http.get('/product/' + flavor)
+        .then(function success (response) {
+          return response.data;
+        }, function (httpError) {
+          throw httpError.status + " : " + httpError.data;
+        });
     };
+
 
   });

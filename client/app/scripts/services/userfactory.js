@@ -20,7 +20,6 @@ angular.module('nightwalkerApp')
         lastName: lastName,
         email: email
       }).then(function success (response) {
-        // Store items from cookies if they exist and put in db
         $cookieStore.remove('cart');
         AuthTokenFactory.setToken(response.data.token);
         user.currentUser = response.data.user;
@@ -33,7 +32,6 @@ angular.module('nightwalkerApp')
         username: username,
         password: password
       }).then(function success (response) {
-        // Store items from cookies if exist and put in db
         AuthTokenFactory.setToken(response.data.token);
         user.currentUser = response.data.user;
         user.currentUser.show = true;
