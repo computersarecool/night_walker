@@ -20,10 +20,10 @@ angular.module('nightwalkerApp')
         lastName: lastName,
         email: email
       }).then(function success (response) {
-        $cookieStore.remove('cart');
         AuthTokenFactory.setToken(response.data.token);
         user.currentUser = response.data.user;
         user.currentUser.show = true;
+        $cookieStore.remove('cart');
       });
     };
 
