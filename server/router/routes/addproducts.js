@@ -48,6 +48,7 @@ router.post('/', function (req, res) {
       res.status(401).send('No user with that username');
     }
     if (typeof items === 'number') {
+      console.log('yes');
       user.update({$push: {cart: items}}, {}, function (err, user, ob) {
         console.log('update', err, user, ob);
       });
