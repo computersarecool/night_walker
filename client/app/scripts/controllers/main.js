@@ -9,8 +9,4 @@
  */
 angular.module('nightwalkerApp')
   .controller('MainCtrl', function ($scope, UserFactory) {
-    //Initialize
-/*    UserFactory.getUser().then(function success (response) {
-      this.user = response.data;
-    });*/
   });
