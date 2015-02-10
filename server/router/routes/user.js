@@ -13,10 +13,12 @@ router.use('/', expressJwt({
     // Delete the storage key
     res.send(401, 'invalid token...');
     throw err;
+    return
   }
   if (err) {
     // Delete the storage key
     res.status(401).send('invalid token...');
+    return
   }
   next();
 });
@@ -27,10 +29,11 @@ router.get('/', function (req, res) {
   Users.findOne({username:req.user.username}, function (err, user) {
     if (err) {
       throw err
+      return
     }
     if (!user) {
       res.status(401).send('invalid token...');
-      //return
+      return
     }
     res.json({
       user: user
