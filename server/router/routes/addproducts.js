@@ -48,13 +48,24 @@ router.post('/', function (req, res) {
       res.status(401).send('No user with that username');
     }
     if (typeof items === 'number') {
-      console.log('yes');
       user.update({$push: {cart: items}}, {}, function (err, user, ob) {
-        console.log('update', err, user, ob);
+        if (err) {
+          console.log('There was an error adding the item to the cart');
+          throw err
+        } else {
+          console.log('update', err, user, ob);
+          res.status(200).end();
+        }
       });
     } else {
       user.update({$pushAll: {cart: items}}, {}, function (err, user, ob) {
-        console.log('update', err, user, ob);
+        if (err) {
+          console.log('There was an error adding the item to the cart');
+          throw err
+        }  else {       
+          console.log('update', err, user, ob);
+          res.status(200).end();
+        }
       });
     }
   });
