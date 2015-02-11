@@ -54,13 +54,13 @@ angular.module('nightwalkerApp')
       return $http.post('/addproduct', {
         items: items
       }).then(function success (response) {
-        console.log('The item has been added to db cart');
+        user.currentUser = response.data;
       }, function (httpError) {
         throw httpError.status + " : " + httpError.data;        
       });
     };
 
-    function getUser () {
+    var getUser = (function () {
       if (AuthTokenFactory.getToken()) {
         return $http.get('/user')
           .then (function success (response) {
@@ -72,9 +72,7 @@ angular.module('nightwalkerApp')
         } else {
           user.currentUser = null;
       };
-    };
-
-    getUser();
+    })();
 
     var user = {
       addToCart : addToCart,

@@ -1,5 +1,3 @@
-//mongod --dbpath data/db/ --logpath data/logs/mongodb.log --logappend
-
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');

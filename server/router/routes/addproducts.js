@@ -15,7 +15,7 @@ router.post('/', expressJwt({
   // This sets req.user with the decoded JWT.(i.e. the JWT)
   if (err.name === 'UnauthorizedError') {
     // Delete the storage key
-    res.send(401, 'invalid token...');
+    res.status(401).send('invalid token...');
     throw err;
     return
   }
@@ -40,37 +40,25 @@ router.post('/', function (req, res) {
     res.status(401).send('There is no username');
     return
   }
-  User.findOne({username: username}, function (err, user) {
-    if (err) {
-      throw err;
-    }
-    if (!user) {
-      res.status(401).send('No user with that username');
-    }
-    if (typeof items === 'number') {
-      user.update({$push: {cart: items}}, {}, function (err, user, ob) {
-        if (err) {
-          console.log('There was an error adding the item to the cart');
-          throw err
-        } else {
-          console.log('update', err, user, ob);
-          res.status(200).end();
-        }
-      });
-    } else {
-      user.update({$pushAll: {cart: items}}, {}, function (err, user, ob) {
-        if (err) {
-          console.log('There was an error adding the item to the cart');
-          throw err
-        }  else {       
-          console.log('update', err, user, ob);
-          res.status(200).end();
-        }
-      });
-    }
-  });
+  if (typeof items === 'number') {
+    User.findOneAndUpdate({username: username}, {$push: {cart: items}}, function(err, user){
+      if (err) {
+        console.log('There was an error adding the item to the cart');
+        throw err
+      } else {
+        res.send(user);
+      }
+    });
+  } else {
+    User.findOneAndUpdate({username: username}, {$pushAll: {cart: items}}, function(err, user){    
+      if (err) {
+        console.log('There was an error adding the item to the cart');
+        throw err
+      }  else {       
+        res.send(user);
+      }
+    });
+  }
 });
-
-
 
 module.exports = router;

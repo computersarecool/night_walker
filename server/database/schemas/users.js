@@ -31,38 +31,6 @@ var userSchema = new Schema({
     type: String
   } 
 });  
-/*  emailAddress: {
-    type: String
-  },
-  streetAddress: {
-    type: String
-  },
-  coupons: {
-    type: Array
-  },
-  orders: {
-    type: Array
-  },
-  firstName: String,
-  lastName: String,
-  middleName: String,
-  creditCarts: {
-    type: Array
-  },
-  paymentAccounts: Array,
-  cart: {
-    type: Array
-  },
-  helpRequests: {
-    type: Array
-  },
-  created: {
-    type: Date,
-    default: Date.now
-  }, */  
-
-
-
 
 
 //Encrypt before save userSchema.pre('save')

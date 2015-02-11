@@ -4,64 +4,18 @@ var moment = require('moment');
 var db = require('../../database');
 var Products = db.Products;
 router.get('/', function (req, res) {
-  res.json([
-    {
-      "color" : "red",
-      "flavor" : "cherry",
-      "collection": "Alterating Current",
-      "offset": "50px",
-      "size": "30x30"
-    },
-    {
-      "color" : "yellow",
-      "flavor" : "lemon",
-      "collection": "Alterating Current",
-      "offset": "50px",
-      "size": "30x30"
-    },
-    {
-      "color" : "blue",
-      "flavor" : "electricity",
-      "collection": "Alterating Current",
-      "offset": "50px",
-      "size": "30x30"
-    },
-    {
-      "color" : "orange",
-      "flavor" : "nectarine",
-      "collection": "Alterating Current",
-      "offset": "50px",
-      "size": "30x30"
-    },
-    {
-      "color" : "green",
-      "flavor" : "apple",
-      "collection": "Alterating Current",
-      "offset": "50px",
-      "size": "30x30"
-    },
-    {
-      "color" : "purple",
-      "flavor" : "plum",
-      "collection": "Alterating Current",
-      "offset": "50px",
-      "size": "30x30"
-    },
-    {
-      "color" : "pink",
-      "flavor" : "powder",
-      "collection": "Alterating Current",
-      "offset": "50px",
-      "size": "30x30"
-    },
-    {
-      "color" : "brown",
-      "flavor" : "pink",
-      "collection": "Alterating Current",
-      "offset": "50px",
-      "size": "30x30"
+  var allproducts = Products.find(function (err, products) {
+    var collection = [];
+    var uniqueArray = [];
+    for (var i = products.length - 1; i >= 0; i--) {
+      if (uniqueArray.indexOf(products[i].color) === -1) {
+        uniqueArray.push(products[i].color);
+        collection.push(products[i]);
+      }
     }
-  ])
+    console.log(collection);
+    res.json(collection)
+  });
 });
 
 module.exports = router;

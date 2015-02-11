@@ -1,3 +1,42 @@
+//mongod --dbpath data/db/ --logpath data/logs/mongodb.log --logappend
+/*
+  color: {
+    type: String
+  },
+  flavor: {
+    type: String
+  },
+  edition: {
+    type: String
+  },
+  offset : {
+    type: String
+  },
+  size: {
+    type: String
+  }
+  sku: {
+    type: Number
+  }
+});
+
+var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'pink', 'LightPink'];
+var flavors = ['cherry', 'orange', 'lemon', 'apple', 'electricity', 'plum', 'powder', 'proton powder'];
+for (var i = 0; i < colors.length; i++) {
+  for (var j = 0; j < 3; j++) {
+    db.products.insert({
+      color: colors[i],
+      flavor: flavors[i],
+      edition: 'Alternating Current',
+      offset: '5050',
+      size: '32x' + Math.round(Math.random() * 40),
+      sku: Math.round(Math.random() * 40)
+    });
+  }
+}
+
+*/
+
 var mongoose = require('mongoose');
 var UserModel = require('./schemas/users');
 var ProductModel = require('./schemas/products');
