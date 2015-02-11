@@ -4,17 +4,17 @@ var moment = require('moment');
 var db = require('../../database');
 var Products = db.Products;
 router.get('/', function (req, res) {
-  var allproducts = Products.find(function (err, products) {
-    var collection = [];
-    var uniqueArray = [];
-    for (var i = products.length - 1; i >= 0; i--) {
-      if (uniqueArray.indexOf(products[i].color) === -1) {
-        uniqueArray.push(products[i].color);
-        collection.push(products[i]);
-      }
+  Products.aggregate([{
+    $group: {
+      _id: '$color'
     }
-    console.log(collection);
-    res.json(collection)
+  }], {}, function (err, collection) {
+    console.log(err, collection);
+    if (err) {
+      throw err
+    }
+    res.end();
+    // res.json(collection);
   });
 });
 
