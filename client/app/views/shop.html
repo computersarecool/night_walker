@@ -1,5 +1,5 @@
-<div ng-repeat="pant in products" class="pant container" ng-style="{'border': '5px solid black', 'background':'url({{pant.images[0].main}}) no-repeat center center', 'background-size': 'contain'}"> 
+<div ng-repeat="pant in collection" class="pant container" ng-style="{'background':'url({{pant.images[0].main}}) no-repeat center center', 'background-size': 'contain'}"> 
     <div class="pant-text">
-        <a ng-href="/product/{{pant.name}}">The flavor: {{pant.name}}</a>
+        <a ng-href="/shop/alternatingcurrent/{{pant.name}}">The flavor: {{pant.name}}</a>
     </div>
 </div>

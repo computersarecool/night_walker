@@ -8,13 +8,6 @@
  * Controller of the nightwalkerApp
  */
 angular.module('nightwalkerApp')
-  .controller('ShopCtrl', function ($scope, products) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-
-    $scope.products = products;
-
+  .controller('ShopCtrl', function ($scope, $location, collection) {
+    $scope.collection = collection;
   });

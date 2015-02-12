@@ -32,20 +32,23 @@ angular
         controller: 'ContactCtrl'
       })      
       .when('/shop', {
+        redirectTo: '/shop/alternatingcurrent'
+      })
+      .when('/shop/:collection', {
         templateUrl: 'views/shop.html',
         controller: 'ShopCtrl',
         resolve: {
-          products: function (productService) {
-            return productService.getProducts();
+          collection: function ($route, productService) {
+            return productService.getCollection($route.current.params.collection);
           }
         }
       })
-      .when('/product/:flavor', {
+      .when('/shop/alternatingcurrent/:flavor', {
         templateUrl:'/views/product.html',
         controller: 'ProductCtrl',
         resolve: {
-          product: function (productService, $route) {
-            return productService.getIndividual($route.current.params.flavor);
+          product: function ($route, productService) {
+            return productService.getProduct($route.current.params.flavor);
           }
         }
       })
