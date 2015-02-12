@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../../database');
-var Products = db.Products;
+var Products = require('../../database').Products;
 
 router.get('/:flavor', function (req, res) {
   // Check database for the product matching the flavor parameter

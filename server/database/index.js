@@ -21,7 +21,7 @@
 });
 
 var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'pink', 'LightPink'];
-var flavors = ['cherry', 'orange', 'lemon', 'apple', 'electricity', 'plum', 'powder', 'proton powder'];
+var flavors = ['cherry', 'nectarine', 'lemon', 'apple', 'electricity', 'plum_crazy', 'powder', 'proton_powder'];
 for (var i = 0; i < colors.length; i++) {
   for (var j = 0; j < 3; j++) {
     db.products.insert({
@@ -35,11 +35,41 @@ for (var i = 0; i < colors.length; i++) {
   }
 }
 
+for (var i = 0; i < flavors.length; i++) {
+  db.collectionmembers.insert({
+    name: flavors[i],
+    kind: 'Clothing',
+    collection: 'Alternating Current',
+    images: [
+      {
+        "main": 'images/hold/' + flavors[i] + '_front.jpg'
+      },
+      {
+        "back": 'images/hold/' + flavors[i] + 'back.jpg'
+      }
+    ]
+  })
+}
+
+// Colleciton Member
+name: {
+  type: String
+},
+kind: {
+  type: String
+},
+collection: {
+  type: String
+},
+images: {
+  type: Array
+}
 */
 
 var mongoose = require('mongoose');
 var UserModel = require('./schemas/users');
 var ProductModel = require('./schemas/products');
+var CollectionsModel = require('./schemas/collectionmembers');
 var credentials = require('../../config/credentials');
 
 //Connections
@@ -72,5 +102,6 @@ db.once('open', function callback () {
   console.log('Database connection successfully opened at ' + database);
 });
 
-exports.users = UserModel;
+exports.Users = UserModel;
 exports.Products = ProductModel;
+exports.CollectionMembers = CollectionsModel;

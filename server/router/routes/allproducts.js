@@ -1,16 +1,14 @@
 var express = require('express');
 var router = express.Router();
-var moment = require('moment');
-var db = require('../../database');
-var Products = db.Products;
+var Collections = require('../../database').CollectionMembers;
 router.get('/', function (req, res) {
-  var allproducts = Products.find(function (err, products) {
+  var members = CollectionMembers.find(function (err, members) {
     var collection = [];
     var uniqueArray = [];
-    for (var i = products.length - 1; i >= 0; i--) {
-      if (uniqueArray.indexOf(products[i].color) === -1) {
-        uniqueArray.push(products[i].color);
-        collection.push(products[i]);
+    for (var i = members.length - 1; i >= 0; i--) {
+      if (uniqueArray.indexOf(members[i].color) === -1) {
+        uniqueArray.push(members[i].color);
+        collection.push(members[i]);
       }
     }
     res.json(collection)

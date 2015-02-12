@@ -1,6 +1,6 @@
 var express = require('express');
 var expressJwt = require('express-jwt');
-var User = require('../../database/schemas/users');
+var Users = require('../../database').Users;
 var jwtSecret = require('../../../config/credentials').jwtSecret;
 var stripeKey = require('../../../config/credentials').stripeTest;
 var stripeKey = require('../../../config/credentials').stripeTest;
@@ -41,7 +41,7 @@ router.post('/', function (req, res) {
     return
   }
   if (typeof items === 'number') {
-    User.findOneAndUpdate({username: username}, {$push: {cart: items}}, function(err, user){
+    Users.findOneAndUpdate({username: username}, {$push: {cart: items}}, function(err, user){
       if (err) {
         console.log('There was an error adding the item to the cart');
         throw err
@@ -50,7 +50,7 @@ router.post('/', function (req, res) {
       }
     });
   } else {
-    User.findOneAndUpdate({username: username}, {$pushAll: {cart: items}}, function(err, user){    
+    Users.findOneAndUpdate({username: username}, {$pushAll: {cart: items}}, function(err, user){    
       if (err) {
         console.log('There was an error adding the item to the cart');
         throw err
