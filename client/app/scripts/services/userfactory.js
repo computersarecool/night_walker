@@ -8,7 +8,7 @@
  * Factory in the nightwalkerApp.
  */
 angular.module('nightwalkerApp')
-  .factory('UserFactory', function ($http, $q, $cookieStore, AuthTokenFactory) {
+  .factory('UserFactory', function ($http, $cookieStore, $location, AuthTokenFactory) {
 
     var user = {};
 
@@ -44,6 +44,7 @@ angular.module('nightwalkerApp')
     function logout () {
      AuthTokenFactory.setToken();
      user.currentUser = null;
+     $location.path('/');
     };
 
     function checkToken () {
