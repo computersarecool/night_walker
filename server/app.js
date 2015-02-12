@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(passport.initialize());
 
-app.use('/api', apiRouter);
+app.use('/api', apiRouter);  
 
 //Development
 if (app.get('env') === 'development') {
