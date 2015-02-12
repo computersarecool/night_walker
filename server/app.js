@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var apiRouter = require('./router/api');
 
 var app = express();
 
@@ -17,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(passport.initialize());
 
-var router = require('./router')(app);
+app.use('/api', apiRouter);
 
 //Development
 if (app.get('env') === 'development') {

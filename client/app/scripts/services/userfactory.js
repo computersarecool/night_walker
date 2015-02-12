@@ -13,7 +13,7 @@ angular.module('nightwalkerApp')
     var user = {};
 
     function signup (username, password, firstName, lastName, email) {
-      return $http.post('/login/signup', {
+      return $http.post('/api/login/signup', {
         username: username,
         password: password,
         firstName: firstName,
@@ -28,7 +28,7 @@ angular.module('nightwalkerApp')
     };
 
     function login (username, password) {
-      return $http.post('/login/login', {
+      return $http.post('/api/login/login', {
         username: username,
         password: password
       }).then(function success (response) {
@@ -52,7 +52,7 @@ angular.module('nightwalkerApp')
     };
 
     function addToCart (items) {
-      return $http.post('/addproduct', {
+      return $http.post('/api/addproduct', {
         items: items
       }).then(function success (response) {
         user.currentUser = response.data;
@@ -63,7 +63,7 @@ angular.module('nightwalkerApp')
 
     var getUser = (function () {
       if (AuthTokenFactory.getToken()) {
-        return $http.get('/user')
+        return $http.get('/api/user')
           .then (function success (response) {
             user.currentUser = response.data.user;
             user.currentUser.show = true;

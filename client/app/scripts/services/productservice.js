@@ -15,7 +15,7 @@ angular.module('nightwalkerApp')
     };
 
     function getCollection (collection) { 
-      return $http.get('/collection/' + collection)
+      return $http.get('/api/collection/' + collection)
         .then(function success (response) {
           return response.data;
         }, function (httpError) {
@@ -25,7 +25,7 @@ angular.module('nightwalkerApp')
 
 
     function getProduct (flavor) {
-      return $http.get('/shop/alternatingcurrent/' + flavor)
+      return $http.get('/api/shop/alternatingcurrent/' + flavor)
         .then(function success (response) {
           return response.data;
         }, function (httpError) {
