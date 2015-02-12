@@ -35,11 +35,13 @@ for (var i = 0; i < colors.length; i++) {
   }
 }
 
+var flavors = ['cherry', 'nectarine', 'lemon', 'apple', 'electricity', 'plum_crazy', 'powder', 'proton_powder'];
 for (var i = 0; i < flavors.length; i++) {
-  db.collectionmembers.insert({
+  db.Collections.insert({
     name: flavors[i],
     kind: 'Clothing',
-    collection: 'Alternating Current',
+    full_name: 'Alternating Current',
+    Collection: 'alternatingcurrent',
     images: [
       {
         "main": 'images/hold/' + flavors[i] + '_front.jpg'
@@ -51,26 +53,34 @@ for (var i = 0; i < flavors.length; i++) {
   })
 }
 
-// Colleciton Member
-name: {
-  type: String
-},
-kind: {
-  type: String
-},
-collection: {
-  type: String
-},
-images: {
-  type: Array
+var flavors = ['cherry', 'nectarine', 'lemon', 'apple', 'electricity', 'plum_crazy', 'powder', 'proton_powder'];
+for (var i = 0; i < flavors.length; i++) {
+  db.Collections.insert({
+    name: 'onne',
+    kind: 'Clothing',
+    full_name: 'Alternating Current',
+    Collection: 'alternatingcurrent',
+    images: [
+      {
+        "main": 'images/hold/_front.jpg'
+      },
+      {
+        "back": 'images/hold/back.jpg'
+      }
+    ]
+  })
 }
+
+
+
 */
 
 var mongoose = require('mongoose');
+var credentials = require('../../config/credentials');
+
 var UserModel = require('./schemas/users');
 var ProductModel = require('./schemas/products');
-var CollectionsModel = require('./schemas/collectionmembers');
-var credentials = require('../../config/credentials');
+var EditionsModel = require('./schemas/editions');
 
 //Connections
 var developmentDb = credentials.testConnection;
@@ -97,11 +107,10 @@ var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'Connection error:'));
 
-//Open connection
-db.once('open', function callback () {
+db.once('open', function () {
   console.log('Database connection successfully opened at ' + database);
 });
 
 exports.Users = UserModel;
 exports.Products = ProductModel;
-exports.CollectionMembers = CollectionsModel;
+exports.Editions = EditionsModel;

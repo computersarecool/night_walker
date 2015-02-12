@@ -4,19 +4,24 @@ var Schema = mongoose.Schema;
 //Use Schema
 var productSchema = new Schema({
   color: {
-    type: String
+    type: String,
+    default: 'A Stringger'
   },
   flavor: {
-    type: String
+    type: String,
+    default: 'A Stringger'
   },
   edition: {
-    type: String
+    type: String,
+    default: 'A Stringger'
   },
   offset : {
-    type: String
+    type: String,
+    default: 'A Stringger'
   },
   size: {
-    type: String
+    type: String,
+    default: 'A Stringger'
   },
   sku: {
     type: Number
