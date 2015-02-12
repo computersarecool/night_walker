@@ -17,6 +17,7 @@ angular.module('nightwalkerApp')
     function getProducts () { 
       return $http.get('/allproducts')
         .then(function success (response) {
+          console.log(response);
           return response.data;
         }, function (httpError) {
           throw httpError.status + " : " + httpError.data;        

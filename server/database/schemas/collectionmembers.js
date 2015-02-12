@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var memberSchema = new Schema({
+var membersSchema = new Schema({
     name: {
       type: String
     },
@@ -16,4 +16,6 @@ var memberSchema = new Schema({
     }
 });
 
-var CollectionMember = mongoose.model('CollectionMember', memberSchema);
+var CollectionMembers = mongoose.model('CollectionMembers', membersSchema);
+
+module.exports = CollectionMembers;
