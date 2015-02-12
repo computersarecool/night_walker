@@ -37,7 +37,7 @@ for (var i = 0; i < colors.length; i++) {
 
 var flavors = ['cherry', 'nectarine', 'lemon', 'apple', 'electricity', 'plum_crazy', 'powder', 'proton_powder'];
 for (var i = 0; i < flavors.length; i++) {
-  db.Collections.insert({
+  db.editions.insert({
     name: flavors[i],
     kind: 'Clothing',
     full_name: 'Alternating Current',
@@ -48,24 +48,6 @@ for (var i = 0; i < flavors.length; i++) {
       },
       {
         "back": 'images/hold/' + flavors[i] + 'back.jpg'
-      }
-    ]
-  })
-}
-
-var flavors = ['cherry', 'nectarine', 'lemon', 'apple', 'electricity', 'plum_crazy', 'powder', 'proton_powder'];
-for (var i = 0; i < flavors.length; i++) {
-  db.Collections.insert({
-    name: 'onne',
-    kind: 'Clothing',
-    full_name: 'Alternating Current',
-    Collection: 'alternatingcurrent',
-    images: [
-      {
-        "main": 'images/hold/_front.jpg'
-      },
-      {
-        "back": 'images/hold/back.jpg'
       }
     ]
   })
