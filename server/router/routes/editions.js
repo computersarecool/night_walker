@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Editions = require('../../database').Editions;
+var Editions = require('../../../database').Editions;
 
 router.get('/:edition', function (req, res) {
   var edition = req.params.edition;

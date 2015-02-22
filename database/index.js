@@ -58,7 +58,7 @@ for (var i = 0; i < flavors.length; i++) {
 */
 
 var mongoose = require('mongoose');
-var credentials = require('../../config/credentials');
+var credentials = require('../config/credentials');
 
 var UserModel = require('./schemas/users');
 var ProductModel = require('./schemas/products');

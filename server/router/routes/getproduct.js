@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Products = require('../../database').Products;
+var Products = require('../../../database').Products;
 
 router.get('/:flavor', function (req, res) {
   var flavor = req.params.flavor;

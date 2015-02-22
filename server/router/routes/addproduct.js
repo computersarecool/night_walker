@@ -1,6 +1,6 @@
 var express = require('express');
 var expressJwt = require('express-jwt');
-var Users = require('../../database').Users;
+var Users = require('../../../database').Users;
 var jwtSecret = require('../../../config/credentials').jwtSecret;
 var stripeKey = require('../../../config/credentials').stripeTest;
 var stripeKey = require('../../../config/credentials').stripeTest;
