@@ -3,7 +3,7 @@ var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var jwtSecret = require('../../../config/credentials').jwtSecret;
 
-require('../../inner_config/passport')(passport);
+require('../../../config/passport')(passport);
 
 var router = express.Router();
 
