@@ -28,7 +28,7 @@ var productSchema = new Schema({
     type: String
   },
   sku: {
-    type: Number
+    type: String
   }
 
 });

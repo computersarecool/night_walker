@@ -1,20 +1,30 @@
-<p>
-    The Pant you are viewing is currently the: {{product.flavor}} flavor
-</p>
 <div>
-    <p>
-        It is the size {{product.size}}
-    </p>
-    <p>
-        It is the color {{product.color}}
-    </p>
-    <p>
-        It is the offset {{product.offset}}
-    </p>    
-    <p>
-        It is from the {{product.collection}} collection
-        {{product.sku}}
-    </p>
-    {{product}}
-    <button ng-click="addToCart(product.sku)">Add this product{{product.sku}}</button>
+    The Pant you are viewing is currently the: {{product.flavor}} flavor
 </div>
+
+<div>
+    It is from the {{product.edition}} edition
+</div>
+
+<div>
+    DESCRIPTION: {{product.description}}
+</div>
+
+<div>
+    DESCRIPTION: {{product.shortDescription}}
+</div>
+
+<ul>
+    <li ng-repeat="(view, href) in product.images">{{view}}: {{href}}</li>
+</ul>
+
+<ul>
+    <li ng-repeat="(size, measurement) in product.sizes">{{size}}: {{measurement}}</li>
+</ul>
+
+<ul>
+    Item Details:
+    <li ng-repeat="detail in product.itemDetails"> {{detail}}</li>
+</ul>
+
+<button ng-click="addToCart(product.sku)">Add this product{{product.sku}}</button>
