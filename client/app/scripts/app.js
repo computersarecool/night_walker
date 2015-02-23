@@ -54,15 +54,30 @@ angular
       })
       .when('/login', {
         templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        resolve: function (UserFactory) {
+          if (UserFactory.checkToken()) {
+            $location.path('/account');
+          }
+        }
       })
       .when('/signup', {
         templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        resolve: function (UserFactory) {
+          if (UserFactory.checkToken()) {
+            $location.path('/account');            
+          }
+        }
       })      
       .when('/account', {
         templateUrl: 'views/account.html',
-        controller: 'AccountCtrl'
+        controller: 'AccountCtrl',
+        resolve: function (UserFactory) {
+          if (!UserFactory.checkToken()) {
+            $location.path('/signup');
+          }
+        }
       })
       .when('/checkout', {
         templateUrl: 'views/checkout.html',
