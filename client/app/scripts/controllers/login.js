@@ -34,7 +34,6 @@ angular.module('nightwalkerApp')
       }
     };
 
-    // Add redirect if already logged in
     if ($location.path() === '/signup') {
       $scope.showLogin = false;
     } else {
