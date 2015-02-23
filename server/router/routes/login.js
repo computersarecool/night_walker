@@ -19,7 +19,7 @@ router.post('/signup', function (req, res, next) {
     //This is where the jwt is created
     var token = jwt.sign({  
       funThing: 'This is your new JWT',
-      username: user.username
+      email: user.email
     }, jwtSecret);
 
     res.json({
@@ -43,7 +43,7 @@ router.post('/login', function (req, res, next) {
     // This is where the jwt is created
     var token = jwt.sign({
       funThing: 'This is your personal JWT',
-      username: user.username
+      email: user.email
     }, jwtSecret);
 
     res.json({

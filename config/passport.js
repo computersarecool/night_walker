@@ -5,10 +5,12 @@ var Users = require('../database').Users;
 module.exports = function (passport) {
 
   passport.use('local-login', new LocalStrategy ({
+    usernameField: 'email',
+    passwordField: 'password',    
     passReqToCallback: true
   },
-  function (req, username, password, done) {
-    Users.findOne({username: username}, function(err, user) {
+  function (req, email, password, done) {
+    Users.findOne({email: email}, function(err, user) {
       // if there are any errors, return the error before anything else
       if (err) {
           return done(err);
@@ -24,7 +26,7 @@ module.exports = function (passport) {
         }
         if (!auth) {
           // An incorrect password was issued
-          return done(null, false, 'Sorry, incorrect username or password'); 
+          return done(null, false, 'Sorry, incorrect email or password'); 
         }
         
         // all is well, return successful user
@@ -42,31 +44,34 @@ module.exports = function (passport) {
 
 
   passport.use('local-signup', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
     passReqToCallback: true
   },
-  function(req, username, password, done) {
+  function(req, email, password, done) {
+    console.log('heree');
+    console.log(req.body);
     // check to see if there is already a user
     if(!req.user) { 
       // Asynchronous User.findOne wont fire until data is sent back
       process.nextTick(function () {
         // we are checking to see if the user trying to login already exists
-        Users.findOne({username: username}, function (err, user) {
+        Users.findOne({email: email}, function (err, user) {
           // if there are any errors, return the error
           if (err) {
               return done(err);
           }
-          // check to see if theres already a user with that username
+          // check to see if theres already a user with that email
           if (user) {
-              console.log('The username is already taken');
-              return done(null, false, 'That username is already taken.');
+              console.log('The email is already taken');
+              return done(null, false, 'That email is already taken.');
           } else {
             var newUser = new Users();
-            newUser.username = req.body.username;
+            newUser.email = req.body.email;
             //Generate hash
             newUser.password = req.body.password;
             newUser.firstName = req.body.firstName;
             newUser.lastName = req.body.lastName;
-            newUser.email = req.body.email;
             var cart = req.cookies.cart;
             if (cart) {
               newUser.cart = JSON.parse(cart);  
@@ -88,7 +93,7 @@ module.exports = function (passport) {
       // update the current users local credentials
       // GENERATE HASH HERE
       user.local.password = password;
-      user.local.username = username;
+      user.local.email = email;
       // save the user
       user.save(function(err) {
         if (err) {

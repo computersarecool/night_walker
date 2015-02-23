@@ -29,19 +29,19 @@ router.post('/', expressJwt({
 });
 
 router.post('/', function (req, res) {
-  var username = req.user.username;
+  var email = req.user.email;
   var items = req.body.items;
   if (items) {
     items = JSON.parse(items);
   } else {
     return
   }
-  if (!username) {
-    res.status(401).send('There is no username');
+  if (!email) {
+    res.status(401).send('There is no email');
     return
   }
   if (typeof items === 'number') {
-    Users.findOneAndUpdate({username: username}, {$push: {cart: items}}, function(err, user){
+    Users.findOneAndUpdate({email: email}, {$push: {cart: items}}, function(err, user){
       if (err) {
         console.log('There was an error adding the item to the cart');
         throw err
@@ -50,7 +50,7 @@ router.post('/', function (req, res) {
       }
     });
   } else {
-    Users.findOneAndUpdate({username: username}, {$pushAll: {cart: items}}, function(err, user){    
+    Users.findOneAndUpdate({email: email}, {$pushAll: {cart: items}}, function(err, user){    
       if (err) {
         console.log('There was an error adding the item to the cart');
         throw err

@@ -17,12 +17,12 @@ angular.module('nightwalkerApp')
 
     $scope.user = UserFactory.currentUser;
 
-    $scope.signup = function (username, password, firstName, lastName, email) {
-      UserFactory.signup(username, password, firstName, lastName, email);
+    $scope.signup = function (email, password, firstName, lastName) {
+      UserFactory.signup(email, password, firstName, lastName);
     };
 
-    $scope.login = function (username, password) {      
-      UserFactory.login(username, password);
+    $scope.login = function (email, password) {      
+      UserFactory.login(email, password);
     };
 
     $scope.logout = function () {

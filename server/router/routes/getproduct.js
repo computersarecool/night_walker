@@ -8,7 +8,6 @@ router.get('/:flavor', function (req, res) {
     if (err) {
       throw err
     }
-    console.log(product);
     res.json(product);
   });
 });

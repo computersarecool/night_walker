@@ -5,31 +5,28 @@ var Schema = mongoose.Schema;
 //User Schema
 var userSchema = new Schema({
 
-  username: {
-    type: String,
-    default: 'testUsername'
-  },
   email: {
-    type: String,
-    default: 'test@example.com'
+    type: String
   },
   firstName: {
-    type: String,
-    default: 'Chaz'
+    type: String
   },
   lastName: {
     type: String
   },
+  addresses: {
+    type: Array
+  },
   cart: {
     type: Array
+  },
+  password: {
+    type: String
   },
   loggedIn: {
     type: Boolean,
     default: true
-  },
-  password: {
-    type: String
-  } 
+  }   
 });  
 
 
