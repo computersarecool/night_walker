@@ -76,20 +76,6 @@ var flavors = [
   {
     kind: 'pants',
     edition: 'Alternating Current',
-    flavor: 'Lemon',
-    itemDetails: ['95 percent Cotton, 5 percent polyester', 'bursoft', 'metal zippers', 'tuxedo belt claps'],
-    description: 'We think that these Lemon pants are the best ever and ever and ever and ever more',
-    shortDescription: 'We think that these Lemon pants are the best ever',
-    images: {
-      back: 'http://placehold.it/400x650',
-      detail: 'http://placehold.it/400x650',
-      front: 'http://placehold.it/350x650',
-      side: 'http://placehold.it/450x650'
-    }
-  },
-  {
-    kind: 'pants',
-    edition: 'Alternating Current',
     flavor: 'Apple',
     itemDetails: ['95 percent Cotton, 5 percent polyester', 'bursoft', 'metal zippers', 'tuxedo belt claps'],
     description: 'We think that these Apple pants are the best ever and ever and ever and ever more',
@@ -159,8 +145,6 @@ var flavors = [
   }  
 ];
 
-
-var clothing = [];
 for (var h = 0; h < flavors.length; h++) {
 
   for (var i = 0; i < 5; i++) {
@@ -172,11 +156,11 @@ for (var h = 0; h < flavors.length; h++) {
     item.sizes = {
       waistSize: waistSize,
       inseam: inseam
-    }
+    };
     
     item.sku = sku;
 
-    clothing.push(item);
+    db.products.insert(item);
   }
 
   for (var i = 0; i < 3; i++) {
@@ -187,11 +171,48 @@ for (var h = 0; h < flavors.length; h++) {
     item.sizes = {
       waistSize: waistSize,
       inseam: inseam
-    }
+    };
     item.sku = sku;
-    clothing.push(item);
+    db.products.insert(item);
   }
+
+  for (var i = 0; i < 3; i++) {
+    var item = JSON.parse(JSON.stringify(flavors[h]));
+    var waistSize = 38;
+    var inseam = 36;
+    var sku = "1." + waistSize + "." + inseam;
+    item.sizes = {
+      waistSize: waistSize,
+      inseam: inseam
+    };
+    item.sku = sku;
+    db.products.insert(item);
+  }
+
+  for (var i = 0; i < 3; i++) {
+    var item = JSON.parse(JSON.stringify(flavors[h]));
+    var waistSize = 33;
+    var inseam = 33;
+    var sku = "1." + waistSize + "." + inseam;
+    item.sizes = {
+      waistSize: waistSize,
+      inseam: inseam
+    };
+    item.sku = sku;
+    db.products.insert(item);
+  }
+
+  for (var i = 0; i < 3; i++) {
+    var item = JSON.parse(JSON.stringify(flavors[h]));
+    var waistSize = 29;
+    var inseam = 29;
+    var sku = "1." + waistSize + "." + inseam;
+    item.sizes = {
+      waistSize: waistSize,
+      inseam: inseam
+    };
+    item.sku = sku;
+    db.products.insert(item);
+  }
+
 }
-
-console.log(clothing);
-
