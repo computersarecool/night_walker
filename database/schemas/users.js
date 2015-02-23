@@ -22,6 +22,10 @@ var userSchema = new Schema({
   password: {
     type: String
   },
+  dateJoined: {
+    type: Date,
+    default: Date.now;
+  },
   loggedIn: {
     type: Boolean,
     default: true

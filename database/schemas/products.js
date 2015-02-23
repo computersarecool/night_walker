@@ -13,10 +13,10 @@ var productSchema = new Schema({
     type: String
   },
   sizes: {
-    type: Array
+    type: {}
   },
   images: {
-    type: Array
+    type: {}
   },
   itemDetails: {
     type: Array
