@@ -1,10 +1,19 @@
-<p>
+<div>
     This is the account view.
-</p>
-<p>
-    Welcome {{user.firstName}}
-</p>
-<p>   
+</div>
+<div>
+    Welcome {{user.firstName}} {{user.lastName}}
+</div>
+<div>   
     This is your account {{user.lastName}}
+</div>
+<div>
+  Your email {{user.email}}
+</div>
+<div>
+  Your addresses {{user.addresses}}
+</div>
+<div>
     Your cart {{user.cart}}
-</p>
+</div>
+<button ng-click="logout()">Logout</button>

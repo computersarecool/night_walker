@@ -21,6 +21,8 @@ angular.module('nightwalkerApp')
 
     $scope.user = UserFactory.currentUser;
 
+    $scope.logout = UserFactory.logout;
+
     $scope.$watch(function () {
       return UserFactory.currentUser;
     }, function () {

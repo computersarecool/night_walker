@@ -1,17 +1,16 @@
 <div ng-show="showLogin">
+
+    <form novalidate ng-submit="login(username, password)">
+        <label>Email<input type="email" ng-model="username"></label>
+        <label>Password<input type="password" ng-model="password"></label>
+        <button type="submit">Login</button>
+    </form>
+
+    <br>
+    <button ng-click="logout()">Logout</button>
+
     <div>
-        <form ng-submit="login(username, password)">
-            <label>User<input type="text" ng-model="username"></label>
-            <label>Password<input type="text" ng-model="password"></label>
-            <button type="submit">Login</button>
-        </form>
-    </div>
-    <div>
-        <button ng-click="logout()">Logout</button>
-        <div ng-click="findMe()">Find me </div>
-    </div>
-    <div>
-        Test Hello {{user.firstName}}
+        Hello Name: {{user.firstName}}
     </div>
     <div ng-click="changeLogin()">
         Need to sign up?
@@ -23,12 +22,12 @@
         This is the signup form
     </div>
     
-    <form ng-submit="signup(email, password, firstName, lastName)">
-        <input type="text" ng-model="email">Email<br>
-        <input type="text" name="the big password" ng-model="password">Password<br>
+    <form novalidate ng-submit="signup(email, password, firstName, lastName)">
+        <input type="email" ng-model="email">Email<br>
+        <input type="password" ng-model="password">Password<br>
         <input type="text" ng-model="firstName">First Name<br>
         <input type="text" ng-model="lastName">Last Name<br>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
     </form>
 
     <br>

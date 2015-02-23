@@ -11,9 +11,9 @@
 angular.module('nightwalkerApp')
   .controller('LoginCtrl', function ($scope, $location, UserFactory) {
 
-    // if (UserFactory.checkToken()) {
-    //   $location.path('/account');
-    // };
+    if (UserFactory.checkToken()) {
+      $location.path('/account');
+    }
 
     $scope.user = UserFactory.currentUser;
 
