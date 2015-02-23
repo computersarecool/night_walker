@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 // var bcrypt = require('bcrypt');
 var Schema = mongoose.Schema;
 
-//User Schema
 var userSchema = new Schema({
 
   email: {
@@ -31,10 +30,8 @@ var userSchema = new Schema({
 
 
 //Encrypt before save userSchema.pre('save')
-
 userSchema.methods.checkPassword = function (triedPassword, callback) {
   //bcrypt.compare
-
   // Right password
   if (triedPassword === this.password) {
     console.log('The password is right');
@@ -47,9 +44,5 @@ userSchema.methods.checkPassword = function (triedPassword, callback) {
 
 };
 
-
-
-
 var User = mongoose.model('User', userSchema);
-
 module.exports = User;

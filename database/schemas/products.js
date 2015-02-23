@@ -1,34 +1,38 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-//Use Schema
 var productSchema = new Schema({
-  color: {
-    type: String,
-    default: 'A Stringger'
-  },
+  // T-Shirt, jeans, etc
+  kind: {
+    type: String
+  },  
   flavor: {
-    type: String,
-    default: 'A Stringger'
+    type: String
   },
   edition: {
-    type: String,
-    default: 'A Stringger'
+    type: String
   },
-  offset : {
-    type: String,
-    default: 'A Stringger'
+  sizes: {
+    type: Array
   },
-  size: {
-    type: String,
-    default: 'A Stringger'
+  images: {
+    type: Array
+  },
+  itemDetails: {
+    type: Array
+  },
+  shortDescription: {
+    type: String
+  },
+  description: {
+    type: String
   },
   sku: {
     type: Number
   }
+
 });
 
 
 var Products = mongoose.model('Products', productSchema);
-
 module.exports = Products;
