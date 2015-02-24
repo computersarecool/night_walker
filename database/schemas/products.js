@@ -30,6 +30,9 @@ var productSchema = new Schema({
   shortDescription: {
     type: String
   },
+  careInstructions: {
+    type: String
+  },
   images: {
     type: {}
   },

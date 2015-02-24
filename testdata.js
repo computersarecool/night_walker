@@ -8,6 +8,7 @@ var flavors = [
     itemDetails: ['95 percent cotton, 5 percent polyester', 'bursoft', 'metal zippers', 'tuxedo belt claps'],
     description: 'We think that these cherry pants are the best ever and ever and ever and ever more',
     shortDescription: 'We think that these cherry pants are the best ever',
+    careInstructions: 'Machine wash cold and hang dry',
     images: {
       back: 'http://placehold.it/400x650',
       detail: 'http://placehold.it/400x650',
@@ -24,6 +25,7 @@ var flavors = [
     itemDetails: ['95 percent Cotton, 5 percent polyester', 'bursoft', 'metal zippers', 'tuxedo belt claps'],
     description: 'We think that these nectarine pants are the best ever and ever and ever and ever more',
     shortDescription: 'We think that these nectarine pants are the best ever',
+    careInstructions: 'Machine wash cold and hang dry',
     images: {
       back: 'http://placehold.it/400x650',
       detail: 'http://placehold.it/400x650',
@@ -40,6 +42,7 @@ var flavors = [
     itemDetails: ['95 percent Cotton, 5 percent polyester', 'bursoft', 'metal zippers', 'tuxedo belt claps'],
     description: 'We think that these Lemon pants are the best ever and ever and ever and ever more',
     shortDescription: 'We think that these Lemon pants are the best ever',
+    careInstructions: 'Machine wash cold and hang dry',
     images: {
       back: 'http://placehold.it/400x650',
       detail: 'http://placehold.it/400x650',
@@ -56,6 +59,7 @@ var flavors = [
     itemDetails: ['95 percent Cotton, 5 percent polyester', 'bursoft', 'metal zippers', 'tuxedo belt claps'],
     description: 'We think that these Apple pants are the best ever and ever and ever and ever more',
     shortDescription: 'We think that these Apple pants are the best ever',
+    careInstructions: 'Machine wash cold and hang dry',
     images: {
       back: 'http://placehold.it/400x650',
       detail: 'http://placehold.it/400x650',
@@ -72,6 +76,7 @@ var flavors = [
     itemDetails: ['95 percent Cotton, 5 percent polyester', 'bursoft', 'metal zippers', 'tuxedo belt claps'],
     description: 'We think that these electricity pants are the best ever and ever and ever and ever more',
     shortDescription: 'We think that these electricity pants are the best ever',
+    careInstructions: 'Machine wash cold and hang dry',
     images: {
       back: 'http://placehold.it/400x650',
       detail: 'http://placehold.it/400x650',
@@ -88,6 +93,7 @@ var flavors = [
     itemDetails: ['95 percent Cotton, 5 percent polyester', 'bursoft', 'metal zippers', 'tuxedo belt claps'],
     description: 'We think that these plum crazy pants are the best ever and ever and ever and ever more',
     shortDescription: 'We think that these plum crazy pants are the best ever',
+    careInstructions: 'Machine wash cold and hang dry',
     images: {
       back: 'http://placehold.it/400x650',
       detail: 'http://placehold.it/400x650',
@@ -104,6 +110,7 @@ var flavors = [
     itemDetails: ['95 percent Cotton, 5 percent polyester', 'bursoft', 'metal zippers', 'tuxedo belt claps'],
     description: 'We think that these plum crazy pants are the best ever and ever and ever and ever more',
     shortDescription: 'We think that these plum crazy pants are the best ever',
+    careInstructions: 'Machine wash cold and hang dry',
     images: {
       back: 'http://placehold.it/400x650',
       detail: 'http://placehold.it/400x650',
@@ -120,6 +127,7 @@ var flavors = [
     itemDetails: ['95 percent Cotton, 5 percent polyester', 'bursoft', 'metal zippers', 'tuxedo belt claps'],
     description: 'We think that these plum crazy pants are the best ever and ever and ever and ever more',
     shortDescription: 'We think that these plum crazy pants are the best ever',
+    careInstructions: 'Machine wash cold and hang dry',
     images: {
       back: 'http://placehold.it/400x650',
       detail: 'http://placehold.it/400x650',
