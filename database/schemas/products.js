@@ -6,6 +6,9 @@ var productSchema = new Schema({
   kind: {
     type: String
   },
+  title: {
+    type: String
+  },
   edition: {
     type: String
   },
@@ -18,11 +21,14 @@ var productSchema = new Schema({
   urlFlavor: {
     type: String
   },
+  itemDetails: {
+    type: Array
+  },
   sizes: {
     type: {}
   },
-  itemDetails: {
-    type: Array
+  sizeGuide: {
+    type: String
   },
   description: {
     type: String
@@ -30,6 +36,9 @@ var productSchema = new Schema({
   shortDescription: {
     type: String
   },
+  aboutSpecific: {
+    type: String
+  },  
   careInstructions: {
     type: String
   },
