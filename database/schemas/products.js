@@ -5,27 +5,33 @@ var productSchema = new Schema({
   // T-Shirt, jeans, etc
   kind: {
     type: String
-  },  
+  },
+  edition: {
+    type: String
+  },
+  urlEdition: {
+    type: String
+  },
   flavor: {
     type: String
   },
-  edition: {
+  urlFlavor: {
     type: String
   },
   sizes: {
     type: {}
   },
-  images: {
-    type: {}
-  },
   itemDetails: {
     type: Array
+  },
+  description: {
+    type: String
   },
   shortDescription: {
     type: String
   },
-  description: {
-    type: String
+  images: {
+    type: {}
   },
   sku: {
     type: String

@@ -11,12 +11,10 @@ var editionsSchema = new Schema({
   full_name: {
     type: String
   },
-  Collection: {
+  edition: {
     type: String
   },
-  images: {
-    type: Array
-  }
+  images: {}
 });
 
 var Editions = mongoose.model('Editions', editionsSchema);
