@@ -12,5 +12,5 @@ angular.module('nightwalkerApp')
       templateUrl: 'partials/login.html', 
       restrict: 'E',
       controller: 'LoginCtrl'        
-      }
+    };
   });

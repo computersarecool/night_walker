@@ -195,7 +195,7 @@ angular.module('nightwalkerApp')
         tElem.append(grayPant);
         return link;
       }
-    }
+    };
   });
 
 
