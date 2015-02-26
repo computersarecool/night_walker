@@ -5,16 +5,16 @@ var editionsSchema = new Schema({
   name: {
     type: String
   },
+  urlName: {
+    type: String
+  },
   kind: {
     type: String
   },
-  full_name: {
-    type: String
-  },
-  edition: {
-    type: String
-  },
-  images: {}
+  members: {
+    type: {}
+  }
+
 });
 
 var Editions = mongoose.model('Editions', editionsSchema);
