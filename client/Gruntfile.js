@@ -172,7 +172,7 @@ module.exports = function (grunt) {
       }
     },
 
-    css_sprite: {
+/*    css_sprite: {
       options: {
         'cssPath': '../images/final_sprites',
         'processor': 'stylus',
@@ -187,6 +187,16 @@ module.exports = function (grunt) {
         }, 
         src: ['app/images/prep_sprites/front_sprites/*'],
         dest: 'app/images/sprites/front_sprites'
+      }
+    },
+*/
+
+    sprite: {
+      all: {
+        src: 'app/images/prep_sprites/front_sprites/*',
+        dest: 'app/images/sprites/front_sprites.jpg',
+        destCss: 'app/styles/front_sprites.styl'
+
       }
     },
 
@@ -350,6 +360,7 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
         }]
+
       },
       styles: {
         expand: true,
@@ -414,9 +425,11 @@ module.exports = function (grunt) {
     'karma'
   ]);
 
-  grunt.loadNpmTasks('css-sprite');
+  grunt.loadNpmTasks('grunt-spritesmith');
+  // grunt.registerTask('sprite', ['sprite']);
 
-  grunt.registerTask('sprite', ['css-sprite']);
+  //  grunt.loadNpmTasks('css-sprite');
+  // grunt.registerTask('sprite', ['css-sprite']);
 
   grunt.registerTask('build', [
     'clean:dist',
