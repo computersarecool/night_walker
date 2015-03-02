@@ -183,10 +183,10 @@ module.exports = function (grunt) {
       },
       sprite: {
         options: {
-          'style': 'app/styles/gallery_sprite.styl'
+          'style': 'app/styles/front_sprites.styl'
         }, 
-        src: ['app/images/prep_sprites/gallery_sprite/*'],
-        dest: 'app/images/final_sprites/gallery_sprite'
+        src: ['app/images/prep_sprites/front_sprites/*'],
+        dest: 'app/images/sprites/front_sprites'
       }
     },
 
@@ -416,7 +416,7 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('css-sprite');
 
-  grunt.registerTask('spriteMe', ['css_sprite']);
+  grunt.registerTask('sprite', ['css-sprite']);
 
   grunt.registerTask('build', [
     'clean:dist',
