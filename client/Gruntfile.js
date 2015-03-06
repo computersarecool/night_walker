@@ -152,7 +152,8 @@ module.exports = function (grunt) {
           compress: false
         },
         files: {
-          'app/styles/main.css': 'app/styles/source.styl' // 1:1 compile
+          'app/styles/main.css': 'app/styles/source.styl',
+          'app/styles/front_sprites.css': 'app/styles/front_sprites.styl'
         }
       }
     },

@@ -1,7 +1,4 @@
-@import 'gallery_sprite'
-
-
-//// Temporary
+@require 'front_sprites'
 html, body, .main
   width 100%
   height 100%
@@ -20,45 +17,44 @@ body
   width 100%
   position absolute
   bottom 0
-  text-align: center
+  text-align: center 
+
+
+
+
+.apple-pant
+  sprite($apple_individual)
   
-
-
-
-
-
-
-
+.cherry-pant
+  sprite($cherry_individual)
   
-//// End of Temporary
-
-
-
-
-//Sprite
-.pant-sprite
-  position absolute
-  width 40%
-  max-width: 350px //Set to max res of image
-  padding-bottom: 50%
-  background-image url('../images/final_sprites/gallery_sprite.jpg')
-  background-size: 300%
-
-.blue-pant
-  background-position 0 0
-
-.gray-pant
-  background-position 50% 0
+.electricity-pant
+  sprite($proton_powder_individual)
   
-.red-pant
-  background-position 100% 0
-
-.not-opaque 
-  opacity 0
-//End of sprite
-
+.lemon-pant
+  sprite($lemon_individual)
   
-//Animation
+.nectarine-pant
+  sprite($nectarine_individual)
+  
+.plum-crazy-pant
+  sprite($plum_crazy_individual)
+
+.powder-pant
+  sprite($powder_individual)
+  
+.proton-powder-pant
+  sprite($proton_powder_individual)
+
+
+
+
+
+
+
+
+
+// Animation
 .gallery-animate
   transition all cubic-bezier(1, .01, .33, 1) .5s
   opacity 0
@@ -74,4 +70,4 @@ body
 .fast-no-gray
   transition all cubic-bezier(.83, .04, .65, .93) .4s
   opacity 0
-//End of animation
+// End of animation

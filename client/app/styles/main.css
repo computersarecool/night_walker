@@ -20,25 +20,53 @@ body {
   bottom: 0;
   text-align: center;
 }
-.pant-sprite {
-  position: absolute;
-  width: 40%;
-  max-width: 350px;
-  padding-bottom: 50%;
-  background-image: url("../images/final_sprites/gallery_sprite.jpg");
-  background-size: 300%;
+.apple-pant {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  background-position: 0px 0px;
+  width: 350px;
+  height: 871px;
 }
-.blue-pant {
-  background-position: 0 0;
+.cherry-pant {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  background-position: -350px 0px;
+  width: 350px;
+  height: 871px;
 }
-.gray-pant {
-  background-position: 50% 0;
+.electricity-pant {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  background-position: -700px -871px;
+  width: 350px;
+  height: 871px;
 }
-.red-pant {
-  background-position: 100% 0;
+.lemon-pant {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  background-position: -1050px 0px;
+  width: 350px;
+  height: 871px;
 }
-.not-opaque {
-  opacity: 0;
+.nectarine-pant {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  background-position: -1400px 0px;
+  width: 350px;
+  height: 871px;
+}
+.plum-crazy-pant {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  background-position: 0px -871px;
+  width: 350px;
+  height: 871px;
+}
+.powder-pant {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  background-position: -350px -871px;
+  width: 350px;
+  height: 871px;
+}
+.proton-powder-pant {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  background-position: -700px -871px;
+  width: 350px;
+  height: 871px;
 }
 .gallery-animate {
   transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
