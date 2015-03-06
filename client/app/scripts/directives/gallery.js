@@ -10,10 +10,10 @@
 angular.module('nightwalkerApp')
   .directive('siteGallery', function ($location, $interval, $timeout, $window) {
   
-    var grayPant = angular.element('<div id="bottom-gallery" class="pant-sprite gray-pant gallery-animate">Some More words here</div>');
-    var colorPant = angular.element('<div id="top-gallery" class="pant-sprite">Some words here</div>');
     var list = angular.element('<p style="margin-bottom:50px">Words here</p>');
     var list2 = angular.element('<p style="margin-bottom:50px">Words here</p>');
+    var colorPant = angular.element('<div id="top-gallery" class="pant-sprite">Some words here</div>');
+    var grayPant = angular.element('<div id="bottom-gallery" class="pant-sprite gray-pant gallery-animate">Some More words here</div>');
   
     var link = function (scope, element, attrs) {
       if ($window.DeviceOrientationEvent && screen.width <= 980) {
@@ -156,7 +156,16 @@ angular.module('nightwalkerApp')
         var autoChange = (function () {
 
           var index = 0;
-          var classes = ['blue-pant', 'red-pant'];
+          var classes = [
+            'apple-pant',
+            'cherry-pant',
+            'electricity-pant',
+            'lemon-pant',
+            'nectarine-pant',
+            'plum-crazy-pant',
+            'powder-pant',
+            'proton-powder-pant',
+          ];
           colorPant.addClass(classes[index])
 
           return function () {
@@ -176,8 +185,6 @@ angular.module('nightwalkerApp')
         $interval(autoChange, 3000);
         //End of desktop callback
       }
-
-
 
 
       //End of link function
