@@ -232,172 +232,170 @@ for (var h = 0; h < flavors.length; h++) {
   }
 }
 
-for (var i = 0; i < flavors.length; i++) {
-  var edition = {};
-  edition.name = 'Alternating Current';
-  edition.urlName = 'alternatingcurrent';
-  edition.kind = 'clothing';
-  edition.members = {
-    cherry: {
-      kind: 'pants',
-      title: 'chinos',
-      edition: 'alternating current',
-      urlEdition: 'alternatingcurrent',
-      flavor: 'cherry',
-      urlFlavor: 'cherry',
-      itemDetails: ['bursoft fabric', 'metal zippers on every pocket', 'tuxedo belt clasps', 'true to size fit', '97% cotton, 3% polyester', 'free shipping'],
-      sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
-      description: 'We think that these cherry pants are the best ever and ever and ever and ever more',
-      shortDescription: 'Our Chinos, in classic Cherry red',
-      aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs are in existence",
-      careInstructions: 'Machine wash cold and hang dry',
-      images: {
-        back: 'http://placehold.it/400x650',
-        detail: 'http://placehold.it/400x650',
-        front: 'http://placehold.it/350x650',
-        side: 'http://placehold.it/450x650'
-      }
-    },
-    nectarine: {
-      kind: 'pants',
-      title: 'chinos',
-      edition: 'alternating current',
-      urlEdition: 'alternatingcurrent',
-      flavor: 'nectarine',
-      urlFlavor: 'nectarine',
-      itemDetails: ['stiff strong fabric', 'metal zippers on every pocket', 'tuxedo belt clasps', 'true to size fit', '97% cotton, 3% polyester', 'free shipping'],
-      sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
-      description: 'We think that these nectarine pants are the best ever and ever and ever and ever more',
-      shortDescription: 'Wear the dream in nectarine',
-      aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs are in existence",
-      careInstructions: 'Machine wash cold and hang dry',
-      images: {
-        back: 'http://placehold.it/400x650',
-        detail: 'http://placehold.it/400x650',
-        front: 'http://placehold.it/350x650',
-        side: 'http://placehold.it/450x650'
-      }
-    },
-    lemon: {
-      kind: 'pants',
-      title: 'chinos',
-      edition: 'alternating current',
-      urlEdition: 'alternatingcurrent',
-      flavor: 'lemon',
-      urlFlavor: 'lemon',
-      itemDetails: ['bursoft fabric', 'metal zippers on every pocket', 'tuxedo belt clasps', 'true to size fit', '97% cotton, 3% polyester', 'free shipping'],
-      sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
-      description: 'We think that these Lemon pants are the best ever and ever and ever and ever more',
-      shortDescription: 'Lounge in lemon',
-      aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs are in existence",
-      careInstructions: 'Machine wash cold and hang dry',
-      images: {
-        back: 'http://placehold.it/400x650',
-        detail: 'http://placehold.it/400x650',
-        front: 'http://placehold.it/350x650',
-        side: 'http://placehold.it/450x650'
-      }
-    },
-    apple: {
-      kind: 'pants',
-      title: 'chinos',
-      edition: 'alternating current',
-      urlEdition: 'alternatingcurrent',
-      flavor: 'apple',
-      urlFlavor: 'apple',
-      itemDetails: ['bursoft fabric', 'metal zippers on every pocket', 'tuxedo belt clasps', 'true to size fit', '97% cotton, 3% polyester', 'free shipping'],
-      sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
-      description: 'We think that these Apple pants are the best ever and ever and ever and ever more',
-      shortDescription: 'Green. Smooth.',
-      aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs are in existence",
-      careInstructions: 'Machine wash cold and hang dry',
-      images: {
-        back: 'http://placehold.it/400x650',
-        detail: 'http://placehold.it/400x650',
-        front: 'http://placehold.it/350x650',
-        side: 'http://placehold.it/450x650'
-      }
-    },
-    electricity: {
-      kind: 'pants',
-      title: 'chinos',
-      edition: 'alternating current',
-      urlEdition: 'alternatingcurrent',
-      flavor: 'electricity',
-      urlFlavor: 'electricity',
-      itemDetails: ['bursoft fabric', 'metal zippers on every pocket', 'tuxedo belt clasps', 'true to size fit', '97% cotton, 3% polyester', 'free shipping'],
-      sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
-      description: 'We think that these electricity pants are the best ever and ever and ever and ever more',
-      shortDescription: 'Turn down the lights, light up the room',
-      aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs are in existence",
-      careInstructions: 'Machine wash cold and hang dry',
-      images: {
-        back: 'http://placehold.it/400x650',
-        detail: 'http://placehold.it/400x650',
-        front: 'http://placehold.it/350x650',
-        side: 'http://placehold.it/450x650'
-      }
-    },
-    plumCrazy: {
-      kind: 'pants',
-      title: 'chinos',
-      edition: 'alternating current',
-      urlEdition: 'alternatingcurrent',
-      flavor: 'plum crazy',
-      urlFlavor: 'plumcrazy',
-      itemDetails: ['bursoft fabric', 'metal zippers on every pocket', 'tuxedo belt clasps', 'true to size fit', '97% cotton, 3% polyester', 'free shipping'],
-      sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
-      description: 'We think that these plum crazy pants are the best ever and ever and ever and ever more',
-      shortDescription: 'Purple rain',
-      aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs are in existence",
-      careInstructions: 'Machine wash cold and hang dry',
-      images: {
-        back: 'http://placehold.it/400x650',
-        detail: 'http://placehold.it/400x650',
-        front: 'http://placehold.it/350x650',
-        side: 'http://placehold.it/450x650'
-      }
-    },
-    powder: {
-      kind: 'pants',
-      title: 'chinos',
-      edition: 'alternating current',
-      urlEdition: 'alternatingcurrent',
-      flavor: 'powder',
-      urlFlavor: 'powder',
-      itemDetails: ['bursoft fabric', 'metal zippers on every pocket', 'tuxedo belt clasps', 'true to size fit', '97% cotton, 3% polyester', 'free shipping'],
-      sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
-      description: 'We think that these plum crazy pants are the best ever and ever and ever and ever more',
-      shortDescription: 'We think that these plum crazy pants are the best ever',
-      aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs are in existence",
-      careInstructions: 'Machine wash cold and hang dry',
-      images: {
-        back: 'http://placehold.it/400x650',
-        detail: 'http://placehold.it/400x650',
-        front: 'http://placehold.it/350x650',
-        side: 'http://placehold.it/450x650'
-      }
-    },
-    protonPowder: {
-      kind: 'pants',
-      title: 'chinos',
-      edition: 'alternating current',
-      urlEdition: 'alternatingcurrent',
-      flavor: 'proton powder',
-      urlFlavor: 'protonpowder',
-      itemDetails: ['bursoft fabric', 'metal zippers on every pocket', 'tuxedo belt clasps', 'true to size fit', '97% cotton, 3% polyester', 'free shipping'],
-      sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
-      description: 'We think that these plum crazy pants are the best ever and ever and ever and ever more',
-      shortDescription: 'Awesome',
-      aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs are in existence",
-      careInstructions: 'Machine wash cold and hang dry',
-      images: {
-        back: 'http://placehold.it/400x650',
-        detail: 'http://placehold.it/400x650',
-        front: 'http://placehold.it/350x650',
-        side: 'http://placehold.it/450x650'
-      }
-    } 
-  };
-  db.editions.insert(edition);
-}
+var edition = {};
+edition.name = 'Alternating Current';
+edition.urlName = 'alternating-current';
+edition.kind = 'clothing';
+edition.members = {
+  cherry: {
+    kind: 'pants',
+    title: 'chinos',
+    edition: 'alternating current',
+    urlEdition: 'alternatingcurrent',
+    flavor: 'cherry',
+    urlFlavor: 'cherry',
+    itemDetails: ['bursoft fabric', 'metal zippers on every pocket', 'tuxedo belt clasps', 'true to size fit', '97% cotton, 3% polyester', 'free shipping'],
+    sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
+    description: 'We think that these cherry pants are the best ever and ever and ever and ever more',
+    shortDescription: 'Our Chinos, in classic Cherry red',
+    aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs are in existence",
+    careInstructions: 'Machine wash cold and hang dry',
+    images: {
+      back: 'http://placehold.it/400x650',
+      detail: 'http://placehold.it/400x650',
+      front: 'http://placehold.it/350x650',
+      side: 'http://placehold.it/450x650'
+    }
+  },
+  nectarine: {
+    kind: 'pants',
+    title: 'chinos',
+    edition: 'alternating current',
+    urlEdition: 'alternatingcurrent',
+    flavor: 'nectarine',
+    urlFlavor: 'nectarine',
+    itemDetails: ['stiff strong fabric', 'metal zippers on every pocket', 'tuxedo belt clasps', 'true to size fit', '97% cotton, 3% polyester', 'free shipping'],
+    sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
+    description: 'We think that these nectarine pants are the best ever and ever and ever and ever more',
+    shortDescription: 'Wear the dream in nectarine',
+    aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs are in existence",
+    careInstructions: 'Machine wash cold and hang dry',
+    images: {
+      back: 'http://placehold.it/400x650',
+      detail: 'http://placehold.it/400x650',
+      front: 'http://placehold.it/350x650',
+      side: 'http://placehold.it/450x650'
+    }
+  },
+  lemon: {
+    kind: 'pants',
+    title: 'chinos',
+    edition: 'alternating current',
+    urlEdition: 'alternatingcurrent',
+    flavor: 'lemon',
+    urlFlavor: 'lemon',
+    itemDetails: ['bursoft fabric', 'metal zippers on every pocket', 'tuxedo belt clasps', 'true to size fit', '97% cotton, 3% polyester', 'free shipping'],
+    sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
+    description: 'We think that these Lemon pants are the best ever and ever and ever and ever more',
+    shortDescription: 'Lounge in lemon',
+    aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs are in existence",
+    careInstructions: 'Machine wash cold and hang dry',
+    images: {
+      back: 'http://placehold.it/400x650',
+      detail: 'http://placehold.it/400x650',
+      front: 'http://placehold.it/350x650',
+      side: 'http://placehold.it/450x650'
+    }
+  },
+  apple: {
+    kind: 'pants',
+    title: 'chinos',
+    edition: 'alternating current',
+    urlEdition: 'alternatingcurrent',
+    flavor: 'apple',
+    urlFlavor: 'apple',
+    itemDetails: ['bursoft fabric', 'metal zippers on every pocket', 'tuxedo belt clasps', 'true to size fit', '97% cotton, 3% polyester', 'free shipping'],
+    sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
+    description: 'We think that these Apple pants are the best ever and ever and ever and ever more',
+    shortDescription: 'Green. Smooth.',
+    aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs are in existence",
+    careInstructions: 'Machine wash cold and hang dry',
+    images: {
+      back: 'http://placehold.it/400x650',
+      detail: 'http://placehold.it/400x650',
+      front: 'http://placehold.it/350x650',
+      side: 'http://placehold.it/450x650'
+    }
+  },
+  electricity: {
+    kind: 'pants',
+    title: 'chinos',
+    edition: 'alternating current',
+    urlEdition: 'alternatingcurrent',
+    flavor: 'electricity',
+    urlFlavor: 'electricity',
+    itemDetails: ['bursoft fabric', 'metal zippers on every pocket', 'tuxedo belt clasps', 'true to size fit', '97% cotton, 3% polyester', 'free shipping'],
+    sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
+    description: 'We think that these electricity pants are the best ever and ever and ever and ever more',
+    shortDescription: 'Turn down the lights, light up the room',
+    aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs are in existence",
+    careInstructions: 'Machine wash cold and hang dry',
+    images: {
+      back: 'http://placehold.it/400x650',
+      detail: 'http://placehold.it/400x650',
+      front: 'http://placehold.it/350x650',
+      side: 'http://placehold.it/450x650'
+    }
+  },
+  plumCrazy: {
+    kind: 'pants',
+    title: 'chinos',
+    edition: 'alternating current',
+    urlEdition: 'alternatingcurrent',
+    flavor: 'plum crazy',
+    urlFlavor: 'plumcrazy',
+    itemDetails: ['bursoft fabric', 'metal zippers on every pocket', 'tuxedo belt clasps', 'true to size fit', '97% cotton, 3% polyester', 'free shipping'],
+    sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
+    description: 'We think that these plum crazy pants are the best ever and ever and ever and ever more',
+    shortDescription: 'Purple rain',
+    aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs are in existence",
+    careInstructions: 'Machine wash cold and hang dry',
+    images: {
+      back: 'http://placehold.it/400x650',
+      detail: 'http://placehold.it/400x650',
+      front: 'http://placehold.it/350x650',
+      side: 'http://placehold.it/450x650'
+    }
+  },
+  powder: {
+    kind: 'pants',
+    title: 'chinos',
+    edition: 'alternating current',
+    urlEdition: 'alternatingcurrent',
+    flavor: 'powder',
+    urlFlavor: 'powder',
+    itemDetails: ['bursoft fabric', 'metal zippers on every pocket', 'tuxedo belt clasps', 'true to size fit', '97% cotton, 3% polyester', 'free shipping'],
+    sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
+    description: 'We think that these plum crazy pants are the best ever and ever and ever and ever more',
+    shortDescription: 'We think that these plum crazy pants are the best ever',
+    aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs are in existence",
+    careInstructions: 'Machine wash cold and hang dry',
+    images: {
+      back: 'http://placehold.it/400x650',
+      detail: 'http://placehold.it/400x650',
+      front: 'http://placehold.it/350x650',
+      side: 'http://placehold.it/450x650'
+    }
+  },
+  protonPowder: {
+    kind: 'pants',
+    title: 'chinos',
+    edition: 'alternating current',
+    urlEdition: 'alternatingcurrent',
+    flavor: 'proton powder',
+    urlFlavor: 'protonpowder',
+    itemDetails: ['bursoft fabric', 'metal zippers on every pocket', 'tuxedo belt clasps', 'true to size fit', '97% cotton, 3% polyester', 'free shipping'],
+    sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
+    description: 'We think that these plum crazy pants are the best ever and ever and ever and ever more',
+    shortDescription: 'Awesome',
+    aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs are in existence",
+    careInstructions: 'Machine wash cold and hang dry',
+    images: {
+      back: 'http://placehold.it/400x650',
+      detail: 'http://placehold.it/400x650',
+      front: 'http://placehold.it/350x650',
+      side: 'http://placehold.it/450x650'
+    }
+  } 
+};
+db.editions.insert(edition);

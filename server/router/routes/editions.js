@@ -4,11 +4,16 @@ var Editions = require('../../../database').Editions;
 
 router.get('/:edition', function (req, res) {
   var edition = req.params.edition;
-  Editions.find(function (err, edition) {
+  Editions.findOne({urlName: edition}, function (err, edition) {
     if (err) {
         throw err
     }
-    res.send(edition);
+    if (edition) {
+      res.send(edition);  
+    }
+    else {
+      res.status(404).send('no collection with that name found');
+    }
   });
 });
 
