@@ -20,7 +20,7 @@ angular
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/gallery.html',
+        templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
       .when('/about', {
