@@ -32,7 +32,7 @@ angular
         controller: 'ContactCtrl'
       })      
       .when('/shop', {
-        redirectTo: '/shop/alternatingcurrent'
+        redirectTo: '/shop/alternating-current'
       })
       .when('/shop/:collection', {
         templateUrl: 'views/shop.html',
@@ -43,7 +43,7 @@ angular
           }
         }
       })
-      .when('/shop/alternatingcurrent/:flavor', {
+      .when('/shop/alternating-current/:flavor', {
         templateUrl:'/views/product.html',
         controller: 'ProductCtrl',
         resolve: {
