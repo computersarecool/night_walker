@@ -236,8 +236,8 @@ var edition = {};
 edition.name = 'Alternating Current';
 edition.urlName = 'alternating-current';
 edition.kind = 'clothing';
-edition.members = {
-  cherry: {
+edition.members = [
+  { 
     kind: 'pants',
     title: 'chinos',
     edition: 'alternating current',
@@ -257,7 +257,7 @@ edition.members = {
       side: 'http://placehold.it/450x650'
     }
   },
-  nectarine: {
+  {
     kind: 'pants',
     title: 'chinos',
     edition: 'alternating current',
@@ -277,7 +277,7 @@ edition.members = {
       side: 'http://placehold.it/450x650'
     }
   },
-  lemon: {
+  {
     kind: 'pants',
     title: 'chinos',
     edition: 'alternating current',
@@ -297,7 +297,7 @@ edition.members = {
       side: 'http://placehold.it/450x650'
     }
   },
-  apple: {
+  {
     kind: 'pants',
     title: 'chinos',
     edition: 'alternating current',
@@ -317,7 +317,7 @@ edition.members = {
       side: 'http://placehold.it/450x650'
     }
   },
-  electricity: {
+  {
     kind: 'pants',
     title: 'chinos',
     edition: 'alternating current',
@@ -337,7 +337,7 @@ edition.members = {
       side: 'http://placehold.it/450x650'
     }
   },
-  plumCrazy: {
+  {
     kind: 'pants',
     title: 'chinos',
     edition: 'alternating current',
@@ -357,7 +357,7 @@ edition.members = {
       side: 'http://placehold.it/450x650'
     }
   },
-  powder: {
+  {
     kind: 'pants',
     title: 'chinos',
     edition: 'alternating current',
@@ -377,7 +377,7 @@ edition.members = {
       side: 'http://placehold.it/450x650'
     }
   },
-  protonPowder: {
+  {
     kind: 'pants',
     title: 'chinos',
     edition: 'alternating current',
@@ -397,5 +397,5 @@ edition.members = {
       side: 'http://placehold.it/450x650'
     }
   } 
-};
+];
 db.editions.insert(edition);
