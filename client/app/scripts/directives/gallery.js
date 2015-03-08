@@ -12,8 +12,8 @@ angular.module('nightwalkerApp')
   
     var list = angular.element('<p style="margin-bottom:50px">Words here</p>');
     var list2 = angular.element('<p style="margin-bottom:50px">Words here</p>');
-    var colorPant = angular.element('<div id="top-gallery" class="pant-sprite">Some words here</div>');
-    var grayPant = angular.element('<div id="bottom-gallery" class="pant-sprite gray-pant gallery-animate">Some More words here</div>');
+    var colorPant = angular.element('<div id="top-gallery" class="home-sprite">Some words here</div>');
+    var grayPant = angular.element('<div id="bottom-gallery" class="home-sprite gray-gs gallery-animate">Some More words here</div>');
   
     var link = function (scope, element, attrs) {
       if ($window.DeviceOrientationEvent && screen.width <= 980) {
@@ -179,8 +179,6 @@ angular.module('nightwalkerApp')
             }, 2000);
           }
         })();
-
-        autoChange();
         $interval(autoChange, 3000);
         //End of desktop callback
       }
