@@ -157,14 +157,13 @@ angular.module('nightwalkerApp')
 
           var index = 0;
           var classes = [
-            'apple-pant',
-            'cherry-pant',
-            'electricity-pant',
-            'lemon-pant',
-            'nectarine-pant',
-            'plum-crazy-pant',
-            'powder-pant',
-            'proton-powder-pant',
+            'apple-gs',
+            'cherry-gs',
+            'electricity-gs',
+            'nectarine-gs',
+            'plum_crazy-gs',
+            'powder-gs',
+            'proton_powder-gs',
           ];
           colorPant.addClass(classes[index])
 

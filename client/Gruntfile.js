@@ -194,10 +194,12 @@ module.exports = function (grunt) {
 
     sprite: {
       all: {
-        src: 'app/images/prep_sprites/front_sprites/*',
-        dest: 'app/images/sprites/front_sprites.jpg',
-        destCss: 'app/styles/front_sprites.styl'
-
+        // src: 'app/images/prep_sprites/front_sprites/*',
+        // dest: 'app/images/sprites/front_sprites.jpg',
+        // destCss: 'app/styles/front_sprites.styl'
+        src: 'app/images/prep_sprites/homepage_sprites/*',
+        dest: 'app/images/sprites/homepage_sprites.jpg',
+        destCss: 'app/styles/homepage_sprites.styl'      
       }
     },
 

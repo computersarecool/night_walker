@@ -7,6 +7,54 @@ body,
 body {
   background: #fff;
 }
+.apple-gs {
+  background-image: url("../images/sprites/homepage_sprites.jpg");
+  background-position: 0px 0px;
+  width: 360px;
+  height: 870px;
+}
+.cherry-gs {
+  background-image: url("../images/sprites/homepage_sprites.jpg");
+  background-position: -360px 0px;
+  width: 360px;
+  height: 870px;
+}
+.electricity-gs {
+  background-image: url("../images/sprites/homepage_sprites.jpg");
+  background-position: -720px 0px;
+  width: 360px;
+  height: 870px;
+}
+.nectarine-gs {
+  background-image: url("../images/sprites/homepage_sprites.jpg");
+  background-position: -1440px 0px;
+  width: 360px;
+  height: 870px;
+}
+.plum_crazy-gs {
+  background-image: url("../images/sprites/homepage_sprites.jpg");
+  background-position: 0px -870px;
+  width: 360px;
+  height: 870px;
+}
+.powder-gs {
+  background-image: url("../images/sprites/homepage_sprites.jpg");
+  background-position: -360px -870px;
+  width: 360px;
+  height: 870px;
+}
+.proton_powder-gs {
+  background-image: url("../images/sprites/homepage_sprites.jpg");
+  background-position: -720px -870px;
+  width: 360px;
+  height: 870px;
+}
+.gray-gs {
+  background-image: url("../images/sprites/homepage_sprites.jpg");
+  background-position: -1080px 0px;
+  width: 360px;
+  height: 870px;
+}
 .apple-pant {
   background-image: url("../images/sprites/front_sprites.jpg");
   background-position: 0px 0px;
