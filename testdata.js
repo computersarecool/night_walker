@@ -28,7 +28,7 @@ var flavors = [
     urlFlavor: 'nectarine',
     itemDetails: ['Strong fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
-    description: 'These pants are as bright as they are durable.',
+    description: 'These pants are as bright as they are durable',
     shortDescription: 'Strong fabric. Secure pockets',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
@@ -48,7 +48,7 @@ var flavors = [
     urlFlavor: 'lemon',
     itemDetails: ['Strong fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
-    description: 'The pants are as bright as they are durable'
+    description: 'The pants are as bright as they are durable',
     shortDescription: 'Secure pockets',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
@@ -129,7 +129,7 @@ var flavors = [
     itemDetails: ['bursoft fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'The original chinos with a powder coated coloring',
-    shortDescription: 'A color that is difficult to describe. Secure pockets'
+    shortDescription: 'A color that is difficult to describe. Secure pockets',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
@@ -266,7 +266,7 @@ edition.members = [
     urlFlavor: 'nectarine',
     itemDetails: ['Strong fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
-    description: 'These pants are as bright as they are durable.',
+    description: 'These pants are as bright as they are durable',
     shortDescription: 'Strong fabric. Secure pockets',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
@@ -286,7 +286,7 @@ edition.members = [
     urlFlavor: 'lemon',
     itemDetails: ['Strong fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
-    description: 'The pants are as bright as they are durable'
+    description: 'The pants are as bright as they are durable',
     shortDescription: 'Secure pockets',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
@@ -367,7 +367,7 @@ edition.members = [
     itemDetails: ['bursoft fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'The original chinos with a powder coated coloring',
-    shortDescription: 'A color that is difficult to describe. Secure pockets'
+    shortDescription: 'A color that is difficult to describe. Secure pockets',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
