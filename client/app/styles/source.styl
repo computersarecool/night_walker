@@ -1,12 +1,64 @@
 // <link href='http://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
 @require 'front_sprites'
 @require 'homepage_sprites'
+@require 'nib'
+
+// Meyer reset
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, a, code, img, var, b, i, center, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td, article, aside, canvas, footer, header, nav, section, time, mark, audio, video
+  margin: 0
+  padding: 0
+  border: 0
+  outline: 0
+  font-size: 100%
+  font: inherit
+  vertical-align: baseline
+ 
+body
+  line-height: 1
+  
+ol, ul
+  list-style: none
+  
+blockquote, q
+  quotes: none
+  
+blockquote:before, blockquote:after, q:before, q:after
+  content: ''
+  content: none
+  
+a:focus
+  outline: 0
+table
+  border-collapse: collapse
+  border-spacing: 0
+// End of reset
+  
 html, body, .main
   width 100%
   height 100%
   
 body
-  background white
+  font-family 'Arial', sans-serif
+
+header
+  border-bottom .25em solid black
+  position relative
+  height 4.5em
+  
+h1
+  position absolute
+  left 1em
+  top 1.2em
+  
+.status
+  position absolute
+  right 1em
+  top 3.55em
+  font-size 100%
+
+
+
+
 
 .home-sprite
   position absolute

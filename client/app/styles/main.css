@@ -1,11 +1,104 @@
 html,
 body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre,
+a,
+code,
+img,
+var,
+b,
+i,
+center,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+footer,
+header,
+nav,
+section,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+a:focus {
+  outline: 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+html,
+body,
 .main {
   width: 100%;
   height: 100%;
 }
 body {
-  background: #fff;
+  font-family: 'Arial', sans-serif;
+}
+header {
+  border-bottom: 0.25em solid #000;
+  position: relative;
+  height: 4.5em;
+}
+h1 {
+  position: absolute;
+  left: 1em;
+  top: 1.2em;
+}
+.status {
+  position: absolute;
+  right: 1em;
+  top: 3.55em;
+  font-size: 100%;
 }
 .home-sprite {
   position: absolute;
@@ -126,18 +219,42 @@ body {
   height: 871px;
 }
 .gallery-animate {
+  -webkit-transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
+  -moz-transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
+  -o-transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
+  -ms-transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
   transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
   opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
 }
 .gallery-animate.displayed {
+  -webkit-transition: all cubic-bezier(1, 0.01, 0.57, 1) 2s;
+  -moz-transition: all cubic-bezier(1, 0.01, 0.57, 1) 2s;
+  -o-transition: all cubic-bezier(1, 0.01, 0.57, 1) 2s;
+  -ms-transition: all cubic-bezier(1, 0.01, 0.57, 1) 2s;
   transition: all cubic-bezier(1, 0.01, 0.57, 1) 2s;
   opacity: 1;
+  -ms-filter: none;
+  filter: none;
 }
 .fast-gray {
+  -webkit-transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
+  -moz-transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
+  -o-transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
+  -ms-transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
   transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
   opacity: 1;
+  -ms-filter: none;
+  filter: none;
 }
 .fast-no-gray {
+  -webkit-transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
+  -moz-transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
+  -o-transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
+  -ms-transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
   transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
   opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
 }

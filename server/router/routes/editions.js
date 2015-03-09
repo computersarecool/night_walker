@@ -6,7 +6,7 @@ router.get('/:edition', function (req, res) {
   var edition = req.params.edition;
   Editions.findOne({urlName: edition}, function (err, edition) {
     if (err) {
-        throw err
+      throw err
     }
     if (edition) {
       res.send(edition);  
