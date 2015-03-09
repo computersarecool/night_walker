@@ -17,7 +17,6 @@ angular.module('nightwalkerApp')
     function getCollection (collection) { 
       return $http.get('/api/collection/' + collection)
         .then(function success (response) {
-          console.log(response);
           return response.data;
         }, function (httpError) {
           throw httpError.status + " : " + httpError.data;        
