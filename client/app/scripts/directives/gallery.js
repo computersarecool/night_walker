@@ -13,7 +13,7 @@ angular.module('nightwalkerApp')
     var list = angular.element('<p style="margin-bottom:50px">Words here</p>');
     var list2 = angular.element('<p style="margin-bottom:50px">Words here</p>');
     var colorPant = angular.element('<div id="top-gallery" class="home-sprite">Some words here</div>');
-    var grayPant = angular.element('<div id="bottom-gallery" class="home-sprite gray-gs gallery-animate">Some More words here</div>');
+    var grayPant = angular.element('<div id="bottom-gallery" class="home-sprite gray-gallery gallery-animate">Some More words here</div>');
   
     var link = function (scope, element, attrs) {
       if ($window.DeviceOrientationEvent && screen.width <= 980) {
@@ -157,13 +157,13 @@ angular.module('nightwalkerApp')
 
           var index = 0;
           var classes = [
-            'apple-gs',
-            'cherry-gs',
-            'electricity-gs',
-            'nectarine-gs',
-            'plum_crazy-gs',
-            'powder-gs',
-            'proton_powder-gs',
+            'apple-gallery',
+            'cherry-gallery',
+            'electricity-gallery',
+            'nectarine-gallery',
+            'plum-crazy-gallery',
+            'powder-gallery',
+            'proton-powder-gallery',
           ];
           colorPant.addClass(classes[index])
 

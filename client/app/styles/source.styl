@@ -1,6 +1,6 @@
 // <link href='http://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
 @require 'front_sprites'
-@require 'homepage_sprites'
+@require 'individual_galleries'
 @require 'nib'
 
 // Meyer reset
@@ -25,14 +25,14 @@ blockquote, q
 blockquote:before, blockquote:after, q:before, q:after
   content: ''
   content: none
-  
+
 a:focus
   outline: 0
 table
   border-collapse: collapse
   border-spacing: 0
 // End of reset
-  
+
 html, body, .main
   width 100%
   height 100%
@@ -55,10 +55,6 @@ h1
   right 1em
   top 3.55em
   font-size 100%
-
-
-
-
 
 .home-sprite
   position absolute
@@ -134,57 +130,11 @@ div.words
 }
 //End of Cube
 
-// Sprites
-// Homepage sprites
-.apple-gs
-  sprite($apple)
-
-.cherry-gs
-  sprite($cherry)
-
-.electricity-gs
-  sprite($electricity)
-
-.nectarine-gs
-  sprite($nectarine)
-
-.plum_crazy-gs
-  sprite($plum_crazy)
-
-.powder-gs
-  sprite($powder)
-
-.proton_powder-gs
-  sprite($proton_powder)  
-
-.gray-gs
-  sprite($gray)
-  
-// Shop Page Sprites
-.apple-pant
-  sprite($apple_individual)
-  
-.cherry-pant
-  sprite($cherry_individual)
-  
-.electricity-pant
-  sprite($electricity_individual)
-  
-.lemon-pant
-  sprite($lemon_individual)
-  
-.nectarine-pant
-  sprite($nectarine_individual)
-  
-.plum-crazy-pant
-  sprite($plum_crazy_individual)
-
-.powder-pant
-  sprite($powder_individual)
-  
-.proton-powder-pant
-  sprite($proton_powder_individual)
-// End of Sprites
+make_sprite()
+  for sheet in arguments
+    sprites(sheet)
+    
+make_sprite($spritesheet_spritesa, $spritesheet_sprites)    
 
 // Animation
 .gallery-animate

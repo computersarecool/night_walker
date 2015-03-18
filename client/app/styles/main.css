@@ -222,101 +222,245 @@ div.words {
   box-shadow: none;
   text-shadow: 2px 2px 3px #f00;
 }
-.apple-gs {
-  background-image: url("../images/sprites/homepage_sprites.jpg");
-  background-position: 0px 0px;
-  width: 360px;
-  height: 870px;
-}
-.cherry-gs {
-  background-image: url("../images/sprites/homepage_sprites.jpg");
-  background-position: -360px 0px;
-  width: 360px;
-  height: 870px;
-}
-.electricity-gs {
-  background-image: url("../images/sprites/homepage_sprites.jpg");
-  background-position: -720px 0px;
-  width: 360px;
-  height: 870px;
-}
-.nectarine-gs {
-  background-image: url("../images/sprites/homepage_sprites.jpg");
-  background-position: -1440px 0px;
-  width: 360px;
-  height: 870px;
-}
-.plum_crazy-gs {
-  background-image: url("../images/sprites/homepage_sprites.jpg");
-  background-position: 0px -870px;
-  width: 360px;
-  height: 870px;
-}
-.powder-gs {
-  background-image: url("../images/sprites/homepage_sprites.jpg");
-  background-position: -360px -870px;
-  width: 360px;
-  height: 870px;
-}
-.proton_powder-gs {
-  background-image: url("../images/sprites/homepage_sprites.jpg");
-  background-position: -720px -870px;
-  width: 360px;
-  height: 870px;
-}
-.gray-gs {
-  background-image: url("../images/sprites/homepage_sprites.jpg");
-  background-position: -1080px 0px;
-  width: 360px;
-  height: 870px;
-}
-.apple-pant {
+.apple-gallery {
   background-image: url("../images/sprites/front_sprites.jpg");
   background-position: 0px 0px;
-  width: 350px;
-  height: 871px;
+  width: 1230px;
+  height: 2000px;
 }
-.cherry-pant {
+.cherry-gallery {
   background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: -350px 0px;
-  width: 350px;
-  height: 871px;
+  background-position: -1230px 0px;
+  width: 1230px;
+  height: 2000px;
 }
-.electricity-pant {
+.electricity-gallery {
   background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: -700px 0px;
-  width: 350px;
-  height: 871px;
+  background-position: -2460px 0px;
+  width: 1230px;
+  height: 2000px;
 }
-.lemon-pant {
+.gray-gallery {
   background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: -1050px 0px;
-  width: 350px;
-  height: 871px;
+  background-position: -3690px 0px;
+  width: 1230px;
+  height: 2000px;
 }
-.nectarine-pant {
+.nectarine-gallery {
   background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: -1400px 0px;
-  width: 350px;
-  height: 871px;
+  background-position: 0px -2000px;
+  width: 1230px;
+  height: 2000px;
 }
-.plum-crazy-pant {
+.plum-crazy-gallery {
   background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: 0px -871px;
-  width: 350px;
-  height: 871px;
+  background-position: -1230px -2000px;
+  width: 1230px;
+  height: 2000px;
 }
-.powder-pant {
+.powder-gallery {
   background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: -350px -871px;
-  width: 350px;
-  height: 871px;
+  background-position: -2460px -2000px;
+  width: 1230px;
+  height: 2000px;
 }
-.proton-powder-pant {
+.proton-powder-gallery {
   background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: -700px -871px;
-  width: 350px;
-  height: 871px;
+  background-position: -3690px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
+.apple-back {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -1230px 0px;
+  width: 1230px;
+  height: 2000px;
+}
+.apple-detail {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -6150px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
+.apple-front {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -2460px 0px;
+  width: 1230px;
+  height: 2000px;
+}
+.apple-side {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -3690px 0px;
+  width: 1230px;
+  height: 2000px;
+}
+.cherry-back {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: 0px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
+.cherry-detail {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -1230px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
+.cherry-front {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -2460px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
+.cherry-side {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -3690px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
+.electricity-back {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -4920px 0px;
+  width: 1230px;
+  height: 2000px;
+}
+.electricity-detail {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -4920px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
+.electricity-front {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: 0px -4000px;
+  width: 1230px;
+  height: 2000px;
+}
+.electricity-side {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -1230px -4000px;
+  width: 1230px;
+  height: 2000px;
+}
+.lemon-back {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -2460px -4000px;
+  width: 1230px;
+  height: 2000px;
+}
+.lemon-detail {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -3690px -4000px;
+  width: 1230px;
+  height: 2000px;
+}
+.lemon-front {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -4920px -4000px;
+  width: 1230px;
+  height: 2000px;
+}
+.lemon-side {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -6150px 0px;
+  width: 1230px;
+  height: 2000px;
+}
+.nectarine-back {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: 0px 0px;
+  width: 1230px;
+  height: 2000px;
+}
+.nectarine-detail {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -6150px -4000px;
+  width: 1230px;
+  height: 2000px;
+}
+.nectarine-front {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -7380px 0px;
+  width: 1230px;
+  height: 2000px;
+}
+.nectarine-side {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -7380px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
+.plum-crazy-back {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -7380px -4000px;
+  width: 1230px;
+  height: 2000px;
+}
+.plum-crazy-detail {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: 0px -6000px;
+  width: 1230px;
+  height: 2000px;
+}
+.plum-crazy-front {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -1230px -6000px;
+  width: 1230px;
+  height: 2000px;
+}
+.plum-crazy-side {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -2460px -6000px;
+  width: 1230px;
+  height: 2000px;
+}
+.powder-back {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -3690px -6000px;
+  width: 1230px;
+  height: 2000px;
+}
+.powder-detail {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -4920px -6000px;
+  width: 1230px;
+  height: 2000px;
+}
+.powder-front {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -6150px -6000px;
+  width: 1230px;
+  height: 2000px;
+}
+.powder-side {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -7380px -6000px;
+  width: 1230px;
+  height: 2000px;
+}
+.proton-powder-back {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -8610px 0px;
+  width: 1230px;
+  height: 2000px;
+}
+.proton-powder-detail {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -8610px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
+.proton-powder-front {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -8610px -4000px;
+  width: 1230px;
+  height: 2000px;
+}
+.proton-powder-side {
+  background-image: url("../images/sprites/individual_galleries.jpg");
+  background-position: -8610px -6000px;
+  width: 1230px;
+  height: 2000px;
 }
 .gallery-animate {
   -webkit-transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
