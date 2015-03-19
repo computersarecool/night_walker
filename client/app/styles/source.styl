@@ -3,6 +3,7 @@
 @require 'individual_galleries'
 @require 'nib'
 
+
 // Meyer reset
 html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, a, code, img, var, b, i, center, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td, article, aside, canvas, footer, header, nav, section, time, mark, audio, video
   margin: 0
@@ -32,6 +33,7 @@ table
   border-collapse: collapse
   border-spacing: 0
 // End of reset
+
 
 html, body, .main
   width 100%
@@ -77,6 +79,7 @@ h1
   position absolute
   bottom 0
   text-align: center 
+
 
 // Cube
 .wrap 
@@ -130,11 +133,15 @@ div.words
 }
 //End of Cube
 
+
+// Sprite
 make_sprite()
   for sheet in arguments
     sprites(sheet)
     
 make_sprite($spritesheet_spritesa, $spritesheet_sprites)    
+// End of sprite
+
 
 // Animation
 .gallery-animate
