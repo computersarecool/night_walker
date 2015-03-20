@@ -34,53 +34,6 @@ table
   border-spacing: 0
 // End of reset
 
-
-html, body, .main
-  width 100%
-  height 100%
-  
-body
-  font-family 'Arial', sans-serif
-
-header
-  border-bottom .25em solid black
-  position relative
-  height 4.5em
-  
-h1
-  position absolute
-  left 1em
-  top 1.2em
-  
-.status
-  position absolute
-  right 1em
-  top 3.55em
-  font-size 100%
-
-.home-sprite
-  position absolute
-  left 0
-  right 0
-  margin 0 auto
-  width 300px
-  height 300px
-  border 2px solid red  
-
-.pant-container
-  height 75%
-  width 25%
-  display inline-block
-  vertical-align top
-  position relative
-
-.pant-text
-  width 100%
-  position absolute
-  bottom 0
-  text-align: center 
-
-
 // Cube
 .wrap 
   perspective: 800px
@@ -160,3 +113,50 @@ make_sprite($spritesheet_spritesa, $spritesheet_sprites)
   transition all cubic-bezier(.83, .04, .65, .93) .4s
   opacity 0
 // End of animation
+
+
+// Begin styles
+html, body
+  width 100%
+  height 100%
+  
+body
+  font-family 'Arial', sans-serif
+  
+header
+  border-bottom .25em solid black
+  position relative
+  height 4.5em
+  
+h1
+  position absolute
+  left 1em
+  top 1.2em
+  
+.status
+  position absolute
+  right 1em
+  top 3.55em
+  font-size 100%
+
+.home-sprite
+  position absolute
+  left 0
+  right 0
+  margin 0 auto
+  width 300px
+  height 300px
+  border 2px solid red  
+
+.pant-container
+  height 75%
+  width 25%
+  display inline-block
+  vertical-align top
+  position relative
+
+.pant-text
+  width 100%
+  position absolute
+  bottom 0
+  text-align: center 

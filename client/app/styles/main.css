@@ -75,53 +75,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-html,
-body,
-.main {
-  width: 100%;
-  height: 100%;
-}
-body {
-  font-family: 'Arial', sans-serif;
-}
-header {
-  border-bottom: 0.25em solid #000;
-  position: relative;
-  height: 4.5em;
-}
-h1 {
-  position: absolute;
-  left: 1em;
-  top: 1.2em;
-}
-.status {
-  position: absolute;
-  right: 1em;
-  top: 3.55em;
-  font-size: 100%;
-}
-.home-sprite {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 300px;
-  height: 300px;
-  border: 2px solid #f00;
-}
-.pant-container {
-  height: 75%;
-  width: 25%;
-  display: inline-block;
-  vertical-align: top;
-  position: relative;
-}
-.pant-text {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  text-align: center;
-}
 .wrap {
   -webkit-perspective: 800px;
   -moz-perspective: 800px;
@@ -501,6 +454,52 @@ div.words {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+body {
+  font-family: 'Arial', sans-serif;
+}
+header {
+  border-bottom: 0.25em solid #000;
+  position: relative;
+  height: 4.5em;
+}
+h1 {
+  position: absolute;
+  left: 1em;
+  top: 1.2em;
+}
+.status {
+  position: absolute;
+  right: 1em;
+  top: 3.55em;
+  font-size: 100%;
+}
+.home-sprite {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 300px;
+  height: 300px;
+  border: 2px solid #f00;
+}
+.pant-container {
+  height: 75%;
+  width: 25%;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+}
+.pant-text {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
 }
 @-moz-keyframes spin {
   from {
