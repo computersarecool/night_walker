@@ -27,9 +27,6 @@ if (app.get('env') === 'development') {
   app.use(express.static(path.join(__dirname, '../client')));
   app.use(express.static(path.join(__dirname, '../client/.tmp')));
   app.use(express.static(path.join(__dirname, '../client/app')));
-  app.get('*', function (req, res, next) {
-    res.sendFile('index.html', {root:'../client/app/'});
-  });
   //Error handling
   app.use(function (err, req, res, next) {
     //A bad error here

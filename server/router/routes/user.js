@@ -18,6 +18,7 @@ router.use('/', expressJwt({
   if (err) {
     // Delete the storage key
     res.status(401).send('invalid token...');
+    throw err;
     return
   }
   next();
