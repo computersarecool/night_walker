@@ -31,7 +31,7 @@ if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
     //A bad error here
     console.log(err);
-    res.status(err.status || 500).send(err.message || 'There is an uknown error');
+    res.status(err.status || 500).send(err.message || 'There is an unknown error');
   });
 }
 
@@ -43,7 +43,7 @@ if (app.get('env') === 'production') {
   //Production error handling
   app.use(function (err, req, res, next) {
     //A bad error here
-    res.status(err.status || 500).send(err.message || 'There is an uknown error');
+    res.status(err.status || 500).send(err.message || 'There is an unknown error');
   });
 }
 
