@@ -11,15 +11,15 @@ module.exports = function (passport) {
   },
   function (req, email, password, done) {
     Users.findOne({email: email}, function(err, user) {
-      // if there are any errors, return the error before anything else
+      // If there are any errors, return the error before anything else
       if (err) {
           return done(err);
       }
-      // if no user is found, return the message
+      // If no user is found, return the message
       if (!user) {
           return done(null, false); // req.flash is the way to set flashdata using connect-flash
       }
-      // check if password is valid
+      // Check if password is valid
       user.checkPassword(password, function(err, auth) {
         if (err) {
             return done(err);
@@ -28,20 +28,23 @@ module.exports = function (passport) {
           // An incorrect password was issued
           return done(null, false, 'Sorry, incorrect email or password'); 
         }
-        
-        // all is well, return successful user
+        // All is well, return successful user
         var cart = req.cookies.cart;
+        // If the user has a temporary cart, add items to real cart
         if (cart) {
           var items = JSON.parse(cart);
-          user.update({$pushAll: {cart: items}}, {}, function (err, user, ob) {
-            console.log('update', err, user, ob);
+          user.update({$pushAll: {cart: items}}, {}, function (err, numAffected, obj) {
+            console.log('update', err, numAffected, obj);
+            console.log('es');
+            console.log(numAffected);
+            return done(null, user);
           }); 
+        } else {
+          return done(null, user);
         } 
-        return done (null, user);
       });
     });
   }));
-
 
   passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
@@ -51,17 +54,17 @@ module.exports = function (passport) {
   function(req, email, password, done) {
     console.log('heree');
     console.log(req.body);
-    // check to see if there is already a user
+    // Check to see if there is already a user
     if(!req.user) { 
       // Asynchronous User.findOne wont fire until data is sent back
       process.nextTick(function () {
-        // we are checking to see if the user trying to login already exists
+        // We are checking to see if the user trying to login already exists
         Users.findOne({email: email}, function (err, user) {
-          // if there are any errors, return the error
+          // If there are any errors, return the error
           if (err) {
               return done(err);
           }
-          // check to see if theres already a user with that email
+          // Check to see if theres already a user with that email
           if (user) {
               console.log('The email is already taken');
               return done(null, false, 'That email is already taken.');
@@ -72,9 +75,10 @@ module.exports = function (passport) {
             newUser.password = req.body.password;
             newUser.firstName = req.body.firstName;
             newUser.lastName = req.body.lastName;
+            // Check to see if the user had a temp cart
             var cart = req.cookies.cart;
             if (cart) {
-              newUser.cart = JSON.parse(cart);  
+              newUser.cart = JSON.parse(cart);
             } 
             console.log('All the way here');
             newUser.save(function (err) {
@@ -90,11 +94,11 @@ module.exports = function (passport) {
     } else {
       // Weird, User already exists and is logged in, we have to link accounts
       var user = req.user; // pull the user out of the session
-      // update the current users local credentials
+      // Update the current users local credentials
       // GENERATE HASH HERE
       user.local.password = password;
       user.local.email = email;
-      // save the user
+      // Save the user
       user.save(function(err) {
         if (err) {
             throw err
@@ -103,6 +107,5 @@ module.exports = function (passport) {
       });
     }
   }));
-
 
 }

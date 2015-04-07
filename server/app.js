@@ -22,7 +22,7 @@ app.use(passport.initialize());
 
 app.use('/api', apiRouter);  
 
-//Development
+// Development
 if (app.get('env') === 'development') {
   app.use(express.static(path.join(__dirname, '../client')));
   app.use(express.static(path.join(__dirname, '../client/.tmp')));
@@ -35,14 +35,13 @@ if (app.get('env') === 'development') {
   });
 }
 
-
-//Production
+// Production
 if (app.get('env') === 'production') {
   app.use(express.static(path.join(__dirname, '/dist')));
 
-  //Production error handling
+  // Production error handling
   app.use(function (err, req, res, next) {
-    //A bad error here
+    // A bad error here
     res.status(err.status || 500).send(err.message || 'There is an unknown error');
   });
 }

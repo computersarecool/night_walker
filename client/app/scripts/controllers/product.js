@@ -10,8 +10,9 @@
 angular.module('nightwalkerApp')
   .controller('ProductCtrl', function ($scope, $cookieStore, UserFactory, product) {
     $scope.product = product;
-
     $scope.addToCart = function (item) {
+      // Convert SKU to number because Angular templating does opposite
+      item = parseInt(item, 10);
       if (UserFactory.currentUser) {
         UserFactory.addToCart(item);
       } else {

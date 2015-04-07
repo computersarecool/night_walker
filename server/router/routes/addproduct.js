@@ -31,34 +31,24 @@ router.post('/', expressJwt({
 router.post('/', function (req, res) {
   var email = req.user.email;
   var items = req.body.items;
-  if (items) {
-    items = JSON.parse(items);
-  } else {
-    return
-  }
   if (!email) {
     res.status(401).send('There is no email');
     return
   }
-  if (typeof items === 'number') {
-    Users.findOneAndUpdate({email: email}, {$push: {cart: items}}, function(err, user){
-      if (err) {
-        console.log('There was an error adding the item to the cart');
-        throw err
-      } else {
-        res.send(user);
-      }
-    });
+  if (!items) {
+    return
   } else {
-    Users.findOneAndUpdate({email: email}, {$pushAll: {cart: items}}, function(err, user){    
-      if (err) {
-        console.log('There was an error adding the item to the cart');
-        throw err
-      }  else {       
-        res.send(user);
-      }
-    });
-  }
+      Users.findOneAndUpdate({email: email}, {$push: {cart: items}}, function(err, user) {    
+        console.log('hhere');
+        if (err) {
+          console.log('There was an error adding the item to the cart');
+          throw err
+        } else {
+          console.log(user);
+          res.send(user);
+        }
+      });
+    }
 });
 
 module.exports = router;
