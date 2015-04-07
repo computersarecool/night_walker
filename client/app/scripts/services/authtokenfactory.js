@@ -19,7 +19,7 @@ angular.module('nightwalkerApp')
 
     function getToken () {
       return store.getItem(key);
-    };
+    }
 
     function setToken (token) {
       if (token) {
@@ -27,6 +27,6 @@ angular.module('nightwalkerApp')
       } else {
         store.removeItem(key);
       }
-    };
+    }
 
   });

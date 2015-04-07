@@ -33,6 +33,6 @@ angular.module('nightwalkerApp')
           alert('You just bought something!');
         });
       }
-
-    }
+    };
+    
   });

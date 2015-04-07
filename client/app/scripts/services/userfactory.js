@@ -24,7 +24,7 @@ angular.module('nightwalkerApp')
         user.currentUser.show = true;
         $cookieStore.remove('cart');
       });
-    };
+    }
 
     function login (email, password) {
       return $http.post('/api/login/login', {
@@ -38,17 +38,17 @@ angular.module('nightwalkerApp')
       }, function (httpError) {
         throw httpError.status + " : " + httpError.data;
       });
-    };
+    }
 
     function logout () {
      AuthTokenFactory.setToken();
      user.currentUser = null;
      $location.path('/');
-    };
+    }
 
     function checkToken () {
       return AuthTokenFactory.getToken();
-    };
+    }
 
     function addToCart (items) {
       return $http.post('/api/addproduct', {
@@ -58,7 +58,7 @@ angular.module('nightwalkerApp')
       }, function (httpError) {
         throw httpError.status + " : " + httpError.data;        
       });
-    };
+    }
 
     var getUser = (function () {
       if (AuthTokenFactory.getToken()) {

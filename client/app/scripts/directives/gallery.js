@@ -104,6 +104,7 @@ angular.module('nightwalkerApp')
                 break
 
         //Change class
+        
               case dir >= 30 && dir < 45:
                 checkAdd('fast-no-gray', 'fast-gray');
                 break   

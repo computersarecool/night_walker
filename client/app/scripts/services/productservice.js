@@ -21,7 +21,7 @@ angular.module('nightwalkerApp')
         }, function (httpError) {
           throw httpError.status + " : " + httpError.data;        
         });
-    };
+    }
 
 
     function getProduct (flavor) {
@@ -31,7 +31,6 @@ angular.module('nightwalkerApp')
         }, function (httpError) {
           throw httpError.status + " : " + httpError.data;
         });
-    };
-
+    }
 
   });

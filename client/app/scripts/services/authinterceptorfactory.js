@@ -20,6 +20,6 @@ angular.module('nightwalkerApp')
         config.headers.Authorization = 'Bearer ' + token;
       }
       return config;  
-    };
+    }
 
   });
