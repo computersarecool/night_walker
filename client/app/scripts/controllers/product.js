@@ -20,8 +20,7 @@ angular.module('nightwalkerApp')
           cart.push(item);
           $cookieStore.put('cart', cart);
         } else {
-          var cart = [];
-          cart.push(item);
+          var cart = [item];
           $cookieStore.put('cart', cart);
         }
       }
