@@ -40,6 +40,8 @@ angular.module('nightwalkerApp')
         AuthTokenFactory.setToken(response.data.token);
         user.currentUser = response.data.user;
         user.currentUser.show = true;
+        console.log('zap');
+        console.log(response);
         if ($cookieStore.get('cart')) {
           $cookieStore.remove('cart');
         }

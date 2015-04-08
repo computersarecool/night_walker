@@ -30,18 +30,20 @@ module.exports = function (passport) {
         }
         // All is well, return successful user
         var cart = req.cookies.cart;
+        console.log('This is the user');
+        console.log(user);
         // If the user has a temporary cart, add items to real cart
         if (cart) {
           var items = JSON.parse(cart);
           user.update({$pushAll: {cart: items}}, {}, function (err, numAffected, obj) {
             console.log('update', err, numAffected, obj);
-            console.log('es');
-            console.log(numAffected);
-            return done(null, user);
-          }); 
-        } else {
-          return done(null, user);
-        } 
+            console.log('eaaaas');
+            // Console.log(numAffected);
+          });
+        }
+        console.log('The new');
+        console.log(user);
+        return done(null, user); 
       });
     });
   }));
@@ -71,7 +73,7 @@ module.exports = function (passport) {
           } else {
             var newUser = new Users();
             newUser.email = req.body.email;
-            //Generate hash
+            // Generate hash
             newUser.password = req.body.password;
             newUser.firstName = req.body.firstName;
             newUser.lastName = req.body.lastName;
