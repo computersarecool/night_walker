@@ -30,20 +30,21 @@ module.exports = function (passport) {
         }
         // All is well, return successful user
         var cart = req.cookies.cart;
-        console.log('This is the user');
-        console.log(user);
         // If the user has a temporary cart, add items to real cart
         if (cart) {
           var items = JSON.parse(cart);
-          user.update({$pushAll: {cart: items}}, {}, function (err, numAffected, obj) {
-            console.log('update', err, numAffected, obj);
-            console.log('eaaaas');
-            // Console.log(numAffected);
+          for (var i = 0; i < items.length; i++) {
+            user.cart.push(items[i]);
+          }
+          user.save(function (err) {
+            if (err) {
+              console.log('There was an error with the saving of the document');
+            }
+            return done(null, user);
           });
+        } else {
+          return done(null, user);
         }
-        console.log('The new');
-        console.log(user);
-        return done(null, user); 
       });
     });
   }));
