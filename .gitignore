@@ -2,3 +2,4 @@ data/
 config/credentials.js
 inner_config
 understand.txt
+\#.*
