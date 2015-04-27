@@ -29,7 +29,7 @@ angular.module('nightwalkerApp')
               grayPant.removeClass('fast-gray');
               grayPant.addClass('fast-no-gray');
             }
-          }
+          };
 
 
           var checkTilt = function (input, fromMin, fromMax, toMin, toMax, nextColorClass) {
@@ -45,19 +45,19 @@ angular.module('nightwalkerApp')
             }
             grayPant.css('opacity', opacityValue);
             list2.html('The opacity value is ' + opacityValue);
-          }
+          };
 
           var checkAdd = function (oldClass, newClass) {
             if (!grayPant.hasClass(newClass)) {
               grayPant.removeClass(oldClass);
               grayPant.addClass(newClass);
             }
-          }
+          };
         
           $window.addEventListener('deviceorientation', function(eventData) {
             var tiltLR = eventData.gamma;
             var tiltFB = eventData.beta;
-            var dir = eventData.alpha
+            var dir = eventData.alpha;
 
             list.html('The dir is ' + dir);
 
@@ -148,11 +148,6 @@ angular.module('nightwalkerApp')
       } else {
 
 
-
-
-
-        
-
         //Not supported or screen is too big
         var autoChange = (function () {
 
@@ -166,7 +161,7 @@ angular.module('nightwalkerApp')
             'powder-gallery',
             'proton-powder-gallery',
           ];
-          colorPant.addClass(classes[index])
+          colorPant.addClass(classes[index]);
 
           return function () {
             grayPant.addClass('displayed');
@@ -178,7 +173,7 @@ angular.module('nightwalkerApp')
               }
               colorPant.addClass(classes[index]);
             }, 2000);
-          }
+          };
         })();
         $interval(autoChange, 3000);
         //End of desktop callback
@@ -186,11 +181,10 @@ angular.module('nightwalkerApp')
 
 
       //End of link function
-    }
+    };
 
 
-
-
+    
     return {
       restrict: 'E',
       compile: function (tElem) {
