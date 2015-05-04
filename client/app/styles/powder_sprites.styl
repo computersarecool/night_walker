@@ -1,0 +1,114 @@
+/*
+Stylus variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon_home_width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon_home = x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet = width height image $spritesheet_sprites;
+*/
+$powder_back_name = 'powder-back';
+$powder_back_x = 0px;
+$powder_back_y = 0px;
+$powder_back_offset_x = 0px;
+$powder_back_offset_y = 0px;
+$powder_back_width = 1230px;
+$powder_back_height = 2000px;
+$powder_back_total_width = 4920px;
+$powder_back_total_height = 2000px;
+$powder_back_image = '../images/sprites/powder_sprites.jpg';
+$powder_back = 0px 0px 0px 0px 1230px 2000px 4920px 2000px '../images/sprites/powder_sprites.jpg' 'powder-back';
+$powder_detail_name = 'powder-detail';
+$powder_detail_x = 1230px;
+$powder_detail_y = 0px;
+$powder_detail_offset_x = -1230px;
+$powder_detail_offset_y = 0px;
+$powder_detail_width = 1230px;
+$powder_detail_height = 2000px;
+$powder_detail_total_width = 4920px;
+$powder_detail_total_height = 2000px;
+$powder_detail_image = '../images/sprites/powder_sprites.jpg';
+$powder_detail = 1230px 0px -1230px 0px 1230px 2000px 4920px 2000px '../images/sprites/powder_sprites.jpg' 'powder-detail';
+$powder_front_name = 'powder-front';
+$powder_front_x = 2460px;
+$powder_front_y = 0px;
+$powder_front_offset_x = -2460px;
+$powder_front_offset_y = 0px;
+$powder_front_width = 1230px;
+$powder_front_height = 2000px;
+$powder_front_total_width = 4920px;
+$powder_front_total_height = 2000px;
+$powder_front_image = '../images/sprites/powder_sprites.jpg';
+$powder_front = 2460px 0px -2460px 0px 1230px 2000px 4920px 2000px '../images/sprites/powder_sprites.jpg' 'powder-front';
+$powder_side_name = 'powder-side';
+$powder_side_x = 3690px;
+$powder_side_y = 0px;
+$powder_side_offset_x = -3690px;
+$powder_side_offset_y = 0px;
+$powder_side_width = 1230px;
+$powder_side_height = 2000px;
+$powder_side_total_width = 4920px;
+$powder_side_total_height = 2000px;
+$powder_side_image = '../images/sprites/powder_sprites.jpg';
+$powder_side = 3690px 0px -3690px 0px 1230px 2000px 4920px 2000px '../images/sprites/powder_sprites.jpg' 'powder-side';
+$spritesheet_width = 4920px;
+$spritesheet_height = 2000px;
+$spritesheet_image = '../images/sprites/powder_sprites.jpg';
+$spritesheet_sprites_i = $powder_back $powder_detail $powder_front $powder_side;
+$spritesheet = 4920px 2000px '../images/sprites/powder_sprites.jpg' $spritesheet_sprites;
+
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  spriteWidth($icon_home)
+}
+
+.icon-email {
+  sprite($icon_email)
+}
+*/
+spriteWidth($sprite) {
+  width: $sprite[4];
+}
+
+spriteHeight($sprite) {
+  height: $sprite[5];
+}
+
+spritePosition($sprite) {
+  background-position: $sprite[2] $sprite[3];
+}
+
+spriteImage($sprite) {
+  background-image: url($sprite[8]);
+}
+
+sprite($sprite) {
+  spriteImage($sprite)
+  spritePosition($sprite)
+  spriteWidth($sprite)
+  spriteHeight($sprite)
+}
+
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of Stylus
+
+This must be run when you have at least 2 sprites.
+  If run with a single sprite, then there will be reference errors.
+
+sprites($spritesheet_sprites);
+*/
+sprites($sprites) {
+  for $sprite in $sprites {
+    $sprite_name = $sprite[9];
+    .{$sprite_name} {
+      sprite($sprite);
+    }
+  }
+}

@@ -8,9 +8,11 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
+  // Set color output to false. .option sets or gets values and accesses variables set from cli
   grunt.option('color', false);
 
   // Load grunt tasks automatically
+  // Reads dependencies / devDependencies etc. in package.json and loads grunt tasks (grunt.loadNpmTasks)
   require('load-grunt-tasks')(grunt);
 
   // Time how long tasks take. Can help when optimizing build times
@@ -153,7 +155,6 @@ module.exports = function (grunt) {
         },
         files: {
           'app/styles/main.css': 'app/styles/source.styl'
-          // 'app/styles/front_sprites.css': 'app/styles/front_sprites.styl'
         }
       }
     },
@@ -174,27 +175,64 @@ module.exports = function (grunt) {
     },
 
     sprite: {
-      front: {
-        all: {
-          src: 'app/images/prep_sprites/front_sprites/*',
-          dest: 'app/images/sprites/front_sprites.jpg',
-          destCss: 'app/styles/front_sprites.styl'
-        }
+      front: {      
+        src: 'app/images/prep_sprites/front_sprites/*',
+        dest: 'app/images/sprites/front_sprites.jpg',
+        destCss: 'app/styles/front_sprites.styl'
       },
       poster: {
-        all: {
-          src: 'app/images/prep_sprites/individual_galleries/*',
-          dest: 'app/images/sprites/individual_galleries.jpg',
-          destCss: 'app/styles/individual_galleries.styl'            
-        }
+        src: 'app/images/prep_sprites/poster_sprites/*',
+        dest: 'app/images/sprites/poster_sprites.jpg',
+        destCss: 'app/styles/poster_sprites.styl'            
       },
-      individual: {
-        all: {
-         src: 'app/images/prep_sprites/individual_galleries/*',
-          dest: 'app/images/sprites/individual_galleries.jpg',
-          destCss: 'app/styles/individual_galleries.styl'              
-          }
-        }
+      cherry: {
+        algorithm: 'left-right',
+        src: 'app/images/prep_sprites/individual_sprites/cherry/*',
+        dest: 'app/images/sprites/cherry_sprites.jpg',
+        destCss: 'app/styles/cherry_sprites.styl'              
+      },
+      nectarine: {
+        algorithm: 'left-right',
+        src: 'app/images/prep_sprites/individual_sprites/nectarine/*',
+        dest: 'app/images/sprites/nectarine_sprites.jpg',
+        destCss: 'app/styles/nectarine_sprites.styl'              
+      }, 
+      lemon: {
+        algorithm: 'left-right',
+        src: 'app/images/prep_sprites/individual_sprites/lemon/*',
+        dest: 'app/images/sprites/lemon_sprites.jpg',
+        destCss: 'app/styles/lemon_sprites.styl'              
+      },             
+      apple: {
+        algorithm: 'left-right',
+        src: 'app/images/prep_sprites/individual_sprites/apple/*',
+        dest: 'app/images/sprites/apple_sprites.jpg',
+        destCss: 'app/styles/apple_sprites.styl'              
+      },
+      electricity: {
+        algorithm: 'left-right',
+        src: 'app/images/prep_sprites/individual_sprites/electricity/*',
+        dest: 'app/images/sprites/electricity_sprites.jpg',
+        destCss: 'app/styles/electricity_sprites.styl'              
+      },  
+      plum_crazy: {
+        algorithm: 'left-right',
+        src: 'app/images/prep_sprites/individual_sprites/plum_crazy/*',
+        dest: 'app/images/sprites/plum-crazy_sprites.jpg',
+        destCss: 'app/styles/plum-crazy_sprites.styl'              
+      },        
+      powder: {
+        algorithm: 'left-right',
+        src: 'app/images/prep_sprites/individual_sprites/powder/*',
+        dest: 'app/images/sprites/powder_sprites.jpg',
+        destCss: 'app/styles/powder_sprites.styl'              
+      },    
+      proton_powder: {
+        algorithm: 'left-right',
+        src: 'app/images/prep_sprites/individual_sprites/proton_powder/*',
+        dest: 'app/images/sprites/proton-powder_sprites.jpg',
+        destCss: 'app/styles/proton-powder_sprites.styl'              
+      }                 
     },
 
     // Automatically inject Bower components into the app

@@ -1,7 +1,16 @@
 // <link href='http://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
 @require 'front_sprites'
-@require 'individual_galleries'
 @require 'poster_sprites'
+
+@require 'apple_sprites'
+@require 'cherry_sprites'
+@require 'electricity_sprites'
+@require 'lemon_sprites'
+@require 'nectarine_sprites'
+@require 'plum-crazy_sprites'
+@require 'powder_sprites'
+@require 'proton-powder_sprites'
+
 @require 'nib'
 
 
@@ -39,8 +48,9 @@ table
 make_sprite()
   for sheet in arguments
     sprites(sheet)
-    
-make_sprite($spritesheet_sprites_a, $spritesheet_sprites_b, $spritesheet_sprites_c)
+
+// Call the function on all the (renamed) spritesheets
+make_sprite($spritesheet_sprites_a, $spritesheet_sprites_b, $spritesheet_sprites_c, $spritesheet_sprites_d, $spritesheet_sprites_e, $spritesheet_sprites_f, $spritesheet_sprites_g, $spritesheet_sprites_h, $spritesheet_sprites_i, $spritesheet_sprites_j)
 // End of sprite
 
 
