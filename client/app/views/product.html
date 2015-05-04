@@ -5,6 +5,7 @@
 <!-- size guide -->
 <!-- Add to cart -->
 <!-- Free shipping -->
+
 <div>
   Red Box
 </div>
@@ -17,18 +18,34 @@
   {{"$" + product.price}}
 </div>
 
-<!-- <ul>
-  <li ng-repeat="(view, href) in product.images">{{view}}: {{href}}</li>
-</ul> -->
+Item Details
+<div>
+    <div>
+      Product
+      <ul>
+        <li ng-repeat="detail in product.itemDetails">{{detail}}</li>
+      </ul>
+    </div>
 
-<!-- <ul>
-  <li ng-repeat="(size, measurement) in product.sizes">{{size}}: {{measurement}}</li>
-</ul>
- -->
-<!-- <ul> -->
-  Item Details:
-  <!-- <li ng-repeat="detail in product.itemDetails"> {{detail}}</li> -->
-<!-- </ul> -->
+    <div>
+      About
+      <ul>
+        <li>{{product.aboutSpecific}}</li>
+      </ul>
+    </div>
+
+    <div>
+      Care
+      <ul>
+        <li> {{product.careInstructions}}</li>
+        <li> {{product.sizeGuide}}</li>
+      </ul>
+    </div>    
+
+    
+</div>
+
+
 <div>
   <select>
     <option ng-repeat="size in product.distinctSizes | orderBy: 'waistSize'"> {{size.waistSize}} x {{size.inseam}} </option>

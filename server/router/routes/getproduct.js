@@ -5,27 +5,27 @@ var Products = require('../../../database').Products;
 router.get('/:flavor', function (req, res, next) {
   var flavor = req.params.flavor;
 
-  Products.findOne({urlFlavor:flavor}, function (err, product) {
+  Products.findOne({urlFlavor:flavor}).lean().exec(function (err, product) {
+
     if (err) {
       throw err;
     }
-    
-    if (product) {
+
+    if (product) {      
       Products.distinct('sizes', {urlFlavor:flavor}, function (err, distinctSizes) {
 
         if (err) {
           throw err;
-        }        
-        var productResponse = JSON.parse(JSON.stringify(product));
-        productResponse.distinctSizes = distinctSizes;
-        res.json(productResponse);
-        console.log(productResponse);
+        }
+        
+        product.distinctSizes = distinctSizes;
+        res.json(product);
       });
     }
     
     else {
       res.status(404).send('No product found');
-    };
+    }
   });
 });
 
