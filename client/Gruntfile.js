@@ -173,37 +173,28 @@ module.exports = function (grunt) {
       }
     },
 
-/*    css_sprite: {
-      options: {
-        'cssPath': '../images/final_sprites',
-        'processor': 'stylus',
-        'orientation': 'horizontal',
-        'margin': 4,
-        'format': 'jpg',
-        'prefix': 'pant'
-      },
-      sprite: {
-        options: {
-          'style': 'app/styles/front_sprites.styl'
-        }, 
-        src: ['app/images/prep_sprites/front_sprites/*'],
-        dest: 'app/images/sprites/front_sprites'
-      }
-    },
-*/
-
     sprite: {
-      all: {
-        // src: 'app/images/prep_sprites/front_sprites/*',
-        // dest: 'app/images/sprites/front_sprites.jpg',
-        // destCss: 'app/styles/front_sprites.styl'
-        // src: 'app/images/prep_sprites/individual_galleries/*',
-        // dest: 'app/images/sprites/individual_galleries.jpg',
-        // destCss: 'app/styles/individual_galleries.styl'  
-        src: 'app/images/prep_sprites/poster_sprites/*',
-        dest: 'app/images/sprites/poster_sprites.jpg',
-        destCss: 'app/styles/poster_sprites.styl'  
-      }
+      front: {
+        all: {
+          src: 'app/images/prep_sprites/front_sprites/*',
+          dest: 'app/images/sprites/front_sprites.jpg',
+          destCss: 'app/styles/front_sprites.styl'
+        }
+      },
+      poster: {
+        all: {
+          src: 'app/images/prep_sprites/individual_galleries/*',
+          dest: 'app/images/sprites/individual_galleries.jpg',
+          destCss: 'app/styles/individual_galleries.styl'            
+        }
+      },
+      individual: {
+        all: {
+         src: 'app/images/prep_sprites/individual_galleries/*',
+          dest: 'app/images/sprites/individual_galleries.jpg',
+          destCss: 'app/styles/individual_galleries.styl'              
+          }
+        }
     },
 
     // Automatically inject Bower components into the app
@@ -431,11 +422,8 @@ module.exports = function (grunt) {
     'karma'
   ]);
 
+  
   grunt.loadNpmTasks('grunt-spritesmith');
-  // grunt.registerTask('sprite', ['sprite']);
-
-  //  grunt.loadNpmTasks('css-sprite');
-  // grunt.registerTask('sprite', ['css-sprite']);
 
   grunt.registerTask('build', [
     'clean:dist',
