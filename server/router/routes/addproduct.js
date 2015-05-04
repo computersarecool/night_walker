@@ -3,7 +3,6 @@ var expressJwt = require('express-jwt');
 var Users = require('../../../database').Users;
 var jwtSecret = require('../../../config/credentials').jwtSecret;
 var stripeKey = require('../../../config/credentials').stripeTest;
-var stripeKey = require('../../../config/credentials').stripeTest;
 var stripe = require('stripe')(stripeKey);
 
 var router = express.Router();
@@ -17,13 +16,13 @@ router.post('/', expressJwt({
     // Delete the storage key
     res.status(401).send('invalid token...');
     throw err;
-    return
+    return;
   }
   if (err) {
     // Delete the storage key
     res.status(401).send('invalid token...');
     throw err;
-    return
+    return;
   }
   next();
 });
@@ -33,13 +32,14 @@ router.post('/', function (req, res) {
   var items = req.body.items;
   if (!email) {
     res.status(401).send('There is no email');
-    return
+    return;
   }
   if (!items) {
     return
   } else {
-      Users.findOneAndUpdate({email: email}, {$push: {cart: items}}, function(err, user) {    
-        console.log('hhere');
+      Users.findOneAndUpdate({email: email}, {$push: {cart: items}}, function(err, user) {
+        //WHAM Comment
+        console.log('here');
         if (err) {
           console.log('There was an error adding the item to the cart');
           throw err

@@ -197,9 +197,12 @@ module.exports = function (grunt) {
         // src: 'app/images/prep_sprites/front_sprites/*',
         // dest: 'app/images/sprites/front_sprites.jpg',
         // destCss: 'app/styles/front_sprites.styl'
-        src: 'app/images/prep_sprites/individual_galleries/*',
-        dest: 'app/images/sprites/individual_galleries.jpg',
-        destCss: 'app/styles/individual_galleries.styl'      
+        // src: 'app/images/prep_sprites/individual_galleries/*',
+        // dest: 'app/images/sprites/individual_galleries.jpg',
+        // destCss: 'app/styles/individual_galleries.styl'  
+        src: 'app/images/prep_sprites/poster_sprites/*',
+        dest: 'app/images/sprites/poster_sprites.jpg',
+        destCss: 'app/styles/poster_sprites.styl'  
       }
     },
 

@@ -11,7 +11,7 @@ router.use('/', expressJwt({
   // This sets req.user with the decoded JWT
   if (err.name === 'UnauthorizedError') {
     // Delete the storage key
-    res.send(401, 'invalid token...');
+    res.status(401).send('invalid token...');
     throw err;
     return;
   }
@@ -33,7 +33,7 @@ router.get('/', function (req, res) {
       return;
     }
     if (!user) {
-      res.status(401).send('invalid token...');
+      res.status(401).send('No user found...');
       return;
     }
     res.json({

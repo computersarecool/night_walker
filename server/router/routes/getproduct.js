@@ -6,7 +6,7 @@ router.get('/:flavor', function (req, res, next) {
   var flavor = req.params.flavor;
   Products.findOne({urlFlavor:flavor}, function (err, product) {
     if (err) {
-      throw err
+      throw err;
     }
     if (product) {
       res.json(product);

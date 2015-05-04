@@ -1,6 +1,7 @@
 // <link href='http://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
 @require 'front_sprites'
 @require 'individual_galleries'
+@require 'poster_sprites'
 @require 'nib'
 
 
@@ -33,6 +34,15 @@ table
   border-collapse: collapse
   border-spacing: 0
 // End of reset
+
+// Sprite function
+make_sprite()
+  for sheet in arguments
+    sprites(sheet)
+    
+make_sprite($spritesheet_sprites_a, $spritesheet_sprites_b, $spritesheet_sprites_c)
+// End of sprite
+
 
 // Cube
 .wrap 
@@ -85,16 +95,6 @@ div.words
   to {transform:rotateY(360deg)}
 }
 //End of Cube
-
-
-// Sprite
-make_sprite()
-  for sheet in arguments
-    sprites(sheet)
-    
-make_sprite($spritesheet_spritesa, $spritesheet_sprites)    
-// End of sprite
-
 
 // Animation
 .gallery-animate

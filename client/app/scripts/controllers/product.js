@@ -21,7 +21,7 @@ angular.module('nightwalkerApp')
           cart.push(item);
           $cookieStore.put('cart', cart);
         } else {
-          var cart = [item];
+           cart = [item];
           $cookieStore.put('cart', cart);
         }
       }

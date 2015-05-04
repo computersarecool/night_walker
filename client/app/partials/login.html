@@ -1,41 +1,43 @@
+<!-- Show if the user is logging in -->
 <div ng-show="showLogin">
+  <form novalidate ng-submit="login(username, password)">
+    <label>Email<input type="email" ng-model="username"></label>
+    <label>Password<input type="password" ng-model="password"></label>
+    <button type="submit">Login</button>
+  </form>
 
-    <form novalidate ng-submit="login(username, password)">
-        <label>Email<input type="email" ng-model="username"></label>
-        <label>Password<input type="password" ng-model="password"></label>
-        <button type="submit">Login</button>
-    </form>
-
-    <br>
-    <button ng-click="logout()">Logout</button>
-
-    <div>
-        Hello Name: {{user.firstName}}
-    </div>
-    <div ng-click="changeLogin()">
-        Need to sign up?
-    </div>
+  <br>
+  <button ng-click="logout()">Logout</button>
+  <div ng-click="changeScreen()">
+    Need to sign up?
+  </div>
 </div>
 
+<!-- Show if the user is signing up -->
 <div ng-show="!showLogin">
-    <div>
-        This is the signup form
-    </div>
-    
-    <form novalidate ng-submit="signup(email, password, firstName, lastName)">
-        <input type="email" ng-model="email">Email<br>
-        <input type="password" ng-model="password">Password<br>
-        <input type="text" ng-model="firstName">First Name<br>
-        <input type="text" ng-model="lastName">Last Name<br>
-        <button type="submit">Submit</button>
-    </form>
+  <div>
+    This is the signup form
+  </div>
 
-    <br>
-    <p ng-click="changeLogin()">
-        Or login?
-    </p>
-    <p>
-        By signing up you agree to our Terms and conditions (don't worry, we are cool)
-    </p>
+  <form novalidate ng-submit="signup(email, password, firstName, lastName)">
+    <input type="email" ng-model="email">Email<br>
+    <input type="password" ng-model="password">Password<br>
+    <input type="text" ng-model="firstName">First Name<br>
+    <input type="text" ng-model="lastName">Last Name<br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <br>
+
+<!-- Click to switch -->  
+  <p ng-click="changeScreen()">
+    Already have an account?
+  </p>
+  <p>
+    By signing up you agree to our Terms and conditions (don't worry, we are cool)
+  </p>
 </div>
 
+<div>
+  Hello Name: {{user.firstName}}
+</div>

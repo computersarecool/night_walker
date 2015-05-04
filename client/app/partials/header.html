@@ -1,31 +1,36 @@
 <header>
-    <h1>
-        <a ng-href='/'><img src="../images/nw_logo.jpg" alt="NightWalker Clothing" title="Men's Chinos and clothing"></a>
-    </h1>
-    <div class="status">
-        <p ng-show="!user.loggedIn">
-            Welcome to NightWalker 
-            <a ng-href='/signup'>Join</a>
-            <a ng-href='/login'>Sign In</a>
-        </p>
-        <p ng-show="user.loggedIn">
-            <span>Welcome {{user.firstName}}</span>
-            <span ng-click="logout()">Not You?</span>
-            <span><a ng-href='/cart'>Cart here</a></span>
-            <span><a ng-href='/checkout'>Checkout</a></span>
-            <span><a ng-href='/account'>Your Account</a></span>
-        </p>
-        <img src="images/symbol_logo.jpg" alt="NightWalker logo">
-        <div class="wrap">
-            <div class="cart-cube">
-                <div class="front"></div>
-                <div class="back"></div>
-                <div class="words">Words</div>
-                <div class="top">top</div>
-                <div class="bottom">bottom</div>
-                <div class="left">left</div>
-                <div class="right">right</div>
-            </div>
-        </div>
+  <h1>
+    <a ng-href='/'><img src="../images/nw_logo.jpg" alt="NightWalker Clothing" title="Men's Chinos and clothing"></a>
+  </h1>
+  <div class="status">
+    <!-- Show if user is not logged in -->
+    <p ng-show="!user.loggedIn">
+      Welcome to NightWalker 
+      <a ng-href='/signup'>Join</a>
+      <a ng-href='/login'>Sign In</a>
+    </p>
+    <!-- Show if user is logged in -->
+    <p ng-show="user.loggedIn">
+      <span>Welcome {{user.firstName}}</span>
+      <span ng-click="logout()">Not You?</span>
+      <span><a ng-href='/cart'>Cart here</a></span>
+      <span><a ng-href='/checkout'>Checkout</a></span>
+      <span><a ng-href='/account'>Your Account</a></span>
+    </p>
+
+    <!-- Cube and logo -->
+    <img src="images/symbol_logo.jpg" alt="NightWalker logo">
+    <div class="wrap">
+      <div class="cart-cube">
+        <div class="front"></div>
+        <div class="back"></div>
+        <div class="words">Words</div>
+        <div class="top">top</div>
+        <div class="bottom">bottom</div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+      </div>
     </div>
+
+  </div>
 </header>

@@ -29,6 +29,9 @@ angular.module('nightwalkerApp')
         if ($cookieStore.get('cart')) {
           $cookieStore.remove('cart');
         }
+        $location.path('/account');
+      }, function (httpError) {
+        throw httpError.status + " : " + httpError.data;
       });
     }
 
@@ -40,11 +43,10 @@ angular.module('nightwalkerApp')
         AuthTokenFactory.setToken(response.data.token);
         user.currentUser = response.data.user;
         user.currentUser.show = true;
-        console.log('zap');
-        console.log(response);
         if ($cookieStore.get('cart')) {
           $cookieStore.remove('cart');
         }
+        $location.path('/account');
       }, function (httpError) {
         throw httpError.status + " : " + httpError.data;
       });
@@ -65,10 +67,12 @@ angular.module('nightwalkerApp')
           $cookieStore.remove('cart');
         }
       }, function (httpError) {
+        // WHAM Better error handling
         throw httpError.status + " : " + httpError.data;        
       });
     }
 
+    // IIFE to fill currentUser (which is scope.user)
     var getUser = (function () {
       if (AuthTokenFactory.getToken()) {
         return $http.get('/api/user')
@@ -76,6 +80,7 @@ angular.module('nightwalkerApp')
             user.currentUser = response.data.user;
             user.currentUser.show = true;
           }, function (httpError) {
+            // WHAM Better error handling
             throw httpError.status + " : " + httpError.data;
           });
         } else {

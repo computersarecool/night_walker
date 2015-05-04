@@ -55,6 +55,7 @@ angular
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
+        // WHAM NECCESARY?
         resolve: function (UserFactory) {
           if (UserFactory.checkToken()) {
             $location.path('/account');
@@ -64,6 +65,7 @@ angular
       .when('/signup', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
+        // WHAM NECCESARY?
         resolve: function (UserFactory) {
           if (UserFactory.checkToken()) {
             $location.path('/account');            

@@ -1,30 +1,41 @@
+<!-- short description -->
+<!-- Price -->
+<!-- Product info -->
+<!-- size selector -->
+<!-- size guide -->
+<!-- Add to cart -->
+<!-- Free shipping -->
 <div>
-    The Pant you are viewing is currently the: {{product.flavor}} flavor
+  Red Box
 </div>
 
 <div>
-    It is from the {{product.edition}} edition
+  {{product.shortDescription}}
 </div>
 
 <div>
-    DESCRIPTION: {{product.description}}
+  {{"$" + product.price}}
 </div>
 
-<div>
-    DESCRIPTION: {{product.shortDescription}}
-</div>
+<!-- <ul>
+  <li ng-repeat="(view, href) in product.images">{{view}}: {{href}}</li>
+</ul> -->
 
-<ul>
-    <li ng-repeat="(view, href) in product.images">{{view}}: {{href}}</li>
+<!-- <ul>
+  <li ng-repeat="(size, measurement) in product.sizes">{{size}}: {{measurement}}</li>
 </ul>
+ -->
+<!-- <ul> -->
+  Item Details:
+  <!-- <li ng-repeat="detail in product.itemDetails"> {{detail}}</li> -->
+<!-- </ul> -->
+<div>
+  <select>
+    <option ng-repeat="size in product.sizes"> {{size}} </option>
+  </select>
+</div>
 
-<ul>
-    <li ng-repeat="(size, measurement) in product.sizes">{{size}}: {{measurement}}</li>
-</ul>
-
-<ul>
-    Item Details:
-    <li ng-repeat="detail in product.itemDetails"> {{detail}}</li>
-</ul>
-
+<div>
+  Size Guide
+</div>
 <button ng-click="addToCart(product.sku)">Add this product{{product.sku}}</button>
