@@ -4,13 +4,25 @@ var Products = require('../../../database').Products;
 
 router.get('/:flavor', function (req, res, next) {
   var flavor = req.params.flavor;
+
   Products.findOne({urlFlavor:flavor}, function (err, product) {
     if (err) {
       throw err;
     }
+    
     if (product) {
-      res.json(product);
+      Products.distinct('sizes', {urlFlavor:flavor}, function (err, distinctSizes) {
+
+        if (err) {
+          throw err;
+        }        
+        var productResponse = JSON.parse(JSON.stringify(product));
+        productResponse.distinctSizes = distinctSizes;
+        res.json(productResponse);
+        console.log(productResponse);
+      });
     }
+    
     else {
       res.status(404).send('No product found');
     };
