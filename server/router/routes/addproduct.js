@@ -1,11 +1,12 @@
 var express = require('express');
+var router = express.Router();
 var expressJwt = require('express-jwt');
 var Users = require('../../../database').Users;
 var jwtSecret = require('../../../config/credentials').jwtSecret;
 var stripeKey = require('../../../config/credentials').stripeTest;
 var stripe = require('stripe')(stripeKey);
 
-var router = express.Router();
+
 
 router.post('/', expressJwt({
   secret: jwtSecret,

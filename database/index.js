@@ -1,5 +1,5 @@
 //mongod --dbpath data/db/ --logpath data/logs/mongodb.log --logappend
-
+var database;
 var mongoose = require('mongoose');
 var credentials = require('../config/credentials');
 
@@ -10,8 +10,6 @@ var EditionsModel = require('./schemas/editions');
 //Connections
 var developmentDb = credentials.testConnection;
 var productionDb = credentials.mongoConnection;
-
-var database;
 
 //If in development
 if (process.env.NODE_ENV === 'development') {

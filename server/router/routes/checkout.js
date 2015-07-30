@@ -1,9 +1,7 @@
 var express = require('express');
-var stripeKey = require('../../../config/credentials').stripeTest;
+var router = express.Router();
 var stripeKey = require('../../../config/credentials').stripeTest;
 var stripe = require('stripe')(stripeKey);
-
-var router = express.Router();
 
 router.post('/', function (req, res) {
 
@@ -26,7 +24,7 @@ router.post('/', function (req, res) {
       console.log('The card was charged successfully');
       // Save user card information
     }
-  })
+  });
 
 });
 

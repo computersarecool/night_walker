@@ -12,6 +12,7 @@ var app = express();
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 
+// Open the database connection
 var db = require('../database');
 
 app.use(logger('dev'));
