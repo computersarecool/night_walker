@@ -178,61 +178,72 @@ module.exports = function (grunt) {
       front: {      
         src: 'app/images/prep_sprites/front_sprites/*',
         dest: 'app/images/sprites/front_sprites.jpg',
-        destCss: 'app/styles/front_sprites.styl'
-      },
+        destCss: 'app/styles/front_sprites.styl',
+        cssSpriteSheetName: 'front_sprites'
+      },      
       poster: {
         src: 'app/images/prep_sprites/poster_sprites/*',
         dest: 'app/images/sprites/poster_sprites.jpg',
-        destCss: 'app/styles/poster_sprites.styl'            
-      },
+        destCss: 'app/styles/poster_sprites.styl',
+        cssSpriteSheetName: 'poster_sprites'
+      }
+/*      ,
       cherry: {
         algorithm: 'left-right',
         src: 'app/images/prep_sprites/individual_sprites/cherry/*',
         dest: 'app/images/sprites/cherry_sprites.jpg',
-        destCss: 'app/styles/cherry_sprites.styl'              
+        destCss: 'app/styles/cherry_sprites.styl',
+        cssSpriteSheetName: 'cherry_sprites'
       },
       nectarine: {
         algorithm: 'left-right',
         src: 'app/images/prep_sprites/individual_sprites/nectarine/*',
         dest: 'app/images/sprites/nectarine_sprites.jpg',
-        destCss: 'app/styles/nectarine_sprites.styl'              
+        destCss: 'app/styles/nectarine_sprites.styl',
+        cssSpriteSheetName: 'nectarine_sprites'
       }, 
       lemon: {
         algorithm: 'left-right',
         src: 'app/images/prep_sprites/individual_sprites/lemon/*',
         dest: 'app/images/sprites/lemon_sprites.jpg',
-        destCss: 'app/styles/lemon_sprites.styl'              
+        destCss: 'app/styles/lemon_sprites.styl',
+        cssSpriteSheetName: 'lemon_sprites'
       },             
       apple: {
         algorithm: 'left-right',
         src: 'app/images/prep_sprites/individual_sprites/apple/*',
         dest: 'app/images/sprites/apple_sprites.jpg',
-        destCss: 'app/styles/apple_sprites.styl'              
+        destCss: 'app/styles/apple_sprites.styl',
+        cssSpriteSheetName: 'apple_sprites'
       },
       electricity: {
         algorithm: 'left-right',
         src: 'app/images/prep_sprites/individual_sprites/electricity/*',
         dest: 'app/images/sprites/electricity_sprites.jpg',
-        destCss: 'app/styles/electricity_sprites.styl'              
+        destCss: 'app/styles/electricity_sprites.styl',
+        cssSpriteSheetName: 'electricity_sprites'
       },  
       plum_crazy: {
         algorithm: 'left-right',
         src: 'app/images/prep_sprites/individual_sprites/plum_crazy/*',
         dest: 'app/images/sprites/plum-crazy_sprites.jpg',
-        destCss: 'app/styles/plum-crazy_sprites.styl'              
+        destCss: 'app/styles/plum-crazy_sprites.styl',
+        cssSpriteSheetName: 'plum'
       },        
       powder: {
         algorithm: 'left-right',
         src: 'app/images/prep_sprites/individual_sprites/powder/*',
         dest: 'app/images/sprites/powder_sprites.jpg',
-        destCss: 'app/styles/powder_sprites.styl'              
+        destCss: 'app/styles/powder_sprites.styl',
+        cssSpriteSheetName: 'powder_sprites'
       },    
       proton_powder: {
         algorithm: 'left-right',
         src: 'app/images/prep_sprites/individual_sprites/proton_powder/*',
         dest: 'app/images/sprites/proton-powder_sprites.jpg',
-        destCss: 'app/styles/proton-powder_sprites.styl'              
-      }                 
+        destCss: 'app/styles/proton-powder_sprites.styl',
+        cssSpriteSheetName: 'proton'
+      }  */               
     },
 
     // Automatically inject Bower components into the app
