@@ -30,6 +30,8 @@ module.exports = function (grunt) {
     // Project settings
     yeoman: appConfig,
 
+
+    
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
@@ -48,11 +50,8 @@ module.exports = function (grunt) {
         tasks: ['newer:jshint:test', 'karma']
       },
       styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.styl'], //'<%= yeoman.app %>/styles/{,*/}*.css'
-        tasks: ['stylus', 'newer:copy:styles', 'autoprefixer']
-      },
-      gruntfile: {
-        files: ['Gruntfile.js']
+        files: ['<%= yeoman.app %>/styles/{,*/}*.styl'],
+        tasks: ['stylus', 'autoprefixer', 'newer:copy:styles']
       },
       livereload: {
         options: {
@@ -66,6 +65,8 @@ module.exports = function (grunt) {
       }
     },
 
+
+    
     // The actual grunt server settings
     connect: {
       options: {
@@ -113,6 +114,9 @@ module.exports = function (grunt) {
       }
     },
 
+
+
+    
     // Make sure code styles are up to par and there are no obvious mistakes
     jshint: {
       options: {
@@ -133,6 +137,8 @@ module.exports = function (grunt) {
       }
     },
 
+
+    
     // Empties folders to start fresh
     clean: {
       dist: {
@@ -148,6 +154,8 @@ module.exports = function (grunt) {
       server: '.tmp'
     },
 
+
+    
     stylus: {
       compile: {
         options: {
@@ -159,6 +167,8 @@ module.exports = function (grunt) {
       }
     },
 
+
+    
     // Add vendor prefixed styles
     autoprefixer: {
       options: {
@@ -174,6 +184,8 @@ module.exports = function (grunt) {
       }
     },
 
+
+    
     sprite: {
       front: {      
         src: 'app/images/prep_sprites/front_sprites/*',
@@ -246,6 +258,8 @@ module.exports = function (grunt) {
       }  */               
     },
 
+
+    
     // Automatically inject Bower components into the app
     wiredep: {
 /*      options: {
@@ -257,6 +271,8 @@ module.exports = function (grunt) {
       }
     },
 
+
+    
     // Renames files for browser caching purposes
     filerev: {
       dist: {
@@ -269,6 +285,8 @@ module.exports = function (grunt) {
       }
     },
 
+
+    
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
@@ -288,6 +306,8 @@ module.exports = function (grunt) {
       }
     },
 
+
+    
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
@@ -323,6 +343,7 @@ module.exports = function (grunt) {
     //   dist: {}
     // },
 
+    
     imagemin: {
       dist: {
         files: [{
@@ -334,6 +355,7 @@ module.exports = function (grunt) {
       }
     },
 
+    
     svgmin: {
       dist: {
         files: [{
@@ -345,6 +367,7 @@ module.exports = function (grunt) {
       }
     },
 
+    
     htmlmin: {
       dist: {
         options: {
@@ -363,6 +386,7 @@ module.exports = function (grunt) {
       }
     },
 
+    
     // ngmin tries to make the code safe for minification automatically by
     // using the Angular long form for dependency injection. It doesn't work on
     // things like resolve or inject so those have to be done manually.
@@ -377,6 +401,8 @@ module.exports = function (grunt) {
       }
     },
 
+
+    
     // Replace Google CDN references
     cdnify: {
       dist: {
@@ -384,6 +410,8 @@ module.exports = function (grunt) {
       }
     },
 
+
+    
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -431,6 +459,8 @@ module.exports = function (grunt) {
       ]
     },
 
+
+    
     // Test settings
     karma: {
       unit: {
