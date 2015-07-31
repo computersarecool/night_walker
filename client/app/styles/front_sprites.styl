@@ -11,6 +11,7 @@ $icon_home = x y offset_x offset_y width height total_width total_height image_p
 At the bottom of this section, we provide information about the spritesheet itself
 $spritesheet = width height image $spritesheet_sprites;
 */
+
 $apple_gallery_name = 'apple-gallery';
 $apple_gallery_x = 0px;
 $apple_gallery_y = 0px;
@@ -148,8 +149,8 @@ This must be run when you have at least 2 sprites.
 
 sprites($spritesheet_sprites);
 */
-sprites($sprites) {
-  for $sprite in $sprites {
+sprites($spritesheet_sprites) {
+  for $sprite in arguments {
     $sprite_name = $sprite[9];
     .{$sprite_name} {
       sprite($sprite);
