@@ -204,56 +204,56 @@ module.exports = function (grunt) {
         src: 'app/images/prep_sprites/individual_sprites/cherry/*',
         dest: 'app/images/sprites/cherry_sprites.jpg',
         destCss: 'app/styles/cherry_sprites.styl',
-        cssSpriteSheetName: 'cherry_sprites'
+        cssSpritesheetName: 'cherry_sprites'
       },
       nectarine: {
         algorithm: 'left-right',
         src: 'app/images/prep_sprites/individual_sprites/nectarine/*',
         dest: 'app/images/sprites/nectarine_sprites.jpg',
         destCss: 'app/styles/nectarine_sprites.styl',
-        cssSpriteSheetName: 'nectarine_sprites'
+        cssSpritesheetName: 'nectarine_sprites'
       }, 
       lemon: {
         algorithm: 'left-right',
         src: 'app/images/prep_sprites/individual_sprites/lemon/*',
         dest: 'app/images/sprites/lemon_sprites.jpg',
         destCss: 'app/styles/lemon_sprites.styl',
-        cssSpriteSheetName: 'lemon_sprites'
+        cssSpritesheetName: 'lemon_sprites'
       },             
       apple: {
         algorithm: 'left-right',
         src: 'app/images/prep_sprites/individual_sprites/apple/*',
         dest: 'app/images/sprites/apple_sprites.jpg',
         destCss: 'app/styles/apple_sprites.styl',
-        cssSpriteSheetName: 'apple_sprites'
+        cssSpritesheetName: 'apple_sprites'
       },
       electricity: {
         algorithm: 'left-right',
         src: 'app/images/prep_sprites/individual_sprites/electricity/*',
         dest: 'app/images/sprites/electricity_sprites.jpg',
         destCss: 'app/styles/electricity_sprites.styl',
-        cssSpriteSheetName: 'electricity_sprites'
+        cssSpritesheetName: 'electricity_sprites'
       },  
       plum_crazy: {
         algorithm: 'left-right',
         src: 'app/images/prep_sprites/individual_sprites/plum_crazy/*',
         dest: 'app/images/sprites/plum-crazy_sprites.jpg',
         destCss: 'app/styles/plum-crazy_sprites.styl',
-        cssSpriteSheetName: 'plum'
+        cssSpritesheetName: 'plum'
       },        
       powder: {
         algorithm: 'left-right',
         src: 'app/images/prep_sprites/individual_sprites/powder/*',
         dest: 'app/images/sprites/powder_sprites.jpg',
         destCss: 'app/styles/powder_sprites.styl',
-        cssSpriteSheetName: 'powder_sprites'
+        cssSpritesheetName: 'powder_sprites'
       },    
       proton_powder: {
         algorithm: 'left-right',
         src: 'app/images/prep_sprites/individual_sprites/proton_powder/*',
         dest: 'app/images/sprites/proton-powder_sprites.jpg',
         destCss: 'app/styles/proton-powder_sprites.styl',
-        cssSpriteSheetName: 'proton'
+        cssSpritesheetName: 'proton'
       }
     },
 
