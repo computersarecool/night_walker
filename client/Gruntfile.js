@@ -191,15 +191,14 @@ module.exports = function (grunt) {
         src: 'app/images/prep_sprites/front_sprites/*',
         dest: 'app/images/sprites/front_sprites.jpg',
         destCss: 'app/styles/front_sprites.styl',
-        cssSpriteSheetName: 'front_sprites'
+        cssSpritesheetName: 'front_sprites'
       },      
       poster: {
         src: 'app/images/prep_sprites/poster_sprites/*',
         dest: 'app/images/sprites/poster_sprites.jpg',
         destCss: 'app/styles/poster_sprites.styl',
-        cssSpriteSheetName: 'poster_sprites'
-      }
-/*      ,
+        cssSpritesheetName: 'poster_sprites'
+      },
       cherry: {
         algorithm: 'left-right',
         src: 'app/images/prep_sprites/individual_sprites/cherry/*',
@@ -255,7 +254,7 @@ module.exports = function (grunt) {
         dest: 'app/images/sprites/proton-powder_sprites.jpg',
         destCss: 'app/styles/proton-powder_sprites.styl',
         cssSpriteSheetName: 'proton'
-      }  */               
+      }
     },
 
 
@@ -434,7 +433,6 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
         }]
-
       },
       styles: {
         expand: true,
