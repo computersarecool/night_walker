@@ -61,6 +61,7 @@ angular.module('nightwalkerApp')
         items: items
       }).then(function success (response) {
         user.currentUser = response.data;
+        $window.localStorage.removeItem('cart');        
       }, function (httpError) {
         // WHAM Better error handling
         throw httpError.status + " : " + httpError.data;        
@@ -79,10 +80,12 @@ angular.module('nightwalkerApp')
             throw httpError.status + " : " + httpError.data;
           });
         } else {
-          user.currentUser = null;
-      }
-    })();
-
+          user.currentUser = {
+            cart: $window.localStorage.getItem('cart')
+          };
+          return undefined;
+        }
+     })();
 
     
     user = {
