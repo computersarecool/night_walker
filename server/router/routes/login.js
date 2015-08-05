@@ -16,7 +16,7 @@ router.post('/signup', function (req, res, next) {
     if (!user) {
       // WHAM BETTER ERROR HANDLING
       res.status(401).send(info);
-      return;
+      return undefined;
     }
     //This is where the jwt is created
     var token = jwt.sign({  
@@ -29,7 +29,7 @@ router.post('/signup', function (req, res, next) {
       token: token
     });
     // End 
-    return;
+    return undefined;
   })(req, res, next);
 });
 
@@ -41,7 +41,7 @@ router.post('/login', function (req, res, next) {
     }
     if (!user) {
       res.status(401).send(info);
-      return
+      return undefined;
     }
     // This is where the jwt is created
     var token = jwt.sign({
@@ -54,7 +54,7 @@ router.post('/login', function (req, res, next) {
       token: token
     });
     // End
-    return;
+    return undefined;
   })(req, res, next);
 });
 

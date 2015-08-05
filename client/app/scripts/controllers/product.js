@@ -8,7 +8,7 @@
  * Controller of the nightwalkerApp
  */
 angular.module('nightwalkerApp')
-  .controller('ProductCtrl', function ($scope, $cookieStore, UserFactory, product) {
+  .controller('ProductCtrl', function ($scope, $window, UserFactory, product) {
     $scope.product = product;
     $scope.addToCart = function (item) {
       // Convert SKU to number because Angular templating does opposite
@@ -16,15 +16,17 @@ angular.module('nightwalkerApp')
       if (UserFactory.currentUser) {
         UserFactory.addToCart(item);
       } else {
-        var cart = $cookieStore.get('cart');
+        var store = $window.localStorage;
+        var cart = JSON.parse(store.getItem('cart'));
         if (cart) {
           cart.push(item);
-          $cookieStore.put('cart', cart);
+          store.setItem('cart', JSON.stringify(cart));
         } else {
-           cart = [item];
-          $cookieStore.put('cart', cart);
+          cart = JSON.stringify([item]);
+          store.setItem('cart', cart);
         }
       }
     };
 
   });
+

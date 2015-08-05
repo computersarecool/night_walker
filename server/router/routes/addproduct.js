@@ -36,7 +36,7 @@ router.post('/', function (req, res) {
     return;
   }
   if (!items) {
-    return
+    return;
   } else {
       Users.findOneAndUpdate({email: email}, {$push: {cart: items}}, function(err, user) {
         //WHAM Comment

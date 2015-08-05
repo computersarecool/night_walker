@@ -8,10 +8,10 @@
  * Factory in the nightwalkerApp.
  */
 angular.module('nightwalkerApp')
-  .factory('UserFactory', function ($http, $cookieStore, $location, AuthTokenFactory) {
+  .factory('UserFactory', function ($window, $http, $location, AuthTokenFactory) {
 
     var user = {};
-    
+
     function checkToken () {
       return AuthTokenFactory.getToken();
     }
@@ -22,13 +22,12 @@ angular.module('nightwalkerApp')
         password: password,
         firstName: firstName,
         lastName: lastName,
+        cart: $window.localStorage.getItem('cart')
       }).then(function success (response) {
         AuthTokenFactory.setToken(response.data.token);
         user.currentUser = response.data.user;
         user.currentUser.show = true;
-        if ($cookieStore.get('cart')) {
-          $cookieStore.remove('cart');
-        }
+        $window.localStorage.removeItem('cart');
         $location.path('/account');
       }, function (httpError) {
         throw httpError.status + " : " + httpError.data;
@@ -38,14 +37,13 @@ angular.module('nightwalkerApp')
     function login (email, password) {
       return $http.post('/api/login/login', {
         email: email,
-        password: password
+        password: password,
+        cart: $window.localStorage.getItem('cart')        
       }).then(function success (response) {
         AuthTokenFactory.setToken(response.data.token);
         user.currentUser = response.data.user;
         user.currentUser.show = true;
-        if ($cookieStore.get('cart')) {
-          $cookieStore.remove('cart');
-        }
+        $window.localStorage.removeItem('cart');        
         $location.path('/account');
       }, function (httpError) {
         throw httpError.status + " : " + httpError.data;
@@ -63,9 +61,6 @@ angular.module('nightwalkerApp')
         items: items
       }).then(function success (response) {
         user.currentUser = response.data;
-        if ($cookieStore.get('cart')) {
-          $cookieStore.remove('cart');
-        }
       }, function (httpError) {
         // WHAM Better error handling
         throw httpError.status + " : " + httpError.data;        
@@ -88,7 +83,9 @@ angular.module('nightwalkerApp')
       }
     })();
 
-    var user = {
+
+    
+    user = {
       addToCart : addToCart,
       login: login,
       logout: logout,

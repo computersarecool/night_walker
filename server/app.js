@@ -2,7 +2,6 @@ var path = require('path');
 var express = require('express');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var apiRouter = require('./router/api');
@@ -18,7 +17,6 @@ var db = require('../database');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(cookieParser());
 app.use(passport.initialize());
 
 app.use('/api', apiRouter);  

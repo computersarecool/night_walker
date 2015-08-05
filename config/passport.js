@@ -36,7 +36,7 @@ module.exports = function (passport) {
             newUser.firstName = req.body.firstName;
             newUser.lastName = req.body.lastName;
             // Add items if temporary cart
-            var cart = req.cookies.cart;
+            var cart = req.body.cart;
             if (cart) {
               newUser.cart = JSON.parse(cart);
             }
@@ -95,7 +95,7 @@ module.exports = function (passport) {
           return done(null, false, 'Sorry, incorrect email or password'); 
         }
         // All is well, return successful user
-        var cart = req.cookies.cart;
+        var cart = req.body.cart;
         // If the user has a temporary cart, add items to real cart
         if (cart) {
           var items = JSON.parse(cart);
