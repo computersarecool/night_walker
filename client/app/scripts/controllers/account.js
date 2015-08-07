@@ -9,11 +9,6 @@
  */
 angular.module('nightwalkerApp')
   .controller('AccountCtrl', function ($scope, $location, UserFactory) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
 
     if (!UserFactory.checkToken()) {
       $location.path('/login');

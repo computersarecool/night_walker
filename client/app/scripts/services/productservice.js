@@ -8,7 +8,7 @@
  * Factory in the nightwalkerApp.
  */
 angular.module('nightwalkerApp')
-  .factory('productService', function ($http, $q) {
+  .factory('productService', function ($http) {
     return {
       getCollection: getCollection,
       getProduct: getProduct
