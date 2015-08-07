@@ -9,11 +9,13 @@
  */
 angular.module('nightwalkerApp')
   .controller('ProductCtrl', function ($scope, $window, UserFactory, product) {
+
     $scope.product = product;
+
     $scope.addToCart = function (item) {
       // Convert SKU to number because Angular templating does opposite
       item = parseInt(item, 10);
-      if (UserFactory.currentUser) {
+      if (UserFactory.currentUser.loggedIn) {
         UserFactory.addToCart(item);
       } else {
         var store = $window.localStorage;
@@ -21,12 +23,14 @@ angular.module('nightwalkerApp')
         if (cart) {
           cart.push(item);
           store.setItem('cart', JSON.stringify(cart));
+          $scope.user.cart = cart;
         } else {
-          cart = JSON.stringify([item]);
-          store.setItem('cart', cart);
+          cart = [item];
+          store.setItem('cart', JSON.stringify(cart));
+          $scope.user.cart = cart;
         }
       }
     };
-
+    
   });
 

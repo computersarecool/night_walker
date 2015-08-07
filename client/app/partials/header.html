@@ -1,14 +1,18 @@
 <header>
+  
   <h1>
     <a ng-href='/'><img src="../images/nw_logo.jpg" alt="NightWalker Clothing" title="Men's Chinos and clothing"></a>
   </h1>
+  
   <div class="status">
+    
     <!-- Show if user is not logged in -->
     <p ng-show="!user.loggedIn">
-      Welcome to NightWalker 
+      Welcome to NightWalker
       <a ng-href='/signup'>Join</a>
       <a ng-href='/login'>Sign In</a>
     </p>
+
     <!-- Show if user is logged in -->
     <p ng-show="user.loggedIn">
       <span>Welcome {{user.firstName}}</span>
@@ -20,18 +24,19 @@
 
     <!-- Cube and logo -->
     <img src="images/symbol_logo.jpg" alt="NightWalker logo">
-
     <div class="wrap">
       <div class="cart-cube">
         <div class="front"></div>
         <div class="back"></div>
-        <div class="words">{{user.cart || "thing"}}</div>
+        <div class="words">{{user.cart.length}}</div>
         <div class="top"></div>
         <div class="bottom"></div>
         <div class="left"></div>
         <div class="right"></div>
       </div>
     </div>
-
+    
   </div>
+  
 </header>
+

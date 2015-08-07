@@ -68,8 +68,8 @@ angular.module('nightwalkerApp')
       });
     }
 
-    // IIFE to fill currentUser (which is scope.user)
-    var getUser = (function () {
+
+     function getUser () {
       if (AuthTokenFactory.getToken()) {
         return $http.get('/api/user')
           .then (function success (response) {
@@ -80,12 +80,11 @@ angular.module('nightwalkerApp')
             throw httpError.status + " : " + httpError.data;
           });
         } else {
-          user.currentUser = {
-            cart: $window.localStorage.getItem('cart')
+          return user.currentUser = {
+            cart: JSON.parse($window.localStorage.getItem('cart')) || []
           };
-          return undefined;
         }
-     })();
+     }
 
     
     user = {

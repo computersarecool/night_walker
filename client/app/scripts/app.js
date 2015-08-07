@@ -11,7 +11,6 @@
 angular
   .module('nightwalkerApp', [
     'ngAnimate',
-    'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',

@@ -9,9 +9,9 @@
  */
 
 angular.module('nightwalkerApp')
-  .controller('LoginCtrl', function ($scope, $location, UserFactory) {
+  .controller('LoginCtrl', function ($scope, $window, $location, UserFactory) {
 
-    $scope.user = UserFactory.currentUser;
+    $scope.user = UserFactory.getUser();
 
     $scope.signup = function (email, password, firstName, lastName) {
       UserFactory.signup(email, password, firstName, lastName);
@@ -34,11 +34,13 @@ angular.module('nightwalkerApp')
       }
     };
 
+    
     if ($location.path() === '/signup') {
       $scope.showLogin = false;
     } else {
       $scope.showLogin = true;
     }
+
 
     $scope.$watch(function () {
       return UserFactory.currentUser;
@@ -46,5 +48,5 @@ angular.module('nightwalkerApp')
       $scope.user = UserFactory.currentUser;
     });
 
+  });
 
-  });  

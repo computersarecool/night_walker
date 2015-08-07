@@ -1,5 +1,6 @@
 <!-- Show if the user is logging in -->
 <div ng-show="showLogin">
+  
   <form novalidate ng-submit="login(username, password)">
     <label>Email<input type="email" ng-model="username"></label>
     <label>Password<input type="password" ng-model="password"></label>
@@ -11,10 +12,13 @@
   <div ng-click="changeScreen()">
     Need to sign up?
   </div>
+  
 </div>
+
 
 <!-- Show if the user is signing up -->
 <div ng-show="!showLogin">
+  
   <div>
     This is the signup form
   </div>
@@ -26,7 +30,6 @@
     <input type="text" ng-model="lastName">Last Name<br>
     <button type="submit">Submit</button>
   </form>
-
   <br>
 
 <!-- Click to switch -->  
@@ -36,6 +39,7 @@
   <p>
     By signing up you agree to our Terms and conditions (don't worry, we are cool)
   </p>
+  
 </div>
 
 <div>
