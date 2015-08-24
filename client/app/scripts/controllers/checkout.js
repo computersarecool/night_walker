@@ -15,22 +15,23 @@ angular.module('nightwalkerApp')
       
     } else {
       // The user does not have a token (not logged in)
-      $location.path('/login');
+      //$location.path('/index');
+      console.log("Guest checkin' out");
     } 
 
     $scope.process = function (status, response) {
-      
       if (response.error) {
         // Check for an error code, then
-        console.log('You have an error')  ;
+        console.log('You have an error');
       } else {
         console.log(status);
         console.log(response);
-        $http.post('/checkout', {
+        
+        $http.post('/api/checkout', {
           card: response.card,
           stripeToken: response.id
-        }).then(function success (resposne) {
-          alert('You just bought something!');
+        }).then(function success (response) {
+          alert(response.data.message);
         });
       }
     };

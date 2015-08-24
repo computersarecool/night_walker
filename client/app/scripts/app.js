@@ -88,6 +88,8 @@ angular
         redirectTo: '/'
       });
 
+
+    
     $httpProvider.interceptors.push('AuthInterceptorFactory');
 
     Stripe.setPublishableKey('pk_test_uEnw6EZC8otddMKeJUiZsHFz');

@@ -4,9 +4,7 @@ var stripeKey = require('../../../config/credentials').stripeTest;
 var stripe = require('stripe')(stripeKey);
 
 router.post('/', function (req, res) {
-
   var stripeToken = req.body.stripeToken;
-  console.log(stripeToken);
 
   var charge = stripe.charges.create({
     amount: 5550,
@@ -21,8 +19,11 @@ router.post('/', function (req, res) {
       throw err;
     }  
     else {
-      console.log('The card was charged successfully');
       // Save user card information
+      console.log('The card was charged successfully');
+      res.json({
+        'message': 'Congrats'
+      });
     }
   });
 
