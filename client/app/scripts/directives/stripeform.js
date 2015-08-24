@@ -16,11 +16,10 @@ angular.module('nightwalkerApp')
         
         form.bind('submit', function () {
           var button = form.find('button');
-          button.prop('disable', true);
+          button.prop('disabled', true);
 
           $window.Stripe.createToken(form[0], function () {
             var args = arguments;
-            //button.prop('disable', false);
             scope.$apply(function () {
               scope[attrs.stripeForm].apply(scope, args);
             });

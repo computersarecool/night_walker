@@ -1,8 +1,28 @@
-<p>
-    This is the payment form
-</p>
+<!-- Show login options if not logged in -->
+<div ng-show="showLogins">
+  <div>
+    <a ng-href="/login">
+      Log In
+    </a>
+  </div>
 
-<form ng-model="form" stripe-form="process">
+  <div>
+    <a ng-href="/signup">
+      Sign up
+    </a>
+  </div>
+
+  <div>
+    <a href ng-click="hideLogins()">
+      Check out as guest?
+    </a>
+  </div>
+</div>  
+
+
+<!-- Show the credit card form -->
+<div ng-show="showForm">
+  <form ng-model="form" stripe-form="process">
 
     <span class="payment-errors"></span>
     
@@ -30,5 +50,6 @@
     </div>
 
     <button type="submit">Submit Payment</button>
+  </form>
+</div>
 
-</form>

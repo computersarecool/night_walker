@@ -25,6 +25,10 @@ angular.module('nightwalkerApp')
       UserFactory.logout();
     };
 
+    $scope.guestCheckout = function () {
+      $location.path('/checkout');
+    };
+
     $scope.changeScreen = function () {
       if ($location.path() === '/signup') {
         $location.path('/login');
