@@ -21,11 +21,11 @@ angular.module('nightwalkerApp')
         var store = $window.localStorage;
         var cart = JSON.parse(store.getItem('cart'));
         if (cart) {
-          cart.push(item);
+          cart.push(sku);
           store.setItem('cart', JSON.stringify(cart));
           $scope.user.cart = cart;
         } else {
-          cart = [item];
+          cart = [sku];
           store.setItem('cart', JSON.stringify(cart));
           $scope.user.cart = cart;
         }
