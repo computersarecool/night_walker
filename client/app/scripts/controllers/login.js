@@ -11,6 +11,10 @@
 angular.module('nightwalkerApp')
   .controller('LoginCtrl', function ($scope, $window, $location, UserFactory) {
 
+    if (UserFactory.checkToken()) {
+      $location.path('/acccount');
+    };
+    
     $scope.user = UserFactory.getUser();
 
     $scope.signup = function (email, password, firstName, lastName) {
