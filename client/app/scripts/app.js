@@ -37,8 +37,8 @@ angular
         templateUrl: 'views/shop.html',
         controller: 'ShopCtrl',
         resolve: {
-          collection: function ($route, productService) {
-            return productService.getCollection($route.current.params.collection);
+          collection: function ($route, productFactory) {
+            return productFactory.getCollection($route.current.params.collection);
           }
         }
       })
@@ -46,8 +46,8 @@ angular
         templateUrl:'/views/product.html',
         controller: 'ProductCtrl',
         resolve: {
-          product: function ($route, productService) {
-            return productService.getProduct($route.current.params.flavor);
+          product: function ($route, productFactory) {
+            return productFactory.getProduct($route.current.params.flavor);
           }
         }
       })
@@ -83,6 +83,10 @@ angular
       .when('/checkout', {
         templateUrl: 'views/checkout.html',
         controller: 'CheckoutCtrl'
+      })
+      .when('/congratulations', {
+        templateUrl: 'views/congratulations.html',
+        controller: 'CongratulationsCtrl'
       })
       .otherwise({
         redirectTo: '/'

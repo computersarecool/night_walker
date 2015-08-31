@@ -1,0 +1,60 @@
+- Only show view cart when there are things inside it
+- After pressing checkout route from sign in -> purchase
+
+- Afer pressing checkotu route from sign up -> purchase
+
+
+
+
+
+
+
+HIGHER RES SPRITES (Make FULL RES)
+MAKE FULL RES FOR EACH IMAGE USED
+Remove Semicolon after function declaration
+remove double var in services
+
+EXPRESS:
+    The logger
+    The body of the request (bodyParser.json)
+    app.get('env')
+    Bin Folder
+
+
+
+MONGODB:
+    db logs (mongodb.log)
+        db journal
+
+
+YEOMAN: 
+    .travis.yml
+    .buildignore
+
+BOWER:
+    Directory: Bower components
+    Bower.json
+
+
+MISC:
+    Editor config
+
+
+TESTING:
+
+
+
+Things to do:
+    • Prepare media:
+        - Image sizes:
+            335 x 855
+        - Make Sprite sheet
+        - Link Media so it displays
+        - Fix animating pants completely
+
+    • Add members to Edition Schema
+    • Link Edition name in Schema
+        (Can the edition schema be embedded?) - No
+
+    • Finish copy
+    • Style

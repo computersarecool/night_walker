@@ -12,6 +12,7 @@ angular.module('nightwalkerApp')
     if (AuthTokenFactory.getToken()) {
       // The user has a token validate to procceed checkout
       console.log('Validate token');
+      $scope.showForm = true;
     } else {
       // The user does not have a token (not logged in)
       $scope.showLogins = true;
@@ -33,6 +34,7 @@ angular.module('nightwalkerApp')
         }).then(function success (response) {
           $window.localStorage.removeItem('cart');
           alert(response.data.message);
+          $location.path('/congratulations');
         });
       }
     };

@@ -31,6 +31,7 @@ angular.module('nightwalkerApp')
         $location.path('/account');
       }, function (httpError) {
         throw httpError.status + " : " + httpError.data;
+        return;
       });
     }
 
@@ -47,6 +48,7 @@ angular.module('nightwalkerApp')
         $location.path('/account');
       }, function (httpError) {
         throw httpError.status + " : " + httpError.data;
+        return;
       });
     }
 
@@ -64,7 +66,8 @@ angular.module('nightwalkerApp')
         $window.localStorage.removeItem('cart');        
       }, function (httpError) {
         // WHAM Better error handling
-        throw httpError.status + " : " + httpError.data;        
+        throw httpError.status + " : " + httpError.data;
+        return;
       });
     }
 
@@ -78,6 +81,7 @@ angular.module('nightwalkerApp')
           }, function (httpError) {
             // WHAM Better error handling
             throw httpError.status + " : " + httpError.data;
+            return;
           });
         } else {
           return user.currentUser = {
