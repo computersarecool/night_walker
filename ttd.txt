@@ -1,5 +1,14 @@
+// TODO:
+- Handle failure with credit car
+- Quick purchase with new signed up buyer (and empty cart)
+- Quick purchase with previously logged in buyer
+- Move all items to cart when checking out
+
+
+// ONGOING QUESTIONS
 ? What does compile do in a directive?
 ? Why is link returned?
+? Directive controller?
 
 
 - Only show view cart when there are things inside it

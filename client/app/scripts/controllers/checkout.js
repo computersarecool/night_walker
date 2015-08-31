@@ -32,6 +32,7 @@ angular.module('nightwalkerApp')
           card: response.card,
           stripeToken: response.id
         }).then(function success (response) {
+          // TODO: Handle failure
           $window.localStorage.removeItem('cart');
           alert(response.data.message);
           $location.path('/congratulations');
