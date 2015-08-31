@@ -12,11 +12,11 @@ angular.module('nightwalkerApp')
 
     $scope.product = product;
 
-    $scope.addToCart = function (item) {
+    $scope.addToCart = function (productsku) {
       // Convert SKU to number because Angular templating does opposite
-      item = parseInt(item, 10);
+      var sku = parseInt(productsku, 10);
       if (UserFactory.currentUser.loggedIn) {
-        UserFactory.addToCart(item);
+        UserFactory.addToCart(sku);
       } else {
         var store = $window.localStorage;
         var cart = JSON.parse(store.getItem('cart'));

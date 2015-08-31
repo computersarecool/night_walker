@@ -1,3 +1,7 @@
+? What does compile do in a directive?
+? Why is link returned?
+
+
 - Only show view cart when there are things inside it
 - After pressing checkout route from sign in -> purchase
 
