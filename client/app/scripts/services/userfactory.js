@@ -11,17 +11,18 @@ angular.module('nightwalkerApp')
   .factory('UserFactory', function ($window, $http, $location, AuthTokenFactory) {
 
     var user = {};
-    /*
-      email,
-      firstName,
-      lastName,
-      addresses,
-      cart,
-      password,
-      dateJoined,
-      loggedIn,
+
+     /*
+      email
+      firstName
+      lastName
+      addresses
+      cart
+      password
+      dateJoined
+      loggedIn
      */
-        
+    
     function checkToken () {
       return AuthTokenFactory.getToken();
     }
@@ -39,11 +40,14 @@ angular.module('nightwalkerApp')
         user.currentUser = response.data.user;
         $window.localStorage.removeItem('cart');
         $location.path('/account');
-      }, function (httpError) {
+      }, function error (response) {
         // TODO: Better error handling
-        alert('error');        
-        console.dir(httpError);
+        if (response.status == 401) {
+          alert('Some information you entered is invalid');
+        }
+        // Unknown error
         return undefined;
+        
       });
     }
 
@@ -59,11 +63,14 @@ angular.module('nightwalkerApp')
         //user.currentUser.show = true;
         $window.localStorage.removeItem('cart');        
         $location.path('/account');
-      }, function (httpError) {
+      }, function error (response) {
         // TODO: Better error handling
-        alert('error');        
-        console.dir(httpError);
+        if (response.status == 401) {
+          alert('Some information you entered is invalid');
+        }
+        // Unknown error
         return undefined;
+        
       });
     }
 
@@ -81,11 +88,11 @@ angular.module('nightwalkerApp')
       }).then(function success (response) {
         user.currentUser = response.data;
         $window.localStorage.removeItem('cart');        
-      }, function (httpError) {
+      }, function error (response) {
         // TODO: Better error handling
-        alert('error');
-        console.dir(httpError);
+        alert('There was an error with your request');
         return undefined;
+        
       });
     }
 
@@ -110,7 +117,7 @@ angular.module('nightwalkerApp')
 
     
     user = {
-      addToCart : addToCart,
+      addToCart: addToCart,
       login: login,
       logout: logout,
       signup: signup,

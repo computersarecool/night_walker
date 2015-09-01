@@ -13,11 +13,16 @@ router.post('/signup', function (req, res, next) {
       // TODO: Error handling
       return next(err);
     }
+    
     if (!user) {
       // TODO: Error handling
-      res.status(401).send(info);
+      res.status(401).send({
+        'error': info
+      });
+      
       return undefined;
     }
+    
     //This is where the jwt is created
     var token = jwt.sign({  
       funThing: 'This is your new JWT',
@@ -41,10 +46,16 @@ router.post('/login', function (req, res, next) {
       // TODO: Error handling      
       return next(err);
     }
+    
     if (!user) {
       // TODO: Error handling
+      res.status(401).send({
+        'error': info
+      });
+      
       return undefined;
     }
+
     // This is where the jwt is created
     var token = jwt.sign({
       funThing: 'This is your personal JWT',
