@@ -1,8 +1,7 @@
 // TODO:
-- Handle failure with credit card
-- Quick purchase with new signed up buyer (and empty cart)
-- Quick purchase with previously logged in buyer
-- Move all items to cart when checking out
+- Send actual price charges to stripe, real api information
+- Clear cart after logged in buyer buys something (set to null in database)
+
 
 
 // ONGOING QUESTIONS
