@@ -1,5 +1,5 @@
 // TODO:
-- Handle failure with credit car
+- Handle failure with credit card
 - Quick purchase with new signed up buyer (and empty cart)
 - Quick purchase with previously logged in buyer
 - Move all items to cart when checking out

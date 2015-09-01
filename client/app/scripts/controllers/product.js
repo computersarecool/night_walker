@@ -24,15 +24,14 @@ angular.module('nightwalkerApp')
 
         if (cart) {
           cart.push(sku);
-          store.setItem('cart', JSON.stringify(cart));
-          $scope.user.cart = cart;
         } else {
           cart = [sku];
-          store.setItem('cart', JSON.stringify(cart));
-          $scope.user.cart = cart;
         }
         
+        store.setItem('cart', JSON.stringify(cart));
+        $scope.user.cart = cart;
       }
+      
     };
     
   });

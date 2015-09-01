@@ -9,6 +9,7 @@
  */
 angular.module('nightwalkerApp')
   .controller('ContactCtrl', function ($scope) {
+    // TODO: Make null controller
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

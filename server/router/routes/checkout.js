@@ -12,23 +12,38 @@ router.post('/', function (req, res) {
     card: stripeToken,
     description: 'payinguser@example.com'
   }, function (err, charge) {
-    if (err && err.type === 'StripeCardError') {
-      console.log('The card has been declined');
-    } else if (err) {
-      console.log('there is some kind of error here');
-      throw err;
-    }  
-    else {
-      // Save user card information
-      console.log('The card was charged successfully');
+    if (err) {
+      switch (err.type) {
+        case 'StripeCardError':
+          // TODO: Send the user an error / declined message        
+          console.log('The card has been declined');        
+          res.status(402).json({
+            'error': {
+              'message':err.message // e.g. "Your card's expiration year is invalid."
+            }
+          });
+          break;
+        case 'StripeInvalidRequest':
+          console.error("Invalid parameters were supplied to Stripe's API");
+          break;
+        case 'StripeAPIError':
+          console.error("An error occurred internally with Stripe's API");
+          break;
+        case 'StripeConnectionError':
+          console.error("Some kind of error occurred during the HTTPS communication");
+          break;
+        case 'StripeAuthenticationError':
+          console.error("You probably used an incorrect API key");
+          break;
+      }
+    } else {
+      // TODO: Save card information if not a guest
       res.json({
-        'message': 'Congrats'
+        'message': 'congrats'
       });
     }
   });
-
 });
 
-
-
 module.exports = router;
+

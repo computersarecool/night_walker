@@ -14,7 +14,8 @@ angular.module('nightwalkerApp')
     var list2 = angular.element('<p style="margin-bottom:50px">Words here</p>');
     var colorPant = angular.element('<div id="top-gallery" class="home-sprite">Some words here</div>');
     var grayPant = angular.element('<div id="bottom-gallery" class="home-sprite gray-gallery gallery-animate">Some More words here</div>');
-  
+
+    // TODO: Lint syntax
     var link = function (scope, element, attrs) {
       if ($window.DeviceOrientationEvent && screen.width <= 980) {
         var manualChange = (function () {
@@ -47,13 +48,15 @@ angular.module('nightwalkerApp')
             list2.html('The opacity value is ' + opacityValue);
           };
 
+          
           var checkAdd = function (oldClass, newClass) {
             if (!grayPant.hasClass(newClass)) {
               grayPant.removeClass(oldClass);
               grayPant.addClass(newClass);
             }
           };
-        
+
+          
           $window.addEventListener('deviceorientation', function(eventData) {
             var tiltLR = eventData.gamma;
             var tiltFB = eventData.beta;
@@ -196,20 +199,6 @@ angular.module('nightwalkerApp')
       }
     };
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

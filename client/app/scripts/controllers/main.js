@@ -9,4 +9,5 @@
  */
 angular.module('nightwalkerApp')
   .controller('MainCtrl', function ($scope, UserFactory) {
+    // TODO: Make a null controller
   });

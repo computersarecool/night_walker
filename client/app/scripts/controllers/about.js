@@ -9,9 +9,5 @@
  */
 angular.module('nightwalkerApp')
   .controller('AboutCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    // TODO: Make null controller
   });

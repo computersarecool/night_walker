@@ -8,10 +8,7 @@
  * Controller of the nightwalkerApp
  */
 angular.module('nightwalkerApp')
-  .controller('CongratulationsCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('CongratulationsCtrl', function ($scope, UserFactory) {
+    // Get user to update cart after purchase
+    $scope.user = UserFactory.getUser();
   });
