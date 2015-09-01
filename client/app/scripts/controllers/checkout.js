@@ -10,8 +10,8 @@
 angular.module('nightwalkerApp')
   .controller('CheckoutCtrl', function ($scope, $location, $http, $window, UserFactory) {
     if (UserFactory.currentUser) {
+      // TODO: Validate token
       // The user has a token validate to procceed checkout
-      console.log('Validate token');
       $scope.showForm = true;
     } else {
       // The user does not have a token (not logged in)
@@ -38,7 +38,7 @@ angular.module('nightwalkerApp')
         }).then(function success (response) {
           $window.localStorage.removeItem('cart');
           // TODO: Return user as null instead of getting it here
-          UserFactory.currentUser = null;
+          UserFactory.getUser();
           $location.path('/congratulations');
         }, function error (response) {
           // TODO: Do something meaningful with stripe error from server
