@@ -19,7 +19,7 @@ router.post('/', function (req, res) {
           console.log('The card has been declined');        
           res.status(402).json({
             'error': {
-              'message':err.message // e.g. "Your card's expiration year is invalid."
+              'message': err.message // e.g. "Your card's expiration year is invalid."
             }
           });
           break;

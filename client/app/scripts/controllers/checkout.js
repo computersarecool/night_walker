@@ -37,7 +37,7 @@ angular.module('nightwalkerApp')
           stripeToken: response.id
         }).then(function success (response) {
           $window.localStorage.removeItem('cart');
-          // TODO: Return user instead of getting it here
+          // TODO: Return user as null instead of getting it here
           UserFactory.currentUser = null;
           $location.path('/congratulations');
         }, function error (response) {

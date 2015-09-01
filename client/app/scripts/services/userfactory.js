@@ -11,8 +11,17 @@ angular.module('nightwalkerApp')
   .factory('UserFactory', function ($window, $http, $location, AuthTokenFactory) {
 
     var user = {};
-
-    
+    /*
+      email,
+      firstName,
+      lastName,
+      addresses,
+      cart,
+      password,
+      dateJoined,
+      loggedIn,
+     */
+        
     function checkToken () {
       return AuthTokenFactory.getToken();
     }
@@ -46,7 +55,7 @@ angular.module('nightwalkerApp')
       }).then(function success (response) {
         AuthTokenFactory.setToken(response.data.token);
         user.currentUser = response.data.user;
-        user.currentUser.show = true;
+        //user.currentUser.show = true;
         $window.localStorage.removeItem('cart');        
         $location.path('/account');
       }, function (httpError) {
@@ -70,7 +79,7 @@ angular.module('nightwalkerApp')
         user.currentUser = response.data;
         $window.localStorage.removeItem('cart');        
       }, function (httpError) {
-        // WHAM Better error handling
+        // TODO: Better error handling
         throw httpError.status + " : " + httpError.data;
         return;
       });
@@ -82,9 +91,9 @@ angular.module('nightwalkerApp')
         return $http.get('/api/user')
           .then (function success (response) {
             user.currentUser = response.data.user;
-            user.currentUser.show = true;
+            //user.currentUser.show = true;
           }, function (httpError) {
-            // WHAM Better error handling
+            // TODO: Better error handling
             throw httpError.status + " : " + httpError.data;
             return;
           });
@@ -109,3 +118,4 @@ angular.module('nightwalkerApp')
     return user;
 
   });
+

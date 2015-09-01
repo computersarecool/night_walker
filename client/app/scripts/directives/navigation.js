@@ -7,7 +7,7 @@
  * # navigation
  */
 angular.module('nightwalkerApp')
-  .directive('siteNav', function (UserFactory) {
+  .directive('siteNav', function () {
     return {
       templateUrl: 'partials/navigation.html',
       restrict: 'E'
