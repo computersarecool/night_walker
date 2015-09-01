@@ -83,18 +83,42 @@ angular.module('nightwalkerApp')
 
     
     function addToCart (items) {
-      return $http.post('/api/addproduct', {
-        items: items
-      }).then(function success (response) {
-        user.currentUser = response.data;
-        $window.localStorage.removeItem('cart');        
-      }, function error (response) {
-        // TODO: Better error handling
-        alert('There was an error with your request');
+      if (!user.currentUser.loggedIn) {
+        // Add to temporary user cart and storage if not logged in
+        var store = $window.localStorage;
+        var cart = JSON.parse(store.getItem('cart'));
+
+        if (cart) {
+          cart.push(items);
+        } else {
+          cart = [items];
+        }
+        store.setItem('cart', JSON.stringify(cart));
+        if (user.currentUser) {
+          user.currentUser.cart = cart;          
+        } else {
+          user.currentUser = {
+            cart: cart
+          };
+        }
+
         return undefined;
         
-      });
-    }
+      } else {
+        // Add to cart in DB if logged in
+        return $http.post('/api/addproduct', {
+          items: items
+        }).then(function success (response) {
+          user.currentUser = response.data;
+          $window.localStorage.removeItem('cart');        
+        }, function error (response) {
+          // TODO: Better error handling
+          alert('There was an error with your request');
+          return undefined;
+          
+        });
+      }
+     }
 
 
      function getUser () {
