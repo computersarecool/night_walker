@@ -60,7 +60,6 @@ angular.module('nightwalkerApp')
       }).then(function success (response) {
         AuthTokenFactory.setToken(response.data.token);
         user.currentUser = response.data.user;
-        //user.currentUser.show = true;
         $window.localStorage.removeItem('cart');        
         $location.path('/account');
       }, function error (response) {
