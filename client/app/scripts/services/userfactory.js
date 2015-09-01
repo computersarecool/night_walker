@@ -11,9 +11,6 @@ angular.module('nightwalkerApp')
   .factory('UserFactory', function ($window, $http, $location, AuthTokenFactory) {
 
     var user = {};
-    var store = $window.localStorage;
-    var cart = JSON.parse(store.getItem('cart'));
-
      /*
       email
       firstName
@@ -125,26 +122,26 @@ angular.module('nightwalkerApp')
     }
 
 
-     function getUser () {
-      if (AuthTokenFactory.getToken()) {
-        return $http.get('/api/user')
-          .then (function success (response) {
-            user.currentUser = response.data.user;
-          }, function (httpError) {
-            // TODO: Better error handling
-            throw httpError.status + " : " + httpError.data;
-            return undefined;
-            
-          });
+      function getUser () {
+        var store = $window.localStorage;
+        var cart = JSON.parse(store.getItem('cart'));
+        
+        if (AuthTokenFactory.getToken()) {
+          return $http.get('/api/user')
+            .then (function success (response) {
+              user.currentUser = response.data.user;
+            }, function (httpError) {
+              // TODO: Better error handling
+              throw httpError.status + " : " + httpError.data;
+              return undefined;
+         });
         
       } else {
         user.currentUser = {
           loggedIn: false,
           cart: cart
         };
-
         return undefined;
-        
       }
      }
 
