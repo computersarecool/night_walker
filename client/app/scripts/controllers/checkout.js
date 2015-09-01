@@ -28,7 +28,7 @@ angular.module('nightwalkerApp')
     
     $scope.process = function (status, response) {
       if (response.error) {
-        // TODO: Do something meaningful with stripe error
+        // TODO: Do something meaningful with stripe error from stripe
         alert(response.error.message);
         return;
       } else {
@@ -37,10 +37,11 @@ angular.module('nightwalkerApp')
           stripeToken: response.id
         }).then(function success (response) {
           $window.localStorage.removeItem('cart');
+          // TODO: Return user instead of getting it here
           UserFactory.currentUser = null;
           $location.path('/congratulations');
         }, function error (response) {
-          // TODO: Handle stripe error
+          // TODO: Do something meaningful with stripe error from server
           alert(response.data.error.message);
           return;
         });
