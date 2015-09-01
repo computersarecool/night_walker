@@ -15,8 +15,23 @@ angular.module('nightwalkerApp')
     $scope.addToCart = function (productsku) {
       // Convert SKU to number because Angular templating does opposite
       var sku = parseInt(productsku, 10);
-      UserFactory.addToCart(sku);
+      var store = $window.localStorage;
+      var cart = JSON.parse(store.getItem('cart'));
+
+      if (UserFactory.currentUser.loggedIn) {
+        // Add to cart in DB if user is logged in
+        UserFactory.addToCart(sku);
+      } else {
+        // Add product to local cart if not logged in / no temp user
+        if (cart) {
+          cart.push(sku);
+        } else {
+          cart = [sku];
+        }
+        
+        store.setItem('cart', JSON.stringify(cart));
+        UserFactory.currentUser.cart = cart;
+      }
     };
-    
   });
 
