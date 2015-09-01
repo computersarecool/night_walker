@@ -10,11 +10,11 @@ var router = express.Router();
 router.post('/signup', function (req, res, next) {
   passport.authenticate('local-signup', {session: false}, function (err, user, info) {  
     if (err) {
-      // WHAM BETTER ERROR HANDLING
+      // TODO: Error handling
       return next(err);
     }
     if (!user) {
-      // WHAM BETTER ERROR HANDLING
+      // TODO: Error handling
       res.status(401).send(info);
       return undefined;
     }
@@ -28,8 +28,9 @@ router.post('/signup', function (req, res, next) {
       user : user,
       token: token
     });
-    // End 
+
     return undefined;
+    
   })(req, res, next);
 });
 
@@ -37,10 +38,11 @@ router.post('/signup', function (req, res, next) {
 router.post('/login', function (req, res, next) {
   passport.authenticate('local-login', {session: false}, function (err, user, info) {
     if (err) {
+      // TODO: Error handling      
       return next(err);
     }
     if (!user) {
-      res.status(401).send(info);
+      // TODO: Error handling
       return undefined;
     }
     // This is where the jwt is created
@@ -53,8 +55,9 @@ router.post('/login', function (req, res, next) {
       user : user,
       token: token
     });
-    // End
+
     return undefined;
+    
   })(req, res, next);
 });
 

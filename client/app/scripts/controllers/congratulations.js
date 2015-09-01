@@ -9,6 +9,5 @@
  */
 angular.module('nightwalkerApp')
   .controller('CongratulationsCtrl', function ($scope, UserFactory) {
-    // Get user to update cart after purchase
-    $scope.user = UserFactory.getUser();
+    // TODO: Null controller
   });

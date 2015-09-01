@@ -37,12 +37,13 @@ angular.module('nightwalkerApp')
       }).then(function success (response) {
         AuthTokenFactory.setToken(response.data.token);
         user.currentUser = response.data.user;
-        user.currentUser.show = true;
         $window.localStorage.removeItem('cart');
         $location.path('/account');
       }, function (httpError) {
-        throw httpError.status + " : " + httpError.data;
-        return;
+        // TODO: Better error handling
+        alert('error');        
+        console.dir(httpError);
+        return undefined;
       });
     }
 
@@ -59,8 +60,10 @@ angular.module('nightwalkerApp')
         $window.localStorage.removeItem('cart');        
         $location.path('/account');
       }, function (httpError) {
-        throw httpError.status + " : " + httpError.data;
-        return;
+        // TODO: Better error handling
+        alert('error');        
+        console.dir(httpError);
+        return undefined;
       });
     }
 
@@ -80,8 +83,9 @@ angular.module('nightwalkerApp')
         $window.localStorage.removeItem('cart');        
       }, function (httpError) {
         // TODO: Better error handling
-        throw httpError.status + " : " + httpError.data;
-        return;
+        alert('error');
+        console.dir(httpError);
+        return undefined;
       });
     }
 
