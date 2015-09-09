@@ -28,13 +28,15 @@ angular.module('nightwalkerApp')
     
     $scope.process = function (status, response) {
       if (response.error) {
-        // TODO: Do something meaningful with stripe error from stripe
+        // TODO: Do something meaningful with validation error from stripe
         alert(response.error.message);
         return;
       } else {
         $http.post('/api/checkout', {
+          //TODO: Post actual items
           card: response.card,
-          stripeToken: response.id
+          stripeToken: response.id,
+          user: UserFactory.currentUser
         }).then(function success (response) {
           $window.localStorage.removeItem('cart');
           // TODO: Return user as null instead of getting it here
