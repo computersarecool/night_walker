@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var async = require('async');
 var stripeKey = require('../../../config/credentials').stripeTest;
 var stripe = require('stripe')(stripeKey);
 var Products = require('../../../database').Products;
@@ -21,12 +22,28 @@ router.post('/', function (req, res) {
   } else {
     // Guest checkout
     user['guest'] = true;
-    getTotal(totalCost, user);
+    getTotal(user);
   }
 
+
+
+  function getItem (skunumber, callback) {
+    Products.findOne({sku: skunumber}, function (err, product) {
+      // TODO: Error handling
+      product = product.toObject();
+      totalCost += product.price;
+      console.log(totalCost);
+    });
+  }
   
   function getTotal (user) {
-    for (var i = 0; i < user.cart.length; i++) {
+    // TODO: Check if guest or not
+    async.each(user.cart, getItem, function (err) {
+      // TODO: Error handling
+      charge(totalCost, user);
+    });
+    
+    /*for (var i = 0; i < user.cart.length; i++) {
       Products.findOne({sku: user.cart[i]}, function (err, product) {
         // TODO: Error handling
         product = product.toObject();
@@ -35,8 +52,8 @@ router.post('/', function (req, res) {
       });
       // TODO: Make async charges
       charge(totalCost, user);
-      
-  }};    
+     } */
+  };    
 
   
   function charge (amount, userDescription) {
@@ -69,7 +86,7 @@ router.post('/', function (req, res) {
             console.error("An error occurred internally with Stripe's API");
             break;
           case 'StripeConnectionError':
-            console.error("Some kind of error occurred during HTTPS communication");
+            console.error("A kind of error occurred during HTTPS communication");
             break;
           case 'StripeAuthenticationError':
             console.error("You probably used an incorrect API key");
