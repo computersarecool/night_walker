@@ -1,6 +1,43 @@
 // TODO:
-- Send actual price charges to stripe, real api information
+
+- Review "Charge" function, checkout.js:48
 - Clear cart after logged in buyer buys something (set to null in database)
+
+
+
+
+Only show view cart when there are things inside it
+After pressing checkout route from sign in -> purchase
+Afer pressing checkotu route from sign up -> purchase
+
+
+
+
+HIGHER RES SPRITES (Make FULL RES)
+MAKE FULL RES FOR EACH IMAGE USED
+Remove Semicolon after function declarations
+remove double var in services
+
+
+
+
+
+Things to do:
+    • Prepare media:
+        - Image sizes:
+            335 x 855
+        - Make Sprite sheet
+        - Link Media so it displays
+        - Fix animating pants completely
+
+    • Add members to Edition Schema
+    • Link Edition name in Schema
+        (Can the edition schema be embedded?) - No
+
+    • Finish copy
+    • Style
+
+
 
 
 
@@ -8,30 +45,15 @@
 ? What does compile do in a directive?
 ? Why is link returned?
 ? Directive controller?
+? Should functions be defined inside of a callback (i.e. checkout.js:30, checkout)
+? How is the callback defined in async.js (checkout.js:35)
 
-
-- Only show view cart when there are things inside it
-- After pressing checkout route from sign in -> purchase
-
-- Afer pressing checkotu route from sign up -> purchase
-
-
-
-
-
-
-
-HIGHER RES SPRITES (Make FULL RES)
-MAKE FULL RES FOR EACH IMAGE USED
-Remove Semicolon after function declaration
-remove double var in services
 
 EXPRESS:
     The logger
     The body of the request (bodyParser.json)
     app.get('env')
     Bin Folder
-
 
 
 MONGODB:
@@ -52,21 +74,5 @@ MISC:
     Editor config
 
 
-TESTING:
+UNIT TESTING:
 
-
-
-Things to do:
-    • Prepare media:
-        - Image sizes:
-            335 x 855
-        - Make Sprite sheet
-        - Link Media so it displays
-        - Fix animating pants completely
-
-    • Add members to Edition Schema
-    • Link Edition name in Schema
-        (Can the edition schema be embedded?) - No
-
-    • Finish copy
-    • Style

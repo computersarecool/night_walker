@@ -25,42 +25,31 @@ router.post('/', function (req, res) {
     getTotal(user);
   }
 
-
-
+  
   function getItem (skunumber, callback) {
     Products.findOne({sku: skunumber}, function (err, product) {
       // TODO: Error handling
       product = product.toObject();
       totalCost += product.price;
-      console.log(totalCost);
+      // TODO: Check what is up with this callback
+      callback = callback || function () {console.log(product.price);};
+      callback();
     });
   }
   
   function getTotal (user) {
-    // TODO: Check if guest or not
     async.each(user.cart, getItem, function (err) {
       // TODO: Error handling
+      console.log("The total cost is: " + totalCost);
       charge(totalCost, user);
     });
-    
-    /*for (var i = 0; i < user.cart.length; i++) {
-      Products.findOne({sku: user.cart[i]}, function (err, product) {
-        // TODO: Error handling
-        product = product.toObject();
-        totalCost += product.price;
-        console.log(totalCost);
-      });
-      // TODO: Make async charges
-      charge(totalCost, user);
-     } */
   };    
 
-  
   function charge (amount, userDescription) {
     if (userDescription['guest']) {
-      var info = userDescription['name'];
+      var info = 'payinguser@example.com';
     } else {
-      info = 'payinguser@example.com';
+      info = userDescription['name'];
     }
     var charge = stripe.charges.create({
       amount: totalCost,

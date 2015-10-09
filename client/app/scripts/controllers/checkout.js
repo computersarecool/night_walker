@@ -33,7 +33,6 @@ angular.module('nightwalkerApp')
         return;
       } else {
         $http.post('/api/checkout', {
-          //TODO: Post actual items
           card: response.card,
           stripeToken: response.id,
           user: UserFactory.currentUser
@@ -43,7 +42,8 @@ angular.module('nightwalkerApp')
           UserFactory.getUser();
           $location.path('/congratulations');
         }, function error (response) {
-          // TODO: Do something meaningful with stripe error from server
+          // TODO: Do something meaningful with  error from server
+          console.log(response);          
           alert(response.data.error.message);
           return;
         });
