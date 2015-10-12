@@ -9,3 +9,4 @@ router.use('/collection', require('./routes/editions'));
 router.use('/shop/alternatingcurrent', require('./routes/getproduct'));
 
 module.exports = router;
+

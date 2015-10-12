@@ -26,7 +26,8 @@ if (app.get('env') === 'development') {
   app.use(express.static(path.join(__dirname, '../client')));
   app.use(express.static(path.join(__dirname, '../client/.tmp')));
   app.use(express.static(path.join(__dirname, '../client/app')));
-  //Error handling
+
+  //Development Error handling
   app.use(function (err, req, res, next) {
     //A bad error here
     console.log(err);
@@ -46,3 +47,4 @@ if (app.get('env') === 'production') {
 }
 
 module.exports = app;
+
