@@ -99,11 +99,10 @@ router.post('/', function (req, res) {
         }
 
         user.cart.forEach(function (item) {
-          console.log('This is the item', item);
           successOrder.items.push(item);
         });
         
-        successOrder.save(function (err, product, numaffected) {
+        successOrder.save(function (err, order, numaffected) {
           // TODO: Error handling
           if (err) {
             console.log(err);
@@ -120,6 +119,8 @@ router.post('/', function (req, res) {
                 res.json(user);
               }
             });
+          } else {
+            res.json(user);
           }
         });
         
