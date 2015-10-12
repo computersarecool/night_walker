@@ -45,7 +45,6 @@ router.post('/', function (req, res) {
   function getTotal (user) {
     async.each(user.cart, getItem, function (err) {
       // TODO: Error handling
-      console.log("The total cost is: " + totalCost);
       charge(totalCost, user);
     });
   };    
@@ -115,11 +114,12 @@ router.post('/', function (req, res) {
               if (err) {
                 console.log('There was an error');
               } else {
-                console.log('User updated');
+                // TODO: Only send the usersafe information
                 res.json(user);
               }
             });
           } else {
+            // TODO: Only send the safe user information            
             res.json(user);
           }
         });
