@@ -1,19 +1,6 @@
 # TODO:
-Purchase scenarios
-x Not logged in user buys items
-x Non-logged in user adds items to cart then creates account then checks out
-x Then re-adds items and checkouts out
-
-
-
-
-# Things to do, various
-Only show view cart when there are things inside it
-Remove Semicolons after function declarations
-remove double var in services
-Get highest needed size for sprites
-
-Prepare media:
+Final design and prepare media:
+    - Get the highest needed sprite size
     - Image sizes:
       335 x 855
     - Make Sprite sheet
@@ -21,8 +8,18 @@ Prepare media:
     - Fix animating pants completely
 
 
+Purchase scenarios
+  x Not logged in user buys items
+  x Non-logged in user adds items to cart then creates account then checks out
+  x Then re-adds items and checkouts out
+
+
+
 
 #### Small todo items
+Only show view cart when there are things inside it
+Remove semicolons after function declarations
+
 routes|checkout.j:91 save card information if not a guest
 routes|checkout.j:119, 124 only send usersafe information
 
