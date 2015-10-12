@@ -6,18 +6,18 @@ var credentials = require('../config/credentials');
 var UserModel = require('./schemas/users');
 var ProductModel = require('./schemas/products');
 var EditionsModel = require('./schemas/editions');
+var OrdersModel = require('./schemas/orders');
 
 //Connections
 var developmentDb = credentials.testConnection;
 var productionDb = credentials.mongoConnection;
 
-//If in development
+//If in development set database to the development one
 if (process.env.NODE_ENV === 'development') {
-  //set database to development one
   database = developmentDb;
 }
 
-//If in production
+//If in production, set to production one
 if (process.env.NODE_ENV === 'production') {
   database = productionDb;
 }
@@ -37,3 +37,5 @@ db.once('open', function () {
 exports.Users = UserModel;
 exports.Products = ProductModel;
 exports.Editions = EditionsModel;
+exports.Orders = OrdersModel;
+

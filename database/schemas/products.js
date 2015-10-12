@@ -48,9 +48,9 @@ var productSchema = new Schema({
   sku: {
     type: String
   }
-
 });
 
 
 var Products = mongoose.model('Products', productSchema);
 module.exports = Products;
+

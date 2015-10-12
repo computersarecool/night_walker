@@ -22,6 +22,9 @@ var userSchema = new Schema({
   password: {
     type: String
   },
+  orders: {
+    type: Array
+  },
   dateJoined: {
     type: Date,
     default: Date.now
@@ -35,7 +38,7 @@ var userSchema = new Schema({
 
 //Encrypt before save userSchema.pre('save')
 userSchema.methods.checkPassword = function (triedPassword, callback) {
-  //bcrypt.compare
+  //TODO: bcrypt.compare
   // Right password
   if (triedPassword === this.password) {
     console.log('The password is right');
@@ -50,3 +53,4 @@ userSchema.methods.checkPassword = function (triedPassword, callback) {
 
 var User = mongoose.model('User', userSchema);
 module.exports = User;
+

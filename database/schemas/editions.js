@@ -19,3 +19,4 @@ var editionsSchema = new Schema({
 
 var Editions = mongoose.model('Editions', editionsSchema);
 module.exports = Editions;
+

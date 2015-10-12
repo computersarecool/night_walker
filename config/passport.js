@@ -31,7 +31,7 @@ module.exports = function (passport) {
           } else {
             var newUser = new Users();
             newUser.email = req.body.email;
-            // WHAM GENERATE HASH
+            // TODO: GENERATE HASH
             newUser.password = req.body.password;
             newUser.firstName = req.body.firstName;
             newUser.lastName = req.body.lastName;

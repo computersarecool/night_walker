@@ -37,6 +37,9 @@ angular.module('nightwalkerApp')
           stripeToken: response.id,
           user: UserFactory.currentUser
         }).then(function success (response) {
+          //TODO: Make response the user?
+          console.log(response);
+          // Only valid if user is checking out as guest
           $window.localStorage.removeItem('cart');
           // TODO: Return user as null instead of getting it here
           UserFactory.getUser();
