@@ -9,17 +9,16 @@ var router = express.Router();
 
 router.post('/signup', function (req, res, next) {
   passport.authenticate('local-signup', {session: false}, function (err, user, info) {  
+    // TODO: Error handling
     if (err) {
-      // TODO: Error handling
       return next(err);
     }
-    
     if (!user) {
       // TODO: Error handling
       res.status(401).send({
         'error': info
       });
-      
+
       return undefined;
     }
     
@@ -42,13 +41,11 @@ router.post('/signup', function (req, res, next) {
 
 router.post('/login', function (req, res, next) {
   passport.authenticate('local-login', {session: false}, function (err, user, info) {
+    // TODO: Error handling      
     if (err) {
-      // TODO: Error handling      
       return next(err);
     }
-    
     if (!user) {
-      // TODO: Error handling
       res.status(401).send({
         'error': info
       });

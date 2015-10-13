@@ -9,11 +9,13 @@ var Products = require('../../../database').Products;
 var Users = require('../../../database').Users;
 var Orders = require('../../../database').Orders;
 
+
 router.post('/', function (req, res) {
   var totalCost = 0;
   var stripeToken = req.body.stripeToken;
   var user = req.body.user;
   var databaseuser = undefined;
+  var info;
   
   // User checkout
   if (user._id) {
@@ -51,7 +53,7 @@ router.post('/', function (req, res) {
 
   function charge (amount, user) {
     if (user['guest']) {
-      var info = 'payinguser@example.com';
+      info = 'payinguser@example.com';
     } else {
       info = user['name'];
     }

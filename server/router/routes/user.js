@@ -9,6 +9,7 @@ router.use('/', expressJwt({
   credentialsRequired: false
 }), function (err, req, res, next) {
   // This sets req.user with the decoded JWT
+  // TODO: Error handling
   if (err.name === 'UnauthorizedError') {
     // Delete the storage key
     res.status(401).send('invalid token...');
@@ -28,6 +29,7 @@ router.use('/', expressJwt({
 router.get('/', function (req, res) {
   // Fetch info from database
   Users.findOne({username:req.user.username}, function (err, user) {
+    // TODO: Error handling
     if (err) {
       throw err;
       return;

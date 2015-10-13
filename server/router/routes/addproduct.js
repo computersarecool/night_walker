@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var expressJwt = require('express-jwt');
+
 var Users = require('../../../database').Users;
 var jwtSecret = require('../../../config/credentials').jwtSecret;
 var stripeKey = require('../../../config/credentials').stripeTest;
 var stripe = require('stripe')(stripeKey);
-
 
 
 router.post('/', expressJwt({
@@ -13,6 +13,7 @@ router.post('/', expressJwt({
   credentialsRequired: false
 }), function (err, req, res, next) {
   // This sets req.user with the decoded JWT.(i.e. the JWT)
+  // TOOD: Error handling
   if (err.name === 'UnauthorizedError') {
     // Delete the storage key
     res.status(401).send('invalid token...');
@@ -28,6 +29,7 @@ router.post('/', expressJwt({
   next();
 });
 
+
 router.post('/', function (req, res) {
   var email = req.user.email;
   var items = req.body.items;
@@ -39,13 +41,12 @@ router.post('/', function (req, res) {
     return;
   } else {
       Users.findOneAndUpdate({email: email}, {$push: {cart: items}}, function(err, user) {
-        //WHAM Comment
-        console.log('here');
+        // TODO: Error handling
         if (err) {
           console.log('There was an error adding the item to the cart');
-          throw err
+          throw err;
         } else {
-          console.log(user);
+          console.log('The user is', user);
           res.send(user);
         }
       });

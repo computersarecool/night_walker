@@ -1,14 +1,13 @@
 # TODO:
 Final design and prepare media:
-    - Get the highest needed sprite size
-    - Image sizes:
-      335 x 855
+    - Get the highest needed sizes fro sprites and all images
+    - Image sizes: 335 x 855
     - Make Sprite sheet
     - Link Media so it displays
-    - Fix animating pants completely
+    - Fix gallery directive
 
 
-Purchase scenarios
+Purchase scenarios:
   x Not logged in user buys items
   x Non-logged in user adds items to cart then creates account then checks out
   x Then re-adds items and checkouts out
@@ -19,6 +18,8 @@ Purchase scenarios
 #### Small todo items
 Only show view cart when there are things inside it
 Remove semicolons after function declarations
+Add missing semicolons to thanks like return
+Add return undefined to all return statements
 
 routes|checkout.j:91 save card information if not a guest
 routes|checkout.j:119, 124 only send usersafe information
