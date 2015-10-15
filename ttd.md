@@ -1,5 +1,21 @@
 # TODO:
 Final design and prepare media:
+## Guest Checkout initiative
+### Basket Directive Popup
+ - Make rotating cube style something like a directive
+ - Make responsive popup directive
+ - Make all possible non-logged in options available (direct to right page)
+ - Make view / edit portion of account page
+ - Make Details page
+ - Make Congrats popup directive / page
+
+### Simultaneous
+ - Finish heading (look into icon fonts for header)
+ - Put logo upper left, stylize "Welcome to *nightWalker*" to upper right
+ - Fit images
+
+### Extras 
+    - Work background, design entire mobile experience
     - Get the highest needed sizes fro sprites and all images
     - Image sizes: 335 x 855
     - Make Sprite sheet
@@ -16,13 +32,13 @@ Purchase scenarios:
 
 
 #### Small todo items
-Only show view cart when there are things inside it
-Remove semicolons after function declarations
-Add missing semicolons to thanks like return
-Add return undefined to all return statements
+- Only show view cart when there are things inside it
+- Remove semicolons after function declarations
+- Add missing semicolons to thanks like return
+- Add return undefined to all return statements
 
-routes|checkout.j:91 save card information if not a guest
-routes|checkout.j:119, 124 only send usersafe information
+- routes|checkout.j:91 save card information if not a guest
+- routes|checkout.j:119, 124 only send usersafe information
 
 
 
