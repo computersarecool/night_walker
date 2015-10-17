@@ -25,3 +25,4 @@ angular.module('nightwalkerApp')
     }, true);
 
   });
+

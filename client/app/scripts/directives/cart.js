@@ -7,12 +7,18 @@
  * # cartDirective
  */
 angular.module('nightwalkerApp')
-  .directive('cartDirective', function () {
+  .directive('siteCart', function (UserFactory) {
     return {
-      template: '<div></div>',
       restrict: 'E',
-      link: function postLink(scope, element, attrs) {
-        element.text('this is the cartDirective directive');
-      }
+      replace: true,
+      link: function (scope, element, attrs) {
+        scope.show = true;
+        scope.toggleView = function () {
+          scope.show = !scope.show;
+          console.log(scope.show);
+        };
+      },
+      templateUrl: 'partials/cart.html'
     };
   });
+

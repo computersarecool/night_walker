@@ -1,6 +1,5 @@
 <!doctype html>
 <html ng-app="nightwalkerApp">
-
   <head>
     <title>
         NightWalker Dev
@@ -17,8 +16,8 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 
-    <base href="/">
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <base href="/">
   </head>
   
   <body>
@@ -28,7 +27,9 @@
 
     <!-- Add your site or application content here -->
       <site-header></site-header>
+      <site-cart></site-cart>          
       <site-nav></site-nav>
+
       <div class="main" ng-view></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -46,10 +47,7 @@
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
@@ -76,8 +74,6 @@
     <script src="scripts/controllers/congratulations.js"></script>
     <script src="scripts/directives/cart.js"></script>
     <!-- endbuild -->
-
-<!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular-animate.js"></script> -->
   
   </body>
 </html>

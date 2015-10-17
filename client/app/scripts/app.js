@@ -10,11 +10,9 @@
  */
 angular
   .module('nightwalkerApp', [
-    'ngAnimate',
     'ngResource',
     'ngRoute',
-    'ngSanitize',
-    'ngTouch'
+    'ngSanitize'
   ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider

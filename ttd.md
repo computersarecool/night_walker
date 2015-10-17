@@ -39,7 +39,7 @@ Purchase scenarios:
 
 - routes|checkout.j:91 save card information if not a guest
 - routes|checkout.j:119, 124 only send usersafe information
-
+- Stripeform directive line 23 is $apply neccesary
 
 
 
