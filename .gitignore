@@ -1,5 +1,6 @@
 data/
 config/credentials.js
 inner_config
-understand.txt
+node_modules
+bower_components
 \#.*#

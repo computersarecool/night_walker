@@ -41,7 +41,8 @@ Purchase scenarios:
 - routes|checkout.j:119, 124 only send usersafe information
 - Stripeform directive line 23 is $apply neccesary
 
-
+--- Bower.json
+- Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json
 
 
 # ONGOING QUESTIONS:
