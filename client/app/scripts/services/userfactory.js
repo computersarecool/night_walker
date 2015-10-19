@@ -132,6 +132,7 @@ angular.module('nightwalkerApp')
               user.currentUser = response.data.user;
             }, function (httpError) {
               // TODO: Better error handling
+              // There is an auth token but no associated user
               throw httpError.status + " : " + httpError.data;
               return undefined;
          });

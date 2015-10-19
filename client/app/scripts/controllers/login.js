@@ -56,5 +56,11 @@ angular.module('nightwalkerApp')
       $scope.user = UserFactory.currentUser;
     });
 
+    // Specific to the cart directive
+    $scope.modalCart = false;
+    $scope.showModalCart = function () {
+      $scope.modalCart = !$scope.modalCart;
+    };
+    
   });
 

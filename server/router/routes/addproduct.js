@@ -13,7 +13,7 @@ router.post('/', expressJwt({
   credentialsRequired: false
 }), function (err, req, res, next) {
   // This sets req.user with the decoded JWT.(i.e. the JWT)
-  // TOOD: Error handling
+  // TODO: Error handling
   if (err.name === 'UnauthorizedError') {
     // Delete the storage key
     res.status(401).send('invalid token...');
