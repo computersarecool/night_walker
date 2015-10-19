@@ -7,10 +7,10 @@
  * # loginDirective
  */
 angular.module('nightwalkerApp')
-  .directive('siteLogin', function (UserFactory) {
+  .directive('siteLogin', function () {
     return {
-      templateUrl: 'partials/login.html', 
       restrict: 'E',
+      templateUrl: 'partials/login.html', 
       controller: 'LoginCtrl'        
     };
   });

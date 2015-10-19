@@ -9,7 +9,7 @@
 angular.module('nightwalkerApp')
   .directive('siteNav', function () {
     return {
-      templateUrl: 'partials/navigation.html',
-      restrict: 'E'
+      restrict: 'E',
+      templateUrl: 'partials/navigation.html'
     };
   });

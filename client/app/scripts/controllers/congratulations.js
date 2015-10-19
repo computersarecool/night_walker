@@ -8,6 +8,6 @@
  * Controller of the nightwalkerApp
  */
 angular.module('nightwalkerApp')
-  .controller('CongratulationsCtrl', function ($scope, UserFactory) {
+  .controller('CongratulationsCtrl', function ($scope) {
     // TODO: Null controller
   });

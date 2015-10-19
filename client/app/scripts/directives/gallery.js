@@ -6,7 +6,6 @@
  * @description
  * # gallery
  */
-
 angular.module('nightwalkerApp')
   .directive('siteGallery', function ($location, $interval, $timeout, $window) {
   
