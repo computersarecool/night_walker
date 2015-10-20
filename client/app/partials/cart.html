@@ -1,114 +1,105 @@
-<div>
-
-  <div ng-click="showModalCart()">
-
-    <div style="position: absolute; left: 600px"class="wrap">
-      <div class="cart-cube">
-        <div class="front"></div>
-        <div class="back"></div>
-        <div class="words">{{user.cart.length || 0}}</div>
-        <div class="top"></div>
-        <div class="bottom"></div>
-        <div class="left"></div>
-        <div class="right"></div>
-      </div>
+<div ng-click="showModalCart()">
+  <div class="wrap">
+    <div class="cart-cube">
+      <div class="front"></div>
+      <div class="back"></div>
+      <div class="words">{{user.cart.length || 0}}</div>
+      <div class="top"></div>
+      <div class="bottom"></div>
+      <div class="left"></div>
+      <div class="right"></div>
     </div>
-
-    <!-- Cart -->
-    <div ng-show="modalCart">
-      
-      <!-- User is signed in -->
-      <div ng-show="user.loggedIn">
-        <!-- No items in cart -->        
-        <div ng-show="!user.cart.length">
-          <p>
-            Your cart is empty
-          </p>
-          <a ng-href='/account'>
-            <p>
-              View Account?
-            </p>
-          </a>
-        </div>
-        
-        <!-- Items in cart -->        
-        <div ng-show="user.cart.length">
-          You have items in your cart
-          <a hg-href='/checkout'>
-            <p>
-              Check out?
-            </p>
-          </a>
-          <a ng-href='/account'>
-            <p>
-              View Cart?
-            </p>
-          </a>
-          <a ng-href='/account'>          
-            <p>
-              View Account?
-            </p>
-          </a>
-        </div>
-      </div>
-
-      
-      <!-- User is not signed in -->      
-      <div ng-show="!user.loggedIn">
-        <!-- No items in cart -->
-        <div ng-show="!user.cart.length">
-          <p>
-            Welcome, would you like to
-          </p>
-          <a ng-href='/login>
-            <p>
-              Sign in?
-            </p>
-          </a>
-          <a ng-href='/signup'>
-            <p>
-              Join?
-            </p>
-          </a>
-          <a ng-href='/shop'>
-            <p>
-              Shop
-            </p>
-          </a>
-        </div>
-        
-        <!-- Items in cart -->  
-        <div ng-show="user.cart.length">
-          <p>
-            You have # items in your cart. Wold you like to
-          </p>
-          <a ng-href='/checkout'>
-            <p>
-              Check out as a guest?
-            </p>
-          </a>
-          <a ng-href='/account'>
-            <p>
-              Edit Your cart?
-            </p>
-          </a>
-          <a ng-href='/login'>
-            <p>
-              Sign in?
-            </p>
-          </a>
-          <a ng-href='signup'>
-            <p>
-              Join?
-            </p>
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-
   </div>
-  
-</div>    
+  <!-- Cart -->
+  <div ng-show="modalCart">
+    
+    <!-- User is signed in -->
+    <div ng-show="user.loggedIn">
+      <!-- No items in cart -->        
+      <div ng-show="!user.cart.length">
+        <p>
+          Your cart is empty
+        </p>
+        <a ng-href='/account'>
+          <p>
+            View Account?
+          </p>
+        </a>
+      </div>
+      
+      <!-- Items in cart -->        
+      <div ng-show="user.cart.length">
+        You have items in your cart
+        <a hg-href='/checkout'>
+          <p>
+            Check out?
+          </p>
+        </a>
+        <a ng-href='/account'>
+          <p>
+            View Cart?
+          </p>
+        </a>
+        <a ng-href='/account'>          
+          <p>
+            View Account?
+          </p>
+        </a>
+      </div>
+    </div>
+   
+    <!-- User is not signed in -->      
+    <div ng-show="!user.loggedIn">
+      <!-- No items in cart -->
+      <div ng-show="!user.cart.length">
+        <p>
+          Welcome, would you like to
+        </p>
+        <a ng-href='/login>
+          <p>
+            Sign in?
+          </p>
+        </a>
+        <a ng-href='/signup'>
+          <p>
+            Join?
+          </p>
+        </a>
+        <a ng-href='/shop'>
+          <p>
+            Shop
+          </p>
+        </a>
+      </div>
+      
+      <!-- Items in cart -->  
+      <div ng-show="user.cart.length">
+        <p>
+          You have # items in your cart. Wold you like to
+        </p>
+        <a ng-href='/checkout'>
+          <p>
+            Check out as a guest?
+          </p>
+        </a>
+        <a ng-href='/account'>
+          <p>
+            Edit Your cart?
+          </p>
+        </a>
+        <a ng-href='/login'>
+          <p>
+            Sign in?
+          </p>
+        </a>
+        <a ng-href='signup'>
+          <p>
+            Join?
+          </p>
+        </a>
+      </div>
+      
+    </div>
+    
+  </div>
 

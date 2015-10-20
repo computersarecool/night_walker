@@ -54,60 +54,7 @@ make_sprite($poster_sprites_sprites, $front_sprites_sprites)
 // End of sprite
 
 
-// Cube
-.wrap 
-  perspective: 800px
-  perspective-origin: 50% 100px;
-
-.cart-cube
-  position relative
-  width: 200px
-  transform-style: preserve-3d;
-  animation spin 5s infinite linear
-
-.cart-cube div
-  position absolute
-  width 200px
-  height 200px
-  box-shadow inset 0 0 30px rgba(125,125,125,0.8)
-  text-align center
-  line-height 200px
-
-.back
-  transform translateZ(-100px) rotateY(180deg)
-  
-.right
-  transform rotateY(-270deg) translateX(100px)
-  transform-origin top right;
-  
-.left
-  transform rotateY(270deg) translateX(-100px)
-  transform-origin center left;
- 
-.top
-  transform rotateX(-90deg) translateY(-100px)
-  transform-origin top center;
-
-.bottom
-  transform rotateX(90deg) translateY(100px)
-  transform-origin bottom center
-
-.front
-  transform translateZ(100px)
-
-div.words
-  box-shadow none 
-  text-shadow 2px 2px 3px rgb(255, 0, 0)
-  // transform translateZ(-25px)
-
-@keyframes spin {
-  from {transform: rotateY(0);}
-  to {transform:rotateY(360deg)}
-}
-//End of Cube
-
-
-// Animation
+// Gallery Animation
 .gallery-animate
   transition all cubic-bezier(1, .01, .33, 1) .5s
   opacity 0
@@ -130,25 +77,120 @@ div.words
 html, body
   width 100%
   height 100%
-  
-body
+  box-sizing border-box
   font-family 'Arial', sans-serif
-  
+
+*, *:before, *:after
+  box-sizing inherit   
+
+// All links
+a:link, a:visited
+ text-decoration none    
+
+// Header container
 header
+  margin-top 3vw
   border-bottom .25em solid black
-  position relative
-  height 4.5em
+
+// Nightwalker logo  
+header img
+  width 80vw
+  margin-left 2vw
+
+// Shopping cart
+site-cart
+  float right
+  height 8vw
+  width 8vw
+  margin-right 3vw
+  background rgba(20, 20, 255, .6)
+
+site-cart .words
+  text-align center
+  line-height 8vw
   
-h1
-  position absolute
-  left 1em
-  top 1.2em
+// Cube
+// .wrap 
+//   perspective: 800px
+//   //perspective-origin: 50% 50;
+
+// .cart-cube
+//   position relative
+//   width: 200px
+//   transform-style: preserve-3d;
+//   animation spin 5s infinite linear
+
+// .cart-cube div
+//   position absolute
+//   width 200px
+//   height 200px
+//   box-shadow inset 0 0 30px rgba(125,125,125,0.8)
+//   text-align center
+//   line-height 200px
+
+// .back
+//   transform translateZ(-100px) rotateY(180deg)
   
-.status
-  position absolute
-  right 1em
-  top 3.55em
-  font-size 100%
+// .right
+//   transform rotateY(-270deg) translateX(100px)
+//   transform-origin top right;
+  
+// .left
+//   transform rotateY(270deg) translateX(-100px)
+//   transform-origin center left;
+ 
+// .top
+//   transform rotateX(-90deg) translateY(-100px)
+//   transform-origin top center;
+
+// .bottom
+//   transform rotateX(90deg) translateY(100px)
+//   transform-origin bottom center
+
+// .front
+//   transform translateZ(100px)
+
+// div.words
+//   box-shadow none 
+//   text-shadow 2px 2px 3px rgb(255, 0, 0)
+//   transform translateZ(-25px)
+
+// @keyframes spin {
+//   from {transform: rotateY(0);}
+//   to {transform:rotateY(360deg)}
+// }
+//End of Cube
+
+
+
+nav
+  margin-top 1vw
+  margin-left 2vw
+  
+nav li
+  margin-top 1.25vw
+
+nav li a
+  text-transform uppercase
+  font-weight 700
+  font-size 7vw
+
+nav li:nth-child(1) > a
+  color rgb(255, 0, 255)
+
+nav li:nth-child(2) > a
+  color rgb(15, 108, 255)
+  
+nav li:nth-child(3) > a
+  color rgb(59, 223, 9)
+
+
+// Used?
+// .status
+//   position absolute
+//   right 1em
+//   top 3.55em
+//   font-size 100%
 
 .home-sprite
   position absolute

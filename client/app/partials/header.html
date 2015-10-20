@@ -1,18 +1,16 @@
 <header>
-  
-  <h1>
     <a ng-href='/'><img src="../images/nw_logo.jpg" alt="NightWalker Clothing" title="Men's Chinos and clothing"></a>
-  </h1>
-  
-  <div class="status">
-    <!-- Show if user is not logged in -->
+
+    <!--
+    <div class="status">
+    Show if user is not logged in 
     <p ng-show="!user.loggedIn">
       Welcome to NightWalker
       <a ng-href='/signup'>Join</a>
       <a ng-href='/login'>Sign In</a>
     </p>
 
-    <!-- Show if user is logged in -->
+
     <p ng-show="user.loggedIn">
       <span>Welcome {{user.firstName}}</span>
       <span ng-click="logout()">Not You?</span>
@@ -21,14 +19,15 @@
       <span><a ng-href='/account'>Your Account</a></span>
     </p>
 
-    <!-- Logo -->
+    Logo
     <img src="images/symbol_logo.jpg" alt="NightWalker logo">
       <a ng-href="/checkout">
         View Cart / Checkout
       </a>
     </div>
-    
-  </div>
+    -->
+    <site-cart>
+    </site-cart>
   
 </header>
 

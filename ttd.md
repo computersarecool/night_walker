@@ -53,7 +53,7 @@ Angular:
   - What does compile do in a directive?
   - Why is link returned in directive?
   - Why does a directive have a controller
-
+  - Should the main.html view just be a directive?
 
 Javascript:
   - routes|checkout.js:20, set dbuser so I have db and object reference to item

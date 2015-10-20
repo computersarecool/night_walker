@@ -51,7 +51,7 @@ module.exports = function (grunt) {
       },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.styl'],
-        tasks: ['stylus', 'autoprefixer', 'newer:copy:styles']
+        tasks: ['clean', 'stylus', 'autoprefixer', 'newer:copy:styles']
       },
       livereload: {
         options: {

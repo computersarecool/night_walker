@@ -9,8 +9,7 @@
 angular.module('nightwalkerApp')
   .directive('siteGallery', function ($location, $interval, $timeout, $window) {
   
-    var list = angular.element('<p style="margin-bottom:50px">Words here</p>');
-    var list2 = angular.element('<p style="margin-bottom:50px">Words here</p>');
+    var list = angular.element('<p></p>');
     var colorPant = angular.element('<div id="top-gallery" class="home-sprite">Some words here</div>');
     var grayPant = angular.element('<div id="bottom-gallery" class="home-sprite gray-gallery gallery-animate">Some More words here</div>');
 
@@ -44,7 +43,6 @@ angular.module('nightwalkerApp')
               colorChange(nextColorClass);
             }
             grayPant.css('opacity', opacityValue);
-            list2.html('The opacity value is ' + opacityValue);
           };
 
           
@@ -61,7 +59,7 @@ angular.module('nightwalkerApp')
             var tiltFB = eventData.beta;
             var dir = eventData.alpha;
 
-            list.html('The dir is ' + dir);
+            list.html('<p>The dir is ' + dir + '</p>');
 
             switch (true) {
 
@@ -191,7 +189,6 @@ angular.module('nightwalkerApp')
       restrict: 'E',
       compile: function (tElem) {
         tElem.append(list);
-        tElem.append(list2);
         tElem.append(colorPant);
         tElem.append(grayPant);
         return link;
