@@ -75,6 +75,102 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+.apple-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  background-position: 0px 0px;
+  width: 1230px;
+  height: 2000px;
+}
+.cherry-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  background-position: -1230px 0px;
+  width: 1230px;
+  height: 2000px;
+}
+.electricity-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  background-position: -2460px 0px;
+  width: 1230px;
+  height: 2000px;
+}
+.gray-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  background-position: -3690px 0px;
+  width: 1230px;
+  height: 2000px;
+}
+.nectarine-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  background-position: 0px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
+.plum-crazy-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  background-position: -1230px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
+.powder-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  background-position: -2460px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
+.proton-powder-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  background-position: -3690px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
+.apple-poster {
+  background-image: url("../images/sprites/poster_sprites.jpg");
+  background-position: 0px 0px;
+  width: 1230px;
+  height: 2000px;
+}
+.cherry-poster {
+  background-image: url("../images/sprites/poster_sprites.jpg");
+  background-position: -1230px 0px;
+  width: 1230px;
+  height: 2000px;
+}
+.electricity-poster {
+  background-image: url("../images/sprites/poster_sprites.jpg");
+  background-position: -2460px 0px;
+  width: 1230px;
+  height: 2000px;
+}
+.lemon-poster {
+  background-image: url("../images/sprites/poster_sprites.jpg");
+  background-position: -3690px 0px;
+  width: 1230px;
+  height: 2000px;
+}
+.nectarine-poster {
+  background-image: url("../images/sprites/poster_sprites.jpg");
+  background-position: 0px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
+.plum-crazy-poster {
+  background-image: url("../images/sprites/poster_sprites.jpg");
+  background-position: -1230px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
+.powder-poster {
+  background-image: url("../images/sprites/poster_sprites.jpg");
+  background-position: -2460px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
+.proton-powder-poster {
+  background-image: url("../images/sprites/poster_sprites.jpg");
+  background-position: -3690px -2000px;
+  width: 1230px;
+  height: 2000px;
+}
 .gallery-animate {
   -webkit-transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
   -moz-transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;

@@ -13,35 +13,39 @@
 // @require 'proton-powder_sprites'
 
 
+
+
 // Meyer reset
 html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, a, code, img, var, b, i, center, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td, article, aside, canvas, footer, header, nav, section, time, mark, audio, video
-  margin: 0
-  padding: 0
-  border: 0
-  outline: 0
-  font-size: 100%
-  font: inherit
-  vertical-align: baseline
+  margin 0
+  padding 0
+  border 0
+  outline 0
+  font-size 100%
+  font inherit
+  vertical-align baseline
  
 body
-  line-height: 1
+  line-height 1
   
 ol, ul
-  list-style: none
+  list-style none
   
 blockquote, q
-  quotes: none
+  quotes none
   
 blockquote:before, blockquote:after, q:before, q:after
-  content: ''
-  content: none
+  content ''
+  content none
 
 a:focus
-  outline: 0
+  outline 0
 table
-  border-collapse: collapse
-  border-spacing: 0
+  border-collapse collapse
+  border-spacing 0
 // End of reset
+
+
 
 
 // Sprite function
@@ -50,8 +54,10 @@ make_sprites()
     sprites(spritesheet)
 
 // Call the function on all the (renamed) sprite name arrays (could be the spritesheet itself)
-make_sprite($poster_sprites_sprites, $front_sprites_sprites)
+make_sprites($front_sprites_sprites, $poster_sprites_sprites)
 // End of sprite
+
+
 
 
 // Gallery Animation
@@ -71,6 +77,8 @@ make_sprite($poster_sprites_sprites, $front_sprites_sprites)
   transition all cubic-bezier(.83, .04, .65, .93) .4s
   opacity 0
 // End of animation
+
+
 
 
 // Begin styles
@@ -185,7 +193,7 @@ nav li:nth-child(3) > a
   color rgb(59, 223, 9)
 
 
-// Used?
+// Is status used?
 // .status
 //   position absolute
 //   right 1em
