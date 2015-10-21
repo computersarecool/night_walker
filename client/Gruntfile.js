@@ -191,7 +191,8 @@ module.exports = function (grunt) {
         src: 'app/images/prep_sprites/front_sprites/*',
         dest: 'app/images/sprites/front_sprites.jpg',
         destCss: 'app/styles/front_sprites.styl',
-        cssSpritesheetName: 'front_sprites'
+        cssSpritesheetName: 'front_sprites',
+        algorithm: 'left-right'
       },      
       poster: {
         src: 'app/images/prep_sprites/poster_sprites/*',

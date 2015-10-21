@@ -10,20 +10,24 @@ angular.module('nightwalkerApp')
   .directive('siteGallery', function ($location, $interval, $timeout, $window) {
   
     var list = angular.element('<p></p>');
-    var colorPant = angular.element('<div id="top-gallery" class="home-sprite">Some words here</div>');
-    var grayPant = angular.element('<div id="bottom-gallery" class="home-sprite gray-gallery gallery-animate">Some More words here</div>');
+    var colorPant = angular.element('<div id="gallery-top" class="home-sprite">Hello</div>');
+    var grayPant = angular.element('<div id="gallery-bottom" class="home-sprite gray-gallery gallery-animate">World!</div>');
 
     // TODO: Lint syntax
     var link = function (scope, element, attrs) {
       if ($window.DeviceOrientationEvent && screen.width <= 980) {
-        var manualChange = (function () {
 
+        var changeOnTilt = (function () {
+          // Change the color of the visible pant
           var colorChange = function (className) {
+            // Add new pant color class element doesn't already have it
             if (!colorPant.hasClass(className)) {
               colorPant.removeAttr('class');
-              colorPant.addClass('pant-sprite');
+              colorPant.addClass('home-sprite');
               colorPant.addClass(className);
+              //colorPant.addClass('pant-sprite ' + className);
             }
+            // Remove gray from cover pant
             if (grayPant.hasClass('fast-gray')) {
               grayPant.removeClass('fast-gray');
               grayPant.addClass('fast-no-gray');
@@ -33,19 +37,23 @@ angular.module('nightwalkerApp')
 
           var checkTilt = function (input, fromMin, fromMax, toMin, toMax, nextColorClass) {
             var opacityValue = (input - fromMax) / (fromMin - fromMax) * (toMin - toMax) + toMax;
+            // Snap opacity to 0
             if (opacityValue < .2) {
               opacityValue = 0;
             }
+            // Snap opacity to one
             if (opacityValue > .7) {
               opacityValue = 1;
             }
+            // change to next color
             if (opacityValue === 1) {
               colorChange(nextColorClass);
             }
+            // Set the gray pant opacity
             grayPant.css('opacity', opacityValue);
           };
 
-          
+          // Change (gray) pant to new class
           var checkAdd = function (oldClass, newClass) {
             if (!grayPant.hasClass(newClass)) {
               grayPant.removeClass(oldClass);
@@ -62,81 +70,79 @@ angular.module('nightwalkerApp')
             list.html('<p>The dir is ' + dir + '</p>');
 
             switch (true) {
-
+              // Change main pant color
               case dir >= 0 && dir < 30:
-                //Red
-                colorChange('blue-pant');
-                break
+                colorChange('cherry-gallery');
+                break;
 
               case dir >= 45 && dir < 75:
-                //Orage
-                colorChange('red-pant');
-                break
-
+                colorChange('nectarine-gallery');
+                break;
+              
               case dir >= 90 && dir < 120:
-                //Yellow
-                colorChange('blue-pant');
-                break
+                colorChange('lemon-gallery');
+                break;
               
               case dir >= 135 && dir < 165:
-                //Green
-                colorChange('red-pant');
-                break
+                colorChange('apple-gallery');
+                break;
               
               case dir >= 180 && dir < 210:
-                //Blue
-                colorChange('blue-pant');
-                break
-
+                colorChange('electricity-gallery');
+                break;
+              
               case dir >= 225 && dir < 255:
-                //Purple
-                colorChange('red-pant');
-                break
-
+                colorChange('plum-crazy-gallery');
+                break;
+              
               case dir >= 270 && dir < 300:
-                //Pink
-                colorChange('blue-pant');
-                break
-
+                colorChange('powder-gallery');
+                break;
+              
               case dir >= 315 && dir < 345:
-                //Pink2
-                colorChange('red-pant');
-                break
+                colorChange('proton-powder-pant');
+                break;
+              
 
-        //Change class
-        
+              // Hide or show gray pant
               case dir >= 30 && dir < 45:
                 checkAdd('fast-no-gray', 'fast-gray');
-                break   
+                break;
+              
 
               case dir >= 75 && dir < 90:
                 checkAdd('fast-no-gray', 'fast-gray');
-                break 
+                break;
+              
 
               case dir >= 120 && dir < 135:
                 checkAdd('fast-no-gray', 'fast-gray');
-                break   
+                break;
+              
 
               case dir >= 165 && dir < 180:
                 checkAdd('fast-no-gray', 'fast-gray');
-                break   
+                break;
+              
 
               case dir >= 210 && dir < 225:
                 checkAdd('fast-no-gray', 'fast-gray');
-                break  
+                break;
+              
 
               case dir >= 255 && dir < 270:
                 checkAdd('fast-no-gray', 'fast-gray');
-                break  
+                break;
+              
 
               case dir >= 300 && dir < 315:
                 checkAdd('fast-no-gray', 'fast-gray');
-                break  
+                break;
+              
 
               case dir >= 345 && dir < 360:
                 checkAdd('fast-no-gray', 'fast-gray');
-                break   
-  
+                break;
             }
             
 
@@ -146,11 +152,8 @@ angular.module('nightwalkerApp')
 
         //End of mobile device function
       } else {
-
-
-        //Not supported or screen is too big
+        //Device orientation not supported or screen is too big
         var autoChange = (function () {
-
           var index = 0;
           var classes = [
             'apple-gallery',
@@ -175,19 +178,19 @@ angular.module('nightwalkerApp')
             }, 2000);
           };
         })();
-        $interval(autoChange, 3000);
+        
+        $interval(autoChange, 300000);
         //End of desktop callback
       }
 
-
       //End of link function
     };
-
 
     
     return {
       restrict: 'E',
       compile: function (tElem) {
+        // TODO: Remove list all it shows is the dir value
         tElem.append(list);
         tElem.append(colorPant);
         tElem.append(grayPant);

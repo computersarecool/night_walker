@@ -101,25 +101,25 @@ table {
 }
 .nectarine-gallery {
   background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: 0px -2000px;
+  background-position: -4920px 0px;
   width: 1230px;
   height: 2000px;
 }
 .plum-crazy-gallery {
   background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: -1230px -2000px;
+  background-position: -6150px 0px;
   width: 1230px;
   height: 2000px;
 }
 .powder-gallery {
   background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: -2460px -2000px;
+  background-position: -7380px 0px;
   width: 1230px;
   height: 2000px;
 }
 .proton-powder-gallery {
   background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: -3690px -2000px;
+  background-position: -8610px 0px;
   width: 1230px;
   height: 2000px;
 }
