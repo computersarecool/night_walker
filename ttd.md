@@ -1,4 +1,6 @@
 # TODO:
+(Update to be on cloud)
+
 Final design and prepare media:
 ## Guest Checkout initiative
 ### Basket Directive Popup
