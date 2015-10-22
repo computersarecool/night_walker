@@ -1,6 +1,6 @@
 //mongod --dbpath data/db/ --logpath data/logs/mongodb.log --logappend
 var database;
-var mongoose = require('mongoose');
+var mongoose = require('../server/node_modules/mongoose');
 var credentials = require('../config/credentials');
 
 var UserModel = require('./schemas/users');
