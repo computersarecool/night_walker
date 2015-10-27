@@ -189,8 +189,9 @@ module.exports = function (grunt) {
     sprite: {
       front: {      
         src: [
-          //          'app/images/prep_sprites/front_sprites/cherry-gallery.jpg'
-          'app/images/prep_sprites/front_sprites/nectarine-gallery.jpg'          
+          'app/images/prep_sprites/front_sprites/cherry-gallery.jpg',
+          'app/images/prep_sprites/front_sprites/nectarine-gallery.jpg',
+          'app/images/prep_sprites/front_sprites/lemon-gallery.jpg'                    
         ],
         dest: 'app/images/sprites/front_sprites.jpg',
         destCss: 'app/styles/front_sprites.styl',
