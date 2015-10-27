@@ -35,8 +35,8 @@ angular
         templateUrl: 'views/shop.html',
         controller: 'ShopCtrl',
         resolve: {
-          collection: function ($route, productFactory) {
-            return productFactory.getCollection($route.current.params.collection);
+          collection: function ($route, ProductFactory) {
+            return ProductFactory.getCollection($route.current.params.collection);
           }
         }
       })
@@ -44,8 +44,8 @@ angular
         templateUrl:'/views/product.html',
         controller: 'ProductCtrl',
         resolve: {
-          product: function ($route, productFactory) {
-            return productFactory.getProduct($route.current.params.flavor);
+          product: function ($route, ProductFactory) {
+            return ProductFactory.getProduct($route.current.params.flavor);
           }
         }
       })

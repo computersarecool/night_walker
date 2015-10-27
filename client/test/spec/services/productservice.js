@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: productFactory', function () {
+describe('Service: ProductFactory', function () {
 
   // load the service's module
   beforeEach(module('nightwalkerApp'));
 
   // instantiate service
-  var productFactory;
-  beforeEach(inject(function (_productFactory_) {
-    productFactory = _productFactory_;
+  var ProductFactory;
+  beforeEach(inject(function (_ProductFactory_) {
+    ProductFactory = _ProductFactory_;
   }));
 
   it('should do something', function () {
-    expect(!!productFactory).toBe(true);
+    expect(!!ProductFactory).toBe(true);
   });
 
 });

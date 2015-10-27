@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc service
- * @name nightwalkerApp.productFactory
+ * @name nightwalkerApp.ProductFactory
  * @description
- * # productFactory
+ * # ProductFactory
  * Factory in the nightwalkerApp.
  */
 angular.module('nightwalkerApp')
-  .factory('productFactory', function ($http) {
+  .factory('ProductFactory', function ($http) {
     return {
       getCollection: getCollection,
       getProduct: getProduct
