@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var expressJwt = require('express-jwt');
 var Users = require('../../../database').Users;
-var jwtSecret = require('../../../config/credentials').jwtSecret;
+var jwtSecret = require('../../../../../../safe/credentials').jwtSecret;
 
 router.use('/', expressJwt({
   secret: jwtSecret,

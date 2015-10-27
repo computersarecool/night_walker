@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var async = require('async');
 
-var stripeKey = require('../../../config/credentials').stripeTest;
+var stripeKey = require('../../../../../../safe/credentials').stripeTest;
 var stripe = require('stripe')(stripeKey);
 
 var Products = require('../../../database').Products;
