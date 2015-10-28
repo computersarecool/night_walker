@@ -75,89 +75,14 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-.apple-gallery {
-  background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: -2460px 0px;
-  width: 1230px;
-  height: 2000px;
-}
-.cherry-gallery {
-  background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: 0px 0px;
-  width: 1230px;
-  height: 2000px;
-}
-.electricity-gallery {
-  background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: -3690px 0px;
-  width: 1230px;
-  height: 2000px;
-}
-.nectarine-gallery {
-  background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: -1230px 0px;
-  width: 1230px;
-  height: 2000px;
-}
-.plum-crazy-gallery {
-  background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: -4920px 0px;
-  width: 1230px;
-  height: 2000px;
-}
-.proton-powder-gallery {
-  background-image: url("../images/sprites/front_sprites.jpg");
-  background-position: -6150px 0px;
-  width: 1230px;
-  height: 2000px;
-}
-.apple-poster {
-  background-image: url("../images/sprites/poster_sprites.jpg");
-  background-position: 0px 0px;
-  width: 1230px;
-  height: 2000px;
-}
-.cherry-poster {
-  background-image: url("../images/sprites/poster_sprites.jpg");
-  background-position: -1230px 0px;
-  width: 1230px;
-  height: 2000px;
-}
-.electricity-poster {
-  background-image: url("../images/sprites/poster_sprites.jpg");
-  background-position: -2460px 0px;
-  width: 1230px;
-  height: 2000px;
-}
-.lemon-poster {
-  background-image: url("../images/sprites/poster_sprites.jpg");
-  background-position: -3690px 0px;
-  width: 1230px;
-  height: 2000px;
-}
-.nectarine-poster {
-  background-image: url("../images/sprites/poster_sprites.jpg");
-  background-position: 0px -2000px;
-  width: 1230px;
-  height: 2000px;
-}
-.plum-crazy-poster {
-  background-image: url("../images/sprites/poster_sprites.jpg");
-  background-position: -1230px -2000px;
-  width: 1230px;
-  height: 2000px;
-}
-.powder-poster {
-  background-image: url("../images/sprites/poster_sprites.jpg");
-  background-position: -2460px -2000px;
-  width: 1230px;
-  height: 2000px;
-}
-.proton-powder-poster {
-  background-image: url("../images/sprites/poster_sprites.jpg");
-  background-position: -3690px -2000px;
-  width: 1230px;
-  height: 2000px;
+.home-sprite {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 300px;
+  height: 300px;
+  border: 2px solid #f00;
 }
 .gallery-animate {
   -webkit-transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
@@ -198,6 +123,69 @@ table {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
+}
+.cherry-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  -webkit-background-size: 900%;
+  -moz-background-size: 900%;
+  background-size: 900%;
+  background-position: 0 0;
+}
+.nectarine-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  -webkit-background-size: 900%;
+  -moz-background-size: 900%;
+  background-size: 900%;
+  background-position: 12.5% 0;
+}
+.lemon-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  -webkit-background-size: 900%;
+  -moz-background-size: 900%;
+  background-size: 900%;
+  background-position: 25% 0;
+}
+.apple-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  -webkit-background-size: 900%;
+  -moz-background-size: 900%;
+  background-size: 900%;
+  background-position: 37.5% 0;
+}
+.electricity-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  -webkit-background-size: 900%;
+  -moz-background-size: 900%;
+  background-size: 900%;
+  background-position: 50% 0;
+}
+.plum-crazy-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  -webkit-background-size: 900%;
+  -moz-background-size: 900%;
+  background-size: 900%;
+  background-position: 62.5% 0;
+}
+.powder-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  -webkit-background-size: 900%;
+  -moz-background-size: 900%;
+  background-size: 900%;
+  background-position: 75% 0;
+}
+.proton-powder-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  -webkit-background-size: 900%;
+  -moz-background-size: 900%;
+  background-size: 900%;
+  background-position: 87.5% 0;
+}
+.gray-gallery {
+  background-image: url("../images/sprites/front_sprites.jpg");
+  -webkit-background-size: 900%;
+  -moz-background-size: 900%;
+  background-size: 900%;
+  background-position: 100% 0;
 }
 html,
 body {
@@ -259,25 +247,16 @@ nav li:nth-child(2) > a {
 nav li:nth-child(3) > a {
   color: #3bdf09;
 }
-.home-sprite {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 300px;
-  height: 300px;
-  border: 2px solid #f00;
-}
 .pant-container {
+  position: relative;
+  display: inline-block;
   height: 75%;
   width: 25%;
-  display: inline-block;
   vertical-align: top;
-  position: relative;
 }
 .pant-text {
-  width: 100%;
   position: absolute;
+  width: 100%;
   bottom: 0;
   text-align: center;
 }

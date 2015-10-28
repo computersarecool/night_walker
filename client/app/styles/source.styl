@@ -53,15 +53,23 @@ make_sprites()
   for spritesheet in arguments
     sprites(spritesheet)
 
+// Disabled    
 // Call the function on all the (renamed) sprite name arrays (could be the spritesheet itself)
-make_sprites($front_sprites_sprites, $poster_sprites_sprites)
+// make_sprites($front_sprites_sprites, $poster_sprites_sprites)
 // End of sprite
 
 
 
 
 // Gallery Animation
-// TODO: Where is home sprite?
+.home-sprite
+  position absolute
+  left 0
+  right 0
+  margin 0 auto
+  width 300px
+  height 300px
+  border 2px solid red  
 
 .gallery-animate
   transition all cubic-bezier(1, .01, .33, 1) .5s
@@ -78,7 +86,53 @@ make_sprites($front_sprites_sprites, $poster_sprites_sprites)
 .fast-no-gray
   transition all cubic-bezier(.83, .04, .65, .93) .4s
   opacity 0
-// End of animation
+
+.cherry-gallery
+  background-image: url('../images/sprites/front_sprites.jpg')
+  background-size: 900%
+  background-position: 0 0
+  
+.nectarine-gallery
+  background-image: url('../images/sprites/front_sprites.jpg')
+  background-size: 900%
+  background-position: 12.5% 0
+  
+.lemon-gallery
+  background-image: url('../images/sprites/front_sprites.jpg')
+  background-size: 900%
+  background-position: 25% 0
+  
+.apple-gallery
+  background-image: url('../images/sprites/front_sprites.jpg')
+  background-size: 900%
+  background-position: 37.5% 0
+  
+.electricity-gallery
+  background-image: url('../images/sprites/front_sprites.jpg')
+  background-size: 900%
+  background-position: 50% 0
+  
+.plum-crazy-gallery
+  background-image: url('../images/sprites/front_sprites.jpg')
+  background-size: 900%
+  background-position: 62.5% 0
+  
+.powder-gallery
+  background-image: url('../images/sprites/front_sprites.jpg')
+  background-size: 900%
+  background-position: 75% 0
+  
+.proton-powder-gallery
+  background-image: url('../images/sprites/front_sprites.jpg')
+  background-size: 900%
+  background-position: 87.5% 0
+
+.gray-gallery
+  background-image: url('../images/sprites/front_sprites.jpg')
+  background-size: 900%
+  background-position: 100% 0
+        
+// End of gallery animation
 
 
 
@@ -107,6 +161,7 @@ header img
   width 80vw
   margin-left 2vw
 
+  
 // Shopping cart
 site-cart
   float right
@@ -118,7 +173,9 @@ site-cart
 site-cart .words
   text-align center
   line-height 8vw
-  
+
+
+    
 // Cube
 // .wrap 
 //   perspective: 800px
@@ -194,32 +251,22 @@ nav li:nth-child(2) > a
 nav li:nth-child(3) > a
   color rgb(59, 223, 9)
 
+.pant-container
+  position relative
+  display inline-block  
+  height 75%
+  width 25%
+  vertical-align top
 
-// Is status used?
+.pant-text
+  position absolute
+  width 100%
+  bottom 0
+  text-align: center
+  
+// TODO: Is status used?
 // .status
 //   position absolute
 //   right 1em
 //   top 3.55em
 //   font-size 100%
-
-.home-sprite
-  position absolute
-  left 0
-  right 0
-  margin 0 auto
-  width 300px
-  height 300px
-  border 2px solid red  
-
-.pant-container
-  height 75%
-  width 25%
-  display inline-block
-  vertical-align top
-  position relative
-
-.pant-text
-  width 100%
-  position absolute
-  bottom 0
-  text-align: center 

@@ -149,21 +149,23 @@ angular.module('nightwalkerApp')
           }, false);
 
         })();
-
         //End of mobile device function
+
       } else {
         //Device orientation not supported or screen is too big
         var autoChange = (function () {
           var index = 0;
           var classes = [
-            'apple-gallery',
             'cherry-gallery',
-            'electricity-gallery',
             'nectarine-gallery',
+            'lemon-gallery',
+            'apple-gallery',
+            'electricity-gallery',
             'plum-crazy-gallery',
             'powder-gallery',
-            'proton-powder-gallery',
+            'proton-powder-gallery'
           ];
+
           colorPant.addClass(classes[index]);
 
           return function () {
@@ -179,7 +181,7 @@ angular.module('nightwalkerApp')
           };
         })();
         
-        $interval(autoChange, 300000);
+        $interval(autoChange, 3000);
         //End of desktop callback
       }
 
