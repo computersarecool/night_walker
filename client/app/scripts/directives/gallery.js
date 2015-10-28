@@ -100,7 +100,7 @@ angular.module('nightwalkerApp')
                 break;
               
               case dir >= 315 && dir < 345:
-                colorChange('proton-powder-pant');
+                colorChange('proton-powder-gallery');
                 break;
               
 
