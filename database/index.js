@@ -1,4 +1,4 @@
-//mongod --dbpath data/db/ --logpath data/logs/mongodb.log --logappend
+//mongod --dbpath data/db/ --logpath data/logs/mongodb.log --logappend --smallfiles
 var database;
 var mongoose = require('mongoose');
 var credentials = require('../../../../safe/credentials');

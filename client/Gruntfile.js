@@ -191,7 +191,13 @@ module.exports = function (grunt) {
         src: [
           'app/images/prep_sprites/front_sprites/cherry-gallery.jpg',
           'app/images/prep_sprites/front_sprites/nectarine-gallery.jpg',
-          'app/images/prep_sprites/front_sprites/lemon-gallery.jpg'                    
+          'app/images/prep_sprites/front_sprites/lemon-gallery.jpg',
+          'app/images/prep_sprites/front_sprites/apple-gallery.jpg',
+          'app/images/prep_sprites/front_sprites/electricity-gallery.jpg',
+          'app/images/prep_sprites/front_sprites/plum-crazy-gallery.jpg',
+          'app/images/prep_sprites/front_sprites/powder-gallery.jpg',
+          'app/images/prep_sprites/front_sprites/proton-powder-gallery.jpg',
+          'app/images/prep_sprites/front_sprites/gray-gallery.jpg'
         ],
         dest: 'app/images/sprites/front_sprites.jpg',
         destCss: 'app/styles/front_sprites.styl',
