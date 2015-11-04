@@ -35,13 +35,12 @@ angular.module('nightwalkerApp')
     var link = function (scope, element, attrs) {
       // TODO: Load smaller images based on screen size
       galleryImages.forEach(function (galleryImage) {
-        var source = galleryImage.attr('id');
-        galleryImage.attr("src", source);
+        galleryImage.attr("src", galleryImage.attr('id'));
       });
       
       if ($window.DeviceOrientationEvent && $window.screen.width <= 980) {
-        var changeOnTilt = (function () {
-
+        // IIFE for changing gallery color on tilt
+        (function () {
           // Change the color of the visible pant
           var colorChange = function (className) {
             // Add new pant color class element doesn't already have it
@@ -58,7 +57,6 @@ angular.module('nightwalkerApp')
             }
           };
 
-          
 //          Deprecated
 //          // Get tilt value of phone and change opacity
 //          var checkTilt = function (input, fromMin, fromMax, toMin, toMax, nextColorClass) {
