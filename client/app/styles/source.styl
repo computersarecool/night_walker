@@ -1,19 +1,5 @@
 // <link href='http://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
 @require 'nib'
-@require 'front_sprites'
-@require 'poster_sprites'
-
-// @require 'apple_sprites'
-// @require 'cherry_sprites'
-// @require 'electricity_sprites'
-// @require 'lemon_sprites'
-// @require 'nectarine_sprites'
-// @require 'plum-crazy_sprites'
-// @require 'powder_sprites'
-// @require 'proton-powder_sprites'
-
-
-
 
 // Meyer reset
 html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, a, code, img, var, b, i, center, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td, article, aside, canvas, footer, header, nav, section, time, mark, audio, video
@@ -48,21 +34,8 @@ table
 
 
 
-// Sprite function
-make_sprites()
-  for spritesheet in arguments
-    sprites(spritesheet)
-
-// Disabled    
-// Call the function on all the (renamed) sprite name arrays (could be the spritesheet itself)
-// make_sprites($front_sprites_sprites, $poster_sprites_sprites)
-// End of sprite
-
-
-
-
 // Gallery Animation
-.home-sprite
+.front-gallery, .back-gallery
   position absolute
   left 0
   right 0
@@ -70,6 +43,14 @@ make_sprites()
   width 500px
   height 500px
   border 2px solid red  
+
+.fading-in
+
+.fading-out
+
+.fade-in-fast
+
+.fade-out-fast
 
 .gallery-animate
   transition all cubic-bezier(1, .01, .33, 1) .5s
@@ -87,50 +68,6 @@ make_sprites()
   transition all cubic-bezier(.83, .04, .65, .93) .4s
   opacity 0
 
-.cherry-gallery
-  background-image: url('../images/sprites/front_sprites.jpg')
-  background-size: 900%
-  background-position: 0 0
-  
-.nectarine-gallery
-  background-image: url('../images/sprites/front_sprites.jpg')
-  background-size: 900%
-  background-position: 12.5% 0
-  
-.lemon-gallery
-  background-image: url('../images/sprites/front_sprites.jpg')
-  background-size: 900%
-  background-position: 25% 0
-  
-.apple-gallery
-  background-image: url('../images/sprites/front_sprites.jpg')
-  background-size: 900%
-  background-position: 37.5% 0
-  
-.electricity-gallery
-  background-image: url('../images/sprites/front_sprites.jpg')
-  background-size: 900%
-  background-position: 50% 0
-  
-.plum-crazy-gallery
-  background-image: url('../images/sprites/front_sprites.jpg')
-  background-size: 900%
-  background-position: 62.5% 0
-  
-.powder-gallery
-  background-image: url('../images/sprites/front_sprites.jpg')
-  background-size: 900%
-  background-position: 75% 0
-  
-.proton-powder-gallery
-  background-image: url('../images/sprites/front_sprites.jpg')
-  background-size: 900%
-  background-position: 87.5% 0
-
-.gray-gallery
-  background-image: url('../images/sprites/front_sprites.jpg')
-  background-size: 900%
-  background-position: 100% 0
         
 // End of gallery animation
 

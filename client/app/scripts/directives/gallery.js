@@ -9,15 +9,39 @@
 angular.module('nightwalkerApp')
   .directive('siteGallery', function ($location, $interval, $timeout, $window) {
   
-    var list = angular.element('<p></p>');
-    var colorPant = angular.element('<div id="gallery-top" class="home-sprite">Hello</div>');
-    var grayPant = angular.element('<div id="gallery-bottom" class="home-sprite gray-gallery gallery-animate">World!</div>');
+    var paragraph = angular.element('<p></p>');
+
+    var cherryPant = angular.element('<img id="cherry-gallery"></img>');
+    var nectarinePant = angular.element('<img id="nectarine-gallery"></img>');
+    var lemonPant = angular.element('<img id="lemon-gallery"></img>');
+    var applePant = angular.element('<img id="apple-gallery"></img>');
+    var electricityPant = angular.element('<img id="electricity-gallery"></img>');
+    var plumCrazyPant = angular.element('<img id="plum-crazy-gallery"></img>');
+    var powderPant = angular.element('<img id="powder-gallery"></img>');
+    var protonPowderPant = angular.element('<img id="proton-powder-gallery"></img>'); 
+
+    var galleryImages = [
+      cherryPant,
+      nectarinePant,
+      lemonPant,
+      applePant,
+      electricityPant,
+      plumCrazyPant,
+      powderPant,
+      protonPowderPant
+    ];
 
     // TODO: Lint syntax
     var link = function (scope, element, attrs) {
-      if ($window.DeviceOrientationEvent && screen.width <= 980) {
-
+      // TODO: Load smaller images based on screen size
+      galleryImages.forEach(function (galleryImage) {
+        var source = galleryImage.attr('id');
+        galleryImage.attr("src", source);
+      });
+      
+      if ($window.DeviceOrientationEvent && $window.screen.width <= 980) {
         var changeOnTilt = (function () {
+
           // Change the color of the visible pant
           var colorChange = function (className) {
             // Add new pant color class element doesn't already have it
@@ -34,40 +58,50 @@ angular.module('nightwalkerApp')
             }
           };
 
-
-          var checkTilt = function (input, fromMin, fromMax, toMin, toMax, nextColorClass) {
-            var opacityValue = (input - fromMax) / (fromMin - fromMax) * (toMin - toMax) + toMax;
-            // Snap opacity to 0
-            if (opacityValue < .2) {
-              opacityValue = 0;
-            }
-            // Snap opacity to one
-            if (opacityValue > .7) {
-              opacityValue = 1;
-            }
-            // change to next color
-            if (opacityValue === 1) {
-              colorChange(nextColorClass);
-            }
-            // Set the gray pant opacity
-            grayPant.css('opacity', opacityValue);
-          };
-
-          // Change (gray) pant to new class
-          var checkAdd = function (oldClass, newClass) {
-            if (!grayPant.hasClass(newClass)) {
-              grayPant.removeClass(oldClass);
-              grayPant.addClass(newClass);
-            }
-          };
-
           
-          $window.addEventListener('deviceorientation', function(eventData) {
+//          Deprecated
+//          // Get tilt value of phone and change opacity
+//          var checkTilt = function (input, fromMin, fromMax, toMin, toMax, nextColorClass) {
+//            var opacityValue = (input - fromMax) / (fromMin - fromMax) * (toMin - toMax) + toMax;
+//            // Snap opacity to 0
+//            if (opacityValue < .2) {
+//              opacityValue = 0;
+//            }
+//            // Snap opacity to one
+//            if (opacityValue > .7) {
+//              opacityValue = 1;
+//            }
+//            // change to next color
+//            if (opacityValue === 1) {
+//              colorChange(nextColorClass);
+//            }
+//            // Set the gray pant opacity
+//            grayPant.css('opacity', opacityValue);
+//          };
+//
+//
+//          
+//          // Change (gray) pant to new class
+//          var checkAdd = function (oldClass, newClass) {
+//            if (!grayPant.hasClass(newClass)) {
+//              grayPant.removeClass(oldClass);
+//              grayPant.addClass(newClass);
+//            }
+//          };
+
+
+          // Monitor the device when it is moving
+          // Check to see if the front-gallery is also fading in
+          // If so, quickly unfade
+          // If not fade out front-gallery, then swap classes when done
+          // Set a flag for previous values
+
+          $window.addEventListener('deviceorientation', function (eventData) {
             var tiltLR = eventData.gamma;
             var tiltFB = eventData.beta;
             var dir = eventData.alpha;
 
-            list.html('<p>The dir is ' + dir + '</p>');
+            paragraph.html('<p>The dir is ' + dir + '</p>');
 
             switch (true) {
               // Change main pant color
@@ -152,6 +186,8 @@ angular.module('nightwalkerApp')
         //End of mobile device function
 
       } else {
+        console.log('not here');
+        return;
         //Device orientation not supported or screen is too big
         var autoChange = (function () {
           var index = 0;
@@ -192,14 +228,17 @@ angular.module('nightwalkerApp')
     return {
       restrict: 'E',
       compile: function (tElem) {
-        // TODO: Remove list all it shows is the dir value
-        tElem.append(list);
-        tElem.append(colorPant);
-        tElem.append(grayPant);
+        // TODO: Remove paragraph all it shows is the dir value
+        tElem.append(paragraph);
+        galleryImages.forEach(function (galleryImage) {
+          tElem.append(galleryImage);
+        });
         return link;
       }
     };
   });
+
+
 
 
 
