@@ -11,38 +11,38 @@ angular.module('nightwalkerApp')
   
     var paragraph = angular.element('<p></p>');
 
-    var cherryPant = angular.element('<img id="cherry-gallery"></img>');
-    var nectarinePant = angular.element('<img id="nectarine-gallery"></img>');
-    var lemonPant = angular.element('<img id="lemon-gallery"></img>');
-    var applePant = angular.element('<img id="apple-gallery"></img>');
-    var electricityPant = angular.element('<img id="electricity-gallery"></img>');
-    var plumCrazyPant = angular.element('<img id="plum-crazy-gallery"></img>');
-    var powderPant = angular.element('<img id="powder-gallery"></img>');
-    var protonPowderPant = angular.element('<img id="proton-powder-gallery"></img>'); 
+    var cherryPant = angular.element('<img id="cherry-gallery" class="gallery"></img>');
+    var nectarinePant = angular.element('<img id="nectarine-gallery" class="gallery"></img>');
+    var lemonPant = angular.element('<img id="lemon-gallery" class="gallery"></img>');
+    var applePant = angular.element('<img id="apple-gallery" class="gallery"></img>');
+    var electricityPant = angular.element('<img id="electricity-gallery" class="gallery"></img>');
+    var plumCrazyPant = angular.element('<img id="plum-crazy-gallery" class="gallery"></img>');
+    var powderPant = angular.element('<img id="powder-gallery" class="gallery"></img>');
+    var protonPowderPant = angular.element('<img id="proton-powder-gallery" class="gallery"></img>'); 
 
     var galleryImages = [
-      cherryPant,
-      nectarinePant,
-      lemonPant,
-      applePant,
-      electricityPant,
-      plumCrazyPant,
+      protonPowderPant,
       powderPant,
-      protonPowderPant
+      plumCrazyPant,
+      electricityPant,
+      applePant,
+      lemonPant,
+      nectarinePant,
+      cherryPant
     ];
 
     // TODO: Lint syntax
     var link = function (scope, element, attrs) {
       // TODO: Load smaller images based on screen size
       galleryImages.forEach(function (galleryImage) {
-        galleryImage.attr("src", galleryImage.attr('id'));
+        galleryImage.attr("src", 'images/front_gallery/' + galleryImage.attr('id') + '.jpg');
       });
       
       if ($window.DeviceOrientationEvent && $window.screen.width <= 980) {
         // IIFE for changing gallery color on tilt
         (function () {
           // Change the color of the visible pant
-          var colorChange = function (className) {
+ /*        var colorChange = function (className) {
             // Add new pant color class element doesn't already have it
             if (!colorPant.hasClass(className)) {
               colorPant.removeAttr('class');
@@ -56,7 +56,7 @@ angular.module('nightwalkerApp')
               grayPant.addClass('fast-no-gray');
             }
           };
-
+*/
 //          Deprecated
 //          // Get tilt value of phone and change opacity
 //          var checkTilt = function (input, fromMin, fromMax, toMin, toMax, nextColorClass) {
@@ -92,100 +92,63 @@ angular.module('nightwalkerApp')
           // Check to see if the front-gallery is also fading in
           // If so, quickly unfade
           // If not fade out front-gallery, then swap classes when done
-          // Set a flag for previous values
+          // Set a flag for previous value
 
+          var oldDirection;
           $window.addEventListener('deviceorientation', function (eventData) {
             var tiltLR = eventData.gamma;
             var tiltFB = eventData.beta;
-            var dir = eventData.alpha;
-
+            var direction = eventData.alpha;
+            
             paragraph.html('<p>The dir is ' + dir + '</p>');
 
             switch (true) {
               // Change main pant color
-              case dir >= 0 && dir < 30:
-                colorChange('cherry-gallery');
+              case oldDirection < 337.5 && direction >= 337.5:
+                colorChange('cherry');
                 break;
 
-              case dir >= 45 && dir < 75:
-                colorChange('nectarine-gallery');
+              case oldDirection >= 0 && direction <= 22.5:
+                colorChange('cherry');
                 break;
-              
-              case dir >= 90 && dir < 120:
-                colorChange('lemon-gallery');
-                break;
-              
-              case dir >= 135 && dir < 165:
-                colorChange('apple-gallery');
-                break;
-              
-              case dir >= 180 && dir < 210:
-                colorChange('electricity-gallery');
-                break;
-              
-              case dir >= 225 && dir < 255:
-                colorChange('plum-crazy-gallery');
-                break;
-              
-              case dir >= 270 && dir < 300:
-                colorChange('powder-gallery');
-                break;
-              
-              case dir >= 315 && dir < 345:
-                colorChange('proton-powder-gallery');
-                break;
-              
 
-              // Hide or show gray pant
-              case dir >= 30 && dir < 45:
-                checkAdd('fast-no-gray', 'fast-gray');
+              case oldDirection < 22.5 && direction >= 22.5 && direction < 67.5:
+                colorChange('nectarine');
+                break;
+
+              case oldDirection < 67.5 && direction >= 67.5 && direction < 112.5:
+                colorChange('lemon');
+                break;
+ 
+              case oldDirection < 112.5 && direction >= 12.5 && direction <= 157.5:
+                colorChange('apple');
+                break;
+
+              case oldDirection < 157.5 && direction > 157.5 && direction <= 202.5:
+                colorChange('electricity');
                 break;
               
-
-              case dir >= 75 && dir < 90:
-                checkAdd('fast-no-gray', 'fast-gray');
+              case oldDirection < 202.5 && direction >= 202.5 && direction < 247.5:
+                colorChange('plum-crazy');
                 break;
-              
-
-              case dir >= 120 && dir < 135:
-                checkAdd('fast-no-gray', 'fast-gray');
+ 
+              case oldDirection < 247.5 && direction >= 247.5 && direction < 292.5:
+                colorChange('powder');
                 break;
-              
 
-              case dir >= 165 && dir < 180:
-                checkAdd('fast-no-gray', 'fast-gray');
+              case oldDirection < 292.5 && direction >= 292.5 && direction < 337.5:
+                colorChange('proton-powder');
                 break;
-              
 
-              case dir >= 210 && dir < 225:
-                checkAdd('fast-no-gray', 'fast-gray');
-                break;
-              
-
-              case dir >= 255 && dir < 270:
-                checkAdd('fast-no-gray', 'fast-gray');
-                break;
-              
-
-              case dir >= 300 && dir < 315:
-                checkAdd('fast-no-gray', 'fast-gray');
-                break;
-              
-
-              case dir >= 345 && dir < 360:
-                checkAdd('fast-no-gray', 'fast-gray');
-                break;
             }
-            
-
+            // Set old direction to the previous value
+            oldDirection = direction;
           }, false);
 
         })();
         //End of mobile device function
 
       } else {
-        console.log('not here');
-        return;
         //Device orientation not supported or screen is too big
         var autoChange = (function () {
           var index = 0;
@@ -218,7 +181,6 @@ angular.module('nightwalkerApp')
         $interval(autoChange, 3000);
         //End of desktop callback
       }
-
       //End of link function
     };
 

@@ -75,15 +75,16 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-.home-sprite {
+img.gallery {
   position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 500px;
-  height: 500px;
-  border: 2px solid #f00;
+  z-index: -1;
+  width: 85%;
+  top: 10%;
 }
+.fading-in,
+.fading-out,
+.fade-in-fast,
+.fade-out-fast,
 .gallery-animate {
   -webkit-transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
   -moz-transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
@@ -123,69 +124,6 @@ table {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
-}
-.cherry-gallery {
-  background-image: url("../images/sprites/front_sprites.jpg");
-  -webkit-background-size: 900%;
-  -moz-background-size: 900%;
-  background-size: 900%;
-  background-position: 0 0;
-}
-.nectarine-gallery {
-  background-image: url("../images/sprites/front_sprites.jpg");
-  -webkit-background-size: 900%;
-  -moz-background-size: 900%;
-  background-size: 900%;
-  background-position: 12.5% 0;
-}
-.lemon-gallery {
-  background-image: url("../images/sprites/front_sprites.jpg");
-  -webkit-background-size: 900%;
-  -moz-background-size: 900%;
-  background-size: 900%;
-  background-position: 25% 0;
-}
-.apple-gallery {
-  background-image: url("../images/sprites/front_sprites.jpg");
-  -webkit-background-size: 900%;
-  -moz-background-size: 900%;
-  background-size: 900%;
-  background-position: 37.5% 0;
-}
-.electricity-gallery {
-  background-image: url("../images/sprites/front_sprites.jpg");
-  -webkit-background-size: 900%;
-  -moz-background-size: 900%;
-  background-size: 900%;
-  background-position: 50% 0;
-}
-.plum-crazy-gallery {
-  background-image: url("../images/sprites/front_sprites.jpg");
-  -webkit-background-size: 900%;
-  -moz-background-size: 900%;
-  background-size: 900%;
-  background-position: 62.5% 0;
-}
-.powder-gallery {
-  background-image: url("../images/sprites/front_sprites.jpg");
-  -webkit-background-size: 900%;
-  -moz-background-size: 900%;
-  background-size: 900%;
-  background-position: 75% 0;
-}
-.proton-powder-gallery {
-  background-image: url("../images/sprites/front_sprites.jpg");
-  -webkit-background-size: 900%;
-  -moz-background-size: 900%;
-  background-size: 900%;
-  background-position: 87.5% 0;
-}
-.gray-gallery {
-  background-image: url("../images/sprites/front_sprites.jpg");
-  -webkit-background-size: 900%;
-  -moz-background-size: 900%;
-  background-size: 900%;
-  background-position: 100% 0;
 }
 html,
 body {
