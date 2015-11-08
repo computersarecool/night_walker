@@ -120,11 +120,11 @@ angular.module('nightwalkerApp')
                 colorChange('lemon');
                 break;
  
-              case oldDirection < 112.5 && direction >= 12.5 && direction <= 157.5:
+              case oldDirection < 112.5 && direction >= 112.5 && direction < 157.5:
                 colorChange('apple');
                 break;
 
-              case oldDirection < 157.5 && direction > 157.5 && direction <= 202.5:
+              case oldDirection < 157.5 && direction >= 157.5 && direction < 202.5:
                 colorChange('electricity');
                 break;
               
@@ -140,6 +140,8 @@ angular.module('nightwalkerApp')
                 colorChange('proton-powder');
                 break;
 
+              // TODO: Pick up here, switch colors counter clockwise
+              
             }
             // Set old direction to the previous value
             oldDirection = direction;
