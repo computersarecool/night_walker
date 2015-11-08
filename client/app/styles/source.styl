@@ -29,6 +29,8 @@ a:focus
 table
   border-collapse collapse
   border-spacing 0
+
+
 // End of reset
 
 
@@ -37,35 +39,17 @@ table
 // Gallery Animation
 img.gallery
   position absolute
-  z-index -1
   width: 85%
   top 10%
-
-.fading-in
-
-.fading-out
-
-.fade-in-fast
-
-.fade-out-fast
-
-.gallery-animate
-  transition all cubic-bezier(1, .01, .33, 1) .5s
+  z-index -2
+  transition all cubic-bezier(1, .01, .57,1) 1s
   opacity 0
-
-.gallery-animate.displayed
-  transition all cubic-bezier(1, .01, .57,1) 2s
+  
+img.gallery.front
+  z-index -1
   opacity 1
+  transition all cubic-bezier(1, .01, .57,1) 1s
 
-.fast-gray
-  transition all cubic-bezier(.83, .04, .65, .93) .4s
-  opacity 1
-
-.fast-no-gray
-  transition all cubic-bezier(.83, .04, .65, .93) .4s
-  opacity 0
-
-        
 // End of gallery animation
 
 

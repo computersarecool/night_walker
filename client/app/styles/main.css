@@ -77,53 +77,28 @@ table {
 }
 img.gallery {
   position: absolute;
-  z-index: -1;
   width: 85%;
   top: 10%;
-}
-.fading-in,
-.fading-out,
-.fade-in-fast,
-.fade-out-fast,
-.gallery-animate {
-  -webkit-transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
-  -moz-transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
-  -o-transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
-  -ms-transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
-  transition: all cubic-bezier(1, 0.01, 0.33, 1) 0.5s;
+  z-index: -2;
+  -webkit-transition: all cubic-bezier(1, 0.01, 0.57, 1) 1s;
+  -moz-transition: all cubic-bezier(1, 0.01, 0.57, 1) 1s;
+  -o-transition: all cubic-bezier(1, 0.01, 0.57, 1) 1s;
+  -ms-transition: all cubic-bezier(1, 0.01, 0.57, 1) 1s;
+  transition: all cubic-bezier(1, 0.01, 0.57, 1) 1s;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
 }
-.gallery-animate.displayed {
-  -webkit-transition: all cubic-bezier(1, 0.01, 0.57, 1) 2s;
-  -moz-transition: all cubic-bezier(1, 0.01, 0.57, 1) 2s;
-  -o-transition: all cubic-bezier(1, 0.01, 0.57, 1) 2s;
-  -ms-transition: all cubic-bezier(1, 0.01, 0.57, 1) 2s;
-  transition: all cubic-bezier(1, 0.01, 0.57, 1) 2s;
+img.gallery.front {
+  z-index: -1;
   opacity: 1;
   -ms-filter: none;
   filter: none;
-}
-.fast-gray {
-  -webkit-transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
-  -moz-transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
-  -o-transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
-  -ms-transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
-  transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
-  opacity: 1;
-  -ms-filter: none;
-  filter: none;
-}
-.fast-no-gray {
-  -webkit-transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
-  -moz-transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
-  -o-transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
-  -ms-transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
-  transition: all cubic-bezier(0.83, 0.04, 0.65, 0.93) 0.4s;
-  opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
+  -webkit-transition: all cubic-bezier(1, 0.01, 0.57, 1) 1s;
+  -moz-transition: all cubic-bezier(1, 0.01, 0.57, 1) 1s;
+  -o-transition: all cubic-bezier(1, 0.01, 0.57, 1) 1s;
+  -ms-transition: all cubic-bezier(1, 0.01, 0.57, 1) 1s;
+  transition: all cubic-bezier(1, 0.01, 0.57, 1) 1s;
 }
 html,
 body {

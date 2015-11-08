@@ -11,7 +11,7 @@ angular.module('nightwalkerApp')
   
     var paragraph = angular.element('<p></p>');
 
-    var cherryPant = angular.element('<img id="cherry-gallery" class="gallery"></img>');
+    var cherryPant = angular.element('<img id="cherry-gallery" class="gallery front"></img>');
     var nectarinePant = angular.element('<img id="nectarine-gallery" class="gallery"></img>');
     var lemonPant = angular.element('<img id="lemon-gallery" class="gallery"></img>');
     var applePant = angular.element('<img id="apple-gallery" class="gallery"></img>');
@@ -93,22 +93,33 @@ angular.module('nightwalkerApp')
           // If so, quickly unfade
           // If not fade out front-gallery, then swap classes when done
           // Set a flag for previous value
+          
+          // Change the pant's color
+          function colorChange (newcolor) {
+            // TODO: Check If animating, and opposite direction
+            var oldPant = document.querySelector('img.gallery.front');
+            var newPant = document.querySelector('#' + newcolor + '-gallery');
+            
+            oldPant.className = oldPant.className + 'gallery';
+            newPant.className = newPant.className + ' front';
 
+            $timeout(function () {
+              console.log('hi');
+            }, 3000);
+          }
+          
           var oldDirection;
           $window.addEventListener('deviceorientation', function (eventData) {
             var tiltLR = eventData.gamma;
             var tiltFB = eventData.beta;
             var direction = eventData.alpha;
             
-            paragraph.html('<p>The dir is ' + dir + '</p>');
+            paragraph.html('<p>The dir is ' + direction + '</p>');
 
             switch (true) {
               // Change main pant color
-              case oldDirection < 337.5 && direction >= 337.5:
-                colorChange('cherry');
-                break;
-
-              case oldDirection >= 0 && direction <= 22.5:
+              // TODO: Check for the case of greater than 22.5 then less than 22.5
+              case oldDirection < 337.5 && direction >= 337.5 :
                 colorChange('cherry');
                 break;
 
