@@ -96,7 +96,7 @@ angular.module('nightwalkerApp')
           
           // Change the pant's color
           function colorChange (newcolor) {
-            // TODO: Check If animating, and opposite direction
+            // TODO: Check If animating, and opposite direction rotation
             var oldPant = document.querySelector('img.gallery.front');
             var newPant = document.querySelector('#' + newcolor + '-gallery');
             
@@ -104,6 +104,7 @@ angular.module('nightwalkerApp')
             newPant.className = newPant.className + ' front';
 
             $timeout(function () {
+              // TODO: Only needed to test animation completion
               console.log('hi');
             }, 3000);
           }
@@ -118,11 +119,14 @@ angular.module('nightwalkerApp')
 
             switch (true) {
               // Change main pant color
-              // TODO: Check for the case of greater than 22.5 then less than 22.5
-              case oldDirection < 337.5 && direction >= 337.5 :
+              case oldDirection < 337.5 && direction >= 337.5:
                 colorChange('cherry');
                 break;
 
+              case oldDirection > 22.5 && oldDirection <= 337.5 && direction < 22.5:
+                colorChange('cherry');
+                break;
+                
               case oldDirection < 22.5 && direction >= 22.5 && direction < 67.5:
                 colorChange('nectarine');
                 break;
@@ -148,6 +152,43 @@ angular.module('nightwalkerApp')
                 break;
 
               case oldDirection < 292.5 && direction >= 292.5 && direction < 337.5:
+                colorChange('proton-powder');
+                break;
+
+              // Opposite direction
+              case oldDirection > 22.5 && direction <= 22.5:
+                colorChange('cherry');
+                break;
+
+              case oldDirection > 22.5 && direction >= 337.5:
+                colorChange('cherry');
+                break;
+              
+              case oldDirection > 67.5 && direction <= 67.5 && direction > 22.5:
+                colorChange('nectarine');
+                break;
+ 
+              case oldDirection > 112.5 && direction <= 112.5 && direction > 67.5:
+                colorChange('lemon');
+                break;
+
+              case oldDirection > 157.5 && direction <= 157.5 && direction > 112.5:
+                colorChange('apple');
+                break;
+              
+              case oldDirection > 202.5 && direction <= 202.5 && direction > 157.5:
+                colorChange('electricity');
+                break;
+ 
+              case oldDirection > 247.5 && direction <= 247.5 && direction > 202.5:
+                colorChange('plum-crazy');
+                break;
+
+              case oldDirection > 292.5 && direction <= 292.5 && direction > 247.5:
+                colorChange('powder');
+                break;
+
+              case oldDirection > 337.5 && direction <= 337.5 && direction > 292.5:
                 colorChange('proton-powder');
                 break;
 
