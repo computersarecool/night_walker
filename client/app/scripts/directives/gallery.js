@@ -189,33 +189,3 @@ angular.module('nightwalkerApp')
     };
   });
 
-
-
-
-
-/*    
-  return function (scope, element, attrs) {
-      var promise;
-
-      console.log(element.children());
-
-      scope.start = function () {
-        scope.stop();
-
-        promise = $interval(function () {
-          console.log('Hi there');
-        }, 500);
-      }
-
-      scope.stop = function () {
-        $interval.cancel(promise);
-      }
-
-      scope.start();
-
-      scope.$on('$destroy', function () {
-        scope.stop();
-      });
-    
-    }
-  */
