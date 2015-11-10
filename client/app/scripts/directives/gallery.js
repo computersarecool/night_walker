@@ -36,6 +36,14 @@ angular.module('nightwalkerApp')
       galleryImages.forEach(function (galleryImage) {
         galleryImage.attr("src", 'images/front_gallery/' + galleryImage.attr('id') + '.jpg');
       });
+
+      // Function to change the pant's color
+      function colorChange (newcolor) {
+        var oldPant = document.querySelector('img.gallery.front');
+        var newPant = document.querySelector('#' + newcolor + '-gallery');
+        oldPant.className = 'gallery';
+        newPant.className = newPant.className + ' front';
+      }
       
       if ($window.DeviceOrientationEvent && $window.screen.width <= 980) {
         // IIFE for changing gallery color on tilt
@@ -139,33 +147,25 @@ angular.module('nightwalkerApp')
         //Device orientation not supported or screen is too big
         var autoChange = (function () {
           var index = 0;
-          var classes = [
-            'cherry-gallery',
-            'nectarine-gallery',
-            'lemon-gallery',
-            'apple-gallery',
-            'electricity-gallery',
-            'plum-crazy-gallery',
-            'powder-gallery',
-            'proton-powder-gallery'
+          var imageColors = [
+            'cherry',
+            'nectarine',
+            'lemon',
+            'apple',
+            'electricity',
+            'plum-crazy',
+            'powder',
+            'proton-powder'
           ];
 
-          colorPant.addClass(classes[index]);
-
           return function () {
-            grayPant.addClass('displayed');
-            $timeout(function () {
-              grayPant.removeClass('displayed');
-              colorPant.removeClass(classes[index]);
-              if (++index === classes.length) {
-                index = 0;
-              }
-              colorPant.addClass(classes[index]);
-            }, 2000);
+            var newColor = imageColors[++index % imageColors.length];
+            colorChange(newColor);
           };
+       
         })();
         
-        $interval(autoChange, 3000);
+        $interval(autoChange, 2000);
         //End of desktop callback
       }
       //End of link function
