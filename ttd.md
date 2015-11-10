@@ -1,8 +1,11 @@
 # TODO:
-(Update to be on cloud)
 
-Final design and prepare media:
+## Media
+- Have all home gallery images fade to white on sides
+- Center those images
+
 ## Guest Checkout initiative
+
 ### Basket Directive Popup
  - Make rotating cube style something like a directive
  - Make responsive popup directive

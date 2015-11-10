@@ -161,11 +161,15 @@ angular.module('nightwalkerApp')
           return function () {
             var newColor = imageColors[++index % imageColors.length];
             colorChange(newColor);
+            console.log(index, 'hello');
           };
        
         })();
         
-        $interval(autoChange, 2000);
+        var intervalPromise = $interval(autoChange, 2000);
+        element.on('$destroy', function () {
+          $interval.cancel(intervalPromise);
+        });
         //End of desktop callback
       }
       //End of link function
