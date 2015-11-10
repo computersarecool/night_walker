@@ -31,7 +31,6 @@ angular.module('nightwalkerApp')
       cherryPant
     ];
 
-    // TODO: Lint syntax
     var link = function (scope, element, attrs) {
       // TODO: Load smaller images based on screen size
       galleryImages.forEach(function (galleryImage) {
@@ -41,80 +40,18 @@ angular.module('nightwalkerApp')
       if ($window.DeviceOrientationEvent && $window.screen.width <= 980) {
         // IIFE for changing gallery color on tilt
         (function () {
-          // Change the color of the visible pant
- /*        var colorChange = function (className) {
-            // Add new pant color class element doesn't already have it
-            if (!colorPant.hasClass(className)) {
-              colorPant.removeAttr('class');
-              colorPant.addClass('home-sprite');
-              colorPant.addClass(className);
-              //colorPant.addClass('pant-sprite ' + className);
-            }
-            // Remove gray from cover pant
-            if (grayPant.hasClass('fast-gray')) {
-              grayPant.removeClass('fast-gray');
-              grayPant.addClass('fast-no-gray');
-            }
-          };
-*/
-//          Deprecated
-//          // Get tilt value of phone and change opacity
-//          var checkTilt = function (input, fromMin, fromMax, toMin, toMax, nextColorClass) {
-//            var opacityValue = (input - fromMax) / (fromMin - fromMax) * (toMin - toMax) + toMax;
-//            // Snap opacity to 0
-//            if (opacityValue < .2) {
-//              opacityValue = 0;
-//            }
-//            // Snap opacity to one
-//            if (opacityValue > .7) {
-//              opacityValue = 1;
-//            }
-//            // change to next color
-//            if (opacityValue === 1) {
-//              colorChange(nextColorClass);
-//            }
-//            // Set the gray pant opacity
-//            grayPant.css('opacity', opacityValue);
-//          };
-//
-//
-//          
-//          // Change (gray) pant to new class
-//          var checkAdd = function (oldClass, newClass) {
-//            if (!grayPant.hasClass(newClass)) {
-//              grayPant.removeClass(oldClass);
-//              grayPant.addClass(newClass);
-//            }
-//          };
 
-
-          // Monitor the device when it is moving
-          // Check to see if the front-gallery is also fading in
-          // If so, quickly unfade
-          // If not fade out front-gallery, then swap classes when done
-          // Set a flag for previous value
-          
-          // Change the pant's color
+          // Function to change the pant's color
           function colorChange (newcolor) {
-            // TODO: Check If animating, and opposite direction rotation
             var oldPant = document.querySelector('img.gallery.front');
             var newPant = document.querySelector('#' + newcolor + '-gallery');
-            
             oldPant.className = oldPant.className + 'gallery';
             newPant.className = newPant.className + ' front';
-
-            $timeout(function () {
-              // TODO: Only needed to test animation completion
-              console.log('hi');
-            }, 3000);
           }
-          
+
           var oldDirection;
           $window.addEventListener('deviceorientation', function (eventData) {
-            var tiltLR = eventData.gamma;
-            var tiltFB = eventData.beta;
             var direction = eventData.alpha;
-            
             paragraph.html('<p>The dir is ' + direction + '</p>');
 
             switch (true) {
@@ -123,9 +60,9 @@ angular.module('nightwalkerApp')
                 colorChange('cherry');
                 break;
 
-              case oldDirection > 22.5 && oldDirection <= 337.5 && direction < 22.5:
-                colorChange('cherry');
-                break;
+//              case oldDirection > 22.5 && oldDirection <= 337.5 && direction < 22.5:
+//                colorChange('cherry');
+//                break;
                 
               case oldDirection < 22.5 && direction >= 22.5 && direction < 67.5:
                 colorChange('nectarine');
@@ -156,13 +93,13 @@ angular.module('nightwalkerApp')
                 break;
 
               // Opposite direction
-              case oldDirection > 22.5 && direction <= 22.5:
-                colorChange('cherry');
-                break;
+//              case oldDirection > 22.5 && direction <= 22.5:
+//                colorChange('cherry');
+//                break;
 
-              case oldDirection > 22.5 && direction >= 337.5:
-                colorChange('cherry');
-                break;
+  //            case oldDirection > 22.5 && direction >= 337.5:
+//                colorChange('cherry');
+//                break;
               
               case oldDirection > 67.5 && direction <= 67.5 && direction > 22.5:
                 colorChange('nectarine');
@@ -191,14 +128,10 @@ angular.module('nightwalkerApp')
               case oldDirection > 337.5 && direction <= 337.5 && direction > 292.5:
                 colorChange('proton-powder');
                 break;
-
-              // TODO: Pick up here, switch colors counter clockwise
-              
             }
             // Set old direction to the previous value
             oldDirection = direction;
           }, false);
-
         })();
         //End of mobile device function
 
