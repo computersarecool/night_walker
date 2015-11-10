@@ -45,7 +45,7 @@ angular.module('nightwalkerApp')
           function colorChange (newcolor) {
             var oldPant = document.querySelector('img.gallery.front');
             var newPant = document.querySelector('#' + newcolor + '-gallery');
-            oldPant.className = oldPant.className + 'gallery';
+            oldPant.className = 'gallery';
             newPant.className = newPant.className + ' front';
           }
 
@@ -60,9 +60,9 @@ angular.module('nightwalkerApp')
                 colorChange('cherry');
                 break;
 
-//              case oldDirection > 22.5 && oldDirection <= 337.5 && direction < 22.5:
-//                colorChange('cherry');
-//                break;
+              case oldDirection > 22.5 && oldDirection <= 337.5 && direction < 22.5:
+                colorChange('cherry');
+                break;
                 
               case oldDirection < 22.5 && direction >= 22.5 && direction < 67.5:
                 colorChange('nectarine');
@@ -93,13 +93,13 @@ angular.module('nightwalkerApp')
                 break;
 
               // Opposite direction
-//              case oldDirection > 22.5 && direction <= 22.5:
-//                colorChange('cherry');
-//                break;
+              case oldDirection > 22.5 && direction <= 22.5:
+                colorChange('cherry');
+                break;
 
-  //            case oldDirection > 22.5 && direction >= 337.5:
-//                colorChange('cherry');
-//                break;
+              case oldDirection > 22.5 && direction >= 337.5:
+                colorChange('cherry');
+                break;
               
               case oldDirection > 67.5 && direction <= 67.5 && direction > 22.5:
                 colorChange('nectarine');

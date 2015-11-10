@@ -80,11 +80,11 @@ img.gallery {
   width: 85%;
   top: 10%;
   z-index: -2;
-  -webkit-transition: all cubic-bezier(1, 0.01, 0.57, 1) 0.85s;
-  -moz-transition: all cubic-bezier(1, 0.01, 0.57, 1) 0.85s;
-  -o-transition: all cubic-bezier(1, 0.01, 0.57, 1) 0.85s;
-  -ms-transition: all cubic-bezier(1, 0.01, 0.57, 1) 0.85s;
-  transition: all cubic-bezier(1, 0.01, 0.57, 1) 0.85s;
+  -webkit-transition: all cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
+  -moz-transition: all cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
+  -o-transition: all cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
+  -ms-transition: all cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
+  transition: all cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
@@ -94,11 +94,6 @@ img.gallery.front {
   opacity: 1;
   -ms-filter: none;
   filter: none;
-  -webkit-transition: all cubic-bezier(1, 0.01, 0.57, 1) 0.25s;
-  -moz-transition: all cubic-bezier(1, 0.01, 0.57, 1) 0.25s;
-  -o-transition: all cubic-bezier(1, 0.01, 0.57, 1) 0.25s;
-  -ms-transition: all cubic-bezier(1, 0.01, 0.57, 1) 0.25s;
-  transition: all cubic-bezier(1, 0.01, 0.57, 1) 0.25s;
 }
 html,
 body {
