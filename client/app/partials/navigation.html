@@ -1,7 +1,7 @@
 <nav>
-  <ul>
-    <li><a ng-href="/shop/alternating-current">Shop</a></li>
-    <li><a ng-href="/about">About</a></li>
-    <li><a ng-href="/contact">Contact</a></li>
+  <ul ng-click="toggleNav($event)">
+    <li><a ng-href="/shop/alternating-current" id="nav-shop">Shop</a></li>
+    <li><a ng-href="/about" id="nav-about">About</a></li>
+    <li><a ng-href="/contact" id="nav-contact">Contact</a></li>
   </ul>
 </nav>

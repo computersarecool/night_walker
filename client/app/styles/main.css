@@ -138,8 +138,12 @@ nav {
   margin-top: 1vw;
   margin-left: 2vw;
 }
+nav ul.horizontal {
+  display: inline;
+}
 nav li {
   margin-top: 1.25vw;
+  display: inherit;
 }
 nav li a {
   text-transform: uppercase;
@@ -154,17 +158,4 @@ nav li:nth-child(2) > a {
 }
 nav li:nth-child(3) > a {
   color: #3bdf09;
-}
-.pant-container {
-  position: relative;
-  display: inline-block;
-  height: 75%;
-  width: 25%;
-  vertical-align: top;
-}
-.pant-text {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  text-align: center;
 }

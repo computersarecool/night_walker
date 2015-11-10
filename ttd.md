@@ -2,7 +2,7 @@
 
 ## Media
 - Have all home gallery images fade to white on sides
-- Center those images
+- Create web font
 
 ## Guest Checkout initiative
 
