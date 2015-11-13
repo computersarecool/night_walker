@@ -151,12 +151,23 @@ nav
   margin-top 1vw
   margin-left 2vw
 
+nav ul
+  overflow hidden
+  width 100%
+  transition width 2s
+  
+nav ul.collapsed
+  width 0
+  transition width 2s
+
 nav ul.horizontal
   display inline
+  width auto
 
 nav li
   margin-top 1.25vw
   display inherit
+
 
 nav li a
   text-transform uppercase

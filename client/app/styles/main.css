@@ -138,8 +138,26 @@ nav {
   margin-top: 1vw;
   margin-left: 2vw;
 }
+nav ul {
+  overflow: hidden;
+  width: 100%;
+  -webkit-transition: width 2s;
+  -moz-transition: width 2s;
+  -o-transition: width 2s;
+  -ms-transition: width 2s;
+  transition: width 2s;
+}
+nav ul.collapsed {
+  width: 0;
+  -webkit-transition: width 2s;
+  -moz-transition: width 2s;
+  -o-transition: width 2s;
+  -ms-transition: width 2s;
+  transition: width 2s;
+}
 nav ul.horizontal {
   display: inline;
+  width: auto;
 }
 nav li {
   margin-top: 1.25vw;
