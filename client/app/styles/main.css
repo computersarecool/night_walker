@@ -140,24 +140,29 @@ nav {
 }
 nav ul {
   overflow: hidden;
-  width: 100%;
-  -webkit-transition: width 2s;
-  -moz-transition: width 2s;
-  -o-transition: width 2s;
-  -ms-transition: width 2s;
-  transition: width 2s;
+  max-width: 30%;
+  max-height: 50%;
 }
 nav ul.collapsed {
-  width: 0;
-  -webkit-transition: width 2s;
-  -moz-transition: width 2s;
-  -o-transition: width 2s;
-  -ms-transition: width 2s;
-  transition: width 2s;
+  max-width: 0;
+  -webkit-transition: max-width 0.2s;
+  -moz-transition: max-width 0.2s;
+  -o-transition: max-width 0.2s;
+  -ms-transition: max-width 0.2s;
+  transition: max-width 0.2s;
+}
+nav ul.height-collapse {
+  max-height: 0;
 }
 nav ul.horizontal {
   display: inline;
-  width: auto;
+  width: 100%;
+  max-height: 50%;
+  -webkit-transition: max-height 2s;
+  -moz-transition: max-height 2s;
+  -o-transition: max-height 2s;
+  -ms-transition: max-height 2s;
+  transition: max-height 2s;
 }
 nav li {
   margin-top: 1.25vw;

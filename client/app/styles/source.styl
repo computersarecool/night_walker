@@ -153,21 +153,26 @@ nav
 
 nav ul
   overflow hidden
-  width 100%
-  transition width 2s
-  
-nav ul.collapsed
-  width 0
-  transition width 2s
+  max-width 30%
+  max-height 50%
 
+nav ul.collapsed
+  max-width 0
+  transition max-width .2s
+
+nav ul.height-collapse
+  max-height 0  
+
+// TODO: Figure out why max height is not animating
 nav ul.horizontal
   display inline
-  width auto
+  width 100%
+  max-height 50%
+  transition max-height 2s
 
 nav li
   margin-top 1.25vw
   display inherit
-
 
 nav li a
   text-transform uppercase
