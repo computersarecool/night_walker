@@ -161,7 +161,6 @@ angular.module('nightwalkerApp')
           return function () {
             var newColor = imageColors[++index % imageColors.length];
             colorChange(newColor);
-            console.log(index, 'hello');
           };
        
         })();

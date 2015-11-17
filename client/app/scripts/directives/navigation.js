@@ -16,6 +16,8 @@ angular.module('nightwalkerApp')
           // Check to see if the clicked item is any nav list element
           if (e.target !== e.currentTarget) {
             if ($location.path() === '/') {
+              
+/* TODO: Uncomment to animate the nav going horizontal
               e.currentTarget.className = 'collapsed';
 
               $timeout(function (navUl) {
@@ -27,7 +29,9 @@ angular.module('nightwalkerApp')
                 }, 200, navUl);
                 
               }, 200, true, e.currentTarget);
+ */
               
+              e.currentTarget.className = 'horizontal';
             }
           }
           // TODO: Figure out why e.stopPropgation here causes problems
@@ -35,4 +39,16 @@ angular.module('nightwalkerApp')
       }
     };
   });
+
+
+
+
+
+
+
+
+
+
+
+
 

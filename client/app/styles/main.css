@@ -183,6 +183,16 @@ nav li:nth-child(2) > a {
 nav li:nth-child(3) > a {
   color: #3bdf09;
 }
-div.main.entered {
-  margin-top: 8vw;
+div.poster-container {
+  width: 85%;
+  border: 6px solid #000;
+}
+img.poster {
+  width: inherit;
+}
+div.pant-text a:link,
+div.pant-text a:visited {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #000;
 }

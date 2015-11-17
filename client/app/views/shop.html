@@ -1,5 +1,6 @@
 <!-- TODO: Style this -->
-<div ng-repeat="pant in collection.members" class="pant-container {{pant.urlFlavor + '-front'}}"> 
+<div ng-repeat="pant in collection.members" class="poster-container">
+  <img ng-src="images/front_gallery/{{pant.urlFlavor}}-gallery.jpg" class="poster">
   <div class="pant-text">
     <a ng-href="/shop/alternating-current/{{pant.urlFlavor}}">The flavor: {{pant.flavor}}</a>
   </div>

@@ -5,6 +5,9 @@
 - Create web font
 
 ## Guest Checkout initiative
+- Removed animation from navigation.js which affected source.stl nav ul.collapsed
+- Consider reusing the home sprite images on poster gallery as they will load quicker
+
 
 ### Basket Directive Popup
  - Make rotating cube style something like a directive
