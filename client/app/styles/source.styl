@@ -1,4 +1,5 @@
 // <link href='http://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
+
 @require 'nib'
 
 // TODO: CDN Reset
@@ -34,26 +35,6 @@ table
 // End of reset
 
 
-
-
-// Gallery Animation
-img.gallery
-  position absolute
-  width: 85%
-  top 10%
-  z-index -2
-  transition all cubic-bezier(.25, .25, .75, .75) .5s
-  opacity 0
-  
-img.gallery.front
-  z-index -1
-  opacity 1
-  
-// End of gallery animation
-
-
-
-
 // Begin styles
 html, body
   width 100%
@@ -68,11 +49,14 @@ html, body
 a:link, a:visited
  text-decoration none    
 
+ 
 // Header container
 header
   margin-top 3vw
-  border-bottom .25em solid black
+  height 6.5 vh
+  border-bottom 1vh solid black
 
+  
 // Nightwalker logo  
 header img
   width 80vw
@@ -90,6 +74,91 @@ site-cart
 site-cart .words
   text-align center
   line-height 8vw
+
+
+// Nav
+nav
+  position absolute
+  margin-top 1vw
+  margin-left 2vw
+  min-height 8vw
+
+nav ul
+  overflow hidden
+  max-width 40vw
+  max-height 50vw
+
+nav ul.collapsed
+  max-width 0
+  transition max-width .2s
+
+nav ul.height-collapse
+  max-height 0  
+
+// TODO: Figure out why max height is not animating
+nav ul.horizontal
+  display inline
+  width 100vw
+  max-height 50vh
+  transition max-height 2s
+
+nav li
+  margin-top 1.25vw
+  display inherit
+
+nav li a
+  text-transform uppercase
+  font-weight 700
+  font-size 7vw
+
+nav li:nth-child(1) > a
+  color rgb(255, 0, 255)
+
+nav li:nth-child(2) > a
+  color rgb(15, 108, 255)
+  
+nav li:nth-child(3) > a
+  color rgb(59, 223, 9)
+
+
+// Gallery Animation
+img.gallery
+  position absolute
+  top 7.5vh
+  left 0
+  right 0
+  width: auto
+  height: 92.5vh
+  margin 0 auto
+  z-index -2
+  opacity 0
+  transition all cubic-bezier(.25, .25, .75, .75) .5s
+
+  
+img.gallery.front
+  z-index -1
+  opacity 1
+  
+// End of gallery animation
+  
+  
+// Shop page
+div.poster-container
+  width 85%
+  border 6px solid black
+  
+img.poster
+  width inherit
+
+div.pant-text a:link, div.pant-text a:visited
+  text-transform uppercase
+  font-weight 700
+  color black
+
+
+
+
+
 
 // Cube
 // .wrap 
@@ -142,61 +211,4 @@ site-cart .words
 //   to {transform:rotateY(360deg)}
 // }
 //End of Cube
-
-
-
-nav
-  margin-top 1vw
-  margin-left 2vw
-  min-height 8vw
-
-nav ul
-  overflow hidden
-  max-width 30%
-  max-height 50%
-
-nav ul.collapsed
-  max-width 0
-  transition max-width .2s
-
-nav ul.height-collapse
-  max-height 0  
-
-// TODO: Figure out why max height is not animating
-nav ul.horizontal
-  display inline
-  width 100%
-  max-height 50%
-  transition max-height 2s
-
-nav li
-  margin-top 1.25vw
-  display inherit
-
-nav li a
-  text-transform uppercase
-  font-weight 700
-  font-size 7vw
-
-nav li:nth-child(1) > a
-  color rgb(255, 0, 255)
-
-nav li:nth-child(2) > a
-  color rgb(15, 108, 255)
   
-nav li:nth-child(3) > a
-  color rgb(59, 223, 9)
-
-// Shop page
-div.poster-container
-  width 85%
-  border 6px solid black
-  
-img.poster
-  width inherit
-
-div.pant-text a:link, div.pant-text a:visited
-  text-transform uppercase
-  font-weight 700
-  color black
-    
