@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 /**
  * @ngdoc directive
@@ -37,34 +37,52 @@ angular.module('nightwalkerApp')
         galleryImage.attr("src", 'images/front_gallery/' + galleryImage.attr('id') + '.jpg');
       });
 
-      // Function to change the pant's color
-      function colorChange (newcolor) {
+      
+      // Function to change the pant's color if no device orientation
+      function autoColorChange (newcolor) {
         var oldPant = document.querySelector('img.gallery.front');
         var newPant = document.querySelector('#' + newcolor + '-gallery');
         oldPant.className = 'gallery';
         newPant.className = newPant.className + ' front';
       }
+
       
+      // Changepant for transitiion end
+      function changePant (oldPant, newPant) {
+        oldPant.className = 'gallery';
+        newPant.className = 'gallery front';
+      }
+
+      
+      // Function to change with device movement
+      function colorChange (newFlavor) {
+        if (newFlavor !== currentFlavor) {
+          var oldPant = document.querySelector('img.gallery.front');
+          var newPant = document.querySelector('#' + newFlavor + '-gallery');
+          if (oldPant && newPant) {
+            newPant.className = newPant.className + ' next';              
+            oldPant.className = 'gallery fade';
+            $timeout(changePant, 500, true, oldPant, newPant);
+            currentFlavor = newFlavor;
+          }
+        }
+      }
+
+      
+      // If device orientation is supported
+      var currentFlavor;
       if ($window.DeviceOrientationEvent && $window.screen.width <= 980) {
         // IIFE for changing gallery color on tilt
         (function () {
-
-          // Function to change the pant's color
-          function colorChange (newcolor) {
-            var oldPant = document.querySelector('img.gallery.front');
-            var newPant = document.querySelector('#' + newcolor + '-gallery');
-            oldPant.className = 'gallery';
-            newPant.className = newPant.className + ' front';
-          }
-
-          var oldDirection;
+          var oldDirection;              
           $window.addEventListener('deviceorientation', function (eventData) {
             var direction = eventData.alpha;
+
             paragraph.html('<p>The dir is ' + direction + '</p>');
 
             switch (true) {
               // Change main pant color
-              case oldDirection < 337.5 && direction >= 337.5:
+              case oldDirection < 337.5 && direction > 337.5:
                 colorChange('cherry');
                 break;
 
@@ -105,10 +123,6 @@ angular.module('nightwalkerApp')
                 colorChange('cherry');
                 break;
 
-              case oldDirection > 22.5 && direction >= 337.5:
-                colorChange('cherry');
-                break;
-              
               case oldDirection > 67.5 && direction <= 67.5 && direction > 22.5:
                 colorChange('nectarine');
                 break;
@@ -160,7 +174,7 @@ angular.module('nightwalkerApp')
 
           return function () {
             var newColor = imageColors[++index % imageColors.length];
-            colorChange(newColor);
+            autoColorChange(newColor);
           };
        
         })();

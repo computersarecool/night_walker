@@ -171,23 +171,29 @@ img.gallery {
   left: 0;
   right: 0;
   width: auto;
-  height: 93.5vh;
+  height: 92.5vh;
   margin: 0 auto;
+  z-index: -3;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+img.gallery.next {
+  z-index: -2;
+}
+img.gallery.fade {
   z-index: -2;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
-  -webkit-transition: all cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
-  -moz-transition: all cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
-  -o-transition: all cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
-  -ms-transition: all cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
-  transition: all cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
+  -webkit-transition: opacity cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
+  -moz-transition: opacity cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
+  -o-transition: opacity cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
+  -ms-transition: opacity cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
+  transition: opacity cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
 }
 img.gallery.front {
   z-index: -1;
-  opacity: 1;
-  -ms-filter: none;
-  filter: none;
 }
 div.poster-container {
   width: 85%;

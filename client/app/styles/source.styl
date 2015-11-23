@@ -35,6 +35,7 @@ table
 // End of reset
 
 
+
 // Begin styles
 html, body
   width 100%
@@ -45,11 +46,12 @@ html, body
 *, *:before, *:after
   box-sizing inherit   
 
+  
 // All links
 a:link, a:visited
  text-decoration none    
 
- 
+  
 // Header container
 header
   margin-top 3vw
@@ -130,15 +132,20 @@ img.gallery
   width: auto
   height: 92.5vh
   margin 0 auto
-  z-index -2
-  opacity 0
-  transition all cubic-bezier(.25, .25, .75, .75) .5s
-
-  
-img.gallery.front
-  z-index -1
+  z-index -3
   opacity 1
   
+img.gallery.next
+  z-index -2    
+  
+img.gallery.fade
+  z-index -2
+  opacity 0
+  transition opacity cubic-bezier(.25, .25, .75, .75) .5s
+
+img.gallery.front
+  z-index -1
+
 // End of gallery animation
   
   
@@ -155,6 +162,22 @@ div.pant-text a:link, div.pant-text a:visited
   font-weight 700
   color black
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 
