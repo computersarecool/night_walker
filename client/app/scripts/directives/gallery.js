@@ -32,6 +32,8 @@ angular.module('nightwalkerApp')
     ];
 
     var link = function (scope, element, attrs) {
+      var currentFlavor;
+
       // TODO: Load smaller images based on screen size
       galleryImages.forEach(function (galleryImage) {
         galleryImage.attr("src", 'images/front_gallery/' + galleryImage.attr('id') + '.jpg');
@@ -39,11 +41,12 @@ angular.module('nightwalkerApp')
 
       
       // Function to change the pant's color if no device orientation
-      function autoColorChange (newcolor) {
+      function autoColorChange (newFlavor) {
         var oldPant = document.querySelector('img.gallery.front');
-        var newPant = document.querySelector('#' + newcolor + '-gallery');
-        oldPant.className = 'gallery';
-        newPant.className = newPant.className + ' front';
+        var newPant = document.querySelector('#' + newFlavor + '-gallery');
+        newPant.className = 'gallery next';
+        oldPant.className = 'gallery fade';
+        $timeout(changePant, 500, true, oldPant, newPant);        
       }
 
       
@@ -70,7 +73,6 @@ angular.module('nightwalkerApp')
 
       
       // If device orientation is supported
-      var currentFlavor;
       if ($window.DeviceOrientationEvent && $window.screen.width <= 980) {
         // IIFE for changing gallery color on tilt
         (function () {
