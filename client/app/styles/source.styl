@@ -85,11 +85,18 @@ nav
   margin-left 2vw
   min-height 8vw
 
+nav.horizontal
+  width: 97vw
+  text-align justify
+      
 nav ul
+  display inline
   overflow hidden
+  width 100vw
   max-width 40vw
-  max-height 50vw
-
+  max-height 40vh
+  transition max-height 2s
+  
 nav ul.collapsed
   max-width 0
   transition max-width .2s
@@ -97,17 +104,15 @@ nav ul.collapsed
 nav ul.height-collapse
   max-height 0  
 
-// TODO: Figure out why max height is not animating
-nav ul.horizontal
-  display inline
-  width 100vw
-  max-height 50vh
-  transition max-height 2s
+nav.horizontal:after 
+  text ""    
+  width 97vw
+  display inline-block
 
 nav li
   margin-top 1.25vw
-  display inherit
-
+  display block
+  
 nav li a
   text-transform uppercase
   font-weight 700
@@ -122,7 +127,10 @@ nav li:nth-child(2) > a
 nav li:nth-child(3) > a
   color rgb(59, 223, 9)
 
+nav.horizontal li
+  display inline-block
 
+  
 // Gallery Animation
 img.gallery
   position absolute
