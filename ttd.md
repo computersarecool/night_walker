@@ -22,7 +22,11 @@
  - Put logo upper left, stylize "Welcome to *nightWalker*" to upper right
  - Fit images
 
-### Extras 
+### Design
+    - Black and white stripes as background, front photos pngs
+    - Solid black backing on nav bar or whitespace around each item if lines as background
+
+### Extras
     - Work background, design entire mobile experience
     - Get the highest needed sizes fro sprites and all images
     - Image sizes: 335 x 855

@@ -110,23 +110,28 @@ header img {
 }
 site-cart {
   float: right;
-  height: 8vw;
+  height: 6vh;
   width: 8vw;
   margin-right: 3vw;
   background: rgba(20,20,255,0.6);
 }
 site-cart .words {
   text-align: center;
-  line-height: 8vw;
+  line-height: 6vh;
 }
 site-nav {
   position: absolute;
-  margin-top: 1vw;
+}
+nav {
+  margin-top: 1vh;
   margin-left: 0.25em;
-  min-height: 8vw;
+  min-height: 8vh;
 }
 nav.horizontal {
   width: 97vw;
+  height: 6vh;
+  min-height: 0;
+  background: rgba(126,126,126,0.9);
   text-align: justify;
 }
 nav ul {
@@ -159,7 +164,7 @@ nav.horizontal:after {
 }
 nav li {
   display: block;
-  margin-top: 1.25vw;
+  margin-top: 1vh;
 }
 nav li a {
   text-transform: uppercase;
