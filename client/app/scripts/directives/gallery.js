@@ -195,7 +195,7 @@ angular.module('nightwalkerApp')
       restrict: 'E',
       compile: function (tElem) {
         // TODO: Remove paragraph all it shows is the dir value
-        tElem.append(paragraph);
+//        tElem.append(paragraph);
         galleryImages.forEach(function (galleryImage) {
           tElem.append(galleryImage);
         });
