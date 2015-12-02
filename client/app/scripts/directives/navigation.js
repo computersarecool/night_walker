@@ -40,15 +40,3 @@ angular.module('nightwalkerApp')
     };
   });
 
-
-
-
-
-
-
-
-
-
-
-
-
