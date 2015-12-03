@@ -222,8 +222,13 @@ img.gallery.fade {
 img.gallery.front {
   z-index: -1;
 }
+#collection-container {
+  margin-top: 6vh;
+  text-align: center;
+}
 div.poster-container {
-  width: 85%;
+  width: 90%;
+  margin: 0 auto;
   border: 6px solid #000;
 }
 img.poster {
