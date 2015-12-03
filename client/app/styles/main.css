@@ -125,9 +125,10 @@ nav {
   min-height: 8vh;
 }
 nav.horizontal {
-  width: 97vw;
+  width: 100vw;
   height: 6vh;
   min-height: 0;
+  margin: 0;
   background: rgba(126,126,126,0.9);
   text-align: justify;
 }
