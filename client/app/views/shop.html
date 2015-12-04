@@ -2,9 +2,9 @@
 <div id="collection-container">
   <div ng-repeat="pant in collection.members" class="poster-container">
     <img ng-src="images/front_gallery/{{pant.urlFlavor}}-gallery.jpg" class="poster">
-    <div class="pant-text">
-      <a ng-href="/shop/alternating-current/{{pant.urlFlavor}}">The flavor: {{pant.flavor}}</a>
-    </div>
-  </div>
+    <a ng-href="/shop/alternating-current/{{pant.urlFlavor}}">
+      <div class="pant-flavor">The flavor: {{pant.flavor}}</div>
+      <div class="pant-price">Price: {{pant.price}}</div>
+    </a>
 </div>
 
