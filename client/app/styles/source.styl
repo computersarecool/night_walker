@@ -38,10 +38,11 @@ table
 
 // Begin styles
 // Custom directives
-site-header, site-gallery
+site-header, site-gallery, site-nav
   display block
 
-  
+
+// Globals  
 html, body
   width 100%
   height 100%
@@ -94,7 +95,7 @@ nav.horizontal
   height 6vh
   min-height 0
   margin 0
-  background rgba(126, 126, 126, .9)
+  background black
   text-align justify
   
 nav ul
@@ -120,12 +121,19 @@ nav.horizontal:after
 nav li
   display block
   margin-top 1vh
+  
+nav.horizontal li
+  margin-top .5vh
 
 nav li a
+  padding 2vw
   text-transform uppercase
   font-weight 700
   font-size 7vw
 
+  
+
+  
 nav li:nth-child(1) > a
   color rgb(255, 0, 255)
 
@@ -148,18 +156,18 @@ div.main
   right 0
   z-index -1
 
-  
+
 // Gallery Animation
 site-gallery
   position absolute
-  width 100%  
+  width 100vw
   height 100%
   overflow hidden
   
 img.gallery
   position absolute
   height: 100%  
-  left 17vw
+  right -2em
   margin 0 auto  
   z-index -3
   opacity 1
@@ -186,12 +194,13 @@ img.gallery.front
   text-align center
   
 div.poster-container
-  width 90%
+  width 100vw
+  height 86vh
   margin 0 auto
-  border 6px solid black
-  
+  border-bottom 3vw solid black
+
 img.poster
-  width inherit
+  width 73vw
 
 div.pant-text a:link, div.pant-text a:visited
   text-transform uppercase

@@ -76,7 +76,8 @@ table {
   border-spacing: 0;
 }
 site-header,
-site-gallery {
+site-gallery,
+site-nav {
   display: block;
 }
 html,
@@ -129,7 +130,7 @@ nav.horizontal {
   height: 6vh;
   min-height: 0;
   margin: 0;
-  background: rgba(126,126,126,0.9);
+  background: #000;
   text-align: justify;
 }
 nav ul {
@@ -164,7 +165,11 @@ nav li {
   display: block;
   margin-top: 1vh;
 }
+nav.horizontal li {
+  margin-top: 0.5vh;
+}
 nav li a {
+  padding: 2vw;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 7vw;
@@ -191,14 +196,14 @@ div.main {
 }
 site-gallery {
   position: absolute;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   overflow: hidden;
 }
 img.gallery {
   position: absolute;
   height: 100%;
-  left: 17vw;
+  right: -2em;
   margin: 0 auto;
   z-index: -3;
   opacity: 1;
@@ -227,12 +232,13 @@ img.gallery.front {
   text-align: center;
 }
 div.poster-container {
-  width: 90%;
+  width: 100vw;
+  height: 86vh;
   margin: 0 auto;
-  border: 6px solid #000;
+  border-bottom: 3vw solid #000;
 }
 img.poster {
-  width: inherit;
+  width: 73vw;
 }
 div.pant-text a:link,
 div.pant-text a:visited {
