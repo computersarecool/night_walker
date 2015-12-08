@@ -104,7 +104,7 @@ header {
   border-bottom: 1vh solid #000;
 }
 header img {
-  width: 80vw;
+  height: 5.4vh;
   margin-left: 2vw;
 }
 site-cart {
@@ -243,4 +243,34 @@ img.poster {
   text-transform: uppercase;
   font-weight: 700;
   color: #000;
+}
+#product-container {
+  margin-top: 6vh;
+  text-align: center;
+}
+.individual-main {
+  height: 87vh;
+}
+.product-title {
+  font-weight: 700;
+}
+.product-price {
+  color: #f00;
+}
+#product-tab,
+#brand-tab,
+#care-tab {
+  display: none;
+  color: #008000;
+}
+#size-guide {
+  color: #00f;
+}
+@media screen and (max-aspect-ratio: 320/510) {
+  header {
+    height: 6vh;
+  }
+  header img {
+    height: 4.7vh;
+  }
 }

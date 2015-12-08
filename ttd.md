@@ -1,8 +1,22 @@
 # TODO:
 
+# Product page
+- Short description
+- Price
+- Product info
+- size selector
+- size guide
+- add to cart
+- free shipping
+
+
 ## Media
 - Have all home gallery images fade to white on sides
 - Create web font
+- SVG Logo
+- background images on home / shop
+- fade to white for product photos
+
 
 ## Guest Checkout initiative
 - Removed animation from navigation.js which affected source.stl nav ul.collapsed

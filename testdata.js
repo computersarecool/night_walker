@@ -10,7 +10,7 @@ var flavors = [
     itemDetails: ['bursoft fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'The original chinos in classic Cherry',
-    shortDescription: 'Alternating Current Cherry Chinos with metal zippers and checkered cuffs',
+    shortDescription: 'Alternating Current Cherry Chinos',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
@@ -31,7 +31,7 @@ var flavors = [
     itemDetails: ['Strong fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'These pants are as bright as they are durable',
-    shortDescription: 'Alternating Current Nectarine Chinos with metal zippers and checkered cuffs',
+    shortDescription: 'Alternating Current Nectarine Chinos',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
@@ -45,6 +45,20 @@ var flavors = [
     kind: 'pants',
     type: 'chinos',
     edition: 'alternating current',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     urlEdition: 'alternating-current',
     flavor: 'lemon',
     urlFlavor: 'lemon',
@@ -52,7 +66,7 @@ var flavors = [
     itemDetails: ['Strong fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'The pants are as bright as they are durable',
-    shortDescription: 'Alternating Current Lemon Chinos with metal zippers and checkered cuffs',
+    shortDescription: 'Alternating Current Lemon Chinos',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
@@ -73,7 +87,7 @@ var flavors = [
     itemDetails: ['Smooth fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'These pants have the perfect weight to hang "just right"',
-    shortDescription: 'Alternating Current Apple Chinos with metal zippers and checkered cuffs',
+    shortDescription: 'Alternating Current Apple Chinos',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
@@ -94,7 +108,7 @@ var flavors = [
     itemDetails: ['bursoft fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'The original chinos with a new twist on a classic color',
-    shortDescription: 'Alternating Current Electricity Chinos with metal zippers and checkered cuffs',
+    shortDescription: 'Alternating Current Electricity Chinos',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
@@ -115,7 +129,7 @@ var flavors = [
     itemDetails: ['bursoft fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'These pants have the perfect weight to hang "just right"',
-    shortDescription: 'Alternating Current Plum Crazy Chinos with metal zippers and checkered cuffs',
+    shortDescription: 'Alternating Current Plum Crazy Chinos',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
@@ -136,7 +150,7 @@ var flavors = [
     itemDetails: ['bursoft fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'The original chinos with a powder coated coloring',
-    shortDescription: 'Alternating Current Powder Chinos with metal zippers and checkered cuffs',
+    shortDescription: 'Alternating Current Powder Chinos',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
@@ -157,7 +171,7 @@ var flavors = [
     itemDetails: ['bursoft fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'The original chinos with a bright, bright finish',
-    shortDescription: 'Alternating Current Proton Powder Chinos with metal zippers and checkered cuffs',
+    shortDescription: 'Alternating Current Proton Powder Chinos',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
@@ -256,7 +270,7 @@ edition.members = [
     itemDetails: ['bursoft fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'The original chinos in classic Cherry',
-    shortDescription: 'Alternating Current Cherry Chinos with metal zippers and checkered cuffs',
+    shortDescription: 'Alternating Current Cherry Chinos',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
@@ -277,7 +291,7 @@ edition.members = [
     itemDetails: ['Strong fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'These pants are as bright as they are durable',
-    shortDescription: 'Alternating Current Nectarine Chinos with metal zippers and checkered cuffs',
+    shortDescription: 'Alternating Current Nectarine Chinos',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
@@ -298,7 +312,7 @@ edition.members = [
     itemDetails: ['Strong fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'The pants are as bright as they are durable',
-    shortDescription: 'Alternating Current Lemon Chinos with metal zippers and checkered cuffs',
+    shortDescription: 'Alternating Current Lemon Chinos',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
@@ -319,7 +333,7 @@ edition.members = [
     itemDetails: ['Smooth fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'These pants have the perfect weight to hang "just right"',
-    shortDescription: 'Alternating Current Apple Chinos with metal zippers and checkered cuffs',
+    shortDescription: 'Alternating Current Apple Chinos',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
@@ -340,7 +354,7 @@ edition.members = [
     itemDetails: ['bursoft fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'The original chinos with a new twist on a classic color',
-    shortDescription: 'Alternating Current Electricity Chinos with metal zippers and checkered cuffs',
+    shortDescription: 'Alternating Current Electricity Chinos',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
@@ -361,7 +375,7 @@ edition.members = [
     itemDetails: ['bursoft fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'These pants have the perfect weight to hang "just right"',
-    shortDescription: 'Alternating Current Plum Crazy Chinos with metal zippers and checkered cuffs',
+    shortDescription: 'Alternating Current Plum Crazy Chinos',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
@@ -382,7 +396,7 @@ edition.members = [
     itemDetails: ['bursoft fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'The original chinos with a powder coated coloring',
-    shortDescription: 'Alternating Current Powder Chinos with metal zippers and checkered cuffs',
+    shortDescription: 'Alternating Current Powder Chinos',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
@@ -403,7 +417,7 @@ edition.members = [
     itemDetails: ['bursoft fabric', 'Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
     sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
     description: 'The original chinos with a bright, bright finish',
-    shortDescription: 'Alternating Current Proton Powder Chinos with metal zippers and checkered cuffs',
+    shortDescription: 'Alternating Current Proton Powder Chinos',
     aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
     careInstructions: 'Machine wash cold and hang dry',
     images: {
