@@ -3,7 +3,7 @@
     <img ng-src="images/front_gallery/{{pant.urlFlavor}}-gallery.jpg" class="poster">
     <a ng-href="/shop/alternating-current/{{pant.urlFlavor}}">
       <div class="pant-flavor">The flavor: {{pant.flavor}}</div>
-      <div class="pant-price">Price: {{pant.price}}</div>
+      <div class="pant-price">Price: {{pant.price | currency}}</div>
     </a>
 </div>
 

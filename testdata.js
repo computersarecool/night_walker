@@ -45,20 +45,6 @@ var flavors = [
     kind: 'pants',
     type: 'chinos',
     edition: 'alternating current',
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     urlEdition: 'alternating-current',
     flavor: 'lemon',
     urlFlavor: 'lemon',
@@ -428,4 +414,6 @@ edition.members = [
     }
   }  
 ];
+
 db.editions.insert(edition);
+
