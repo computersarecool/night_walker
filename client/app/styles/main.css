@@ -103,10 +103,6 @@ header {
   margin-top: 0.5vh;
   border-bottom: 1vh solid #000;
 }
-#product-container,
-#collection-container,
-#about-container,
-margin-top 6vh,
 header img {
   height: 5.4vh;
   margin-left: 2vw;
@@ -230,6 +226,7 @@ img.gallery.front {
   z-index: -1;
 }
 #collection-container {
+  margin-top: 6vh;
   text-align: center;
 }
 div.poster-container {
@@ -248,6 +245,7 @@ img.poster {
   color: #000;
 }
 #product-container {
+  margin-top: 6vh;
   text-align: center;
 }
 .individual-main {
@@ -267,6 +265,12 @@ img.poster {
 }
 #size-guide {
   color: #00f;
+}
+#about-container {
+  margin-top: 6vh;
+}
+#contact-container {
+  margin-top: 6vh;
 }
 @media screen and (max-aspect-ratio: 320/510) {
   header {

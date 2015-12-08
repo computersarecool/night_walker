@@ -62,11 +62,6 @@ header
   margin-top .5vh  
   border-bottom 1vh solid black
 
-
-// Main div containers
-#product-container, #collection-container, #about-container, 
-  margin-top 6vh
-  
     
 // Header logo  
 header img
@@ -133,6 +128,9 @@ nav li a
   text-transform uppercase
   font-weight 700
   font-size 7vw
+
+  
+
   
 nav li:nth-child(1) > a
   color rgb(255, 0, 255)
@@ -186,8 +184,11 @@ img.gallery.front
 // End of gallery animation
   
 
+
+  
 // Shop page
 #collection-container
+  margin-top 6vh
   text-align center
   
 div.poster-container
@@ -209,6 +210,7 @@ img.poster
 
 // Product page
 #product-container
+  margin-top 6vh
   text-align center
 
 .individual-main
@@ -234,7 +236,23 @@ img.poster
 // End of product page
 
 
-// Less than 3/2 Aspect ratio
+// About page
+#about-container
+  margin-top 6vh
+
+
+// End of about page
+
+
+// Contact page
+#contact-container
+  margin-top 6vh
+
+
+// End of contact page
+
+
+// < 3/2 Aspect ratio
 @media screen and (max-aspect-ratio: 320/510)
   header
     height 6vh
