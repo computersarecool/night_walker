@@ -12,9 +12,9 @@ angular.module('nightwalkerApp')
 
     $scope.product = product;
 
-    $scope.addToCart = function (productsku) {
+    $scope.addToCart = function (productSKU) {
       // Convert SKU to number because Angular templating does opposite
-      var sku = parseInt(productsku, 10);
+      var sku = parseInt(productSKU, 10);
       var store = $window.localStorage;
       var cart = JSON.parse(store.getItem('cart'));
 
@@ -33,5 +33,11 @@ angular.module('nightwalkerApp')
         UserFactory.currentUser.cart = cart;
       }
     };
+
+    $scope.toggleShow = function () {
+      console.log('hi');
+      document.querySelector('#details').className = 'visible';
+    };
+    
   });
 

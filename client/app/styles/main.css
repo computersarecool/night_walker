@@ -255,12 +255,25 @@ img.poster {
   font-weight: 700;
 }
 .product-price {
+  position: absolute;
+  max-width: 30%;
   color: #f00;
+}
+#toggle-show {
+  position: absolute;
+  right: 0;
+}
+#details.hidden {
+  display: none;
+}
+#details.visible {
+  width: 100%;
+  border: 4px solid #f00;
+  display: block;
 }
 #product-tab,
 #brand-tab,
 #care-tab {
-  display: none;
   color: #008000;
 }
 #size-guide {

@@ -10,32 +10,34 @@
     {{product.price | currency}}
   </div>
   
-  <div class="togggle-short">
+  <div id="togggle-show" ng-click="toggleShow()">
     Item Details
   </div>
 
+  <div id="details" class="hidden">
+    <div id="product-tab">
+       Product
+       <ul>
+         <li ng-repeat="detail in product.itemDetails">{{detail}}</li>
+       </ul>
+     </div>
   
-  <div id="product-tab">
-     Product
-     <ul>
-       <li ng-repeat="detail in product.itemDetails">{{detail}}</li>
-      </ul>
-   </div>
+     <div id="brand-tab">
+       Brand
+       <ul>
+         <li>{{product.aboutSpecific}}</li>
+       </ul>
+     </div>
   
-   <div id="brand-tab">
-     Brand
-     <ul>
-       <li>{{product.aboutSpecific}}</li>
-     </ul>
-   </div>
-  
-   <div id="care-tab">
-     Care
-     <ul>
-        <li> {{product.careInstructions}}</li>
-        <li> {{product.sizeGuide}}</li>
-      </ul>
-    </div>    
+     <div id="care-tab">
+       Care
+       <ul>
+          <li> {{product.careInstructions}}</li>
+          <li> {{product.sizeGuide}}</li>
+        </ul>
+     </div>
+
+  </div>
 
 
     <select id="sizemenu">
