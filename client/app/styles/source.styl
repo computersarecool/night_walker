@@ -62,11 +62,13 @@ header
   margin-top .5vh  
   border-bottom 1vh solid black
 
+
     
 // Header logo  
 header img
   height 5.4vh
   margin-left 2vw
+
 
   
 // Shopping cart
@@ -80,6 +82,7 @@ site-cart
 site-cart .words
   text-align center
   line-height 6vh
+
 
 
 // Nav
@@ -128,9 +131,6 @@ nav li a
   text-transform uppercase
   font-weight 700
   font-size 7vw
-
-  
-
   
 nav li:nth-child(1) > a
   color rgb(255, 0, 255)
@@ -144,6 +144,9 @@ nav li:nth-child(3) > a
 nav.horizontal li
   display inline-block
 
+// End of Nav
+
+
   
 // Main div
 div.main
@@ -155,6 +158,7 @@ div.main
   z-index -1
 
 
+  
 // Gallery Animation
 site-gallery
   position absolute
@@ -184,7 +188,6 @@ img.gallery.front
 // End of gallery animation
   
 
-
   
 // Shop page
 #collection-container
@@ -208,6 +211,7 @@ img.poster
 // End shop page
 
 
+
 // Product page
 #product-container
   margin-top 6vh
@@ -221,12 +225,15 @@ img.poster
 
 .product-price
   position absolute
+  left 10vw
+  margin-top 2vh
   max-width 30%
   color red
 
-#toggle-show
+#toggle-details
   position absolute
-  right 0
+  right 8vw  
+  margin-top 2vh
   
 #details.hidden
   display none
@@ -238,13 +245,23 @@ img.poster
   
 #product-tab, #brand-tab, #care-tab
   color green
-
-//#sizemenu
   
-#size-guide  
+#size-guide
+  position absolute
+  left 10vw
+  margin-top 7vh
+  max-width 30%
   color blue
 
-        
+#sizemenu
+  position absolute
+  right 8vw
+  margin-top 7vh
+  max-width 30%
+
+#add-to-cart
+  margin-top 12vh
+
 // End of product page
 
 
@@ -252,16 +269,16 @@ img.poster
 #about-container
   margin-top 6vh
 
-
 // End of about page
+
 
 
 // Contact page
 #contact-container
   margin-top 6vh
 
-
 // End of contact page
+
 
 
 // < 3/2 Aspect ratio

@@ -256,12 +256,15 @@ img.poster {
 }
 .product-price {
   position: absolute;
+  left: 10vw;
+  margin-top: 2vh;
   max-width: 30%;
   color: #f00;
 }
-#toggle-show {
+#toggle-details {
   position: absolute;
-  right: 0;
+  right: 8vw;
+  margin-top: 2vh;
 }
 #details.hidden {
   display: none;
@@ -277,7 +280,20 @@ img.poster {
   color: #008000;
 }
 #size-guide {
+  position: absolute;
+  left: 10vw;
+  margin-top: 7vh;
+  max-width: 30%;
   color: #00f;
+}
+#sizemenu {
+  position: absolute;
+  right: 8vw;
+  margin-top: 7vh;
+  max-width: 30%;
+}
+#add-to-cart {
+  margin-top: 12vh;
 }
 #about-container {
   margin-top: 6vh;

@@ -10,7 +10,7 @@
     {{product.price | currency}}
   </div>
   
-  <div id="togggle-show" ng-click="toggleShow()">
+  <div id="toggle-details" ng-click="toggleShow()">
     Item Details
   </div>
 
@@ -48,7 +48,7 @@
     Size Guide
   </div>
   
-  <button ng-click="addToCart(product.sku)">Add this product{{product.sku}}</button>
+  <button id="add-to-cart" ng-click="addToCart(product.sku)">Add this product{{product.sku}}</button>
   
 </div>
 
