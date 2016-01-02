@@ -234,18 +234,64 @@ img.poster
   position absolute
   right 8vw  
   margin-top 2vh
-  
-#details.hidden
-  display none
 
+// Item details  
+#details
+  position absolute
+  text-align left
+  width 100vw
+  display none
+  
 #details.visible
-  width 100%
-  border 4px solid red
+  min-height 35vh
+  z-index 5
+  margin-top -7vh
+  background rgba(111, 111, 111, 0.88)
   display block
+  clear both
+
+.detail-tab
+  float left
+
+.detail-tab label
+  position relative
+  margin-right 8vw
+  color black
+
+.detail-tab ul
+  display none
+  position absolute
+  width 100vw
+  left 0
+  border-top .4vh solid white
+  padding-top 1vh
   
-#product-tab, #brand-tab, #care-tab
-  color green
+[type=radio]:checked ~ label
+  color white
+
+[type=radio]:checked ~ label ~ ul
+  display block
+    
+.detail-tab input
+  display none
+        
+#product-column
+  color white
+
+#brand-column
+  color gray
+
+#care-column
+  color black
+
+#close-details
+  position absolute
+  bottom 0
+  right 0
+  color red
   
+// End of item details
+
 #size-guide
   position absolute
   left 10vw
@@ -260,7 +306,7 @@ img.poster
   max-width 30%
 
 #add-to-cart
-  margin-top 12vh
+  margin-top 14vh
 
 // End of product page
 

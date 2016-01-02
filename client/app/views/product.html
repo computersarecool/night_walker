@@ -14,31 +14,33 @@
     Item Details
   </div>
 
-  <div id="details" class="hidden">
-    <div id="product-tab">
-       Product
+  <div id="details">
+    <div id="product-column" class="detail-tab">
+      <input type="radio" id="product-tab" name="tab-group-1" checked>
+      <label for="product-tab">Product</label>
+      <ul>
+        <li ng-repeat="detail in product.itemDetails">{{detail}}</li>
+      </ul>
+    </div>
+  
+    <div id="brand-column" class="detail-tab">
+      <input type="radio" id="brand-tab" name="tab-group-1">
+      <label for="brand-tab">Brand</label>      
+      <ul>
+        <li>{{product.aboutSpecific}}</li>
+      </ul>
+    </div>
+  
+     <div id="care-column" class="detail-tab">
+       <input type="radio" id="care-tab" name="tab-group-1">
+       <label for="care-tab">Care</label>      
        <ul>
-         <li ng-repeat="detail in product.itemDetails">{{detail}}</li>
+         <li> {{product.careInstructions}}</li>
+         <li> {{product.sizeGuide}}</li>
        </ul>
      </div>
-  
-     <div id="brand-tab">
-       Brand
-       <ul>
-         <li>{{product.aboutSpecific}}</li>
-       </ul>
-     </div>
-  
-     <div id="care-tab">
-       Care
-       <ul>
-          <li> {{product.careInstructions}}</li>
-          <li> {{product.sizeGuide}}</li>
-        </ul>
-     </div>
-
+     <button id="close-details" ng-click="toggleShow()">X</button>
   </div>
-
 
     <select id="sizemenu">
       <option ng-repeat="size in product.distinctSizes | orderBy: 'waistSize'"> {{size.waistSize}} x {{size.inseam}} </option>
