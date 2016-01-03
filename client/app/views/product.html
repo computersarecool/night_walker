@@ -10,11 +10,11 @@
     {{product.price | currency}}
   </div>
   
-  <div id="toggle-details" ng-click="toggleShow()">
+  <div id="toggle-details" ng-click="toggleShow('#details')">
     Item Details
   </div>
 
-  <div id="details">
+  <div id="details" class="hidden">
     <div id="product-column" class="detail-tab">
       <input type="radio" id="product-tab" name="tab-group-1" checked>
       <label for="product-tab">Product</label>
@@ -39,18 +39,18 @@
          <li> {{product.sizeGuide}}</li>
        </ul>
      </div>
-     <button id="close-details" ng-click="toggleShow()">X</button>
+     <button id="close-details" ng-click="toggleShow('#details')">X</button>
   </div>
 
     <select id="sizemenu">
       <option ng-repeat="size in product.distinctSizes | orderBy: 'waistSize'"> {{size.waistSize}} x {{size.inseam}} </option>
     </select>
   
-  <div id="size-guide">
+  <div id="size-guide" ng-click="toggleShow('#size-chart')">
     Size Guide
   </div>
 
-  <!-- <site-size-guide></site-size-guide> -->
+  <site-size-guide></site-size-guide>  
   
   <button id="add-to-cart" ng-click="addToCart(product.sku)">Add this product{{product.sku}}</button>
   

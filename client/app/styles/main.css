@@ -94,6 +94,9 @@ body {
   -moz-box-sizing: inherit;
   box-sizing: inherit;
 }
+.hidden {
+  display: none !important;
+}
 a:link,
 a:visited {
   text-decoration: none;
@@ -270,15 +273,12 @@ img.poster {
   position: absolute;
   text-align: left;
   width: 100vw;
-  display: none;
-}
-#details.visible {
   min-height: 35vh;
   z-index: 5;
   margin-top: -7vh;
   background: rgba(111,111,111,0.88);
-  display: block;
   clear: both;
+  display: block;
 }
 .detail-tab {
   float: left;
@@ -332,6 +332,9 @@ img.poster {
   right: 8vw;
   margin-top: 7vh;
   max-width: 30%;
+}
+#size-chart {
+  background: #800080;
 }
 #add-to-cart {
   margin-top: 14vh;

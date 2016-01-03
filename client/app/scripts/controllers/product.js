@@ -34,16 +34,11 @@ angular.module('nightwalkerApp')
       }
     };
 
-    $scope.toggleShow = function () {
-      var details = document.querySelector('#details');
+    $scope.toggleShow = function (id) {
+      var element = document.querySelector(id);
       var yOffset = $window.scrollY;
-      details.style.top = yOffset + "px";
-      
-      if (details.className == 'visible') {
-        details.className = '';
-      } else {
-        details.className = 'visible';
-      };
+      element.style.top = yOffset + "px";
+      element.classList.toggle('hidden');
     };
 
   });

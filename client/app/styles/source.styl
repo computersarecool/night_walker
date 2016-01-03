@@ -50,6 +50,9 @@ html, body
 *, *:before, *:after
   box-sizing inherit   
 
+.hidden
+  display none !important
+
   
 // All links
 a:link, a:visited
@@ -62,15 +65,13 @@ header
   margin-top .5vh  
   border-bottom 1vh solid black
 
-
-    
+      
 // Header logo  
 header img
   height 5.4vh
   margin-left 2vw
 
-
-  
+    
 // Shopping cart
 site-cart
   float right
@@ -83,8 +84,7 @@ site-cart .words
   text-align center
   line-height 6vh
 
-
-
+  
 // Nav
 nav  
   margin-top 1vh
@@ -147,7 +147,6 @@ nav.horizontal li
 // End of Nav
 
 
-  
 // Main div
 div.main
   position absolute
@@ -158,7 +157,6 @@ div.main
   z-index -1
 
 
-  
 // Gallery Animation
 site-gallery
   position absolute
@@ -186,7 +184,6 @@ img.gallery.front
   z-index -1
 
 // End of gallery animation
-  
 
   
 // Shop page
@@ -209,7 +206,6 @@ img.poster
   color black
 
 // End shop page
-
 
 
 // Product page
@@ -235,21 +231,18 @@ img.poster
   right 8vw  
   margin-top 2vh
 
-// Item details  
+  // Item details  
 #details
   position absolute
   text-align left
   width 100vw
-  display none
-  
-#details.visible
   min-height 35vh
   z-index 5
   margin-top -7vh
   background rgba(111, 111, 111, 0.88)
-  display block
   clear both
-
+  display block
+  
 .detail-tab
   float left
 
@@ -290,7 +283,7 @@ img.poster
   right 0
   color red
   
-// End of item details
+  // End of item details
 
 #size-guide
   position absolute
@@ -305,6 +298,13 @@ img.poster
   margin-top 7vh
   max-width 30%
 
+  // Size Chart
+#size-chart  
+  background purple
+  
+  
+  // End of Size Chart
+  
 #add-to-cart
   margin-top 14vh
 
@@ -318,13 +318,11 @@ img.poster
 // End of about page
 
 
-
 // Contact page
 #contact-container
   margin-top 6vh
 
 // End of contact page
-
 
 
 // < 3/2 Aspect ratio

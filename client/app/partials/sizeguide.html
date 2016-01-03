@@ -1,10 +1,25 @@
-<table>
-  <tr ng-repeat="eachSize in product.sizeInformation">
-    <td> A datum </td>
-    <td> A second </td>
-  </tr>
+<table id="size-chart" class="hidden">
   <tr>
-    <td> Another datum </td>
+    <td>Listed Size</td>
+    <td>Waist</td>
+    <td>Inseam</td>
+    <td>Outseam</td>
+    <td>Rise</td>
+    <td>Knee</td>
+    <td>Leg Opening</td>
+    <td>Pocket Opening</td>
+    <td>Pocket Depth</td>
+  </tr>  
+  <tr ng-repeat="eachSize in product.sizeInformation">
+    <td>{{eachSize['Listed Size']}}</td>
+    <td>{{eachSize['Waist']}}</td>
+    <td>{{eachSize['Inseam']}}</td>
+    <td>{{eachSize['Outseam']}}</td>
+    <td>{{eachSize['Rise']}}</td>
+    <td>{{eachSize['Knee']}}</td>
+    <td>{{eachSize['Leg Opening']}}</td>
+    <td>{{eachSize['Pocket Opening']}}</td>
+    <td>{{eachSize['Pocket Depth']}}</td>    
   </tr>
 </table>  
 
