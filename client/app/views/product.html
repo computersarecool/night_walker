@@ -19,7 +19,7 @@
       <input type="radio" id="product-tab" name="tab-group-1" checked>
       <label for="product-tab">Product</label>
       <ul>
-        <li ng-repeat="detail in product.itemDetails">{{detail}}</li>
+        <li ng-repeat="detail in product.details">{{detail}}</li>
       </ul>
     </div>
   
@@ -49,6 +49,8 @@
   <div id="size-guide">
     Size Guide
   </div>
+
+  <!-- <site-size-guide></site-size-guide> -->
   
   <button id="add-to-cart" ng-click="addToCart(product.sku)">Add this product{{product.sku}}</button>
   

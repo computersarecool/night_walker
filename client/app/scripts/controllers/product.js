@@ -37,16 +37,14 @@ angular.module('nightwalkerApp')
     $scope.toggleShow = function () {
       var details = document.querySelector('#details');
       var yOffset = $window.scrollY;
-
+      details.style.top = yOffset + "px";
+      
       if (details.className == 'visible') {
         details.className = '';
       } else {
         details.className = 'visible';
       };
-      
-      details.style.top = yOffset + "px";
-      
     };
-    
+
   });
 
