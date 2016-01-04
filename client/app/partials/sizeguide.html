@@ -1,5 +1,10 @@
 <table id="size-chart" class="hidden">
-  <caption>No Vanity Sizing!</caption>
+
+  <caption>
+    <p>No Vanity Sizing</p>
+    <p> Nightwalker's sizes reflect the actual size they are</p>
+  </caption>
+  
   <tr>
     <th>Listed Size</th>
     <th>Waist</th>
@@ -10,7 +15,8 @@
     <th>Leg Opening</th>
     <th>Pocket Opening</th>
     <th>Pocket Depth</th>
-  </tr>  
+  </tr>
+  
   <tr ng-repeat="eachSize in product.sizeInformation">
     <td>{{eachSize['Listed Size']}}</td>
     <td>{{eachSize['Waist']}}</td>
@@ -22,5 +28,6 @@
     <td>{{eachSize['Pocket Opening']}}</td>
     <td>{{eachSize['Pocket Depth']}}</td>    
   </tr>
+  
 </table>  
 

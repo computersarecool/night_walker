@@ -1,3 +1,4 @@
+// Remove urldescription
 var generics = {
   kind: 'pants',
   type: 'chinos',
@@ -181,7 +182,7 @@ for (h = 0; h < flavors.length; h++) {
 
     item.urlFlavor = item['flavor'].replace(' ', '-');
     item.urlEdition = item['edition'].replace(' ', '-');
-    item.shortDescription = "Alternating Current Chinos in" + item['flavor'];
+    item.shortDescription = "Alternating Current Chinos in " + item['flavor'];
     item.sku = sku;
       
     db.products.insert(item);

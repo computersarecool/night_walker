@@ -333,8 +333,28 @@ img.poster {
   margin-top: 7vh;
   max-width: 30%;
 }
-#size-chart {
+table {
+  position: absolute;
+  font-size: 5vw;
+  margin-top: -7vh;
+  border: 1px solid #000;
   background: #800080;
+}
+caption {
+  text-align: left;
+  font-size: 4.5vh;
+  font-weight: 700;
+}
+th,
+td {
+  border-collapse: collapse;
+}
+th {
+  font-weight: 600;
+  border-right: 2px solid #000;
+}
+td {
+  border: 1px solid #000;
 }
 #add-to-cart {
   margin-top: 14vh;
