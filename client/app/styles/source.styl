@@ -299,17 +299,28 @@ img.poster
   max-width 30%
 
   // Size Chart
-table
+#table-holder
   position absolute
-  font-size 5vw
   margin-top -7vh
+  padding-bottom 4.5vh
+  background rgba(111, 111, 111, 0.96)
+    
+table
+  font-size 5vw
   border 1px solid black
-  background purple
 
 caption
   text-align left
+  
+caption h1
   font-size 4.5vh
   font-weight 700
+
+caption p
+  padding-top 1.5vh
+  padding-bottom .5vh
+  font-size 3vh
+  font-weight 400  
   
 th, td
   border-collapse collapse
@@ -320,7 +331,16 @@ th
   
 td
   border 1px solid black  
-      
+
+#size-copy
+  width 50%
+  float left
+
+  
+#sizing-guide
+  float right
+  width 50%
+  
   // End of Size Chart
   
 #add-to-cart

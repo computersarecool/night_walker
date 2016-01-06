@@ -1,33 +1,53 @@
-<table id="size-chart" class="hidden">
-
-  <caption>
-    <p>No Vanity Sizing</p>
-    <p> Nightwalker's sizes reflect the actual size they are</p>
-  </caption>
+<div id="table-holder" class="hidden">
+  <table id="size-chart">
   
-  <tr>
-    <th>Listed Size</th>
-    <th>Waist</th>
-    <th>Inseam</th>
-    <th>Outseam</th>
-    <th>Rise</th>
-    <th>Knee</th>
-    <th>Leg Opening</th>
-    <th>Pocket Opening</th>
-    <th>Pocket Depth</th>
-  </tr>
+    <caption>
+      <h1>No Vanity Sizing.</h1>
+      <p> Nightwalker's sizes reflect the actual size they are.</p>
+    </caption>
+    
+    <tr>
+      <th scope="col">Listed Size</th>
+      <th scope="col">Waist</th>
+      <th scope="col">Inseam</th>
+      <th scope="col">Outseam</th>
+      <th scope="col">Rise</th>
+    </tr>
+    
+    <tr ng-repeat="eachSize in product.sizeInformation">
+      <td>{{eachSize['Listed Size']}}</td>
+      <td>{{eachSize['Waist']}}</td>
+      <td>{{eachSize['Inseam']}}</td>
+      <td>{{eachSize['Outseam']}}</td>
+      <td>{{eachSize['Rise']}}</td>
+    </tr>
   
-  <tr ng-repeat="eachSize in product.sizeInformation">
-    <td>{{eachSize['Listed Size']}}</td>
-    <td>{{eachSize['Waist']}}</td>
-    <td>{{eachSize['Inseam']}}</td>
-    <td>{{eachSize['Outseam']}}</td>
-    <td>{{eachSize['Rise']}}</td>
-    <td>{{eachSize['Knee']}}</td>
-    <td>{{eachSize['Leg Opening']}}</td>
-    <td>{{eachSize['Pocket Opening']}}</td>
-    <td>{{eachSize['Pocket Depth']}}</td>    
-  </tr>
+    <tr>
+      <td colspan="5">
+        <p id="size-copy">
+          This is a bunch of text describing the size chart.
+        </p>
+        <img id="sizing-guide" src="http://placehold.it/150x250">
+      </td>
+    </tr>
+    
+    <tr>
+      <th scope="col">Listed Size</th>    
+      <th scope="col">Knee</th>
+      <th scope="col">Leg Opening</th>
+      <th scope="col">Pocket Opening</th>
+      <th scope="col">Pocket Depth</th>
+    </tr>
   
-</table>  
+    <tr ng-repeat="eachSize in product.sizeInformation">
+      <td>{{eachSize['Listed Size']}}</td>    
+      <td>{{eachSize['Knee']}}</td>
+      <td>{{eachSize['Leg Opening']}}</td>
+      <td>{{eachSize['Pocket Opening']}}</td>
+      <td>{{eachSize['Pocket Depth']}}</td>        
+    </tr>
+    
+  </table>
+  <button id="close-details" ng-click="toggleShow('#table-holder')">X</button>  
+</div>
 

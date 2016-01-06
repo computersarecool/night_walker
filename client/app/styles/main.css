@@ -333,17 +333,28 @@ img.poster {
   margin-top: 7vh;
   max-width: 30%;
 }
-table {
+#table-holder {
   position: absolute;
-  font-size: 5vw;
   margin-top: -7vh;
+  padding-bottom: 4.5vh;
+  background: rgba(111,111,111,0.96);
+}
+table {
+  font-size: 5vw;
   border: 1px solid #000;
-  background: #800080;
 }
 caption {
   text-align: left;
+}
+caption h1 {
   font-size: 4.5vh;
   font-weight: 700;
+}
+caption p {
+  padding-top: 1.5vh;
+  padding-bottom: 0.5vh;
+  font-size: 3vh;
+  font-weight: 400;
 }
 th,
 td {
@@ -355,6 +366,14 @@ th {
 }
 td {
   border: 1px solid #000;
+}
+#size-copy {
+  width: 50%;
+  float: left;
+}
+#sizing-guide {
+  float: right;
+  width: 50%;
 }
 #add-to-cart {
   margin-top: 14vh;
