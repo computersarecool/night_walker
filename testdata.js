@@ -1,4 +1,5 @@
 // Remove urldescription
+// Add flavor id (i.e cherry 1, nectarine 2...etc)
 var generics = {
   kind: 'pants',
   type: 'chinos',

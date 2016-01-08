@@ -42,8 +42,9 @@
      <button id="close-details" ng-click="toggleShow('#details')">X</button>
   </div>
 
-    <select id="sizemenu">
-      <option ng-repeat="size in product.distinctSizes | orderBy: 'waistSize'"> {{size.waistSize}} x {{size.inseam}} </option>
+  <select id="sizemenu" ng-model="pickedProduct" ng-change="changeSize()">
+    <option style="display:none" value=""> Select a size </option>
+    <option ng-repeat="size in product.distinctSizes | orderBy: 'waistSize'" value="{{size.waistSize}}{{size.inseam}}"> {{size.waistSize}} x {{size.inseam}} </option>
     </select>
   
   <div id="size-guide" ng-click="toggleShow('#table-holder')">
@@ -52,7 +53,7 @@
 
   <site-size-guide></site-size-guide>  
   
-  <button id="add-to-cart" ng-click="addToCart(product.sku)">Add this product{{product.sku}}</button>
+  <button id="add-to-cart" ng-click="addToCart(product.sku)">Add this product {{product.sku}}</button>
   
 </div>
 

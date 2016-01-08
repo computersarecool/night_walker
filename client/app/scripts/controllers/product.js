@@ -10,6 +10,16 @@
 angular.module('nightwalkerApp')
   .controller('ProductCtrl', function ($scope, $window, UserFactory, product) {
 
+    var flavorIndex;
+    var flavorTest = product['urlFlavor'];
+
+    if (flavorTest === 'cherry') {
+      flavorIndex = "1";
+    } else {
+      flavorIndex = "2";      
+    }
+
+    
     $scope.product = product;
 
     $scope.addToCart = function (productSKU) {
@@ -18,6 +28,9 @@ angular.module('nightwalkerApp')
       var store = $window.localStorage;
       var cart = JSON.parse(store.getItem('cart'));
 
+      $scope.pickedProduct = {};
+
+            
       if (UserFactory.currentUser.loggedIn) {
         // Add to cart in DB if user is logged in
         UserFactory.addToCart(sku);
@@ -41,5 +54,11 @@ angular.module('nightwalkerApp')
       element.classList.toggle('hidden');
     };
 
+    $scope.changeSize = function () {
+      var sizeGuide = document.querySelector('#sizemenu');
+      var size = sizeGuide.options[sizeGuide.selectedIndex].value;
+      $scope.product.sku = Number("1" + flavorIndex + size);
+    };
+    
   });
 
