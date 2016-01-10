@@ -47,7 +47,11 @@
     - Make Sprite sheet
     - Link Media so it displays
     - Fix gallery directive
+    - Alt and title every image
 
+### Semanticized:
+    - product.html
+    - sizeguide.html
 
 Purchase scenarios:
   x Not logged in user buys items

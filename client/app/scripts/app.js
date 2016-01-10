@@ -12,24 +12,25 @@ angular
   .module('nightwalkerApp', [
     'ngResource',
     'ngRoute',
-    'ngSanitize'
+    'ngSanitize',
+    'ngTouch',
   ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
       })
       .when('/about', {
         templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+        controller: 'AboutCtrl',
       })
       .when('/contact', {
         templateUrl: 'views/contact.html',
-        controller: 'ContactCtrl'
+        controller: 'ContactCtrl',
       })      
       .when('/shop', {
-        redirectTo: '/shop/alternating-current'
+        redirectTo: '/shop/alternating-current',
       })
       .when('/shop/:collection', {
         templateUrl: 'views/shop.html',
@@ -37,8 +38,8 @@ angular
         resolve: {
           collection: function ($route, ProductFactory) {
             return ProductFactory.getCollection($route.current.params.collection);
-          }
-        }
+          },
+        },
       })
       .when('/shop/alternating-current/:flavor', {
         templateUrl:'/views/product.html',
@@ -46,28 +47,28 @@ angular
         resolve: {
           product: function ($route, ProductFactory) {
             return ProductFactory.getProduct($route.current.params.flavor);
-          }
-        }
+          },
+        },
       })
       .when('/login', {
         templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
       })
       .when('/signup', {
         templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
       })      
       .when('/account', {
         templateUrl: 'views/account.html',
-        controller: 'AccountCtrl'
+        controller: 'AccountCtrl',
       })
       .when('/checkout', {
         templateUrl: 'views/checkout.html',
-        controller: 'CheckoutCtrl'
+        controller: 'CheckoutCtrl',
       })
       .when('/congratulations', {
         templateUrl: 'views/congratulations.html',
-        controller: 'CongratulationsCtrl'
+        controller: 'CongratulationsCtrl',
       })
       .otherwise({
         redirectTo: '/'

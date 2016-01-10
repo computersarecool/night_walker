@@ -8,7 +8,7 @@
  * Controller of the nightwalkerApp
  */
 angular.module('nightwalkerApp')
-  .controller('CheckoutCtrl', function ($scope, $location, $http, $window, UserFactory) {
+  .controller('CheckoutCtrl', function ($scope, $window, $location, $http, UserFactory) {
     if (UserFactory.currentUser) {
       // TODO: Validate token
       // The user has a token validate to procceed checkout

@@ -1,59 +1,77 @@
 <div id="product-container">
   
-  <img class="individual-main" ng-src="../images/individual/{{product.urlFlavor | underscoreFilter}}/{{product.urlFlavor}}-front.jpg" alt="NightWalker Clothing" title="Men's Chinos and clothing">
+  <div id="individual-gallery">
 
-  <div class="product-title">
+    <div id="gallery-holder" ng-mousedown="scrollSnap()" ng-click="test()">
+      <img class="individual-main" ng-src="../images/individual/{{product.urlFlavor | underscoreFilter}}/{{product.urlFlavor}}-front.jpg" alt="NightWalker Clothing" title="Men's Chinos and clothing">
+      <img class="individual-main" ng-src="../images/individual/{{product.urlFlavor | underscoreFilter}}/{{product.urlFlavor}}-side.jpg" alt="NightWalker Clothing" title="Men's Chinos and clothing">
+      <img class="individual-main" ng-src="../images/individual/{{product.urlFlavor | underscoreFilter}}/{{product.urlFlavor}}-detail.jpg" alt="NightWalker Clothing" title="Men's Chinos and clothing">
+      <img class="individual-main" ng-src="../images/individual/{{product.urlFlavor | underscoreFilter}}/{{product.urlFlavor}}-back.jpg" alt="NightWalker Clothing" title="Men's Chinos and clothing">
+    </div>
+    
+  </div>
+  
+  <h1 class="product-title">
     {{product.shortDescription}}
-  </div>
+  </h1>
   
-  <div class="product-price">
+  <p class="product-price left-ui">
     {{product.price | currency}}
-  </div>
+  </p>
   
-  <div id="toggle-details" ng-click="toggleShow('#details')">
-    Item Details
-  </div>
+  <button id="toggle-details" class="product-button right-ui" ng-click="toggleShow('#details')">Item Details</button>
 
   <div id="details" class="hidden">
+
     <div id="product-column" class="detail-tab">
       <input type="radio" id="product-tab" name="tab-group-1" checked>
       <label for="product-tab">Product</label>
+
       <ul>
         <li ng-repeat="detail in product.details">{{detail}}</li>
       </ul>
+      
     </div>
   
     <div id="brand-column" class="detail-tab">
-      <input type="radio" id="brand-tab" name="tab-group-1">
-      <label for="brand-tab">Brand</label>      
+      <input type="radio" id="brand-tab"  name="tab-group-1">
+      <label for="brand-tab">Brand</label>
+
       <ul>
         <li>{{product.aboutSpecific}}</li>
       </ul>
+    
     </div>
   
      <div id="care-column" class="detail-tab">
        <input type="radio" id="care-tab" name="tab-group-1">
-       <label for="care-tab">Care</label>      
+       <label for="care-tab" name="tab-group-1">Care</label>
+
+
        <ul>
          <li> {{product.careInstructions}}</li>
          <li> {{product.sizeGuide}}</li>
        </ul>
+     
      </div>
+     
      <button id="close-details" ng-click="toggleShow('#details')">X</button>
+     
   </div>
 
-  <select id="sizemenu" ng-model="pickedProduct" ng-change="changeSize()">
+  <select id="sizemenu" class="right-ui" ng-model="pickedProduct" ng-change="changeSize()">
     <option style="display:none" value=""> Select a size </option>
     <option ng-repeat="size in product.distinctSizes | orderBy: 'waistSize'" value="{{size.waistSize}}{{size.inseam}}"> {{size.waistSize}} x {{size.inseam}} </option>
-    </select>
-  
-  <div id="size-guide" ng-click="toggleShow('#table-holder')">
+  </select>
+ 
+  <button id="size-guide" class="product-button left-ui" ng-click="toggleShow('#table-holder')">
     Size Guide
-  </div>
+  </button>
 
   <site-size-guide></site-size-guide>  
   
-  <button id="add-to-cart" ng-click="addToCart(product.sku)">Add this product {{product.sku}}</button>
+  <button id="add-to-cart" class="product-button left-ui" ng-click="addToCart(product.sku)">Add this product {{product.sku}}</button>
+  <button id="checkout-now" class="product-button right-ui hidden" ng-click="goToCheckout()">Checkout now</button>
   
 </div>
 

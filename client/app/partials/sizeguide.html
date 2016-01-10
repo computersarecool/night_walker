@@ -1,11 +1,10 @@
 <div id="table-holder" class="hidden">
+
   <table id="size-chart">
-  
     <caption>
       <h1>No Vanity Sizing.</h1>
       <p> Nightwalker's sizes reflect the actual size they are.</p>
     </caption>
-    
     <tr>
       <th scope="col">Listed Size</th>
       <th scope="col">Waist</th>
@@ -13,7 +12,6 @@
       <th scope="col">Outseam</th>
       <th scope="col">Rise</th>
     </tr>
-    
     <tr ng-repeat="eachSize in product.sizeInformation">
       <td>{{eachSize['Listed Size']}}</td>
       <td>{{eachSize['Waist']}}</td>
@@ -21,7 +19,6 @@
       <td>{{eachSize['Outseam']}}</td>
       <td>{{eachSize['Rise']}}</td>
     </tr>
-  
     <tr>
       <td colspan="5">
         <p id="size-copy">
@@ -30,7 +27,6 @@
         <img id="sizing-guide" src="http://placehold.it/150x250">
       </td>
     </tr>
-    
     <tr>
       <th scope="col">Listed Size</th>    
       <th scope="col">Knee</th>
@@ -38,7 +34,6 @@
       <th scope="col">Pocket Opening</th>
       <th scope="col">Pocket Depth</th>
     </tr>
-  
     <tr ng-repeat="eachSize in product.sizeInformation">
       <td>{{eachSize['Listed Size']}}</td>    
       <td>{{eachSize['Knee']}}</td>
@@ -46,8 +41,9 @@
       <td>{{eachSize['Pocket Opening']}}</td>
       <td>{{eachSize['Pocket Depth']}}</td>        
     </tr>
-    
   </table>
-  <button id="close-details" ng-click="toggleShow('#table-holder')">X</button>  
+  
+  <button id="close-details" ng-click="toggleShow('#table-holder')">X</button>
+  
 </div>
 

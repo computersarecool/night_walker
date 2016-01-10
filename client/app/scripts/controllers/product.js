@@ -8,8 +8,11 @@
  * Controller of the nightwalkerApp
  */
 angular.module('nightwalkerApp')
-  .controller('ProductCtrl', function ($scope, $window, UserFactory, product) {
+  .controller('ProductCtrl', function ($scope, $window, $location, UserFactory, product) {
 
+    var sizeGuide = document.querySelector('#sizemenu');
+    var holder = document.querySelector('#gallery-holder');
+    
     var flavorIndex;
     var flavorTest = product['urlFlavor'];
 
@@ -19,9 +22,16 @@ angular.module('nightwalkerApp')
       flavorIndex = "2";      
     }
 
-    
     $scope.product = product;
+    
+    $scope.scrollSnap = function () {
+      console.log('hi');
+    };
 
+    $scope.test = function () {
+      console.log('yesd');
+    };
+    
     $scope.addToCart = function (productSKU) {
       // Convert SKU to number because Angular templating does opposite
       var sku = parseInt(productSKU, 10);
@@ -29,7 +39,6 @@ angular.module('nightwalkerApp')
       var cart = JSON.parse(store.getItem('cart'));
 
       $scope.pickedProduct = {};
-
             
       if (UserFactory.currentUser.loggedIn) {
         // Add to cart in DB if user is logged in
@@ -45,8 +54,13 @@ angular.module('nightwalkerApp')
         store.setItem('cart', JSON.stringify(cart));
         UserFactory.currentUser.cart = cart;
       }
+      document.querySelector('#checkout-now').classList.remove('hidden');
     };
 
+    $scope.goToCheckout = function () {
+      $location.path('/checkout');
+    };
+    
     $scope.toggleShow = function (id) {
       var element = document.querySelector(id);
       var yOffset = $window.scrollY;
@@ -55,9 +69,7 @@ angular.module('nightwalkerApp')
     };
 
     $scope.changeSize = function () {
-      var sizeGuide = document.querySelector('#sizemenu');
-      var size = sizeGuide.options[sizeGuide.selectedIndex].value;
-      $scope.product.sku = Number("1" + flavorIndex + size);
+      $scope.product.sku = Number("1" + flavorIndex + sizeGuide.options[sizeGuide.selectedIndex].value);
     };
     
   });
