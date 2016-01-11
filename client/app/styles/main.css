@@ -251,8 +251,16 @@ img.poster {
   margin-top: 6vh;
   text-align: center;
 }
+#individual-gallery {
+  overflow: hidden;
+}
+#gallery-holder {
+  position: relative;
+  width: 400%;
+}
 .individual-main {
   height: 87vh;
+  float: left;
 }
 .product-title {
   font-weight: 700;

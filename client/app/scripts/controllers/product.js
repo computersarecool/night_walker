@@ -10,9 +10,17 @@
 angular.module('nightwalkerApp')
   .controller('ProductCtrl', function ($scope, $window, $location, UserFactory, product) {
 
+    var dragging;
+    var xStart;
+    var yStart;
+    var xNow;
+    var yNow;
+    var xDelta;
+    
+    var xOffset = 0;    
     var sizeGuide = document.querySelector('#sizemenu');
     var holder = document.querySelector('#gallery-holder');
-    
+
     var flavorIndex;
     var flavorTest = product['urlFlavor'];
 
@@ -22,15 +30,33 @@ angular.module('nightwalkerApp')
       flavorIndex = "2";      
     }
 
-    $scope.product = product;
     
-    $scope.scrollSnap = function () {
-      console.log('hi');
+    $scope.product = product;
+
+    $scope.startScroll = function (e) {
+      console.log('hihihh');
+//      xStart = e.touches[0].screenX;
+//      yStart = e.touches[0].screenY;
+//      xDelta = xStart;
+      dragging = true;
     };
 
-    $scope.test = function () {
-      console.log('yesd');
+    $scope.stopScroll = function () {
+      dragging = false;
     };
+
+    $scope.scrollGallery = function (e) {
+      if (dragging) {
+        console.log('hi');
+        xNow = e.touches[0].screenX;
+        yNow = e.touches[0].screenY;
+        xOffset += (xDelta -= xNow);
+        //        holder.style.left = xOffset + "px";
+        holder.style.left = "555px";
+        console.log('hi');
+      }
+    };
+    
     
     $scope.addToCart = function (productSKU) {
       // Convert SKU to number because Angular templating does opposite
