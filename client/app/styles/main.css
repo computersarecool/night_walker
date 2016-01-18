@@ -93,6 +93,7 @@ body {
   -webkit-box-sizing: inherit;
   -moz-box-sizing: inherit;
   box-sizing: inherit;
+  outline: none;
 }
 .hidden {
   display: none !important;
@@ -257,15 +258,40 @@ img.poster {
   text-align: center;
 }
 #individual-gallery {
+  position: relative;
   overflow: hidden;
 }
 #gallery-holder {
   position: relative;
   width: 400%;
+  margin-bottom: 3vh;
 }
 .individual-main {
   height: 87vh;
   float: left;
+}
+#view-picker {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  bottom: 3vh;
+}
+.gallery-picker {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 3.5vh;
+  height: 3.5vh;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  color: #000;
+  background: #000;
+  border: 0.5vh solid #000;
+}
+.gallery-picker:checked {
+  background: #f00;
+  border: 0.5vh solid #00f;
 }
 .product-title {
   font-weight: 700;

@@ -43,20 +43,58 @@ angular.module('nightwalkerApp')
     };
 
     $scope.scrollGallery = function (e) {
+      var newPosition;
       if ($scope.dragging) {
         xNow = e.touches[0].screenX;        
         xDelta = xNow - xPrevious;
-        xOffset = parseInt(holder.style.left);
-        
-        if (!isNaN(xOffset)) {
-          holder.style.left = xOffset + xDelta + 'px';
-        } else {
-          holder.style.left = '0px';
+        xOffset = xDelta + parseInt(holder.style.left);
+
+        if (isNaN(xOffset)) {
+          holder.style.left = '0px';          
+          return;
         }
+        
+        if (xOffset <= -730 && xDelta <= 0 || xOffset >= 0 && xDelta >= 0) {
+          return;
+        }
+
+        newPosition = xOffset + xDelta;
+        holder.style.left = newPosition + 'px';
         xPrevious = xNow;
+        switch(true) {
+          case newPosition > -20:
+            document.querySelector('#front-view').checked = true;
+            break;
+          case (newPosition > -40 && newPosition <= -20):
+            document.querySelector('#side-view').checked = true;
+            break;
+          case (newPosition > -60 && newPosition <= -40):
+            document.querySelector('#detail-view').checked = true;
+            break;
+          case (newPosition > -80 && newPosition <= -60):
+            document.querySelector('#back-view').checked = true;          
+            break;            
+        }
       }
     };
-    
+
+
+    $scope.scrollTo = function (pictureName) {
+      switch(pictureName) {
+        case 'front-view':
+          holder.style.left = '0px';
+          break;
+        case 'side-view':
+          holder.style.left = '30px';
+          break;
+        case 'detail-view':
+          holder.style.left = '70px';        
+          break;
+        case 'back-view':
+          holder.style.left = '120px';                
+          break;
+      }
+    };
     
     $scope.addToCart = function (productSKU) {
       // Convert SKU to number because Angular templating does opposite

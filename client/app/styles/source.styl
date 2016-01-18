@@ -50,15 +50,16 @@ html, body
 
 *, *:before, *:after
   box-sizing inherit   
-
+  outline none
+  
 .hidden
   display none !important
 
-.clearfix:after {
+.clearfix:after
   content: ""
   display: table
   clear: both
-}
+
   
 // All links
 a:link, a:visited
@@ -221,16 +222,38 @@ img.poster
 
   // Product gallery
 #individual-gallery
+  position relative
   overflow hidden
-
+  
 #gallery-holder
   position relative
   width 400%  
+  margin-bottom 3vh
 
 .individual-main
   height 87vh
   float left
-    
+
+#view-picker  
+  position absolute
+  margin 0 auto
+  left 0
+  right 0
+  bottom 3vh
+
+.gallery-picker
+  appearance none
+  width 3.5vh
+  height 3.5vh
+  border-radius 50%
+  color black
+  background black
+  border .5vh solid black
+      
+.gallery-picker:checked
+  background red
+  border .5vh solid blue
+
   // End of product gallery
 .product-title
     font-weight 700
