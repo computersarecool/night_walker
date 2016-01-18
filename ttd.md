@@ -84,12 +84,14 @@ Angular:
   - Why is link returned in directive?
   - Why does a directive have a controller
   - Should the main.html view just be a directive?
+  - Use $scope or var in controllers (i.e. product Controller)
+
 
 Javascript:
   - routes|checkout.js:20, set dbuser so I have db and object reference to item
   - routes|checkout.js:39, async callback
   - Should functions be defined inside of a callback (i.e. checkout.js:30, checkout)
-
+  - Handling double clicks
 
 Node:
   - checkout.js in routes. Does databaseuser need to be set, or will it persist from function calls

@@ -10,14 +10,12 @@
 angular.module('nightwalkerApp')
   .controller('ProductCtrl', function ($scope, $window, $location, UserFactory, product) {
 
-    var dragging;
-    var xStart;
-    var yStart;
+
     var xNow;
-    var yNow;
     var xDelta;
+    var xOffset;
+    var xPrevious = undefined;
     
-    var xOffset = 0;    
     var sizeGuide = document.querySelector('#sizemenu');
     var holder = document.querySelector('#gallery-holder');
 
@@ -30,30 +28,32 @@ angular.module('nightwalkerApp')
       flavorIndex = "2";      
     }
 
-    
+
+    $scope.dragging = false;
     $scope.product = product;
 
     $scope.startScroll = function (e) {
-      console.log('hihihh');
-//      xStart = e.touches[0].screenX;
-//      yStart = e.touches[0].screenY;
-//      xDelta = xStart;
-      dragging = true;
+      xPrevious = e.touches[0].screenX;
+      $scope.dragging = true;
     };
 
     $scope.stopScroll = function () {
-      dragging = false;
+      $scope.dragging = false;
+      xPrevious = undefined;
     };
 
     $scope.scrollGallery = function (e) {
-      if (dragging) {
-        console.log('hi');
-        xNow = e.touches[0].screenX;
-        yNow = e.touches[0].screenY;
-        xOffset += (xDelta -= xNow);
-        //        holder.style.left = xOffset + "px";
-        holder.style.left = "555px";
-        console.log('hi');
+      if ($scope.dragging) {
+        xNow = e.touches[0].screenX;        
+        xDelta = xNow - xPrevious;
+        xOffset = parseInt(holder.style.left);
+        
+        if (!isNaN(xOffset)) {
+          holder.style.left = xOffset + xDelta + 'px';
+        } else {
+          holder.style.left = '0px';
+        }
+        xPrevious = xNow;
       }
     };
     

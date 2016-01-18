@@ -97,6 +97,11 @@ body {
 .hidden {
   display: none !important;
 }
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 a:link,
 a:visited {
   text-decoration: none;

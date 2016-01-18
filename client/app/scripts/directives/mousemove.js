@@ -10,6 +10,7 @@ angular.module('nightwalkerApp')
   .directive('siteMouseMove', function () {
     return function (scope, elem, attrs) {
       elem.bind('touchmove mousemove', function (e) {
+
         if (e.type === 'mousemove') {
           e.touches = [{
             clientX: e.clientX,

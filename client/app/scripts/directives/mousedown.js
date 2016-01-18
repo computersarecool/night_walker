@@ -11,14 +11,15 @@ angular.module('nightwalkerApp')
     return function (scope, elem, attrs) {
       elem.bind('touchstart mousedown', function (e) {
 
-//        if (e.type === 'mousedown') {
-//          e.touches = [{
-//            clientX: e.clientX,
-//            clientY: e.clientY,
-//          }];
-//        }
-        e.stopPropagation();
-        e.preventDefault();
+        if (e.type === 'mousedown') {
+          e.touches = [{
+            clientX: e.clientX,
+            clientY: e.clientY,
+          }];
+        }
+        
+//        e.stopPropagation();
+//        e.preventDefault();
         scope.$event = e;
         scope.$apply(attrs['siteMouseDown']);
       });
