@@ -1,4 +1,5 @@
 <div ng-click="showModalCart()">
+  <!-- Cart Wrap -->
   <div class="wrap">
     <div class="cart-cube">
       <div class="front"></div>
@@ -10,8 +11,9 @@
       <div class="right"></div>
     </div>
   </div>
+
   <!-- Cart -->
-  <div ng-show="modalCart">
+  <div id="modal-cart" ng-show="modalCart">
     
     <!-- User is signed in -->
     <div ng-show="user.loggedIn">
@@ -75,30 +77,30 @@
       <!-- Items in cart -->  
       <div ng-show="user.cart.length">
         <p>
-          You have # items in your cart. Wold you like to
+          You have {{user.cart.length}} items in your cart. Wold you like to:
         </p>
         <a ng-href='/checkout'>
-          <p>
+          <p class="checkout-options">
             Check out as a guest?
           </p>
         </a>
         <a ng-href='/account'>
-          <p>
+          <p class="checkout-options">
             Edit Your cart?
           </p>
         </a>
         <a ng-href='/login'>
-          <p>
+          <p class="checkout-options">
             Sign in?
           </p>
         </a>
         <a ng-href='signup'>
-          <p>
+          <p class="checkout-options">
             Join?
           </p>
         </a>
       </div>
-      
+      <button id="close-cart">X</button>
     </div>
     
   </div>

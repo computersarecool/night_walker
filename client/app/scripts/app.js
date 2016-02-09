@@ -74,8 +74,6 @@ angular
         redirectTo: '/'
       });
 
-
-    
     $httpProvider.interceptors.push('AuthInterceptorFactory');
 
     Stripe.setPublishableKey('pk_test_uEnw6EZC8otddMKeJUiZsHFz');
@@ -85,4 +83,12 @@ angular
       requireBase: true
     });
     
+  }).run(function ($rootScope, $location) {
+    $rootScope.$on('$locationChangeStart', function (event) {
+      if ($location.path() !== '/') {
+        document.querySelector('nav').classList.add('horizontal');
+      } else {
+        document.querySelector('nav').classList.remove('horizontal');
+      }
+    });
   });

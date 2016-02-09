@@ -127,6 +127,23 @@ site-cart .words {
   text-align: center;
   line-height: 6vh;
 }
+#modal-cart {
+  position: absolute;
+  left: 0;
+  line-height: 6vh;
+  width: 100vw;
+  background: rgba(111,111,111,0.96);
+}
+.checkout-options {
+  float: left;
+  clear: left;
+}
+#close-cart {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #f00;
+}
 nav {
   margin-top: 1vh;
   margin-left: 0.25em;
@@ -264,10 +281,10 @@ img.poster {
 #gallery-holder {
   position: relative;
   width: 400%;
-  margin-bottom: 3vh;
+  margin-bottom: 6vh;
 }
 .individual-main {
-  height: 87vh;
+  height: 81vh;
   float: left;
 }
 #view-picker {
@@ -275,7 +292,7 @@ img.poster {
   margin: 0 auto;
   left: 0;
   right: 0;
-  bottom: 3vh;
+  bottom: 0.5vh;
 }
 .gallery-picker {
   -webkit-appearance: none;
@@ -425,6 +442,9 @@ td {
 #checkout-now {
   margin-top: 14vh;
   margin-bottom: 2vh;
+}
+#checkout-view {
+  margin-top: 6vh;
 }
 #about-container {
   margin-top: 6vh;

@@ -50,7 +50,7 @@ angular.module('nightwalkerApp')
     }
 
 
-    $scope.$watch(function () {
+     $scope.$watch(function () {
       return UserFactory.currentUser;
     }, function () {
       $scope.user = UserFactory.currentUser;
@@ -58,6 +58,7 @@ angular.module('nightwalkerApp')
 
     // Specific to the cart directive
     $scope.modalCart = false;
+
     $scope.showModalCart = function () {
       $scope.modalCart = !$scope.modalCart;
     };
