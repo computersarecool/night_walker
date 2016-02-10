@@ -38,6 +38,9 @@ table
 
 
 // Begin styles
+// Variables
+nav-height = 6vh
+
 // Custom directives
 site-header, site-gallery, site-nav
   display block
@@ -65,6 +68,9 @@ html, body
 a:link, a:visited
  text-decoration none    
 
+// Main page
+.container
+  margin-top nav-height
   
 // Header container
 header
@@ -116,7 +122,7 @@ nav
   
 nav.horizontal
   width: 100vw
-  height 6vh
+  height nav-height
   min-height 0
   margin 0
   background black
@@ -212,7 +218,6 @@ img.gallery.front
   
 // Shop page
 #collection-container
-  margin-top 6vh
   text-align center
   
 div.poster-container
@@ -234,7 +239,6 @@ img.poster
 
 // Product page
 #product-container
-  margin-top 6vh
   text-align center
 
   // Product gallery
@@ -417,15 +421,10 @@ td
 
 // Checkout page
 #checkout-view
-  margin-top 6vh
   
-  
-//
+// End of checkout page
 
 // About page
-#about-container
-  margin-top 6vh
-
 // End of about page
 
 

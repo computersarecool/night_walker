@@ -71,7 +71,7 @@ angular
         controller: 'CongratulationsCtrl',
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/',
       });
 
     $httpProvider.interceptors.push('AuthInterceptorFactory');
@@ -80,15 +80,20 @@ angular
 
     $locationProvider.html5Mode({
       enabled: true, 
-      requireBase: true
+      requireBase: true,
     });
     
   }).run(function ($rootScope, $location) {
     $rootScope.$on('$locationChangeStart', function (event) {
-      if ($location.path() !== '/') {
-        document.querySelector('nav').classList.add('horizontal');
-      } else {
-        document.querySelector('nav').classList.remove('horizontal');
+      // TODO: Remove Hack because nav does not exist yet
+      var nav = document.querySelector('nav');
+      if (nav) {
+        if ($location.path() === '/') {
+          nav.classList.remove('horizontal');
+        } else {
+          nav.classList.add('horizontal');
+        }
       }
     });
   });
+

@@ -9,11 +9,23 @@
 - add to cart
 - free shipping
 
+### Routes
+- Shop
+- About
+-Contact
+
+- Sign in
+- Sign up
+- Account
+
+- Cart (guest)
+
 
 ## Media
-- Have all home gallery images fade to white on sides
+- Have all home gallery images fade to white on sides (which might be the shop pages too)
+- Fade to white on background image for shop gallery page (later make transparent cut out for bg image)
 - Create web font
-- SVG Logo
+- SVG Logo and shopping cart
 - background images on home / shop
 - fade to white for product photos
 

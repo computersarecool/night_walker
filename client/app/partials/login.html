@@ -1,5 +1,5 @@
 <!-- Show if the user is logged up -->
-<div ng-show="showLogin">
+<div ng-show="showLogin" class="container">
   
   <form novalidate ng-submit="login(username, password)">
     <label>Email<input type="email" ng-model="username"></label>
@@ -32,7 +32,7 @@
   </form>
   <br>
 
-<!-- Click to switch -->  
+  <!-- Click to switch -->  
   <p ng-click="changeScreen()">
     Already have an account?
   </p>

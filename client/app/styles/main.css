@@ -107,6 +107,9 @@ a:link,
 a:visited {
   text-decoration: none;
 }
+.container {
+  margin-top: 6vh;
+}
 header {
   height: 6.5vh;
   margin-top: 0.5vh;
@@ -252,7 +255,6 @@ img.gallery.front {
   z-index: -1;
 }
 #collection-container {
-  margin-top: 6vh;
   text-align: center;
 }
 div.poster-container {
@@ -271,7 +273,6 @@ img.poster {
   color: #000;
 }
 #product-container {
-  margin-top: 6vh;
   text-align: center;
 }
 #individual-gallery {
@@ -443,12 +444,7 @@ td {
   margin-top: 14vh;
   margin-bottom: 2vh;
 }
-#checkout-view {
-  margin-top: 6vh;
-}
-#about-container {
-  margin-top: 6vh;
-}
+#checkout-view,
 #contact-container {
   margin-top: 6vh;
 }
