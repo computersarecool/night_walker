@@ -62,6 +62,6 @@ angular.module('nightwalkerApp')
     $scope.showModalCart = function () {
       $scope.modalCart = !$scope.modalCart;
     };
-    
+
   });
 

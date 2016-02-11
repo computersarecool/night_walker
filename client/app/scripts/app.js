@@ -62,6 +62,10 @@ angular
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl',
       })
+      .when('/cart', {
+        templateUrl: 'views/cart.html',
+        controller: 'CartCtrl',
+      })
       .when('/checkout', {
         templateUrl: 'views/checkout.html',
         controller: 'CheckoutCtrl',
@@ -69,6 +73,11 @@ angular
       .when('/congratulations', {
         templateUrl: 'views/congratulations.html',
         controller: 'CongratulationsCtrl',
+      })
+      .when('/cart', {
+        templateUrl: 'views/cart.html',
+        controller: 'CartCtrl',
+        controllerAs: 'cart'
       })
       .otherwise({
         redirectTo: '/',
