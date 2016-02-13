@@ -65,6 +65,11 @@ angular
       .when('/cart', {
         templateUrl: 'views/cart.html',
         controller: 'CartCtrl',
+        resolve: {
+          items: function ($window, UserFactory, ProductFactory) {
+            return ProductFactory.getInfoFromSkus(UserFactory.currentUser.cart);
+          }
+        }
       })
       .when('/checkout', {
         templateUrl: 'views/checkout.html',
@@ -73,11 +78,6 @@ angular
       .when('/congratulations', {
         templateUrl: 'views/congratulations.html',
         controller: 'CongratulationsCtrl',
-      })
-      .when('/cart', {
-        templateUrl: 'views/cart.html',
-        controller: 'CartCtrl',
-        controllerAs: 'cart'
       })
       .otherwise({
         redirectTo: '/',

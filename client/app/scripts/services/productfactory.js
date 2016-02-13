@@ -9,30 +9,51 @@
  */
 angular.module('nightwalkerApp')
   .factory('ProductFactory', function ($http) {
-    return {
-      getCollection: getCollection,
-      getProduct: getProduct
-    };
 
-    
     function getCollection (collection) { 
       return $http.get('/api/collection/' + collection)
         .then(function success (response) {
           return response.data;
-        }, function (httpError) {
+        }, function error (httpError) {
           throw httpError.status + " : " + httpError.data;        
         });
     }
 
-
+    
     function getProduct (flavor) {
       return $http.get('/api/shop/alternatingcurrent/' + flavor)
         .then(function success (response) {
           return response.data;
-        }, function (httpError) {
+        }, function error (httpError) {
           throw httpError.status + " : " + httpError.data;
         });
     }
 
+    
+    function getInfoFromSkus (skus) {
+      // Change into an Array of quantity per sku
+      var skuObject =  {};
+      for (var i = 0; i < skus.length; ++i) {
+        if (!skuObject[skus[i]]) {
+          skuObject[skus[i]] = 0;
+        }
+        ++skuObject[skus[i]];
+      }
+      
+      return $http.post('/api/skus', skuObject)
+        .then(function success (response) {
+          return response.data;
+        }, function error (httpError) {
+          throw httpError.status + " : " + httpError.data;          
+        });
+    }
+
+    
+    return {
+      getCollection: getCollection,
+      getProduct: getProduct,
+      getInfoFromSkus: getInfoFromSkus,
+    };
+    
   });
 

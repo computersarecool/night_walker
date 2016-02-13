@@ -1,4 +1,5 @@
 # TODO:
+- Make a fully functional guest checkout page // separate route from app
 
 # Product page
 - Short description
@@ -31,6 +32,8 @@
 
 
 ## Guest Checkout initiative
+- Make a fully functional guest checkout page
+
 - Removed animation from navigation.js which affected source.stl nav ul.collapsed
 - Consider reusing the home sprite images on poster gallery as they will load quicker
 
@@ -42,7 +45,7 @@
  - Make view / edit portion of account page
  - Make Details page
  - Make Congrats popup directive / page
-
+ - Make skus consistently numbers, right now inconsisten in the geturl function
 ### Simultaneous
  - Finish heading (look into icon fonts for header)
  - Put logo upper left, stylize "Welcome to *nightWalker*" to upper right
