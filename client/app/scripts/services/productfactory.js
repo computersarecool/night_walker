@@ -39,7 +39,7 @@ angular.module('nightwalkerApp')
         }
         ++skuObject[skus[i]];
       }
-      
+
       return $http.post('/api/skus', skuObject)
         .then(function success (response) {
           return response.data;

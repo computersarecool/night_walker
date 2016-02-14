@@ -8,16 +8,16 @@ router.post('/', function (req, res, next) {
   var itemDetails = [];
   var skus = req.body;;
 
-  function retreiveProduct (quantity, sku, callback) {
-    // TODO: Fix string hack
-    var temphack = "" + sku;
-    Products.findOne({sku: temphack}).lean().exec(function (err, product) {
+  function retreiveProduct (quantity, productSku, callback) {
+    // Convert to number because the skus get converted as Object keys
+    Products.findOne({sku: productSku}).lean().exec(function (err, product) {
       // TODO: Error handling
       if (err) {
         throw err;
         return;
       }
       if (product) {
+        product.sku = parseInt(product.sku, 10);
         itemDetails.push({
           quantity: quantity,
           product: product
@@ -30,7 +30,7 @@ router.post('/', function (req, res, next) {
       }
     });    
   }
-  
+
   async.forEachOf(skus, retreiveProduct, function (err) {
     // TODO: Error handling
     if (err) {

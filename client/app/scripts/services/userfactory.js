@@ -103,26 +103,21 @@ angular.module('nightwalkerApp')
     }
 
     
-    function updateCart (item, quantity) {
+    function updateCart (itemSku, quantity) {
       //TODO: Check with database to make sure the amount is available
-      var selectCart = user.currentUser.cart.filter(function (oldItem) {
-        console.log(oldItem, item);
-        return oldItem !== parseInt(item, 10);
+      var selectCart = user.currentUser.cart.filter(function (oldItemSku) {
+        return oldItemSku !== itemSku;
       });
 
-      console.log(selectCart);
-
-      for(var i = 0; i < quantity; i++) {
-        selectCart.push(item);
+      for (var i = 0; i < quantity; i++) {
+        selectCart.push(itemSku);
       }
-      
-      console.log(selectCart);
       
       user.currentUser.cart = selectCart;
       
       if (!user.currentUser.loggedIn) {
         store.setItem('cart', angular.toJson(user.currentUser.cart));
-      }  
+      }
     }
 
     

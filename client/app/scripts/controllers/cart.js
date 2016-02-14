@@ -12,15 +12,25 @@ angular.module('nightwalkerApp')
 
     $scope.items = items;
 
-    $scope.updateCart = function (item, removeFromCart) {
-      if (removeFromCart) {
-        // Delete item from cart
-        UserFactory.updateCart(item.product.sku, 0);
-      } else {
-        // Change amount quantity
-        // Make return new $scope.items
-        UserFactory.updateCart(item.product.sku, item.quantity);
+    $scope.removeItem = function (item) {
+      item.quantity = 0;
+      $scope.updateCart(item);
+    };
+
+    $scope.updateCart = function (item) {
+      for (var i = 0; i < $scope.items.length; i++) {
+        if ($scope.items[i].product.sku === item.product.sku) {
+          var itemIndex = i;
+          if (item.quantity) {
+            $scope.items[i] = item;            
+          } else {
+            $scope.items.splice(itemIndex, 1);
+          }
+          break;
+        }
       }
+
+      UserFactory.updateCart(item.product.sku, item.quantity);
     };
 
   });
