@@ -14,7 +14,7 @@ angular.module('nightwalkerApp')
     var xNow;
     var xDelta;
     var xOffset;
-    var xPrevious = undefined;
+    var xPrevious;
     
     var sizeGuide = document.querySelector('#sizemenu');
     var holder = document.querySelector('#gallery-holder');
@@ -28,10 +28,12 @@ angular.module('nightwalkerApp')
       flavorIndex = "2";      
     }
 
-
-    $scope.dragging = false;
     $scope.product = product;
-
+    
+    $scope.pickedProduct = {};
+    
+    $scope.dragging = false;
+    
     $scope.startScroll = function (e) {
       xPrevious = e.touches[0].screenX;
       $scope.dragging = true;
@@ -61,6 +63,7 @@ angular.module('nightwalkerApp')
         newPosition = xOffset + xDelta;
         holder.style.left = newPosition + 'px';
         xPrevious = xNow;
+        
         switch(true) {
           case newPosition > -20:
             document.querySelector('#front-view').checked = true;
@@ -101,8 +104,6 @@ angular.module('nightwalkerApp')
       var sku = parseInt(productSKU, 10);
       var store = $window.localStorage;
       var cart = JSON.parse(store.getItem('cart'));
-
-      $scope.pickedProduct = {};
             
       if (UserFactory.currentUser.loggedIn) {
         // Add to cart in DB if user is logged in
@@ -133,7 +134,7 @@ angular.module('nightwalkerApp')
     };
 
     $scope.changeSize = function () {
-      $scope.product.sku = Number("1" + flavorIndex + sizeGuide.options[sizeGuide.selectedIndex].value);
+      $scope.product.sku = parseInt("1" + flavorIndex + sizeGuide.options[sizeGuide.selectedIndex].value, 10);
     };
     
   });

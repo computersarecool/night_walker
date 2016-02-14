@@ -69,7 +69,7 @@
     </div>
   
     <select id="sizemenu" class="right-ui" ng-model="pickedProduct" ng-change="changeSize()">
-      <option style="display:none" value=""> Select a size </option>
+
       <option ng-repeat="size in product.distinctSizes | orderBy: 'waistSize'" value="{{size.waistSize}}{{size.inseam}}"> {{size.waistSize}} x {{size.inseam}} </option>
     </select>
    
@@ -79,8 +79,14 @@
   
     <site-size-guide></site-size-guide>  
     
-    <button id="add-to-cart" class="product-button left-ui" ng-click="addToCart(product.sku)">Add this product {{product.sku}}</button>
-    <button id="checkout-now" class="product-button right-ui hidden" ng-click="goToCheckout()">Checkout now</button>
+    <button id="add-to-cart" class="product-button left-ui" ng-click="addToCart(product.sku)">
+      Add this product {{product.sku}}
+    </button>
+    
+    <button id="checkout-now" class="product-button right-ui hidden" ng-click="goToCheckout()">
+      Checkout now
+    </button>
+    
   </div>
   
 </div>
