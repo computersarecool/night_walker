@@ -68,10 +68,9 @@
        
     </div>
   
-    <select id="sizemenu" class="right-ui" ng-model="pickedProduct" ng-change="changeSize()">
+    <select id="sizemenu" class="right-ui" ng-model="pickedProduct.size" ng-change="changeSize()" ng-options="'' + productSize.waistSize + 'x' + productSize.inseam for productSize in product.distinctSizes | orderBy: 'waistSize'"></select>
 
-      <option ng-repeat="size in product.distinctSizes | orderBy: 'waistSize'" value="{{size.waistSize}}{{size.inseam}}"> {{size.waistSize}} x {{size.inseam}} </option>
-    </select>
+
    
     <button id="size-guide" class="product-button left-ui" ng-click="toggleShow('#table-holder')">
       Size Guide
@@ -79,8 +78,8 @@
   
     <site-size-guide></site-size-guide>  
     
-    <button id="add-to-cart" class="product-button left-ui" ng-click="addToCart(product.sku)">
-      Add this product {{product.sku}}
+    <button id="add-to-cart" class="product-button left-ui" ng-click="addToCart()">
+      Add this product {{pickedProduct.sku}}
     </button>
     
     <button id="checkout-now" class="product-button right-ui hidden" ng-click="goToCheckout()">

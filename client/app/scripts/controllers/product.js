@@ -30,8 +30,11 @@ angular.module('nightwalkerApp')
 
     $scope.product = product;
     
-    $scope.pickedProduct = {};
-    
+    $scope.pickedProduct = {
+      size: product.distinctSizes[0],
+      sku: "1" + flavorIndex + product.distinctSizes[0].waistSize + product.distinctSizes[0].inseam,
+    };
+
     $scope.dragging = false;
     
     $scope.startScroll = function (e) {
@@ -81,7 +84,6 @@ angular.module('nightwalkerApp')
       }
     };
 
-
     $scope.scrollTo = function (pictureName) {
       switch(pictureName) {
         case 'front-view':
@@ -99,11 +101,22 @@ angular.module('nightwalkerApp')
       }
     };
     
-    $scope.addToCart = function (productSKU) {
+    $scope.toggleShow = function (id) {
+      var element = document.querySelector(id);
+      var yOffset = $window.scrollY;
+      element.style.top = yOffset + "px";
+      element.classList.toggle('hidden');
+    };
+    
+    $scope.changeSize = function () {
+      $scope.pickedProduct.sku = "1" + flavorIndex + $scope.pickedProduct.size.waistSize + $scope.pickedProduct.size.inseam;
+    };
+    
+    $scope.addToCart = function () {
       // Convert SKU to number because Angular templating does opposite
-      var sku = parseInt(productSKU, 10);
+      var sku = parseInt($scope.pickedProduct.sku, 10);
       var store = $window.localStorage;
-      var cart = JSON.parse(store.getItem('cart'));
+      var cart = angular.fromJson(store.getItem('cart'));
             
       if (UserFactory.currentUser.loggedIn) {
         // Add to cart in DB if user is logged in
@@ -125,17 +138,6 @@ angular.module('nightwalkerApp')
     $scope.goToCheckout = function () {
       $location.path('/checkout');
     };
-    
-    $scope.toggleShow = function (id) {
-      var element = document.querySelector(id);
-      var yOffset = $window.scrollY;
-      element.style.top = yOffset + "px";
-      element.classList.toggle('hidden');
-    };
 
-    $scope.changeSize = function () {
-      $scope.product.sku = parseInt("1" + flavorIndex + sizeGuide.options[sizeGuide.selectedIndex].value, 10);
-    };
-    
   });
 
