@@ -63,13 +63,8 @@ angular
         controller: 'AccountCtrl',
       })
       .when('/cart', {
-        templateUrl: 'views/cart.html',
-        controller: 'CartCtrl',
-        resolve: {
-          items: function ($window, UserFactory, ProductFactory) {
-            return ProductFactory.getInfoFromSkus(UserFactory.currentUser.cart);
-          }
-        }
+        template: '<site-checkout-cart></site-checkout-cart>',
+        controller: 'CheckoutCtrl',
       })
       .when('/checkout', {
         templateUrl: 'views/checkout.html',
