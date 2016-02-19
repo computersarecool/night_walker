@@ -9,9 +9,10 @@
  */
 angular.module('nightwalkerApp')
   .controller('CheckoutCtrl', function ($scope, $window, $location, $http, UserFactory) {
+    // Check if user is logged in
     if (UserFactory.currentUser) {
       // TODO: Validate token
-      // The user has a token validate to procceed checkout
+      // The user has a token validate to proceed checkout
       $scope.showForm = true;
     } else {
       // The user does not have a token (not logged in)
@@ -19,12 +20,10 @@ angular.module('nightwalkerApp')
       $scope.showForm = false;
     } 
 
-    
     $scope.hideLogins = function () {
       $scope.showLogins = false;
       $scope.showForm = true;
     };
-
     
     $scope.process = function (status, response) {
       if (response.error) {

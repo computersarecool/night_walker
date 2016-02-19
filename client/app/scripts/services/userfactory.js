@@ -101,7 +101,6 @@ angular.module('nightwalkerApp')
       }
       return undefined;
     }
-
     
     function updateCart (itemSku, quantity) {
       //TODO: Check with database to make sure the amount is available
@@ -120,6 +119,9 @@ angular.module('nightwalkerApp')
       }
     }
 
+    function goToCheckout () {
+      $location.path('/checkout');
+    }
     
     function getUser () {
       if (AuthTokenFactory.getToken()) {
@@ -140,15 +142,15 @@ angular.module('nightwalkerApp')
          return undefined;
        }
      }
-
     
     user = {
-      addToCart: addToCart,
-      updateCart: updateCart,
+      checkToken: checkToken,      
+      signup: signup,
       login: login,
       logout: logout,
-      signup: signup,
-      checkToken: checkToken,
+      addToCart: addToCart,
+      updateCart: updateCart,
+      goToCheckout: goToCheckout,
       getUser: getUser,
       currentUser: getUser()
     };

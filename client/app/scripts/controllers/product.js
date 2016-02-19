@@ -135,9 +135,7 @@ angular.module('nightwalkerApp')
       document.querySelector('#checkout-now').classList.remove('hidden');
     };
 
-    $scope.goToCheckout = function () {
-      $location.path('/checkout');
-    };
+    $scope.goToCheckout = UserFactory.goToCheckout;
 
   });
 

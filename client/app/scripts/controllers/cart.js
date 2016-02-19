@@ -29,9 +29,10 @@ angular.module('nightwalkerApp')
           break;
         }
       }
-
       UserFactory.updateCart(item.product.sku, item.quantity);
     };
 
+    $scope.goToCheckout = UserFactory.goToCheckout;
+    
   });
 

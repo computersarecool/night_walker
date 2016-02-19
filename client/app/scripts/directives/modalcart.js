@@ -10,7 +10,7 @@ angular.module('nightwalkerApp')
   .directive('siteCart', function () {
     return {
       restrict: 'E',
-      templateUrl: 'partials/cart.html',
+      templateUrl: 'partials/modalcart.html',
       controller: 'LoginCtrl'
     };
   });
