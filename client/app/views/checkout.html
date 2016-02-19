@@ -1,5 +1,4 @@
 <div id="checkout-view" class="container">
-
   <!-- Show login options if not logged in -->
   <div ng-show="showLogins">
     <div>
@@ -24,7 +23,7 @@
 
   <site-checkout-cart></site-checkout-cart>
   
-  <!-- Show the credit card form -->
+  <!-- Show the credit card form if logged in -->
   <div ng-show="showForm">
     <p>
       Welcome you have some items in your cart

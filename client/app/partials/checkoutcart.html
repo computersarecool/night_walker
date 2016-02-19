@@ -1,40 +1,30 @@
 <div class="container">
-  
-  <p ng-show="!items.length">
-    You do not have any items in your cart. Would you like to shop?
-  </p>
-  
-  <div ng-show="items.length">
 
-    <button ng-click="goToCheckout()">
-      Proceed to checkout
+  <button ng-click="goToCheckout()">
+    Proceed to checkout
+  </button>
+  
+  <div ng-repeat="item in items">
+    <img src="http://placehold.it/100x100" alt="product thumbnail">
+    <p>
+      {{item.product.description}}
+    </p>
+
+    <p>
+      {{item.product.price}}
+    </p>
+
+    <p>
+      {{item.product.sizes.waistSize}} x {{item.product.sizes.inseam}}
+    </p>
+
+    <label for="quantity">Quantity</label>
+    <select name="quantity" ng-model="item.quantity" ng-options="index for index in [1, 2, 3, 4, 5, 6]" ng-selected="{{item.quantity === index}}" ng-change="updateCart(item)"></select>
+
+    <button ng-click="removeItem(item)">
+      Delete
     </button>
-    
-    <div ng-repeat="item in items">
-
-      <img src="http://placehold.it/100x100" alt="product thumbnail">
-
-      <p>
-        {{item.product.description}}
-      </p>
-
-      <p>
-        {{item.product.price}}
-      </p>
-
-      <p>
-        {{item.product.sizes.waistSize}} x {{item.product.sizes.inseam}}
-      </p>
-
-      <label for="quantity">Quantity</label>
-      <select name="quantity" ng-model="item.quantity" ng-options="index for index in [1, 2, 3, 4, 5, 6]" ng-selected="{{item.quantity === index}}" ng-change="updateCart(item)"></select>
-
-      <button ng-click="removeItem(item)">
-        Delete
-      </button>
       
-    </div>
-    
   </div>
   
 </div>

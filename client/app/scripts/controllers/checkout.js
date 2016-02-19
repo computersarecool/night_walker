@@ -8,13 +8,9 @@
  * Controller of the nightwalkerApp
  */
 angular.module('nightwalkerApp')
-  .controller('CheckoutCtrl', function ($scope, $window, $location, $http, ProductFactory, UserFactory) {
+  .controller('CheckoutCtrl', function ($scope, $window, $location, $http, items, UserFactory) {
 
-    // Adjust for login incorporation
-
-    ProductFactory.getInfoFromSkus(UserFactory.currentUser.cart).then(function (items) {
-      $scope.items = items;      
-    });
+    $scope.items = items;      
 
     $scope.removeItem = function (item) {
       item.quantity = 0;

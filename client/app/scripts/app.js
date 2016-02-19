@@ -63,12 +63,22 @@ angular
         controller: 'AccountCtrl',
       })
       .when('/cart', {
-        template: '<site-checkout-cart></site-checkout-cart>',
+        templateUrl: 'views/checkoutcart.html',
         controller: 'CheckoutCtrl',
+        resolve: {
+          items: function (ProductFactory, UserFactory) {
+            return ProductFactory.getInfoFromSkus(UserFactory.currentUser.cart);
+          }
+        }
       })
       .when('/checkout', {
         templateUrl: 'views/checkout.html',
         controller: 'CheckoutCtrl',
+        resolve: {
+          items: function (ProductFactory, UserFactory) {
+            return ProductFactory.getInfoFromSkus(UserFactory.currentUser.cart);
+          }
+        }
       })
       .when('/congratulations', {
         templateUrl: 'views/congratulations.html',
