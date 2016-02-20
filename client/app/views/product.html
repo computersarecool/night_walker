@@ -25,7 +25,7 @@
     </h1>
     
     <p class="product-price left-ui">
-      {{product.price | currency}}
+      {{product.price / 100 | currency}}
     </p>
     
     <button id="toggle-details" class="product-button right-ui" ng-click="toggleShow('#details')">Item Details</button>

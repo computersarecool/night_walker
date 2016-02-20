@@ -11,18 +11,18 @@ var Orders = require('../../../database').Orders;
 
 
 router.post('/', function (req, res) {
-  var totalCost = 0;
+  var info;
+  var databaseUser;
   var stripeToken = req.body.stripeToken;
   var user = req.body.user;
-  var databaseuser = undefined;
-  var info;
-  
+  var totalCost = 0;  
+
   // User checkout
   if (user._id) {
     Users.findOne({_id: user._id}, function (err, dbuser) {
       // TODO: Error handling
-      // QUESTION: Does databaseuser have to be set like this?
-      databaseuser = dbuser;
+      // QUESTION: Does databaseUser have to be set like this?
+      databaseUser = dbuser;
       user = dbuser.toObject();
       getTotal(user);
     });
@@ -89,7 +89,12 @@ router.post('/', function (req, res) {
             break;
         }
       } else {
-        // TODO: Save card information if not a guest
+        // Successful charge
+        // Immediately send back response
+        user.cart = [];
+        res.json(user);
+
+        // Then save information in database ans save card info if not a guest
         var successOrder = new Orders();
 
         if (user['guest']) {
@@ -109,24 +114,19 @@ router.post('/', function (req, res) {
             console.log(err);
           }
           if (!user['guest']) {
-            databaseuser.cart = [];
-            databaseuser.orders.push(successOrder._id);
-            databaseuser.save(function (err) {
+            databaseUser.cart = [];
+            databaseUser.orders.push(successOrder._id);
+            databaseUser.save(function (err) {
               // TODO: Error handling
               if (err) {
                 console.log('There was an error');
-              } else {
-                // TODO: Only send the usersafe information
-                res.json(user);
               }
             });
-          } else {
-            // TODO: Only send the safe user information            
-            res.json(user);
           }
         });
         
       }
+      
     });
   }
 });

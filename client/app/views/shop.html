@@ -3,7 +3,7 @@
     <img ng-src="images/front_gallery/{{flavor | spacefilter}}-gallery.jpg" class="poster">
     <a ng-href="/shop/alternating-current/{{flavor | spacefilter}}">
       <div class="pant-flavor">The flavor: {{flavor}}</div>
-      <div class="pant-price">Price: {{collection.price | currency}}</div>
+      <div class="pant-price">Price: {{collection.price / 100 | currency}}</div>
     </a>
 </div>
 

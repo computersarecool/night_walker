@@ -4,7 +4,7 @@ var generics = {
   kind: 'pants',
   type: 'chinos',
   edition: 'alternating current',
-  price: 69,
+  price: 6900,
   description: 'The original chinos in classic Cherry',
   aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
   careInstructions: 'Machine wash cold and hang dry',

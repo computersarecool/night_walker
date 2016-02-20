@@ -12,6 +12,8 @@ angular.module('nightwalkerApp')
 
     $scope.items = items;      
 
+    $scope.user = UserFactory.currentUser;
+
     $scope.removeItem = function (item) {
       item.quantity = 0;
       $scope.updateCart(item);
@@ -34,33 +36,17 @@ angular.module('nightwalkerApp')
 
     $scope.goToCheckout = UserFactory.goToCheckout;
     
-    
-    // Check if user is logged in
-    if (UserFactory.currentUser) {
-      // TODO: Validate token
-      // The user has a token validate to proceed checkout
-      $scope.showForm = true;
-    } else {
-      // The user does not have a token (not logged in)
-      $scope.showLogins = true;
-      $scope.showForm = false;
-    } 
-
-    $scope.hideLogins = function () {
-      $scope.showLogins = false;
-      $scope.showForm = true;
-    };
-    
     $scope.process = function (status, response) {
       if (response.error) {
         // TODO: Do something meaningful with validation error from stripe
         alert(response.error.message);
-        return;
+        document.querySelector('button').disabled = false;
       } else {
         $http.post('/api/checkout', {
           card: response.card,
           stripeToken: response.id,
-          user: UserFactory.currentUser
+          user: UserFactory.currentUser,
+          shippingDetails: $scope.shippingDetails,
         }).then(function success (response) {
           //TODO: Make response the user?
           console.log(response);
@@ -70,10 +56,9 @@ angular.module('nightwalkerApp')
           UserFactory.getUser();
           $location.path('/congratulations');
         }, function error (response) {
-          // TODO: Do something meaningful with  error from server
+          // TODO: Do something meaningful with error from NW server
           console.log(response);          
           alert(response.data.error.message);
-          return;
         });
       }
     };

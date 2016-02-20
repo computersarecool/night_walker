@@ -10,23 +10,21 @@ angular.module('nightwalkerApp')
   .directive('stripeForm', function ($window) {
     return {
       restrict: 'A',
-      
-      link: function postLink(scope, element, attrs) {
+      link: function (scope, element, attrs) {
         var form = angular.element(element);
-        
-        form.bind('submit', function () {
+
+        form.on('submit', function (e) {
           var button = form.find('button');
           button.prop('disabled', true);
           $window.Stripe.createToken(form[0], function () {
             var args = arguments;
-            // TODO: Is scope.$apply neccesary
             scope.$apply(function () {
               scope[attrs.stripeForm].apply(scope, args);
             });
           });
 
         });
-      }
+      },
     };
   });
 
