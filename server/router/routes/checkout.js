@@ -91,10 +91,12 @@ router.post('/', function (req, res) {
       } else {
         // Successful charge
         // Immediately send back response
+        // TODO: Make the res.json send back everything needed
+        user.purchasedItems = user.cart;
         user.cart = [];
         res.json(user);
 
-        // Then save information in database ans save card info if not a guest
+        // Save information in database and save card info if not a guest
         var successOrder = new Orders();
 
         if (user['guest']) {
@@ -104,7 +106,7 @@ router.post('/', function (req, res) {
           successOrder.userID = user._id;
         }
 
-        user.cart.forEach(function (item) {
+        user.purchasedItems.forEach(function (item) {
           successOrder.items.push(item);
         });
         
