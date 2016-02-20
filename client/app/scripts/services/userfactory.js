@@ -11,7 +11,6 @@ angular.module('nightwalkerApp')
   .factory('UserFactory', function ($window, $http, $location, AuthTokenFactory) {
 
     var user = {};
-    
     var store = $window.localStorage;
     var cart = angular.fromJson(store.cart);
     
