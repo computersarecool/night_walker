@@ -18,7 +18,6 @@ angular.module('nightwalkerApp')
           throw httpError.status + " : " + httpError.data;        
         });
     }
-
     
     function getProduct (flavor) {
       return $http.get('/api/shop/alternatingcurrent/' + flavor)
@@ -29,7 +28,6 @@ angular.module('nightwalkerApp')
         });
     }
 
-    
     function getInfoFromSkus (skus) {
       // Change into an Array of quantity per sku
       var skuObject =  {};
@@ -39,7 +37,6 @@ angular.module('nightwalkerApp')
         }
         ++skuObject[skus[i]];
       }
-
       return $http.post('/api/skus', skuObject)
         .then(function success (response) {
           return response.data;
@@ -47,7 +44,6 @@ angular.module('nightwalkerApp')
           throw httpError.status + " : " + httpError.data;          
         });
     }
-
     
     return {
       getCollection: getCollection,

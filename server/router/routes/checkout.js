@@ -15,6 +15,7 @@ router.post('/', function (req, res) {
   var databaseUser;
   var stripeToken = req.body.stripeToken;
   var user = req.body.user;
+  var shippingDetails = req.body.shippingDetails;
   var totalCost = 0;  
 
   // User checkout
@@ -57,12 +58,12 @@ router.post('/', function (req, res) {
     } else {
       info = user['name'];
     }
-
+    console.log(shippingDetails);
     var newCharge = stripe.charges.create({
       amount: totalCost,
       currency: 'usd',
       card: stripeToken,
-      description: info
+      description: info,
     }, function (err, stripeCharge) {
       if (err) {
         switch (err.type) {
@@ -92,6 +93,7 @@ router.post('/', function (req, res) {
         // Successful charge
         // Immediately send back response
         // TODO: Make the res.json send back everything needed
+        console.log(stripeCharge);
         user.purchasedItems = user.cart;
         user.cart = [];
         res.json(user);

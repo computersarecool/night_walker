@@ -11,9 +11,9 @@ angular.module('nightwalkerApp')
   .controller('CheckoutCtrl', function ($scope, $window, $location, $http, items, UserFactory) {
 
     $scope.items = items;      
-
     $scope.user = UserFactory.currentUser;
-
+    $scope.goToCheckout = UserFactory.goToCheckout;
+    
     $scope.removeItem = function (item) {
       item.quantity = 0;
       $scope.updateCart(item);
@@ -33,14 +33,11 @@ angular.module('nightwalkerApp')
       }
       UserFactory.updateCart(item.product.sku, item.quantity);
     };
-
-    $scope.goToCheckout = UserFactory.goToCheckout;
     
     $scope.process = function (status, response) {
       if (response.error) {
         // TODO: Do something meaningful with validation error from stripe
         alert(response.error.message);
-        document.querySelector('button').disabled = false;
       } else {
         $http.post('/api/checkout', {
           card: response.card,

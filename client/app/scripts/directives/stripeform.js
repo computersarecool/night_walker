@@ -18,6 +18,9 @@ angular.module('nightwalkerApp')
           button.prop('disabled', true);
           $window.Stripe.createToken(form[0], function () {
             var args = arguments;
+            if (arguments[0] >= 400) {
+              button.prop('disabled', false);
+            }
             scope.$apply(function () {
               scope[attrs.stripeForm].apply(scope, args);
             });
