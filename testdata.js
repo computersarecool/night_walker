@@ -184,7 +184,9 @@ for (h = 0; h < flavors.length; h++) {
     }
 
     for (detIndex = 0; detIndex < item['extraDetails'].length; detIndex++) {
-      item.details.unshift(item['extraDetails'][detIndex]);
+      if (item.details.indexOf(item['extraDetails'][detIndex]) == -1) {
+        item.details.unshift(item['extraDetails'][detIndex]);
+      } 
     }
     
     item.sizes = {
@@ -212,8 +214,11 @@ for (h = 0; h < flavors.length; h++) {
     for (prop in generics) {
       item[prop] = generics[prop];  
     }
+
     for (detIndex = 0; detIndex < item['extraDetails'].length; detIndex++) {
-      item.details.unshift(item['extraDetails'][detIndex]);
+      if (item.details.indexOf(item['extraDetails'][detIndex]) == -1) {
+        item.details.unshift(item['extraDetails'][detIndex]);
+      } 
     }
     
     item.sizes = {
