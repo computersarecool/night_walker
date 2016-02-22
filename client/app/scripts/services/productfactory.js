@@ -10,8 +10,8 @@
 angular.module('nightwalkerApp')
   .factory('ProductFactory', function ($http) {
 
-    function getCollection (collection) { 
-      return $http.get('/api/collection/' + collection)
+    function getEdition (edition) { 
+      return $http.get('/api/editions/' + edition)
         .then(function success (response) {
           return response.data;
         }, function error (httpError) {
@@ -20,7 +20,7 @@ angular.module('nightwalkerApp')
     }
     
     function getProduct (flavor) {
-      return $http.get('/api/shop/alternatingcurrent/' + flavor)
+      return $http.get('/api/shop/alternating-current/' + flavor)
         .then(function success (response) {
           return response.data;
         }, function error (httpError) {
@@ -46,7 +46,7 @@ angular.module('nightwalkerApp')
     }
     
     return {
-      getCollection: getCollection,
+      getEdition: getEdition,
       getProduct: getProduct,
       getInfoFromSkus: getInfoFromSkus,
     };

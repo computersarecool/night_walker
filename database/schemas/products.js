@@ -4,51 +4,72 @@ var Schema = mongoose.Schema;
 
 var productSchema = new Schema({
   // T-Shirt, jeans, etc
-  kind: {
-    type: String
+  name: {
+    type: String,
   },
-  title: {
-    type: String
+  distinctSizes: {
+    type: Array,
+  },
+  kind: {
+    type: String,
+  },
+  type: {
+    type: String,
   },
   edition: {
-    type: String
+    type: String,
   },
-  urlEdition: {
-    type: String
+  safeEdition: {
+    type: String,
   },
-  flavor: {
-    type: String
+  msrp: {
+    type: Number,
   },
-  urlFlavor: {
-    type: String
-  },
-  itemDetails: {
-    type: Array
-  },
-  sizes: {
-    type: {}
-  },
-  sizeGuide: {
-    type: String
+  currentPrice: {
+    type: Number,
   },
   description: {
-    type: String
-  },
-  shortDescription: {
-    type: String
+    type: String,
   },
   aboutSpecific: {
-    type: String
-  },  
+    type: String,
+  },
   careInstructions: {
-    type: String
+    type: String,
+  },
+  sizeGuide: {
+    type: String,
+  },
+  shortDescription: {
+    type: String,
+  },
+  flavor: {
+    type: String,
+  },
+  safeFlavor: {
+    type: String,
+  },
+  sizeInformation: {
+    type: Array,
+  },
+  details: {
+    type: Array,
+  },
+  sizes: {
+    type: {},
+  },
+  sizeGuide: {
+    type: String,
   },
   images: {
-    type: {}
+    type: {},
   },
   sku: {
-    type: String
-  }
+    type: String,
+  },
+  extraDetails: {
+    type: Array,
+  },
 });
 
 

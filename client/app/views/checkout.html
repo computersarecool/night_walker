@@ -38,7 +38,8 @@
         <p>
           Shipping Details
         </p>
-        <label>Name<input type="text" ng-model="shippingDetails.name"></input></label>
+        <label>First Name<input type="text" ng-model="shippingDetails.firstName"></input></label>
+        <label>Last Name<input type="text" ng-model="shippingDetails.lastName"></input></label>
         <label>Address<input type="text" ng-model="shippingDetails.address1"></input></label>
         <label>Address (cont'd)<input type="text" ng-model="shippingDetails.address2"></input></label>        
         <label>City<input type="text" ng-model="shippingDetails.city"></input></label>
@@ -66,7 +67,7 @@
         
         <div class="form-row">
           <label><span>Expiration (MM)</span><input type="text" size="2" data-stripe="exp-month"></label> 
-          <label><span>(YY)</span><input type="text" size="4" data-stripe="exp-year"></label>
+          <label><span>(YYYY)</span><input type="text" size="4" data-stripe="exp-year"></label>
         </div>
 
       </div>

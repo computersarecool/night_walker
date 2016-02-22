@@ -3,7 +3,6 @@ var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var jwtSecret = require('../../../../../../safe/credentials').jwtSecret;
 
-
 require('../../../config/passport')(passport);
 
 var router = express.Router();
@@ -38,7 +37,6 @@ router.post('/signup', function (req, res, next) {
     
   })(req, res, next);
 });
-
 
 router.post('/login', function (req, res, next) {
   passport.authenticate('local-login', {session: false}, function (err, user, info) {

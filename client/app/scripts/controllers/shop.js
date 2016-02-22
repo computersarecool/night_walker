@@ -8,6 +8,6 @@
  * Controller of the nightwalkerApp
  */
 angular.module('nightwalkerApp')
-  .controller('ShopCtrl', function ($scope, collection) {
-    $scope.collection = collection;
+  .controller('ShopCtrl', function ($scope, edition) {
+    $scope.edition = edition;
   });

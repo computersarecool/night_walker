@@ -4,23 +4,32 @@ var Schema = mongoose.Schema;
 
 var orderSchema = new Schema({
   userOrder: {
-    type: Boolean
+    type: Boolean,
   },
   items: {
-    type: Array
-  },
-  userID: {
-    type: String,
-    default: null
+    type: Array,
   },
   orderTime: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   coupon: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
+  userID: {
+    type: String,
+    default: null,
+  },
+  trackingNumber: {
+    type: String,
+    default: "",
+  },
+  userFirstName: String,
+  userLastName: String,
+  userAddress: String,
+  userEmail: String,
+  userTelephone: String,
 });  
 
 var Order = mongoose.model('Order', orderSchema);

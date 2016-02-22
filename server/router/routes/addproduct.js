@@ -7,7 +7,6 @@ var jwtSecret = require('../../../../../../safe/credentials').jwtSecret;
 var stripeKey = require('../../../../../../safe/credentials').stripeTest;
 var stripe = require('stripe')(stripeKey);
 
-
 router.post('/', expressJwt({
   secret: jwtSecret,
   credentialsRequired: false
@@ -28,7 +27,6 @@ router.post('/', expressJwt({
   }
   next();
 });
-
 
 router.post('/', function (req, res) {
   var email = req.user.email;

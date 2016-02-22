@@ -1,11 +1,12 @@
-// Remove urldescription property
 // Add flavor id (i.e cherry 1, nectarine 2...etc)
 var generics = {
+  name: 'Chinos',
   kind: 'pants',
   type: 'chinos',
   edition: 'alternating current',
-  price: 6900,
-  description: 'The original chinos in classic Cherry',
+  msrp: 6900,
+  currentPrice: 6900,
+  description: 'The original chinos',
   aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
   careInstructions: 'Machine wash cold and hang dry',
   sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
@@ -191,13 +192,16 @@ for (h = 0; h < flavors.length; h++) {
       inseam: inseam
     };
 
-    item.urlFlavor = item['flavor'].replace(' ', '-');
-    item.urlEdition = item['edition'].replace(' ', '-');
+    item.safeFlavor = item['flavor'].replace(' ', '-');
+    item.safeEdition = item['edition'].replace(' ', '-');
     item.shortDescription = "Alternating Current Chinos in" + item['flavor'];
-    item.sku = sku, 10;
-    
+    item.sku = sku;
+    item.distinctSizes = [
+      "32x32",
+      "36x36",
+    ];    
     db.products.insert(item);
-  }
+  };
   
   for (i = 0; i < 3; i++) {
     item = JSON.parse(JSON.stringify(flavors[h]));
@@ -217,10 +221,10 @@ for (h = 0; h < flavors.length; h++) {
       inseam: inseam
     };
 
-    item.urlFlavor = item['flavor'].replace(' ', '-');
-    item.urlEdition = item['edition'].replace(' ', '-');
+    item.safeFlavor = item['flavor'].replace(' ', '-');
+    item.safeEdition = item['edition'].replace(' ', '-');
     item.shortDescription = "Alternating Current Chinos in " + item['flavor'];
-    item.sku = sku, 10;
+    item.sku = sku;
       
     db.products.insert(item);
   }
@@ -237,21 +241,39 @@ for (h = 0; h < flavors.length; h++) {
 
 var edition = {
   name: 'Alternating Current',    
-  urlName: 'alternating-current',
-  members: []
+  safeName: 'alternating-current',
+  kind: 'clothing',
+  details: 'the first edition ever',
+  members: {
+    'pants': {
+      name: 'Chinos',
+      kind: 'pants',
+      type: 'chinos',
+      edition: 'alternating current',
+      msrp: 6900,
+      description: 'The original chinos',
+      aboutSpecific: "Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only 1200 pairs exist",
+      careInstructions: 'Machine wash cold and hang dry',
+      sizeGuide: "True to size: The model is 5'10\", 150 lbs and is wearing a size 30x30. Click here for sizing information",
+      details: ['Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'],
+      sizes: [
+        '29x29',
+        '33x33'
+      ],
+      flavors: [
+        'cherry',
+        'nectarine',
+        'lemon',
+        'apple',
+        'electricity',
+        'plum crazy',
+        'powder',
+        'proton powder',
+      ]
+    },
+  }
 };
 
-for (var itemProp in generics) {
-  edition[itemProp] = generics[itemProp];
-}
-
-edition['details'] = ['Metal zippers on every pocket', 'Checkered design under cuff', 'Tuxedo belt clasps', 'True to size fit', '97% cotton, 3% polyester', 'Free shipping'];
-
-for (var index = 0; index < flavors.length; index++) {
-  edition.members.push(flavors[index]['flavor']);
-}
-
-edition['kind'] = 'clothing';
 
 db.editions.insert(edition);
 

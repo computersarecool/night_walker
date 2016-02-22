@@ -32,17 +32,17 @@ angular
       .when('/shop', {
         redirectTo: '/shop/alternating-current',
       })
-      .when('/shop/:collection', {
+      .when('/shop/:edition', {
         templateUrl: 'views/shop.html',
         controller: 'ShopCtrl',
         resolve: {
-          collection: function ($route, ProductFactory) {
-            return ProductFactory.getCollection($route.current.params.collection);
+          edition: function ($route, ProductFactory) {
+            return ProductFactory.getEdition($route.current.params.edition);
           },
         },
       })
       .when('/shop/alternating-current/:flavor', {
-        templateUrl:'/views/product.html',
+        templateUrl: '/views/product.html',
         controller: 'ProductCtrl',
         resolve: {
           product: function ($route, ProductFactory) {

@@ -9,7 +9,6 @@ var Products = require('../../../database').Products;
 var Users = require('../../../database').Users;
 var Orders = require('../../../database').Orders;
 
-
 router.post('/', function (req, res) {
   var info;
   var databaseUser;
@@ -32,15 +31,12 @@ router.post('/', function (req, res) {
     user['guest'] = true;
     getTotal(user);
   }
-
   
   function getItem (skunumber, callback) {
     Products.findOne({sku: skunumber}, function (err, product) {
       // TODO: Error handling
       product = product.toObject();
-      totalCost += product.price;
-      // TODO: Check what is up with this callback
-      callback = callback || function () {console.log(product.price);};
+      totalCost += product.currentPrice;
       callback();
     });
   }
@@ -58,7 +54,7 @@ router.post('/', function (req, res) {
     } else {
       info = user['name'];
     }
-    console.log(shippingDetails);
+    console.log(amount, shippingDetails);
     var newCharge = stripe.charges.create({
       amount: totalCost,
       currency: 'usd',
@@ -93,7 +89,6 @@ router.post('/', function (req, res) {
         // Successful charge
         // Immediately send back response
         // TODO: Make the res.json send back everything needed
-        console.log(stripeCharge);
         user.purchasedItems = user.cart;
         user.cart = [];
         res.json(user);

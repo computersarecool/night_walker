@@ -4,18 +4,17 @@ var Schema = mongoose.Schema;
 
 var editionsSchema = new Schema({
   name: {
-    type: String
+    type: String,
   },
-  urlName: {
-    type: String
+  safeName: {
+    type: String,
   },
   kind: {
-    type: String
+    type: String,
   },
   members: {
-    type: {}
-  }
-
+    pants: {},
+  },
 });
 
 var Editions = mongoose.model('Editions', editionsSchema);

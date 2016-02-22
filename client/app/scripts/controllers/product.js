@@ -22,6 +22,7 @@ angular.module('nightwalkerApp')
     var flavorIndex;
     var flavorTest = product['urlFlavor'];
 
+    // TODO: Remove this hack to pick flavor index
     if (flavorTest === 'cherry') {
       flavorIndex = "1";
     } else {
@@ -29,7 +30,7 @@ angular.module('nightwalkerApp')
     }
 
     $scope.product = product;
-    
+
     $scope.pickedProduct = {
       size: product.distinctSizes[0],
       sku: "1" + flavorIndex + product.distinctSizes[0].waistSize + product.distinctSizes[0].inseam,
@@ -113,8 +114,7 @@ angular.module('nightwalkerApp')
     };
     
     $scope.addToCart = function () {
-      // Convert SKU to number because Angular templating does opposite
-      var sku = parseInt($scope.pickedProduct.sku, 10);
+      var sku = $scope.pickedProduct.sku;
       var store = $window.localStorage;
       var cart = angular.fromJson(store.getItem('cart'));
             
