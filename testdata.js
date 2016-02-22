@@ -196,7 +196,7 @@ for (h = 0; h < flavors.length; h++) {
 
     item.safeFlavor = item['flavor'].replace(' ', '-');
     item.safeEdition = item['edition'].replace(' ', '-');
-    item.shortDescription = "Alternating Current Chinos in" + item['flavor'];
+    item.shortDescription = "Alternating Current Chinos in " + item['flavor'];
     item.sku = sku;
     item.distinctSizes = [
       "32x32",

@@ -1,6 +1,8 @@
 # TODO:
 - Make a fully functional guest checkout page // separate route from app
-
+  - Put nodemailer in place
+  - Get easypost
+  
 # Product page
 - Short description
 - Price

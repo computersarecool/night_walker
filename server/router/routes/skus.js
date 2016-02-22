@@ -8,7 +8,6 @@ router.post('/', function (req, res, next) {
   var skus = req.body;;
 
   function retreiveProduct (quantity, productSku, callback) {
-    console.log(quantity, productSku);
     Products.findOne({sku: productSku}).lean().exec(function (err, product) {
       // TODO: Error handling
       if (err) {

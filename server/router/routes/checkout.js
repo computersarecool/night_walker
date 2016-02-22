@@ -54,7 +54,7 @@ router.post('/', function (req, res) {
     } else {
       info = user['name'];
     }
-    console.log(amount, shippingDetails);
+
     var newCharge = stripe.charges.create({
       amount: totalCost,
       currency: 'usd',
@@ -89,7 +89,13 @@ router.post('/', function (req, res) {
         // Successful charge
         // Immediately send back response
         // TODO: Make the res.json send back everything needed
-        user.purchasedItems = user.cart;
+
+        // Save order information
+        // Create shipping label
+        // Get tracking Number
+        // Email those to user, update order, save order and user
+
+        var purchasedItems = user.cart;
         user.cart = [];
         res.json(user);
 
@@ -103,9 +109,24 @@ router.post('/', function (req, res) {
           successOrder.userID = user._id;
         }
 
-        user.purchasedItems.forEach(function (item) {
+        purchasedItems.forEach(function (item) {
           successOrder.items.push(item);
         });
+
+        var shippingAddress = shippingDetails.lastName + " " +
+              shippingDetails.firstName + " \n" +
+              shippingDetails.address1 + " \n" +
+              shippingDetails.address2 + " \n" +
+              shippingDetails.city + " \n" +
+              shippingDetails.state + " \n" +              
+              shippingDetails.zip;
+              
+        var shippingEmail = shippingDetails.email;
+        var shippingPhone = shippingDetails.phone;
+
+        successOrder.userAddress = shippingAddress;
+        successOrder.userEmail = shippingEmail;
+        successOrder.userPhone = shippingPhone;
         
         successOrder.save(function (err, order, numaffected) {
           // TODO: Error handling

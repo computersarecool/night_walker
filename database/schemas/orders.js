@@ -28,8 +28,8 @@ var orderSchema = new Schema({
   userFirstName: String,
   userLastName: String,
   userAddress: String,
+  userPhone: String,
   userEmail: String,
-  userTelephone: String,
 });  
 
 var Order = mongoose.model('Order', orderSchema);
