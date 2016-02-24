@@ -132,24 +132,47 @@ router.post('/', function (req, res) {
         successOrder.userPhone = shippingPhone;
         
         successOrder.save(function (err, order, numaffected) {
+          var shippingInfo;
           // TODO: Error handling
           if (err) {
             console.log(err);
           }
           if (!user['guest']) {
             databaseUser.cart = [];
-            databaseUser.orders.push(successOrder._id);
+            databaseUser.orders.push(order._id);
             databaseUser.save(function (err) {
               // TODO: Error handling
               if (err) {
                 console.log('There was an error');
               }
+              // This needs to create a shipping label, send out email and then update databse
+              // I.e. callback
+              shippingController.createShippingLabel(shippingAddress, function (trackingCode, labelURL) {
+                // Save to database
+                console.log('called back', trackingCode, labelURL);
+                order.trackingNumber = trackingCode;
+                order.save(function (err, finalOrder, numaffected) {
+                  if (err) {
+                    console.log(err);
+                  }
+                  console.log('all saved');
+                });
+              });
             });
+          } else {
+            shippingController.createShippingLabel(shippingAddress, function (trackingCode, labelURL) {
+              // TODO:Save to database
+              console.log('called back', trackingCode, labelURL);
+              order.trackingNumber = trackingCode;              
+              order.save(function (err, finalOrder, numaffected) {
+                if (err) {
+                  console.log(err);
+                }
+                console.log('all saveddd');
+              });
+            });            
           }
         });
-        
-        // Buy postage, this calls the emailController
-        var shippingInfo = shippingController.createShippingLabel(shippingAddress);
         
       }
       

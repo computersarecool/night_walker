@@ -3,7 +3,7 @@ var easypost = require('node-easypost')(apiKey);
 var mailController = require('./mail');
 
 // shippingInfo is only for success email
-function createShippingLabel (shippingInfo) {
+function createShippingLabel (shippingInfo, callback) {
   // set addresses
   var toAddress = {
       name: "Dr. Steve Brule",
@@ -88,7 +88,7 @@ function createShippingLabel (shippingInfo) {
   }, function(err, shipment) {
       // buy postage label with one of the rate objects
     shipment.buy({rate: shipment.lowestRate(['USPS', 'ups']), insurance: 100.00}, function(err, shipment) {
-      console.log('the shipment is', shipment);
+
       var tracking_code = shipment.tracking_code;
       var label = shipment.postage_label.label_url;
       var labelData = [
@@ -98,15 +98,14 @@ function createShippingLabel (shippingInfo) {
         }
       ];
       
-      console.log(shipment.tracking_code);
-      console.log(shipment.postage_label.label_url);
         // Send emails
-        var to = 'willy@willynolan.com';
-        var from = 'controller@optonox.com';
-        var subject = 'New Purchase';
-        var html = shippingInfo + ' bought something. The  tracking code is \n' + tracking_code + ' and the label is at ' + label;
+      var to = 'willy@willynolan.com';
+      var from = 'controller@optonox.com';
+      var subject = 'New Purchase';
+      var html = shippingInfo + ' bought something. The  tracking code is \n' + tracking_code + ' and the label is at ' + label;
       mailController.sendToCompany(to, from, subject, html, labelData);
-      });
+      callback(tracking_code, label);
+    });
   });
 }
 
