@@ -9,6 +9,8 @@ var Products = require('../../../database').Products;
 var Users = require('../../../database').Users;
 var Orders = require('../../../database').Orders;
 
+var shippingController = require('../../controllers/shipping');
+
 router.post('/', function (req, res) {
   var info;
   var databaseUser;
@@ -95,6 +97,7 @@ router.post('/', function (req, res) {
         // Get tracking Number
         // Email those to user, update order, save order and user
 
+        // Send response
         var purchasedItems = user.cart;
         user.cart = [];
         res.json(user);
@@ -144,6 +147,9 @@ router.post('/', function (req, res) {
             });
           }
         });
+        
+        // Buy postage, this calls the emailController
+        var shippingInfo = shippingController.createShippingLabel(shippingAddress);
         
       }
       
