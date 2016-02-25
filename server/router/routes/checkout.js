@@ -22,8 +22,7 @@ router.post('/', function (req, res) {
   // User checkout
   if (user._id) {
     Users.findOne({_id: user._id}, function (err, dbuser) {
-      // TODO: Error handling
-      // QUESTION: Does databaseUser have to be set like this?
+      // TODO: Error handling, check why dbuse is set like this
       databaseUser = dbuser;
       user = dbuser.toObject();
       getTotal(user);
@@ -137,6 +136,7 @@ router.post('/', function (req, res) {
           if (err) {
             console.log(err);
           }
+          // Member checkout
           if (!user['guest']) {
             databaseUser.cart = [];
             databaseUser.orders.push(order._id);
@@ -145,8 +145,6 @@ router.post('/', function (req, res) {
               if (err) {
                 console.log('There was an error');
               }
-              // This needs to create a shipping label, send out email and then update databse
-              // I.e. callback
               shippingController.createShippingLabel(shippingAddress, function (trackingCode, labelURL) {
                 // Save to database
                 console.log('called back', trackingCode, labelURL);
@@ -155,20 +153,18 @@ router.post('/', function (req, res) {
                   if (err) {
                     console.log(err);
                   }
-                  console.log('all saved');
                 });
               });
             });
           } else {
+            // Guest Checkout
             shippingController.createShippingLabel(shippingAddress, function (trackingCode, labelURL) {
-              // TODO:Save to database
               console.log('called back', trackingCode, labelURL);
               order.trackingNumber = trackingCode;              
               order.save(function (err, finalOrder, numaffected) {
                 if (err) {
                   console.log(err);
                 }
-                console.log('all saveddd');
               });
             });            
           }

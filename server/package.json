@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "async": "^1.4.2",
+    "aws-sdk": "^2.2.38",
     "bcrypt": "^0.8.5",
     "body-parser": "^1.14.1",
     "cli-color": "^1.1.0",
