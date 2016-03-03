@@ -1,7 +1,7 @@
 # TODO:
 - Make a fully functional guest checkout page // separate route from app
-  - Make a mail controller, send to client, send to shipper that can be called
-  - Get easypost
+  - Send meaningful email to both client and company from controller (helper functions)
+
   
 # Product page
 - Short description
