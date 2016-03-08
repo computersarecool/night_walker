@@ -10,27 +10,15 @@ var region = 'us-west-2';
 aws.config.update({accessKeyId: accessKeyId, secretAccessKey: secretAccessKey, region: region});
 var ses = new aws.SES();
 
-// TEST:
-var data = {
-  firstName: 'joe',
-  lastName: 'smith',
-  trackingCode: 444,
-  toAddresses: [
-    'willy@willynolan.com',
-    'paperwork@willynolan.com',
-  ],
-  subject: 'testing',
-  fromAddress: 'willy@willynolan.com',
-};
-
 // Pass in firstName, lastName, trackingCode, toAddresses, subject, fromAddress
-function emailCustomer (emailInfo) {
+// Database callback gets called from shippingController
+function emailCustomer (emailInfo, databaseCallback) {
   var outgoingEmail;
   
   var firstNameMatch = /#FIRSTNAME/;
   var lastNameMatch = /#LASTNAME/;
   var trackingCodeMatch = /#TRACKINGCODE/;
-
+  // TODO: Make readfile a stream
   var template = fs.readFile(path.join(__dirname, '../templates/emails', 'customer_confirmation.html'), {encoding: 'utf-8'}, function (err, data) {
     if (err) {
       throw err;
@@ -39,7 +27,7 @@ function emailCustomer (emailInfo) {
       outgoingEmail = outgoingEmail.replace(lastNameMatch, emailInfo.lastName);
       outgoingEmail = outgoingEmail.replace(trackingCodeMatch, emailInfo.trackingCode);
 
-      var testParams = {
+      var params = {
         Destination: {
           ToAddresses: emailInfo.toAddresses,
         },
@@ -56,18 +44,33 @@ function emailCustomer (emailInfo) {
         Source: emailInfo.fromAddress,
       };
       
-      ses.sendEmail(testParams, function (err, id) {
+      ses.sendEmail(params, function (err, id) {
         if (err) {
           throw err;
         }
-        console.log('The id is', id);
+        console.log('Simple mail sent', id);
       });
     }
   });
 }
 
 //TEST
+/*
+var data = {
+  firstName: 'joe',
+  lastName: 'smith',
+  trackingCode: 444,
+  toAddresses: [
+    'willy@willynolan.com',
+    'paperwork@willynolan.com',
+  ],
+  subject: 'testing',
+  fromAddress: 'willy@willynolan.com',
+};
+
+
 emailCustomer(data);
+ */
 
 module.exports = {
   emailCustomer: emailCustomer,

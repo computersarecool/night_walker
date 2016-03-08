@@ -1,7 +1,9 @@
 var http = require('http');
+
 var async = require('async');
 var aws = require('aws-sdk');
 var fileType = require('file-type');
+
 var accessKeyId = require('../../../../../safe/credentials').aws_access_key_id;
 var secretAccessKey = require('../../../../../safe/credentials').aws_secret_access_key;
 var region = 'us-west-2';
@@ -79,13 +81,14 @@ function sendEmail (options) {
           console.log('there was an error', err);
         } 
         else {
-          console.log(data);
+          console.log('Raw mail sent', data);
         }           
       });
     });
 };
 
 // TEST
+/*
 var myOptions = {
   fromName: '"Willy Nolan"',
   fromEmail: 'willy@willynolan.com',
@@ -106,7 +109,7 @@ var myOptions = {
 };
 
 sendEmail(myOptions);
-
+*/
 
 module.exports = {
   sendEmail: sendEmail,

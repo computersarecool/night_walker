@@ -1,14 +1,13 @@
 var express = require('express');
 var router = express.Router();
+
 var async = require('async');
 
 var stripeKey = require('../../../../../../safe/credentials').stripeTest;
 var stripe = require('stripe')(stripeKey);
-
 var Products = require('../../../database').Products;
 var Users = require('../../../database').Users;
 var Orders = require('../../../database').Orders;
-
 var shippingController = require('../../controllers/shipping');
 
 router.post('/', function (req, res) {
@@ -19,20 +18,7 @@ router.post('/', function (req, res) {
   var shippingDetails = req.body.shippingDetails;
   var totalCost = 0;  
 
-  // User checkout
-  if (user._id) {
-    Users.findOne({_id: user._id}, function (err, dbuser) {
-      // TODO: Error handling, check why dbuse is set like this
-      databaseUser = dbuser;
-      user = dbuser.toObject();
-      getTotal(user);
-    });
-  } else {
-    // Guest checkout
-    user['guest'] = true;
-    getTotal(user);
-  }
-  
+  // Find item from database
   function getItem (skunumber, callback) {
     Products.findOne({sku: skunumber}, function (err, product) {
       // TODO: Error handling
@@ -41,7 +27,8 @@ router.post('/', function (req, res) {
       callback();
     });
   }
-  
+
+  // Get total cost (get price from database)
   function getTotal (user) {
     async.each(user.cart, getItem, function (err) {
       // TODO: Error handling
@@ -49,6 +36,7 @@ router.post('/', function (req, res) {
     });
   };    
 
+  // Initiate the charge in Stripe
   function charge (amount, user) {
     if (user['guest']) {
       info = 'payinguser@example.com';
@@ -91,6 +79,7 @@ router.post('/', function (req, res) {
         // Immediately send back response
         // TODO: Make the res.json send back everything needed
 
+        // Then:
         // Save order information
         // Create shipping label
         // Get tracking Number
@@ -101,7 +90,7 @@ router.post('/', function (req, res) {
         user.cart = [];
         res.json(user);
 
-        // Save information in database and save card info if not a guest
+        // Save information in database and TODO: save card info if not a guest
         var successOrder = new Orders();
 
         if (user['guest']) {
@@ -116,12 +105,12 @@ router.post('/', function (req, res) {
         });
 
         var shippingAddress = shippingDetails.lastName + " " +
-              shippingDetails.firstName + " \n" +
-              shippingDetails.address1 + " \n" +
-              shippingDetails.address2 + " \n" +
-              shippingDetails.city + " \n" +
-              shippingDetails.state + " \n" +              
-              shippingDetails.zip;
+        shippingDetails.firstName + " \n" +
+        shippingDetails.address1 + " \n" +
+        shippingDetails.address2 + " \n" +
+        shippingDetails.city + " \n" +
+        shippingDetails.state + " \n" +              
+        shippingDetails.zip;
               
         var shippingEmail = shippingDetails.email;
         var shippingPhone = shippingDetails.phone;
@@ -129,13 +118,14 @@ router.post('/', function (req, res) {
         successOrder.userAddress = shippingAddress;
         successOrder.userEmail = shippingEmail;
         successOrder.userPhone = shippingPhone;
-        
+
         successOrder.save(function (err, order, numaffected) {
-          var shippingInfo;
           // TODO: Error handling
           if (err) {
             console.log(err);
           }
+       
+          var shippingInfo;          
           // Member checkout
           if (!user['guest']) {
             databaseUser.cart = [];
@@ -145,7 +135,7 @@ router.post('/', function (req, res) {
               if (err) {
                 console.log('There was an error');
               }
-              shippingController.createShippingLabel(shippingAddress, function (trackingCode, labelURL) {
+              shippingController.createShippingLabel(shippingDetails, function (trackingCode, labelURL) {
                 // Save to database
                 console.log('called back', trackingCode, labelURL);
                 order.trackingNumber = trackingCode;
@@ -158,12 +148,13 @@ router.post('/', function (req, res) {
             });
           } else {
             // Guest Checkout
-            shippingController.createShippingLabel(shippingAddress, function (trackingCode, labelURL) {
+            // TODO: What to do with label url
+            shippingController.createShippingLabel(shippingDetails, function (trackingCode, labelURL) {
               console.log('called back', trackingCode, labelURL);
               order.trackingNumber = trackingCode;              
               order.save(function (err, finalOrder, numaffected) {
                 if (err) {
-                  console.log(err);
+                  throw err;
                 }
               });
             });            
@@ -174,6 +165,21 @@ router.post('/', function (req, res) {
       
     });
   }
+
+  // Set up user object if it is a user or guest
+  if (user._id) {
+    Users.findOne({_id: user._id}, function (err, dbuser) {
+      // TODO: Error handling, check why dbuse is set like this
+      databaseUser = dbuser;
+      user = dbuser.toObject();
+      getTotal(user);
+    });
+  } else {
+    // Guest checkout
+    user['guest'] = true;
+    getTotal(user);
+  }
+  
 });
 
 module.exports = router;
