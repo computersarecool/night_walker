@@ -68,7 +68,6 @@ function createAddress (toAddress) {
   });
 }
 
-
 function createParcel (verifiedToAddress) {
   easypost.Parcel.create({
     mode: 'test',

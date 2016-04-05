@@ -1,8 +1,9 @@
-var http = require('http');
+var url = require('url');
+var path = require('path');
 
+var request = require('request');
 var async = require('async');
 var aws = require('aws-sdk');
-var fileType = require('file-type');
 
 var accessKeyId = require('../../../../../safe/credentials').aws_access_key_id;
 var secretAccessKey = require('../../../../../safe/credentials').aws_secret_access_key;
@@ -11,33 +12,30 @@ var region = 'us-west-2';
 aws.config.update({accessKeyId: accessKeyId, secretAccessKey: secretAccessKey, region: region});
 var ses = new aws.SES();
 
-// Takes a url, filename and function. Downloads, returns mime and binary data base64 encoded
+// Takes a url, filename and callback
+// Downloads, returns content-type and binary data base64 encoded
 function getInfo (fileData, callback) {
-  http.get(fileData.url, function (res) {
-    var details;
-    var buffer;
-    var chunks = [];
+  request.get(fileData.url)
+    .on('response', function (res) {
+      var buffer;
+      var datachunks = [];
+      
+      res.on('data', function (chunk) {
+        datachunks.push(chunk);
+      });
 
-    res.once('data', function (chunk) {
-      details = fileType(chunk);
-    });
-
-    res.on('data', function (chunk) {
-      chunks.push(chunk);
-    });
-
-    res.on('end', function () {
-      buffer = Buffer.concat(chunks).toString('base64');
-      callback({
-        mimetype: details.mime,
-        filename: fileData.filename + '.' + details.ext,
-        file: buffer,
+      res.on('end', function () {
+        buffer = Buffer.concat(datachunks).toString('base64');
+        callback({
+          mimetype: res.headers['content-type'],
+          filename: path.basename(url.parse(fileData.url).pathname),
+          file: buffer,
+        });
       });
     });
-  });
 }
 
-// fromName, fromEmail, mainTarget, subject, body, files, allRecipients
+// Sets fromName, fromEmail, mainTarget, subject, body, files, allRecipients
 function sendEmail (options) {
   var boundary = 'boundarydivider';    
   var mimeversion = '1.0';

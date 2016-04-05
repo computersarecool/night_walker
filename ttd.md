@@ -1,7 +1,8 @@
 # TODO:
 - Make a fully functional guest checkout page // separate route from app
-  - Send meaningful email to both client and company from controller (helper functions)
-Figure out why email is not being sent out even though it looks like it should be
+  - Clear cart after purchase is done
+  - Check ordering of emails being sent before cart is cleared, database updated etc.
+
   
 # Product page
 - Short description
