@@ -16,27 +16,27 @@ router.post('/', function (req, res) {
   var stripeToken = req.body.stripeToken;
   var user = req.body.user;
   var shippingDetails = req.body.shippingDetails;
-  var totalCost = 0;  
+  var orderCost = 0;  
 
-  // Find item from database
-  function getItem (skunumber, callback) {
-    Products.findOne({sku: skunumber}, function (err, product) {
-      // TODO: Error handling
-      product = product.toObject();
-      totalCost += product.currentPrice;
-      callback();
-    });
-  }
-
-  // Get total cost (get price from database)
+  // Get total cost of cart (with price from database)
   function getTotal (user) {
     async.each(user.cart, getItem, function (err) {
       // TODO: Error handling
-      charge(totalCost, user);
+      charge(orderCost, user);
     });
   };    
+  
+  // Find item in database and add its price to orderCost
+  function getItem (skunumber, asyncCallback) {
+    Products.findOne({sku: skunumber}, function (err, product) {
+      // TODO: Error handling
+      product = product.toObject();
+      orderCost += product.currentPrice;
+      asyncCallback();
+    });
+  }
 
-  // Initiate the charge in Stripe
+  // Initiate a charge in Stripe
   function charge (amount, user) {
     if (user['guest']) {
       info = 'payinguser@example.com';
@@ -45,14 +45,15 @@ router.post('/', function (req, res) {
     }
 
     var newCharge = stripe.charges.create({
-      amount: totalCost,
+      amount: orderCost,
       currency: 'usd',
       card: stripeToken,
       description: info,
     }, function (err, stripeCharge) {
+      // Failed charge
       if (err) {
+        // TODO: Send the user an error / declined message                
         switch (err.type) {
-          // TODO: Send the user an error / declined message        
           case 'StripeCardError':
             console.log('The card has been declined');        
             res.status(402).json({
@@ -74,8 +75,8 @@ router.post('/', function (req, res) {
             console.error("You probably used an incorrect API key");
             break;
         }
+      // Successful charge
       } else {
-        // Successful charge
         // Immediately send back response
         // TODO: Make the res.json send back everything needed
 
@@ -87,10 +88,14 @@ router.post('/', function (req, res) {
 
         // Send response
         var purchasedItems = user.cart;
+        // Reset user's cart
+        //**************         
         user.cart = [];
         res.json(user);
 
-        // Save information in database and TODO: save card info if not a guest
+        //************** 
+        // Save information in database
+        // TODO: save card info if not a guest
         var successOrder = new Orders();
 
         if (user['guest']) {
@@ -149,6 +154,7 @@ router.post('/', function (req, res) {
           } else {
             // Guest Checkout
             // TODO: What to do with label url
+            // TODO: PUT Mail Calls here
             shippingController.createShippingLabel(shippingDetails, function (trackingCode, labelURL) {
               console.log('called back', trackingCode, labelURL);
               order.trackingNumber = trackingCode;              

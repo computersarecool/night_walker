@@ -85,6 +85,11 @@ function sendEmail (options) {
     });
 };
 
+module.exports = {
+  sendEmail: sendEmail,
+};
+
+
 // TEST
 /*
 var myOptions = {
@@ -108,8 +113,4 @@ var myOptions = {
 
 sendEmail(myOptions);
 */
-
-module.exports = {
-  sendEmail: sendEmail,
-};
 

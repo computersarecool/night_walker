@@ -141,6 +141,10 @@ angular.module('nightwalkerApp')
          return undefined;
        }
      }
+
+    function setUser (newUser) {
+      user.currentUser = newUser;
+    }
     
     user = {
       checkToken: checkToken,      
@@ -151,7 +155,8 @@ angular.module('nightwalkerApp')
       updateCart: updateCart,
       goToCheckout: goToCheckout,
       getUser: getUser,
-      currentUser: getUser()
+      setUser: setUser,      
+      currentUser: getUser(),
     };
 
     return user;

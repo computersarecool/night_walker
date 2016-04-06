@@ -45,11 +45,9 @@ angular.module('nightwalkerApp')
           user: UserFactory.currentUser,
           shippingDetails: $scope.shippingDetails,
         }).then(function success (response) {
-          //TODO: Make response the user instead of calling getUser
-          // TODO: Add a setUser method?
-          // Only needed if user is checking out as guest
+          UserFactory.setUser(response.data);
+          // Only needed if user is checking out as guest, but do anyway
           $window.localStorage.removeItem('cart');
-          UserFactory.getUser();
           $location.path('/congratulations');
         }, function error (response) {
           // TODO: Do something meaningful with error from NW server

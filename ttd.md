@@ -1,6 +1,7 @@
 # TODO:
 - Make a fully functional guest checkout page // separate route from app
   - Clear cart after purchase is done
+  - Move all emailing to controllers (i.e. out of shipping controller)
   - Check ordering of emails being sent before cart is cleared, database updated etc.
 
   
