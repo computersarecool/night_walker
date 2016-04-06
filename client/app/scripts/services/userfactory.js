@@ -136,7 +136,8 @@ angular.module('nightwalkerApp')
        } else {
          user.currentUser = {
            loggedIn: false,
-           cart: cart
+           cart: cart,
+           guest: true,
          };
          return undefined;
        }

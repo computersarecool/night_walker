@@ -1,6 +1,3 @@
-var rawMailController = require('./rawmail');
-var simpleMailController = require('./simplemail');
-
 var apiKey = 'cueqNZUb3ldeWTNX7MU3Mel8UXtaAMUi';
 var easypost = require('node-easypost')(apiKey);
 
@@ -156,8 +153,9 @@ function createShipment (toAddress, parcel) {
 
       // Compare customer info, then mail here. Order save callback is called after mail.
       // TODO: Compare customer info here to that from checkout information
-      rawMailController.sendEmail(fromAddress);
-      simpleMailController.emailCustomer(simpleMailOptions, databaseCallback);
+      //      rawMailController.sendEmail(fromAddress);
+      //      simpleMailController.emailCustomer(simpleMailOptions, databaseCallback);
+      databaseCallback(tracking_code, fromAddress, label, simpleMailOptions);
     });
   });
 }
