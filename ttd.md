@@ -1,10 +1,9 @@
 # TODO:
 - Make a fully functional guest checkout page // separate route from app
-  - Modularize checkout.js in server (make everything external)
+  - Post about the benefit of separating modules
+  - Modularize checkout.js in server (make everything external, make stripe controller)
   - Similar for shipping controller in server
-  
 
-  
 # Product page
 - Short description
 - Price
@@ -129,7 +128,7 @@ MONGODB:
   - db journal
 
 
-YEOMAN: 
+YEOMAN:
   -  .travis.yml
   -  .buildignore
 
@@ -144,4 +143,3 @@ MISC:
 
 
 UNIT TESTING:
-
