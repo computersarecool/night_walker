@@ -1,6 +1,6 @@
-var Products = require('../../../database').Products;
-var Users = require('../../../database').Users;
-var Orders = require('../../../database').Orders;
+var Products = require('../../database').Products;
+var Users = require('../../database').Users;
+var Orders = require('../../database').Orders;
 
 function findProduct (skunumber, callback) {
   Products.findOne({sku: skunumber}, function (err, product) {

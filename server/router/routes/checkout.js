@@ -6,7 +6,7 @@ var async = require('async');
 var shippingController = require('../../controllers/shipping');
 var rawMailController = require('../../controllers/rawmail');
 var simpleMailController = require('../../controllers/simplemail');
-var databaseController = require('../../controllers/db1');
+var databaseController = require('../../controllers/database');
 var stripeController = require('../../controllers/stripe');
 
 router.post('/', function (req, res) {
