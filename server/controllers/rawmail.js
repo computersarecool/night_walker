@@ -12,7 +12,7 @@ var region = 'us-west-2';
 aws.config.update({accessKeyId: accessKeyId, secretAccessKey: secretAccessKey, region: region});
 var ses = new aws.SES();
 
-// Sets fromName, fromEmail, mainTarget, subject, body, files, allRecipients
+// options contains fromName, fromEmail, mainTarget, subject, body, files, allRecipients
 function sendEmail (options) {
   var boundary = 'boundarydivider';
   var mimeversion = '1.0';
@@ -63,8 +63,7 @@ function sendEmail (options) {
 };
 
 
-// Takes a url, filename and callback
-// Downloads, returns content-type and binary data base64 encoded
+// Downloads and names url file, returns content-type and binary data base64 encoded
 function getInfo (fileData, callback) {
   request.get(fileData.url)
     .on('response', function (res) {

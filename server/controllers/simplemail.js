@@ -11,10 +11,9 @@ aws.config.update({accessKeyId: accessKeyId, secretAccessKey: secretAccessKey, r
 var ses = new aws.SES();
 
 // Pass in firstName, lastName, trackingCode, toAddresses, subject, fromAddress
-// Database callback gets called from shippingController
-function emailCustomer (emailInfo, databaseCallback) {
+function emailCustomer (emailInfo) {
   var outgoingEmail;
-  
+
   var firstNameMatch = /#FIRSTNAME/;
   var lastNameMatch = /#LASTNAME/;
   var trackingCodeMatch = /#TRACKINGCODE/;
@@ -43,7 +42,7 @@ function emailCustomer (emailInfo, databaseCallback) {
         },
         Source: emailInfo.fromAddress,
       };
-      
+
       ses.sendEmail(params, function (err, id) {
         if (err) {
           throw err;
@@ -53,6 +52,21 @@ function emailCustomer (emailInfo, databaseCallback) {
     }
   });
 }
+
+module.exports = {
+  emailCustomer: emailCustomer,
+};
+
+
+
+
+
+
+
+
+
+
+
 
 //TEST
 /*
@@ -71,8 +85,3 @@ var data = {
 
 emailCustomer(data);
  */
-
-module.exports = {
-  emailCustomer: emailCustomer,
-};
-

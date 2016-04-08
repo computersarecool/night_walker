@@ -2,7 +2,7 @@ var stripeKey = require('../../../../../safe/credentials').stripeTest;
 var stripe = require('stripe')(stripeKey);
 
 // Make a charge in Stripe
-function charge (user, orderCost, stripeToken, callback) {
+function charge (user, stripeToken, callback) {
   // TODO: Set description to something real
   var info;
   if (user.guest) {
@@ -12,7 +12,7 @@ function charge (user, orderCost, stripeToken, callback) {
   }
 
  var newCharge = stripe.charges.create({
-    amount: orderCost,
+    amount: user.orderCost,
     currency: 'usd',
     card: stripeToken,
     description: info,
@@ -59,11 +59,7 @@ function charge (user, orderCost, stripeToken, callback) {
       }
     // Successful charge
     } else {
-      // Get purchased items for DB, reset user's cart, send user
-      // TODO: Figure the async aspects of this out
-      var purchasedItems = user.cart;
-      user.cart = [];
-      callback(null, user, purchasedItems);
+      callback(null, user);
     }
   });
 }

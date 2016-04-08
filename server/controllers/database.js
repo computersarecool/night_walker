@@ -1,13 +1,8 @@
+var async = require('async');
+
 var Products = require('../../database').Products;
 var Users = require('../../database').Users;
 var Orders = require('../../database').Orders;
-
-function findProduct (skunumber, callback) {
-  Products.findOne({sku: skunumber}, function (err, product) {
-    // TODO: error handling
-    callback(product.toObject());
-  });
-}
 
 
 function findUser (user, checkoutCallback) {
@@ -21,13 +16,35 @@ function findUser (user, checkoutCallback) {
 }
 
 
+function getTotal (user, stripeCallback) {
+  // TODO: check bind here, need way to pass order total
+  async.each(user.cart, findProduct.bind(null, user), function (err) {
+    // TODO: Error handling from async getItem
+    if (err) {
+      throw err;
+    }
+    stripeCallback(user);
+  });
+}
+
+
+function findProduct (user, skunumber, asyncCallback) {
+  Products.findOne({sku: skunumber}, function (err, product) {
+    // TODO: error handling
+    user.orderCost += product.toObject().currentPrice;
+    asyncCallback();
+  });
+}
+
+
 // Create order model
-function createOrderDocument (user, trackingCode, shippingDetails, saveCallback) {
+function createOrder (user, trackingCode, shippingDetails, saveCallback) {
   var successOrder = new Orders();
   successOrder.trackingCode = trackingCode;
   successOrder.shippingDetails = shippingDetails;
+
   // Set user order boolean
-  if (user.guest) {
+  if (!user._id) {
     successOrder.userOrder = false;
   } else {
     // TODO: save card info if not a guest
@@ -57,22 +74,15 @@ function createOrderDocument (user, trackingCode, shippingDetails, saveCallback)
 
 
 // Save order in database
-function saveOrder (document, user) {
-  // Save the document if guest update user account if user
-  document.save(function (err, order, numaffected) {
+function saveOrder (order, user) {
+  // Save the document. If user update account with order
+  order.save(function (err, order, numaffected) {
     // TODO: Error handling
    if (err) {
      console.log(err);
    }
 
-   if (!order.userOrder) {
-     // Update final order with tracking number and resave (add label url)
-     order.save(function (err, finalOrder, numaffected) {
-      if (err) {
-        throw err;
-      }
-    });
-   } else {
+   if (order.userOrder) {
      // TODO: Find user and add the purchase to his / her orders
      console.log('member order');
 /*
@@ -101,6 +111,7 @@ function saveOrder (document, user) {
 
 module.exports = {
   findProduct: findProduct,
-  createDocument: createOrderDocument,
+  getTotal: getTotal,
+  createOrder: createOrder,
   saveOrder: saveOrder,
 };

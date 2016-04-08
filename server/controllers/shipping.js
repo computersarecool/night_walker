@@ -2,7 +2,7 @@ var apiKey = 'cueqNZUb3ldeWTNX7MU3Mel8UXtaAMUi';
 var easypost = require('node-easypost')(apiKey);
 
 const rawSubject = 'Test subject';
-const rawBody = 'This is the body of the email';
+const rawBody = 'This is tlahe body of the email';
 const simpleSubject = 'Order confirmation';
 
 var fromAddress;
@@ -10,7 +10,7 @@ var toAddress;
 var shippingInfo;
 
 // Pass email callbacks all the way through
-function createShippingLabel (user, emailCallback) {
+function createLabel (user, emailCallback) {
   shippingInfo = user.shippingDetails;
 
   toAddress = {
@@ -50,7 +50,7 @@ function createAddress (toAddress, emailCallback) {
   easypost.Address.create(toAddress, function (err, toAddress) {
     toAddress.verify(function (err, response) {
       if (err) {
-        // TODO: Error handling address is invalid
+        // TODO: Error handling: address is invalid
         console.log('Address is invalid.');
         throw err;
       } else if (response.message !== undefined && response.message !== null) {
@@ -70,13 +70,13 @@ function createParcel (verifiedToAddress, emailCallback) {
     mode: 'test',
     predefined_package: "FlatRatePaddedEnvelope",
     weight: 21.2,
-  }, function (err, response) {
+  }, function (err, parcel) {
     if (err) {
       console.log('Error in shipping controller', err);
       throw err;
     } else {
-      console.log('parcel create returns\n\n', response);
-      createShipment(verifiedToAddress, response, emailCallback);
+      console.log('parcel create returns\n\n', parcel);
+      createShipment(verifiedToAddress, parcel, emailCallback);
     }
   });
 }
@@ -119,7 +119,6 @@ function createShipment (toAddress, parcel, emailCallback) {
       var trackingCode = shipment.tracking_code;
       var label = shipment.postage_label.label_url;
 
-      // TODO: set with email and info from fromAddress above, or similar method
       fromAddress.subject = rawSubject;
       fromAddress.body = rawBody;
 
@@ -131,7 +130,7 @@ function createShipment (toAddress, parcel, emailCallback) {
         fromAddress.allRecipients.push(address);
       });
 
-      // TODO: Use filename safe part of name or order number to put in label
+      // TODO: Use filename safe part of name or order number to put in label instead of country
       fromAddress.files = [
         {
           filename: toAddress.country + "_label",
@@ -151,17 +150,12 @@ function createShipment (toAddress, parcel, emailCallback) {
         subject: simpleSubject,
         fromAddress: fromAddress.fromEmail,
       };
-
-      // Compare customer info, then mail here. Order save callback is called after mail.
-      // TODO: Compare customer info here to that from checkout information
-      //      rawMailController.sendEmail(fromAddress);
-      //      simpleMailController.emailCustomer(simpleMailOptions, databaseCallback);
-      emailCallback(trackingCode, fromAddress, label, simpleMailOptions);
+      emailCallback(trackingCode, fromAddress, simpleMailOptions);
     });
   });
 }
 
 
 module.exports = {
-  createShippingLabel: createShippingLabel,
+  createLabel: createLabel,
 };
