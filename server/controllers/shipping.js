@@ -1,20 +1,18 @@
 var apiKey = 'cueqNZUb3ldeWTNX7MU3Mel8UXtaAMUi';
 var easypost = require('node-easypost')(apiKey);
 
-var fromAddress;
-var toAddress;
-var shippingInfo;
-var databaseCallback;
-
-
 const rawSubject = 'Test subject';
 const rawBody = 'This is the body of the email';
 const simpleSubject = 'Order confirmation';
 
-function createShippingLabel (orderAddress, dbCallback) {
-  databaseCallback = dbCallback;
-  shippingInfo = orderAddress;
-  
+var fromAddress;
+var toAddress;
+var shippingInfo;
+
+// Pass email callbacks all the way through
+function createShippingLabel (user, emailCallback) {
+  shippingInfo = user.shippingDetails;
+
   toAddress = {
     name: shippingInfo.firstName +  ' ' + shippingInfo.lastName,
     street1: shippingInfo.address1,
@@ -35,7 +33,7 @@ function createShippingLabel (orderAddress, dbCallback) {
     state: "CA",
     zip: "94105",
     phone: "415-123-4567",
-    email: 'paperwork@willynolan.com',    
+    email: 'paperwork@willynolan.com',
     // Used when sending confirmation emails, targets are who to email at company
     fromName: 'Willy Nolan',
     fromEmail: 'paperwork@willynolan.com',
@@ -44,28 +42,30 @@ function createShippingLabel (orderAddress, dbCallback) {
       'paperwork@willynolan.com',
     ]
   };
-  createAddress(toAddress);
+  createAddress(toAddress, emailCallback);
 }
 
 
-function createAddress (toAddress) {
+function createAddress (toAddress, emailCallback) {
   easypost.Address.create(toAddress, function (err, toAddress) {
     toAddress.verify(function (err, response) {
       if (err) {
+        // TODO: Error handling address is invalid
         console.log('Address is invalid.');
         throw err;
       } else if (response.message !== undefined && response.message !== null) {
         console.log('Address is valid but has an issue: ', response.message);
-        createParcel(response.address);
+        createParcel(response.address, emailCallback);
       } else {
         console.log('The verified address is', response);
-        createParcel(response.address);        
+        createParcel(response.address, emailCallback);
       }
     });
   });
 }
 
-function createParcel (verifiedToAddress) {
+
+function createParcel (verifiedToAddress, emailCallback) {
   easypost.Parcel.create({
     mode: 'test',
     predefined_package: "FlatRatePaddedEnvelope",
@@ -73,12 +73,13 @@ function createParcel (verifiedToAddress) {
   }, function (err, response) {
     if (err) {
       console.log('Error in shipping controller', err);
+      throw err;
     } else {
       console.log('parcel create returns\n\n', response);
-      createShipment(verifiedToAddress, response);
+      createShipment(verifiedToAddress, response, emailCallback);
     }
   });
-}  
+}
 
 
 /* TODO:
@@ -91,7 +92,7 @@ function createParcel (verifiedToAddress) {
     value: 96.27,
     weight: 21.1
   };
-  
+
   var customsInfo = {
     customs_certify: 1,
     customs_signer: "Hector Hammerfall",
@@ -105,8 +106,8 @@ function createParcel (verifiedToAddress) {
   };
 */
 
-  
-function createShipment (toAddress, parcel) {
+
+function createShipment (toAddress, parcel, emailCallback) {
   easypost.Shipment.create({
     to_address: toAddress,
     from_address: fromAddress,
@@ -115,13 +116,13 @@ function createShipment (toAddress, parcel) {
   }, function(err, shipment) {
     // TODO: Pick "cheapest" using method
     shipment.buy({rate: shipment.rates[0]}, function(err, shipment) {
-      var tracking_code = shipment.tracking_code;
+      var trackingCode = shipment.tracking_code;
       var label = shipment.postage_label.label_url;
 
       // TODO: set with email and info from fromAddress above, or similar method
       fromAddress.subject = rawSubject;
       fromAddress.body = rawBody;
-      
+
       // Add all possible emails
       fromAddress.allRecipients = [
         fromAddress.mainTarget,
@@ -129,8 +130,8 @@ function createShipment (toAddress, parcel) {
       fromAddress.additionalTargets.forEach(function (address) {
         fromAddress.allRecipients.push(address);
       });
-      
-      // TODO: Use filename safe part of name or order number to put in label      
+
+      // TODO: Use filename safe part of name or order number to put in label
       fromAddress.files = [
         {
           filename: toAddress.country + "_label",
@@ -142,7 +143,7 @@ function createShipment (toAddress, parcel) {
       var simpleMailOptions = {
         firstName: shippingInfo.firstName,
         lastName: shippingInfo.lastName,
-        trackingCode: tracking_code,
+        trackingCode: trackingCode,
         toAddresses: [
           fromAddress.mainTarget,
           shippingInfo.email,
@@ -155,7 +156,7 @@ function createShipment (toAddress, parcel) {
       // TODO: Compare customer info here to that from checkout information
       //      rawMailController.sendEmail(fromAddress);
       //      simpleMailController.emailCustomer(simpleMailOptions, databaseCallback);
-      databaseCallback(tracking_code, fromAddress, label, simpleMailOptions);
+      emailCallback(trackingCode, fromAddress, label, simpleMailOptions);
     });
   });
 }
@@ -164,4 +165,3 @@ function createShipment (toAddress, parcel) {
 module.exports = {
   createShippingLabel: createShippingLabel,
 };
-

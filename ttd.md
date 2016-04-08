@@ -1,8 +1,10 @@
 # TODO:
 - Make a fully functional guest checkout page // separate route from app
+ - callbacks should be declared most complex down to least complex
   - Post about the benefit of separating modules
   - Modularize checkout.js in server (make everything external, make stripe controller)
   - Similar for shipping controller in server
+  - figure out the async aspects of setting a property on an object to zero then saving it to a database
 
 # Product page
 - Short description
@@ -137,9 +139,12 @@ BOWER:
   - Directory: Bower components
   - Bower.json
 
+dkfjasdf
+dfjkasdjf
 
 MISC:
   - Editor config
-
+sdkfjasdfjds
+ndfandf
 
 UNIT TESTING:
