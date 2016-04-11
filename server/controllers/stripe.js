@@ -67,3 +67,4 @@ function charge (user, stripeToken, callback) {
 module.exports = {
   charge: charge,
 };
+
