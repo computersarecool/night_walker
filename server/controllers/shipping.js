@@ -7,21 +7,21 @@ const simpleSubject = 'Order confirmation';
 
 var fromAddress;
 var toAddress;
-var shippingInfo;
+var shippingDetails;
 
-// Pass email callbacks all the way through
-function createLabel (user, emailCallback) {
-  shippingInfo = user.shippingDetails;
+
+function createLabel (user, shippingInfo, emailCallback) {
+  shippingDetails = shippingInfo;
 
   toAddress = {
-    name: shippingInfo.firstName +  ' ' + shippingInfo.lastName,
-    street1: shippingInfo.address1,
-    street2: shippingInfo.address2,
-    city: shippingInfo.city,
-    state: shippingInfo.state,
-    zip: shippingInfo.zip,
-    phone: shippingInfo.phone,
-    email: shippingInfo.email,
+    name: shippingDetails.firstName +  ' ' + shippingDetails.lastName,
+    street1: shippingDetails.address1,
+    street2: shippingDetails.address2,
+    city: shippingDetails.city,
+    state: shippingDetails.state,
+    zip: shippingDetails.zip,
+    phone: shippingDetails.phone,
+    email: shippingDetails.email,
   };
 
   // TODO: Set programatically
@@ -82,7 +82,7 @@ function createParcel (verifiedToAddress, emailCallback) {
 }
 
 
-/* TODO:
+/* TODO CUSTOMS:
   // Create customs_info form for international shipping
   var customsItem = {
     description: "EasyPost t-shirts",
@@ -140,12 +140,12 @@ function createShipment (toAddress, parcel, emailCallback) {
 
       // TODO Fill in from toAddress above
       var simpleMailOptions = {
-        firstName: shippingInfo.firstName,
-        lastName: shippingInfo.lastName,
+        firstName: shippingDetails.firstName,
+        lastName: shippingDetails.lastName,
         trackingCode: trackingCode,
         toAddresses: [
           fromAddress.mainTarget,
-          shippingInfo.email,
+          shippingDetails.email,
         ],
         subject: simpleSubject,
         fromAddress: fromAddress.fromEmail,

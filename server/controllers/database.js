@@ -16,6 +16,17 @@ function findUser (user, checkoutCallback) {
 }
 
 
+function findDBUser (user, checkoutCallback) {
+  Users.findOne({_id: user._id}, function (err, dbuser) {
+    // TODO: Error handling
+    if (err) {
+      throw err;
+    }
+    checkoutCallback(dbuser);
+  });
+}
+
+
 function getTotal (user, stripeCallback) {
   // TODO: check bind here, need way to pass order total
   async.each(user.cart, findProduct.bind(null, user), function (err) {
@@ -78,33 +89,21 @@ function saveOrder (order, user) {
   // Save the document. If user update account with order
   order.save(function (err, order, numaffected) {
     // TODO: Error handling
-   if (err) {
-     console.log(err);
-   }
+    if (err) {
+      console.log(err);
+    }
 
-   if (order.userOrder) {
-     // TODO: Find user and add the purchase to his / her orders
-     console.log('member order');
-/*
-       // Member checkout
-       databaseUser.cart = [];
-       databaseUser.orders.push(order._id);
-       databaseUser.save(function (err) {
-         // TODO: Error handling
-        if (err) {
-          console.log('There was an error');
-        }
-        shippingController.createShippingLabel(shippingDetails, function (trackingCode, labelURL) {
-          // Save to database
-          console.log('called back', trackingCode, labelURL);
-          order.trackingNumber = trackingCode;
-          order.save(function (err, finalOrder, numaffected) {
-            if (err) {
-              console.log(err);
-            }
-          });
+    if (order.userOrder) {
+      // Member checkout
+      findDBUser(user, function (databaseUser) {
+        databaseUser.orders.push(order._id);
+        databaseUser.save(function (err) {
+          // TODO: Error handling
+          if (err) {
+            console.log('There was an error');
+          }
         });
-      }); */
+      });
     }
   });
 }
