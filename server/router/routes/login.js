@@ -7,6 +7,7 @@ require('../../../config/passport')(passport);
 
 var router = express.Router();
 
+
 router.post('/signup', function (req, res, next) {
   passport.authenticate('local-signup', {session: false}, function (err, user, info) {  
     // TODO: Error handling
@@ -37,6 +38,7 @@ router.post('/signup', function (req, res, next) {
     
   })(req, res, next);
 });
+
 
 router.post('/login', function (req, res, next) {
   passport.authenticate('local-login', {session: false}, function (err, user, info) {
