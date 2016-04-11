@@ -5,15 +5,9 @@ const rawSubject = 'Test subject';
 const rawBody = 'This is tlahe body of the email';
 const simpleSubject = 'Order confirmation';
 
-var fromAddress;
-var toAddress;
-var shippingDetails;
 
-
-function createLabel (user, shippingInfo, emailCallback) {
-  shippingDetails = shippingInfo;
-
-  toAddress = {
+function createLabel (user, shippingDetails, emailCallback) {
+  var toAddress = {
     name: shippingDetails.firstName +  ' ' + shippingDetails.lastName,
     street1: shippingDetails.address1,
     street2: shippingDetails.address2,
@@ -25,7 +19,7 @@ function createLabel (user, shippingInfo, emailCallback) {
   };
 
   // TODO: Set programatically
-  fromAddress = {
+  var fromAddress = {
     name: "Willy Nolan",
     street1: "118 2nd Street",
     street2: "4th Floor",
@@ -42,11 +36,11 @@ function createLabel (user, shippingInfo, emailCallback) {
       'paperwork@willynolan.com',
     ]
   };
-  createAddress(toAddress, emailCallback);
+  createAddress(toAddress, fromAddress, shippingDetails, emailCallback);
 }
 
-
-function createAddress (toAddress, emailCallback) {
+// TODO: Create and verify when user enters information
+function createAddress (toAddress, fromAddress, shippingDetails, emailCallback) {
   easypost.Address.create(toAddress, function (err, toAddress) {
     toAddress.verify(function (err, response) {
       if (err) {
@@ -55,17 +49,17 @@ function createAddress (toAddress, emailCallback) {
         throw err;
       } else if (response.message !== undefined && response.message !== null) {
         console.log('Address is valid but has an issue: ', response.message);
-        createParcel(response.address, emailCallback);
+        createParcel(response.address, fromAddress, shippingDetails, emailCallback);
       } else {
         console.log('The verified address is', response);
-        createParcel(response.address, emailCallback);
+        createParcel(response.address, fromAddress, shippingDetails, emailCallback);
       }
     });
   });
 }
 
 
-function createParcel (verifiedToAddress, emailCallback) {
+function createParcel (verifiedToAddress, fromAddress, shippingDetails, emailCallback) {
   easypost.Parcel.create({
     mode: 'test',
     predefined_package: "FlatRatePaddedEnvelope",
@@ -76,7 +70,7 @@ function createParcel (verifiedToAddress, emailCallback) {
       throw err;
     } else {
       console.log('parcel create returns\n\n', parcel);
-      createShipment(verifiedToAddress, parcel, emailCallback);
+      createShipment(verifiedToAddress, fromAddress, shippingDetails, parcel, emailCallback);
     }
   });
 }
@@ -107,7 +101,7 @@ function createParcel (verifiedToAddress, emailCallback) {
 */
 
 
-function createShipment (toAddress, parcel, emailCallback) {
+function createShipment (toAddress, fromAddress, shippingDetails, parcel, emailCallback) {
   easypost.Shipment.create({
     to_address: toAddress,
     from_address: fromAddress,
@@ -159,3 +153,4 @@ function createShipment (toAddress, parcel, emailCallback) {
 module.exports = {
   createLabel: createLabel,
 };
+
