@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var expressJwt = require('express-jwt');
-var Users = require('../../../database').Users;
+
+var databaseController = require('../../controllers/database');
 var jwtSecret = require('../../../../../../safe/credentials').jwtSecret;
 
 router.use('/', expressJwt({
@@ -27,19 +28,13 @@ router.use('/', expressJwt({
 
 
 router.get('/', function (req, res) {
-  // Fetch info from database
-  Users.findOne({username:req.user.username}, function (err, user) {
-    // TODO: Error handling
-    if (err) {
-      throw err;
-      return;
-    }
+  databaseController.findUserByUsername(req.user.username, function (user) {
     if (!user) {
       res.status(401).send('No user found...');
       return;
     }
     res.json({
-      user: user
+      user: user,
     });
   });
 });

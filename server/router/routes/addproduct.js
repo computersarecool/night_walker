@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var expressJwt = require('express-jwt');
 
-var Users = require('../../../database').Users;
+var databaseController = require('../../../database');
 var jwtSecret = require('../../../../../../safe/credentials').jwtSecret;
 var stripeKey = require('../../../../../../safe/credentials').stripeTest;
 var stripe = require('stripe')(stripeKey);
@@ -27,28 +27,23 @@ router.post('/', expressJwt({
   next();
 });
 
+
 // Add product to user's cart
 router.post('/', function (req, res) {
   var email = req.user.email;
   var items = req.body.items;
+
   if (!email) {
     res.status(401).send('There is no email');
     return;
   }
   if (!items) {
     return;
-  } else {
-      Users.findOneAndUpdate({email: email}, {$push: {cart: items}}, function(err, user) {
-        // TODO: Error handling
-        if (err) {
-          console.log('There was an error adding the item to the cart');
-          throw err;
-        } else {
-          console.log('The user is', user);
-          res.send(user);
-        }
-      });
-    }
+  }
+
+  databaseController.findUserAndUpdate (email, items, function respond (user) {
+    res.send(user);
+  });
 });
 
 module.exports = router;

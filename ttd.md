@@ -1,30 +1,16 @@
 # TODO:
 - Make a fully functional guest checkout page // separate route from app
- - callbacks should be declared most complex down to least complex
-  - Post about the benefit of separating modules
-  - Modularize checkout.js in server (make everything external, make stripe controller)
-  - Similar for shipping controller in server
-  - figure out the async aspects of setting a property on an object to zero then saving it to a database
+  - refactor passport (login.js)
 
-# Product page
-- Short description
-- Price
-- Product info
-- size selector
-- size guide
-- add to cart
-- free shipping
+# Put on Product page:
+  - Short description
+  - Price
+  - Product info
+  - size selector
+  - size guide
+  - add to cart
+  - free shipping
 
-### Routes
-- Shop
-- About
--Contact
-
-- Sign in
-- Sign up
-- Account
-
-- Cart (guest)
 
 
 ## Media
@@ -116,7 +102,7 @@ Javascript:
 Node:
   - checkout.js in routes. Does databaseuser need to be set, or will it persist from function calls
   - How is the callback defined in async.js (checkout.js:35)
-
+  - figure out the async aspects of setting a property on an object to zero then saving it to a database (checkout.js line 29)
 
 EXPRESS:
   - The logger

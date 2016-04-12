@@ -1,20 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var Editions = require('../../../database').Editions;
+var databaseController = require('../../../database');
 
 router.get('/:edition', function (req, res) {
-  var edition = req.params.edition;
-  Editions.findOne({safeName: edition}, function (err, edition) {
-    // TODO: Error handling
+  var safeName = req.params.edition;
+  databaseController.findEdition(safeName, function respond (err, edition) {
     if (err) {
-      throw err;
+      res.status(err.status).send(err.message);
     }
-    if (edition) {
-      res.send(edition);
-    }
-    else {
-      res.status(404).send('no collection with that name found');
-    }
+    // TODO: check why this is not res.json
+    res.send(edition);
   });
 });
 

@@ -1,34 +1,13 @@
 var express = require('express');
 var async = require('async');
 var router = express.Router();
-var Products = require('../../../database').Products;
+var databaseController = require('../../../database');
 
 router.post('/', function (req, res, next) {
   var itemDetails = [];
   var skus = req.body;;
 
-  function retreiveProduct (quantity, productSku, callback) {
-    Products.findOne({sku: productSku}).lean().exec(function (err, product) {
-      // TODO: Error handling
-      if (err) {
-        throw err;
-        return;
-      }
-      if (product) {
-        itemDetails.push({
-          quantity: quantity,
-          product: product
-        });
-        callback();
-      } else {
-        // Product not found
-        itemDetails.push('Error');
-        callback();        
-      }
-    });    
-  }
-
-  async.forEachOf(skus, retreiveProduct, function (err) {
+  async.forEachOf(skus, databaseController.retreiveProduct.bind(null, itemDetails), function (err) {
     // TODO: Error handling
     if (err) {
       res.json(['Error']);

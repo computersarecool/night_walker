@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+var databaseController = require('../../controllers/database');
 var shippingController = require('../../controllers/shipping');
 var rawMailController = require('../../controllers/rawmail');
 var simpleMailController = require('../../controllers/simplemail');
-var databaseController = require('../../controllers/database');
 var stripeController = require('../../controllers/stripe');
 
 router.post('/', function (req, res) {
@@ -36,7 +36,7 @@ router.post('/', function (req, res) {
             rawMailController.sendEmail(rawOptions);
             simpleMailController.emailCustomer(simpleOptions);
             // Create and save order in database
-            databaseController.createOrder(user, trackingCode, user.shippingDetails, function saveOrder(order) {
+            databaseController.createOrder(user, trackingCode, user.shippingDetails, function saveOrder (order) {
               databaseController.saveOrder(order, user);
             });
           });
@@ -49,7 +49,7 @@ router.post('/', function (req, res) {
   // Execute
   if (user._id) {
     // Member checkout, get user from database
-    databaseController.findUser(user, function checkout (user) {
+    databaseController.findUserById(user, function checkout (user) {
       checkout(user);
     });
   } else {

@@ -19,7 +19,6 @@ router.post('/signup', function (req, res, next) {
       res.status(401).send({
         'error': info
       });
-
       return undefined;
     }
     
@@ -33,9 +32,7 @@ router.post('/signup', function (req, res, next) {
       user : user,
       token: token
     });
-
     return undefined;
-    
   })(req, res, next);
 });
 
@@ -50,7 +47,6 @@ router.post('/login', function (req, res, next) {
       res.status(401).send({
         'error': info
       });
-      
       return undefined;
     }
 
@@ -64,9 +60,7 @@ router.post('/login', function (req, res, next) {
       user : user,
       token: token
     });
-
     return undefined;
-    
   })(req, res, next);
 });
 
