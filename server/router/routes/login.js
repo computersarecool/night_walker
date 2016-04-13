@@ -12,14 +12,13 @@ router.post('/signup', function (req, res, next) {
   passport.authenticate('local-signup', {session: false}, function (err, user, info) {  
     // TODO: Error handling
     if (err) {
-      return next(err);
+      throw err;
     }
     if (!user) {
       // TODO: Error handling
       res.status(401).send({
         'error': info
       });
-      return undefined;
     }
     
     //This is where the jwt is created
@@ -32,7 +31,6 @@ router.post('/signup', function (req, res, next) {
       user : user,
       token: token
     });
-    return undefined;
   })(req, res, next);
 });
 
@@ -41,13 +39,12 @@ router.post('/login', function (req, res, next) {
   passport.authenticate('local-login', {session: false}, function (err, user, info) {
     // TODO: Error handling      
     if (err) {
-      return next(err);
+      throw err;
     }
     if (!user) {
       res.status(401).send({
         'error': info
       });
-      return undefined;
     }
 
     // This is where the jwt is created
@@ -60,7 +57,6 @@ router.post('/login', function (req, res, next) {
       user : user,
       token: token
     });
-    return undefined;
   })(req, res, next);
 });
 

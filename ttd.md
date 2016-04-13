@@ -8,7 +8,7 @@
       - shipping.js: 10    (makes address from req.body.shippingDetails for label)
       - database.js: 163  (makes address from user.shippingDetails when creating order for save in database)
 
-  - refactor passport (login.js)
+  - lookover passport (login.js)
 
 
 

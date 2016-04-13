@@ -204,7 +204,7 @@ module.exports = {
   findEdition: findEdition,
   findUserByUsername: findUserByUsername,
   findProduct: findProduct,
-  findProductByFlavor, findProductByFlavor,
+  findProductByFlavor: findProductByFlavor,
   retreiveProduct: retreiveProduct,
   getTotal: getTotal,
   createOrder: createOrder,
