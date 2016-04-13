@@ -10,7 +10,6 @@ function findUserAndUpdate (email, items, callback) {
   Users.findOneAndUpdate({email: email}, {$push: {cart: items}}, function(err, user) {
     // TODO: Error handling
     if (err) {
-      console.log('There was an error adding the item to the cart');
       throw err;
     } else {
       callback(user);
@@ -64,7 +63,6 @@ function findUserByUsername (username, foundCallback) {
     // TODO: Error handling
     if (err) {
       throw err;
-      return;
     }
     foundCallback(user);
   });
@@ -74,6 +72,9 @@ function findUserByUsername (username, foundCallback) {
 function findProduct (user, skunumber, asyncCallback) {
   Products.findOne({sku: skunumber}, function (err, product) {
     // TODO: error handling
+    if (err) {
+      throw err;
+    }
     user.orderCost += product.toObject().currentPrice;
     asyncCallback();
   });
@@ -110,7 +111,6 @@ function retreiveProduct (itemDetails, quantity, productSku, callback) {
     // TODO: Error handling
     if (err) {
       throw err;
-      return;
     }
     if (product) {
       itemDetails.push({
@@ -149,7 +149,7 @@ function createOrder (user, trackingCode, shippingDetails, saveCallback) {
   if (!user._id) {
     successOrder.userOrder = false;
   } else {
-    // TODO: save card info if not a guest
+    // TODO: save card info if user
     successOrder.userOrder = true;
     successOrder.userID = user._id;
   }
@@ -178,13 +178,12 @@ function createOrder (user, trackingCode, shippingDetails, saveCallback) {
 
 // Save order in database
 function saveOrder (order, user) {
-  // Save the document. If user update account with order
+  // Save the document. If user then update account with order
   order.save(function (err, order, numaffected) {
     // TODO: Error handling
     if (err) {
-      console.log(err);
+      throw err;
     }
-
     if (order.userOrder) {
       // Member checkout
       findDBUser(user, function (databaseUser) {
@@ -192,7 +191,7 @@ function saveOrder (order, user) {
         databaseUser.save(function (err) {
           // TODO: Error handling
           if (err) {
-            console.log('There was an error');
+            throw err;
           }
         });
       });

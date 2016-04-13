@@ -36,7 +36,7 @@ router.post('/', function (req, res) {
             rawMailController.sendEmail(rawOptions);
             simpleMailController.emailCustomer(simpleOptions);
             // Create and save order in database
-            databaseController.createOrder(user, trackingCode, user.shippingDetails, function saveOrder (order) {
+            databaseController.createOrder(user, trackingCode, shippingDetails, function saveOrder (order) {
               databaseController.saveOrder(order, user);
             });
           });

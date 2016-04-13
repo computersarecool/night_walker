@@ -1,8 +1,20 @@
 # TODO:
-- Make a fully functional guest checkout page // separate route from app
+## Guest Checkout initiative
+- Make a fully functional guest checkout page
+- Removed animation from navigation.js which affected source.stl nav ul.collapsed
+- Consider reusing the home sprite images on poster gallery as they will load quicker
+
+  - Combine shipping details
+      - shipping.js: 10    (makes address from req.body.shippingDetails for label)
+      - database.js: 163  (makes address from user.shippingDetails when creating order for save in database)
+
   - refactor passport (login.js)
 
-# Put on Product page:
+
+
+
+
+## Product page details
   - Short description
   - Price
   - Product info
@@ -10,7 +22,6 @@
   - size guide
   - add to cart
   - free shipping
-
 
 
 ## Media
@@ -22,11 +33,7 @@
 - fade to white for product photos
 
 
-## Guest Checkout initiative
-- Make a fully functional guest checkout page
-
-- Removed animation from navigation.js which affected source.stl nav ul.collapsed
-- Consider reusing the home sprite images on poster gallery as they will load quicker
+## Restyle with real .styl conventions
 
 
 ### Basket Directive Popup
@@ -37,6 +44,8 @@
  - Make Details page
  - Make Congrats popup directive / page
  - Make skus consistently numbers, right now inconsisten in the geturl function
+
+
 ### Simultaneous
  - Finish heading (look into icon fonts for header)
  - Put logo upper left, stylize "Welcome to *nightWalker*" to upper right
@@ -65,22 +74,20 @@ Purchase scenarios:
   x Then re-adds items and checkouts out
 
 
-
-
 #### Small todo items
 - Only show view cart when there are things inside it
 - Remove semicolons after function declarations
 - Add missing semicolons to thanks like return
 - Add return undefined to all return statements
-
 - routes|checkout.j:91 save card information if not a guest
 - routes|checkout.j:119, 124 only send usersafe information
 - Stripeform directive line 23 is $apply neccesary
-
 - userfactory.js line 135 what happens when there is an invalid auth token
 
 --- Bower.json
 - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json
+
+
 
 
 # ONGOING QUESTIONS:
@@ -125,8 +132,6 @@ BOWER:
   - Directory: Bower components
   - Bower.json
 
-dkfjasdf
-dfjkasdjf
 
 MISC:
   - Editor config

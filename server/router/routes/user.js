@@ -15,13 +15,11 @@ router.use('/', expressJwt({
     // Delete the storage key
     res.status(401).send('invalid token...');
     throw err;
-    return;
   }
   if (err) {
     // Delete the storage key
     res.status(401).send('invalid token...');
     throw err;
-    return;
   }
   next();
 });
