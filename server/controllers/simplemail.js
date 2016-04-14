@@ -13,10 +13,10 @@ var ses = new aws.SES();
 // Pass in firstName, lastName, trackingCode, toAddresses, subject, fromAddress
 function emailCustomer (emailInfo) {
   var outgoingEmail;
-
   var firstNameMatch = /#FIRSTNAME/;
   var lastNameMatch = /#LASTNAME/;
   var trackingCodeMatch = /#TRACKINGCODE/;
+
   // TODO: Make readfile a stream
   var template = fs.readFile(path.join(__dirname, '../templates/emails', 'customer_confirmation.html'), {encoding: 'utf-8'}, function (err, data) {
     if (err) {

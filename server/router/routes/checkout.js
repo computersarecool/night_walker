@@ -8,7 +8,6 @@ var simpleMailController = require('../../controllers/simplemail');
 var stripeController = require('../../controllers/stripe');
 
 router.post('/', function (req, res) {
-  // TODO: Embed shipping details into user from the start?
   var user = req.body.user;
   var shippingDetails = req.body.shippingDetails;
   var stripeToken = req.body.stripeToken;
@@ -25,12 +24,11 @@ router.post('/', function (req, res) {
             }
           });
         } else {
-          // TODO: Fix this ugliness. Send back a user object without purchased items
+          // Store items, send user with empty cart then save items
           var purchasedItems = user.cart;
           user.cart = [];
           res.json(user);
           user.purchasedItems = purchasedItems;
-          // Get shipping info. TODO: Combine shippingController shipping details and database shipping details
           shippingController.createLabel(user, shippingDetails, function email (trackingCode, rawOptions, simpleOptions) {
             // Send emails, TODO: Store email response codes?
             rawMailController.sendEmail(rawOptions);

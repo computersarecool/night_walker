@@ -1,17 +1,7 @@
 # TODO:
 ## Guest Checkout initiative
 - Make a fully functional guest checkout page
-- Removed animation from navigation.js which affected source.stl nav ul.collapsed
-- Consider reusing the home sprite images on poster gallery as they will load quicker
-
-  - Combine shipping details
-      - shipping.js: 10    (makes address from req.body.shippingDetails for label)
-      - database.js: 163  (makes address from user.shippingDetails when creating order for save in database)
-
-  - lookover passport (login.js)
-
-
-
+- In databasecontroller check what happens when thing is not found for all queries
 
 
 ## Product page details
@@ -31,6 +21,7 @@
 - SVG Logo and shopping cart
 - background images on home / shop
 - fade to white for product photos
+- Consider reusing the home sprite images on poster gallery as they will load quicker
 
 
 ## Restyle with real .styl conventions
@@ -135,7 +126,5 @@ BOWER:
 
 MISC:
   - Editor config
-sdkfjasdfjds
-ndfandf
 
 UNIT TESTING:

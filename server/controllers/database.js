@@ -7,12 +7,19 @@ var Editions = require('../../database').Editions;
 
 
 function findUserAndUpdate (email, items, callback) {
-  Users.findOneAndUpdate({email: email}, {$push: {cart: items}}, function(err, user) {
+  Users.findOneAndUpdate({email: email}, {$push: {cart: items}}, function (err, user) {
     // TODO: Error handling
     if (err) {
       throw err;
-    } else {
-      callback(user);
+    }
+    if (user) {
+      callback(null, user);
+    }
+    // TODO: No user found
+    else {
+      var error = new Error('No user with that name found');
+      error.status = 404;
+      callback(error);
     }
   });
 }
@@ -25,7 +32,7 @@ function findEdition (safeName, callback) {
       throw err;
     }
     if (edition) {
-      callback(edition);
+      callback(null, edition);
     }
     else {
       var error = new Error('No collection with that name found');
@@ -42,7 +49,7 @@ function findDBUser (user, checkoutCallback) {
     if (err) {
       throw err;
     }
-    checkoutCallback(dbuser);
+    checkoutCallback(null, dbuser);
   });
 }
 
@@ -53,7 +60,7 @@ function findUserByID (user, checkoutCallback) {
     if (err) {
       throw err;
     }
-    checkoutCallback(dbuser.toObject());
+    checkoutCallback(null, dbuser.toObject());
   });
 }
 
@@ -64,7 +71,7 @@ function findUserByUsername (username, foundCallback) {
     if (err) {
       throw err;
     }
-    foundCallback(user);
+    foundCallback(null, user);
   });
 }
 
@@ -100,7 +107,7 @@ function findProductByFlavor (safeFlavor, callback) {
     } else {
       var error = new Error('No product found');
       error.status = 404;
-      callback(error);
+      callback(err);
     }
   });
 }
@@ -119,8 +126,7 @@ function retreiveProduct (itemDetails, quantity, productSku, callback) {
       });
       callback();
     } else {
-      // Product not found
-      itemDetails.push('Error');
+      itemDetails.push(null);
       callback();
     }
   });
@@ -144,6 +150,8 @@ function createOrder (user, trackingCode, shippingDetails, saveCallback) {
   var successOrder = new Orders();
   successOrder.trackingCode = trackingCode;
   successOrder.shippingDetails = shippingDetails;
+  successOrder.userLastName = shippingDetails.lastName;
+  successOrder.userFirstName = shippingDetails.firstName;
 
   // Set user order boolean
   if (!user._id) {
@@ -165,7 +173,7 @@ function createOrder (user, trackingCode, shippingDetails, saveCallback) {
       shippingDetails.address1 + " \n" +
       shippingDetails.address2 + " \n" +
 
-        shippingDetails.city + " \n" +
+      shippingDetails.city + " \n" +
       shippingDetails.state + " \n" +
       shippingDetails.zip;
 

@@ -14,12 +14,10 @@ router.use('/', expressJwt({
   if (err.name === 'UnauthorizedError') {
     // Delete the storage key
     res.status(401).send('invalid token...');
-    throw err;
   }
   if (err) {
     // Delete the storage key
     res.status(401).send('invalid token...');
-    throw err;
   }
   next();
 });
@@ -29,7 +27,6 @@ router.get('/', function (req, res) {
   databaseController.findUserByUsername(req.user.username, function (user) {
     if (!user) {
       res.status(401).send('No user found...');
-      return;
     }
     res.json({
       user: user,

@@ -21,9 +21,8 @@ var orderSchema = new Schema({
     type: String,
     default: null,
   },
-  trackingNumber: {
+  trackingCode: {
     type: String,
-    default: "",
   },
   userFirstName: String,
   userLastName: String,
