@@ -166,8 +166,8 @@ function createOrder (user, trackingCode, shippingDetails, saveCallback) {
 
   // TODO: This only applies if guest
   // Set shipping and contact information for order
-  var shippingAddress = shippingDetails.lastName + " " +
-      shippingDetails.firstName + " \n" +
+  var shippingAddress = shippingDetails.firstName + " " +
+      shippingDetails.lastName +
       shippingDetails.address1 + " \n" +
       shippingDetails.address2 + " \n" +
 
