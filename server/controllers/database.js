@@ -149,9 +149,6 @@ function getTotal (user, stripeCallback) {
 function createOrder (user, trackingCode, shippingDetails, saveCallback) {
   var successOrder = new Orders();
   successOrder.trackingCode = trackingCode;
-  successOrder.shippingDetails = shippingDetails;
-  successOrder.userLastName = shippingDetails.lastName;
-  successOrder.userFirstName = shippingDetails.firstName;
 
   // Set user order boolean
   if (!user._id) {
@@ -167,6 +164,7 @@ function createOrder (user, trackingCode, shippingDetails, saveCallback) {
     successOrder.items.push(item);
   });
 
+  // TODO: This only applies if guest
   // Set shipping and contact information for order
   var shippingAddress = shippingDetails.lastName + " " +
       shippingDetails.firstName + " \n" +
@@ -178,6 +176,8 @@ function createOrder (user, trackingCode, shippingDetails, saveCallback) {
       shippingDetails.zip;
 
   successOrder.userAddress = shippingAddress;
+  successOrder.userLastName = shippingDetails.lastName;
+  successOrder.userFirstName = shippingDetails.firstName;
   successOrder.userEmail = shippingDetails.email;
   successOrder.userPhone = shippingDetails.phone;
   saveCallback(successOrder);
