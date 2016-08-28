@@ -1,4 +1,4 @@
-var stripeKey = require('../../../../../safe/credentials').stripeTest;
+var stripeKey = process.env.NODE_ENV === 'production' ? require('../../credentials').stripeTestKey : require('../../credentials').stripeKey;
 var stripe = require('stripe')(stripeKey);
 
 // Make a charge in Stripe

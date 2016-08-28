@@ -1,7 +1,7 @@
 var express = require('express');
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
-var jwtSecret = require('../../../../../../safe/credentials').jwtSecret;
+var jwtSecret = require('../../../credentials').jwtSecret;
 
 require('../../../config/passport')(passport);
 

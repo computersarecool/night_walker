@@ -1,8 +1,14 @@
-npm-debug.log
-config/credentials.js
-inner_config
-node_modules
-bower_components
 \#.*#
 .tern-port
+
+credentials.js*
+
+npm-debug.log
+node_modules
+bower_components
+
+data/db/*
+data/logs/*
+!data/db/.gitkeep
+!data/logs/.gitkeep
 

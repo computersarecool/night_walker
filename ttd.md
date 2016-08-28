@@ -1,4 +1,6 @@
 # TODO:
+# Credentials file and safe file
+
 ## Guest Checkout initiative
 - Make a fully functional guest checkout page
 - In databasecontroller check what happens when thing is not found for all queries

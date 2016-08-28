@@ -3,7 +3,7 @@ var router = express.Router();
 var expressJwt = require('express-jwt');
 
 var databaseController = require('../../controllers/database');
-var jwtSecret = require('../../../../../../safe/credentials').jwtSecret;
+var jwtSecret = require('../../../credentials').jwtSecret;
 
 router.use('/', expressJwt({
   secret: jwtSecret,

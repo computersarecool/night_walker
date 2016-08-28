@@ -5,8 +5,8 @@ var request = require('request');
 var async = require('async');
 var aws = require('aws-sdk');
 
-var accessKeyId = require('../../../../../safe/credentials').aws_access_key_id;
-var secretAccessKey = require('../../../../../safe/credentials').aws_secret_access_key;
+var accessKeyId = require('../../credentials').aws_access_key_id;
+var secretAccessKey = require('../../credentials').aws_secret_access_key;
 var region = 'us-west-2';
 
 aws.config.update({accessKeyId: accessKeyId, secretAccessKey: secretAccessKey, region: region});

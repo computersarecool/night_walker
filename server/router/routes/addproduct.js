@@ -3,8 +3,8 @@ var router = express.Router();
 var expressJwt = require('express-jwt');
 
 var databaseController = require('../../controllers/database');
-var jwtSecret = require('../../../../../../safe/credentials').jwtSecret;
-var stripeKey = require('../../../../../../safe/credentials').stripeTest;
+var jwtSecret = require('../../../credentials').jwtSecret;
+var stripeKey = require('../../../credentials').stripeTest;
 var stripe = require('stripe')(stripeKey);
 
 // Authenticate user's jwt

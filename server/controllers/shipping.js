@@ -1,4 +1,4 @@
-var apiKey = require('../../../../../safe/credentials').easyPostApiKey;
+var apiKey = require('../../credentials').easyPostApiKey;
 var easypost = require('node-easypost')(apiKey);
 
 const rawSubject = 'Test subject';
