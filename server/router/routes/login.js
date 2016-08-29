@@ -3,10 +3,9 @@ var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var jwtSecret = require('../../../credentials').jwtSecret;
 
-require('../../../config/passport')(passport);
+require('../../passport')(passport);
 
 var router = express.Router();
-
 
 router.post('/signup', function (req, res, next) {
   passport.authenticate('local-signup', {session: false}, function (err, user, info) {  
@@ -15,7 +14,6 @@ router.post('/signup', function (req, res, next) {
       throw err;
     }
     if (!user) {
-      // TODO: Error handling
       res.status(401).json({
         'error': info
       });

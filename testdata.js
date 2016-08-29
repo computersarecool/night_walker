@@ -246,7 +246,7 @@ for (h = 0; h < flavors.length; h++) {
 
 var edition = {
   name: 'Alternating Current',    
-  safeName: 'alternating-current',
+  urlSafeName: 'alternating-current',
   kind: 'clothing',
   details: 'the first edition ever',
   members: {

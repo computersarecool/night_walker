@@ -7,8 +7,8 @@ npm-debug.log
 node_modules
 bower_components
 
-data/db/*
-data/logs/*
-!data/db/.gitkeep
-!data/logs/.gitkeep
+database/data/db/*
+!database/data/db/.gitkeep
+database/data/logs/*
+!database/data/logs/.gitkeep
 

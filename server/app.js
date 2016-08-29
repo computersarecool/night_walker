@@ -1,6 +1,5 @@
 var path = require('path');
 var express = require('express');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var passport = require('passport');
@@ -8,9 +7,7 @@ var apiRouter = require('./router/api');
 
 var app = express();
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
-
+// TODO: Favicon best practices
 // Open the database connection
 var db = require('../database');
 
@@ -22,11 +19,10 @@ app.use(passport.initialize());
 app.use('/api', apiRouter);  
 
 // Development
-if (app.get('env') === 'development') {
+if (process.env.NODE_ENV === 'development') {
   app.use(express.static(path.join(__dirname, '../client')));
   app.use(express.static(path.join(__dirname, '../client/.tmp')));
   app.use(express.static(path.join(__dirname, '../client/app')));
-
   //Development Error handling
   app.use(function (err, req, res, next) {
     //A bad error here
@@ -36,9 +32,8 @@ if (app.get('env') === 'development') {
 }
 
 // Production
-if (app.get('env') === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/dist')));
-
   // Production error handling
   app.use(function (err, req, res, next) {
     // A bad error here

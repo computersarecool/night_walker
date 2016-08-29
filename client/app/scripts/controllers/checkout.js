@@ -37,6 +37,7 @@ angular.module('nightwalkerApp')
     $scope.process = function (status, response) {
       if (response.error) {
         // TODO: Do something meaningful with validation error from stripe
+        // needs to go to server
         alert(response.error.message);
       } else {
         $http.post('/api/checkout', {

@@ -6,7 +6,7 @@ var editionsSchema = new Schema({
   name: {
     type: String,
   },
-  safeName: {
+  urlSafeName: {
     type: String,
   },
   kind: {

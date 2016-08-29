@@ -26,8 +26,8 @@ function sendEmail (options) {
       ses_mail += "Content-Type: text/html; charset=us-ascii\n\n";
       ses_mail += options.body + "\n\n";
 
-  async.each(options.files, function (file, callback) {
-    downloadLabel(file, function (info) {
+  async.each(options.files, function (fileObj, callback) {
+    downloadLabel(fileObj, function (info) {
       ses_mail += "--" + boundary + "\n";
       ses_mail += "Content-Type: " + info.mimetype + ";name= " + info.filename + "\n";
       ses_mail += "Content-Disposition: attachment; filename=" + info.filename + "\n";
@@ -39,7 +39,6 @@ function sendEmail (options) {
       if (err) {
         throw err;
       }
-
       // Final boundary marker
       ses_mail += "--" + boundary;
 
@@ -54,8 +53,7 @@ function sendEmail (options) {
       ses.sendRawEmail(params, function(err, data) {
         if (err) {
           console.log('there was an error', err);
-        }
-        else {
+        } else {
           console.log('Raw mail sent', data);
         }
       });
@@ -64,9 +62,8 @@ function sendEmail (options) {
 
 
 // Downloads and names url file, returns content-type and binary data base64 encoded
-function downloadLabel (fileData, callback) {
-  request.get(fileData.url)
-    .on('response', function (res) {
+function downloadLabel (fileObj, callback) {
+  request.get(fileObj.url).on('response', function (res) {
       var buffer;
       var datachunks = [];
 
@@ -78,7 +75,7 @@ function downloadLabel (fileData, callback) {
         buffer = Buffer.concat(datachunks).toString('base64');
         callback({
           mimetype: res.headers['content-type'],
-          filename: path.basename(url.parse(fileData.url).pathname),
+          filename: path.basename(url.parse(fileObj.url).pathname),
           file: buffer,
         });
       });

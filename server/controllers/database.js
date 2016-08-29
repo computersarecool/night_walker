@@ -7,6 +7,7 @@ var Editions = require('../../database').Editions;
 
 
 function findUserAndUpdate (email, items, callback) {
+  var error;  
   Users.findOneAndUpdate({email: email}, {$push: {cart: items}}, function (err, user) {
     // TODO: Error handling
     if (err) {
@@ -17,7 +18,7 @@ function findUserAndUpdate (email, items, callback) {
     }
     // TODO: No user found
     else {
-      var error = new Error('No user with that name found');
+      error = new Error('No user with that name found');
       error.status = 404;
       callback(error);
     }
@@ -25,8 +26,9 @@ function findUserAndUpdate (email, items, callback) {
 }
 
 
-function findEdition (safeName, callback) {
-  Editions.findOne({safeName: safeName}, function (err, edition) {
+function findEdition (urlSafeName, callback) {
+  var error;
+  Editions.findOne({urlSafeName: urlSafeName}, function (err, edition) {
     // TODO: Error handling
     if (err) {
       throw err;
@@ -35,7 +37,7 @@ function findEdition (safeName, callback) {
       callback(null, edition);
     }
     else {
-      var error = new Error('No collection with that name found');
+      error = new Error('No collection with that name found');
       error.status = 404;
       callback(error);
     }
@@ -89,6 +91,7 @@ function findProduct (user, skunumber, asyncCallback) {
 
 
 function findProductByFlavor (safeFlavor, callback) {
+  var error;
   Products.findOne({safeFlavor: safeFlavor}).lean().exec(function (err, product) {
     // TODO: Error handling
     if (err) {
@@ -105,7 +108,7 @@ function findProductByFlavor (safeFlavor, callback) {
         callback(null, product);
       });
     } else {
-      var error = new Error('No product found');
+      error = new Error('No product found');
       error.status = 404;
       callback(err);
     }
@@ -167,13 +170,12 @@ function createOrder (user, trackingCode, shippingDetails, saveCallback) {
   // TODO: This only applies if guest
   // Set shipping and contact information for order
   var shippingAddress = shippingDetails.firstName + " " +
-      shippingDetails.lastName +
-      shippingDetails.address1 + " \n" +
-      shippingDetails.address2 + " \n" +
-
-      shippingDetails.city + " \n" +
-      shippingDetails.state + " \n" +
-      shippingDetails.zip;
+  shippingDetails.lastName +
+  shippingDetails.address1 + " \n" +
+  shippingDetails.address2 + " \n" +
+  shippingDetails.city + " \n" +
+  shippingDetails.state + " \n" +
+  shippingDetails.zip;
 
   successOrder.userAddress = shippingAddress;
   successOrder.userLastName = shippingDetails.lastName;
@@ -218,3 +220,4 @@ module.exports = {
   createOrder: createOrder,
   saveOrder: saveOrder,
 };
+

@@ -1,4 +1,4 @@
-var stripeKey = process.env.NODE_ENV === 'production' ? require('../../credentials').stripeTestKey : require('../../credentials').stripeKey;
+var stripeKey = process.env.NODE_ENV === 'production' ? require('../../credentials').stripeKey : require('../../credentials').stripeTestKey;
 var stripe = require('stripe')(stripeKey);
 
 // Make a charge in Stripe
@@ -11,7 +11,7 @@ function charge (user, stripeToken, callback) {
     info = user.name;
   }
 
- var newCharge = stripe.charges.create({
+  var newCharge = stripe.charges.create({
     amount: user.orderCost,
     currency: 'usd',
     card: stripeToken,
@@ -56,9 +56,11 @@ function charge (user, stripeToken, callback) {
           }, null);
           console.error("You probably used an incorrect API key");
           break;
+        default:
+          console.log('An uknown error', err.type, err);
       }
-    // Successful charge
     } else {
+      // successful charge      
       callback(null, user);
     }
   });

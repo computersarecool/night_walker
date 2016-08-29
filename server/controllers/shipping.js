@@ -45,7 +45,7 @@ function createAddress (toAddress, fromAddress, shippingDetails, emailCallback) 
     toAddress.verify(function (err, response) {
       if (err) {
         // TODO: Error handling: address is invalid
-        console.log('Address is invalid.');
+        console.log('Address is invalid.', err);
         throw err;
       } else if (response.message !== undefined && response.message !== null) {
         console.log('Address is valid but has an issue: ', response.message);
