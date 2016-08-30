@@ -301,7 +301,6 @@ img.poster {
   appearance: none;
   width: 3.5vh;
   height: 3.5vh;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
   color: #000;
   background: #000;

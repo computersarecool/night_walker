@@ -87,38 +87,3 @@ module.exports = {
   sendEmail: sendEmail,
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-// TEST
-/*
-var myOptions = {
-  fromName: '"Willy Nolan"',
-  fromEmail: 'willy@willynolan.com',
-  mainTarget: 'willy@willynolan.com',
-  subject: 'test this out',
-  body: 'this is the body of my email',
-  files: [
-    {
-      filename: 'tester',
-      url: 'http://i.imgur.com/Mkzfi2h.jpg',
-    },
-    {
-      filename: 'test2',
-      url: 'http://i.imgur.com/dbFyEF3.jpg',
-    }
-  ],
-  allRecipients: ['willy@willynolan.com'],
-};
-
-sendEmail(myOptions);
-*/

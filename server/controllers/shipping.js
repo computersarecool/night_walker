@@ -58,7 +58,7 @@ function createAddress (toAddress, fromAddress, shippingDetails, emailCallback) 
   });
 }
 
-
+ 
 function createParcel (verifiedToAddress, fromAddress, shippingDetails, emailCallback) {
   easypost.Parcel.create({
     mode: 'test',

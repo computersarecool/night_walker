@@ -6,6 +6,25 @@ var Orders = require('../../database').Orders;
 var Editions = require('../../database').Editions;
 
 
+function findEdition (urlSafeName, callback) {
+  var error;
+  Editions.findOne({urlSafeName: urlSafeName}, function (err, edition) {
+    // TODO: Error handling
+    if (err) {
+      throw err;
+    }
+    if (edition) {
+      callback(null, edition);
+    }
+    else {
+      error = new Error('No collection with that name found');
+      error.status = 404;
+      callback(error);
+    }
+  });
+}
+
+
 function findUserAndUpdate (email, items, callback) {
   var error;  
   Users.findOneAndUpdate({email: email}, {$push: {cart: items}}, function (err, user) {
@@ -19,25 +38,6 @@ function findUserAndUpdate (email, items, callback) {
     // TODO: No user found
     else {
       error = new Error('No user with that name found');
-      error.status = 404;
-      callback(error);
-    }
-  });
-}
-
-
-function findEdition (urlSafeName, callback) {
-  var error;
-  Editions.findOne({urlSafeName: urlSafeName}, function (err, edition) {
-    // TODO: Error handling
-    if (err) {
-      throw err;
-    }
-    if (edition) {
-      callback(null, edition);
-    }
-    else {
-      error = new Error('No collection with that name found');
       error.status = 404;
       callback(error);
     }
@@ -67,13 +67,13 @@ function findUserByID (user, checkoutCallback) {
 }
 
 
-function findUserByUsername (username, foundCallback) {
-  Users.findOne({username:username}, function (err, user) {
+function findUserByEmail (email, foundCallback) {
+  Users.findOne({email:email}, function (err, user) {
     // TODO: Error handling
     if (err) {
       throw err;
     }
-    foundCallback(null, user);
+    foundCallback(null, user.toObject());
   });
 }
 
@@ -143,7 +143,7 @@ function getTotal (user, stripeCallback) {
     if (err) {
       throw err;
     }
-    stripeCallback(user);
+    stripeCallback(null, user);
   });
 }
 
@@ -196,12 +196,20 @@ function saveOrder (order, user) {
     }
     if (order.userOrder) {
       // Member checkout
-      findDBUser(user, function (databaseUser) {
+      findDBUser(user, function (err, databaseUser) {
+        if (err) {
+          throw err;
+        }
         databaseUser.orders.push(order._id);
+        //TODO: there should be a 1-1 with the client side user
+        databaseUser.cart = [];
         databaseUser.save(function (err) {
           // TODO: Error handling
           if (err) {
             throw err;
+          } else {
+            //TODO:
+            console.log('User saved');
           }
         });
       });
@@ -211,8 +219,9 @@ function saveOrder (order, user) {
 
 module.exports = {
   findUserAndUpdate: findUserAndUpdate,
-  findEdition: findEdition,
-  findUserByUsername: findUserByUsername,
+  findUserByEmail: findUserByEmail,
+  findUserByID: findUserByID,  
+  findEdition: findEdition,  
   findProduct: findProduct,
   findProductByFlavor: findProductByFlavor,
   retreiveProduct: retreiveProduct,

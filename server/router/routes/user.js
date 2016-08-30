@@ -10,29 +10,37 @@ router.use('/', expressJwt({
   credentialsRequired: false
 }), function (err, req, res, next) {
   // This sets req.user with the decoded JWT
-  // TODO: Error handling
+  // TODO: Error handling (delete key in storage?)
   if (err.name === 'UnauthorizedError') {
-    // Delete the storage key
     res.status(401).send('invalid token...');
-  }
-  if (err) {
-    // Delete the storage key
-    res.status(401).send('invalid token...');
+  } else if (err) {
+    res.status(401).send('Some error' + err);
   }
   next();
 });
 
 
 router.get('/', function (req, res) {
-  databaseController.findUserByUsername(req.user.username, function (user) {
-    if (!user) {
+  databaseController.findUserByEmail(req.user.email, function (err, user) {
+    //TODO: Error handling
+    if (err) {
+      res.status(400).send(err);
+    } else if (!user) {
       res.status(401).send('No user found...');
+    } else {
+      res.json({
+        user: user,
+      });
     }
-    res.json({
-      user: user,
-    });
   });
 });
 
 module.exports = router;
+
+
+
+
+
+
+
 

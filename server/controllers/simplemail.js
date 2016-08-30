@@ -57,31 +57,3 @@ module.exports = {
   emailCustomer: emailCustomer,
 };
 
-
-
-
-
-
-
-
-
-
-
-
-//TEST
-/*
-var data = {
-  firstName: 'joe',
-  lastName: 'smith',
-  trackingCode: 444,
-  toAddresses: [
-    'willy@willynolan.com',
-    'paperwork@willynolan.com',
-  ],
-  subject: 'testing',
-  fromAddress: 'willy@willynolan.com',
-};
-
-
-emailCustomer(data);
- */

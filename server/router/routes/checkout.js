@@ -14,7 +14,7 @@ function checkout (req, res, user) {
 
   user.orderCost = 0;
   // Get total cost from database
-  databaseController.getTotal(user, function (dbUser) {
+  databaseController.getTotal(user, function (err, dbUser) {
     // Create the charge in stripe then send response
     stripeController.charge(dbUser, stripeToken, function (err, finalUser) {
       // TODO: Error handling (save partially completed order?)
@@ -49,7 +49,7 @@ router.post('/', function (req, res) {
   var user = req.body.user;
   if (user._id) {
     // Member checkout, get user from database
-    databaseController.findUserById(user, function (user) {
+    databaseController.findUserByID(user, function (err, user) {
       checkout(req, res, user);
     });
   } else {
