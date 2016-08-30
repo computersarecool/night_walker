@@ -1,6 +1,7 @@
 var apiKey = require('../../credentials').easyPostApiKey;
 var easypost = require('node-easypost')(apiKey);
 
+//TODO: temporarily place here as part of email templating
 const rawSubject = 'Test subject';
 const rawBody = 'This is tlahe body of the email';
 const simpleSubject = 'Order confirmation';
@@ -31,7 +32,7 @@ function createLabel (user, shippingDetails, emailCallback) {
     // Used when sending confirmation emails, targets are who to email at company
     fromName: 'Willy Nolan',
     fromEmail: 'paperwork@willynolan.com',
-    mainTarget: 'willy@willynolan.com',
+    internalTarget: 'paperwork@willynolan.com',
     additionalTargets: [
       'paperwork@willynolan.com',
     ]
@@ -112,18 +113,19 @@ function createShipment (toAddress, fromAddress, shippingDetails, parcel, emailC
     shipment.buy({rate: shipment.rates[0]}, function(err, shipment) {
       var trackingCode = shipment.tracking_code;
       var label = shipment.postage_label.label_url;
-
+      
       fromAddress.subject = rawSubject;
       fromAddress.body = rawBody;
 
       // Add all possible emails
       fromAddress.allRecipients = [
-        fromAddress.mainTarget,
+        fromAddress.internalTarget,
       ];
       fromAddress.additionalTargets.forEach(function (address) {
         fromAddress.allRecipients.push(address);
       });
-
+      fromAddress.allRecipients.push(shippingDetails.email);
+      
       // TODO: Use filename safe part of name or order number to put in label instead of country
       fromAddress.files = [
         {
@@ -137,10 +139,7 @@ function createShipment (toAddress, fromAddress, shippingDetails, parcel, emailC
         firstName: shippingDetails.firstName,
         lastName: shippingDetails.lastName,
         trackingCode: trackingCode,
-        toAddresses: [
-          fromAddress.mainTarget,
-          shippingDetails.email,
-        ],
+        toAddresses: fromAddress.allRecipients,
         subject: simpleSubject,
         fromAddress: fromAddress.fromEmail,
       };
