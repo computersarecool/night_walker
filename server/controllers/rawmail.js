@@ -18,7 +18,7 @@ function sendEmail (options) {
   var mimeversion = '1.0';
 
   var ses_mail = "From: " + options.fromName + " " + "<" + options.fromEmail + ">" + "\n";
-      ses_mail += "To: " + options.mainTarget + "\n";
+      ses_mail += "To: " + options.internalTarget + "\n";
       ses_mail += "Subject: " + options.subject + "\n";
       ses_mail += "MIME-Version: " + mimeversion + "\n";
       ses_mail += "Content-Type: multipart/mixed; boundary=" + boundary + "\n\n";
@@ -52,7 +52,7 @@ function sendEmail (options) {
       // Actually send the email
       ses.sendRawEmail(params, function(err, data) {
         if (err) {
-          console.log('there was an error', err);
+          console.log('there was an error sending raw email', err);
         } else {
           console.log('Raw mail sent', data);
         }

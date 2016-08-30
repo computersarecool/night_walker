@@ -1,12 +1,16 @@
 # TODO:
-# Credentials file and safe file
 
-## Guest Checkout initiative
-- Make a fully functional guest checkout page
-- In databasecontroller check what happens when thing is not found for all queries
+## Generalized styling directive (mock ups)
+    - Black and white stripes as background, front photos pngs
+    - fruity background on product images
 
 
-## Product page details
+## Individual Technicals
+    - Email / checkout synching
+    - All skus are the same?
+    
+    
+### Product page details
   - Short description
   - Price
   - Product info
@@ -16,7 +20,7 @@
   - free shipping
 
 
-## Media
+### Media
 - Have all home gallery images fade to white on sides (which might be the shop pages too)
 - Fade to white on background image for shop gallery page (later make transparent cut out for bg image)
 - Create web font
@@ -24,56 +28,19 @@
 - background images on home / shop
 - fade to white for product photos
 - Consider reusing the home sprite images on poster gallery as they will load quicker
-
-
-## Restyle with real .styl conventions
+- optimize sizeof all images
 
 
 ### Basket Directive Popup
  - Make rotating cube style something like a directive
- - Make responsive popup directive
- - Make all possible non-logged in options available (direct to right page)
- - Make view / edit portion of account page
- - Make Details page
- - Make Congrats popup directive / page
  - Make skus consistently numbers, right now inconsisten in the geturl function
 
-
-### Simultaneous
- - Finish heading (look into icon fonts for header)
- - Put logo upper left, stylize "Welcome to *nightWalker*" to upper right
- - Fit images
-
-### Design
-    - Black and white stripes as background, front photos pngs
-    - Solid black backing on nav bar or whitespace around each item if lines as background
-
-### Extras
-    - Work background, design entire mobile experience
-    - Get the highest needed sizes fro sprites and all images
-    - Image sizes: 335 x 855
-    - Make Sprite sheet
-    - Link Media so it displays
-    - Fix gallery directive
-    - Alt and title every image
-
-### Semanticized:
-    - product.html
-    - sizeguide.html
-
-Purchase scenarios:
-  x Not logged in user buys items
-  x Non-logged in user adds items to cart then creates account then checks out
-  x Then re-adds items and checkouts out
 
 
 #### Small todo items
 - Only show view cart when there are things inside it
-- Remove semicolons after function declarations
-- Add missing semicolons to thanks like return
-- Add return undefined to all return statements
-- routes|checkout.j:91 save card information if not a guest
-- routes|checkout.j:119, 124 only send usersafe information
+- (Use a good linter / Google style guide) Remove semicolons after function declarations
+- Save user information to expediate form filling out
 - Stripeform directive line 23 is $apply neccesary
 - userfactory.js line 135 what happens when there is an invalid auth token
 
@@ -81,10 +48,7 @@ Purchase scenarios:
 - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json
 
 
-
-
 # ONGOING QUESTIONS:
-
 Angular:
   - What does compile do in a directive?
   - Why is link returned in directive?
@@ -104,12 +68,8 @@ Node:
   - How is the callback defined in async.js (checkout.js:35)
   - figure out the async aspects of setting a property on an object to zero then saving it to a database (checkout.js line 29)
 
-EXPRESS:
-  - The logger
-  - The body of the request (bodyParser.json)
-  - app.get('env')
-  - Bin Folder
-
+Express:
+    - When to call with four arguments to function?
 
 MONGODB:
   - db logs (mongodb.log)
@@ -130,3 +90,4 @@ MISC:
   - Editor config
 
 UNIT TESTING:
+

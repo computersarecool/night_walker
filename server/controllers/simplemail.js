@@ -20,6 +20,7 @@ function emailCustomer (emailInfo) {
   // TODO: Make readfile a stream
   var template = fs.readFile(path.join(__dirname, '../templates/emails', 'customer_confirmation.html'), {encoding: 'utf-8'}, function (err, data) {
     if (err) {
+      console.log('There was an error sending the email');
       throw err;
     } else {
       outgoingEmail = data.replace(firstNameMatch, emailInfo.firstName);

@@ -22,7 +22,7 @@
         <p>
           Your cart is empty
         </p>
-        <a ng-href='/account'>
+        <a ng-href="/account">
           <p>
             View Account?
           </p>
@@ -32,21 +32,26 @@
       <!-- Items in cart -->        
       <div ng-show="user.cart.length">
         You have items in your cart
-        <a ng-href='/checkout'>
+        <a ng-href="/checkout">
           <p>
             Check out?
           </p>
         </a>
-        <a ng-href='/account'>
+        <a ng-href="/account">
           <p>
             View Cart?
           </p>
         </a>
-        <a ng-href='/account'>          
+        <a ng-href="/account">          
           <p>
             View Account?
           </p>
         </a>
+        <a ng-click="logout()">          
+          <p>
+            Logout?
+          </p>
+        </a>        
       </div>
     </div>
    
@@ -57,17 +62,17 @@
         <p>
           Welcome, would you like to
         </p>
-        <a ng-href='/login'>
+        <a ng-href="/login">
           <p>
             Sign in?
           </p>
         </a>
-        <a ng-href='/signup'>
+        <a ng-href="/signup">
           <p>
             Join?
           </p>
         </a>
-        <a ng-href='/shop'>
+        <a ng-href="/shop">
           <p>
             Shop
           </p>
@@ -79,22 +84,22 @@
         <p>
           You have {{user.cart.length}} items in your cart. Wold you like to:
         </p>
-        <a ng-href='/checkout'>
+        <a ng-href="/checkout">
           <p class="checkout-options">
             Check out as a guest?
           </p>
         </a>
-        <a ng-href='/cart'>
+        <a ng-href="/cart">
           <p class="checkout-options">
             Edit Your cart?
           </p>
         </a>
-        <a ng-href='/login'>
+        <a ng-href="/login">
           <p class="checkout-options">
             Sign in?
           </p>
         </a>
-        <a ng-href='signup'>
+        <a ng-href="signup">
           <p class="checkout-options">
             Join?
           </p>
