@@ -8,9 +8,7 @@
  */
 angular.module('nightwalkerApp')
   .directive('siteGallery', function ($location, $interval, $timeout, $window) {
-  
     var paragraph = angular.element('<p></p>');
-
     var cherryPant = angular.element('<img id="cherry-gallery" class="gallery front"></img>');
     var nectarinePant = angular.element('<img id="nectarine-gallery" class="gallery"></img>');
     var lemonPant = angular.element('<img id="lemon-gallery" class="gallery"></img>');
@@ -182,6 +180,7 @@ angular.module('nightwalkerApp')
         })();
         
         var intervalPromise = $interval(autoChange, 2000);
+        
         element.on('$destroy', function () {
           $interval.cancel(intervalPromise);
         });
@@ -194,8 +193,8 @@ angular.module('nightwalkerApp')
     return {
       restrict: 'E',
       compile: function (tElem) {
-        // TODO: Remove paragraph all it shows is the dir value
-//        tElem.append(paragraph);
+        // DEBUG: This just shows the direction as a paragraph
+        //tElem.append(paragraph);
         galleryImages.forEach(function (galleryImage) {
           tElem.append(galleryImage);
         });

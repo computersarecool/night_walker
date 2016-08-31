@@ -9,20 +9,15 @@
  */
 angular.module('nightwalkerApp')
   .controller('ProductCtrl', function ($scope, $window, $location, UserFactory, product) {
-
-
     var xNow;
     var xDelta;
     var xOffset;
     var xPrevious;
-    
+    var flavorIndex;
+    var flavorTest = product['safeFlavor'];    
     var sizeGuide = document.querySelector('#sizemenu');
     var holder = document.querySelector('#gallery-holder');
-
-    var flavorIndex;
-    var flavorTest = product['urlFlavor'];
-
-    // TODO: Remove this hack to pick flavor index
+    // TODO: This is a fake way to get the sku. Fix it
     if (flavorTest === 'cherry') {
       flavorIndex = "1";
     } else {
@@ -30,24 +25,19 @@ angular.module('nightwalkerApp')
     }
 
     $scope.product = product;
-
     $scope.pickedProduct = {
       size: product.distinctSizes[0],
       sku: "1" + flavorIndex + product.distinctSizes[0].waistSize + product.distinctSizes[0].inseam,
     };
-
     $scope.dragging = false;
-    
     $scope.startScroll = function (e) {
       xPrevious = e.touches[0].screenX;
       $scope.dragging = true;
     };
-
     $scope.stopScroll = function () {
       $scope.dragging = false;
       xPrevious = undefined;
     };
-
     $scope.scrollGallery = function (e) {
       var newPosition;
       if ($scope.dragging) {
@@ -84,7 +74,6 @@ angular.module('nightwalkerApp')
         }
       }
     };
-
     $scope.scrollTo = function (pictureName) {
       switch(pictureName) {
         case 'front-view':
@@ -101,18 +90,15 @@ angular.module('nightwalkerApp')
           break;
       }
     };
-    
     $scope.toggleShow = function (id) {
       var element = document.querySelector(id);
       var yOffset = $window.scrollY;
       element.style.top = yOffset + "px";
       element.classList.toggle('hidden');
     };
-    
     $scope.changeSize = function () {
       $scope.pickedProduct.sku = "1" + flavorIndex + $scope.pickedProduct.size.waistSize + $scope.pickedProduct.size.inseam;
     };
-    
     $scope.addToCart = function () {
       var sku = $scope.pickedProduct.sku;
       var store = $window.localStorage;
@@ -134,8 +120,6 @@ angular.module('nightwalkerApp')
       }
       document.querySelector('#checkout-now').classList.remove('hidden');
     };
-
     $scope.goToCheckout = UserFactory.goToCheckout;
-
   });
 

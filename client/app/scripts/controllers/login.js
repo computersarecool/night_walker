@@ -10,58 +10,46 @@
 
 angular.module('nightwalkerApp')
   .controller('LoginCtrl', function ($scope, $window, $location, UserFactory) {
-
+    // If the user has a valid token, direct to account page
     if (UserFactory.checkToken()) {
       $location.path('/acccount');
-    };
-    
-    $scope.user = UserFactory.getUser();
-
-    $scope.signup = function (email, password, firstName, lastName) {
-      UserFactory.signup(email, password, firstName, lastName);
-    };
-
-    $scope.login = function (email, password) {      
-      UserFactory.login(email, password);
-    };
-
-    $scope.logout = function () {
-      UserFactory.logout();
-    };
-
-    $scope.guestCheckout = function () {
-      $location.path('/checkout');
-    };
-
-    $scope.changeScreen = function () {
-      if ($location.path() === '/signup') {
-        $location.path('/login');
-      }
-      else {
-        $location.path('/signup');
-      }
-    };
-
-    
+    }
+    // Do not show the login option if on signup route
     if ($location.path() === '/signup') {
       $scope.showLogin = false;
     } else {
       $scope.showLogin = true;
     }
-
-
+    
+    $scope.user = UserFactory.getUser();
+    $scope.signup = function (email, password, firstName, lastName) {
+      UserFactory.signup(email, password, firstName, lastName);
+    };
+    $scope.login = function (email, password) {      
+      UserFactory.login(email, password);
+    };
+    $scope.logout = function () {
+      UserFactory.logout();
+    };
+    $scope.guestCheckout = function () {
+      $location.path('/checkout');
+    };
+    $scope.changeScreen = function () {
+      if ($location.path() === '/signup') {
+        $location.path('/login');
+      } else {
+        $location.path('/signup');
+      }
+    };
+    $scope.modalCart = false;
+    $scope.showModalCart = function () {
+      $scope.modalCart = !$scope.modalCart;
+    };
+    // This makes sure that the user is in sync with the user fetched from the DB
      $scope.$watch(function () {
       return UserFactory.currentUser;
     }, function () {
       $scope.user = UserFactory.currentUser;
     });
-
-    // Specific to the cart directive
-    $scope.modalCart = false;
-
-    $scope.showModalCart = function () {
-      $scope.modalCart = !$scope.modalCart;
-    };
-
   });
 

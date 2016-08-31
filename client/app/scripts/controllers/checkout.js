@@ -52,7 +52,6 @@ angular.module('nightwalkerApp')
           $location.path('/congratulations');
         }, function error (response) {
           // TODO: Do something meaningful with error from NW server
-          console.log(response);          
           alert(response.data.error.message);
         });
       }

@@ -6,7 +6,7 @@
 
 
 ## Individual Technicals
-    - Email / checkout synching
+    - Email / checkout clean js
     - All skus are the same?
     
     
@@ -50,6 +50,8 @@
 
 # ONGOING QUESTIONS:
 Angular:
+  - Pages like 'About' do not need a controller. Do we use a null controller?
+  - Saving a route and not getting a 404
   - What does compile do in a directive?
   - Why is link returned in directive?
   - Why does a directive have a controller

@@ -90,12 +90,12 @@ angular
 
     $httpProvider.interceptors.push('AuthInterceptorFactory');
 
-    Stripe.setPublishableKey('pk_test_uEnw6EZC8otddMKeJUiZsHFz');
-
     $locationProvider.html5Mode({
       enabled: true, 
       requireBase: true,
     });
+    
+    Stripe.setPublishableKey('pk_test_uEnw6EZC8otddMKeJUiZsHFz');
     
   }).run(function ($rootScope, $location) {
     $rootScope.$on('$locationChangeStart', function (event) {

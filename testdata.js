@@ -162,38 +162,42 @@ var flavors = [
 ];
 
 var h;
+// For every flavor
 for (h = 0; h < flavors.length; h++) {
   var i;
   var prop;
   var detIndex;
-  
   var item;
   var waistSize;
   var inseam;
   var sku;
-  
+
+  // Say there are five of 32x30
   for (i = 0; i < 5; i++) {
     item = JSON.parse(JSON.stringify(flavors[h]));
     waistSize = 32;
     inseam = 30;
-
-    
     sku = "1" + (h + 1) + waistSize + inseam;
+
+    // Set item properties
     for (prop in generics) {
       item[prop] = generics[prop];  
     }
 
+    // Set extra details
     for (detIndex = 0; detIndex < item['extraDetails'].length; detIndex++) {
       if (item.details.indexOf(item['extraDetails'][detIndex]) == -1) {
         item.details.unshift(item['extraDetails'][detIndex]);
       } 
     }
-    
+
+    // Set sizes
     item.sizes = {
       waistSize: waistSize,
       inseam: inseam
     };
 
+    // Make Url safe name
     item.safeFlavor = item['flavor'].replace(' ', '-');
     item.safeEdition = item['edition'].replace(' ', '-');
     item.shortDescription = "Alternating Current Chinos in " + item['flavor'];
@@ -204,43 +208,41 @@ for (h = 0; h < flavors.length; h++) {
     ];    
     db.products.insert(item);
   };
-  
+
+  // Say there are 3 36x34
   for (i = 0; i < 3; i++) {
     item = JSON.parse(JSON.stringify(flavors[h]));
     waistSize = 36;
     inseam = 34;
-
     sku = "1" + (h + 1) + waistSize + inseam;
+    // Set properties
     for (prop in generics) {
       item[prop] = generics[prop];  
     }
-
+    // Set details
     for (detIndex = 0; detIndex < item['extraDetails'].length; detIndex++) {
       if (item.details.indexOf(item['extraDetails'][detIndex]) == -1) {
         item.details.unshift(item['extraDetails'][detIndex]);
       } 
     }
-    
+    // Set sizes
     item.sizes = {
       waistSize: waistSize,
       inseam: inseam
     };
 
+    // Make url-safe name
     item.safeFlavor = item['flavor'].replace(' ', '-');
     item.safeEdition = item['edition'].replace(' ', '-');
     item.shortDescription = "Alternating Current Chinos in " + item['flavor'];
     item.sku = sku;
-      
+    item.distinctSizes = [
+      "32x32",
+      "36x36",
+    ];    
     db.products.insert(item);
   }
 }
-
-
-
-
-
-
-
 
 
 
