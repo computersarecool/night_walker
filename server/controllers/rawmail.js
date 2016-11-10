@@ -35,7 +35,7 @@ function sendEmail (options) {
       sesMail += info.file + '\n'
       callback()
     })
-  }, function (err) {
+  }, (err) => {
     if (err) {
       throw err
     }
@@ -62,7 +62,7 @@ function sendEmail (options) {
 
 // Downloads and names url file, returns content-type and binary data base64 encoded
 function downloadLabel (fileObj, callback) {
-  request.get(fileObj.url).on('response', function (res) {
+  request.get(fileObj.url).on('response', (res) => {
     const datachunks = []
 
     res.on('data', function (chunk) {

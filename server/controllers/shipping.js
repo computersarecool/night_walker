@@ -105,7 +105,7 @@ function createShipment (toAddress, fromAddress, shippingDetails, parcel, emailC
   easypost.Shipment.create({
     to_address: toAddress,
     from_address: fromAddress,
-    parcel: parcel,
+    parcel: parcel
   //    customs_info: customsInfo
   }, (err, shipment) => {
     if (err) {

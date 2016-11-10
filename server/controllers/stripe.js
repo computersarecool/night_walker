@@ -1,22 +1,22 @@
-var stripeKey = process.env.NODE_ENV === 'production' ? require('../../credentials').stripeKey : require('../../credentials').stripeTestKey
-var stripe = require('stripe')(stripeKey)
+const stripeKey = process.env.NODE_ENV === 'production' ? require('../../credentials').stripeKey : require('../../credentials').stripeTestKey
+const stripe = require('stripe')(stripeKey)
 
 // Make a charge in Stripe
 function charge (user, stripeToken, callback) {
   // TODO: Set description to something real
-  var info
+  let info
   if (user.guest) {
     info = 'payinguser@example.com'
   } else {
     info = user.name
   }
-
-  var newCharge = stripe.charges.create({
+  // create charge
+  stripe.charges.create({
     amount: user.orderCost,
     currency: 'usd',
     card: stripeToken,
     description: info
-  }, function (err, stripeCharge) {
+  }, (err, stripeCharge) => {
     // Failed charge
     if (err) {
       // TODO: Send the user an error / declined message
@@ -24,7 +24,7 @@ function charge (user, stripeToken, callback) {
         case 'StripeCardError':
           callback({
             status: 402,
-            message: err.message, // e.g. "Card's expirary year is invalid."
+            message: err.message // e.g. "Card's expirary year is invalid."
           }, null)
           console.log('The card has been declined')
           break
@@ -60,7 +60,7 @@ function charge (user, stripeToken, callback) {
           console.log('An uknown error', err.type, err)
       }
     } else {
-      // successful charge      
+      // successful charge
       callback(null, user)
     }
   })

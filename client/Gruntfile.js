@@ -6,7 +6,7 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
-module.exports = function (grunt) {
+module.exports = (grunt) => {
   // Set color output to false. .option sets or gets values and accesses variables set from cli
   grunt.option('color', false)
 
@@ -28,7 +28,6 @@ module.exports = function (grunt) {
 
     // Project settings
     yeoman: appConfig,
-
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -62,7 +61,6 @@ module.exports = function (grunt) {
         ]
       }
     },
-
 
     // The actual grunt server settings
     connect: {
@@ -111,7 +109,6 @@ module.exports = function (grunt) {
       }
     },
 
-
     // Make sure code styles are up to par and there are no obvious mistakes
     jshint: {
       options: {
@@ -132,7 +129,6 @@ module.exports = function (grunt) {
       }
     },
 
-
     // Empties folders to start fresh
     clean: {
       dist: {
@@ -148,7 +144,6 @@ module.exports = function (grunt) {
       server: '.tmp'
     },
 
-
     stylus: {
       compile: {
         options: {
@@ -159,7 +154,6 @@ module.exports = function (grunt) {
         }
       }
     },
-
 
     // Add vendor prefixed styles
     autoprefixer: {
@@ -178,15 +172,14 @@ module.exports = function (grunt) {
 
     // Automatically inject Bower components into the app
     wiredep: {
-      /*      options: {
-              cwd: '<%= yeoman.app %>'
-            },*/
+      // options: {
+      //   cwd: '<%= yeoman.app %>'
+      // },
       app: {
         src: ['<%= yeoman.app %>/index.html'],
         ignorePath: /\.\.\//
       }
     },
-
 
     // Renames files for browser caching purposes
     filerev: {
@@ -199,7 +192,6 @@ module.exports = function (grunt) {
         ]
       }
     },
-
 
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
@@ -219,7 +211,6 @@ module.exports = function (grunt) {
         }
       }
     },
-
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
@@ -256,7 +247,6 @@ module.exports = function (grunt) {
     //   dist: {}
     // },
 
-
     imagemin: {
       dist: {
         files: [{
@@ -268,7 +258,6 @@ module.exports = function (grunt) {
       }
     },
 
-
     svgmin: {
       dist: {
         files: [{
@@ -279,7 +268,6 @@ module.exports = function (grunt) {
         }]
       }
     },
-
 
     htmlmin: {
       dist: {
@@ -299,7 +287,6 @@ module.exports = function (grunt) {
       }
     },
 
-
     // ngmin tries to make the code safe for minification automatically by
     // using the Angular long form for dependency injection. It doesn't work on
     // things like resolve or inject so those have to be done manually.
@@ -314,14 +301,12 @@ module.exports = function (grunt) {
       }
     },
 
-
     // Replace Google CDN references
     cdnify: {
       dist: {
         html: ['<%= yeoman.dist %>/*.html']
       }
     },
-
 
     // Copies remaining files to places other tasks can use
     copy: {
@@ -369,7 +354,6 @@ module.exports = function (grunt) {
       ]
     },
 
-
     // Test settings
     karma: {
       unit: {
@@ -408,8 +392,6 @@ module.exports = function (grunt) {
     'connect:test',
     'karma'
   ])
-
-
 
   grunt.registerTask('build', [
     'clean:dist',
