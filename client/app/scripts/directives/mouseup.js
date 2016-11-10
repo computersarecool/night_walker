@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc directive
@@ -10,8 +10,7 @@ angular.module('nightwalkerApp')
   .directive('siteMouseUp', function () {
     return function (scope, elem, attrs) {
       elem.bind('touchend mouseup', function (e) {
-        scope.$apply(attrs['siteMouseUp']);
-      });
-    };
-  });
-
+        scope.$apply(attrs['siteMouseUp'])
+      })
+    }
+  })

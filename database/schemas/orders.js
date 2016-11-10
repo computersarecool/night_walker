@@ -1,36 +1,35 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 
-var Schema = mongoose.Schema;
+var Schema = mongoose.Schema
 
 var orderSchema = new Schema({
   userOrder: {
-    type: Boolean,
+    type: Boolean
   },
   items: {
-    type: Array,
+    type: Array
   },
   orderTime: {
     type: Date,
-    default: Date.now,
+    default: Date.now
   },
   coupon: {
     type: Boolean,
-    default: false,
+    default: false
   },
   userID: {
     type: String,
-    default: null,
+    default: null
   },
   trackingCode: {
-    type: String,
+    type: String
   },
   userFirstName: String,
   userLastName: String,
   userAddress: String,
   userPhone: String,
-  userEmail: String,
-});  
+  userEmail: String
+})
 
-var Order = mongoose.model('Order', orderSchema);
-module.exports = Order;
-
+var Order = mongoose.model('Order', orderSchema)
+module.exports = Order

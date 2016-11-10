@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc directive
@@ -16,27 +16,26 @@ angular.module('nightwalkerApp')
           // Check to see if the clicked item is any nav list element
           if (e.target !== e.currentTarget) {
             if ($location.path() === '/') {
-              
-/* TODO: Uncomment to animate the nav going horizontal
-              e.currentTarget.className = 'collapsed';
 
-              $timeout(function (navUl) {
-                navUl.className = 'height-collapse';
+              /* TODO: Uncomment to animate the nav going horizontal
+                            e.currentTarget.className = 'collapsed'
 
-                // TODO: Figure out why there can't be two $timeouts
-                $window.setTimeout(function (navUl) {
-                  navUl.className = 'horizontal';
-                }, 200, navUl);
-                
-              }, 200, true, e.currentTarget);
- */
-              
-              e.currentTarget.className = 'horizontal';
+                            $timeout(function (navUl) {
+                              navUl.className = 'height-collapse'
+
+                              // TODO: Figure out why there can't be two $timeouts
+                              $window.setTimeout(function (navUl) {
+                                navUl.className = 'horizontal'
+                              }, 200, navUl)
+                              
+                            }, 200, true, e.currentTarget)
+               */
+
+              e.currentTarget.className = 'horizontal'
             }
           }
-          // TODO: Figure out why e.stopPropgation here causes problems
-        };
+        // TODO: Figure out why e.stopPropgation here causes problems
+        }
       }
-    };
-  });
-
+    }
+  })

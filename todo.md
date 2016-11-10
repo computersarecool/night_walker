@@ -38,6 +38,8 @@
 
 
 #### Small todo items
+- favicon best practices
+- correct logger
 - Only show view cart when there are things inside it
 - (Use a good linter / Google style guide) Remove semicolons after function declarations
 - Save user information to expediate form filling out
@@ -47,8 +49,10 @@
 --- Bower.json
 - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json
 
+## Things to do at the end
+- Spf policy
 
-# ONGOING QUESTIONS:
+### ONGOING QUESTIONS:
 Angular:
   - Pages like 'About' do not need a controller. Do we use a null controller?
   - Saving a route and not getting a 404

@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc service
@@ -9,15 +9,14 @@
  */
 angular.module('nightwalkerApp')
   .factory('UserFactory', function ($window, $http, $location, AuthTokenFactory) {
+    var user = {}
+    var store = $window.localStorage
+    var cart = angular.fromJson(store.cart)
 
-    var user = {};
-    var store = $window.localStorage;
-    var cart = angular.fromJson(store.cart);
-    
     function checkToken () {
-      return AuthTokenFactory.getToken();
+      return AuthTokenFactory.getToken()
     }
-    
+
     function signup (email, password, firstName, lastName) {
       return $http.post('/api/login/signup', {
         email: email,
@@ -26,129 +25,129 @@ angular.module('nightwalkerApp')
         lastName: lastName,
         cart: store.getItem('cart')
       }).then(function success (response) {
-        AuthTokenFactory.setToken(response.data.token);
-        user.currentUser = response.data.user;
-        store.removeItem('cart');
-        $location.path('/account');
+        AuthTokenFactory.setToken(response.data.token)
+        user.currentUser = response.data.user
+        store.removeItem('cart')
+        $location.path('/account')
       }, function error (response) {
         // TODO: Better error handling
         if (response.status == 401) {
-          alert('Some information you entered is invalid');
+          alert('Some information you entered is invalid')
         }
         // Unknown error
-        return undefined;
-      });
+        return undefined
+      })
     }
-    
+
     function login (email, password) {
       return $http.post('/api/login/login', {
         email: email,
         password: password,
-        cart: store.getItem('cart')        
+        cart: store.getItem('cart')
       }).then(function success (response) {
-        AuthTokenFactory.setToken(response.data.token);
-        user.currentUser = response.data.user;
-        store.removeItem('cart');        
-        $location.path('/account');
+        AuthTokenFactory.setToken(response.data.token)
+        user.currentUser = response.data.user
+        store.removeItem('cart')
+        $location.path('/account')
       }, function error (response) {
         // TODO: Better error handling
         if (response.status == 401) {
-          alert('Some information you entered is invalid');
+          alert('Some information you entered is invalid')
         }
         // Unknown error
-        return undefined;
-      });
+        return undefined
+      })
     }
-    
+
     function logout () {
-      AuthTokenFactory.setToken();
+      AuthTokenFactory.setToken()
       user.currentUser = {
-        loggedIn: false,
-      };
-      $location.path('/');
+        loggedIn: false
+      }
+      $location.path('/')
     }
-    
+
     function addToCart (items) {
       if (user.currentUser.loggedIn) {
         // Add to DB cart and remove from localStorage if logged in
         return $http.post('/api/addproduct', {
           items: items
         }).then(function success (response) {
-          user.currentUser = response.data;
-          store.removeItem('cart');        
+          user.currentUser = response.data
+          store.removeItem('cart')
         }, function error (response) {
           // TODO: Better error handling
-          alert('There was an error with your request');
-          return undefined;
-        });
+          alert('There was an error with your request')
+          return undefined
+        })
       } else if (!user.currentUser) {
         // Add to temporary user cart and storage if there is no user
-        var cart = angular.fromJson(store.getItem('cart'));
+        var cart = angular.fromJson(store.getItem('cart'))
 
         if (cart) {
-          cart.push(items);
+          cart.push(items)
         } else {
-          cart = [items];
+          cart = [items]
         }
-        store.setItem('cart', angular.toJson(cart));
+        store.setItem('cart', angular.toJson(cart))
         user.currentUser = {
-          'cart': cart,
-        };
+          'cart': cart
+        }
       } else {
         // Add to temporary user cart if this is non-logged in user
-        user.currentUser.cart = cart;
+        user.currentUser.cart = cart
       }
-      return undefined;
+      return undefined
     }
-    
+
     function updateCart (itemSku, quantity) {
-      //TODO: Check with database to make sure the amount is available
+      // TODO: Check with database to make sure the amount is available
       var selectCart = user.currentUser.cart.filter(function (oldItemSku) {
-        return oldItemSku !== itemSku;
-      });
+        return oldItemSku !== itemSku
+      })
 
       for (var i = 0; i < quantity; i++) {
-        selectCart.push(itemSku);
+        selectCart.push(itemSku)
       }
-      
-      user.currentUser.cart = selectCart;
-      
+
+      user.currentUser.cart = selectCart
+
       if (!user.currentUser.loggedIn) {
-        store.setItem('cart', angular.toJson(user.currentUser.cart));
+        store.setItem('cart', angular.toJson(user.currentUser.cart))
       }
     }
 
     function goToCheckout () {
-      $location.path('/checkout');
+      $location.path('/checkout')
     }
-    
+
     function getUser () {
       if (AuthTokenFactory.getToken()) {
         return $http.get('/api/user')
-          .then (function success (response) {
-            user.currentUser = response.data.user;
+          .then(function success (response) {
+            user.currentUser = response.data.user
           }, function (httpError) {
             // TODO: Better error handling
             // There is an auth token but no associated user
-            throw httpError.status + " : " + httpError.data;
-            return undefined;
-         });
-       } else {
-         user.currentUser = {
-           loggedIn: false,
-           cart: cart,
-           guest: true,
-         };
-         return undefined;
-       }
-     }
+            throw httpError.status + ' : ' + httpError.data
+            return undefined
+          })
+      } else {
+        user.currentUser = {
+          loggedIn: false,
+          cart: cart,
+          guest: true
+        }
+        return undefined
+      }
+    }
 
     function setUser (newUser) {
-      user.currentUser = newUser;
+      user.currentUser = newUser
     }
-    
+
     user = {
-      checkToken: checkToken,      
+      checkToken: checkToken,
       signup: signup,
       login: login,
       logout: logout,
@@ -156,11 +155,9 @@ angular.module('nightwalkerApp')
       updateCart: updateCart,
       goToCheckout: goToCheckout,
       getUser: getUser,
-      setUser: setUser,      
-      currentUser: getUser(),
-    };
+      setUser: setUser,
+      currentUser: getUser()
+    }
 
-    return user;
-
-  });
-
+    return user
+  })

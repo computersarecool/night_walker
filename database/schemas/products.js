@@ -1,78 +1,75 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 
-var Schema = mongoose.Schema;
+var Schema = mongoose.Schema
 
 var productSchema = new Schema({
-  // T-Shirt, jeans, etc
   name: {
-    type: String,
+    type: String
   },
   distinctSizes: {
-    type: Array,
+    type: Array
   },
   kind: {
-    type: String,
+    type: String
   },
   type: {
-    type: String,
+    type: String
   },
   edition: {
-    type: String,
+    type: String
   },
   safeEdition: {
-    type: String,
+    type: String
   },
   msrp: {
-    type: Number,
+    type: Number
   },
   currentPrice: {
-    type: Number,
+    type: Number
   },
   description: {
-    type: String,
+    type: String
   },
   aboutSpecific: {
-    type: String,
+    type: String
   },
   careInstructions: {
-    type: String,
+    type: String
   },
   sizeGuide: {
-    type: String,
+    type: String
   },
   shortDescription: {
-    type: String,
+    type: String
   },
   flavor: {
-    type: String,
+    type: String
   },
   safeFlavor: {
-    type: String,
+    type: String
   },
   sizeInformation: {
-    type: Array,
+    type: Array
   },
   details: {
-    type: Array,
+    type: Array
   },
   sizes: {
-    type: {},
+    type: {}
   },
   sizeGuide: {
-    type: String,
+    type: String
   },
   images: {
-    type: {},
+    type: {}
   },
   sku: {
-    type: String,
+    type: String
   },
   extraDetails: {
-    type: Array,
-  },
-});
+    type: Array
+  }
+})
 
-
-var Products = mongoose.model('Products', productSchema);
-module.exports = Products;
-
+var Products = mongoose.model('Products', productSchema)
+module.exports = Products

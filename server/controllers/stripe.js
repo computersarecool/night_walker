@@ -1,21 +1,21 @@
-var stripeKey = process.env.NODE_ENV === 'production' ? require('../../credentials').stripeKey : require('../../credentials').stripeTestKey;
-var stripe = require('stripe')(stripeKey);
+var stripeKey = process.env.NODE_ENV === 'production' ? require('../../credentials').stripeKey : require('../../credentials').stripeTestKey
+var stripe = require('stripe')(stripeKey)
 
 // Make a charge in Stripe
 function charge (user, stripeToken, callback) {
   // TODO: Set description to something real
-  var info;
+  var info
   if (user.guest) {
-    info = 'payinguser@example.com';
+    info = 'payinguser@example.com'
   } else {
-    info = user.name;
+    info = user.name
   }
 
   var newCharge = stripe.charges.create({
     amount: user.orderCost,
     currency: 'usd',
     card: stripeToken,
-    description: info,
+    description: info
   }, function (err, stripeCharge) {
     // Failed charge
     if (err) {
@@ -25,48 +25,47 @@ function charge (user, stripeToken, callback) {
           callback({
             status: 402,
             message: err.message, // e.g. "Card's expirary year is invalid."
-          }, null);
-          console.log('The card has been declined');
-          break;
+          }, null)
+          console.log('The card has been declined')
+          break
         case 'StripeInvalidRequest':
           callback({
             status: 402,
-            message: err.message,
-          }, null);
-          console.error("Invalid parameters were supplied to Stripe's API");
-          break;
+            message: err.message
+          }, null)
+          console.error("Invalid parameters were supplied to Stripe's API")
+          break
         case 'StripeAPIError':
           callback({
             status: 402,
-            message: err.message,
-          }, null);
-          console.error("An error occurred internally with Stripe's API");
-          break;
+            message: err.message
+          }, null)
+          console.error("An error occurred internally with Stripe's API")
+          break
         case 'StripeConnectionError':
           callback({
             status: 402,
-            message: err.message,
-          }, null);
-          console.error("A kind of error occurred during HTTPS communication");
-          break;
+            message: err.message
+          }, null)
+          console.error('A kind of error occurred during HTTPS communication')
+          break
         case 'StripeAuthenticationError':
           callback({
             status: 402,
-            message: err.message,
-          }, null);
-          console.error("You probably used an incorrect API key");
-          break;
+            message: err.message
+          }, null)
+          console.error('You probably used an incorrect API key')
+          break
         default:
-          console.log('An uknown error', err.type, err);
+          console.log('An uknown error', err.type, err)
       }
     } else {
       // successful charge      
-      callback(null, user);
+      callback(null, user)
     }
-  });
+  })
 }
 
 module.exports = {
-  charge: charge,
-};
-
+  charge: charge
+}

@@ -1,18 +1,17 @@
-var express = require('express');
-var router = express.Router();
-var databaseController = require('../../controllers/database');
+const express = require('express')
+const router = express.Router()
+const databaseController = require('../../controllers/database')
 
-router.get('/:edition', function (req, res) {
-  var urlSafeName = req.params.edition;
-  databaseController.findEdition(urlSafeName, function respond (err, edition) {
+router.get('/:edition', (req, res) => {
+  const urlSafeName = req.params.edition
+  databaseController.findEdition(urlSafeName, (err, edition) => {
     // TODO: Error handling
     if (err) {
-      res.status(err.status).json(err.message);
+      res.status(err.status).json(err.message)
     } else {
-      res.json(edition);      
+      res.json(edition)
     }
-  });
-});
+  })
+})
 
-module.exports = router;
-
+module.exports = router

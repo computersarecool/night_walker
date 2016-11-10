@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc function
@@ -10,4 +10,4 @@
 angular.module('nightwalkerApp')
   .controller('CongratulationsCtrl', function ($scope) {
     // TODO: Null controller
-  });
+  })

@@ -1,48 +1,44 @@
-var express = require('express');
-var router = express.Router();
-var expressJwt = require('express-jwt');
+const express = require('express')
+const router = express.Router()
+const expressJwt = require('express-jwt')
 
-var databaseController = require('../../controllers/database');
-var jwtSecret = require('../../../credentials').jwtSecret;
-var stripeKey = require('../../../credentials').stripeTest;
-var stripe = require('stripe')(stripeKey);
+const databaseController = require('../../controllers/database')
+const jwtSecret = require('../../../credentials').jwtSecret
 
-// Authenticate user's jwt
+// authenticate user's jwt
 router.post('/', expressJwt({
   secret: jwtSecret,
   credentialsRequired: false
-}), function (err, req, res, next) {
-  // This sets req.user with the decoded JWT.(i.e. the JWT)
+}), (err, req, res, next) => {
+  // This adds the decoded req.user to the decoded JWT
   // TODO: Error handling (delete storage keys for errors)
-  if (err.name === 'UnauthorizedError') {
-    res.status(401).json('invalid token...');
-  }
   if (err) {
-    res.status(401).json('invalid token...');
+    res.status(401).json('invalid token...')
+  } else {
+    next()
   }
-  next();
-});
+})
 
+// add product to user's cart
+router.post('/', (req, res) => {
+  const email = req.user.email
+  const items = req.body.items
 
-// Add product to user's cart
-router.post('/', function (req, res) {
-  var email = req.user.email;
-  var items = req.body.items;
-
+  // TODO: Check if these checks are neccesary
   if (!email) {
-    res.status(401).json('There is no email');
-    return;
+    res.status(401).json('There is no email')
+    return
+  } else if (!items) {
+    res.status(401).json('There are no items to add')
+    return
   }
-  if (!items) {
-    return;
-  }
-  databaseController.findUserAndUpdate (email, items, function respond (err, user) {
+
+  databaseController.findUserAndUpdate(email, items, (err, user) => {
     if (err) {
-      res.status(err.status).json(err.message);
+      res.status(err.status).json(err.message)
     }
-    res.json(user);
-  });
-});
+    res.json(user)
+  })
+})
 
-module.exports = router;
-
+module.exports = router

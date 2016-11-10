@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc function
@@ -9,20 +9,17 @@
  */
 angular.module('nightwalkerApp')
   .controller('AccountCtrl', function ($scope, $location, UserFactory) {
-
     if (!UserFactory.checkToken()) {
-      $location.path('/login');
+      $location.path('/login')
     }
 
-    $scope.user = UserFactory.currentUser;
+    $scope.user = UserFactory.currentUser
 
-    $scope.logout = UserFactory.logout;
+    $scope.logout = UserFactory.logout
 
     $scope.$watch(function () {
-      return UserFactory.currentUser;
+      return UserFactory.currentUser
     }, function () {
-      $scope.user = UserFactory.currentUser;
-    }, true);
-
-  });
-
+      $scope.user = UserFactory.currentUser
+    }, true)
+  })

@@ -1,41 +1,36 @@
-var database;
-var mongoose = require('mongoose');
-var credentials = require('../credentials');
+let database
+const mongoose = require('mongoose')
 
-var UserModel = require('./schemas/users');
-var ProductModel = require('./schemas/products');
-var EditionsModel = require('./schemas/editions');
-var OrdersModel = require('./schemas/orders');
+const credentials = require('../credentials')
+const UserModel = require('./schemas/users')
+const ProductModel = require('./schemas/products')
+const EditionsModel = require('./schemas/editions')
+const OrdersModel = require('./schemas/orders')
 
-// connections
-var developmentDb = credentials.mongoTestConnection;
-var productionDb = credentials.mongoConnection;
+// connection addresses
+const developmentDb = credentials.mongoTestConnection
+const productionDb = credentials.mongoConnection
 
-// if in development set database to the development one
+// set database address to development or production
 if (process.env.NODE_ENV === 'development') {
-  database = developmentDb;
+  database = developmentDb
+} else if (process.env.NODE_ENV === 'production') {
+  database = productionDb
 }
 
-// if in production, set to production one
-if (process.env.NODE_ENV === 'production') {
-  database = productionDb;
-}
+// connect to the database
+mongoose.connect(database)
 
-// connect to the database *Temporary
-mongoose.connect(database);
+// get an instance of the connection to our database
+const db = mongoose.connection
 
-
-//Get an instance of the connection to our database
-var db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'Connection error:'));
+db.on('error', console.error.bind(console, 'Connection error:'))
 
 db.once('open', function () {
-  console.log('Database connection successfully opened at ' + database);
-});
+  console.log('Database connection successfully opened at ' + database)
+})
 
-exports.Users = UserModel;
-exports.Products = ProductModel;
-exports.Editions = EditionsModel;
-exports.Orders = OrdersModel;
-
+exports.Users = UserModel
+exports.Products = ProductModel
+exports.Editions = EditionsModel
+exports.Orders = OrdersModel

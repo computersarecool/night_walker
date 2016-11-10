@@ -1,9 +1,9 @@
-var mongoose = require('mongoose');
-// var bcrypt = require('bcrypt');
+const mongoose = require('mongoose')
+// const bcrypt = require('bcrypt')
 
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
-var userSchema = new Schema({
+const userSchema = new Schema({
   email: {
     type: String
   },
@@ -32,25 +32,22 @@ var userSchema = new Schema({
   loggedIn: {
     type: Boolean,
     default: true
-  }   
-});  
+  }
+})
 
-
-//Encrypt before save userSchema.pre('save')
+// encrypt before save userSchema.pre('save')
 userSchema.methods.checkPassword = function (triedPassword, callback) {
-  //TODO: bcrypt.compare
-  // Right password
+  // TODO: bcrypt.compare
+  // correct password
   if (triedPassword === this.password) {
-    console.log('The password is right');
-    return callback(null, true);
+    console.log('The password is right')
+    return callback(null, true)
   }
 
-  // Wrong password
-  console.log('The password is wrong');
-  return callback(null, false);
+  // wrong password
+  console.log('The password is wrong')
+  return callback(null, false)
+}
 
-};
-
-var User = mongoose.model('User', userSchema);
-module.exports = User;
-
+const User = mongoose.model('User', userSchema)
+module.exports = User

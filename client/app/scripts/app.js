@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc overview
@@ -13,61 +13,61 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch',
+    'ngTouch'
   ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
+        controller: 'MainCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
+        controller: 'AboutCtrl'
       })
       .when('/contact', {
         templateUrl: 'views/contact.html',
-        controller: 'ContactCtrl',
-      })      
+        controller: 'ContactCtrl'
+      })
       .when('/shop', {
-        redirectTo: '/shop/alternating-current',
+        redirectTo: '/shop/alternating-current'
       })
       .when('/shop/:edition', {
         templateUrl: 'views/shop.html',
         controller: 'ShopCtrl',
         resolve: {
           edition: function ($route, ProductFactory) {
-            return ProductFactory.getEdition($route.current.params.edition);
-          },
-        },
+            return ProductFactory.getEdition($route.current.params.edition)
+          }
+        }
       })
       .when('/shop/alternating-current/:flavor', {
         templateUrl: '/views/product.html',
         controller: 'ProductCtrl',
         resolve: {
           product: function ($route, ProductFactory) {
-            return ProductFactory.getProduct($route.current.params.flavor);
-          },
-        },
+            return ProductFactory.getProduct($route.current.params.flavor)
+          }
+        }
       })
       .when('/login', {
         templateUrl: 'views/login.html',
-        controller: 'LoginCtrl',
+        controller: 'LoginCtrl'
       })
       .when('/signup', {
         templateUrl: 'views/login.html',
-        controller: 'LoginCtrl',
-      })      
+        controller: 'LoginCtrl'
+      })
       .when('/account', {
         templateUrl: 'views/account.html',
-        controller: 'AccountCtrl',
+        controller: 'AccountCtrl'
       })
       .when('/cart', {
         templateUrl: 'views/checkoutcart.html',
         controller: 'CheckoutCtrl',
         resolve: {
           items: function (ProductFactory, UserFactory) {
-            return ProductFactory.getInfoFromSkus(UserFactory.currentUser.cart);
+            return ProductFactory.getInfoFromSkus(UserFactory.currentUser.cart)
           }
         }
       })
@@ -76,38 +76,36 @@ angular
         controller: 'CheckoutCtrl',
         resolve: {
           items: function (ProductFactory, UserFactory) {
-            return ProductFactory.getInfoFromSkus(UserFactory.currentUser.cart);
+            return ProductFactory.getInfoFromSkus(UserFactory.currentUser.cart)
           }
         }
       })
       .when('/congratulations', {
         templateUrl: 'views/congratulations.html',
-        controller: 'CongratulationsCtrl',
+        controller: 'CongratulationsCtrl'
       })
       .otherwise({
-        redirectTo: '/',
-      });
+        redirectTo: '/'
+      })
 
-    $httpProvider.interceptors.push('AuthInterceptorFactory');
+    $httpProvider.interceptors.push('AuthInterceptorFactory')
 
     $locationProvider.html5Mode({
-      enabled: true, 
-      requireBase: true,
-    });
-    
-    Stripe.setPublishableKey('pk_test_uEnw6EZC8otddMKeJUiZsHFz');
-    
-  }).run(function ($rootScope, $location) {
-    $rootScope.$on('$locationChangeStart', function (event) {
-      // TODO: Remove Hack because nav does not exist yet
-      var nav = document.querySelector('nav');
-      if (nav) {
-        if ($location.path() === '/') {
-          nav.classList.remove('horizontal');
-        } else {
-          nav.classList.add('horizontal');
-        }
-      }
-    });
-  });
+      enabled: true,
+      requireBase: true
+    })
 
+    Stripe.setPublishableKey('pk_test_uEnw6EZC8otddMKeJUiZsHFz')
+  }).run(function ($rootScope, $location) {
+  $rootScope.$on('$locationChangeStart', function (event) {
+    // TODO: Remove Hack because nav does not exist yet
+    var nav = document.querySelector('nav')
+    if (nav) {
+      if ($location.path() === '/') {
+        nav.classList.remove('horizontal')
+      } else {
+        nav.classList.add('horizontal')
+      }
+    }
+  })
+})

@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc function
@@ -9,53 +9,50 @@
  */
 angular.module('nightwalkerApp')
   .controller('CheckoutCtrl', function ($scope, $window, $location, $http, items, UserFactory) {
+    $scope.items = items
+    $scope.user = UserFactory.currentUser
+    $scope.goToCheckout = UserFactory.goToCheckout
 
-    $scope.items = items;      
-    $scope.user = UserFactory.currentUser;
-    $scope.goToCheckout = UserFactory.goToCheckout;
-    
     $scope.removeItem = function (item) {
-      item.quantity = 0;
-      $scope.updateCart(item);
-    };
+      item.quantity = 0
+      $scope.updateCart(item)
+    }
 
     $scope.updateCart = function (item) {
       for (var i = 0; i < $scope.items.length; i++) {
         if ($scope.items[i].product.sku === item.product.sku) {
-          var itemIndex = i;
+          var itemIndex = i
           if (item.quantity) {
-            $scope.items[i] = item;            
+            $scope.items[i] = item
           } else {
-            $scope.items.splice(itemIndex, 1);
+            $scope.items.splice(itemIndex, 1)
           }
-          break;
+          break
         }
       }
-      UserFactory.updateCart(item.product.sku, item.quantity);
-    };
-    
+      UserFactory.updateCart(item.product.sku, item.quantity)
+    }
+
     $scope.process = function (status, response) {
       if (response.error) {
         // TODO: Do something meaningful with validation error from stripe
         // needs to go to server
-        alert(response.error.message);
+        alert(response.error.message)
       } else {
         $http.post('/api/checkout', {
           card: response.card,
           stripeToken: response.id,
           user: UserFactory.currentUser,
-          shippingDetails: $scope.shippingDetails,
+          shippingDetails: $scope.shippingDetails
         }).then(function success (response) {
-          UserFactory.setUser(response.data);
+          UserFactory.setUser(response.data)
           // Only needed if user is checking out as guest, but do anyway
-          $window.localStorage.removeItem('cart');
-          $location.path('/congratulations');
+          $window.localStorage.removeItem('cart')
+          $location.path('/congratulations')
         }, function error (response) {
           // TODO: Do something meaningful with error from NW server
-          alert(response.data.error.message);
-        });
+          alert(response.data.error.message)
+        })
       }
-    };
-
-  });
-
+    }
+  })

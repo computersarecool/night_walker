@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc directive
@@ -12,8 +12,7 @@
 angular.module('nightwalkerApp')
   .directive('siteSizeGuide', function () {
     return {
-      restrict: 'E',      
+      restrict: 'E',
       templateUrl: 'partials/sizeguide.html'
-    };
-  });
-
+    }
+  })

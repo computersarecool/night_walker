@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc service
@@ -9,47 +9,44 @@
  */
 angular.module('nightwalkerApp')
   .factory('ProductFactory', function ($http) {
-
-    function getEdition (edition) { 
+    function getEdition (edition) {
       return $http.get('/api/editions/' + edition)
         .then(function success (response) {
-          return response.data;
+          return response.data
         }, function error (httpError) {
-          throw httpError.status + " : " + httpError.data;        
-        });
+          throw httpError.status + ' : ' + httpError.data
+        })
     }
-    
+
     function getProduct (flavor) {
       return $http.get('/api/shop/alternating-current/' + flavor)
         .then(function success (response) {
-          return response.data;
+          return response.data
         }, function error (httpError) {
-          throw httpError.status + " : " + httpError.data;
-        });
+          throw httpError.status + ' : ' + httpError.data
+        })
     }
 
     function getInfoFromSkus (skus) {
       // Change into an Array of quantity per sku
-      var skuObject =  {};
+      var skuObject = {}
       for (var i = 0; i < skus.length; ++i) {
         if (!skuObject[skus[i]]) {
-          skuObject[skus[i]] = 0;
+          skuObject[skus[i]] = 0
         }
-        ++skuObject[skus[i]];
+        ++skuObject[skus[i]]
       }
       return $http.post('/api/skus', skuObject)
         .then(function success (response) {
-          return response.data;
+          return response.data
         }, function error (httpError) {
-          throw httpError.status + " : " + httpError.data;          
-        });
+          throw httpError.status + ' : ' + httpError.data
+        })
     }
-    
+
     return {
       getEdition: getEdition,
       getProduct: getProduct,
-      getInfoFromSkus: getInfoFromSkus,
-    };
-    
-  });
-
+      getInfoFromSkus: getInfoFromSkus
+    }
+  })

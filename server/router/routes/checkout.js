@@ -1,62 +1,69 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-var databaseController = require('../../controllers/database');
-var shippingController = require('../../controllers/shipping');
-var rawMailController = require('../../controllers/rawmail');
-var simpleMailController = require('../../controllers/simplemail');
-var stripeController = require('../../controllers/stripe');
+const databaseController = require('../../controllers/database')
+const shippingController = require('../../controllers/shipping')
+const rawMailController = require('../../controllers/rawmail')
+const simpleMailController = require('../../controllers/simplemail')
+const stripeController = require('../../controllers/stripe')
+
+router.post('/', function (req, res) {
+  const user = req.body.user
+
+  if (user._id) {
+    // Member checkout, get user from database
+    databaseController.findUserByID(user, (err, user) => {
+      if (err) {
+        console.log(err)
+      }
+      checkout(req, res, user)
+    })
+  } else {
+    // Guest checkout
+    checkout(req, res, user)
+  }
+})
 
 function checkout (req, res, user) {
-  var purchasedItems;  
-  var shippingDetails = req.body.shippingDetails;
-  var stripeToken = req.body.stripeToken;
+  let purchasedItems
+  const shippingDetails = req.body.shippingDetails
+  const stripeToken = req.body.stripeToken
 
-  user.orderCost = 0;
+  user.orderCost = 0
   // Get total cost from database
-  databaseController.getTotal(user, function (err, dbUser) {
+  databaseController.getTotal(user, (err, dbUser) => {
+    if (err) {
+      console.log('There was an error retrieving user')
+    }
     // Create the charge in stripe then send response
-    stripeController.charge(dbUser, stripeToken, function (err, finalUser) {
+    stripeController.charge(dbUser, stripeToken, (err, finalUser) => {
       // TODO: Error handling (save partially completed order?)
       if (err) {
         res.status(err.status).json({
           error: {
-            message: err.message,
+            message: err.message
           }
-        });
+        })
       } else {
         // Store items, send user with empty cart then save items
-        purchasedItems = finalUser.cart;
-        finalUser.cart = [];
-        res.json(finalUser);
-        finalUser.purchasedItems = purchasedItems;
+        purchasedItems = finalUser.cart
+        finalUser.cart = []
+        res.json(finalUser)
+        finalUser.purchasedItems = purchasedItems
+
         // Send emails
-        shippingController.createLabel(finalUser, shippingDetails, function (trackingCode, rawOptions, simpleOptions) {
-          // TODO: Store email response codes?
-          rawMailController.sendEmail(rawOptions);
-          simpleMailController.emailCustomer(simpleOptions);
+        shippingController.createLabel(finalUser, shippingDetails, (trackingCode, rawOptions, simpleOptions) => {
+          // TODO: Store email info (response codes)?
+          rawMailController.sendEmail(rawOptions)
+          simpleMailController.emailCustomer(simpleOptions)
           // Create and save order in database
-          databaseController.createOrder(finalUser, trackingCode, shippingDetails, function (order) {
-            databaseController.saveOrder(order, finalUser);
-          });
-        });
+          databaseController.createOrder(finalUser, trackingCode, shippingDetails, (order) => {
+            databaseController.saveOrder(order, finalUser)
+          })
+        })
       }
-    });
-  });
+    })
+  })
 }
- 
-router.post('/', function (req, res) {
-  var user = req.body.user;
-  if (user._id) {
-    // Member checkout, get user from database
-    databaseController.findUserByID(user, function (err, user) {
-      checkout(req, res, user);
-    });
-  } else {
-    // Guest checkout
-    checkout(req, res, user);
-  }  
-});
 
-module.exports = router;
-
+module.exports = router

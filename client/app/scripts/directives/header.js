@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc directive
@@ -12,5 +12,5 @@ angular.module('nightwalkerApp')
       restrict: 'E',
       templateUrl: 'partials/header.html',
       controller: 'LoginCtrl'
-    };
-  });
+    }
+  })

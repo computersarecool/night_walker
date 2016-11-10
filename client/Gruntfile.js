@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -8,20 +8,20 @@
 
 module.exports = function (grunt) {
   // Set color output to false. .option sets or gets values and accesses variables set from cli
-  grunt.option('color', false);
+  grunt.option('color', false)
 
   // Load grunt tasks automatically
   // Reads dependencies / devDependencies etc. in package.json and loads grunt tasks (grunt.loadNpmTasks)
-  require('load-grunt-tasks')(grunt);
+  require('load-grunt-tasks')(grunt)
 
   // Time how long tasks take. Can help when optimizing build times
-  require('time-grunt')(grunt);
+  require('time-grunt')(grunt)
 
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
     dist: '../server/dist'
-  };
+  }
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -30,7 +30,6 @@ module.exports = function (grunt) {
     yeoman: appConfig,
 
 
-    
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
@@ -65,7 +64,6 @@ module.exports = function (grunt) {
     },
 
 
-    
     // The actual grunt server settings
     connect: {
       options: {
@@ -85,7 +83,7 @@ module.exports = function (grunt) {
                 connect.static('./bower_components')
               ),
               connect.static(appConfig.app)
-            ];
+            ]
           }
         }
       },
@@ -101,7 +99,7 @@ module.exports = function (grunt) {
                 connect.static('./bower_components')
               ),
               connect.static(appConfig.app)
-            ];
+            ]
           }
         }
       },
@@ -114,8 +112,6 @@ module.exports = function (grunt) {
     },
 
 
-
-    
     // Make sure code styles are up to par and there are no obvious mistakes
     jshint: {
       options: {
@@ -137,7 +133,6 @@ module.exports = function (grunt) {
     },
 
 
-    
     // Empties folders to start fresh
     clean: {
       dist: {
@@ -154,7 +149,6 @@ module.exports = function (grunt) {
     },
 
 
-    
     stylus: {
       compile: {
         options: {
@@ -167,7 +161,6 @@ module.exports = function (grunt) {
     },
 
 
-    
     // Add vendor prefixed styles
     autoprefixer: {
       options: {
@@ -183,21 +176,18 @@ module.exports = function (grunt) {
       }
     },
 
-
-
     // Automatically inject Bower components into the app
     wiredep: {
-/*      options: {
-        cwd: '<%= yeoman.app %>'
-      },*/
+      /*      options: {
+              cwd: '<%= yeoman.app %>'
+            },*/
       app: {
         src: ['<%= yeoman.app %>/index.html'],
-        ignorePath:  /\.\.\//
+        ignorePath: /\.\.\//
       }
     },
 
 
-    
     // Renames files for browser caching purposes
     filerev: {
       dist: {
@@ -211,7 +201,6 @@ module.exports = function (grunt) {
     },
 
 
-    
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
@@ -232,13 +221,12 @@ module.exports = function (grunt) {
     },
 
 
-    
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
-        assetsDirs: ['<%= yeoman.dist %>','<%= yeoman.dist %>/images']
+        assetsDirs: ['<%= yeoman.dist %>', '<%= yeoman.dist %>/images']
       }
     },
 
@@ -268,7 +256,7 @@ module.exports = function (grunt) {
     //   dist: {}
     // },
 
-    
+
     imagemin: {
       dist: {
         files: [{
@@ -280,7 +268,7 @@ module.exports = function (grunt) {
       }
     },
 
-    
+
     svgmin: {
       dist: {
         files: [{
@@ -292,7 +280,7 @@ module.exports = function (grunt) {
       }
     },
 
-    
+
     htmlmin: {
       dist: {
         options: {
@@ -311,7 +299,7 @@ module.exports = function (grunt) {
       }
     },
 
-    
+
     // ngmin tries to make the code safe for minification automatically by
     // using the Angular long form for dependency injection. It doesn't work on
     // things like resolve or inject so those have to be done manually.
@@ -327,7 +315,6 @@ module.exports = function (grunt) {
     },
 
 
-    
     // Replace Google CDN references
     cdnify: {
       dist: {
@@ -336,7 +323,6 @@ module.exports = function (grunt) {
     },
 
 
-    
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -384,7 +370,6 @@ module.exports = function (grunt) {
     },
 
 
-    
     // Test settings
     karma: {
       unit: {
@@ -392,12 +377,11 @@ module.exports = function (grunt) {
         singleRun: true
       }
     }
-  });
-
+  })
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
+      return grunt.task.run(['build', 'connect:dist:keepalive'])
     }
 
     grunt.task.run([
@@ -408,13 +392,13 @@ module.exports = function (grunt) {
       'autoprefixer',
       'connect:livereload',
       'watch'
-    ]);
-  });
+    ])
+  })
 
   grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run(['serve:' + target]);
-  });
+    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.')
+    grunt.task.run(['serve:' + target])
+  })
 
   grunt.registerTask('test', [
     'clean:server',
@@ -423,9 +407,9 @@ module.exports = function (grunt) {
     'autoprefixer',
     'connect:test',
     'karma'
-  ]);
+  ])
 
-  
+
 
   grunt.registerTask('build', [
     'clean:dist',
@@ -443,11 +427,11 @@ module.exports = function (grunt) {
     'filerev',
     'usemin',
     'htmlmin'
-  ]);
+  ])
 
   grunt.registerTask('default', [
     'newer:jshint',
     'test',
     'build'
-  ]);
-};
+  ])
+}

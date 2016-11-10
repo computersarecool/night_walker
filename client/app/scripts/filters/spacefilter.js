@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc filter
@@ -11,6 +11,6 @@
 angular.module('nightwalkerApp')
   .filter('spacefilter', function () {
     return function (input) {
-      return input.replace(" ", "-");
-    };
-  });
+      return input.replace(' ', '-')
+    }
+  })

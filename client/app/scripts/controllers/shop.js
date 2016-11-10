@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc function
@@ -9,5 +9,5 @@
  */
 angular.module('nightwalkerApp')
   .controller('ShopCtrl', function ($scope, edition) {
-    $scope.edition = edition;
-  });
+    $scope.edition = edition
+  })

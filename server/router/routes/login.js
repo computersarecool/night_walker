@@ -1,60 +1,57 @@
-var express = require('express');
-var jwt = require('jsonwebtoken');
-var passport = require('passport');
-var jwtSecret = require('../../../credentials').jwtSecret;
+const express = require('express')
+const jwt = require('jsonwebtoken')
+const passport = require('passport')
+const jwtSecret = require('../../../credentials').jwtSecret
 
-require('../../passport')(passport);
+require('../../passport')(passport)
 
-var router = express.Router();
+const router = express.Router()
 
 router.post('/signup', function (req, res, next) {
-  passport.authenticate('local-signup', {session: false}, function (err, user, info) {  
+  passport.authenticate('local-signup', {session: false}, function (err, user, info) {
     // TODO: Error handling
     if (err) {
-      throw err;
-    }
-    if (!user) {
+      throw err
+    } else if (!user) {
       res.status(401).json({
         'error': info
-      });
+      })
     }
-    //This is where the jwt is created
-    var token = jwt.sign({  
+    // This is where the jwt is created
+    const token = jwt.sign({
       funThing: 'This is your new JWT',
       email: user.email
-    }, jwtSecret);
+    }, jwtSecret)
 
     res.json({
-      user : user,
+      user: user,
       token: token
-    });
-  })(req, res, next);
-});
-
+    })
+  })(req, res, next)
+})
 
 router.post('/login', function (req, res, next) {
   passport.authenticate('local-login', {session: false}, function (err, user, info) {
-    // TODO: Error handling      
+    // TODO: Error handling
     if (err) {
-      throw err;
+      throw err
     }
     if (!user) {
       res.status(401).json({
         'error': info
-      });
+      })
     }
     // This is where the jwt is created
-    var token = jwt.sign({
+    const token = jwt.sign({
       funThing: 'This is your personal JWT',
       email: user.email
-    }, jwtSecret);
+    }, jwtSecret)
 
     res.json({
-      user : user,
+      user: user,
       token: token
-    });
-  })(req, res, next);
-});
+    })
+  })(req, res, next)
+})
 
-module.exports = router;
-
+module.exports = router

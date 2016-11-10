@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc directive
@@ -10,7 +10,6 @@ angular.module('nightwalkerApp')
   .directive('siteCheckoutCart', function ($window, $location, $timeout) {
     return {
       restrict: 'E',
-      templateUrl: 'partials/checkoutcart.html',
-    };
-  });
-
+      templateUrl: 'partials/checkoutcart.html'
+    }
+  })

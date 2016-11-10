@@ -1,22 +1,21 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 
-var Schema = mongoose.Schema;
+var Schema = mongoose.Schema
 
 var editionsSchema = new Schema({
   name: {
-    type: String,
+    type: String
   },
   urlSafeName: {
-    type: String,
+    type: String
   },
   kind: {
-    type: String,
+    type: String
   },
   members: {
-    pants: {},
-  },
-});
+    pants: {}
+  }
+})
 
-var Editions = mongoose.model('Editions', editionsSchema);
-module.exports = Editions;
-
+var Editions = mongoose.model('Editions', editionsSchema)
+module.exports = Editions
