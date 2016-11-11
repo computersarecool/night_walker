@@ -36,7 +36,8 @@
     "node": "^4.0.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "env": "env"
   },
   "dependencies": {}
 }

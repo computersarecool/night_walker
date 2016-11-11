@@ -316,6 +316,7 @@ module.exports = (grunt) => {
     },
 
     // Run some tasks in parallel to speed up the build process
+    // Can't do this because of small file
     concurrent: {
       server: [
         'copy:styles'
@@ -324,7 +325,6 @@ module.exports = (grunt) => {
         'copy:styles'
       ],
       dist: [
-        'copy:styles',
         'imagemin',
         'svgmin'
       ]
