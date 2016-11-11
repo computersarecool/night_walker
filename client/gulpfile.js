@@ -5,6 +5,7 @@ const gulpIf = require('gulp-if')
 const uglify = require('gulp-uglify')
 const stylus = require('gulp-stylus')
 const cssnano = require('gulp-cssnano')
+const rename = require('gulp-rename')
 const del = require('del')
 const nib = require('nib')
 const dist = '../server/dist'
@@ -18,6 +19,7 @@ gulp.task('bower', () => {
 gulp.task('stylus', () => {
   del('app/styles/main.css').then(() => gulp.src('app/styles/source.styl')
     .pipe(stylus({use: [nib()]}))
+    .pipe(rename('main.css'))
     .pipe(gulp.dest('app/styles/'))
   )
 })

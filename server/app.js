@@ -7,8 +7,8 @@ const apiRouter = require('./router/api')
 
 const app = express()
 
-// this opens the database even though 'db' is never used
-const db = require('../database')
+// this opens the database connection
+require('../database')
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
@@ -19,20 +19,20 @@ app.use('/api', apiRouter)
 
 // development
 if (process.env.NODE_ENV === 'development') {
-  app.use(express.static(path.join(__dirname, '../client')))
-  app.use(express.static(path.join(__dirname, '../client/.tmp')))
+  // client is to server bower components, client/app is to serve the rest
+  app.use(express.static(path.join(__dirname, '../client/')))
   app.use(express.static(path.join(__dirname, '../client/app')))
-  // Development Error handling
+  // development error handling
   app.use(function (err, req, res, next) {
     console.log(err)
     res.status(err.status || 500).send(err.message || 'There is an unknown error')
   })
 }
 
-// Production
+// production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/dist')))
-  // Production error handling
+  // production error handling
   app.use(function (err, req, res, next) {
     res.status(err.status || 500).send(err.message || 'There is an unknown error')
   })
