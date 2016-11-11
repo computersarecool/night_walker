@@ -19,8 +19,5 @@
     "angular-scenario": "~1.5"
   },
   "private": true,
-  "appPath": "app",
-  "resolutions": {
-    "angular": "~1.5"
-  }
+  "appPath": "app"
 }
