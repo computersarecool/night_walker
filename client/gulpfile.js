@@ -19,14 +19,13 @@ gulp.task('bower', () => {
 
 // update stylus
 gulp.task('stylus', () => {
-  del('app/styles/main.css').then(() => gulp.src('app/styles/source.styl')
+  return gulp.src('app/styles/source.styl')
     .pipe(stylus())
     .pipe(autoprefixer({
       browsers: ['last 5 versions']
     }))
     .pipe(rename('main.css'))
     .pipe(gulp.dest('app/styles/'))
-  )
 })
 
 // go through the <!--build: blocks and concat / minify and update references
