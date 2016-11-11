@@ -45,6 +45,7 @@
 - Save user information to expediate form filling out
 - Stripeform directive line 23 is $apply neccesary
 - userfactory.js line 135 what happens when there is an invalid auth token
+- remove <base> tag
 
 --- Bower.json
 - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json
