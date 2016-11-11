@@ -276,7 +276,9 @@ img.poster {
   bottom: 0.5vh;
 }
 .gallery-picker {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   width: 3.5vh;
   height: 3.5vh;
   border-radius: 50%;

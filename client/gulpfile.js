@@ -14,7 +14,7 @@ const dist = '../server/dist'
 gulp.task('bower', () => {
   return gulp.src('app/index.html')
     .pipe(wiredep())
-    .pipe(gulp.dest('app'))
+    .pipe(gulp.dest('app/'))
 })
 
 // update stylus
@@ -29,11 +29,6 @@ gulp.task('stylus', () => {
   )
 })
 
-// delete the already existing dist folder
-gulp.task('clean:dist', () => {
-  return del.sync(dist)
-})
-
 // go through the <!--build: blocks and concat / minify and update references
 gulp.task('useref', () => {
   return gulp.src('app/index.html')
@@ -41,6 +36,11 @@ gulp.task('useref', () => {
     .pipe(gulpIf('*.js', uglify()))
     .pipe(gulpIf('*.css', cssnano()))
     .pipe(gulp.dest(dist))
+})
+
+// delete the already existing dist folder
+gulp.task('clean:dist', () => {
+  return del.sync(dist)
 })
 
 gulp.task('default', ['bower'])
