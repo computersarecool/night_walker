@@ -82,16 +82,12 @@ site-nav {
 }
 html,
 body {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   font-family: 'Arial', sans-serif;
 }
 *,
 *:before,
 *:after {
-  -webkit-box-sizing: inherit;
-  -moz-box-sizing: inherit;
   box-sizing: inherit;
   outline: none;
 }
@@ -166,18 +162,10 @@ nav ul {
   max-width: 40vw;
   max-height: 40vh;
   overflow: hidden;
-  -webkit-transition: max-height 2s;
-  -moz-transition: max-height 2s;
-  -o-transition: max-height 2s;
-  -ms-transition: max-height 2s;
   transition: max-height 2s;
 }
 nav ul.collapsed {
   max-width: 0;
-  -webkit-transition: max-width 0.2s;
-  -moz-transition: max-width 0.2s;
-  -o-transition: max-width 0.2s;
-  -ms-transition: max-width 0.2s;
   transition: max-width 0.2s;
 }
 nav ul.height-collapse {
@@ -234,8 +222,6 @@ img.gallery {
   margin: 0 auto;
   z-index: -3;
   opacity: 1;
-  -ms-filter: none;
-  filter: none;
 }
 img.gallery.next {
   z-index: -2;
@@ -243,12 +229,6 @@ img.gallery.next {
 img.gallery.fade {
   z-index: -2;
   opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-  -webkit-transition: opacity cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
-  -moz-transition: opacity cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
-  -o-transition: opacity cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
-  -ms-transition: opacity cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
   transition: opacity cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
 }
 img.gallery.front {
@@ -296,8 +276,6 @@ img.poster {
   bottom: 0.5vh;
 }
 .gallery-picker {
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   width: 3.5vh;
   height: 3.5vh;
