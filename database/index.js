@@ -1,6 +1,5 @@
 let database
 const mongoose = require('mongoose')
-
 const credentials = require('../credentials')
 const UserModel = require('./schemas/users')
 const ProductModel = require('./schemas/products')
