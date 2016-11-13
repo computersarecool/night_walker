@@ -7,57 +7,42 @@ module.exports = (passport) => {
     passwordField: 'password',
     passReqToCallback: true
   }, (req, email, password, done) => {
-    // check to see if there is already a user
     if (!req.user) {
-      // Asynchronous User.findOne will not fire until data is sent back
       process.nextTick(() => {
-        // We are checking to see if the user trying to login already exists
+        // check to see if the email is already taken
         Users.findOne({email: email}, (err, user) => {
-          // If there are any errors, return the error
           if (err) {
             return done(err)
           }
-          // Check to see if there's already a user with that email
           if (user) {
-            console.log('The email is already taken')
-            // TODO: ALREADY HERE SEND RETRY ATTEMPT
             return done(null, false, 'That email is already taken.')
-          } else {
-            var newUser = new Users()
-            newUser.email = req.body.email
-            // TODO: GENERATE HASH
-            newUser.password = req.body.password
-            newUser.firstName = req.body.firstName
-            newUser.lastName = req.body.lastName
-            // Add items if temporary cart
-            var cart = req.body.cart
-            if (cart) {
-              newUser.cart = JSON.parse(cart)
-            }
-            // WHAM DELETE TRACKER COMMENT
-            console.log('All the way here')
-            newUser.save(function (err) {
-              if (err) {
-                // WHAM BETTER ERROR HANDLING
-                console.log('This was the error')
-                return done(err)
-              }
-              return done(null, newUser)
-            })
           }
+          // create new user and add items if in cart
+          const newUser = new Users()
+          newUser.email = req.body.email
+          newUser.password = req.body.password
+          newUser.firstName = req.body.firstName
+          newUser.lastName = req.body.lastName
+          const cart = req.body.cart
+          if (cart) {
+            newUser.cart = JSON.parse(cart)
+          }
+          newUser.save((err) => {
+            if (err) {
+              return done(err)
+            }
+            return done(null, newUser)
+          })
         })
       })
     } else {
-      // FT Social Media account
-      // pull the user out of the request object
-      var user = req.user
-      // Update the current users local credentials
-      // WHAM GENERATE HASH HERE
+      // there is already a user in the request. Redirect / add items?
+      const user = req.user
       user.local.password = password
       user.local.email = email
-      user.save(function (err) {
+      user.save((err) => {
         if (err) {
-          throw err
+          return done(err)
         }
         return done(null, user)
       })
@@ -70,25 +55,22 @@ module.exports = (passport) => {
     passReqToCallback: true
   }, (req, email, password, done) => {
     Users.findOne({email: email}, (err, user) => {
-      // If there are any errors, return the error before anything else
+      // if there are any errors, return the error before anything else
       if (err) {
         return done(err)
       }
-      // If no user is found, return the message
       if (!user) {
-        return done(null, false)
+        return done(null, false, 'No user with that email was found')
       }
-      // Check if password is valid
+      // check password
       user.checkPassword(password, (err, auth) => {
         if (err) {
           return done(err)
         }
         if (!auth) {
-          // An incorrect password was issued
           return done(null, false, 'Sorry, incorrect email or password')
         }
-        // All is well, return successful user
-        // If the user has a cart before it logged on - add items to real cart
+        // user logged in. add items if they are in cart then return user
         const cart = req.body.cart
         if (cart) {
           const items = JSON.parse(cart)
@@ -98,7 +80,7 @@ module.exports = (passport) => {
           user.save((err) => {
             if (err) {
               // Internal error
-              console.log('There was an error with the saving of the document')
+              throw new Error('There was an error with the saving of the document')
             }
             return done(null, user)
           })

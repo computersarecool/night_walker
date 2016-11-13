@@ -6,38 +6,17 @@ const router = express.Router()
 require('../../passport')(passport)
 
 router.post('/signup', (req, res, next) => {
-  passport.authenticate('local-signup', {session: false}, (err, user, info) => {
-    // TODO: Error handling
-    if (err) {
-      next(err)
-    } else if (!user) {
-      res.status(401).json({
-        'error': info
-      })
-    }
-    // This is where the jwt is created
-    const token = jwt.sign({
-      funThing: 'This is your new JWT',
-      email: user.email
-    }, jwtSecret)
-
-    res.json({
-      user: user,
-      token: token
-    })
-  })(req, res, next)
+  authenticate('local-signup', req, res, next)
 })
 
-router.post('/login', function (req, res, next) {
-  passport.authenticate('local-login', {session: false}, function (err, user, info) {
-    // TODO: Error handling
-    if (err) {
-      throw err
-    }
-    if (!user) {
-      res.status(401).json({
-        'error': info
-      })
+router.post('/login', (req, res, next) => {
+  authenticate('local-login', req, res, next)
+})
+
+const authenticate = (type, req, res, next) => {
+  passport.authenticate(type, {session: false}, (err, user, info) => {
+    if (err || !user) {
+      next(err)
     }
     // This is where the jwt is created
     const token = jwt.sign({
@@ -50,6 +29,6 @@ router.post('/login', function (req, res, next) {
       token: token
     })
   })(req, res, next)
-})
+}
 
 module.exports = router
