@@ -1,5 +1,5 @@
-var LocalStrategy = require('passport-local').Strategy
-var Users = require('../database').Users
+const LocalStrategy = require('passport-local').Strategy
+const Users = require('../database').Users
 
 module.exports = (passport) => {
   passport.use('local-signup', new LocalStrategy({
@@ -54,23 +54,22 @@ module.exports = (passport) => {
     passwordField: 'password',
     passReqToCallback: true
   }, (req, email, password, done) => {
+    console.log('something here ')
     Users.findOne({email: email}, (err, user) => {
-      // if there are any errors, return the error before anything else
       if (err) {
         return done(err)
       }
       if (!user) {
         return done(null, false, 'No user with that email was found')
       }
-      // check password
-      user.checkPassword(password, (err, auth) => {
+      user.checkPassword(password, (err, authenticated) => {
         if (err) {
           return done(err)
         }
-        if (!auth) {
+        if (!authenticated) {
           return done(null, false, 'Sorry, incorrect email or password')
         }
-        // user logged in. add items if they are in cart then return user
+        // user logged in correctly. add items if they are in cart then return user
         const cart = req.body.cart
         if (cart) {
           const items = JSON.parse(cart)

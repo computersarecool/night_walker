@@ -15,10 +15,16 @@ router.post('/login', (req, res, next) => {
 
 const authenticate = (type, req, res, next) => {
   passport.authenticate(type, {session: false}, (err, user, info) => {
-    if (err || !user) {
-      next(err)
+    if (err) {
+      return next(err)
     }
-    // This is where the jwt is created
+
+    if (!user) {
+      const error = new Error(info)
+      error.status = 401
+      return next(error)
+    }
+
     const token = jwt.sign({
       funThing: 'This is your personal JWT',
       email: user.email

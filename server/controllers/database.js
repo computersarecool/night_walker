@@ -1,5 +1,4 @@
 const async = require('async')
-
 const Products = require('../../database').Products
 const Users = require('../../database').Users
 const Orders = require('../../database').Orders
