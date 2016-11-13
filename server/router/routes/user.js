@@ -1,30 +1,27 @@
 const express = require('express')
-const router = express.Router()
 const expressJwt = require('express-jwt')
-
 const databaseController = require('../../controllers/database')
 const jwtSecret = require('../../../credentials').jwtSecret
+const router = express.Router()
 
+// this adds the decoded req.user to the decoded JWT
 router.use('/', expressJwt({
   secret: jwtSecret,
   credentialsRequired: false
 }), (err, req, res, next) => {
-  // This adds the decoded req.user to the decoded JWT
-  // TODO: Error handling (delete storage keys for errors)
   if (err) {
-    res.status(401).json('invalid token...')
+    next(err)
   } else {
     next()
   }
 })
 
-router.get('/', function (req, res) {
+router.get('/', (req, res, next) => {
   databaseController.findUserByEmail(req.user.email, (err, user) => {
-    // TODO: Error handling
     if (err) {
-      res.status(400).send(err)
+      next(err)
     } else if (!user) {
-      res.status(401).send('No user found...')
+      next({status: 401, message: 'No user found'})
     } else {
       res.json({
         user: user

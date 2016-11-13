@@ -2,12 +2,12 @@ const express = require('express')
 const router = express.Router()
 const databaseController = require('../../controllers/database')
 
-router.get('/:edition', (req, res) => {
+router.get('/:edition', (req, res, next) => {
   const urlSafeName = req.params.edition
+
   databaseController.findEdition(urlSafeName, (err, edition) => {
-    // TODO: Error handling
     if (err) {
-      res.status(err.status).json(err.message)
+      next(err)
     } else {
       res.json(edition)
     }

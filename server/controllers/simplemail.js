@@ -1,16 +1,13 @@
 const fs = require('fs')
 const path = require('path')
-
 const aws = require('aws-sdk')
-
 const accessKeyId = require('../../credentials').aws_access_key_id
 const secretAccessKey = require('../../credentials').aws_secret_access_key
 const region = 'us-west-2'
-
 aws.config.update({accessKeyId: accessKeyId, secretAccessKey: secretAccessKey, region: region})
 const ses = new aws.SES()
 
-// Pass in firstName, lastName, trackingCode, toAddresses, subject, fromAddress
+// pass in firstName, lastName, trackingCode, toAddresses, subject, fromAddress
 function emailCustomer (emailInfo) {
   let outgoingEmail
   const firstNameMatch = /#FIRSTNAME/
@@ -19,9 +16,10 @@ function emailCustomer (emailInfo) {
 
   // send the email
   // TODO: Make readfile a stream
-  fs.readFile(path.join(__dirname, '../templates/emails', 'customer_confirmation.html'), {encoding: 'utf-8'}, function (err, data) {
+  fs.readFile(path.join(__dirname, '../templates/emails', 'customer_confirmation.html'), {encoding: 'utf-8'}, (err, data) => {
     if (err) {
-      console.log('There was an error sending the email')
+      // TODO: Internal error
+      console.log('There was an error creating the email')
       throw err
     } else {
       outgoingEmail = data.replace(firstNameMatch, emailInfo.firstName)
@@ -47,6 +45,7 @@ function emailCustomer (emailInfo) {
 
       ses.sendEmail(params, (err, id) => {
         if (err) {
+          // TODO: Internal error
           throw err
         }
         console.log('Simple mail sent', id)

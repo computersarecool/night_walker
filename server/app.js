@@ -4,7 +4,6 @@ const logger = require('morgan')
 const bodyParser = require('body-parser')
 const passport = require('passport')
 const apiRouter = require('./router/api')
-
 const app = express()
 
 // this opens the database connection
@@ -19,11 +18,11 @@ app.use('/api', apiRouter)
 
 // development
 if (process.env.NODE_ENV === 'development') {
-  // client is to server bower components, client/app is to serve the rest
+  // client is to serve bower components, client/app is to serve the rest
   app.use(express.static(path.join(__dirname, '../client/')))
   app.use(express.static(path.join(__dirname, '../client/app')))
   // development error handling
-  app.use(function (err, req, res, next) {
+  app.use((err, req, res, next) => {
     console.log(err)
     res.status(err.status || 500).send(err.message || 'There is an unknown error')
   })
@@ -33,7 +32,7 @@ if (process.env.NODE_ENV === 'development') {
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/dist')))
   // production error handling
-  app.use(function (err, req, res, next) {
+  app.use((err, req, res, next) => {
     res.status(err.status || 500).send(err.message || 'There is an unknown error')
   })
 }

@@ -3,7 +3,7 @@ const easypost = require('node-easypost')(apiKey)
 
 // TODO: temporarily place here as part of email templating
 const rawSubject = 'Test subject'
-const rawBody = 'This is tlahe body of the email'
+const rawBody = 'This is the body of the email'
 const simpleSubject = 'Order confirmation'
 
 function createLabel (user, shippingDetails, emailCallback) {
@@ -43,13 +43,12 @@ function createLabel (user, shippingDetails, emailCallback) {
 function createAddress (toAddress, fromAddress, shippingDetails, emailCallback) {
   easypost.Address.create(toAddress, (err, toAddress) => {
     if (err) {
-      console.log('There was an error')
+      emailCallback(err)
     }
-    toAddress.verify(function (err, response) {
+    toAddress.verify((err, response) => {
       if (err) {
         // TODO: Error handling: address is invalid
-        console.log('Address is invalid.', err)
-        throw err
+        emailCallback(err)
       } else if (response.message !== undefined && response.message !== null) {
         console.log('Address is valid but has an issue: ', response.message)
         createParcel(response.address, fromAddress, shippingDetails, emailCallback)
@@ -68,8 +67,7 @@ function createParcel (verifiedToAddress, fromAddress, shippingDetails, emailCal
     weight: 21.2
   }, function (err, parcel) {
     if (err) {
-      console.log('Error in shipping controller', err)
-      throw err
+      emailCallback(err)
     } else {
       console.log('parcel create returns\n\n', parcel)
       createShipment(verifiedToAddress, fromAddress, shippingDetails, parcel, emailCallback)
@@ -106,15 +104,15 @@ function createShipment (toAddress, fromAddress, shippingDetails, parcel, emailC
     to_address: toAddress,
     from_address: fromAddress,
     parcel: parcel
-  //    customs_info: customsInfo
+   //customs_info: customsInfo
   }, (err, shipment) => {
     if (err) {
-      console.log(err)
+      emailCallback(err)
     }
     // TODO: Pick "cheapest" using method
     shipment.buy({rate: shipment.rates[0]}, (err, shipment) => {
       if (err) {
-        console.log(err)
+        emailCallback(err)
       }
 
       const trackingCode = shipment.tracking_code
@@ -149,7 +147,7 @@ function createShipment (toAddress, fromAddress, shippingDetails, parcel, emailC
         subject: simpleSubject,
         fromAddress: fromAddress.fromEmail
       }
-      emailCallback(trackingCode, fromAddress, simpleMailOptions)
+      emailCallback(null, trackingCode, fromAddress, simpleMailOptions)
     })
   })
 }

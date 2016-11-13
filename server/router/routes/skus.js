@@ -1,7 +1,7 @@
 const express = require('express')
 const async = require('async')
-const router = express.Router()
 const databaseController = require('../../controllers/database')
+const router = express.Router()
 
 router.post('/', (req, res, next) => {
   const itemDetails = []

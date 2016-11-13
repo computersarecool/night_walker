@@ -1,9 +1,8 @@
 const express = require('express')
-const router = express.Router()
 const expressJwt = require('express-jwt')
-
 const databaseController = require('../../controllers/database')
 const jwtSecret = require('../../../credentials').jwtSecret
+const router = express.Router()
 
 // authenticate user's jwt
 router.post('/', expressJwt({
@@ -27,18 +26,17 @@ router.post('/', (req, res) => {
   // TODO: Check if these checks are neccesary
   if (!email) {
     res.status(401).json('There is no email')
-    return
   } else if (!items) {
     res.status(401).json('There are no items to add')
-    return
+  } else {
+    databaseController.findUserAndUpdate(email, items, (err, user) => {
+      if (err) {
+        res.status(err.status).json(err.message)
+      } else {
+        res.json(user)
+      }
+    })
   }
-
-  databaseController.findUserAndUpdate(email, items, (err, user) => {
-    if (err) {
-      res.status(err.status).json(err.message)
-    }
-    res.json(user)
-  })
 })
 
 module.exports = router
