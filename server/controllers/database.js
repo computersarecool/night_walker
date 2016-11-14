@@ -6,17 +6,16 @@ const Editions = require('../../database').Editions
 
 function findEdition (urlSafeName, callback) {
   Editions.findOne({urlSafeName: urlSafeName}, (err, edition) => {
-    // TODO: Error handling
+    // TODO: Internal Error handling
     if (err) {
       throw err
     }
-    if (edition) {
-      callback(null, edition)
-    } else {
+    if (!edition) {
       let error = new Error('No collection with that name found')
       error.status = 404
-      callback(error)
+      return callback(error)
     }
+    callback(null, edition)
   })
 }
 
@@ -59,10 +58,15 @@ function findUserByID (user, checkoutCallback) {
 }
 
 function findUserByEmail (email, foundCallback) {
-  Users.findOne({email: email}, function (err, user) {
-    // TODO: Error handling
+  Users.findOne({email: email}, (err, user) => {
+    // TODO: Internal Error handling
     if (err) {
       throw err
+    }
+    if (!user) {
+      const error = new Error('No user found')
+      error.status = 401
+      return foundCallback(error)
     }
     foundCallback(null, user.toObject())
   })
@@ -79,27 +83,26 @@ function findProduct (user, skunumber, asyncCallback) {
   })
 }
 
-function findProductByFlavor (safeFlavor, callback) {
+function findProductByFlavor (safeFlavor, foundCallback) {
   Products.findOne({safeFlavor: safeFlavor}).lean().exec((err, product) => {
-    // TODO: Error handling
+    // TODO: Internal Error handling
     if (err) {
       throw err
     }
-    if (product) {
-      // TODO: Use schema design to get this better
-      Products.distinct('sizes', {safeFlavor: safeFlavor}, (err, distinctSizes) => {
-        // TODO: Error handling
-        if (err) {
-          throw err
-        }
-        product.distinctSizes = distinctSizes
-        callback(null, product)
-      })
-    } else {
+    if (!product) {
       let error = new Error('No product found')
       error.status = 404
-      callback(err)
+      return foundCallback(err)
     }
+    // TODO: Use schema design to improve this
+    Products.distinct('sizes', {safeFlavor: safeFlavor}, (err, distinctSizes) => {
+      // TODO: Error handling
+      if (err) {
+        throw err
+      }
+      product.distinctSizes = distinctSizes
+      foundCallback(null, product)
+    })
   })
 }
 
@@ -147,8 +150,8 @@ function createOrder (user, trackingCode, shippingDetails, saveCallback) {
     successOrder.userID = user._id
   }
 
-  // Add each purchased item to order.items
-  user.purchasedItems.forEach((item) => {
+  // Add each item from cart to order.items
+  user.cart.forEach((item) => {
     successOrder.items.push(item)
   })
 

@@ -1,66 +1,75 @@
 const express = require('express')
-const router = express.Router()
+const expressJwt = require('express-jwt')
+const jwtSecret = require('../../../credentials').jwtSecret
 const databaseController = require('../../controllers/database')
 const shippingController = require('../../controllers/shipping')
 const rawMailController = require('../../controllers/rawmail')
 const simpleMailController = require('../../controllers/simplemail')
 const stripeController = require('../../controllers/stripe')
+const router = express.Router()
 
+// check if user or not
 router.post('/', (req, res, next) => {
   const user = req.body.user
-
+  // member checkout
   if (user._id) {
-    // Member checkout, get user from database
-    databaseController.findUserByID(user, (err, user) => {
-      if (err) {
-        next(err)
-      }
-      checkout(req, res, user, next)
-    })
+    next()
   } else {
-    // Guest checkout
+    // guest checkout
     checkout(req, res, user, next)
   }
 })
 
+// verify the JWT and sets req.user to JWT contents
+router.use('/', expressJwt({
+  secret: jwtSecret,
+  credentialsRequired: false
+}), (err, req, res, next) => {
+  if (err) {
+    next(err)
+  } else {
+    databaseController.findUserByEmail(req.user.email, (err, user) => {
+      if (err) {
+        return next(err)
+      }
+      checkout(req, res, user, next)
+    })
+  }
+})
+
 function checkout (req, res, user, next) {
-  let purchasedItems
   const shippingDetails = req.body.shippingDetails
   const stripeToken = req.body.stripeToken
   user.orderCost = 0
 
-  // Get total cost from database
+  // get total cost from database
   databaseController.getTotal(user, (err, dbUser) => {
     if (err) {
-      next(err)
+      return next(err)
     }
-    // Create the charge in stripe then send response
+    // create the charge in stripe then send response
     stripeController.charge(dbUser, stripeToken, (err, finalUser) => {
       if (err) {
-        next(err)
-      } else {
-        // Store items, send user with empty cart then save items
-        // This is done to send user back quickly
-        purchasedItems = finalUser.cart
-        finalUser.cart = []
-        res.json(finalUser)
-        finalUser.purchasedItems = purchasedItems
-
-        // Send emails
-        shippingController.createLabel(finalUser, shippingDetails, (err, trackingCode, rawOptions, simpleOptions) => {
-          // TODO: Internal error
-          if (err) {
-            throw err
-          }
-          // TODO: Store email info (response codes)?
-          rawMailController.sendEmail(rawOptions)
-          simpleMailController.emailCustomer(simpleOptions)
-          // Create and save order in database. Send an error?
-          databaseController.createOrder(finalUser, trackingCode, shippingDetails, (order) => {
-            databaseController.saveOrder(order, finalUser)
-          })
-        })
+        return next(err)
       }
+      // create label data
+      shippingController.createLabel(finalUser, shippingDetails, (err, trackingCode, rawOptions, simpleOptions) => {
+        // TODO: Internal error
+        if (err) {
+          throw err
+        }
+        // TODO: get error and save email response code?
+        rawMailController.sendEmail(rawOptions)
+        simpleMailController.emailCustomer(simpleOptions)
+        // create and save order in database
+        // TODO: get error
+        databaseController.createOrder(finalUser, trackingCode, shippingDetails, (order) => {
+          databaseController.saveOrder(order, finalUser)
+        })
+      })
+      // send back the final user
+      finalUser.cart = []
+      res.json(finalUser)
     })
   })
 }

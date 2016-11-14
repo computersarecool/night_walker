@@ -1,5 +1,5 @@
 # TODO:
-
+### Add product, checkout, skus. Update DB methods
 ## Generalized styling directive (mock ups)
     - Black and white stripes as background, front photos pngs
     - fruity background on product images
