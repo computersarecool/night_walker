@@ -18,7 +18,6 @@ const authenticate = (type, req, res, next) => {
     if (err) {
       return next(err)
     }
-
     if (!user) {
       const error = new Error(info)
       error.status = 401

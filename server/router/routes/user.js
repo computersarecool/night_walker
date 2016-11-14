@@ -1,10 +1,12 @@
+// This is called when a user's information needs to be retrieved
+// from the database
 const express = require('express')
 const expressJwt = require('express-jwt')
 const databaseController = require('../../controllers/database')
 const jwtSecret = require('../../../credentials').jwtSecret
 const router = express.Router()
 
-// this adds the decoded req.user to the decoded JWT
+// verify the JWT and sets req.user to JWT contents
 router.use('/', expressJwt({
   secret: jwtSecret,
   credentialsRequired: false
@@ -16,12 +18,16 @@ router.use('/', expressJwt({
   }
 })
 
+// retrieve the user once JWT is validated
 router.get('/', (req, res, next) => {
   databaseController.findUserByEmail(req.user.email, (err, user) => {
     if (err) {
-      next(err)
+      return next(err)
     } else if (!user) {
-      next({status: 401, message: 'No user found'})
+      // TODO: Get error message from findUser call
+      const error = new Error('No user found')
+      error.status = 401
+      return next(error)
     } else {
       res.json({
         user: user

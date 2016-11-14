@@ -1,3 +1,4 @@
+// This is called fromt the login route when a user needs to be authorized
 const LocalStrategy = require('passport-local').Strategy
 const Users = require('../database').Users
 
@@ -7,46 +8,34 @@ module.exports = (passport) => {
     passwordField: 'password',
     passReqToCallback: true
   }, (req, email, password, done) => {
-    if (!req.user) {
-      process.nextTick(() => {
-        // check to see if the email is already taken
-        Users.findOne({email: email}, (err, user) => {
-          if (err) {
-            return done(err)
-          }
-          if (user) {
-            return done(null, false, 'That email is already taken.')
-          }
-          // create new user and add items if in cart
-          const newUser = new Users()
-          newUser.email = req.body.email
-          newUser.password = req.body.password
-          newUser.firstName = req.body.firstName
-          newUser.lastName = req.body.lastName
-          const cart = req.body.cart
-          if (cart) {
-            newUser.cart = JSON.parse(cart)
-          }
-          newUser.save((err) => {
-            if (err) {
-              return done(err)
-            }
-            return done(null, newUser)
-          })
-        })
-      })
-    } else {
-      // there is already a user in the request. Redirect / add items?
-      const user = req.user
-      user.local.password = password
-      user.local.email = email
-      user.save((err) => {
+    process.nextTick(() => {
+      // check to see if the email is already taken
+      Users.findOne({email: email}, (err, user) => {
+        // internal error
         if (err) {
           return done(err)
         }
-        return done(null, user)
+        if (user) {
+          return done(null, false, 'That email is already taken')
+        }
+        // create new user and add items if in cart
+        const newUser = new Users()
+        newUser.email = req.body.email
+        newUser.password = req.body.password
+        newUser.firstName = req.body.firstName
+        newUser.lastName = req.body.lastName
+        const cart = req.body.cart
+        if (cart) {
+          newUser.cart = JSON.parse(cart)
+        }
+        newUser.save((err) => {
+          if (err) {
+            return done(err)
+          }
+          return done(null, newUser)
+        })
       })
-    }
+    })
   }))
 
   passport.use('local-login', new LocalStrategy({
@@ -54,7 +43,6 @@ module.exports = (passport) => {
     passwordField: 'password',
     passReqToCallback: true
   }, (req, email, password, done) => {
-    console.log('something here ')
     Users.findOne({email: email}, (err, user) => {
       if (err) {
         return done(err)
@@ -77,9 +65,9 @@ module.exports = (passport) => {
             user.cart.push(items[i])
           }
           user.save((err) => {
+            // internal error
             if (err) {
-              // Internal error
-              throw new Error('There was an error with the saving of the document')
+              return done(err)
             }
             return done(null, user)
           })

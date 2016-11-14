@@ -7,7 +7,7 @@ router.get('/:flavor', (req, res, next) => {
 
   databaseController.findProductByFlavor(safeFlavor, (err, product) => {
     if (err) {
-      next(err)
+      return next(err)
     }
     res.json(product)
   })

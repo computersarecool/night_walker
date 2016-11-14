@@ -7,10 +7,9 @@ router.get('/:edition', (req, res, next) => {
 
   databaseController.findEdition(urlSafeName, (err, edition) => {
     if (err) {
-      next(err)
-    } else {
-      res.json(edition)
+      return next(err)
     }
+    res.json(edition)
   })
 })
 

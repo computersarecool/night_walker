@@ -7,7 +7,7 @@ router.post('/', (req, res, next) => {
   const itemDetails = []
   const skus = req.body
 
-  async.forEachOf(skus, databaseController.retreiveProduct.bind(null, itemDetails), function (err) {
+  async.forEachOf(skus, databaseController.retreiveProduct.bind(null, itemDetails), (err) => {
     // TODO: Error handling from forEachOf
     if (err) {
       res.json('Error')
