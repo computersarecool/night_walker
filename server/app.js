@@ -26,7 +26,6 @@ if (process.env.NODE_ENV === 'development') {
   app.use(express.static(path.join(__dirname, '../client/app')))
   // development error handling
   app.use((err, req, res, next) => {
-    console.log('There is an error:', err)
     res.status(err.status || 500).send(err.message || 'There is an unknown error')
   })
 }

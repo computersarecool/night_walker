@@ -44,16 +44,6 @@ function findDBUser (user, callback) {
   })
 }
 
-function findUserByID (user, checkoutCallback) {
-  Users.findOne({_id: user._id}, function (err, dbuser) {
-    // TODO: Error handling
-    if (err) {
-      throw err
-    }
-    checkoutCallback(null, dbuser.toObject())
-  })
-}
-
 function findUserByEmail (email, foundCallback) {
   Users.findOne({email: email}, (err, user) => {
     // TODO: Internal Error handling
@@ -69,9 +59,9 @@ function findUserByEmail (email, foundCallback) {
   })
 }
 
-function findProduct (user, skunumber, asyncCallback) {
-  Products.findOne({sku: skunumber}, function (err, product) {
-    // TODO: error handling
+function findProductCost (user, skunumber, asyncCallback) {
+  Products.findOne({sku: skunumber}, (err, product) => {
+    // TODO: Internal error handling
     if (err) {
       throw err
     }
@@ -103,28 +93,9 @@ function findProductByFlavor (safeFlavor, foundCallback) {
   })
 }
 
-function retreiveProduct (itemDetails, quantity, productSku, callback) {
-  Products.findOne({sku: productSku}).lean().exec((err, product) => {
-    // TODO: Error handling
-    if (err) {
-      throw err
-    }
-    if (product) {
-      itemDetails.push({
-        quantity: quantity,
-        product: product
-      })
-      callback()
-    } else {
-      itemDetails.push(null)
-      callback()
-    }
-  })
-}
-
 function getTotal (user, stripeCallback) {
   // TODO: check bind here, need way to pass order total
-  async.each(user.cart, findProduct.bind(null, user), (err) => {
+  async.each(user.cart, findProductCost.bind(null, user), (err) => {
     // TODO: Error handling from async getItem
     if (err) {
       throw err
@@ -152,15 +123,15 @@ function createOrder (user, trackingCode, shippingDetails, saveCallback) {
     successOrder.items.push(item)
   })
 
-  // TODO: This only applies if guest
+  // TODO: Template. This only applies if guest
   // Set shipping and contact information for order
-  const shippingAddress = shippingDetails.firstName + ' ' +
-  shippingDetails.lastName +
-  shippingDetails.address1 + ' \n' +
-  shippingDetails.address2 + ' \n' +
-  shippingDetails.city + ' \n' +
-  shippingDetails.state + ' \n' +
-  shippingDetails.zip
+  const shippingAddress = `{shippingDetails.firstName}
+ {shippingDetails.lastName}
+ {shippingDetails.address1}
+ {shippingDetails.address2}
+ {shippingDetails.city}
+ {shippingDetails.state}
+ {shippingDetails.zip}`
 
   successOrder.userAddress = shippingAddress
   successOrder.userLastName = shippingDetails.lastName
@@ -181,14 +152,12 @@ function saveOrder (order, user) {
       // Member checkout, save order with user
       findDBUser(user, (dbUser) => {
         dbUser.orders.push(order._id)
-        // TODO: there should be a 1-1 with the client side user
         dbUser.cart = []
         dbUser.save((err) => {
           // TODO: Internal Error handling
           if (err) {
             throw err
           }
-          console.log('User saved')
         })
       })
     }
@@ -198,11 +167,8 @@ function saveOrder (order, user) {
 module.exports = {
   findUserAndUpdate: findUserAndUpdate,
   findUserByEmail: findUserByEmail,
-  findUserByID: findUserByID,
   findEdition: findEdition,
-  findProduct: findProduct,
   findProductByFlavor: findProductByFlavor,
-  retreiveProduct: retreiveProduct,
   getTotal: getTotal,
   createOrder: createOrder,
   saveOrder: saveOrder

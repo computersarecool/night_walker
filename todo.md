@@ -1,15 +1,4 @@
 # TODO:
-### Add product, checkout, skus. Update DB methods
-## Generalized styling directive (mock ups)
-    - Black and white stripes as background, front photos pngs
-    - fruity background on product images
-
-
-## Individual Technicals
-    - Email / checkout clean js
-    - All skus are the same?
-    
-    
 ### Product page details
   - Short description
   - Price
@@ -21,38 +10,40 @@
 
 
 ### Media
-- Have all home gallery images fade to white on sides (which might be the shop pages too)
-- Fade to white on background image for shop gallery page (later make transparent cut out for bg image)
-- Create web font
-- SVG Logo and shopping cart
-- background images on home / shop
-- fade to white for product photos
-- Consider reusing the home sprite images on poster gallery as they will load quicker
-- optimize sizeof all images
+  - Black and white stripes as background, front photos pngs
+  - fruity background on product images
+  - Have all home gallery images fade to white on sides (which might be the shop pages too)
+  - Fade to white on background image for shop gallery page (later make transparent cut out for bg image)
+  - Create web font
+  - SVG Logo and shopping cart
+  - background images on home / shop
+  - fade to white for product photos
+  - Consider reusing the home sprite images on poster gallery as they will load quicker
+  - optimize sizeof all images
 
 
 ### Basket Directive Popup
- - Make rotating cube style something like a directive
- - Make skus consistently numbers, right now inconsisten in the geturl function
-
+  - Make rotating cube style something like a directive
+  - Make skus consistently numbers, right now inconsisten in the geturl function
 
 
 #### Small todo items
-- favicon best practices
-- correct logger
-- Only show view cart when there are things inside it
-- (Use a good linter / Google style guide) Remove semicolons after function declarations
-- Save user information to expediate form filling out
-- Stripeform directive line 23 is $apply neccesary
-- userfactory.js line 135 what happens when there is an invalid auth token
-- remove <base> tag
-- Internal error notification
---- Bower.json
-- Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json
--- remove async from skus controller
--- remove async from database controller
-## Things to do at the end
-- Spf policy
+  - favicon best practices
+  - correct logger
+  - Only show view cart when there are things inside it
+  - (Use a good linter / Google style guide) Remove semicolons after function declarations
+  - Save user information to expediate form filling out
+  - Stripeform directive line 23 is $apply neccesary
+  - userfactory.js line 135 what happens when there is an invalid auth token
+  - remove <base> tag
+  - Internal error notification
+  - Finalize Bower.json / package.json(s)
+  - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json
+
+### Things to do at the end
+  - remove async from skus controller
+  - remove async from database controller
+  - Spf policy
 
 ### ONGOING QUESTIONS:
 Angular:
@@ -63,7 +54,6 @@ Angular:
   - Why does a directive have a controller
   - Should the main.html view just be a directive?
   - Use $scope or var in controllers (i.e. product Controller)
-
 
 Javascript:
   - routes|checkout.js:20, set dbuser so I have db and object reference to item
@@ -83,16 +73,9 @@ MONGODB:
   - db logs (mongodb.log)
   - db journal
 
-
 YEOMAN:
   -  .travis.yml
   -  .buildignore
-
-
-BOWER:
-  - Directory: Bower components
-  - Bower.json
-
 
 MISC:
   - Editor config

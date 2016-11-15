@@ -13,15 +13,21 @@ const ses = new aws.SES()
 function sendEmail (options) {
   const boundary = 'boundarydivider'
   const mimeversion = '1.0'
+  let sesMail = `From: {options.fromName} <{options.fromEmail}>
+To: {options.internalTarget}
+Subject: {options.subject}
+MIME-Version: {mimeversion}
+Content-Type: multipart/mixed; boundary={boundary}
 
-  let sesMail = 'From: ' + options.fromName + ' ' + '<' + options.fromEmail + '>' + '\n'
-  sesMail += 'To: ' + options.internalTarget + '\n'
-  sesMail += 'Subject: ' + options.subject + '\n'
-  sesMail += 'MIME-Version: ' + mimeversion + '\n'
-  sesMail += 'Content-Type: multipart/mixed; boundary=' + boundary + '\n\n'
-  sesMail += '--' + boundary + '\n'
-  sesMail += 'Content-Type: text/html; charset=us-ascii\n\n'
-  sesMail += options.body + '\n\n'
+
+--{boundary}
+Content-Type: text/html; charset=us-ascii
+
+
+{options.body}
+
+
+`
 
   async.each(options.files, (fileObj, callback) => {
     downloadLabel(fileObj, (info) => {
