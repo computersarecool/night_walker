@@ -50,15 +50,11 @@ module.exports = (passport) => {
         return done(err)
       }
       if (!user) {
-        return done(null, false, 'No user with that email was found')
+        return done(null, false, {message: 'No user with that email was found'})
       }
-      user.checkPassword(password, (err, authenticated) => {
-        // TODO: Internal error handling
-        if (err) {
-          return done(err)
-        }
+      user.checkPassword(password, (authenticated) => {
         if (!authenticated) {
-          return done(null, false, 'Sorry, incorrect email or password')
+          return done(null, false, {message: 'Sorry, incorrect email or password'})
         }
         // user logged in correctly. add items if they are in cart then return user
         const cart = req.body.cart

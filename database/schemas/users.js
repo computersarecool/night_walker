@@ -34,17 +34,15 @@ const userSchema = new Schema({
   }
 })
 
+// TODO: bcrypt.compare
 // encrypt before save userSchema.pre('save')
-userSchema.methods.checkPassword = (triedPassword, callback) => {
-  // TODO: bcrypt.compare
-  // the passport is correct
+userSchema.methods.checkPassword = function (triedPassword, callback) {
   if (triedPassword === this.password) {
     console.log('The password is right')
-    return callback(null, true)
+    return callback(true)
   }
-  // the password is wrong
   console.log('The password is wrong')
-  callback(null, false)
+  callback(false)
 }
 
 const User = mongoose.model('User', userSchema)

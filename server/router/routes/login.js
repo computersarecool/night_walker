@@ -16,10 +16,11 @@ router.post('/login', (req, res, next) => {
 const authenticate = (type, req, res, next) => {
   passport.authenticate(type, {session: false}, (err, user, info) => {
     if (err) {
+      // TODO: Internal error handling
       return next(err)
     }
     if (!user) {
-      const error = new Error(info)
+      const error = new Error(info.message)
       error.status = 401
       return next(error)
     }

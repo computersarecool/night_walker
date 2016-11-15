@@ -28,6 +28,7 @@
 
 
 #### Small todo items
+  - email field in login is set to text
   - favicon best practices
   - correct logger
   - Only show view cart when there are things inside it

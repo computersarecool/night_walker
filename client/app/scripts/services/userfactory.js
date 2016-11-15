@@ -48,8 +48,9 @@ angular.module('nightwalkerApp')
         $location.path('/account')
       }, function error (response) {
         // TODO: Better error handling
-        if (response.status == 401) {
-          alert('Some information you entered is invalid')
+        if (response.status === 401) {
+          console.log(response)
+          window.alert(response.data)
         }
         // Unknown error
         return undefined
