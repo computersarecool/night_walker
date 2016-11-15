@@ -47,14 +47,14 @@ function checkout (req, res, user, next) {
     if (err) {
       return next(err)
     }
-    // create the charge in stripe then send response
+    // charge in Stripe
     stripeController.charge(dbUser, stripeToken, (err, finalUser) => {
       if (err) {
         return next(err)
       }
       // create label data
       shippingController.createLabel(finalUser, shippingDetails, (err, trackingCode, rawOptions, simpleOptions) => {
-        // TODO: Internal error
+        // TODO: Internal error handling
         if (err) {
           throw err
         }
@@ -62,7 +62,6 @@ function checkout (req, res, user, next) {
         rawMailController.sendEmail(rawOptions)
         simpleMailController.emailCustomer(simpleOptions)
         // create and save order in database
-        // TODO: get error
         databaseController.createOrder(finalUser, trackingCode, shippingDetails, (order) => {
           databaseController.saveOrder(order, finalUser)
         })

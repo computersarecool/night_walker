@@ -3,13 +3,14 @@ const stripe = require('stripe')(stripeKey)
 
 // Make a charge in Stripe
 function charge (user, stripeToken, callback) {
-  // TODO: Set description to something real
+  // TODO: Set info to something explanatory
   let info
   if (user.guest) {
     info = 'payinguser@example.com'
   } else {
     info = user.name
   }
+
   // create charge
   stripe.charges.create({
     amount: user.orderCost,
@@ -22,48 +23,35 @@ function charge (user, stripeToken, callback) {
       // TODO: Send the user an error / declined message
       switch (err.type) {
         case 'StripeCardError':
-          callback({
-            status: 402,
-            message: err.message // e.g. "Card's expirary year is invalid."
-          }, null)
-          console.log('The card has been declined')
+          returnError(callback, err)
           break
         case 'StripeInvalidRequest':
-          callback({
-            status: 402,
-            message: err.message
-          }, null)
-          console.error("Invalid parameters were supplied to Stripe's API")
+          returnError(callback, err)
           break
         case 'StripeAPIError':
-          callback({
-            status: 402,
-            message: err.message
-          }, null)
-          console.error("An error occurred internally with Stripe's API")
+          returnError(callback, err)
           break
         case 'StripeConnectionError':
-          callback({
-            status: 402,
-            message: err.message
-          }, null)
-          console.error('A kind of error occurred during HTTPS communication')
+          returnError(callback, err)
           break
         case 'StripeAuthenticationError':
-          callback({
-            status: 402,
-            message: err.message
-          }, null)
-          console.error('You probably used an incorrect API key')
+          returnError(callback, err)
           break
         default:
-          console.log('An uknown error', err.type, err)
+          returnError(callback, err)
       }
     } else {
       // successful charge
       callback(null, user)
     }
   })
+}
+
+function returnError (callback, err) {
+  const error = new Error(err.message)
+  error.status = 402
+  console.log(err.message)
+  callback(error)
 }
 
 module.exports = {

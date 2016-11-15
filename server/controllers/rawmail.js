@@ -1,18 +1,15 @@
 const url = require('url')
 const path = require('path')
-
 const request = require('request')
 const async = require('async')
 const aws = require('aws-sdk')
-
 const accessKeyId = require('../../credentials').aws_access_key_id
 const secretAccessKey = require('../../credentials').aws_secret_access_key
 const region = 'us-west-2'
-
 aws.config.update({accessKeyId: accessKeyId, secretAccessKey: secretAccessKey, region: region})
 const ses = new aws.SES()
 
-// options contains fromName, fromEmail, mainTarget, subject, body, files, allRecipients
+// options contains [fromName, fromEmail, mainTarget, subject, body, files, allRecipients]
 function sendEmail (options) {
   const boundary = 'boundarydivider'
   const mimeversion = '1.0'
@@ -26,8 +23,8 @@ function sendEmail (options) {
   sesMail += 'Content-Type: text/html; charset=us-ascii\n\n'
   sesMail += options.body + '\n\n'
 
-  async.each(options.files, function (fileObj, callback) {
-    downloadLabel(fileObj, function (info) {
+  async.each(options.files, (fileObj, callback) => {
+    downloadLabel(fileObj, (info) => {
       sesMail += '--' + boundary + '\n'
       sesMail += 'Content-Type: ' + info.mimetype + ';name= ' + info.filename + '\n'
       sesMail += 'Content-Disposition: attachment; filename=' + info.filename + '\n'
@@ -37,6 +34,7 @@ function sendEmail (options) {
     })
   }, (err) => {
     if (err) {
+      // TODO: Internal error handling
       throw err
     }
     // Final boundary marker
@@ -50,9 +48,10 @@ function sendEmail (options) {
     }
 
     // Actually send the email
-    ses.sendRawEmail(params, function (err, data) {
+    ses.sendRawEmail(params, (err, data) => {
+      // TODO: Internal error handling
       if (err) {
-        console.log('there was an error sending raw email', err)
+        throw err
       } else {
         console.log('Raw mail sent', data)
       }

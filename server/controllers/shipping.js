@@ -1,3 +1,4 @@
+// TODO: Separate out interal vs user errors
 const apiKey = require('../../credentials').easyPostApiKey
 const easypost = require('node-easypost')(apiKey)
 
@@ -42,20 +43,20 @@ function createLabel (user, shippingDetails, emailCallback) {
 // TODO: Create and verify when user enters information
 function createAddress (toAddress, fromAddress, shippingDetails, emailCallback) {
   easypost.Address.create(toAddress, (err, toAddress) => {
+    // TODO: Internal Error Handling
     if (err) {
-      emailCallback(err)
+      return emailCallback(err)
     }
     toAddress.verify((err, response) => {
       if (err) {
-        // TODO: Error handling: address is invalid
-        emailCallback(err)
-      } else if (response.message !== undefined && response.message !== null) {
-        console.log('Address is valid but has an issue: ', response.message)
-        createParcel(response.address, fromAddress, shippingDetails, emailCallback)
-      } else {
-        console.log('The verified address is', response)
-        createParcel(response.address, fromAddress, shippingDetails, emailCallback)
+        return emailCallback(err)
       }
+      if (response.message !== undefined && response.message !== null) {
+        console.log('Address is valid but has an issue: ', response.message)
+        return createParcel(response.address, fromAddress, shippingDetails, emailCallback)
+      }
+      console.log('The verified address is', response)
+      createParcel(response.address, fromAddress, shippingDetails, emailCallback)
     })
   })
 }
@@ -65,8 +66,9 @@ function createParcel (verifiedToAddress, fromAddress, shippingDetails, emailCal
     mode: 'test',
     predefined_package: 'FlatRatePaddedEnvelope',
     weight: 21.2
-  }, function (err, parcel) {
+  }, (err, parcel) => {
     if (err) {
+      // TODO: Internal Error handling
       emailCallback(err)
     } else {
       console.log('parcel create returns\n\n', parcel)
@@ -75,49 +77,47 @@ function createParcel (verifiedToAddress, fromAddress, shippingDetails, emailCal
   })
 }
 
-/* TODO CUSTOMS:
-  // Create customs_info form for international shipping
-  var customsItem = {
-    description: "EasyPost t-shirts",
-    hs_tariff_number: 123456,
-    origin_country: "US",
-    quantity: 2,
-    value: 96.27,
-    weight: 21.1
-  }
+// TODO CUSTOMS:
+// Create customs_info form for international shipping
+//  var customsItem = {
+//    description: "EasyPost t-shirts",
+//    hs_tariff_number: 123456,
+//    origin_country: "US",
+//    quantity: 2,
+//    value: 96.27,
+//    weight: 21.1
+//  }
 
-  var customsInfo = {
-    customs_certify: 1,
-    customs_signer: "Hector Hammerfall",
-    contents_type: "gift",
-    contents_explanation: "",
-    eel_pfc: "NOEEI 30.37(a)",
-    non_delivery_option: "return",
-    restriction_type: "none",
-    restriction_comments: "",
-    customs_items: [customsItem]
-  }
-*/
+// var customsInfo = {
+//   customs_certify: 1,
+//   customs_signer: "Hector Hammerfall",
+//   contents_type: "gift",
+//   contents_explanation: "",
+//   eel_pfc: "NOEEI 30.37(a)",
+//   non_delivery_option: "return",
+//   restriction_type: "none",
+//   restriction_comments: "",
+//   customs_items: [customsItem]
+// }
 
 function createShipment (toAddress, fromAddress, shippingDetails, parcel, emailCallback) {
   easypost.Shipment.create({
     to_address: toAddress,
     from_address: fromAddress,
     parcel: parcel
-   //customs_info: customsInfo
+   // customs_info: customsInfo
   }, (err, shipment) => {
     if (err) {
-      emailCallback(err)
+      return emailCallback(err)
     }
-    // TODO: Pick "cheapest" using method
+    // TODO: Pick cheapest using method
     shipment.buy({rate: shipment.rates[0]}, (err, shipment) => {
       if (err) {
-        emailCallback(err)
+        return emailCallback(err)
       }
 
       const trackingCode = shipment.tracking_code
       const label = shipment.postage_label.label_url
-
       fromAddress.subject = rawSubject
       fromAddress.body = rawBody
 
@@ -130,7 +130,7 @@ function createShipment (toAddress, fromAddress, shippingDetails, parcel, emailC
       })
       fromAddress.allRecipients.push(shippingDetails.email)
 
-      // TODO: Use filename safe part of name or order number to put in label instead of country
+      // TODO: Use filename safe part of name or order number in label filename
       fromAddress.files = [
         {
           filename: toAddress.country + '_label',

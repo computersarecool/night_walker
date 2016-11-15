@@ -49,7 +49,8 @@
 - Internal error notification
 --- Bower.json
 - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json
-
+-- remove async from skus controller
+-- remove async from database controller
 ## Things to do at the end
 - Spf policy
 

@@ -1,5 +1,4 @@
 var mongoose = require('mongoose')
-
 var Schema = mongoose.Schema
 
 var productSchema = new Schema({
@@ -56,9 +55,6 @@ var productSchema = new Schema({
   },
   sizes: {
     type: {}
-  },
-  sizeGuide: {
-    type: String
   },
   images: {
     type: {}

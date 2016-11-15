@@ -1,5 +1,4 @@
-// This is called when a user's information needs to be retrieved
-// from the database
+// This is called when a user's information needs to be retrieved from the DB
 const express = require('express')
 const expressJwt = require('express-jwt')
 const jwtSecret = require('../../../credentials').jwtSecret

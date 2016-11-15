@@ -15,42 +15,40 @@ function emailCustomer (emailInfo) {
   const trackingCodeMatch = /#TRACKINGCODE/
 
   // send the email
-  // TODO: Make readfile a stream
+  // TODO: Make readFile a stream
   fs.readFile(path.join(__dirname, '../templates/emails', 'customer_confirmation.html'), {encoding: 'utf-8'}, (err, data) => {
     if (err) {
-      // TODO: Internal error
-      console.log('There was an error creating the email')
+      // TODO: Internal error handling
       throw err
-    } else {
-      outgoingEmail = data.replace(firstNameMatch, emailInfo.firstName)
-      outgoingEmail = outgoingEmail.replace(lastNameMatch, emailInfo.lastName)
-      outgoingEmail = outgoingEmail.replace(trackingCodeMatch, emailInfo.trackingCode)
-
-      const params = {
-        Destination: {
-          ToAddresses: emailInfo.toAddresses
-        },
-        Message: {
-          Subject: {
-            Data: emailInfo.subject
-          },
-          Body: {
-            Html: {
-              'Data': outgoingEmail
-            }
-          }
-        },
-        Source: emailInfo.fromAddress
-      }
-
-      ses.sendEmail(params, (err, id) => {
-        if (err) {
-          // TODO: Internal error
-          throw err
-        }
-        console.log('Simple mail sent', id)
-      })
     }
+    outgoingEmail = data.replace(firstNameMatch, emailInfo.firstName)
+    outgoingEmail = outgoingEmail.replace(lastNameMatch, emailInfo.lastName)
+    outgoingEmail = outgoingEmail.replace(trackingCodeMatch, emailInfo.trackingCode)
+
+    const params = {
+      Destination: {
+        ToAddresses: emailInfo.toAddresses
+      },
+      Message: {
+        Subject: {
+          Data: emailInfo.subject
+        },
+        Body: {
+          Html: {
+            'Data': outgoingEmail
+          }
+        }
+      },
+      Source: emailInfo.fromAddress
+    }
+
+    ses.sendEmail(params, (err, id) => {
+      if (err) {
+        // TODO: Internal error handling
+        throw err
+      }
+      console.log('Simple mail sent. ID:', id)
+    })
   })
 }
 

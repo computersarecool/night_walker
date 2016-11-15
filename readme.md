@@ -4,3 +4,7 @@ To start:
     
 To add content to database:
     run testdata.js
+
+#improve performance
+#echo 1 > /proc/sys/vm/drop_caches
+#echo vm.swappiness=0 | sudo tee -a /etc/sysctl.conf

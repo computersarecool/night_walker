@@ -20,30 +20,27 @@ function findEdition (urlSafeName, callback) {
 }
 
 function findUserAndUpdate (email, items, callback) {
-  Users.findOneAndUpdate({email: email}, {$push: {cart: items}}, function (err, user) {
-    // TODO: Error handling
+  Users.findOneAndUpdate({email: email}, {$push: {cart: items}}, (err, user) => {
+    // TODO: Internal Error handling
     if (err) {
       throw err
     }
     if (user) {
-      callback(null, user)
+      return callback(null, user)
     }
-    // TODO: No user found
-    else {
-      let error = new Error('No user with that name found')
-      error.status = 404
-      callback(error)
-    }
+    let error = new Error('No user with that name found')
+    error.status = 404
+    callback(error)
   })
 }
 
-function findDBUser (user, checkoutCallback) {
-  Users.findOne({_id: user._id}, function (err, dbuser) {
-    // TODO: Error handling
+function findDBUser (user, callback) {
+  Users.findOne({_id: user._id}, (err, dbUser) => {
+    // TODO: Internal Error handling
     if (err) {
       throw err
     }
-    checkoutCallback(null, dbuser)
+    callback(dbUser)
   })
 }
 
@@ -175,29 +172,23 @@ function createOrder (user, trackingCode, shippingDetails, saveCallback) {
 
 // Save order in database
 function saveOrder (order, user) {
-  // Save the document. If user then update account with order
   order.save((err, order, numaffected) => {
-    // TODO: Error handling
+    // TODO: Internal Error handling
     if (err) {
       throw err
     }
     if (order.userOrder) {
-      // Member checkout
-      findDBUser(user, (err, databaseUser) => {
-        if (err) {
-          throw err
-        }
-        databaseUser.orders.push(order._id)
+      // Member checkout, save order with user
+      findDBUser(user, (dbUser) => {
+        dbUser.orders.push(order._id)
         // TODO: there should be a 1-1 with the client side user
-        databaseUser.cart = []
-        databaseUser.save(function (err) {
-          // TODO: Error handling
+        dbUser.cart = []
+        dbUser.save((err) => {
+          // TODO: Internal Error handling
           if (err) {
             throw err
-          } else {
-            // TODO:
-            console.log('User saved')
           }
+          console.log('User saved')
         })
       })
     }
