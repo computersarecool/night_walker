@@ -1,4 +1,28 @@
 # TODO:
+// PICK UP:
+
+
+#### Small todo items
+  - email field in login is set to text
+  - favicon best practices
+  - correct logger
+  - Only show view cart when there are things inside it
+  - (Use a good linter / Google style guide) Remove semicolons after function declarations
+  - Save user information to expediate form filling out
+  - Stripeform directive line 23 is $apply neccesary
+  - userfactory.js line 135 what happens when there is an invalid auth token
+  - remove <base> tag
+  - Internal error notification
+  - Finalize Bower.json / package.json(s)
+  - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json
+
+
+### Low priority things
+### Basket Directive Popup
+  - Make rotating cube style something like a directive
+  - Make skus consistently numbers, right now inconsistent in the geturl function
+
+
 ### Product page details
   - Short description
   - Price
@@ -22,29 +46,11 @@
   - optimize sizeof all images
 
 
-### Basket Directive Popup
-  - Make rotating cube style something like a directive
-  - Make skus consistently numbers, right now inconsisten in the geturl function
-
-
-#### Small todo items
-  - email field in login is set to text
-  - favicon best practices
-  - correct logger
-  - Only show view cart when there are things inside it
-  - (Use a good linter / Google style guide) Remove semicolons after function declarations
-  - Save user information to expediate form filling out
-  - Stripeform directive line 23 is $apply neccesary
-  - userfactory.js line 135 what happens when there is an invalid auth token
-  - remove <base> tag
-  - Internal error notification
-  - Finalize Bower.json / package.json(s)
-  - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json
-
-### Things to do at the end
+### Low priority things
   - remove async from skus controller
   - remove async from database controller
   - Spf policy
+  - Shipping controller.createLabel does too much
 
 ### ONGOING QUESTIONS:
 Angular:

@@ -16,7 +16,7 @@ module.exports = (passport) => {
           return done(err)
         }
         if (user) {
-          return done(null, false, 'That email is already taken')
+          return done(null, false, {message: 'That email is already taken'})
         }
         // create new user and add items if in cart
         const newUser = new Users()

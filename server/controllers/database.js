@@ -59,6 +59,26 @@ function findUserByEmail (email, foundCallback) {
   })
 }
 
+function retreiveProduct (itemDetails, quantity, productSku, callback) {
+  Products.findOne({sku: productSku}).lean().exec((err, product) => {
+    // TODO: Internal Error handling
+    if (err) {
+      throw err
+    }
+    if (!product) {
+      itemDetails.push(null)
+      callback()
+    }
+    if (product) {
+      itemDetails.push({
+        quantity: quantity,
+        product: product
+      })
+      callback()
+    }
+  })
+}
+
 function findProductCost (user, skunumber, asyncCallback) {
   Products.findOne({sku: skunumber}, (err, product) => {
     // TODO: Internal error handling
@@ -77,7 +97,7 @@ function findProductByFlavor (safeFlavor, foundCallback) {
       throw err
     }
     if (!product) {
-      let error = new Error('No product found')
+      const error = new Error('No product found')
       error.status = 404
       return foundCallback(err)
     }
@@ -104,7 +124,6 @@ function getTotal (user, stripeCallback) {
   })
 }
 
-// Create order model
 function createOrder (user, trackingCode, shippingDetails, saveCallback) {
   const successOrder = new Orders()
   successOrder.trackingCode = trackingCode
@@ -141,7 +160,6 @@ function createOrder (user, trackingCode, shippingDetails, saveCallback) {
   saveCallback(successOrder)
 }
 
-// Save order in database
 function saveOrder (order, user) {
   order.save((err, order, numaffected) => {
     // TODO: Internal Error handling
@@ -168,6 +186,7 @@ module.exports = {
   findUserAndUpdate: findUserAndUpdate,
   findUserByEmail: findUserByEmail,
   findEdition: findEdition,
+  retreiveProduct: retreiveProduct,
   findProductByFlavor: findProductByFlavor,
   getTotal: getTotal,
   createOrder: createOrder,

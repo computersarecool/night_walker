@@ -25,6 +25,7 @@ const authenticate = (type, req, res, next) => {
       return next(error)
     }
 
+    // TODO: Make async
     const token = jwt.sign({
       funThing: 'This is your personal JWT',
       email: user.email
