@@ -50,8 +50,8 @@ angular.module('nightwalkerApp')
           $window.localStorage.removeItem('cart')
           $location.path('/congratulations')
         }, function error (response) {
-          // TODO: Do something meaningful with error from NW server
-          alert(response.data.error.message)
+          // TODO: Do something meaningful with error from API
+//          alert(response.data.error.message)
         })
       }
     }

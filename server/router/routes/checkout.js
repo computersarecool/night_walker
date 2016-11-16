@@ -24,51 +24,57 @@ router.post('/', (req, res, next) => {
 router.use('/', expressJwt({
   secret: jwtSecret,
   credentialsRequired: false
-}), (err, req, res, next) => {
-  if (err) {
+}), (req, res, next) => {
+  databaseController.findUserByEmail(req.user.email, (err, user) => {
+    if (err) {
+      return next(err)
+    }
+    checkout(req, res, user, next)
+  })
+})
+
+// TODO: Internal error handling (Clear cache if there is an invalid token)
+router.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    err.status = 401
+    err.message = ('Invalid Token')
     next(err)
-  } else {
-    databaseController.findUserByEmail(req.user.email, (err, user) => {
-      if (err) {
-        return next(err)
-      }
-      checkout(req, res, user, next)
-    })
   }
 })
 
 function checkout (req, res, user, next) {
   const shippingDetails = req.body.shippingDetails
   const stripeToken = req.body.stripeToken
-  user.orderCost = 0
 
   // get total cost from database
-  databaseController.getTotal(user, (err, dbUser) => {
+  databaseController.getTotal(user.cart, (err, amount) => {
     if (err) {
       return next(err)
     }
     // charge in Stripe
-    stripeController.charge(dbUser, stripeToken, (err, finalUser) => {
+    stripeController.charge(user, amount, stripeToken, (err, user) => {
       if (err) {
         return next(err)
       }
-      // create label data
-      shippingController.createLabel(finalUser, shippingDetails, (err, trackingCode, rawOptions, simpleOptions) => {
+      // create label and shipment data
+      // TODO: Split out functions in createLabel
+      shippingController.createLabel(user, shippingDetails, (err, trackingCode, rawOptions, simpleOptions) => {
         // TODO: Internal error handling
         if (err) {
           throw err
         }
+        // Send email
         // TODO: get error and save email response code?
         rawMailController.sendEmail(rawOptions)
         simpleMailController.emailCustomer(simpleOptions)
         // create and save order in database
-        databaseController.createOrder(finalUser, trackingCode, shippingDetails, (order) => {
-          databaseController.saveOrder(order, finalUser)
+        databaseController.createOrder(user, trackingCode, shippingDetails, (order) => {
+          databaseController.saveOrder(order, user)
         })
       })
       // send back the final user
-      finalUser.cart = []
-      res.json(finalUser)
+      user.cart = []
+      res.json(user)
     })
   })
 }

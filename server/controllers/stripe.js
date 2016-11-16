@@ -2,7 +2,7 @@ const stripeKey = process.env.NODE_ENV === 'production' ? require('../../credent
 const stripe = require('stripe')(stripeKey)
 
 // Make a charge in Stripe
-function charge (user, stripeToken, callback) {
+function charge (user, amount, stripeToken, callback) {
   // TODO: Set info to something explanatory
   let info
   if (user.guest) {
@@ -13,7 +13,7 @@ function charge (user, stripeToken, callback) {
 
   // create charge
   stripe.charges.create({
-    amount: user.orderCost,
+    amount: amount,
     currency: 'usd',
     card: stripeToken,
     description: info

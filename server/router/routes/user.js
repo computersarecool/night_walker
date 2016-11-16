@@ -9,16 +9,7 @@ const router = express.Router()
 router.use('/', expressJwt({
   secret: jwtSecret,
   credentialsRequired: false
-}), (err, req, res, next) => {
-  if (err) {
-    next(err)
-  } else {
-    next()
-  }
-})
-
-// retrieve the user once JWT is validated
-router.get('/', (req, res, next) => {
+}), (req, res, next) => {
   databaseController.findUserByEmail(req.user.email, (err, user) => {
     if (err) {
       return next(err)
@@ -28,6 +19,15 @@ router.get('/', (req, res, next) => {
       })
     }
   })
+})
+
+// TODO: Clear cache if there is an invalid token
+router.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    err.status = 401
+    err.message = ('Invalid Token')
+    next(err)
+  }
 })
 
 module.exports = router

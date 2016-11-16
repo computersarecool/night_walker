@@ -1,4 +1,3 @@
-const async = require('async')
 const Products = require('../../database').Products
 const Users = require('../../database').Users
 const Orders = require('../../database').Orders
@@ -59,8 +58,34 @@ function findUserByEmail (email, foundCallback) {
   })
 }
 
-function retreiveProduct (itemDetails, quantity, productSku, callback) {
-  Products.findOne({sku: productSku}).lean().exec((err, product) => {
+/*function getItemDetails (skus) {
+  const promises = skus.map(sku => {
+    return new Promise((resolve, reject) => {
+      Products.findOne({sku}).lean().exec((err, product) => {
+        if (err) {
+          return reject(err)
+        }
+        resolve({quantity, product})
+      })
+    })
+  })
+
+  Products.findOne({sku}).lean().exec((err, product) => {
+    if (err) {
+      throw err
+    }
+    if (!product) {
+      itemDetails.push(null)
+    }
+    itemDetails.push({
+      quantity: quantity,
+      product: product
+    })
+  })
+}
+
+function retreiveProduct (itemDetails, quantity, sku, callback) {
+  Products.findOne({sku}).lean().exec((err, product) => {
     // TODO: Internal Error handling
     if (err) {
       throw err
@@ -78,18 +103,7 @@ function retreiveProduct (itemDetails, quantity, productSku, callback) {
     }
   })
 }
-
-function findProductCost (user, skunumber, asyncCallback) {
-  Products.findOne({sku: skunumber}, (err, product) => {
-    // TODO: Internal error handling
-    if (err) {
-      throw err
-    }
-    user.orderCost += product.toObject().currentPrice
-    asyncCallback()
-  })
-}
-
+*/
 function findProductByFlavor (safeFlavor, foundCallback) {
   Products.findOne({safeFlavor: safeFlavor}).lean().exec((err, product) => {
     // TODO: Internal Error handling
@@ -113,14 +127,26 @@ function findProductByFlavor (safeFlavor, foundCallback) {
   })
 }
 
-function getTotal (user, stripeCallback) {
-  // TODO: check bind here, need way to pass order total
-  async.each(user.cart, findProductCost.bind(null, user), (err) => {
-    // TODO: Error handling from async getItem
-    if (err) {
-      throw err
-    }
-    stripeCallback(null, user)
+function getTotal (cartItems, stripeCallback) {
+  const promises = cartItems.map(sku => {
+    return new Promise((resolve, reject) => {
+      Products.findOne({sku}, (err, product) => {
+        if (err) {
+          return reject(err)
+        }
+        resolve(product.toObject().currentPrice)
+      })
+    })
+  })
+
+  Promise.all(promises).then(values => {
+    const orderTotal = values.reduce((a, b) => a + b)
+    stripeCallback(null, orderTotal)
+  }).catch(() => {
+    // TODO: Internal promise error handling
+    const err = new Error('There was an error retreiving order total')
+    err.status = 500
+    stripeCallback(err)
   })
 }
 
@@ -186,7 +212,7 @@ module.exports = {
   findUserAndUpdate: findUserAndUpdate,
   findUserByEmail: findUserByEmail,
   findEdition: findEdition,
-  retreiveProduct: retreiveProduct,
+//  retreiveProduct: retreiveProduct,
   findProductByFlavor: findProductByFlavor,
   getTotal: getTotal,
   createOrder: createOrder,
