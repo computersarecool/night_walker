@@ -58,52 +58,35 @@ function findUserByEmail (email, foundCallback) {
   })
 }
 
-/*function getItemDetails (skus) {
-  const promises = skus.map(sku => {
+function getItemDetails (skuObj, callback) {
+  // Create an array with quanitity of each item and its details
+  const promises = Object.keys(skuObj).map(sku => {
     return new Promise((resolve, reject) => {
       Products.findOne({sku}).lean().exec((err, product) => {
         if (err) {
           return reject(err)
         }
-        resolve({quantity, product})
+        if (!product) {
+          return reject(null)
+        }
+        resolve({
+          quantity: skuObj[sku],
+          product: product
+        })
       })
     })
   })
 
-  Products.findOne({sku}).lean().exec((err, product) => {
-    if (err) {
-      throw err
-    }
-    if (!product) {
-      itemDetails.push(null)
-    }
-    itemDetails.push({
-      quantity: quantity,
-      product: product
-    })
+  Promise.all(promises).then(values => {
+    callback(null, values)
+  }).catch(() => {
+    // TODO: Internal error handling (differentiate errors called by invalid skus)
+    const error = new Error('There was an error retreiving all items in cart')
+    error.status = 500
+    callback(error)
   })
 }
 
-function retreiveProduct (itemDetails, quantity, sku, callback) {
-  Products.findOne({sku}).lean().exec((err, product) => {
-    // TODO: Internal Error handling
-    if (err) {
-      throw err
-    }
-    if (!product) {
-      itemDetails.push(null)
-      callback()
-    }
-    if (product) {
-      itemDetails.push({
-        quantity: quantity,
-        product: product
-      })
-      callback()
-    }
-  })
-}
-*/
 function findProductByFlavor (safeFlavor, foundCallback) {
   Products.findOne({safeFlavor: safeFlavor}).lean().exec((err, product) => {
     // TODO: Internal Error handling
@@ -209,12 +192,12 @@ function saveOrder (order, user) {
 }
 
 module.exports = {
-  findUserAndUpdate: findUserAndUpdate,
-  findUserByEmail: findUserByEmail,
-  findEdition: findEdition,
-//  retreiveProduct: retreiveProduct,
-  findProductByFlavor: findProductByFlavor,
-  getTotal: getTotal,
-  createOrder: createOrder,
-  saveOrder: saveOrder
+  findUserAndUpdate,
+  findUserByEmail,
+  findEdition,
+  getItemDetails,
+  findProductByFlavor,
+  getTotal,
+  createOrder,
+  saveOrder
 }

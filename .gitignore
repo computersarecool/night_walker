@@ -1,6 +1,7 @@
 \#*#
 
 .tern-port
+.tern-project
 
 credentials.js*
 

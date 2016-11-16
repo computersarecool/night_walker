@@ -4,26 +4,13 @@ const databaseController = require('../../controllers/database')
 const router = express.Router()
 
 router.post('/', (req, res, next) => {
-  const itemDetails = []
-  console.log('in SKUs route, no idea')
-  console.log(req.body)
-/*  const promises = req.body.map(sku => {
-    databaseController.getItemDetails(req.body)
-  })
-  res.json(itemDetails) // An array of item details
-}
-
-  })
-  async.forEachOf(skus, databaseController.retreiveProduct.bind(null, itemDetails), () => {
-    if (itemDetails.indexOf(null) > -1) {
-      const error = new Error('No product with that name found')
-      error.status = 404
-      next(error)
-    } else {
-      res.json(itemDetails)
+  // req.body is an object that has the sku number as a key and the quantity as the value
+  databaseController.getItemDetails(req.body, (err, itemDetailArray) => {
+    if (err) {
+      return next(err)
     }
+    res.json(itemDetailArray)
   })
-*/
 })
 
 module.exports = router
