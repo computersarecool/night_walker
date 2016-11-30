@@ -50,7 +50,7 @@ function charge (user, amount, stripeToken, callback) {
 function returnError (callback, err) {
   const error = new Error(err.message)
   error.status = 402
-  console.log(err.message)
+  console.log('There was an error at the stripe stage', err)
   callback(error)
 }
 

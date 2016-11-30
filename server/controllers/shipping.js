@@ -2,12 +2,12 @@
 const apiKey = require('../../credentials').easyPostApiKey
 const easypost = require('node-easypost')(apiKey)
 
-// TODO: temporarily place here as part of email templating
+// TODO: Move this (part of email templating)
 const rawSubject = 'Test subject'
 const rawBody = 'This is the body of the email'
 const simpleSubject = 'Order confirmation'
 
-function createLabel (user, shippingDetails, emailCallback) {
+function formatAddress (user, shippingDetails, emailCallback) {
   const toAddress = {
     name: shippingDetails.firstName + ' ' + shippingDetails.lastName,
     street1: shippingDetails.address1,
@@ -77,29 +77,6 @@ function createParcel (verifiedToAddress, fromAddress, shippingDetails, emailCal
   })
 }
 
-// TODO CUSTOMS:
-// Create customs_info form for international shipping
-//  var customsItem = {
-//    description: "EasyPost t-shirts",
-//    hs_tariff_number: 123456,
-//    origin_country: "US",
-//    quantity: 2,
-//    value: 96.27,
-//    weight: 21.1
-//  }
-
-// var customsInfo = {
-//   customs_certify: 1,
-//   customs_signer: "Hector Hammerfall",
-//   contents_type: "gift",
-//   contents_explanation: "",
-//   eel_pfc: "NOEEI 30.37(a)",
-//   non_delivery_option: "return",
-//   restriction_type: "none",
-//   restriction_comments: "",
-//   customs_items: [customsItem]
-// }
-
 function createShipment (toAddress, fromAddress, shippingDetails, parcel, emailCallback) {
   easypost.Shipment.create({
     to_address: toAddress,
@@ -153,5 +130,28 @@ function createShipment (toAddress, fromAddress, shippingDetails, parcel, emailC
 }
 
 module.exports = {
-  createLabel: createLabel
+  formatAddress: formatAddress
 }
+
+// TODO CUSTOMS:
+// Create customs_info form for international shipping
+//  var customsItem = {
+//    description: "EasyPost t-shirts",
+//    hs_tariff_number: 123456,
+//    origin_country: "US",
+//    quantity: 2,
+//    value: 96.27,
+//    weight: 21.1
+//  }
+
+// var customsInfo = {
+//   customs_certify: 1,
+//   customs_signer: "Hector Hammerfall",
+//   contents_type: "gift",
+//   contents_explanation: "",
+//   eel_pfc: "NOEEI 30.37(a)",
+//   non_delivery_option: "return",
+//   restriction_type: "none",
+//   restriction_comments: "",
+//   customs_items: [customsItem]
+// }

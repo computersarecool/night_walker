@@ -1,4 +1,3 @@
-// This is called fromt the login route when a user needs to be authorized
 const LocalStrategy = require('passport-local').Strategy
 const Users = require('../database').Users
 

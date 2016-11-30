@@ -13,28 +13,23 @@ const ses = new aws.SES()
 function sendEmail (options) {
   const boundary = 'boundarydivider'
   const mimeversion = '1.0'
-  let sesMail = `From: {options.fromName} <{options.fromEmail}>
-To: {options.internalTarget}
-Subject: {options.subject}
-MIME-Version: {mimeversion}
-Content-Type: multipart/mixed; boundary={boundary}
+  let sesMail = `\
+From: ${options.fromName} <${options.fromEmail}>
+To: ${options.internalTarget}
+Subject: ${options.subject}
+MIME-Version: ${mimeversion}
+Content-Type: multipart/mixed; boundary=${boundary}\n
 
-
---{boundary}
-Content-Type: text/html; charset=us-ascii
-
-
-{options.body}
-
-
-`
+--${boundary}
+Content-Type: text/html; charset=UTF-8\n\n
+${options.body}\n\n`
 
   async.each(options.files, (fileObj, callback) => {
     downloadLabel(fileObj, (info) => {
       sesMail += '--' + boundary + '\n'
       sesMail += 'Content-Type: ' + info.mimetype + ';name= ' + info.filename + '\n'
       sesMail += 'Content-Disposition: attachment; filename=' + info.filename + '\n'
-      sesMail += 'Content-Transfer-Encoding: base64\n\n',
+      sesMail += 'Content-Transfer-Encoding: base64\n\n'
       sesMail += info.file + '\n'
       callback()
     })
@@ -53,7 +48,7 @@ Content-Type: text/html; charset=us-ascii
       Source: options.fromEmail
     }
 
-    // Actually send the email
+    // Send the email
     ses.sendRawEmail(params, (err, data) => {
       // TODO: Internal error handling
       if (err) {
@@ -70,14 +65,20 @@ function downloadLabel (fileObj, callback) {
   request.get(fileObj.url).on('response', (res) => {
     const datachunks = []
 
-    res.on('data', function (chunk) {
+    res.on('error', (err) => {
+      // TODO: Internal error handling
+      throw err
+    })
+
+    res.on('data', (chunk) => {
       datachunks.push(chunk)
     })
 
-    res.on('end', function () {
+    res.on('end', () => {
       let buffer = Buffer.concat(datachunks).toString('base64')
       callback({
         mimetype: res.headers['content-type'],
+        // TODO: Make a real path name
         filename: path.basename(url.parse(fileObj.url).pathname),
         file: buffer
       })

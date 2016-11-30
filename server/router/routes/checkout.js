@@ -58,7 +58,7 @@ function checkout (req, res, user, next) {
       }
       // create label and shipment data
       // TODO: Split out functions in createLabel
-      shippingController.createLabel(user, shippingDetails, (err, trackingCode, rawOptions, simpleOptions) => {
+      shippingController.formatAddress(user, shippingDetails, (err, trackingCode, rawOptions, simpleOptions) => {
         // TODO: Internal error handling
         if (err) {
           throw err
