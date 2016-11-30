@@ -1,5 +1,4 @@
 const express = require('express')
-const async = require('async')
 const databaseController = require('../../controllers/database')
 const router = express.Router()
 
