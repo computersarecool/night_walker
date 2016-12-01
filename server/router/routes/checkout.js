@@ -33,11 +33,12 @@ router.use('/', expressJwt({
   })
 })
 
+// TODO: Why are we setting error status like this?
 // TODO: Internal error handling (Clear cache if there is an invalid token)
 router.use((err, req, res, next) => {
   if (err.name === 'UnauthorizedError') {
     err.status = 401
-    err.message = ('Invalid Token')
+    err.message = 'Invalid Token'
     next(err)
   }
 })
@@ -58,6 +59,7 @@ function checkout (req, res, user, next) {
       }
       // create label and shipment data
       // TODO: Split out functions in createLabel
+      // Pick up here
       shippingController.formatAddress(user, shippingDetails, (err, trackingCode, rawOptions, simpleOptions) => {
         // TODO: Internal error handling
         if (err) {
