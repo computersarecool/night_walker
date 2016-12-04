@@ -2,12 +2,26 @@
 const apiKey = require('../../credentials').easyPostApiKey
 const easypost = require('node-easypost')(apiKey)
 
-// TODO: Move this (part of email templating)
-const rawSubject = 'Test subject'
-const rawBody = 'This is the body of the email'
-const simpleSubject = 'Order confirmation'
+// TODO: Set programatically
+const fromAddress = {
+  name: 'Willy Nolan',
+  street1: '118 2nd Street',
+  street2: '4th Floor',
+  city: 'San Francisco',
+  state: 'CA',
+  zip: '94105',
+  phone: '415-123-4567',
+  email: 'paperwork@willynolan.com',
+  // Used when sending confirmation emails, targets are who to email at company
+  fromName: 'Willy Nolan',
+  fromEmail: 'paperwork@willynolan.com',
+  internalTarget: 'paperwork@willynolan.com',
+  additionalTargets: [
+    'paperwork@willynolan.com'
+  ]
+}
 
-function formatAddress (user, shippingDetails, emailCallback) {
+function createAddress (shippingDetails, callback) {
   const toAddress = {
     name: shippingDetails.firstName + ' ' + shippingDetails.lastName,
     street1: shippingDetails.address1,
@@ -19,49 +33,28 @@ function formatAddress (user, shippingDetails, emailCallback) {
     email: shippingDetails.email
   }
 
-  // TODO: Set programatically
-  const fromAddress = {
-    name: 'Willy Nolan',
-    street1: '118 2nd Street',
-    street2: '4th Floor',
-    city: 'San Francisco',
-    state: 'CA',
-    zip: '94105',
-    phone: '415-123-4567',
-    email: 'paperwork@willynolan.com',
-    // Used when sending confirmation emails, targets are who to email at company
-    fromName: 'Willy Nolan',
-    fromEmail: 'paperwork@willynolan.com',
-    internalTarget: 'paperwork@willynolan.com',
-    additionalTargets: [
-      'paperwork@willynolan.com'
-    ]
-  }
-  createAddress(toAddress, fromAddress, shippingDetails, emailCallback)
-}
-
-// TODO: Create and verify when user enters information
-function createAddress (toAddress, fromAddress, shippingDetails, emailCallback) {
   easypost.Address.create(toAddress, (err, toAddress) => {
     // TODO: Internal Error Handling
     if (err) {
-      return emailCallback(err)
+      return callback(err)
     }
     toAddress.verify((err, response) => {
       if (err) {
-        return emailCallback(err)
+        let error = new Error('The address you entered is invalid')
+        error.status = 404
+        return callback(error)
       }
       if (response.message !== undefined && response.message !== null) {
         console.log('Address is valid but has an issue: ', response.message)
-        return createParcel(response.address, fromAddress, shippingDetails, emailCallback)
+        return callback(null, response.address)
       }
       console.log('The verified address is', response)
-      createParcel(response.address, fromAddress, shippingDetails, emailCallback)
+      return callback(null, response.address)
     })
   })
 }
 
-function createParcel (verifiedToAddress, fromAddress, shippingDetails, emailCallback) {
+function createParcel (toAddress, shippingDetails, emailCallback) {
   easypost.Parcel.create({
     mode: 'test',
     predefined_package: 'FlatRatePaddedEnvelope',
@@ -72,65 +65,36 @@ function createParcel (verifiedToAddress, fromAddress, shippingDetails, emailCal
       emailCallback(err)
     } else {
       console.log('parcel create returns\n\n', parcel)
-      createShipment(verifiedToAddress, fromAddress, shippingDetails, parcel, emailCallback)
+      createShipment(parcel, toAddress, shippingDetails, emailCallback)
     }
   })
 }
 
-function createShipment (toAddress, fromAddress, shippingDetails, parcel, emailCallback) {
+function createShipment (parcel, toAddress, shippingDetails, emailCallback) {
   easypost.Shipment.create({
     to_address: toAddress,
     from_address: fromAddress,
     parcel: parcel
    // customs_info: customsInfo
   }, (err, shipment) => {
+    // TODO: Internal error handling
     if (err) {
       return emailCallback(err)
     }
-    // TODO: Pick cheapest using method
+    // TODO: Pick cheapest programatically
     shipment.buy({rate: shipment.rates[0]}, (err, shipment) => {
       if (err) {
+        // TODO: Internal error handling
         return emailCallback(err)
       }
-
-      const trackingCode = shipment.tracking_code
-      const label = shipment.postage_label.label_url
-      fromAddress.subject = rawSubject
-      fromAddress.body = rawBody
-
-      // Add all possible emails
-      fromAddress.allRecipients = [
-        fromAddress.internalTarget
-      ]
-      fromAddress.additionalTargets.forEach((address) => {
-        fromAddress.allRecipients.push(address)
-      })
-      fromAddress.allRecipients.push(shippingDetails.email)
-
-      // TODO: Use filename safe part of name or order number in label filename
-      fromAddress.files = [
-        {
-          filename: toAddress.country + '_label',
-          url: label
-        }
-      ]
-
-      // TODO Fill in from toAddress above
-      const simpleMailOptions = {
-        firstName: shippingDetails.firstName,
-        lastName: shippingDetails.lastName,
-        trackingCode: trackingCode,
-        toAddresses: fromAddress.allRecipients,
-        subject: simpleSubject,
-        fromAddress: fromAddress.fromEmail
-      }
-      emailCallback(null, trackingCode, fromAddress, simpleMailOptions)
+      emailCallback(null, shipment)
     })
   })
 }
 
 module.exports = {
-  formatAddress: formatAddress
+  createAddress,
+  createParcel
 }
 
 // TODO CUSTOMS:

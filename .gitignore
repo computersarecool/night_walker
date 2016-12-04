@@ -3,6 +3,7 @@
 .tern-port
 .tern-project
 
+credentials/*
 credentials.js*
 
 npm-debug.log

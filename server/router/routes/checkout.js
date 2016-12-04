@@ -3,8 +3,7 @@ const expressJwt = require('express-jwt')
 const jwtSecret = require('../../../credentials').jwtSecret
 const databaseController = require('../../controllers/database')
 const shippingController = require('../../controllers/shipping')
-const rawMailController = require('../../controllers/rawmail')
-const simpleMailController = require('../../controllers/simplemail')
+const mailController = require('../../controllers/mail')
 const stripeController = require('../../controllers/stripe')
 const router = express.Router()
 
@@ -46,7 +45,6 @@ router.use((err, req, res, next) => {
 function checkout (req, res, user, next) {
   const shippingDetails = req.body.shippingDetails
   const stripeToken = req.body.stripeToken
-
   // get total cost from database
   databaseController.getTotal(user.cart, (err, amount) => {
     if (err) {
@@ -57,21 +55,26 @@ function checkout (req, res, user, next) {
       if (err) {
         return next(err)
       }
-      // create label and shipment data
-      // TODO: Split out functions in createLabel
-      // Pick up here
-      shippingController.formatAddress(user, shippingDetails, (err, trackingCode, rawOptions, simpleOptions) => {
-        // TODO: Internal error handling
+      // create address
+      shippingController.createAddress(shippingDetails, (err, toAddress) => {
         if (err) {
-          throw err
+          return next(err)
         }
-        // Send email
-        // TODO: get error and save email response code?
-        rawMailController.sendEmail(rawOptions)
-        simpleMailController.emailCustomer(simpleOptions)
-        // create and save order in database
-        databaseController.createOrder(user, trackingCode, shippingDetails, (order) => {
-          databaseController.saveOrder(order, user)
+        // create parce
+        shippingController.createParcel(toAddress, shippingDetails, (err, shipmentInfo) => {
+          if (err) {
+            return next(err)
+          }
+          // send email notifications
+          mailController.formatPurchaseEmail(shipmentInfo, shippingDetails, (err, trackingCode, rawOptions, simpleOptions) => {
+            // TODO: get error and save email response code?
+            mailController.sendEmail(rawOptions)
+            mailController.emailCustomer(simpleOptions)
+            // create and save order in database
+            databaseController.createOrder(user, trackingCode, shippingDetails, (order) => {
+              databaseController.saveOrder(order, user)
+            })
+          })
         })
       })
       // send back the final user
