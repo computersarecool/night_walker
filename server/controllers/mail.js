@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
-const aws = require('aws-sdk')
 const downloader = require('./downloader')
+const aws = require('aws-sdk')
 const accessKeyId = require('../../credentials').aws_access_key_id
 const secretAccessKey = require('../../credentials').aws_secret_access_key
 const region = 'us-west-2'
@@ -15,39 +15,34 @@ const rawSubject = 'Test subject'
 const rawBody = 'This is the body of the email'
 const simpleSubject = 'Order confirmation'
 
-function formatPurchaseEmail (shippingDetails, shipmentInfo, callback) {
+function formatPurchaseEmail (shippingDetails, shipment, callback) {
   const trackingCode = shipment.tracking_code
   const label = shipment.postage_label.label_url
-  // Add all possible email recipients
-  fromAddress.allRecipients = [
-    fromAddress.internalTarget
-  ]
-  fromAddress.subject = rawSubject
-  fromAddress.body = rawBody
-  fromAddress.additionalTargets.forEach((address) => {
-    fromAddress.allRecipients.push(address)
-  })
-  fromAddress.allRecipients.push(shippingDetails.email)
-  // TODO: Use filename safe part of name or order number in label filename
-  fromAddress.files = [{
-    filename: toAddress.country + '_label',
-    url: label
-  }]
-
+  let rawMailOptions = {
+    subject: rawSubject,
+    body: rawBody,
+    allRecipients: [
+      'paperwork@willynolan.com',
+      shippingDetails.email
+    ],
+    files: [{
+      filename: 'label' + label.substring(1, 10),
+      url: label
+    }]
+  }
   const simpleMailOptions = {
     firstName: shippingDetails.firstName,
     lastName: shippingDetails.lastName,
     trackingCode: trackingCode,
-    toAddresses: fromAddress.allRecipients,
+    toAddresses: rawMailOptions.allRecipients,
     subject: simpleSubject,
-    fromAddress: fromAddress.fromEmail
+    fromAddress: rawMailOptions.fromEmail
   }
-  emailCallback(null, trackingCode, fromAddress, simpleMailOptions)
-})
+  callback(trackingCode, rawMailOptions, simpleMailOptions)
+}
 
-
-// options contains [fromName, fromEmail, mainTarget, subject, body, files, allRecipients]
-function sendEmail (options) {
+function sendRawEmail (options) {
+  // options contains [fromName, fromEmail, mainTarget, subject, body, files, allRecipients]
   const mimeversion = '1.0'
   sesMail = `From: ${options.fromName} <${options.fromEmail}>
 To: ${options.internalTarget}
@@ -89,14 +84,14 @@ Content-Transfer-Encoding: base64\n\n'
 ${file.file}\n`
       sesMail += attachment
     })
-    finalFormat(options)
+    closeAndSend(options)
   }).catch(() => {
     // TODO: Internal error handling if a download fails
-    throw new Error('help')
+    throw new Error('Download in mail controller failed')
   })
 }
 
-function finalFormat (options) {
+function closeAndSend (options) {
   // Add final emailBoundary marker
   sesMail += '--' + emailBoundary
 
@@ -117,13 +112,8 @@ function finalFormat (options) {
   })
 }
 
-module.exports = {
-  sendEmail: sendEmail
-}
-
-
-// pass in firstName, lastName, trackingCode, toAddresses, subject, fromAddress
 function emailCustomer (emailInfo) {
+  // pass in firstName, lastName, trackingCode, toAddresses, subject, fromAddress
   let outgoingEmail
   const firstNameMatch = /#FIRSTNAME/
   const lastNameMatch = /#LASTNAME/
@@ -168,6 +158,7 @@ function emailCustomer (emailInfo) {
 }
 
 module.exports = {
+  sendRawEmail,
   formatPurchaseEmail,
   emailCustomer
 }

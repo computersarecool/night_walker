@@ -61,25 +61,25 @@ function checkout (req, res, user, next) {
           return next(err)
         }
         // create parce
-        shippingController.createParcel(toAddress, shippingDetails, (err, shipmentInfo) => {
+        shippingController.createParcel(toAddress, shippingDetails, (err, shipmentInfo, fromAddress) => {
           if (err) {
             return next(err)
           }
           // send email notifications
-          mailController.formatPurchaseEmail(shipmentInfo, shippingDetails, (err, trackingCode, rawOptions, simpleOptions) => {
+          mailController.formatPurchaseEmail(shipmentInfo, shippingDetails, (trackingCode, rawMailOptions, simpleMailOptions) => {
             // TODO: get error and save email response code?
-            mailController.sendEmail(rawOptions)
-            mailController.emailCustomer(simpleOptions)
+            mailController.sendRawEmail(rawMailOptions)
+            mailController.emailCustomer(simpleMailOptions)
             // create and save order in database
             databaseController.createOrder(user, trackingCode, shippingDetails, (order) => {
               databaseController.saveOrder(order, user)
             })
           })
         })
+        // send back the final user
+        user.cart = []
+        res.json(user)
       })
-      // send back the final user
-      user.cart = []
-      res.json(user)
     })
   })
 }

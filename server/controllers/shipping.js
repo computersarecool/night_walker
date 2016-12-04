@@ -15,10 +15,6 @@ const fromAddress = {
   // Used when sending confirmation emails, targets are who to email at company
   fromName: 'Willy Nolan',
   fromEmail: 'paperwork@willynolan.com',
-  internalTarget: 'paperwork@willynolan.com',
-  additionalTargets: [
-    'paperwork@willynolan.com'
-  ]
 }
 
 function createAddress (shippingDetails, callback) {
@@ -87,7 +83,7 @@ function createShipment (parcel, toAddress, shippingDetails, emailCallback) {
         // TODO: Internal error handling
         return emailCallback(err)
       }
-      emailCallback(null, shipment)
+      emailCallback(null, shipment, fromAddress)
     })
   })
 }
