@@ -12,9 +12,7 @@ const fromAddress = {
   zip: '94105',
   phone: '415-123-4567',
   email: 'paperwork@willynolan.com',
-  // Used when sending confirmation emails, targets are who to email at company
-  fromName: 'Willy Nolan',
-  fromEmail: 'paperwork@willynolan.com',
+  fromName: 'Willy Nolan'
 }
 
 function createAddress (shippingDetails, callback) {

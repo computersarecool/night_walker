@@ -15,16 +15,19 @@ const rawSubject = 'Test subject'
 const rawBody = 'This is the body of the email'
 const simpleSubject = 'Order confirmation'
 
-function formatPurchaseEmail (shippingDetails, shipment, callback) {
-  const trackingCode = shipment.tracking_code
-  const label = shipment.postage_label.label_url
+function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
+  const trackingCode = shipmentInfo.tracking_code
+  const label = shipmentInfo.postage_label.label_url
   let rawMailOptions = {
     subject: rawSubject,
-    body: rawBody,
+    toAddress: shippingDetails.email,
+    fromName: 'Nightwalker',
+    fromAddress: 'paperwork@willynolan.com',
     allRecipients: [
       'paperwork@willynolan.com',
       shippingDetails.email
     ],
+    body: rawBody,
     files: [{
       filename: 'label' + label.substring(1, 10),
       url: label
@@ -36,29 +39,29 @@ function formatPurchaseEmail (shippingDetails, shipment, callback) {
     trackingCode: trackingCode,
     toAddresses: rawMailOptions.allRecipients,
     subject: simpleSubject,
-    fromAddress: rawMailOptions.fromEmail
+    fromAddress: rawMailOptions.fromAddress
   }
   callback(trackingCode, rawMailOptions, simpleMailOptions)
 }
 
-function sendRawEmail (options) {
-  // options contains [fromName, fromEmail, mainTarget, subject, body, files, allRecipients]
+function sendRawEmail (rawMailOptions) {
+  // options contains [fromName, fromAddress, mainTarget, subject, body, files, allRecipients]
   const mimeversion = '1.0'
-  sesMail = `From: ${options.fromName} <${options.fromEmail}>
-To: ${options.internalTarget}
-Subject: ${options.subject}
+  sesMail = `From: ${rawMailOptions.fromName} <${rawMailOptions.fromAddress}>
+To: ${rawMailOptions.toAddress}
+Subject: ${rawMailOptions.subject}
 MIME-Version: ${mimeversion}
 Content-Type: multipart/mixed; boundary=${emailBoundary}\n
 
 --${emailBoundary}
 Content-Type: text/html; charset=UTF-8\n
 
-${options.body}\n\n`
-  addAttachments(options)
+${rawMailOptions.body}\n\n`
+  addAttachments(rawMailOptions)
 }
 
-function addAttachments (options) {
-  const promises = options.files.map(fileObj => {
+function addAttachments (rawMailOptions) {
+  const promises = rawMailOptions.files.map(fileObj => {
     return new Promise((resolve, reject) => {
       downloader.downloadFile(fileObj, (err, info) => {
         if (err) {
@@ -74,7 +77,6 @@ function addAttachments (options) {
     })
   })
   Promise.all(promises).then(files => {
-    console.log('bhere')
     files.forEach((file) => {
       let attachment = `--${emailBoundary}
 Content-Type: ${file.mimetype};name=${file.filename}
@@ -83,28 +85,29 @@ Content-Transfer-Encoding: base64\n\n'
 ${file.file}\n`
       sesMail += attachment
     })
-    closeAndSend(options)
+    closeAndSend(rawMailOptions)
   }).catch(() => {
     // TODO: Internal error handling if a download fails
     throw new Error('Download in mail controller failed')
   })
 }
 
-function closeAndSend (options) {
+function closeAndSend (rawMailOptions) {
   // Add final emailBoundary marker
   sesMail += '--' + emailBoundary
 
   // Create email parameters
   const params = {
     RawMessage: {Data: new Buffer(sesMail)},
-    Destinations: options.allRecipients,
-    Source: options.fromEmail
+    Destinations: rawMailOptions.allRecipients,
+    Source: rawMailOptions.fromAddress
   }
 
   // Send the email
   ses.sendRawEmail(params, (err, data) => {
     // TODO: Internal error handling
     if (err) {
+      console.log(params)
       throw err
     }
     console.log('Raw mail sent', data)
