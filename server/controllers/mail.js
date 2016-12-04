@@ -73,7 +73,6 @@ function addAttachments (options) {
       })
     })
   })
-
   Promise.all(promises).then(files => {
     console.log('bhere')
     files.forEach((file) => {

@@ -20,6 +20,7 @@ const authenticate = (type, req, res, next) => {
       return next(err)
     }
     if (!user) {
+      // Clearly define the error here (not the default from passport)
       const error = new Error(info.message)
       error.status = 401
       return next(error)
