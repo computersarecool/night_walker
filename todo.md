@@ -2,7 +2,8 @@
     - Understanding JWT
     - Database Design
     - Error notifier
-
+    - Find out why having a token causes problem when first going to page
+    
 #### Small todo items
   - email field in login in angular is set to text
   - check that token auth is used everywhere it should be

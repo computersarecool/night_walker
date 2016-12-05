@@ -6,8 +6,7 @@ const router = express.Router()
 
 // verify the JWT and sets req.user to JWT contents
 router.post('/', expressJwt({
-  secret: jwtSecret,
-  credentialsRequired: false
+  secret: jwtSecret
 }), (req, res, next) => {
   databaseController.findUserAndUpdate(req.user.email, req.user.items, (err, user) => {
     if (err) {
@@ -25,6 +24,9 @@ router.use((err, req, res, next) => {
     err.message = 'Invalid Token'
     next(err)
   }
+  // Pick up here
+  // TODO: Handle error
+  next(err)
 })
 
 module.exports = router

@@ -19,9 +19,10 @@ function findEdition (urlSafeName, callback) {
 }
 
 function findUserAndUpdate (email, items, callback) {
-  Users.findOneAndUpdate({email: email}, {$push: {cart: items}}, (err, user) => {
+  Users.findOneAndUpdate({email}, {$push: {cart: items}}, (err, user) => {
     // TODO: Internal Error handling
     if (err) {
+      console.log('hereee')
       throw err
     }
     if (user) {
