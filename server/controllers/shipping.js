@@ -2,7 +2,6 @@
 const apiKey = require('../../credentials').easyPostApiKey
 const easypost = require('node-easypost')(apiKey)
 
-// TODO: Set programatically
 const fromAddress = {
   name: 'Willy Nolan',
   street1: '118 2nd Street',
@@ -56,11 +55,10 @@ function createParcel (toAddress, shippingDetails, emailCallback) {
   }, (err, parcel) => {
     if (err) {
       // TODO: Internal Error handling
-      emailCallback(err)
-    } else {
-      console.log('parcel create returns\n\n', parcel)
-      createShipment(parcel, toAddress, shippingDetails, emailCallback)
+      return emailCallback(err)
     }
+    console.log('parcel create returns\n\n', parcel)
+    createShipment(parcel, toAddress, shippingDetails, emailCallback)
   })
 }
 

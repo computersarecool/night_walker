@@ -14,7 +14,6 @@ router.post('/', (req, res, next) => {
   if (user._id) {
     next()
   } else {
-    // guest checkout
     checkout(req, res, user, next)
   }
 })
@@ -32,8 +31,8 @@ router.use('/', expressJwt({
   })
 })
 
-// TODO: Why are we setting error status like this?
-// TODO: Internal error handling (Clear cache if there is an invalid token)
+// invalid token error handling
+// TODO: Clear cache if there is an invalid token
 router.use((err, req, res, next) => {
   if (err.name === 'UnauthorizedError') {
     err.status = 401
@@ -44,14 +43,13 @@ router.use((err, req, res, next) => {
 
 function checkout (req, res, user, next) {
   const shippingDetails = req.body.shippingDetails
-  const stripeToken = req.body.stripeToken
   // get total cost from database
   databaseController.getTotal(user.cart, (err, amount) => {
     if (err) {
       return next(err)
     }
     // charge in Stripe
-    stripeController.charge(user, amount, stripeToken, (err, user) => {
+    stripeController.charge(user, amount, req.body.stripeToken, (err, user) => {
       if (err) {
         return next(err)
       }
@@ -60,8 +58,8 @@ function checkout (req, res, user, next) {
         if (err) {
           return next(err)
         }
-        // create parce
-        shippingController.createParcel(toAddress, shippingDetails, (err, shipmentInfo, fromAddress) => {
+        // create parcel
+        shippingController.createParcel(toAddress, shippingDetails, (err, shipmentInfo) => {
           if (err) {
             return next(err)
           }

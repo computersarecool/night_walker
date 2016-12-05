@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const passport = require('passport')
 const apiRouter = require('./router/api')
 const app = express()
+
 // this opens the database connection
 require('../database')
 

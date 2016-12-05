@@ -1,4 +1,3 @@
-// This is called when a user's information needs to be retrieved from the DB
 const express = require('express')
 const expressJwt = require('express-jwt')
 const jwtSecret = require('../../../credentials').jwtSecret
@@ -13,19 +12,17 @@ router.use('/', expressJwt({
   databaseController.findUserByEmail(req.user.email, (err, user) => {
     if (err) {
       return next(err)
-    } else {
-      res.json({
-        user: user
-      })
     }
+    res.json({user})
   })
 })
 
+// invalid token error handling
 // TODO: Clear cache if there is an invalid token
 router.use((err, req, res, next) => {
   if (err.name === 'UnauthorizedError') {
     err.status = 401
-    err.message = ('Invalid Token')
+    err.message = 'Invalid Token'
     next(err)
   }
 })

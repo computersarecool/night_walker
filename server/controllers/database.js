@@ -4,7 +4,7 @@ const Orders = require('../../database').Orders
 const Editions = require('../../database').Editions
 
 function findEdition (urlSafeName, callback) {
-  Editions.findOne({urlSafeName: urlSafeName}, (err, edition) => {
+  Editions.findOne({urlSafeName}, (err, edition) => {
     // TODO: Internal Error handling
     if (err) {
       throw err
@@ -44,7 +44,7 @@ function findDBUser (user, callback) {
 }
 
 function findUserByEmail (email, foundCallback) {
-  Users.findOne({email: email}, (err, user) => {
+  Users.findOne({email}, (err, user) => {
     // TODO: Internal Error handling
     if (err) {
       throw err
@@ -88,18 +88,18 @@ function getItemDetails (skuObj, callback) {
 }
 
 function findProductByFlavor (safeFlavor, foundCallback) {
-  Products.findOne({safeFlavor: safeFlavor}).lean().exec((err, product) => {
+  Products.findOne({safeFlavor}).lean().exec((err, product) => {
     // TODO: Internal Error handling
     if (err) {
       throw err
     }
     if (!product) {
-      const error = new Error('No product found')
+      const error = new Error('Product not found')
       error.status = 404
       return foundCallback(err)
     }
     // TODO: Use schema design to improve this
-    Products.distinct('sizes', {safeFlavor: safeFlavor}, (err, distinctSizes) => {
+    Products.distinct('sizes', {safeFlavor}, (err, distinctSizes) => {
       // TODO: Error handling
       if (err) {
         throw err
@@ -126,7 +126,7 @@ function getTotal (cartItems, stripeCallback) {
     const orderTotal = values.reduce((a, b) => a + b)
     stripeCallback(null, orderTotal)
   }).catch(() => {
-    // TODO: Internal promise error handling
+    // TODO: Internal error handling
     const err = new Error('There was an error retreiving order total')
     err.status = 500
     stripeCallback(err)

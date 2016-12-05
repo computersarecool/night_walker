@@ -1,15 +1,9 @@
 const stripeKey = process.env.NODE_ENV === 'production' ? require('../../credentials').stripeKey : require('../../credentials').stripeTestKey
 const stripe = require('stripe')(stripeKey)
 
-// Make a charge in Stripe
 function charge (user, amount, stripeToken, callback) {
   // TODO: Set info to something explanatory
-  let info
-  if (user.guest) {
-    info = 'payinguser@example.com'
-  } else {
-    info = user.name
-  }
+  const info = user.guest ? 'guestuser@example.com' : user.name
 
   // create charge
   stripe.charges.create({
@@ -18,7 +12,7 @@ function charge (user, amount, stripeToken, callback) {
     card: stripeToken,
     description: info
   }, (err, stripeCharge) => {
-    // Failed charge
+    // failed charge
     if (err) {
       // TODO: Send the user an error / declined message
       switch (err.type) {
@@ -50,8 +44,8 @@ function charge (user, amount, stripeToken, callback) {
 function returnError (callback, err) {
   const error = new Error(err.message)
   error.status = 402
-  console.log('There was an error at the stripe stage', err)
   callback(error)
+  console.log('There was an error at the stripe stage', err)
 }
 
 module.exports = {
