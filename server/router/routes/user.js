@@ -5,7 +5,7 @@ const databaseController = require('../../controllers/database')
 const router = express.Router()
 
 // verify the JWT and sets req.user to JWT contents
-router.use('/', expressJwt({
+router.post('/', expressJwt({
   secret: jwtSecret,
   credentialsRequired: false
 }), (req, res, next) => {

@@ -4,7 +4,7 @@ const jwtSecret = require('../../../credentials').jwtSecret
 const databaseController = require('../../controllers/database')
 const router = express.Router()
 
-// authenticate user's JWT
+// verify the JWT and sets req.user to JWT contents
 router.post('/', expressJwt({
   secret: jwtSecret,
   credentialsRequired: false
