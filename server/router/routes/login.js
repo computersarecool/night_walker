@@ -19,25 +19,22 @@ const authenticate = (type, req, res, next) => {
       // TODO: Internal error handling
       return next(err)
     }
+    // TODO: Clearly define the problem with the user here (do not use the default from passport)
     if (!user) {
-      // TODO: Clearly define the error here (do not use the default from passport)
       const error = new Error(info.message)
       error.status = 401
       return next(error)
     }
 
-    jwt.sign({
+    // TODO: Make async
+    const token = jwt.sign({
       funThing: 'This is your personal JWT',
       email: user.email
-    }, jwtSecret, (err, token) => {
-      // TODO: Internal error handling
-      if (err) {
-        return next(err)
-      }
-      res.json({
-        user: user,
-        token: token
-      })
+    }, jwtSecret)
+
+    res.json({
+      user,
+      token
     })
   })(req, res, next)
 }

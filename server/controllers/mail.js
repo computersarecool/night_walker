@@ -12,15 +12,13 @@ const emailBoundary = 'boundarydivider'
 function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
   const trackingCode = shipmentInfo.tracking_code
   const label = shipmentInfo.postage_label.label_url
-  let rawMailOptions = {
+  const rawMailOptions = {
     subject: 'New purchase (and label)',
-    toAddress: shippingDetails.email,
+    toName: 'Willy Nolan',
+    toAddress: 'willy@willynolan.com',
     fromName: 'Nightwalker Paperwork',
     fromAddress: 'paperwork@willynolan.com',
-    allRecipients: [
-      'paperwork@willynolan.com',
-      shippingDetails.email
-    ],
+    allRecipients: ['willy@willynolan.com'],
     body: 'A purchase was made. The label is attached',
     files: [{
       filename: 'label' + label.substring(1, 10),
@@ -31,7 +29,7 @@ function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
     firstName: shippingDetails.firstName,
     lastName: shippingDetails.lastName,
     trackingCode: trackingCode,
-    toAddresses: shippingDetails.email,
+    toAddresses: [shippingDetails.email],
     subject: 'NightWalker order confirmation',
     fromAddress: rawMailOptions.fromAddress
   }
@@ -84,7 +82,7 @@ function sendRawEmail (rawMailOptions) {
   // rawMailOptions is {fromName, fromAddress, mainTarget, subject, body, files, allRecipients}
   const mimeversion = '1.0'
   const rawMail = `From: ${rawMailOptions.fromName} <${rawMailOptions.fromAddress}>
-To: ${rawMailOptions.toAddress}
+To: ${rawMailOptions.toName} <${rawMailOptions.toAddress}>
 Subject: ${rawMailOptions.subject}
 MIME-Version: ${mimeversion}
 Content-Type: multipart/mixed; boundary=${emailBoundary}\n
@@ -102,10 +100,10 @@ function addAttachments (rawMail, rawMailOptions) {
       downloader.downloadFile(fileObj, (err, info) => {
         if (err) {
           // Some problem downloading the file
-          console.log('Attachment promise rejected')
+          console.log('Attachment promises rejected')
           reject(err)
         } else {
-          console.log('Attachment promise resolved')
+          console.log('Attachment promises resolved')
           // info is filename, mimetype and file
           resolve(info)
         }

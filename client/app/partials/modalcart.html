@@ -14,13 +14,12 @@
 
   <!-- Cart -->
   <div id="modal-cart" ng-show="modalCart">
-    
     <!-- User is signed in -->
     <div ng-show="user.loggedIn">
-      <!-- No items in cart -->        
+      <!-- No items in cart -->
       <div ng-show="!user.cart.length">
         <p>
-          Your cart is empty
+          Your cart is empty. Would you like to:
         </p>
         <a ng-href="/account">
           <p>
@@ -28,10 +27,10 @@
           </p>
         </a>
       </div>
-      
-      <!-- Items in cart -->        
+
+      <!-- Items in cart -->
       <div ng-show="user.cart.length">
-        You have items in your cart
+        You have {{user.cart.length}} items in your cart. Would you like to:
         <a ng-href="/checkout">
           <p>
             Check out?
@@ -42,16 +41,16 @@
             View Cart?
           </p>
         </a>
-        <a ng-href="/account">          
+        <a ng-href="/account">
           <p>
             View Account?
           </p>
         </a>
-        <a ng-click="logout()">          
+        <a ng-click="logout()">
           <p>
             Logout?
           </p>
-        </a>        
+        </a>
       </div>
     </div>
    
@@ -60,16 +59,16 @@
       <!-- No items in cart -->
       <div ng-show="!user.cart.length">
         <p>
-          Welcome, would you like to
+          Welcome, would you like to:
         </p>
         <a ng-href="/login">
           <p>
-            Sign in?
+            Log in?
           </p>
         </a>
-        <a ng-href="/signup">
+        <a ng-href="/createaccount">
           <p>
-            Join?
+            Create an Account?
           </p>
         </a>
         <a ng-href="/shop">
@@ -82,31 +81,28 @@
       <!-- Items in cart -->  
       <div ng-show="user.cart.length">
         <p>
-          You have {{user.cart.length}} items in your cart. Wold you like to:
+          You have {{user.cart.length}} items in your cart. Would you like to:
         </p>
         <a ng-href="/checkout">
           <p class="checkout-options">
             Check out as a guest?
           </p>
         </a>
-        <a ng-href="/cart">
-          <p class="checkout-options">
-            Edit Your cart?
-          </p>
-        </a>
-        <a ng-href="/login">
-          <p class="checkout-options">
-            Sign in?
-          </p>
-        </a>
-        <a ng-href="signup">
-          <p class="checkout-options">
-            Join?
-          </p>
-        </a>
-      </div>
-      <button id="close-cart">X</button>
+      <a ng-href="/cart">
+        <p class="checkout-options">
+          View your cart?
+        </p>
+      </a>
+      <a ng-href="/login">
+        <p class="checkout-options">
+          Sign in?
+        </p>
+      </a>
+      <a ng-href="/createaccount">
+        <p class="checkout-options">
+          Create an account?
+        </p>
+     </a>
     </div>
-    
   </div>
-
+</div>

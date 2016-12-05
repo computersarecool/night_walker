@@ -15,7 +15,7 @@ angular.module('nightwalkerApp')
       $location.path('/acccount')
     }
     // Do not show the login option if on signup route
-    if ($location.path() === '/signup') {
+    if ($location.path() === '/createaccount') {
       $scope.showLogin = false
     } else {
       $scope.showLogin = true

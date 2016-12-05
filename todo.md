@@ -1,6 +1,7 @@
 # TODO:
-// PICK UP:
-
+    - Understanding JWT
+    - Database Design
+    - Error notifier
 
 #### Small todo items
   - email field in login in angular is set to text

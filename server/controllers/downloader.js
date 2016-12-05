@@ -4,7 +4,6 @@ const request = require('request')
 // Downloads and names url file, returns content-type and binary data base64 encoded
 
 function downloadFile (fileObj, callback) {
-  console.log('downloading')
   request.get(fileObj.url).on('response', (res) => {
     const datachunks = []
 
