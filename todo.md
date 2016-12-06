@@ -3,12 +3,12 @@
 
 ### Small todo items
 
-   ####  SERVER
+  ####  SERVER
   - Internal error notification
-  - Error notifier / handler   
+  - Validate email information during sending
   - favicon best practices
   - correct logger
-  - Spf policy
+  - spf policy
  
   ####  CLIENT
   - Store a client ID instead of the user cart on the browser

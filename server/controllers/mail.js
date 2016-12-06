@@ -99,11 +99,11 @@ function addAttachments (rawMail, rawMailOptions) {
       downloader.downloadFile(fileObj, (err, info) => {
         if (err) {
           // Some problem downloading the file
-          reject(err)
-        } else {
-          // info is filename, mimetype and file
-          resolve(info)
+          // TODO: Internal error handling if a download fails
+          return reject(err)
         }
+        // info is filename, mimetype and file
+        resolve(info)
       })
     })
   })
@@ -117,9 +117,8 @@ ${file.file}\n`
       rawMail += attachment
     })
     closeAndSend(rawMail, rawMailOptions)
-  }).catch(() => {
-    // TODO: Internal error handling if a download fails
-    throw new Error('Download in mail controller failed')
+  }, err => {
+    throw err
   })
 }
 

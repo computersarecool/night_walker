@@ -62,12 +62,15 @@ function getItemDetails (skuObj, callback) {
   // Create an array with quanitity of each item and its details
   const promises = Object.keys(skuObj).map(sku => {
     return new Promise((resolve, reject) => {
+      // TODO: Internal error handling (differentiate errors called by invalid skus)
       Products.findOne({sku}).lean().exec((err, product) => {
         if (err) {
           return reject(err)
         }
         if (!product) {
-          return reject(null)
+          const error = new Error('There was an error retreiving all items in your cart')
+          error.status = 400
+          return reject(error)
         }
         resolve({
           quantity: skuObj[sku],
@@ -79,11 +82,8 @@ function getItemDetails (skuObj, callback) {
 
   Promise.all(promises).then(values => {
     callback(null, values)
-  }).catch(() => {
-    // TODO: Internal error handling (differentiate errors called by invalid skus)
-    const error = new Error('There was an error retreiving all items in cart')
-    error.status = 500
-    callback(error)
+  }, err => {
+    callback(err)
   })
 }
 
@@ -124,7 +124,7 @@ function getTotalCost (cartItems, stripeCallback) {
   })
 
   Promise.all(promises).then(values => {
-    const orderTotal = values.reduce((a, b) => a + b)
+    const orderTotal = values.reduce((lvalue, rvalue) => lvalue + rvalue)
     stripeCallback(null, orderTotal)
   }).catch(() => {
     // TODO: Figure out if it is user or db error
