@@ -114,6 +114,7 @@ function getTotalCost (cartItems, stripeCallback) {
   const promises = cartItems.map(sku => {
     return new Promise((resolve, reject) => {
       Products.findOne({sku}, (err, product) => {
+        // TODO: an error here could be a problem with db or user input
         if (err) {
           return reject(err)
         }
@@ -126,9 +127,10 @@ function getTotalCost (cartItems, stripeCallback) {
     const orderTotal = values.reduce((a, b) => a + b)
     stripeCallback(null, orderTotal)
   }).catch(() => {
-    // TODO: Internal error handling
-    const err = new Error('There was an error retreiving order total')
-    err.status = 500
+    // TODO: Figure out if it is user or db error
+    const err = new Error('There was an error retreiving your order total')
+    err.type('MalformedDataException')
+    err.status = 400
     stripeCallback(err)
   })
 }
@@ -177,10 +179,10 @@ function saveOrder (order, user) {
     }
     if (order.userOrder) {
       // Member checkout, save order with user
-      findDBUser(user, (dbUser) => {
+      findDBUser(user, dbUser => {
         dbUser.orders.push(order._id)
         dbUser.cart = []
-        dbUser.save((err) => {
+        dbUser.save(err => {
           // TODO: Internal Error handling
           if (err) {
             throw err

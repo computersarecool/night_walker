@@ -1,18 +1,20 @@
 # TODO:
     - Database design
-    
+
 ### Small todo items
 
    ####  SERVER
+  - Internal error notification
+  - Error notifier / handler   
   - favicon best practices
   - correct logger
-  - Internal error notification
-  - Error notifier / handler
   - Spf policy
  
   ####  CLIENT
+  - Store a client ID instead of the user cart on the browser
   - Why is angular making a get request to user route when there is a token
   - email field in login in angular is set to text
+  - Address verification
   - Only show view cart when there are things inside it  
   - Convert to standard
   - Save user information to expediate form filling out
@@ -65,7 +67,7 @@ Node:
   - checkout.js in routes. Does databaseuser need to be set, or will it persist from function calls
   - How is the callback defined in async.js (checkout.js:35)
   - figure out the async aspects of setting a property on an object to zero then saving it to a database (checkout.js line 29)
-
+  - database.js line 113, is this the correct way to test input
 MONGODB:
   - What are: db logs (mongodb.log), db journal
 

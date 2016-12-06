@@ -16,7 +16,7 @@ const fromAddress = {
 
 function createAddress (shippingDetails, callback) {
   const toAddress = {
-    name: shippingDetails.firstName + ' ' + shippingDetails.lastName,
+    name: `${shippingDetails.firstName} ${shippingDetails.lastName}`,
     street1: shippingDetails.address1,
     street2: shippingDetails.address2,
     city: shippingDetails.city,
@@ -35,10 +35,11 @@ function createAddress (shippingDetails, callback) {
       if (err) {
         let error = new Error('The address you entered is invalid')
         error.status = 404
+        error.type = ('AddressInvalid')
         return callback(error)
       }
       if (response.message !== undefined && response.message !== null) {
-        console.log('Address is valid but has an issue: ', response.message)
+        console.log('Address is valid but has issue: ', response.message)
         return callback(null, response.address)
       }
       console.log('The verified address is', response)

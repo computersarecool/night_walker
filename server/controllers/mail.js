@@ -10,7 +10,6 @@ const ses = new aws.SES()
 const emailBoundary = 'boundarydivider'
 
 function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
-  const trackingCode = shipmentInfo.tracking_code
   const label = shipmentInfo.postage_label.label_url
   const rawMailOptions = {
     subject: 'New purchase (and label)',
@@ -28,12 +27,12 @@ function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
   const simpleMailOptions = {
     firstName: shippingDetails.firstName,
     lastName: shippingDetails.lastName,
-    trackingCode: trackingCode,
+    trackingCode: shipmentInfo.tracking_code,
     toAddresses: [shippingDetails.email],
     subject: 'NightWalker order confirmation',
     fromAddress: rawMailOptions.fromAddress
   }
-  callback(trackingCode, rawMailOptions, simpleMailOptions)
+  callback(rawMailOptions, simpleMailOptions)
 }
 
 function emailCustomer (emailInfo) {
@@ -100,10 +99,8 @@ function addAttachments (rawMail, rawMailOptions) {
       downloader.downloadFile(fileObj, (err, info) => {
         if (err) {
           // Some problem downloading the file
-          console.log('Attachment promises rejected')
           reject(err)
         } else {
-          console.log('Attachment promises resolved')
           // info is filename, mimetype and file
           resolve(info)
         }

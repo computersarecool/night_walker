@@ -30,7 +30,7 @@ const authenticate = (type, req, res, next) => {
       funThing: 'This is your personal JWT',
       email: user.email
     // TODO: Add options to jwt sign
-    }, secret, {noTimestamp: true}, (token) => {
+    }, secret, {noTimestamp: true}, (err, token) => {
       res.json({
         user,
         token

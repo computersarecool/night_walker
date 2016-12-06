@@ -8,27 +8,26 @@
   },
   "dependencies": {
     "async": "^2.1.4",
-    "aws-sdk": "^2.2.38",
-    "bcrypt": "^0.8.5",
-    "body-parser": "^1.14.1",
+    "aws-sdk": "^2.7.10",
+    "body-parser": "^1.15.2",
     "cli-color": "^1.1.0",
-    "debug": "^2.2.0",
-    "express": "^4.13.3",
-    "express-jwt": "^3.1.0",
-    "jsonwebtoken": "^5.4.0",
-    "moment": "^2.10.6",
+    "debug": "^2.3.3",
+    "express": "^4.14.0",
+    "express-jwt": "^5.1.0",
+    "jsonwebtoken": "^7.1.9",
+    "moment": "^2.17.1",
     "mongoose": "^4.7.1",
-    "morgan": "^1.6.1",
-    "node-easypost": "^2.0.9",
-    "nodemon": "^1.7.1",
-    "passport": "^0.3.0",
+    "morgan": "^1.7.0",
+    "node-easypost": "^2.1.1",
+    "nodemon": "^1.11.0",
+    "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "request": "^2.69.0",
-    "stripe": "^4.0.0",
+    "request": "^2.79.0",
+    "stripe": "^4.14.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-stylus": "^0.22.0"
+    "grunt": "^1.0.1",
+    "grunt-contrib-stylus": "^1.2.0"
   }
 }

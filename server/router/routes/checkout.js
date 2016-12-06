@@ -4,7 +4,7 @@ const secret = require('../../../credentials').jwtSecret
 const databaseController = require('../../controllers/database')
 const shippingController = require('../../controllers/shipping')
 const mailController = require('../../controllers/mail')
-const stripeController = require('../../controllers/stripe')
+const stripeCharge = require('../../controllers/stripe')
 const router = express.Router()
 
 // check if user or not
@@ -38,13 +38,20 @@ router.use((err, req, res, next) => {
 })
 
 function checkout (req, res, user, next) {
+  // input validation
+  if (!Array.isArray(user.cart)) {
+    const cartError = new Error('There was an error with your cart data')
+    cartError.type('MalformedDataException')
+    cartError.status = 400
+    return next(cartError)
+  }
   const shippingDetails = req.body.shippingDetails
   databaseController.getTotalCost(user.cart, (err, amount) => {
     if (err) {
       return next(err)
     }
     // charge in Stripe
-    stripeController.charge(user, amount, req.body.stripeToken, (err, user) => {
+    stripeCharge(user, amount, req.body.stripeToken, (err, user) => {
       if (err) {
         return next(err)
       }
@@ -59,12 +66,12 @@ function checkout (req, res, user, next) {
             return next(err)
           }
           // send email notifications
-          mailController.formatPurchaseEmail(shipmentInfo, shippingDetails, (trackingCode, rawMailOptions, simpleMailOptions) => {
+          mailController.formatPurchaseEmail(shipmentInfo, shippingDetails, (rawMailOptions, simpleMailOptions) => {
             // TODO: get error and save email response code?
-            mailController.sendRawEmail(rawMailOptions)
             mailController.emailCustomer(simpleMailOptions)
+            mailController.sendRawEmail(rawMailOptions)
             // create and save order in database
-            databaseController.createOrder(user, trackingCode, shippingDetails, (order) => {
+            databaseController.createOrder(user, simpleMailOptions.trackingCode, shippingDetails, order => {
               databaseController.saveOrder(order, user)
             })
           })
