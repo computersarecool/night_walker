@@ -1,18 +1,21 @@
+# Emacs auto save and interlock
 \#*#
+.\#*
 
-.tern-port
-.tern-project
-
-credentials/*
-credentials.js*
-
+# Node things
 npm-debug.log
 node_modules
 bower_components
+
+# Tern config files
+.tern-port
+.tern-project
+
+# Project specific files
+credentials/*
+credentials.js*
 
 database/data/db/*
 !database/data/db/.gitkeep
 database/data/logs/*
 !database/data/logs/.gitkeep
-
-.\#*
