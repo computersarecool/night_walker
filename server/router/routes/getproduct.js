@@ -3,9 +3,7 @@ const router = express.Router()
 const databaseController = require('../../controllers/database')
 
 router.get('/:flavor', (req, res, next) => {
-  const safeFlavor = req.params.flavor
-
-  databaseController.findProductByFlavor(safeFlavor, (err, product) => {
+  databaseController.findProductByFlavor(req.params.flavor, (err, product) => {
     if (err) {
       return next(err)
     }

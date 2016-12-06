@@ -9,7 +9,7 @@ module.exports = (passport) => {
   }, (req, email, password, done) => {
     process.nextTick(() => {
       // check to see if the email is already taken
-      Users.findOne({email: email}, (err, user) => {
+      Users.findOne({email}, (err, user) => {
         // TODO: Internal error handling
         if (err) {
           return done(err)
@@ -43,7 +43,7 @@ module.exports = (passport) => {
     passwordField: 'password',
     passReqToCallback: true
   }, (req, email, password, done) => {
-    Users.findOne({email: email}, (err, user) => {
+    Users.findOne({email}, (err, user) => {
       // TODO: Internal error handling
       if (err) {
         return done(err)

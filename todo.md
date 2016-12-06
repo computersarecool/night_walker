@@ -1,10 +1,9 @@
 # TODO:
-    - Understanding JWT
-    - Database Design
-    - Error notifier
-    - Find out why having a token causes problem when first going to page
-    
+    - Database design
+    - Error notifier / handler
+        
 #### Small todo items
+  - Why is angular making a get request to user route when there is a token
   - email field in login in angular is set to text
   - check that token auth is used everywhere it should be
   - favicon best practices

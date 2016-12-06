@@ -1,7 +1,7 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
-const jwtSecret = require('../../../credentials').jwtSecret
+const secret = require('../../../credentials').jwtSecret
 const router = express.Router()
 require('../../passport')(passport)
 
@@ -26,15 +26,15 @@ const authenticate = (type, req, res, next) => {
       return next(error)
     }
 
-    // TODO: Make async
-    const token = jwt.sign({
+    jwt.sign({
       funThing: 'This is your personal JWT',
       email: user.email
-    }, jwtSecret)
-
-    res.json({
-      user,
-      token
+    // TODO: Add options to jwt sign
+    }, secret, {noTimestamp: true}, (token) => {
+      res.json({
+        user,
+        token
+      })
     })
   })(req, res, next)
 }

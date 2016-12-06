@@ -38,10 +38,10 @@ const userSchema = new Schema({
 // encrypt before save userSchema.pre('save')
 userSchema.methods.checkPassword = function (triedPassword, callback) {
   if (triedPassword === this.password) {
-    console.log('The password is right')
+    console.log('User model: The password is right')
     return callback(true)
   }
-  console.log('The password is wrong')
+  console.log('User model: The password is wrong')
   callback(false)
 }
 

@@ -22,7 +22,6 @@ function findUserAndUpdate (email, items, callback) {
   Users.findOneAndUpdate({email}, {$push: {cart: items}}, (err, user) => {
     // TODO: Internal Error handling
     if (err) {
-      console.log('hereee')
       throw err
     }
     if (user) {
@@ -111,7 +110,7 @@ function findProductByFlavor (safeFlavor, foundCallback) {
   })
 }
 
-function getTotal (cartItems, stripeCallback) {
+function getTotalCost (cartItems, stripeCallback) {
   const promises = cartItems.map(sku => {
     return new Promise((resolve, reject) => {
       Products.findOne({sku}, (err, product) => {
@@ -198,7 +197,7 @@ module.exports = {
   findEdition,
   getItemDetails,
   findProductByFlavor,
-  getTotal,
+  getTotalCost,
   createOrder,
   saveOrder
 }

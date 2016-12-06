@@ -3,9 +3,7 @@ const router = express.Router()
 const databaseController = require('../../controllers/database')
 
 router.get('/:edition', (req, res, next) => {
-  const urlSafeName = req.params.edition
-
-  databaseController.findEdition(urlSafeName, (err, edition) => {
+  databaseController.findEdition(req.params.edition, (err, edition) => {
     if (err) {
       return next(err)
     }
