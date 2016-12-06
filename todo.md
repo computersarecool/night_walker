@@ -1,30 +1,28 @@
 # TODO:
     - Database design
-    - Error notifier / handler
-        
-#### Small todo items
-  - Why is angular making a get request to user route when there is a token
-  - email field in login in angular is set to text
-  - check that token auth is used everywhere it should be
+    
+### Small todo items
+
+   ####  SERVER
   - favicon best practices
   - correct logger
-  - Only show view cart when there are things inside it
-  - (Use a good linter / Google style guide) Remove semicolons after function declarations
-  - Save user information to expediate form filling out
-  - Stripeform directive line 23 is $apply neccesary
-  - userfactory.js line 135 what happens when there is an invalid auth token
-  - remove <base> tag
   - Internal error notification
+  - Error notifier / handler
+  - Spf policy
+ 
+  ####  CLIENT
+  - Why is angular making a get request to user route when there is a token
+  - email field in login in angular is set to text
+  - Only show view cart when there are things inside it  
+  - Convert to standard
+  - Save user information to expediate form filling out
+  - Stripeform directive line 23 is $apply neccesary  
+  - remove <base> tag  
   - Finalize Bower.json / package.json(s)
   - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json
-
-
-### Low priority things
-### Basket Directive Popup
   - Make rotating cube style something like a directive
   - Make skus consistently numbers, right now inconsistent in the geturl function
-
-
+  
 ### Product page details
   - Short description
   - Price
@@ -47,13 +45,6 @@
   - Consider reusing the home sprite images on poster gallery as they will load quicker
   - optimize sizeof all images
 
-
-### Low priority things
-  - remove async from skus controller
-  - remove async from database controller
-  - Spf policy
-  - Shipping controller.createLabel does too much
-
 ### ONGOING QUESTIONS:
 Angular:
   - Pages like 'About' do not need a controller. Do we use a null controller?
@@ -75,16 +66,14 @@ Node:
   - How is the callback defined in async.js (checkout.js:35)
   - figure out the async aspects of setting a property on an object to zero then saving it to a database (checkout.js line 29)
 
-Express:
-    - When to call with four arguments to function?
-
 MONGODB:
-  - db logs (mongodb.log)
-  - db journal
+  - What are: db logs (mongodb.log), db journal
 
 YEOMAN:
   -  .travis.yml
   -  .buildignore
+
+Express:
 
 MISC:
   - Editor config
