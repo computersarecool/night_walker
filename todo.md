@@ -3,7 +3,8 @@
 
 ## Todo 
   SERVER
-  - Validate / sanitizeall post routes
+  - Define full errors for all user mistakes
+  - Validate / sanitize all post routes as early as possible (before db)
   - Internal error notification / make sure every error has all properties
   - favicon best practices
   - correct logger

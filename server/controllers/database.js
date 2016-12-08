@@ -3,33 +3,18 @@ const Users = require('../../database').Users
 const Orders = require('../../database').Orders
 const Editions = require('../../database').Editions
 
-function findEdition (urlSafeName, callback) {
-  Editions.findOne({urlSafeName}, (err, edition) => {
-    // TODO: Internal Error handling
-    if (err) {
-      throw err
-    }
-    if (!edition) {
-      let error = new Error('No collection with that name found')
-      error.status = 404
-      return callback(error)
-    }
-    callback(null, edition)
-  })
-}
-
 function findUserAndUpdate (email, items, callback) {
   Users.findOneAndUpdate({email}, {$push: {cart: items}}, (err, user) => {
     // TODO: Internal Error handling
     if (err) {
       throw err
     }
-    if (user) {
-      return callback(null, user)
+    if (!user) {
+      let error = new Error('Wrong email or password')
+      error.status = 404
+      callback(error)
     }
-    let error = new Error('No user with that name found')
-    error.status = 404
-    callback(error)
+    return callback(null, user)
   })
 }
 
@@ -50,11 +35,26 @@ function findUserByEmail (email, foundCallback) {
       throw err
     }
     if (!user) {
-      const error = new Error('No user found')
+      const error = new Error('Wrong email or password')
       error.status = 401
       return foundCallback(error)
     }
     foundCallback(null, user.toObject())
+  })
+}
+
+function findEdition (urlSafeName, callback) {
+  Editions.findOne({urlSafeName}, (err, edition) => {
+    // TODO: Internal Error handling
+    if (err) {
+      throw err
+    }
+    if (!edition) {
+      let error = new Error('No collection with that name found')
+      error.status = 404
+      return callback(error)
+    }
+    callback(null, edition)
   })
 }
 
@@ -96,7 +96,7 @@ function findProductByFlavor (safeFlavor, foundCallback) {
     if (!product) {
       const error = new Error('Product not found')
       error.status = 404
-      return foundCallback(err)
+      return foundCallback(error)
     }
     // TODO: Use schema design to improve this
     Products.distinct('sizes', {safeFlavor}, (err, distinctSizes) => {
@@ -128,10 +128,10 @@ function getTotalCost (cartItems, stripeCallback) {
     stripeCallback(null, orderTotal)
   }).catch(() => {
     // TODO: Figure out if it is user or db error
-    const err = new Error('There was an error retreiving your order total')
-    err.type('MalformedDataException')
-    err.status = 400
-    stripeCallback(err)
+    const error = new Error('There was an error retreiving your order total')
+    error.type('MalformedDataException')
+    error.status = 400
+    stripeCallback(error)
   })
 }
 

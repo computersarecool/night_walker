@@ -15,7 +15,10 @@ module.exports = (passport) => {
           return done(err)
         }
         if (user) {
-          return done(null, false, {message: 'That email is already taken'})
+          const error = new Error('That email is already taken')
+          error.status = 401
+          error.type = 'InvalidCredentials'
+          return done(null, false, error)
         }
         // create new user and add items if in cart
         const newUser = new Users()
@@ -27,7 +30,7 @@ module.exports = (passport) => {
         if (cart) {
           newUser.cart = JSON.parse(cart)
         }
-        newUser.save((err) => {
+        newUser.save(err => {
           // TODO: Internal error handling
           if (err) {
             return done(err)
@@ -49,13 +52,19 @@ module.exports = (passport) => {
         return done(err)
       }
       if (!user) {
-        return done(null, false, {message: 'No user with that email was found'})
+        const error = new Error('No user with that email was found')
+        error.status = 401
+        error.type = 'InvalidCredentials'
+        return done(null, false, error)
       }
       user.checkPassword(password, (authenticated) => {
         if (!authenticated) {
-          return done(null, false, {message: 'Sorry, incorrect email or password'})
+          const error = new Error('Incorrect email or password')
+          error.status = 401
+          error.type = 'InvalidCredentials'
+          return done(null, false, error)
         }
-        // user logged in correctly. add items if they are in cart then return user
+        // user logged in correctly. add items in cart then return user
         const cart = req.body.cart
         if (cart) {
           const items = JSON.parse(cart)
