@@ -1,4 +1,4 @@
-const router = require('express').Router
+const router = require('express').Router()
 const databaseController = require('../../controllers/database')
 
 router.get('/:flavor', (req, res, next) => {
