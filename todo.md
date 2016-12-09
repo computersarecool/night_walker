@@ -3,15 +3,15 @@
 
 ## Todo 
   SERVER
-  - In addproduct route how are items being sent in body? Where does req.user.items appear. Same theing for Skus
+  - In addproduct route where does req.user.items appear? Skus?
   - Define full errors for all user mistakes. Make sure all errs have all properties
   - Internal error notification
   - favicon best practices
-  - correct logger
-  - spf policy
+  - logging best practices
+  - SPF policy
  
   CLIENT
-  - When posting to add items, how are the items stored? Same thing for signing up, where is the cart? and skus
+  - When posting to add items, how are the items stored? Same thing for signing up, where is the cart?
   - Store a client ID instead of the user cart on the browser
   - Why is angular making a get request to user route when there is a token
   - email field in login in angular is set to text
