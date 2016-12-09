@@ -3,6 +3,10 @@
 
 ## Todo 
   SERVER
+  PICKUP  
+  - SKUs, where does the object come from?
+  - checkout / login / skus
+  - In addproduct route how are items being sent with user? Where does req.user.items appear
   - Define full errors for all user mistakes
   - Validate / sanitize all post routes as early as possible (before db)
   - Internal error notification / make sure every error has all properties

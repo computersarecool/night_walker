@@ -1,5 +1,4 @@
-const express = require('express')
-const router = express.Router()
+const router = require('express').Router()
 const databaseController = require('../../controllers/database')
 
 router.get('/:edition', (req, res, next) => {

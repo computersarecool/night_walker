@@ -1,11 +1,10 @@
-const express = require('express')
+const router = require('express').Router()
 const expressJwt = require('express-jwt')
 const secret = require('../../../credentials').jwtSecret
 const databaseController = require('../../controllers/database')
 const shippingController = require('../../controllers/shipping')
 const mailController = require('../../controllers/mail')
 const stripeCharge = require('../../controllers/stripe')
-const router = express.Router()
 
 // check if user or not
 router.post('/', (req, res, next) => {

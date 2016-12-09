@@ -1,8 +1,7 @@
-const express = require('express')
+const router = require('express').Router()
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const secret = require('../../../credentials').jwtSecret
-const router = express.Router()
 require('../../passport')(passport)
 
 router.post('/signup', (req, res, next) => {

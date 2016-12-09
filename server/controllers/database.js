@@ -100,7 +100,7 @@ function findProductByFlavor (safeFlavor, foundCallback) {
     }
     // TODO: Use schema design to improve this
     Products.distinct('sizes', {safeFlavor}, (err, distinctSizes) => {
-      // TODO: Error handling
+      // TODO: Internal Error handling
       if (err) {
         throw err
       }

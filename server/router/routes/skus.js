@@ -1,6 +1,5 @@
-const express = require('express')
+const router = require('express').Router()
 const databaseController = require('../../controllers/database')
-const router = express.Router()
 
 router.post('/', (req, res, next) => {
   // req.body is an object that has the sku number as a key and the quantity as the value
