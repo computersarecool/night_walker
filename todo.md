@@ -11,7 +11,7 @@
   - spf policy
  
   CLIENT
-  - When posting to add items, how are the items stored? Same thing for signing up, where is the cart?
+  - When posting to add items, how are the items stored? Same thing for signing up, where is the cart? and skus
   - Store a client ID instead of the user cart on the browser
   - Why is angular making a get request to user route when there is a token
   - email field in login in angular is set to text

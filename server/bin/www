@@ -2,9 +2,10 @@
 const port = process.env.PORT || 3000
 const http = require('http')
 const debug = require('debug')('server')
-const app = require('../app')
 
-http.createServer(app).listen(port, () => {
-  debug(`Express server listening on port ${port}`)
-  console.log(`Express server listening on port ${port}`)
+require('../app')((app) => {
+  http.createServer(app).listen(port, () => {
+    debug(`Express server listening on port ${port}`)
+    console.log(`Express server listening on port ${port}`)
+  })
 })
