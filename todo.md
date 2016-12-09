@@ -3,8 +3,8 @@
 
 ## Todo 
   SERVER
-  - In addproduct route where does req.user.items appear? Skus?
-  - Define full errors for all user mistakes. Make sure all errs have all properties
+  - In addproduct route where does req.user.items come from? SKUs, where does req.body come from?
+  - Define full errors for all user mistakes. Make sure all error objects have all properties
   - Internal error notification
   - favicon best practices
   - logging best practices
@@ -27,60 +27,60 @@
   - Make skus consistently numbers, right now inconsistent in the geturl function
 
   DESIGN
-  ### Product page details
-  - Short description
-  - Price
-  - Product info
-  - size selector
-  - size guide
-  - add to cart
-  - free shipping
+      Product page details
+	    - Short description
+        - Price
+	    - Product info
+	    - size selector
+	    - size guide
+	    - add to cart
+        - free shipping
 
-  ### Media
-  - Black and white stripes as background, front photos pngs
-  - fruity background on product images
-  - Have all home gallery images fade to white on sides (which might be the shop pages too)
-  - Fade to white on background image for shop gallery page (later make transparent cut out for bg image)
-  - Create web font
-  - SVG Logo and shopping cart
-  - background images on home / shop
-  - fade to white for product photos
-  - Consider reusing the home sprite images on poster gallery as they will load quicker
-  - optimize sizeof all images
+      Media
+        - Black and white stripes as background, front photos pngs
+        - fruity background on product images
+        - Have all home gallery images fade to white on sides (which might be the shop pages too)
+        - Fade to white on background image for shop gallery page (later make transparent cut out for bg image)
+        - Create web font
+        - SVG Logo and shopping cart
+        - background images on home / shop
+        - fade to white for product photos
+        - Consider reusing the home sprite images on poster gallery as they will load quicker
+        - optimize sizeof all images
       
 ### ONGOING QUESTIONS:
     ANGULAR
-  - Pages like 'About' do not need a controller. Do we use a null controller?
-  - Saving a route and not getting a 404
-  - What does compile do in a directive?
-  - Why is link returned in directive?
-  - Why does a directive have a controller
-  - Should the main.html view just be a directive?
-  - Use $scope or var in controllers (i.e. product Controller)
+      - Pages like 'About' do not need a controller. Do we use a null controller?
+      - Saving a route and not getting a 404
+      - What does compile do in a directive?
+      - Why is link returned in directive?
+      - Why does a directive have a controller
+      - Should the main.html view just be a directive?
+      - Use $scope or var in controllers (i.e. product Controller)
 
-  JAVASCRIPT
-  - routes|checkout.js:20, set dbuser so I have db and object reference to item
-  - routes|checkout.js:39, async callback
-  - Should functions be defined inside of a callback (i.e. checkout.js:30, checkout)
-  - Handling double clicks
+    JAVASCRIPT
+      - routes|checkout.js:20, set dbuser so I have db and object reference to item
+      - routes|checkout.js:39, async callback
+      - Should functions be defined inside of a callback (i.e. checkout.js:30, checkout)
+      - Handling double clicks
 
-  NODE
-  - checkout.js in routes. Does databaseuser need to be set, or will it persist from function calls
-  - How is the callback defined in async.js (checkout.js:35)
-  - figure out the async aspects of setting a property on an object to zero then saving it to a database (checkout.js line 29)
-  - database.js line 113, is this the correct way to test input
+    NODE
+      - checkout.js in routes. Does databaseuser need to be set, or will it persist from function calls
+      - How is the callback defined in async.js (checkout.js:35)
+      - figure out the async aspects of setting a property on an object to zero then saving it to a database (checkout.js line 29)
+      - database.js line 113, is this the correct way to test input
 
-  MONGODB:
-  - What are: db logs (mongodb.log), db journal
+    MONGODB:
+      - What are: db logs (mongodb.log), db journal
 
-  YEOMAN:
-  -  .travis.yml
-  -  .buildignore
+    YEOMAN:
+      -  .travis.yml
+      -  .buildignore
+      
+    EXPRESS
 
-  EXPRESS
+    MISC
+        - Editor config
 
-  MISC
-  - Editor config
-
-  UNIT TESTING:
+    UNIT TESTING:
 
