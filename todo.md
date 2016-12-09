@@ -3,9 +3,8 @@
 
 ## Todo 
   SERVER
-  PICKUP  
   - SKUs, where does the object come from?
-  - checkout / login / skus
+  - checkout / skus
   - In addproduct route how are items being sent with user? Where does req.user.items appear
   - Define full errors for all user mistakes
   - Validate / sanitize all post routes as early as possible (before db)
@@ -15,6 +14,7 @@
   - spf policy
  
   CLIENT
+  - When posting to add items, how are the items stored? Same thing for signing up, where is the cart?
   - Store a client ID instead of the user cart on the browser
   - Why is angular making a get request to user route when there is a token
   - email field in login in angular is set to text

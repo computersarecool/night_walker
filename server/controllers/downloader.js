@@ -4,15 +4,15 @@ const request = require('request')
 // Downloads and names url file, returns content-type and binary data base64 encoded
 
 function downloadFile (fileObj, callback) {
-  request.get(fileObj.url).on('response', (res) => {
+  request.get(fileObj.url).on('response', res => {
     const datachunks = []
 
     // TODO: Internal error handling
-    res.on('error', (err) => {
+    res.on('error', err => {
       callback(err)
     })
 
-    res.on('data', (chunk) => {
+    res.on('data', chunk => {
       datachunks.push(chunk)
     })
 

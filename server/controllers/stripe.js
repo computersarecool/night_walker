@@ -6,6 +6,7 @@ module.exports = (user, amount, card, callback) => {
   // card is the stripe token
   const currency = 'usd'
   const description = user.guest ? 'guestuser@example.com' : user.name
+
   stripe.charges.create({
     amount,
     currency,

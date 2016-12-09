@@ -82,7 +82,7 @@ function getItemDetails (skuObj, callback) {
 
   Promise.all(promises).then(values => {
     callback(null, values)
-  }, err => {
+  }).catch(err => {
     callback(err)
   })
 }
@@ -154,6 +154,7 @@ function createOrder (user, trackingCode, shippingDetails, saveCallback) {
   })
 
   // TODO: Template. This only applies if guest
+  // TODO: Can this use restructuring to destructure
   // Set shipping and contact information for order
   const shippingAddress = `{shippingDetails.firstName}
  {shippingDetails.lastName}

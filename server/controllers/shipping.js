@@ -15,6 +15,7 @@ const fromAddress = {
 }
 
 function createAddress (shippingDetails, callback) {
+  // TODO: refactor to use destructuring
   const toAddress = {
     name: `${shippingDetails.firstName} ${shippingDetails.lastName}`,
     street1: shippingDetails.address1,
@@ -50,7 +51,7 @@ function createAddress (shippingDetails, callback) {
 
 function createParcel (toAddress, shippingDetails, emailCallback) {
   easypost.Parcel.create({
-    mode: 'test',
+    mode: process.env.NODE_ENV === 'production' ? 'production' : 'test',
     predefined_package: 'FlatRatePaddedEnvelope',
     weight: 21.2
   }, (err, parcel) => {

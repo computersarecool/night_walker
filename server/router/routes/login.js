@@ -14,22 +14,21 @@ router.post('/login', (req, res, next) => {
 
 const authenticate = (type, req, res, next) => {
   passport.authenticate(type, {session: false}, (err, user, info) => {
+    // TODO: Internal error handling
     if (err) {
-      // TODO: Internal error handling
       return next(err)
     }
-    // TODO: Clearly define the problem with the user here (do not use the default from passport)
     if (!user) {
-      const error = new Error(info.message)
-      error.status = 401
-      return next(error)
+      return next(info)
     }
-
+    // TODO: Add options object to jwt sign
     jwt.sign({
       funThing: 'This is your personal JWT',
       email: user.email
-    // TODO: Add options to jwt sign
     }, secret, {noTimestamp: true}, (err, token) => {
+      if (err) {
+        return next(err)
+      }
       res.json({
         user,
         token

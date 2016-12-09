@@ -18,7 +18,7 @@ module.exports = (passport) => {
           const error = new Error('That email is already taken')
           error.status = 401
           error.type = 'InvalidCredentials'
-          return done(null, false, error)
+          return done(null, null, error)
         }
         // create new user and add items if in cart
         const newUser = new Users()
@@ -26,8 +26,8 @@ module.exports = (passport) => {
         newUser.password = req.body.password
         newUser.firstName = req.body.firstName
         newUser.lastName = req.body.lastName
-        const cart = req.body.cart
-        if (cart) {
+        const cart = JSON.parse(req.body.cart)
+        if (cart && Array.isArray(cart)) {
           newUser.cart = JSON.parse(cart)
         }
         newUser.save(err => {
@@ -55,23 +55,22 @@ module.exports = (passport) => {
         const error = new Error('No user with that email was found')
         error.status = 401
         error.type = 'InvalidCredentials'
-        return done(null, false, error)
+        return done(null, null, error)
       }
-      user.checkPassword(password, (authenticated) => {
+      user.checkPassword(password, authenticated => {
         if (!authenticated) {
           const error = new Error('Incorrect email or password')
           error.status = 401
           error.type = 'InvalidCredentials'
-          return done(null, false, error)
+          return done(null, null, error)
         }
         // user logged in correctly. add items in cart then return user
-        const cart = req.body.cart
-        if (cart) {
-          const items = JSON.parse(cart)
-          for (let i = 0; i < items.length; i++) {
-            user.cart.push(items[i])
+        const cart = JSON.parse(req.body.cart)
+        if (cart && Array.isArray(cart)) {
+          for (let i = 0; i < cart.length; i++) {
+            user.cart.push(cart[i])
           }
-          user.save((err) => {
+          user.save(err => {
             // TODO: Internal error handling
             if (err) {
               return done(err)

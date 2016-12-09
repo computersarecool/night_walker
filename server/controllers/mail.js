@@ -11,6 +11,7 @@ const emailBoundary = 'boundarydivider'
 
 function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
   const label = shipmentInfo.postage_label.label_url
+  // TODO: restructure to use destructure
   const rawMailOptions = {
     subject: 'New purchase (and label)',
     toName: 'Willy Nolan',
@@ -40,11 +41,9 @@ function emailCustomer (emailInfo) {
   const lastNameMatch = /#LASTNAME/
   const trackingCodeMatch = /#TRACKINGCODE/
 
-  // send the email
-  // TODO: Make readFile a stream
   fs.readFile(path.join(__dirname, '../templates/emails', 'customer_confirmation.html'), {encoding: 'utf-8'}, (err, data) => {
+    // TODO: Internal error handling
     if (err) {
-      // TODO: Internal error handling
       throw err
     }
 
@@ -68,8 +67,8 @@ function emailCustomer (emailInfo) {
     }
 
     ses.sendEmail(params, (err, id) => {
+      // TODO: Internal error handling
       if (err) {
-        // TODO: Internal error handling
         throw err
       }
       console.log('Simple mail sent. ID:', id)
@@ -117,7 +116,7 @@ ${file.file}\n`
       rawMail += attachment
     })
     closeAndSend(rawMail, rawMailOptions)
-  }, err => {
+  }).catch(err => {
     throw err
   })
 }
@@ -137,7 +136,6 @@ function closeAndSend (rawMail, rawMailOptions) {
   ses.sendRawEmail(params, (err, data) => {
     // TODO: Internal error handling
     if (err) {
-      console.log(params)
       throw err
     }
     console.log('Raw mail sent', data)
