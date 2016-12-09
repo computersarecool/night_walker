@@ -3,12 +3,9 @@
 
 ## Todo 
   SERVER
-  - SKUs, where does the object come from?
-  - checkout / skus
-  - In addproduct route how are items being sent with user? Where does req.user.items appear
-  - Define full errors for all user mistakes
-  - Validate / sanitize all post routes as early as possible (before db)
-  - Internal error notification / make sure every error has all properties
+  - In addproduct route how are items being sent in body? Where does req.user.items appear. Same theing for Skus
+  - Define full errors for all user mistakes. Make sure all errs have all properties
+  - Internal error notification
   - favicon best practices
   - correct logger
   - spf policy
@@ -28,8 +25,9 @@
   - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json
   - Make rotating cube style something like a directive
   - Make skus consistently numbers, right now inconsistent in the geturl function
-  
-### Product page details
+
+  DESIGN
+  ### Product page details
   - Short description
   - Price
   - Product info
@@ -38,7 +36,7 @@
   - add to cart
   - free shipping
 
-### Media
+  ### Media
   - Black and white stripes as background, front photos pngs
   - fruity background on product images
   - Have all home gallery images fade to white on sides (which might be the shop pages too)
@@ -49,7 +47,7 @@
   - fade to white for product photos
   - Consider reusing the home sprite images on poster gallery as they will load quicker
   - optimize sizeof all images
-
+      
 ### ONGOING QUESTIONS:
     ANGULAR
   - Pages like 'About' do not need a controller. Do we use a null controller?
