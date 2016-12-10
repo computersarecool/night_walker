@@ -16,8 +16,9 @@ router.post('/', expressJwt({secret}), (req, res, next) => {
 // TODO: Clear cache if there is an invalid token
 router.use((err, req, res, next) => {
   if (err.name === 'UnauthorizedError') {
-    err.status = 401
     err.message = 'Invalid Token'
+    err.type = 'InvalidCredentials'
+    err.status = 401
   }
   next(err)
 })

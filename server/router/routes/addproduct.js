@@ -5,7 +5,7 @@ const databaseController = require('../../controllers/database')
 
 // verify the JWT and sets req.user to JWT contents
 router.post('/', expressJwt({secret}), (req, res, next) => {
-  databaseController.findUserAndUpdate(req.user.email, req.user.items, (err, user) => {
+  databaseController.findUserAndUpdate(req.user.email, req.body.items, (err, user) => {
     if (err) {
       return next(err)
     }
@@ -16,8 +16,9 @@ router.post('/', expressJwt({secret}), (req, res, next) => {
 // TODO: Delete token if it is invalid
 router.use((err, req, res, next) => {
   if (err.name === 'UnauthorizedError') {
-    err.status = 401
     err.message = 'Invalid Token'
+    err.type = 'InvalidCredentials'
+    err.status = 401
   }
   next(err)
 })

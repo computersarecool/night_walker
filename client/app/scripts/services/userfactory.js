@@ -81,7 +81,6 @@ angular.module('nightwalkerApp')
       } else if (!user.currentUser) {
         // Add to temporary user cart and storage if there is no user
         var cart = angular.fromJson(store.getItem('cart'))
-
         if (cart) {
           cart.push(items)
         } else {

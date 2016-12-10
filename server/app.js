@@ -1,5 +1,6 @@
 const path = require('path')
 const express = require('express')
+const subdomain = require('express-subdomain')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
 const passport = require('passport')
@@ -12,6 +13,11 @@ module.exports = (callback) => {
     app.use(logger('dev'))
     app.use(bodyParser.json())
     app.use(passport.initialize())
+
+    app.use(subdomain('api', (req, res, next) => {
+      res.end('peace')
+    }))
+
     app.use('/api', apiRouter)
 
     // development static file server and errors

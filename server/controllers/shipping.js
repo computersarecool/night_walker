@@ -35,8 +35,8 @@ function createAddress (shippingDetails, callback) {
     toAddress.verify((err, response) => {
       if (err) {
         let error = new Error('The address you entered is invalid')
-        error.status = 404
         error.type = ('AddressInvalid')
+        error.status = 404
         return callback(error)
       }
       if (response.message !== undefined && response.message !== null) {

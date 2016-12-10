@@ -7,36 +7,34 @@ module.exports = (passport) => {
     passwordField: 'password',
     passReqToCallback: true
   }, (req, email, password, done) => {
-    process.nextTick(() => {
-      // check to see if the email is already taken
-      Users.findOne({email}, (err, user) => {
+    // check to see if the email is already taken
+    Users.findOne({email}, (err, user) => {
+      // TODO: Internal error handling
+      if (err) {
+        return done(err)
+      }
+      if (user) {
+        const error = new Error('That email is already taken')
+        error.status = 401
+        error.type = 'InvalidCredentials'
+        return done(null, null, error)
+      }
+      // create new user and add items if in cart
+      const newUser = new Users()
+      newUser.email = req.body.email
+      newUser.password = req.body.password
+      newUser.firstName = req.body.firstName
+      newUser.lastName = req.body.lastName
+      const cart = JSON.parse(req.body.cart)
+      if (cart && Array.isArray(cart)) {
+        newUser.cart = JSON.parse(cart)
+      }
+      newUser.save(err => {
         // TODO: Internal error handling
         if (err) {
           return done(err)
         }
-        if (user) {
-          const error = new Error('That email is already taken')
-          error.status = 401
-          error.type = 'InvalidCredentials'
-          return done(null, null, error)
-        }
-        // create new user and add items if in cart
-        const newUser = new Users()
-        newUser.email = req.body.email
-        newUser.password = req.body.password
-        newUser.firstName = req.body.firstName
-        newUser.lastName = req.body.lastName
-        const cart = JSON.parse(req.body.cart)
-        if (cart && Array.isArray(cart)) {
-          newUser.cart = JSON.parse(cart)
-        }
-        newUser.save(err => {
-          // TODO: Internal error handling
-          if (err) {
-            return done(err)
-          }
-          return done(null, newUser)
-        })
+        return done(null, newUser)
       })
     })
   }))
@@ -78,7 +76,7 @@ module.exports = (passport) => {
             done(null, user)
           })
         } else {
-          // No temp cart, return the user
+          // there is no temp cart - return the user
           return done(null, user)
         }
       })

@@ -11,7 +11,8 @@ function findUserAndUpdate (email, items, callback) {
     }
     if (!user) {
       let error = new Error('Wrong email or password')
-      error.status = 404
+      error.type = 'InvalidCredentials'
+      error.status = 401
       callback(error)
     }
     return callback(null, user)
@@ -36,6 +37,7 @@ function findUserByEmail (email, foundCallback) {
     }
     if (!user) {
       const error = new Error('Wrong email or password')
+      error.type = 'InvalidCredentials'
       error.status = 401
       return foundCallback(error)
     }
@@ -51,6 +53,7 @@ function findEdition (urlSafeName, callback) {
     }
     if (!edition) {
       let error = new Error('No collection with that name found')
+      error.type = 'CollectionNotFound'
       error.status = 404
       return callback(error)
     }
@@ -69,6 +72,7 @@ function getItemDetails (skuObj, callback) {
         }
         if (!product) {
           const error = new Error('There was an error retreiving all items in your cart')
+          error.type = 'ResourceNotFound'
           error.status = 400
           return reject(error)
         }
@@ -95,6 +99,7 @@ function findProductByFlavor (safeFlavor, foundCallback) {
     }
     if (!product) {
       const error = new Error('Product not found')
+      error.type = 'ProductNotFound'
       error.status = 404
       return foundCallback(error)
     }
@@ -149,11 +154,10 @@ function createOrder (user, trackingCode, shippingDetails, saveCallback) {
   }
 
   // Add each item from cart to order.items
-  user.cart.forEach((item) => {
+  user.cart.forEach(item => {
     successOrder.items.push(item)
   })
 
-  // TODO: Template. This only applies if guest
   // TODO: Can this use restructuring to destructure
   // Set shipping and contact information for order
   const shippingAddress = `{shippingDetails.firstName}

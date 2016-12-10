@@ -3,7 +3,6 @@ const databaseController = require('../../controllers/database')
 
 router.post('/', (req, res, next) => {
   // req.body is key:sku number, value: quantity
-  // body parser makes sure body is object or array
   if (Array.isArray(req.body)) {
     const error = new Error('There was an error retreiving your order total')
     error.type('MalformedDataException')

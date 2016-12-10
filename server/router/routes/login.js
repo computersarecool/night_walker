@@ -26,6 +26,7 @@ const authenticate = (type, req, res, next) => {
       funThing: 'This is your personal JWT',
       email: user.email
     }, secret, {noTimestamp: true}, (err, token) => {
+      // TODO: Internal error handling
       if (err) {
         return next(err)
       }

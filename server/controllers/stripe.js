@@ -17,6 +17,7 @@ module.exports = (user, amount, card, callback) => {
       const error = new Error(err.message)
       error.status = 402
       return callback(error)
+      // error.type is set by stripe
     }
     callback(null, user)
   })
