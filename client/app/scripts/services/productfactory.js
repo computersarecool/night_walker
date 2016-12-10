@@ -9,8 +9,10 @@
  */
 angular.module('nightwalkerApp')
   .factory('ProductFactory', function ($http) {
+    var base = 'http://api.optonox.com:3000'
+
     function getEdition (edition) {
-      return $http.get('/api/editions/' + edition)
+      return $http.get(base + '/editions/' + edition)
         .then(function success (response) {
           return response.data
         }, function error (httpError) {

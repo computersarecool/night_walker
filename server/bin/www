@@ -6,6 +6,5 @@ const debug = require('debug')('server')
 require('../app')((app) => {
   http.createServer(app).listen(port, () => {
     debug(`Express server listening on port ${port}`)
-    console.log(`Express server listening on port ${port}`)
   })
 })

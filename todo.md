@@ -8,13 +8,14 @@
     - Add options to jwt.sign (login route)
     - Save user credit card token in database
     - Make filepath a good name in downloadeder
-    - Use destructuring in database controller w / addresses
+    - Use destructuring in database controller w / addresses and in mail controller
     - Internal error notification
     - favicon best practices
     - logging best practices
     - SPF policy
 
   CLIENT
+    PICKUP
     - Switch to api domain
     - Trying to create an account with a token stored returns a 404 and does nothing
     - When posting to add items, how are the items stored? Same thing for signing up, where is the cart? Same thing for skus?

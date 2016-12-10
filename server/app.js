@@ -13,12 +13,7 @@ module.exports = (callback) => {
     app.use(logger('dev'))
     app.use(bodyParser.json())
     app.use(passport.initialize())
-
-    app.use(subdomain('api', (req, res, next) => {
-      res.end('peace')
-    }))
-
-    app.use('/api', apiRouter)
+    app.use(subdomain('api', apiRouter))
 
     // development static file server and errors
     if (process.env.NODE_ENV === 'development') {

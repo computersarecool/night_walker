@@ -97,15 +97,15 @@ angular
 
     Stripe.setPublishableKey('pk_test_uEnw6EZC8otddMKeJUiZsHFz')
   }).run(function ($rootScope, $location) {
-  $rootScope.$on('$locationChangeStart', function (event) {
-    // TODO: Remove Hack because nav does not exist yet
-    var nav = document.querySelector('nav')
-    if (nav) {
-      if ($location.path() === '/') {
-        nav.classList.remove('horizontal')
-      } else {
-        nav.classList.add('horizontal')
+    $rootScope.$on('$locationChangeStart', function (event) {
+      // TODO: Remove Hack because nav does not exist yet
+      var nav = document.querySelector('nav')
+      if (nav) {
+        if ($location.path() === '/') {
+          nav.classList.remove('horizontal')
+        } else {
+          nav.classList.add('horizontal')
+        }
       }
-    }
+    })
   })
-})
