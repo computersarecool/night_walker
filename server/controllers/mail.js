@@ -142,8 +142,37 @@ function closeAndSend (rawMail, rawMailOptions) {
   })
 }
 
+function notifyHQ (errorResponse, callback) {
+  const params = {
+    Destination: {
+      ToAddresses: ['willy@willynolan.com']
+    },
+    Message: {
+      Subject: {
+        Data: 'Issue with NightWalker Site'
+      },
+      Body: {
+        Html: {
+          Data: `There is an error with the NightWalker Site.
+Name: ${errorResponse.name}
+Status: ${errorResponse.status}
+Type:: ${errorResponse.type}`
+        }
+      }
+    },
+    Source: 'paperwork@willynolan.com'
+  }
+  ses.sendEmail(params, (err, id) => {
+    if (err) {
+      return callback(err)
+    }
+    callback(id)
+  })
+}
+
 module.exports = {
   sendRawEmail,
   formatPurchaseEmail,
-  emailCustomer
+  emailCustomer,
+  notifyHQ
 }

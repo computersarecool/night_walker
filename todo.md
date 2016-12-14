@@ -3,6 +3,7 @@
     - Database design
 
   SERVER
+    - Output to stderr from error handler
     - Need to verify every db item in $push method? i.e. make sure all skus are valid in finduser?
     - Send a response indicating illegal tokens should be deleted
     - Add options to jwt.sign (login route)

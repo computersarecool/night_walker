@@ -1,3 +1,5 @@
+const mailController = require('./mail')
+
 module.exports = (err, req, res, next) => {
   const status = err.status || 500
   const message = err.message || 'There is an unknown error'
@@ -9,5 +11,20 @@ module.exports = (err, req, res, next) => {
       type
     }
   }
+
   res.status(status).json(errorResponse)
+
+  if (err.status >= 500) {
+    mailController.notifyHQ(errorResponse, (err, id) => {
+      // TODO: Use real logger here
+      if (err) {
+        return console.error(err,
+`Unable to send error email:
+Name: ${errorResponse.name}
+Status: ${errorResponse.status}
+Type:: ${errorResponse.type}`)
+      }
+      console.log('500 level error message emailed', id)
+    })
+  }
 }
