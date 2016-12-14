@@ -3,6 +3,10 @@
     - Database design
 
   SERVER
+    - Internal error notification
+    PICKUP
+          controllers and routes internal error notification
+    - Fix email templates
     - Output to stderr from error handler
     - Need to verify every db item in $push method? i.e. make sure all skus are valid in finduser?
     - Send a response indicating illegal tokens should be deleted
@@ -10,7 +14,6 @@
     - Save user credit card token in database
     - Make filepath a good name in downloadeder
     - Use destructuring in database controller w / addresses and in mail controller
-    - Internal error notification
     - favicon best practices
     - logging best practices
     - SPF policy

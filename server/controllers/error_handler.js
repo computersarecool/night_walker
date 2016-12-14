@@ -14,7 +14,7 @@ module.exports = (err, req, res, next) => {
 
   res.status(status).json(errorResponse)
 
-  if (err.status >= 500) {
+  if (!err.status || err.status >= 500) {
     mailController.notifyHQ(errorResponse, (err, id) => {
       // TODO: Use real logger here
       if (err) {

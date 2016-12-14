@@ -9,7 +9,6 @@ module.exports = (passport) => {
   }, (req, email, password, done) => {
     // check to see if the email is already taken
     Users.findOne({email}, (err, user) => {
-      // TODO: Internal error handling
       if (err) {
         return done(err)
       }
@@ -30,7 +29,6 @@ module.exports = (passport) => {
         newUser.cart = JSON.parse(cart)
       }
       newUser.save(err => {
-        // TODO: Internal error handling
         if (err) {
           return done(err)
         }
@@ -45,7 +43,6 @@ module.exports = (passport) => {
     passReqToCallback: true
   }, (req, email, password, done) => {
     Users.findOne({email}, (err, user) => {
-      // TODO: Internal error handling
       if (err) {
         return done(err)
       }
@@ -69,7 +66,6 @@ module.exports = (passport) => {
             user.cart.push(cart[i])
           }
           user.save(err => {
-            // TODO: Internal error handling
             if (err) {
               return done(err)
             }
