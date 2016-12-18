@@ -1,7 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy
 const Users = require('../database').Users
 
-module.exports = (passport) => {
+module.exports = passport => {
   passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
@@ -59,7 +59,7 @@ module.exports = (passport) => {
           error.type = 'InvalidCredentials'
           return done(null, null, error)
         }
-        // user logged in correctly. add items in cart then return user
+        // user logged in correctly - add items in cart then return user
         const cart = JSON.parse(req.body.cart)
         if (cart && Array.isArray(cart)) {
           for (let i = 0; i < cart.length; i++) {

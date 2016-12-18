@@ -15,6 +15,7 @@ module.exports = (err, req, res, next) => {
   res.status(status).json(errorResponse)
 
   if (!err.status || err.status >= 500) {
+    errorResponse.stack = err.stack
     mailController.notifyHQ(errorResponse, (err, id) => {
       // TODO: Use real logger here
       if (err) {
@@ -22,7 +23,8 @@ module.exports = (err, req, res, next) => {
 `Unable to send error email:
 Name: ${errorResponse.name}
 Status: ${errorResponse.status}
-Type:: ${errorResponse.type}`)
+Type:: ${errorResponse.type}
+Stack: ${errorResponse.stack}`)
       }
       console.log('500 level error message emailed', id)
     })

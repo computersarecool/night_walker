@@ -14,7 +14,6 @@ router.post('/login', (req, res, next) => {
 
 const authenticate = (type, req, res, next) => {
   passport.authenticate(type, {session: false}, (err, user, info) => {
-    // TODO: Internal error handling
     if (err) {
       return next(err)
     }
@@ -26,7 +25,6 @@ const authenticate = (type, req, res, next) => {
       funThing: 'This is your personal JWT',
       email: user.email
     }, secret, {noTimestamp: true}, (err, token) => {
-      // TODO: Internal error handling
       if (err) {
         return next(err)
       }

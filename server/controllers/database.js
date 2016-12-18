@@ -5,9 +5,8 @@ const Editions = require('../../database').Editions
 
 function findUserAndUpdate (email, items, callback) {
   Users.findOneAndUpdate({email}, {$push: {cart: items}}, (err, user) => {
-    // TODO: Internal Error handling
     if (err) {
-      throw err
+      callback(err)
     }
     if (!user) {
       let error = new Error('Wrong email or password')
@@ -21,35 +20,32 @@ function findUserAndUpdate (email, items, callback) {
 
 function findDBUser (user, callback) {
   Users.findOne({_id: user._id}, (err, dbUser) => {
-    // TODO: Internal Error handling
     if (err) {
-      throw err
+      callback(err)
     }
     callback(dbUser)
   })
 }
 
-function findUserByEmail (email, foundCallback) {
+function findUserByEmail (email, callback) {
   Users.findOne({email}, (err, user) => {
-    // TODO: Internal Error handling
     if (err) {
-      throw err
+      callback(err)
     }
     if (!user) {
       const error = new Error('Wrong email or password')
       error.type = 'InvalidCredentials'
       error.status = 401
-      return foundCallback(error)
+      return callback(error)
     }
-    foundCallback(null, user.toObject())
+    callback(null, user.toObject())
   })
 }
 
 function findEdition (urlSafeName, callback) {
   Editions.findOne({urlSafeName}, (err, edition) => {
-    // TODO: Internal Error handling
     if (err) {
-      throw err
+      callback(err)
     }
     if (!edition) {
       let error = new Error('No collection with that name found')
@@ -61,11 +57,10 @@ function findEdition (urlSafeName, callback) {
   })
 }
 
+// create an array of each item and it's detail
 function getItemDetails (skuObj, callback) {
-  // Create an array with quanitity of each item and its details
   const promises = Object.keys(skuObj).map(sku => {
     return new Promise((resolve, reject) => {
-      // TODO: Internal error handling (differentiate errors called by invalid skus)
       Products.findOne({sku}).lean().exec((err, product) => {
         if (err) {
           return reject(err)
@@ -91,31 +86,29 @@ function getItemDetails (skuObj, callback) {
   })
 }
 
-function findProductByFlavor (safeFlavor, foundCallback) {
+function findProductByFlavor (safeFlavor, callback) {
   Products.findOne({safeFlavor}).lean().exec((err, product) => {
-    // TODO: Internal Error handling
     if (err) {
-      throw err
+      callback(err)
     }
     if (!product) {
       const error = new Error('Product not found')
       error.type = 'ProductNotFound'
       error.status = 404
-      return foundCallback(error)
+      return callback(error)
     }
     // TODO: Use schema design to improve this
     Products.distinct('sizes', {safeFlavor}, (err, distinctSizes) => {
-      // TODO: Internal Error handling
       if (err) {
-        throw err
+        callback(err)
       }
       product.distinctSizes = distinctSizes
-      foundCallback(null, product)
+      callback(null, product)
     })
   })
 }
 
-function getTotalCost (cartItems, stripeCallback) {
+function getTotalCost (cartItems, callback) {
   const promises = cartItems.map(sku => {
     return new Promise((resolve, reject) => {
       Products.findOne({sku}, (err, product) => {
@@ -130,21 +123,20 @@ function getTotalCost (cartItems, stripeCallback) {
 
   Promise.all(promises).then(values => {
     const orderTotal = values.reduce((lvalue, rvalue) => lvalue + rvalue)
-    stripeCallback(null, orderTotal)
+    callback(null, orderTotal)
   }).catch(() => {
     // TODO: Figure out if it is user or db error
     const error = new Error('There was an error retreiving your order total')
     error.type('MalformedDataException')
     error.status = 400
-    stripeCallback(error)
+    callback(error)
   })
 }
 
-function createOrder (user, trackingCode, shippingDetails, saveCallback) {
+function createOrder (user, trackingCode, shippingDetails, callback) {
   const successOrder = new Orders()
   successOrder.trackingCode = trackingCode
 
-  // Set user order boolean
   if (!user._id) {
     successOrder.userOrder = false
   } else {
@@ -159,7 +151,6 @@ function createOrder (user, trackingCode, shippingDetails, saveCallback) {
   })
 
   // TODO: Can this use restructuring to destructure
-  // Set shipping and contact information for order
   const shippingAddress = `{shippingDetails.firstName}
  {shippingDetails.lastName}
  {shippingDetails.address1}
@@ -173,7 +164,7 @@ function createOrder (user, trackingCode, shippingDetails, saveCallback) {
   successOrder.userFirstName = shippingDetails.firstName
   successOrder.userEmail = shippingDetails.email
   successOrder.userPhone = shippingDetails.phone
-  saveCallback(successOrder)
+  callback(successOrder)
 }
 
 function saveOrder (order, user) {
@@ -182,8 +173,8 @@ function saveOrder (order, user) {
     if (err) {
       throw err
     }
+    // Member checkout, save order with user
     if (order.userOrder) {
-      // Member checkout, save order with user
       findDBUser(user, dbUser => {
         dbUser.orders.push(order._id)
         dbUser.cart = []

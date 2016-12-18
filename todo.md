@@ -3,20 +3,32 @@
     - Database design
 
   SERVER
-    - Internal error notification
-    PICKUP
-          controllers and routes internal error notification
-    - Fix email templates
+    PICKUP: Routes are all the errors that all left    
+    outstanding errors:
+        - database save user function
+        - confirm user or db error in getTotalCost
+        - mail.js controller
+        - shipping controller errors need differentiation from user / internal
+
     - Output to stderr from error handler
+    - Use real logger everywhere and remove console.log
+    - systemd
+    - Use destructuring in database controller w / addresses and in mail controller and shipping controller
+    - Fix email templates (including fatal error email)
+    - Set info in stripe controller to something intelligble
     - Need to verify every db item in $push method? i.e. make sure all skus are valid in finduser?
-    - Send a response indicating illegal tokens should be deleted
-    - Add options to jwt.sign (login route)
-    - Save user credit card token in database
-    - Make filepath a good name in downloadeder
-    - Use destructuring in database controller w / addresses and in mail controller
+    - Save user card information in database.js
+    - use schema design to improve findProductByFlavor in db
+    - get cheapest rate in shipping controller
+          - add customs to shipping controller 
+    - Add options to jwt.sign (login and user route)           
+    - Send a response indicating illegal tokens should be deleted (addProduct, checkout)
+    - save some sort of response from mail controller in the createOrder function
+    - make filename a real thing in downloader
     - favicon best practices
     - logging best practices
     - SPF policy
+    
 
   CLIENT
     PICKUP

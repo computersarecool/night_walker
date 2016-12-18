@@ -97,7 +97,7 @@ function addAttachments (rawMail, rawMailOptions) {
     return new Promise((resolve, reject) => {
       downloader.downloadFile(fileObj, (err, info) => {
         if (err) {
-          // Some problem downloading the file
+          // there is problem downloading the file
           // TODO: Internal error handling if a download fails
           return reject(err)
         }

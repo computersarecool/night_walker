@@ -2,7 +2,7 @@ const router = require('express').Router()
 const databaseController = require('../../controllers/database')
 
 router.post('/', (req, res, next) => {
-  // req.body is key:sku number, value: quantity
+  // req.body is and object {sku number: quantity}
   if (Array.isArray(req.body)) {
     const error = new Error('There was an error retreiving your order total')
     error.type('MalformedDataException')
@@ -10,7 +10,6 @@ router.post('/', (req, res, next) => {
     next(error)
   }
   databaseController.getItemDetails(req.body, (err, itemDetailArray) => {
-    // TODO: Internal error handling
     if (err) {
       return next(err)
     }

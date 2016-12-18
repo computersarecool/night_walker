@@ -1,4 +1,3 @@
-// TODO: Separate out interal vs user errors
 const apiKey = require('../../credentials').easyPostApiKey
 const easypost = require('node-easypost')(apiKey)
 
@@ -28,7 +27,6 @@ function createAddress (shippingDetails, callback) {
   }
 
   easypost.Address.create(toAddress, (err, toAddress) => {
-    // TODO: Internal Error Handling
     if (err) {
       return callback(err)
     }
@@ -56,7 +54,6 @@ function createParcel (toAddress, shippingDetails, emailCallback) {
     weight: 21.2
   }, (err, parcel) => {
     if (err) {
-      // TODO: Internal Error handling
       return emailCallback(err)
     }
     console.log('parcel create returns\n\n', parcel)
@@ -71,14 +68,12 @@ function createShipment (parcel, toAddress, shippingDetails, emailCallback) {
     parcel: parcel
    // customs_info: customsInfo
   }, (err, shipment) => {
-    // TODO: Internal error handling
     if (err) {
       return emailCallback(err)
     }
     // TODO: Pick cheapest programatically
     shipment.buy({rate: shipment.rates[0]}, (err, shipment) => {
       if (err) {
-        // TODO: Internal error handling
         return emailCallback(err)
       }
       emailCallback(null, shipment, fromAddress)
