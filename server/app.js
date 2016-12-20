@@ -6,7 +6,7 @@ const logger = require('morgan')
 const bodyParser = require('body-parser')
 const passport = require('passport')
 const apiRouter = require('./router/api')
-const errorHandler = require('./controllers/error_handler')
+const errorHandler = require('./controllers/error_handler').handler
 const app = express()
 
 const configureCors = (req, callback) => {
@@ -19,7 +19,7 @@ const configureCors = (req, callback) => {
 module.exports = callback => {
   // callback is called by the bin/www when started
   require('../database').init(() => {
-    app.use(logger('dev'))
+    app.use(logger('combined'))
     app.use(bodyParser.json())
     app.use(passport.initialize())
     app.use(cors(configureCors))

@@ -4,13 +4,12 @@
   "private": true,
   "scripts": {
     "start": "NODE_ENV=production nodemon ./bin/www",
-    "test": "NODE_ENV=development DEBUG=server nodemon ./bin/www"
+    "test": "NODE_ENV=development nodemon ./bin/www"
   },
   "dependencies": {
     "aws-sdk": "^2.7.10",
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",
-    "debug": "^2.3.3",
     "express": "^4.14.0",
     "express-jwt": "^5.1.0",
     "express-subdomain": "^1.0.5",
@@ -22,11 +21,10 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "request": "^2.79.0",
-    "stripe": "^4.14.0"
+    "stripe": "^4.14.0",
+    "winston": "^2.3.0"
   },
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-contrib-stylus": "^1.2.0",
     "nodemon": "^1.11.0"
   }
 }

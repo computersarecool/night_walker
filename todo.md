@@ -1,24 +1,16 @@
 # TODO:
   DATABASE
     - Database design
-
-  SERVER
-    PICKUP: Routes are all the errors that all left    
-    outstanding errors:
-        - database save user function
-        - confirm user or db error in getTotalCost
-        - mail.js controller
-        - shipping controller errors need differentiation from user / internal
-
-    - Output to stderr from error handler
-    - Use real logger everywhere and remove console.log
+    - use schema design to improve findProductByFlavor in db
+    - Save user card information in database.js
+    
+SERVER
     - systemd
+    - validate email address of submitted users
     - Use destructuring in database controller w / addresses and in mail controller and shipping controller
-    - Fix email templates (including fatal error email)
+    - Fix email templates (Make fatal error email)
     - Set info in stripe controller to something intelligble
     - Need to verify every db item in $push method? i.e. make sure all skus are valid in finduser?
-    - Save user card information in database.js
-    - use schema design to improve findProductByFlavor in db
     - get cheapest rate in shipping controller
           - add customs to shipping controller 
     - Add options to jwt.sign (login and user route)           
@@ -31,8 +23,8 @@
     
 
   CLIENT
-    PICKUP
     - Switch to api domain
+    - Delete invalid token on error reponse
     - Trying to create an account with a token stored returns a 404 and does nothing
     - When posting to add items, how are the items stored? Same thing for signing up, where is the cart? Same thing for skus?
     - Store a client ID instead of the user cart on the browser

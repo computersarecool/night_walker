@@ -1,5 +1,6 @@
 const apiKey = require('../../credentials').easyPostApiKey
 const easypost = require('node-easypost')(apiKey)
+const logger = require('./logger')
 
 const fromAddress = {
   name: 'Willy Nolan',
@@ -38,10 +39,10 @@ function createAddress (shippingDetails, callback) {
         return callback(error)
       }
       if (response.message !== undefined && response.message !== null) {
-        console.log('Address is valid but has issue: ', response.message)
+        logger.warn('Address is valid but has issue: ', response.message)
         return callback(null, response.address)
       }
-      console.log('The verified address is', response)
+      logger.info('The verified address is', response)
       return callback(null, response.address)
     })
   })
@@ -56,7 +57,7 @@ function createParcel (toAddress, shippingDetails, emailCallback) {
     if (err) {
       return emailCallback(err)
     }
-    console.log('parcel create returns\n\n', parcel)
+    logger.info('parcel create returns\n\n', parcel)
     createShipment(parcel, toAddress, shippingDetails, emailCallback)
   })
 }

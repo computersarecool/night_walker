@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const downloader = require('./downloader')
+const logger = require('./logger')
 const aws = require('aws-sdk')
 const accessKeyId = require('../../credentials').aws_access_key_id
 const secretAccessKey = require('../../credentials').aws_secret_access_key
@@ -8,6 +9,7 @@ const region = 'us-west-2'
 aws.config.update({accessKeyId, secretAccessKey, region})
 const ses = new aws.SES()
 const emailBoundary = 'boundarydivider'
+const logFinal = require('./error_handler').logFinal
 
 function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
   const label = shipmentInfo.postage_label.label_url
@@ -42,9 +44,8 @@ function emailCustomer (emailInfo) {
   const trackingCodeMatch = /#TRACKINGCODE/
 
   fs.readFile(path.join(__dirname, '../templates/emails', 'customer_confirmation.html'), {encoding: 'utf-8'}, (err, data) => {
-    // TODO: Internal error handling
     if (err) {
-      throw err
+      return notifyHQ(err, logFinal)
     }
 
     let outgoingEmail = data.replace(firstNameMatch, emailInfo.firstName).replace(lastNameMatch, emailInfo.lastName).replace(trackingCodeMatch, emailInfo.trackingCode)
@@ -67,11 +68,9 @@ function emailCustomer (emailInfo) {
     }
 
     ses.sendEmail(params, (err, id) => {
-      // TODO: Internal error handling
       if (err) {
-        throw err
+        notifyHQ(err, logFinal)
       }
-      console.log('Simple mail sent. ID:', id)
     })
   })
 }
@@ -98,8 +97,8 @@ function addAttachments (rawMail, rawMailOptions) {
       downloader.downloadFile(fileObj, (err, info) => {
         if (err) {
           // there is problem downloading the file
-          // TODO: Internal error handling if a download fails
-          return reject(err)
+          reject(err)
+          return notifyHQ(err, logFinal)
         }
         // info is filename, mimetype and file
         resolve(info)
@@ -107,7 +106,7 @@ function addAttachments (rawMail, rawMailOptions) {
     })
   })
   Promise.all(promises).then(files => {
-    files.forEach((file) => {
+    files.forEach(file => {
       let attachment = `--${emailBoundary}
 Content-Type: ${file.mimetype};name=${file.filename}
 Content-Disposition: attachment; filename=${file.filename}
@@ -117,32 +116,31 @@ ${file.file}\n`
     })
     closeAndSend(rawMail, rawMailOptions)
   }).catch(err => {
-    throw err
+    return notifyHQ(err, logFinal)
   })
 }
 
 function closeAndSend (rawMail, rawMailOptions) {
-  // Add final emailBoundary marker
+  // add final emailBoundary marker
   rawMail += '--' + emailBoundary
 
-  // Create email parameters
+  // create email parameters
   const params = {
     RawMessage: {Data: new Buffer(rawMail)},
     Destinations: rawMailOptions.allRecipients,
     Source: rawMailOptions.fromAddress
   }
 
-  // Send the email
+  // send the email
   ses.sendRawEmail(params, (err, data) => {
-    // TODO: Internal error handling
     if (err) {
-      throw err
+      return notifyHQ(err, logFinal)
     }
-    console.log('Raw mail sent', data)
+    logger.info('Raw mail sent', data)
   })
 }
 
-function notifyHQ (errorResponse, callback) {
+function notifyHQ (errorResponse, callback, extraData = null) {
   const params = {
     Destination: {
       ToAddresses: ['willy@willynolan.com']
@@ -156,7 +154,9 @@ function notifyHQ (errorResponse, callback) {
           Data: `There is an error with the NightWalker Site.
 Name: ${errorResponse.name}
 Status: ${errorResponse.status}
-Type:: ${errorResponse.type}`
+Type: ${errorResponse.type}
+Stack: ${errorResponse.stack}
+Extra Data: ${JSON.stringify(extraData)}`
         }
       }
     },
