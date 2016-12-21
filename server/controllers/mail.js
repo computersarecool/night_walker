@@ -43,7 +43,7 @@ function emailCustomer (emailInfo) {
   const firstNameMatch = /#FIRSTNAME/
   const lastNameMatch = /#LASTNAME/
   const trackingCodeMatch = /#TRACKINGCODE/
-  const orderNumberMatch = /#ORDERNO/
+  const orderNumberMatch = /#ORDERNUMBER/
 
   fs.readFile(path.join(__dirname, '../templates/emails', 'customer_confirmation.html'), {encoding: 'utf-8'}, (err, data) => {
     if (err) {
