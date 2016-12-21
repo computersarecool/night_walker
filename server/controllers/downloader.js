@@ -6,9 +6,8 @@ function downloadFile (fileObj, callback) {
   request.get(fileObj.url).on('response', res => {
     const datachunks = []
 
-    // TODO: Internal error handling
     res.on('error', err => {
-      callback(err)
+      return callback(err)
     })
 
     res.on('data', chunk => {

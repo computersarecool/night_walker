@@ -50,7 +50,7 @@ function createAddress (shippingDetails, callback) {
 function createParcel (toAddress, shippingDetails, emailCallback) {
   easypost.Parcel.create({
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'test',
-    predefined_package: 'FlatRatePaddedEnvelope',
+    predefined_package: 'SmallFlatRateBox',
     weight: 21.2
   }, (err, parcel) => {
     if (err) {
@@ -66,13 +66,11 @@ function createShipment (parcel, toAddress, shippingDetails, emailCallback) {
     to_address: toAddress,
     from_address: fromAddress,
     parcel: parcel
-   // customs_info: customsInfo
   }, (err, shipment) => {
     if (err) {
       return emailCallback(err)
     }
-    // TODO: Pick cheapest programatically
-    shipment.buy({rate: shipment.rates[0]}, (err, shipment) => {
+    shipment.buy({rate: shipment.lowestRate()}, (err, shipment) => {
       if (err) {
         return emailCallback(err)
       }
@@ -86,25 +84,3 @@ module.exports = {
   createParcel
 }
 
-// TODO CUSTOMS:
-// Create customs_info form for international shipping
-//  var customsItem = {
-//    description: "EasyPost t-shirts",
-//    hs_tariff_number: 123456,
-//    origin_country: "US",
-//    quantity: 2,
-//    value: 96.27,
-//    weight: 21.1
-//  }
-
-// var customsInfo = {
-//   customs_certify: 1,
-//   customs_signer: "Hector Hammerfall",
-//   contents_type: "gift",
-//   contents_explanation: "",
-//   eel_pfc: "NOEEI 30.37(a)",
-//   non_delivery_option: "return",
-//   restriction_type: "none",
-//   restriction_comments: "",
-//   customs_items: [customsItem]
-// }

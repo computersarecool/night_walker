@@ -145,16 +145,14 @@ function getTotalCost (cartItems, callback) {
   })
 }
 
-function createOrder (user, trackingCode, shippingDetails, callback) {
+function createOrder (user, shippingDetails, callback) {
   const successOrder = new Orders()
-  successOrder.trackingCode = trackingCode
-
-  if (!user._id) {
-    successOrder.userOrder = false
-  } else {
+  if (user._id) {
     // TODO: save card info if user
     successOrder.userOrder = true
     successOrder.userID = user._id
+  } else {
+    successOrder.userOrder = false
   }
 
   // add each item from cart to order.items
@@ -162,7 +160,6 @@ function createOrder (user, trackingCode, shippingDetails, callback) {
     successOrder.items.push(item)
   })
 
-  // TODO: Can this use restructuring to destructure?
   const shippingAddress = `${shippingDetails.firstName}
 ${shippingDetails.lastName}
 ${shippingDetails.address1}

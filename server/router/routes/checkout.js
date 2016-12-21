@@ -63,11 +63,13 @@ function checkout (req, res, user, next) {
           }
           // send email notifications
           mailController.formatPurchaseEmail(shipmentInfo, shippingDetails, (rawMailOptions, simpleMailOptions) => {
-            // TODO: get error and save email response code?
-            mailController.emailCustomer(simpleMailOptions)
-            mailController.sendRawEmail(rawMailOptions)
-            // create and save order in database
-            databaseController.createOrder(user, simpleMailOptions.trackingCode, shippingDetails, order => {
+            databaseController.createOrder(user, shippingDetails, order => {
+              const orderNumber = order._id.substr(-10)
+              simpleMailOptions.orderNumber = orderNumber
+              mailController.emailCustomer(simpleMailOptions)
+              mailController.sendRawEmail(rawMailOptions)
+              // save order in database
+              order.trackingCode = simpleMailOptions.trackingCode
               databaseController.saveOrder(order, user)
             })
           })

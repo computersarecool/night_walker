@@ -43,13 +43,14 @@ function emailCustomer (emailInfo) {
   const firstNameMatch = /#FIRSTNAME/
   const lastNameMatch = /#LASTNAME/
   const trackingCodeMatch = /#TRACKINGCODE/
+  const orderNumberMatch = /#ORDERNO/
 
   fs.readFile(path.join(__dirname, '../templates/emails', 'customer_confirmation.html'), {encoding: 'utf-8'}, (err, data) => {
     if (err) {
       return notifyHQ(err, logFinal)
     }
 
-    let outgoingEmail = data.replace(firstNameMatch, emailInfo.firstName).replace(lastNameMatch, emailInfo.lastName).replace(trackingCodeMatch, emailInfo.trackingCode)
+    let outgoingEmail = data.replace(firstNameMatch, emailInfo.firstName).replace(lastNameMatch, emailInfo.lastName).replace(trackingCodeMatch, emailInfo.trackingCode).replace(orderNumberMatch, emailInfo.orderNumber)
 
     const params = {
       Destination: {

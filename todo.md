@@ -4,21 +4,16 @@
     - use schema design to improve findProductByFlavor in db
     - Save user card information in database.js
     
-SERVER
+  SERVER
     - "DevOps"
         - systemd
         - log rotation
         - jsdoc
+        - Move static assets to cloudfront        
         - favicon best practices
-        - Move static assets to cloudfront
         - SPF policy
-        
-    - Add options to jwt.sign (login and user route)
-    - save some sort of response from mail controller in the createOrder function
-    - make filename a real thing in downloader
-    - get cheapest rate in shipping controller
-          - add customs to shipping controller 
-    - Fix email templates (Make fatal error email)        
+ 
+    - Create email templates (Make fatal error email)        
 
 
     
@@ -81,11 +76,9 @@ SERVER
       - Handling double clicks
 
     NODE
-      - checkout.js in routes. Does databaseuser need to be set, or will it persist from function calls
-      - How is the callback defined in async.js (checkout.js:35)
-      - figure out the async aspects of setting a property on an object to zero then saving it to a database (checkout.js line 29)
-      - database.js line 113, is this the correct way to test input
 
+    EXPRESS
+    
     MONGODB:
       - What are: db logs (mongodb.log), db journal
 
@@ -93,10 +86,8 @@ SERVER
       -  .travis.yml
       -  .buildignore
       
-    EXPRESS
-
+    UNIT TESTING
+    
     MISC
         - Editor config
-
-    UNIT TESTING:
 
