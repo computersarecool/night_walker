@@ -5,7 +5,19 @@ const Editions = require('../../database').Editions
 const mailController = require('./mail')
 const logError = require('./error_handler').logFinal
 
+function isValid (sku, index, array) {
+  return Products.findOne({sku})
+}
+
 function findUserAndUpdate (email, items, callback) {
+  // make sure all items are valid
+  if (!items.every(isValid)) {
+    const error = new Error('Some items in cart not found')
+    error.name = 'Item not found'
+    error.status = 404
+    error.type = 'ItemNotFound'
+    return callback(error)
+  }
   Users.findOneAndUpdate({email}, {$push: {cart: items}}, (err, user) => {
     if (err) {
       return callback(err)
@@ -151,13 +163,13 @@ function createOrder (user, trackingCode, shippingDetails, callback) {
   })
 
   // TODO: Can this use restructuring to destructure?
-  const shippingAddress = `{shippingDetails.firstName}
- {shippingDetails.lastName}
- {shippingDetails.address1}
- {shippingDetails.address2}
- {shippingDetails.city}
- {shippingDetails.state}
- {shippingDetails.zip}`
+  const shippingAddress = `${shippingDetails.firstName}
+${shippingDetails.lastName}
+${shippingDetails.address1}
+${shippingDetails.address2}
+${shippingDetails.city}
+${shippingDetails.state}
+${shippingDetails.zip}`
 
   successOrder.userAddress = shippingAddress
   successOrder.userLastName = shippingDetails.lastName

@@ -13,7 +13,6 @@ const logFinal = require('./error_handler').logFinal
 
 function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
   const label = shipmentInfo.postage_label.label_url
-  // TODO: restructure to use destructuring
   const rawMailOptions = {
     subject: 'New purchase (and label)',
     toName: 'Willy Nolan',
@@ -27,6 +26,8 @@ function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
       url: label
     }]
   }
+
+  // TODO: restructure to use destructuring
   const simpleMailOptions = {
     firstName: shippingDetails.firstName,
     lastName: shippingDetails.lastName,

@@ -5,19 +5,25 @@ const databaseController = require('../../controllers/database')
 const shippingController = require('../../controllers/shipping')
 const mailController = require('../../controllers/mail')
 const stripeCharge = require('../../controllers/stripe')
+const validator = require('validator')
 
-// check if user or not
+// check if user is registered or has a valid email
 router.post('/', (req, res, next) => {
   const user = req.body.user
-  // member checkout
   if (user._id) {
-    next()
-  } else {
-    checkout(req, res, user, next)
+    return next()
   }
+  if (!validator.isEmail(req.body.shippingDetails.email)) {
+    const error = new Error('Your email address is not valid')
+    error.name = 'Invalid Email'
+    error.status = 400
+    error.type = 'MalformedData'
+    return next(error)
+  }
+  checkout(req, res, user, next)
 })
 
-// verify the JWT and sets req.user to JWT contents
+// verify the JWT and set req.user to JWT contents
 router.use('/', expressJwt({secret}), (req, res, next) => {
   databaseController.findUserByEmail(req.user.email, (err, user) => {
     if (err) {
@@ -25,15 +31,6 @@ router.use('/', expressJwt({secret}), (req, res, next) => {
     }
     checkout(req, res, user, next)
   })
-})
-
-// TODO: Clear cache if there is an invalid token
-router.use((err, req, res, next) => {
-  if (err.name === 'UnauthorizedError') {
-    err.status = 401
-    err.message = 'Invalid Token'
-  }
-  next(err)
 })
 
 function checkout (req, res, user, next) {
@@ -50,7 +47,7 @@ function checkout (req, res, user, next) {
       return next(err)
     }
     // charge in Stripe
-    stripeCharge(user, amount, req.body.stripeToken, (err, user) => {
+    stripeCharge(user, amount, req.body.stripeToken, shippingDetails.email, (err, user) => {
       if (err) {
         return next(err)
       }

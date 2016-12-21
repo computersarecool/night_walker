@@ -15,7 +15,6 @@ const fromAddress = {
 }
 
 function createAddress (shippingDetails, callback) {
-  // TODO: refactor to use destructuring
   const toAddress = {
     name: `${shippingDetails.firstName} ${shippingDetails.lastName}`,
     street1: shippingDetails.address1,

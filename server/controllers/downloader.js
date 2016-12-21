@@ -1,7 +1,6 @@
 const url = require('url')
 const path = require('path')
 const request = require('request')
-// Downloads and names url file, returns content-type and binary data base64 encoded
 
 function downloadFile (fileObj, callback) {
   request.get(fileObj.url).on('response', res => {

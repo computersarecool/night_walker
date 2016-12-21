@@ -1,3 +1,4 @@
+const validator = require('validator')
 const LocalStrategy = require('passport-local').Strategy
 const Users = require('../database').Users
 
@@ -7,6 +8,13 @@ module.exports = passport => {
     passwordField: 'password',
     passReqToCallback: true
   }, (req, email, password, done) => {
+    // make sure the email address is valid
+    if (!validator.isEmail(email)) {
+      const error = new Error('Invalid email')
+      error.status = 401
+      error.type = 'InvalidCredentials'
+      return done(error)
+    }
     // check to see if the email is already taken
     Users.findOne({email}, (err, user) => {
       if (err) {

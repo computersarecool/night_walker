@@ -9,6 +9,8 @@
  */
 angular.module('nightwalkerApp')
   .controller('CheckoutCtrl', function ($scope, $window, $location, $http, items, UserFactory) {
+    var base = 'http://api.optonox.com:3000'
+
     $scope.items = items
     $scope.user = UserFactory.currentUser
     $scope.goToCheckout = UserFactory.goToCheckout
@@ -39,7 +41,7 @@ angular.module('nightwalkerApp')
         // needs to go to server
         alert(response.error.message)
       } else {
-        $http.post('/api/checkout', {
+        $http.post(base + '/checkout', {
           card: response.card,
           stripeToken: response.id,
           user: UserFactory.currentUser,

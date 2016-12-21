@@ -12,13 +12,13 @@ angular.module('nightwalkerApp')
     var user = {}
     var store = $window.localStorage
     var cart = angular.fromJson(store.cart)
-
+    var base = 'http://api.optonox.com:3000'
     function checkToken () {
       return AuthTokenFactory.getToken()
     }
 
     function signup (email, password, firstName, lastName) {
-      return $http.post('/api/login/signup', {
+      return $http.post(base + '/authenticate/signup', {
         email: email,
         password: password,
         firstName: firstName,
@@ -37,7 +37,7 @@ angular.module('nightwalkerApp')
     }
 
     function login (email, password) {
-      return $http.post('/api/login/login', {
+      return $http.post(base + '/authenticate/login', {
         email: email,
         password: password,
         cart: store.getItem('cart')
@@ -68,7 +68,7 @@ angular.module('nightwalkerApp')
     function addToCart (items) {
       if (user.currentUser.loggedIn) {
         // Add to DB cart and remove from localStorage if logged in
-        return $http.post('/api/addproduct', {
+        return $http.post(base + '/addproduct', {
           items: items
         }).then(function success (response) {
           user.currentUser = response.data
@@ -120,7 +120,7 @@ angular.module('nightwalkerApp')
 
     function getUser () {
       if (AuthTokenFactory.getToken()) {
-        return $http.get('/api/user')
+        return $http.get(base + '/user')
           .then(function success (response) {
             user.currentUser = response.data.user
           }, function (httpError) {

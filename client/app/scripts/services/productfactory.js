@@ -21,7 +21,7 @@ angular.module('nightwalkerApp')
     }
 
     function getProduct (flavor) {
-      return $http.get('/api/shop/alternating-current/' + flavor)
+      return $http.get(base + '/shop/alternating-current/' + flavor)
         .then(function success (response) {
           return response.data
         }, function error (httpError) {
@@ -38,7 +38,7 @@ angular.module('nightwalkerApp')
         }
         ++skuObject[skus[i]]
       }
-      return $http.post('/api/skus', skuObject)
+      return $http.post(base + '/skus', skuObject)
         .then(function success (response) {
           return response.data
         }, function error (httpError) {

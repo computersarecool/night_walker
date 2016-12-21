@@ -20,11 +20,9 @@ const authenticate = (type, req, res, next) => {
     if (!user) {
       return next(info)
     }
-    // TODO: Add options object to jwt sign
     jwt.sign({
-      funThing: 'This is your personal JWT',
       email: user.email
-    }, secret, {noTimestamp: true}, (err, token) => {
+    }, secret, {noTimestamp: false}, (err, token) => {
       if (err) {
         return next(err)
       }

@@ -19,7 +19,8 @@ const configureCors = (req, callback) => {
 module.exports = callback => {
   // callback is called by the bin/www when started
   require('../database').init(() => {
-    app.use(logger('combined'))
+    // change 'dev' to 'common' when in production
+    app.use(logger('dev'))
     app.use(bodyParser.json())
     app.use(passport.initialize())
     app.use(cors(configureCors))
