@@ -61,22 +61,22 @@ function checkout (req, res, user, next) {
           if (err) {
             return next(err)
           }
-          // send email notifications
+          // send back the final user
+          const responseUser = JSON.parse(JSON.stringify(user))
+          responseUser.cart = []
+          res.json(responseUser)
+
+          // send email notifications and save order in db
           mailController.formatPurchaseEmail(shipmentInfo, shippingDetails, (rawMailOptions, simpleMailOptions) => {
             databaseController.createOrder(user, shippingDetails, order => {
-              const orderNumber = order._id.substr(-10)
-              simpleMailOptions.orderNumber = orderNumber
+              simpleMailOptions.orderNumber = order._id.substr(-10)
               mailController.emailCustomer(simpleMailOptions)
               mailController.sendRawEmail(rawMailOptions)
-              // save order in database
               order.trackingCode = simpleMailOptions.trackingCode
               databaseController.saveOrder(order, user)
             })
           })
         })
-        // send back the final user
-        user.cart = []
-        res.json(user)
       })
     })
   })
