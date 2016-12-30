@@ -9,7 +9,6 @@ const region = 'us-west-2'
 aws.config.update({accessKeyId, secretAccessKey, region})
 const ses = new aws.SES()
 const emailBoundary = 'boundarydivider'
-const logFinal = require('./error_handler').logFinal
 
 function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
   const label = shipmentInfo.postage_label.label_url
@@ -124,7 +123,7 @@ function addAttachments (rawMail, rawMailOptions) {
         if (err) {
           // there is problem downloading the file
           reject(err)
-          return notifyHQ(err, logFinal)
+          return notifyHQ(err)
         }
         // info is filename, mimetype and file
         resolve(info)
@@ -142,7 +141,7 @@ ${file.file}\n`
     })
     closeAndSend(rawMail, rawMailOptions)
   }).catch(err => {
-    return notifyHQ(err, logFinal)
+    return notifyHQ(err)
   })
 }
 
@@ -160,13 +159,13 @@ function closeAndSend (rawMail, rawMailOptions) {
   // send the email
   ses.sendRawEmail(params, (err, data) => {
     if (err) {
-      return notifyHQ(err, logFinal)
+      return notifyHQ(err)
     }
     logger.info('Raw mail sent', data)
   })
 }
 
-function notifyHQ (errorResponse, callback, extraData = null) {
+function notifyHQ (errorResponse, extraData = null) {
   const params = {
     Destination: {
       ToAddresses: ['willy@willynolan.com']
@@ -190,10 +189,22 @@ function notifyHQ (errorResponse, callback, extraData = null) {
   }
   ses.sendEmail(params, (err, id) => {
     if (err) {
-      return callback(err)
+      return logFinal(err)
     }
-    callback(id)
+    logFinal(null, id)
   })
+}
+
+function logFinal (err, id) {
+  if (err) {
+    return logger.error(err,
+      `Unable to send error email:
+Name: ${err.name}
+Status: ${err.status}
+Type: ${err.type}
+Stack: ${err.stack}`)
+  }
+  logger.info('500 level error message emailed', id)
 }
 
 module.exports = {

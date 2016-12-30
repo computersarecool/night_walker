@@ -13,6 +13,7 @@
         - Move static assets to cloudfront
         - favicon best practices
         - SPF policy
+        - Look into name server issues
         
     - Reset email password
     - Create email templates

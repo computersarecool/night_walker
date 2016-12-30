@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const Schema = mongoose.Schema
 const saltWorkFactor = 10
 
@@ -55,7 +55,7 @@ userSchema.pre('save', function (next) {
 })
 
 // compare hashed passwords
-userSchema.methods.checkPassword = (candidatePassword, callback) => {
+userSchema.methods.checkPassword = function (candidatePassword, callback) {
   bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
     if (err) {
       err.email = true

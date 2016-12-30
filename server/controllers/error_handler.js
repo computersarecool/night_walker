@@ -1,5 +1,5 @@
-const logger = require('./logger')
 const mailController = require('./mail')
+const shippingController = require('./shipping')
 
 function handler (err, req, res, next) {
   // this error comes from JWT.verify - delete the invalid token
@@ -27,23 +27,10 @@ function handler (err, req, res, next) {
   // notify HQ
   if (!err.status || err.status >= 500 || err.email) {
     errorResponse.stack = err.stack
-    mailController.notifyHQ(errorResponse, logFinal)
+    mailController.notifyHQ(errorResponse)
   }
-}
-
-function logFinal (err, id) {
-  if (err) {
-    return logger.error(err,
-      `Unable to send error email:
-Name: ${err.name}
-Status: ${err.status}
-Type: ${err.type}
-Stack: ${err.stack}`)
-  }
-  logger.info('500 level error message emailed', id)
 }
 
 module.exports = {
-  handler,
-  logFinal
+  handler
 }

@@ -60,7 +60,10 @@ module.exports = passport => {
         error.type = 'InvalidCredentials'
         return done(null, null, error)
       }
-      user.checkPassword(password, authenticated => {
+      user.checkPassword(password, (err, authenticated) => {
+        if (err) {
+          return done(err)
+        }
         if (!authenticated) {
           const error = new Error('Incorrect email or password')
           error.status = 401
