@@ -15,10 +15,11 @@
         - SPF policy
         - Look into name server issues
         
-    - Reset email password
+    - Reset email password route
     - Create email templates
     
   CLIENT
+    - Switch to writing ES 2015
     - Switch to api domain
     - Delete token in addProduct and checkout routes
     - Delete invalid token on error reponse

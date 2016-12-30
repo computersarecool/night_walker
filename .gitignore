@@ -19,3 +19,4 @@ database/data/db/*
 !database/data/db/.gitkeep
 database/data/logs/*
 !database/data/logs/.gitkeep
+build

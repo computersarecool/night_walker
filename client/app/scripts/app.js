@@ -99,7 +99,7 @@ angular
   }).run(function ($rootScope, $location) {
     $rootScope.$on('$locationChangeStart', function (event) {
       // TODO: Remove Hack because nav does not exist yet
-      var nav = document.querySelector('nav')
+      const nav = document.querySelector('nav')
       if (nav) {
         if ($location.path() === '/') {
           nav.classList.remove('horizontal')
