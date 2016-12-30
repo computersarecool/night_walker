@@ -40,39 +40,60 @@ function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
 }
 
 function emailCustomer (emailInfo) {
-  const firstNameMatch = /#FIRSTNAME/
-  const lastNameMatch = /#LASTNAME/
-  const trackingCodeMatch = /#TRACKINGCODE/
-  const orderNumberMatch = /#ORDERNUMBER/
+  const regExReplacements = {
+    '#FIRSTNAME': emailInfo.firstName,
+    '#LASTNAME': emailInfo.lastName,
+    '#TRACKINGCODE': emailInfo.trackingCode,
+    '#ORDERNUMBER': emailInfo.orderNumber
+  }
+
+  const regex = new RegExp(Object.keys(regExReplacements).join('|'), 'g')
 
   fs.readFile(path.join(__dirname, '../templates/emails', 'customer_confirmation.html'), {encoding: 'utf-8'}, (err, data) => {
     if (err) {
       return notifyHQ(err, logFinal)
     }
 
-    let outgoingEmail = data.replace(firstNameMatch, emailInfo.firstName).replace(lastNameMatch, emailInfo.lastName).replace(trackingCodeMatch, emailInfo.trackingCode).replace(orderNumberMatch, emailInfo.orderNumber)
+    const outgoingHTMLEmail = data.replace(regex, match => {
+      return regExReplacements[match] || match
+    })
 
-    const params = {
-      Destination: {
-        ToAddresses: emailInfo.toAddresses
-      },
-      Message: {
-        Subject: {
-          Data: emailInfo.subject
-        },
-        Body: {
-          Html: {
-            Data: outgoingEmail
-          }
-        }
-      },
-      Source: emailInfo.fromAddress
-    }
-
-    ses.sendEmail(params, (err, id) => {
+    fs.readFile(path.join(__dirname, '../templates/emails', 'text_customer_confirmation.txt'), {encoding: 'utf-8'}, (err, data) => {
       if (err) {
-        notifyHQ(err, logFinal)
+        return notifyHQ(err, logFinal)
       }
+
+      const outgoingTextEmail = data.replace(regex, match => {
+        return regExReplacements[match] || match
+      })
+
+      const params = {
+        Destination: {
+          ToAddresses: emailInfo.toAddresses
+        },
+        Message: {
+          Subject: {
+            Data: emailInfo.subject
+          },
+          Body: {
+            Html: {
+              Data: outgoingHTMLEmail,
+              Charset: 'utf-8'
+            },
+            Text: {
+              Data: outgoingTextEmail,
+              Charset: 'utf-8'
+            }
+          }
+        },
+        Source: emailInfo.fromAddress
+      }
+
+      ses.sendEmail(params, (err, id) => {
+        if (err) {
+          notifyHQ(err, logFinal)
+        }
+      })
     })
   })
 }

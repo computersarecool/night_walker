@@ -1,4 +1,5 @@
 # TODO:
+
   DATABASE
     - Database design
     - use schema design to improve findProductByFlavor in db
@@ -9,13 +10,11 @@
         - systemd
         - log rotation
         - jsdoc
-        - Move static assets to cloudfront        
+        - Move static assets to cloudfront
         - favicon best practices
         - SPF policy
  
-    - Create email templates (Make fatal error email)        
-
-
+    - Create email templates (Make fatal error email)
     
   CLIENT
     - Switch to api domain
@@ -70,17 +69,12 @@
       - Use $scope or var in controllers (i.e. product Controller)
 
     JAVASCRIPT
-      - routes|checkout.js:20, set dbuser so I have db and object reference to item
-      - routes|checkout.js:39, async callback
-      - Should functions be defined inside of a callback (i.e. checkout.js:30, checkout)
-      - Handling double clicks
 
     NODE
 
     EXPRESS
     
     MONGODB:
-      - What are: db logs (mongodb.log), db journal
 
     YEOMAN:
       -  .travis.yml
@@ -89,5 +83,5 @@
     UNIT TESTING
     
     MISC
-        - Editor config
+      - Editor config
 

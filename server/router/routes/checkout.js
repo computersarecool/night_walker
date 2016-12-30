@@ -69,7 +69,7 @@ function checkout (req, res, user, next) {
           // send email notifications and save order in db
           mailController.formatPurchaseEmail(shipmentInfo, shippingDetails, (rawMailOptions, simpleMailOptions) => {
             databaseController.createOrder(user, shippingDetails, order => {
-              simpleMailOptions.orderNumber = order._id.substr(-10)
+              simpleMailOptions.orderNumber = order._id.toString().substr(-10)
               mailController.emailCustomer(simpleMailOptions)
               mailController.sendRawEmail(rawMailOptions)
               order.trackingCode = simpleMailOptions.trackingCode

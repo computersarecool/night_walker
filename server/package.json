@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "NODE_ENV=production nodemon ./bin/www",
-    "test": "NODE_ENV=development nodemon ./bin/www"
+    "test": "NODE_ENV=development nodemon ./bin/www",
+    "email": "node ./templates/emails/test.js"
   },
   "dependencies": {
     "aws-sdk": "^2.7.10",
@@ -26,6 +27,7 @@
     "winston": "^2.3.0"
   },
   "devDependencies": {
+    "juice": "^4.0.2",
     "nodemon": "^1.11.0"
   }
 }

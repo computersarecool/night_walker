@@ -30,6 +30,7 @@ module.exports = callback => {
     if (process.env.NODE_ENV === 'development') {
       app.use(express.static(path.join(__dirname, '../client/')))
       app.use(express.static(path.join(__dirname, '../client/app')))
+      app.use(express.static(path.join(__dirname, 'templates/emails')))
       app.use(errorHandler)
       return callback(app)
     }
