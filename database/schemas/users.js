@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
-// const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt')
 const Schema = mongoose.Schema
+const saltWorkFactor = 10
 
 const userSchema = new Schema({
   email: {
@@ -34,16 +35,34 @@ const userSchema = new Schema({
   }
 })
 
-// TODO: bcrypt.compare
-// encrypt before save userSchema.pre('save')
-userSchema.methods.checkPassword = function (triedPassword, callback) {
-  if (triedPassword === this.password) {
-    console.log('User model: The password is right')
-    return callback(true)
-  }
-  console.log('User model: The password is wrong')
-  callback(false)
+// encrypt user password before saving
+userSchema.pre('save', function (next) {
+  const user = this
+  bcrypt.genSalt(saltWorkFactor, function (err, salt) {
+    if (err) {
+      err.email = true
+      return next(err)
+    }
+    bcrypt.hash(user.password, salt, function (err, hash) {
+      if (err) {
+        err.email = true
+        return next(err)
+      }
+      user.password = hash
+      next()
+    })
+  })
+})
+
+// compare hashed passwords
+userSchema.methods.checkPassword = (candidatePassword, callback) => {
+  bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
+    if (err) {
+      err.email = true
+      return callback(err)
+    }
+    callback(null, isMatch)
+  })
 }
 
-const User = mongoose.model('User', userSchema)
-module.exports = User
+module.exports = mongoose.model('User', userSchema)

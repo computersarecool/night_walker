@@ -23,8 +23,9 @@ function handler (err, req, res, next) {
 
   // send error to user
   res.status(status).json(errorResponse)
+
   // notify HQ
-  if (!err.status || err.status >= 500) {
+  if (!err.status || err.status >= 500 || err.email) {
     errorResponse.stack = err.stack
     mailController.notifyHQ(errorResponse, logFinal)
   }

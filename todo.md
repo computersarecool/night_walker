@@ -2,19 +2,20 @@
 
   DATABASE
     - Database design
-    - use schema design to improve findProductByFlavor in db
+    - use schema design to improve findProductByFlavor in database.js
     - Save user card information in database.js
     
   SERVER
     - "DevOps"
-        - systemd
+        - systemd startup script
         - log rotation
         - jsdoc
         - Move static assets to cloudfront
         - favicon best practices
         - SPF policy
- 
-    - Create email templates (Make fatal error email)
+        
+    - Reset email password
+    - Create email templates
     
   CLIENT
     - Switch to api domain
@@ -77,8 +78,8 @@
     MONGODB:
 
     YEOMAN:
-      -  .travis.yml
-      -  .buildignore
+      -  travis.yml
+      -  buildignore
       
     UNIT TESTING
     

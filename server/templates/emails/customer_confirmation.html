@@ -4,39 +4,58 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>NightWalker Confirmation Email</title>
+    <style>
+      /*
+      @Font face goes here and media queries will be put in here as well
+      */
+    </style>
     <link rel="stylesheet" type="text/css" href="customer_confirmation.css">
   </head>
 
   <body bgcolor="#efe1b0">
+
+    <div class="hidden">
+      Congratulations on your NightWalker purchase.  NightWalker, Wear it Right, in the Night. Your order number is #ORDERNUMBER
+    </div>
 
     <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#efe1b0">
       <tr>
         <td>
 
           <table class="container" width="640" align="center" border="0" cellpadding="0" cellspacing="0">
+
             <tr>
-              <td valign="top" class="logo" bgcolor="#ffffff" >
+              <td colspan="2" valign="top" class="logo" bgcolor="#ffffff" >
                 <a href="http://www.google.com"><img src="http://placehold.it/350x150" alt="Placeholder Image" width="350" height="150" border="0"></a>
               </td>
             </tr>
 
             <tr>
               <td valign="top" class="headline" bgcolor="#ffffff">
-                <h1>Congratulations on your purchase</h1>
+                <h1>Congratulations on your NightWalker purchase</h1>
               </td>
 
               <td valign="top">
                 <p>
-                  Hey, #FIRSTNAME #LASTNAME
+                  Hey, #FIRSTNAME
+                </p>
+                <p>
+                  Your order #ORDERNUMBER is on its way.
                 </p>
                 <p>
                   Your tracking code is #TRACKINGCODE
                 </p>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2" class="footer" valign="top">
                 <p>
-                  Your order number is #ORDERNUMBER
+                  If you have any questions about your order, please contact help@example.com
                 </p>
               </td>
             </tr>
+
         </table>
 
       </td>

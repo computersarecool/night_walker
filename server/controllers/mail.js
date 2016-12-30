@@ -86,7 +86,10 @@ function emailCustomer (emailInfo) {
             }
           }
         },
-        Source: emailInfo.fromAddress
+        Source: emailInfo.fromAddress,
+        ReplyToAddresses: [
+          emailInfo.fromAddress
+        ]
       }
 
       ses.sendEmail(params, (err, id) => {
@@ -99,7 +102,7 @@ function emailCustomer (emailInfo) {
 }
 
 function sendRawEmail (rawMailOptions) {
-  // rawMailOptions is {fromName, fromAddress, mainTarget, subject, body, files, allRecipients}
+  // rawMailOptions is {fromName, fromAddress, subject, body, files, allRecipients}
   const mimeversion = '1.0'
   const rawMail = `From: ${rawMailOptions.fromName} <${rawMailOptions.fromAddress}>
 To: ${rawMailOptions.toName} <${rawMailOptions.toAddress}>
@@ -174,12 +177,12 @@ function notifyHQ (errorResponse, callback, extraData = null) {
       },
       Body: {
         Html: {
-          Data: `There is an error with the NightWalker Site.
-Name: ${errorResponse.name}
-Status: ${errorResponse.status}
-Type: ${errorResponse.type}
-Stack: ${errorResponse.stack}
-Extra Data: ${JSON.stringify(extraData)}`
+          Data: `<h1>There is an error with the NightWalker Site</h1>
+<p>Name: ${errorResponse.name}</p>
+<p>Status: ${errorResponse.status}</p>
+<p>Type: ${errorResponse.type}</p>
+<p>Stack: ${errorResponse.stack}</p>
+<p>Extra Data: ${JSON.stringify(extraData)}</p>`
         }
       }
     },

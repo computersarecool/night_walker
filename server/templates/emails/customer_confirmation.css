@@ -1,19 +1,47 @@
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
+
+div.hidden {
+  display: none;
+}
+
 .logo {
   padding: 10px 20px 0 30px;
   border-left: 1px solid #dbc064;
   border-right: 1px solid #dbc064;
   border-top: 1px solid #dbc064;
 }
+
 td {
-    padding: 10px 20px 0 30px;
-    border-left: 1px solid #dbc064;
-    border-right: 1px solid #dbc064;
-    border-top: 1px solid #dbc064;
+  padding: 10px 20px 0 30px;
+  border-left: 1px solid #dbc064;
+  border-right: 1px solid #dbc064;
+  border-top: 1px solid #dbc064;
 }
+
 h1 {
-    margin: 0px;
+  margin: 0px;
+}
+
+.footer {
+  font-siize: 11px;
+  color: red;
+}
+
+
+@media only screen and (max-width: 660px) {
+  table.container {
+    width: 480px;
+  }
+}
+
+@media only screen and (max-width: 510px) {
+  table.container {
+    width: 100%;
+  }
+  table.container td {
+    border: none;
+  }
 }
