@@ -1,3 +1,4 @@
+const path = require('path')
 const wiredep = require('wiredep').stream
 const gulp = require('gulp')
 const babel = require('gulp-babel')
@@ -13,7 +14,28 @@ const del = require('del')
 const dist = '../dist/'
 const build = '../build/'
 
-// keep dependencies up to date with bower.json
+// delete the already existing dist folder
+gulp.task('clean:dist', () => {
+  return del.sync(dist, {force: true})
+})
+
+gulp.task('clean:build', () => {
+  return del.sync(build, {force: true})
+})
+
+// move bower_components directory
+gulp.task('copyApp', () => {
+  return gulp.src(['app/**/*'])
+    .pipe(gulp.dest(build))
+})
+
+// move bower_components directory
+gulp.task('copyBower', () => {
+  return gulp.src(['bower_components/**/*'])
+    .pipe(gulp.dest(path.join(build, 'bower_components')))
+})
+
+// keep dependencies up to date with bower.json by filling in <!--build:--> blocks
 gulp.task('wiredep', () => {
   return gulp.src('app/index.html')
     .pipe(wiredep())
@@ -21,7 +43,6 @@ gulp.task('wiredep', () => {
 })
 
 // transpile stylus, prefix and place css
-// TODO: Add sourcemaps
 gulp.task('stylus', () => {
   return gulp.src('app/styles/source.styl')
     .pipe(stylus())
@@ -29,10 +50,10 @@ gulp.task('stylus', () => {
       browsers: ['last 5 versions']
     }))
     .pipe(rename('main.css'))
-    .pipe(gulp.dest('app/styles/'))
+    .pipe(gulp.dest(path.join(build, 'styles')))
 })
 
-// transpile js into 2015
+// transpile js
 gulp.task('babel', () => {
   return gulp.src('app/scripts/**/*.js')
     .pipe(sourcemaps.init())
@@ -40,11 +61,18 @@ gulp.task('babel', () => {
       presets: ['es2015']
     }))
     .pipe(sourcemaps.write('maps'))
-    .pipe(gulp.dest('build/'))
+    .pipe(gulp.dest(path.join(build, 'scripts')))
 })
 
-// go through the <!--build: blocks and concat then minify and update references
-// TODO: Make this move from build to production
+// go through the <!--build:--> blocks and concat and update references
+gulp.task('useref', () => {
+  return gulp.src(path.join(build, 'index.html'))
+    .pipe(useref({searchPath: ['client', 'client/app']}))
+    .pipe(gulp.dest(build))
+})
+
+/*
+TODO: Minify
 gulp.task('useref', () => {
   return gulp.src('app/index.html')
     .pipe(useref())
@@ -54,10 +82,7 @@ gulp.task('useref', () => {
     .pipe(gulpIf('*.css', cssnano()))
     .pipe(gulp.dest(dist))
 })
-
-// delete the already existing dist folder
-gulp.task('clean:dist', () => {
-  return del.sync(dist)
-})
+*/
 
 gulp.task('default', ['wiredep'])
+gulp.task('build', ['clean:build', 'copyApp', 'copyBower', 'wiredep', 'stylus', 'babel'])
