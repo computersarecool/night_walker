@@ -1,6 +1,6 @@
 const validator = require('validator')
 const LocalStrategy = require('passport-local').Strategy
-const Users = require('../database').Users
+const Users = require('../../database').Users
 
 module.exports = passport => {
   passport.use('local-signup', new LocalStrategy({

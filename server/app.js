@@ -28,17 +28,15 @@ module.exports = callback => {
 
     // development static file server and errors
     if (inDevelopment) {
-      app.use(express.static(path.join(__dirname, '../../build')))
-      app.use(express.static(path.join(__dirname, '../client')))
-      app.use(express.static(path.join(__dirname, '../client/app')))
       // temporarily here to check email formatting
       app.use(express.static(path.join(__dirname, 'templates/emails')))
+      app.use(express.static(path.join(__dirname, '../build')))
       app.use(errorHandler)
       return callback(app)
     }
 
     // production static file server and errors
-    app.use(express.static(path.join(__dirname, '../../dist')))
+    app.use(express.static(path.join(__dirname, '../dist')))
     app.use(errorHandler)
     callback(app)
   })

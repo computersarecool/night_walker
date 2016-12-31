@@ -2,7 +2,7 @@ const router = require('express').Router()
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const secret = require('../../../credentials').jwtSecret
-require('../controllers/passport')(passport)
+require('../../controllers/passport')(passport)
 
 router.post('/signup', (req, res, next) => {
   authenticate('local-signup', req, res, next)
