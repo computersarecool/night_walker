@@ -17,27 +17,26 @@
         
     - Reset email password route
     - Create email templates
+    - Finalize Bower.json / package.json(s)
     
   CLIENT
     - Switch to writing ES 2015
+    - Convert to standard js
     - Switch to api domain
-    - Delete token in addProduct and checkout routes
-    - Delete invalid token on error reponse
-    - Trying to create an account with a token stored returns a 404 and does nothing
+    - Delete token in addProduct and checkout routes and any invalid route
+    - Stored token making a get request, getting 404 at start and creating an account
     - When posting to add items, how are the items stored? Same thing for signing up, where is the cart? Same thing for skus?
-    - Store a client ID instead of the user cart on the browser
-    - Why is angular making a get request to user route when there is a token
+    - Store a client ID instead of the user cart on the browser ?
     - email field in login in angular is set to text
-    - Address verification
+    - Client side form verification
     - Only show view cart when there are things inside it
-    - Convert to standard
     - Save user information to expediate form filling out
     - Stripeform directive line 23 is $apply neccesary
     - remove <base> tag
-    - Finalize Bower.json / package.json(s)
-    - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json
     - Make rotating cube style something like a directive
     - Make skus consistently numbers, right now inconsistent in the geturl function
+    - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json    
+    - Finalize Bower.json / package.json(s)
 
   DESIGN
       Product page details
@@ -64,7 +63,7 @@
 ### ONGOING QUESTIONS:
     ANGULAR
       - Pages like 'About' do not need a controller. Do we use a null controller?
-      - Saving a route and not getting a 404
+      - Saving a route and not getting a 404 (i.e. bookmarks)
       - What does compile do in a directive?
       - Why is link returned in directive?
       - Why does a directive have a controller
