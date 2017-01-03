@@ -42,7 +42,7 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest(build))
 })
 
-// transpile stylus, prefix and place css
+// transpile stylus, prefix and place css file
 gulp.task('stylus', () => {
   return gulp.src('app/styles/source.styl')
     .pipe(stylus())
