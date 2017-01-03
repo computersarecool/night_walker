@@ -17,7 +17,7 @@
         
     - Reset email password route
     - Create email templates
-    - Finalize Bower.json / package.json(s)
+    - Finalize package.json
     
   CLIENT
     - Switch to writing ES 2015

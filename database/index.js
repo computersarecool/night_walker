@@ -6,6 +6,13 @@ const Users = require('./schemas/users')
 const Products = require('./schemas/products')
 const Editions = require('./schemas/editions')
 const Orders = require('./schemas/orders')
+const winston = require('winston')
+
+const logger = new (winston.Logger)({
+  transports: [
+    new (winston.transports.Console)({'timestamp': true})
+  ]
+})
 
 // set database address to development or production
 const database = process.env.NODE_ENV === 'development' ? developmentDb : productionDb
@@ -13,10 +20,12 @@ const database = process.env.NODE_ENV === 'development' ? developmentDb : produc
 const init = callback => {
   mongoose.connect(database)
 
-  mongoose.connection.on('error', console.error.bind(console, 'Database connection error:'))
+  mongoose.connection.on('error', () => {
+    logger.info('Database connection error:')
+  })
 
   mongoose.connection.once('open', () => {
-    console.log('Database connection successfully opened at ' + database)
+    logger.info('Database connection successfully opened at ' + database)
     callback()
   })
 }
