@@ -12,7 +12,7 @@ const cssnano = require('gulp-cssnano')
 const rename = require('gulp-rename')
 const del = require('del')
 const dist = '../dist/'
-const build = '../build/'
+const build = '../build/app'
 
 // delete the already existing dist folder
 gulp.task('clean:dist', () => {
@@ -32,7 +32,7 @@ gulp.task('copyApp', () => {
 // move bower_components directory
 gulp.task('copyBower', () => {
   return gulp.src(['bower_components/**/*'])
-    .pipe(gulp.dest(path.join(build, 'bower_components')))
+    .pipe(gulp.dest(path.join(build, '..', 'bower_components')))
 })
 
 // keep dependencies up to date with bower.json by filling in <!--build:--> blocks

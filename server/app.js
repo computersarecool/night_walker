@@ -17,7 +17,7 @@ const configureCors = (req, callback) => {
   callback(null, corsOptions)
 }
 
-// callback is called by the bin/www when started
+// callback is called by the bin/www.js when started
 module.exports = callback => {
   require('../database').init(() => {
     app.use(logger(inDevelopment ? 'dev' : 'common'))

@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=production nodemon ./bin/www",
-    "test": "NODE_ENV=development nodemon ./bin/www",
+    "start": "NODE_ENV=production nodemon ./bin/www.js",
+    "test": "NODE_ENV=development nodemon ./bin/www.js",
     "email": "node ./templates/emails/prep_email.js"
   },
   "dependencies": {
