@@ -20,9 +20,7 @@
     - Finalize package.json
     
   CLIENT
-    - Switch to writing ES 2015
-    - Convert to standard js
-    - Switch to api domain
+    -- Switch to writing ES 2015 / Standard JS and API domain --
     - Delete token in addProduct and checkout routes and any invalid route
     - Stored token making a get request, getting 404 at start and creating an account
     - When posting to add items, how are the items stored? Same thing for signing up, where is the cart? Same thing for skus?

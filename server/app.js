@@ -30,7 +30,8 @@ module.exports = callback => {
     if (inDevelopment) {
       // temporarily here to check email formatting
       app.use(express.static(path.join(__dirname, 'templates/emails')))
-      app.use(express.static(path.join(__dirname, '../build')))
+      app.use(express.static(path.join(__dirname, '../client/')))
+      app.use(express.static(path.join(__dirname, '../client/app')))
       app.use(errorHandler)
       return callback(app)
     }
