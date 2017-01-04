@@ -4,11 +4,12 @@
     <title>NightWalker</title>
     <meta name="description" content="A colorful clothing line inspired by the 1980s">
     <meta name="viewport" content="width=device-width initial-scale=1">
+    <base href="/">
 
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-    <base href="/"
+
   </head>
   
   <body>
@@ -19,6 +20,7 @@
     <!-- Add your site or application content here -->
     <site-header></site-header>
     <site-nav></site-nav>
+    <site-modal></site-modal>
     <div class="main" ng-view autoscroll="true"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -43,16 +45,14 @@
 
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/about.js"></script>
-    <script src="scripts/controllers/shop.js"></script>
-    <script src="scripts/controllers/login.js"></script>
-    <script src="scripts/controllers/contact.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/product.js"></script>
     <script src="scripts/controllers/account.js"></script>
     <script src="scripts/controllers/checkout.js"></script>
-    <script src="scripts/controllers/congratulations.js"></script>
+    <script src="scripts/controllers/error.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/product.js"></script>
+    <script src="scripts/controllers/shop.js"></script>
     <script src="scripts/directives/nav.js"></script>
+    <script src="scripts/directives/modal.js"></script>
     <script src="scripts/directives/header.js"></script>
     <script src="scripts/directives/gallery.js"></script>
     <script src="scripts/directives/login.js"></script>
@@ -72,6 +72,6 @@
     <script src="scripts/filters/spacefilter.js"></script>
     <!-- endbuild -->
 
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script src="https://js.stripe.com/v2/"></script>
   </body>
 </html>

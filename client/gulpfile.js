@@ -4,7 +4,6 @@ const gulp = require('gulp')
 const babel = require('gulp-babel')
 const sourcemaps = require('gulp-sourcemaps')
 const useref = require('gulp-useref')
-const leblab = require('gulp-leblab')
 const gulpIf = require('gulp-if')
 const uglify = require('gulp-uglify')
 const stylus = require('gulp-stylus')
@@ -13,7 +12,7 @@ const cssnano = require('gulp-cssnano')
 const rename = require('gulp-rename')
 const del = require('del')
 const dist = '../dist/'
-const build = '../build/app'
+const build = '../build/'
 
 // delete the already existing dist folder
 gulp.task('clean:dist', () => {
@@ -34,10 +33,6 @@ gulp.task('copyApp', () => {
 gulp.task('copyBower', () => {
   return gulp.src(['bower_components/**/*'])
     .pipe(gulp.dest(path.join(build, '..', 'bower_components')))
-})
-
-gulp.task('leblab', () => {
-
 })
 
 // keep dependencies up to date with bower.json by filling in <!--build:--> blocks

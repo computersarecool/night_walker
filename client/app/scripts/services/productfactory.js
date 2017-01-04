@@ -8,15 +8,15 @@
  * Factory in the nightwalkerApp.
  */
 angular.module('nightwalkerApp')
-  .factory('ProductFactory', function ($http) {
-    var base = 'http://api.optonox.com:3000'
+  .factory('ProductFactory', ($http, ErrorCtl) => {
+    const base = 'http://api.optonox.com:3000'
 
     function getEdition (edition) {
       return $http.get(base + '/editions/' + edition)
-        .then(function success (response) {
+        .then(response => {
           return response.data
-        }, function error (httpError) {
-          throw httpError.status + ' : ' + httpError.data
+        }, httpError => {
+          ErrorCtl.displayError(httpError)
         })
     }
 

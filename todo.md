@@ -35,7 +35,8 @@
     - Make skus consistently numbers, right now inconsistent in the geturl function
     - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json    
     - Finalize Bower.json / package.json(s)
-
+    == Finish site-gallery directive
+    
   DESIGN
       Product page details
 	    - Short description

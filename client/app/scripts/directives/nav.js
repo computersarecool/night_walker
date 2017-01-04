@@ -10,7 +10,7 @@ angular.module('nightwalkerApp')
   .directive('siteNav', function ($window, $location, $timeout) {
     return {
       restrict: 'E',
-      templateUrl: 'partials/navigation.html',
+      templateUrl: 'partials/nav.html',
       link: function (scope, element) {
         scope.toggleNav = function (e) {
           // Check to see if the clicked item is any nav list element

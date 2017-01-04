@@ -19,16 +19,13 @@ angular
   .config(($routeProvider, $locationProvider, $httpProvider) => {
     $routeProvider
       .when('/', {
-        template: '<site-gallery></site-gallery>',
-        controller: 'MainCtrl'
+        template: '<site-gallery></site-gallery>'
       })
       .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+        templateUrl: 'views/about.html'
       })
       .when('/contact', {
-        templateUrl: 'views/contact.html',
-        controller: 'ContactCtrl'
+        templateUrl: 'views/contact.html'
       })
       .when('/shop', {
         redirectTo: '/shop/alternating-current'
@@ -82,8 +79,7 @@ angular
         }
       })
       .when('/congratulations', {
-        templateUrl: 'views/congratulations.html',
-        controller: 'CongratulationsCtrl'
+        templateUrl: 'views/congratulations.html'
       })
       .otherwise({
         redirectTo: '/'
