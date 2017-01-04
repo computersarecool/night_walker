@@ -1,3 +1,4 @@
+/* global angular, Stripe */
 'use strict'
 
 /**
@@ -15,10 +16,10 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider, $locationProvider, $httpProvider) {
+  .config(($routeProvider, $locationProvider, $httpProvider) => {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
+        template: '<site-gallery></site-gallery>',
         controller: 'MainCtrl'
       })
       .when('/about', {
@@ -36,7 +37,7 @@ angular
         templateUrl: 'views/shop.html',
         controller: 'ShopCtrl',
         resolve: {
-          edition: function ($route, ProductFactory) {
+          edition: ($route, ProductFactory) => {
             return ProductFactory.getEdition($route.current.params.edition)
           }
         }
@@ -45,13 +46,13 @@ angular
         templateUrl: '/views/product.html',
         controller: 'ProductCtrl',
         resolve: {
-          product: function ($route, ProductFactory) {
+          product: ($route, ProductFactory) => {
             return ProductFactory.getProduct($route.current.params.flavor)
           }
         }
       })
       .when('/login', {
-        templateUrl: 'views/login.html',
+        template: '<site-login></site-login>',
         controller: 'LoginCtrl'
       })
       .when('/createaccount', {
@@ -66,7 +67,7 @@ angular
         templateUrl: 'views/checkoutcart.html',
         controller: 'CheckoutCtrl',
         resolve: {
-          items: function (ProductFactory, UserFactory) {
+          items: (ProductFactory, UserFactory) => {
             return ProductFactory.getInfoFromSkus(UserFactory.currentUser.cart)
           }
         }
@@ -75,7 +76,7 @@ angular
         templateUrl: 'views/checkout.html',
         controller: 'CheckoutCtrl',
         resolve: {
-          items: function (ProductFactory, UserFactory) {
+          items: (ProductFactory, UserFactory) => {
             return ProductFactory.getInfoFromSkus(UserFactory.currentUser.cart)
           }
         }
@@ -96,8 +97,8 @@ angular
     })
 
     Stripe.setPublishableKey('pk_test_uEnw6EZC8otddMKeJUiZsHFz')
-  }).run(function ($rootScope, $location) {
-    $rootScope.$on('$locationChangeStart', function (event) {
+  }).run(($rootScope, $location) => {
+    $rootScope.$on('$locationChangeStart', event => {
       // TODO: Remove Hack because nav does not exist yet
       const nav = document.querySelector('nav')
       if (nav) {

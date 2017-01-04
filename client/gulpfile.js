@@ -4,6 +4,7 @@ const gulp = require('gulp')
 const babel = require('gulp-babel')
 const sourcemaps = require('gulp-sourcemaps')
 const useref = require('gulp-useref')
+const leblab = require('gulp-leblab')
 const gulpIf = require('gulp-if')
 const uglify = require('gulp-uglify')
 const stylus = require('gulp-stylus')
@@ -33,6 +34,10 @@ gulp.task('copyApp', () => {
 gulp.task('copyBower', () => {
   return gulp.src(['bower_components/**/*'])
     .pipe(gulp.dest(path.join(build, '..', 'bower_components')))
+})
+
+gulp.task('leblab', () => {
+
 })
 
 // keep dependencies up to date with bower.json by filling in <!--build:--> blocks
