@@ -22,18 +22,25 @@ angular.module('nightwalkerApp')
     }
 
     $scope.user = UserFactory.getUser()
+
+    $scope.modalCart = false
+
     $scope.signup = function (email, password, firstName, lastName) {
       UserFactory.signup(email, password, firstName, lastName)
     }
+
     $scope.login = function (email, password) {
       UserFactory.login(email, password)
     }
+
     $scope.logout = function () {
       UserFactory.logout()
     }
+
     $scope.guestCheckout = function () {
       $location.path('/checkout')
     }
+
     $scope.changeScreen = function () {
       if ($location.path() === '/signup') {
         $location.path('/login')
@@ -41,7 +48,7 @@ angular.module('nightwalkerApp')
         $location.path('/signup')
       }
     }
-    $scope.modalCart = false
+
     $scope.showModalCart = function () {
       $scope.modalCart = !$scope.modalCart
     }

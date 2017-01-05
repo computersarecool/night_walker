@@ -20,7 +20,11 @@
     - Finalize package.json
     
   CLIENT
-    -- Switch to writing ES 2015 / Standard JS and API domain --
+    -- Switch to writing ES 2015 --
+    -- Switch to using/ Standard JS --
+    -- Switch to using API domain --
+    
+    - Style the modal dialog box
     - Delete token in addProduct and checkout routes and any invalid route
     - Stored token making a get request, getting 404 at start and creating an account
     - When posting to add items, how are the items stored? Same thing for signing up, where is the cart? Same thing for skus?
@@ -35,6 +39,8 @@
     - Make skus consistently numbers, right now inconsistent in the geturl function
     - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json    
     - Finalize Bower.json / package.json(s)
+    - Make sure we need all scripts
+    - Use newest possible scripts from bower
     == Finish site-gallery directive
     
   DESIGN

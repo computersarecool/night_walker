@@ -1,3 +1,4 @@
+/* global angular */
 'use strict'
 
 /**
@@ -7,10 +8,19 @@
  * # modalDirective
  */
 angular.module('nightwalkerApp')
-  .directive('siteModal', () => {
+  .directive('siteModal', ModalService => {
     return {
       restrict: 'E',
       templateUrl: 'partials/modal.html',
-      controller: 'ErrorCtrl'
+      link: (scope, elem, attrs) => {
+        function showInfo (message) {
+          scope.message = message
+        }
+        function showError (message) {
+          scope.message = message
+        }
+        ModalService.registerCallback(showInfo)
+        ModalService.registerErrorCallback(showError)
+      }
     }
   })

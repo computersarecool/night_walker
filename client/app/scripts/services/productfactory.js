@@ -1,3 +1,4 @@
+/* global angular */
 'use strict'
 
 /**
@@ -8,7 +9,7 @@
  * Factory in the nightwalkerApp.
  */
 angular.module('nightwalkerApp')
-  .factory('ProductFactory', ($http, ErrorCtl) => {
+  .factory('ProductFactory', function ($http, ModalService) {
     const base = 'http://api.optonox.com:3000'
 
     function getEdition (edition) {
@@ -16,7 +17,10 @@ angular.module('nightwalkerApp')
         .then(response => {
           return response.data
         }, httpError => {
-          ErrorCtl.displayError(httpError)
+          ModalService.showMessage({
+            text: 'There was an error retreiving your request',
+            footer: 'Please contact support'
+          })
         })
     }
 

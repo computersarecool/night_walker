@@ -8,7 +8,7 @@
  * Controller of the nightwalkerApp
  */
 angular.module('nightwalkerApp')
-  .controller('AccountCtrl', ($scope, $location, UserFactory) => {
+  .controller('AccountCtrl', function ($scope, $location, UserFactory) {
     if (!UserFactory.checkToken()) {
       $location.path('/login')
     }
