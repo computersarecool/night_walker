@@ -19,7 +19,7 @@ angular.module('nightwalkerApp')
         function showError (message) {
           scope.message = message
         }
-        ModalService.registerCallback(showInfo)
+        ModalService.registerInfoCallback(showInfo)
         ModalService.registerErrorCallback(showError)
       }
     }

@@ -4,7 +4,11 @@
     - Database design
     - use schema design to improve findProductByFlavor in database.js
     - Save user card information in database.js
-    
+    NOTES:
+      - For the individual products, combine size information / sizes / distinctSizes
+      - Add flavor index
+      - remove SKU
+      
   SERVER
     - "DevOps"
         - systemd startup script
@@ -24,9 +28,13 @@
     -- Switch to using/ Standard JS --
     -- Switch to using API domain --
     
-    - Style the modal dialog box
+    PICKUP: 
+        - Finish Product controller + User factory
+        - Stored token making a get request, userfactory, getting 404 at start and creating an account
+        - Global constant for route prefix
+        
     - Delete token in addProduct and checkout routes and any invalid route
-    - Stored token making a get request, getting 404 at start and creating an account
+
     - When posting to add items, how are the items stored? Same thing for signing up, where is the cart? Same thing for skus?
     - Store a client ID instead of the user cart on the browser ?
     - email field in login in angular is set to text
@@ -40,8 +48,10 @@
     - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json    
     - Finalize Bower.json / package.json(s)
     - Make sure we need all scripts
-    - Use newest possible scripts from bower
-    == Finish site-gallery directive
+    - Use newest possible scripts from 
+    - Finish site-gallery directive
+    STYLE
+        - Style the modal dialog box
     
   DESIGN
       Product page details

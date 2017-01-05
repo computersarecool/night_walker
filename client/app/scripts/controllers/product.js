@@ -1,3 +1,4 @@
+/* global angular */
 'use strict'
 
 /**
@@ -9,48 +10,73 @@
  */
 angular.module('nightwalkerApp')
   .controller('ProductCtrl', function ($scope, $window, $location, UserFactory, product) {
-    var xNow
-    var xDelta
-    var xOffset
-    var xPrevious
-    var flavorIndex
-    var flavorTest = product['safeFlavor']
-    var sizeGuide = document.querySelector('#sizemenu')
-    var holder = document.querySelector('#gallery-holder')
-    // TODO: This is a fake way to get the sku. Fix it
-    if (flavorTest === 'cherry') {
-      flavorIndex = '1'
-    } else {
-      flavorIndex = '2'
-    }
+    // TODO: This is a fake way to get the flavor index. To come from DB
+    product.flavorIndex = 1
+    let xNow
+    let xPrevious
+    let xDelta
+    let xOffset
+    let dragging = false
+    let sizeGuide = document.querySelector('#sizemenu')
+    let holder = document.querySelector('#gallery-holder')
 
     $scope.product = product
+
     $scope.pickedProduct = {
       size: product.distinctSizes[0],
-      sku: '1' + flavorIndex + product.distinctSizes[0].waistSize + product.distinctSizes[0].inseam
+      sku: '1' + $scope.product.flavorIndex + $scope.product.distinctSizes[0].waistSize + $scope.product.distinctSizes[0].inseam
     }
-    $scope.dragging = false
-    $scope.startScroll = function (e) {
+
+    $scope.changeSize = () => {
+      $scope.pickedProduct.sku = '1' + $scope.flavorIndex + $scope.pickedProduct.size.waistSize + $scope.pickedProduct.size.inseam
+    }
+
+    $scope.addToCart = () => {
+      const sku = $scope.pickedProduct.sku
+      const store = $window.localStorage
+      let cart = angular.fromJson(store.getItem('cart'))
+
+      // Add to cart in DB if user is logged in otherwise add to local cart
+      if (UserFactory.currentUser.loggedIn) {
+        UserFactory.addToCart(sku)
+      } else {
+        if (cart) {
+          cart.push(sku)
+        } else {
+          cart = [sku]
+        }
+        store.setItem('cart', angular.toJson(cart))
+        UserFactory.currentUser.cart = cart
+      }
+      document.querySelector('#checkout-now').classList.remove('hidden')
+    }
+
+    $scope.goToCheckout = UserFactory.goToCheckout
+
+    $scope.startScroll = e => {
+      dragging = true
       xPrevious = e.touches[0].screenX
-      $scope.dragging = true
     }
-    $scope.stopScroll = function () {
-      $scope.dragging = false
+
+    $scope.stopScroll = () => {
+      dragging = false
       xPrevious = undefined
     }
-    $scope.scrollGallery = function (e) {
-      var newPosition
-      if ($scope.dragging) {
+
+    $scope.scrollGallery = e => {
+      let newPosition
+
+      if (dragging) {
         xNow = e.touches[0].screenX
         xDelta = xNow - xPrevious
         xOffset = xDelta + parseInt(holder.style.left)
 
-        if (isNaN(xOffset)) {
-          holder.style.left = '0px'
+        if (xOffset <= -730 && xDelta <= 0 || xOffset >= 0 && xDelta >= 0) {
           return
         }
 
-        if (xOffset <= -730 && xDelta <= 0 || xOffset >= 0 && xDelta >= 0) {
+        if (isNaN(xOffset)) {
+          holder.style.left = '0px'
           return
         }
 
@@ -62,19 +88,20 @@ angular.module('nightwalkerApp')
           case newPosition > -20:
             document.querySelector('#front-view').checked = true
             break
-          case ( newPosition > -40 && newPosition <= -20):
+          case (newPosition > -40 && newPosition <= -20):
             document.querySelector('#side-view').checked = true
             break
-          case ( newPosition > -60 && newPosition <= -40):
+          case (newPosition > -60 && newPosition <= -40):
             document.querySelector('#detail-view').checked = true
             break
-          case ( newPosition > -80 && newPosition <= -60):
+          case (newPosition > -80 && newPosition <= -60):
             document.querySelector('#back-view').checked = true
             break
         }
       }
     }
-    $scope.scrollTo = function (pictureName) {
+
+    $scope.scrollTo = pictureName => {
       switch (pictureName) {
         case 'front-view':
           holder.style.left = '0px'
@@ -90,35 +117,11 @@ angular.module('nightwalkerApp')
           break
       }
     }
-    $scope.toggleShow = function (id) {
-      var element = document.querySelector(id)
-      var yOffset = $window.scrollY
+
+    $scope.toggleShow = id => {
+      let element = document.querySelector(id)
+      let yOffset = $window.scrollY
       element.style.top = yOffset + 'px'
       element.classList.toggle('hidden')
     }
-    $scope.changeSize = function () {
-      $scope.pickedProduct.sku = '1' + flavorIndex + $scope.pickedProduct.size.waistSize + $scope.pickedProduct.size.inseam
-    }
-    $scope.addToCart = function () {
-      var sku = $scope.pickedProduct.sku
-      var store = $window.localStorage
-      var cart = angular.fromJson(store.getItem('cart'))
-
-      if (UserFactory.currentUser.loggedIn) {
-        // Add to cart in DB if user is logged in
-        UserFactory.addToCart(sku)
-      } else {
-        // Add product to local cart if not logged in / no temp user
-        if (cart) {
-          cart.push(sku)
-        } else {
-          cart = [sku]
-        }
-
-        store.setItem('cart', JSON.stringify(cart))
-        UserFactory.currentUser.cart = cart
-      }
-      document.querySelector('#checkout-now').classList.remove('hidden')
-    }
-    $scope.goToCheckout = UserFactory.goToCheckout
   })

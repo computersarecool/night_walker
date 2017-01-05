@@ -1,3 +1,4 @@
+/* global angular */
 'use strict'
 
 /**
@@ -9,10 +10,11 @@
  */
 angular.module('nightwalkerApp')
   .factory('UserFactory', function ($window, $http, $location, AuthTokenFactory) {
-    var user = {}
-    var store = $window.localStorage
-    var cart = angular.fromJson(store.cart)
-    var base = 'http://api.optonox.com:3000'
+    const base = 'http://api.optonox.com:3000'
+    const store = $window.localStorage
+    let cart = angular.fromJson(store.cart)
+    let user = {}
+
     function checkToken () {
       return AuthTokenFactory.getToken()
     }
@@ -143,17 +145,19 @@ angular.module('nightwalkerApp')
       user.currentUser = newUser
     }
 
+    const currentUser = getUser()
+
     user = {
-      checkToken: checkToken,
-      signup: signup,
-      login: login,
-      logout: logout,
-      addToCart: addToCart,
-      updateCart: updateCart,
-      goToCheckout: goToCheckout,
-      getUser: getUser,
-      setUser: setUser,
-      currentUser: getUser()
+      checkToken,
+      signup,
+      login,
+      logout,
+      addToCart,
+      updateCart,
+      goToCheckout,
+      getUser,
+      setUser,
+      currentUser
     }
 
     return user
