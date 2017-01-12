@@ -10,8 +10,9 @@
  */
 angular.module('nightwalkerApp')
   .controller('ProductCtrl', function ($scope, $window, $location, UserFactory, product) {
-    // TODO: This is a fake way to get the flavor index. To come from DB
+    // TODO: This is a fake way to get the flavor index - it will come from DB
     product.flavorIndex = 1
+
     let xNow
     let xPrevious
     let xDelta

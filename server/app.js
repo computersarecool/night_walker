@@ -32,12 +32,16 @@ module.exports = callback => {
       app.use(express.static(path.join(__dirname, 'templates/emails')))
       app.use(express.static(path.join(__dirname, '../client/')))
       app.use(express.static(path.join(__dirname, '../client/app')))
-      app.use(errorHandler)
-      return callback(app)
     }
 
-    // production static file server and errors
-    app.use(express.static(path.join(__dirname, '../dist')))
+    // 404
+    app.use((req, res, next) => {
+      const err = new Error('Route Not Found')
+      err.status = 404
+      next(err)
+    })
+
+    // TODO: production static file server and errors
     app.use(errorHandler)
     callback(app)
   })

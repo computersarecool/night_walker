@@ -9,28 +9,36 @@
  * Factory in the nightwalkerApp.
  */
 angular.module('nightwalkerApp')
-  .factory('ProductFactory', function ($http, ModalService) {
+  .factory('ProductFactory', function ($http, $q, ModalService) {
     const base = 'http://api.optonox.com:3000'
 
     function getEdition (edition) {
-      return $http.get(base + '/editions/' + edition)
+      const deferred = $q.defer()
+      $http.get(base + '/editions/' + edition)
         .then(response => {
-          return response.data
+          deferred.resolve(response.data)
         }, httpError => {
-          ModalService.showMessage({
+          deferred.reject(httpError)
+          ModalService.showError({
             text: 'There was an error retreiving your request',
             footer: 'Please contact support'
           })
         })
+      return deferred.promise
     }
 
     function getProduct (flavor) {
-      return $http.get(base + '/shop/alternating-current/' + flavor)
-        .then(function success (response) {
-          return response.data
-        }, function error (httpError) {
-          throw httpError.status + ' : ' + httpError.data
+      const deferred = $q.defer()
+      $http.get(base + '/shop/alternating-current/' + flavor)
+        .then(response => {
+          deferred.resolve(response.data)
+        }, httpError => {
+          ModalService.showError({
+            text: 'There was an error retreiving your request',
+            footer: 'Please contact support'
+          })
         })
+      return deferred.promise
     }
 
     function getInfoFromSkus (skus) {

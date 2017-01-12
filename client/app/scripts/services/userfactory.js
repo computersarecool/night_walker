@@ -9,7 +9,7 @@
  * Factory in the nightwalkerApp.
  */
 angular.module('nightwalkerApp')
-  .factory('UserFactory', function ($window, $http, $location, AuthTokenFactory) {
+  .factory('UserFactory', function ($window, $http, $location, $q, AuthTokenFactory, ModalService) {
     const base = 'http://api.optonox.com:3000'
     const store = $window.localStorage
     let cart = angular.fromJson(store.cart)
@@ -121,24 +121,26 @@ angular.module('nightwalkerApp')
     }
 
     function getUser () {
+      const deferred = $q.defer()
       if (AuthTokenFactory.getToken()) {
-        return $http.get(base + '/user')
-          .then(function success (response) {
-            user.currentUser = response.data.user
-          }, function (httpError) {
-            // TODO: Better error handling
-            // There is an auth token but no associated user
-            throw httpError.status + ' : ' + httpError.data
-            return undefined
+        console.log('yess)')
+        $http.get(base + '/user')
+          .then(response => {
+            //user.currentUser = response.data.user
+            deferred.resolve(response.data.user)
+          }, httpError => {
+            deferred.reject(httpError)
           })
       } else {
-        user.currentUser = {
+        const guestUser = {
+          guest: true,
           loggedIn: false,
-          cart: cart,
-          guest: true
+          cart: cart
         }
-        return undefined
+//        deferred.resolve(guestUser)
+        user.currentUser = guestUser
       }
+      return deferred.promise
     }
 
     function setUser (newUser) {

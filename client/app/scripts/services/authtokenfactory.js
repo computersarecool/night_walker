@@ -1,3 +1,4 @@
+/* global angular */
 'use strict'
 
 /**
@@ -9,13 +10,8 @@
  */
 angular.module('nightwalkerApp')
   .factory('AuthTokenFactory', function ($window) {
-    var store = $window.localStorage
-    var key = 'auth-token'
-
-    return {
-      getToken: getToken,
-      setToken: setToken
-    }
+    const key = 'auth-token'
+    const store = $window.localStorage
 
     function getToken () {
       return store.getItem(key)
@@ -27,5 +23,10 @@ angular.module('nightwalkerApp')
       } else {
         store.removeItem(key)
       }
+    }
+
+    return {
+      getToken,
+      setToken
     }
   })

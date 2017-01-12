@@ -1,8 +1,7 @@
 const mailController = require('./mail')
-const shippingController = require('./shipping')
 
 function handler (err, req, res, next) {
-  // this error comes from JWT.verify - delete the invalid token
+  // TODO: this error comes from JWT.verify - delete the invalid token
   if (err.name === 'UnauthorizedError') {
     err.status = 401
     err.message = 'Invalid Token'

@@ -29,7 +29,11 @@
     -- Switch to using API domain --
     
     PICKUP: 
-        - Finish Product controller + User factory
+        - Login Route.
+        - Login controller and its interaction with the user factory
+        - Check if we need user.current user
+
+        - Global variable for baseurl
         - Stored token making a get request, userfactory, getting 404 at start and creating an account
         - Global constant for route prefix
         
