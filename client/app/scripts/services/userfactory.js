@@ -15,6 +15,32 @@ angular.module('nightwalkerApp')
     let cart = angular.fromJson(store.cart)
     let user = {}
 
+    function setUser (newUser) {
+      user.currentUser = newUser
+    }
+
+    function getUser () {
+      const deferred = $q.defer()
+      if (AuthTokenFactory.getToken()) {
+        $http.get(base + '/user')
+          .then(response => {
+            deferred.resolve(response.data.user)
+            user.currentUser = response.data.user
+          }, httpError => {
+            // Remove key because it was invalid
+            AuthTokenFactory.setToken()
+            deferred.reject(httpError)
+          })
+      } else {
+        const guestUser = {
+          cart: cart
+        }
+        deferred.resolve(guestUser)
+        user.currentUser = guestUser
+      }
+      return deferred.promise
+    }
+
     function checkToken () {
       return AuthTokenFactory.getToken()
     }
@@ -120,46 +146,16 @@ angular.module('nightwalkerApp')
       $location.path('/checkout')
     }
 
-    function getUser () {
-      const deferred = $q.defer()
-      if (AuthTokenFactory.getToken()) {
-        console.log('yess)')
-        $http.get(base + '/user')
-          .then(response => {
-            //user.currentUser = response.data.user
-            deferred.resolve(response.data.user)
-          }, httpError => {
-            deferred.reject(httpError)
-          })
-      } else {
-        const guestUser = {
-          guest: true,
-          loggedIn: false,
-          cart: cart
-        }
-//        deferred.resolve(guestUser)
-        user.currentUser = guestUser
-      }
-      return deferred.promise
-    }
-
-    function setUser (newUser) {
-      user.currentUser = newUser
-    }
-
-    const currentUser = getUser()
-
     user = {
+      setUser,
+      getUser,
       checkToken,
       signup,
       login,
       logout,
       addToCart,
       updateCart,
-      goToCheckout,
-      getUser,
-      setUser,
-      currentUser
+      goToCheckout
     }
 
     return user

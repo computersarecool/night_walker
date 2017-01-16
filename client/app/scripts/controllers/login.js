@@ -11,11 +11,8 @@
 
 angular.module('nightwalkerApp')
   .controller('LoginCtrl', function ($scope, $window, $location, UserFactory) {
-    // If the user has a valid token, direct to account page
-
-
     // Do not show the login option if on signup route
-    if ($location.path() === '/createaccount') {
+    if ($location.path() === '/create-account') {
       $scope.showLogin = false
     } else {
       $scope.showLogin = true
@@ -23,23 +20,23 @@ angular.module('nightwalkerApp')
 
     $scope.modalCart = false
 
-    $scope.signup = function (email, password, firstName, lastName) {
+    $scope.signup = (email, password, firstName, lastName) => {
       UserFactory.signup(email, password, firstName, lastName)
     }
 
-    $scope.login = function (email, password) {
+    $scope.login = (email, password) => {
       UserFactory.login(email, password)
     }
 
-    $scope.logout = function () {
+    $scope.logout = () => {
       UserFactory.logout()
     }
 
-    $scope.guestCheckout = function () {
+    $scope.guestCheckout = () => {
       $location.path('/checkout')
     }
 
-    $scope.changeScreen = function () {
+    $scope.changeScreen = () => {
       if ($location.path() === '/signup') {
         $location.path('/login')
       } else {
@@ -47,10 +44,11 @@ angular.module('nightwalkerApp')
       }
     }
 
-    $scope.showModalCart = function () {
+    $scope.showModalCart = () => {
       $scope.modalCart = !$scope.modalCart
     }
 
+    // TODO: Is this neccesary?
     // This makes sure that the user is in sync with the user fetched from the DB
     $scope.$watch(() => {
       return UserFactory.currentUser

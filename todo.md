@@ -5,6 +5,7 @@
     - use schema design to improve findProductByFlavor in database.js
     - Save user card information in database.js
     NOTES:
+      - Start by looking at what the API returns
       - For the individual products, combine size information / sizes / distinctSizes
       - Add flavor index
       - remove SKU
@@ -29,9 +30,12 @@
     -- Switch to using API domain --
     
     PICKUP: 
-        - Login Route.
-        - Login controller and its interaction with the user factory
+        - Login controller and its interaction with the user factory    
         - Check if we need user.current user
+        - Call get user on first load
+        PICKUP login.js Signup function
+        - Login line 56 is watchin the user neccesary all the time?
+
 
         - Global variable for baseurl
         - Stored token making a get request, userfactory, getting 404 at start and creating an account

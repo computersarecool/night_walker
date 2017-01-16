@@ -52,8 +52,8 @@ angular
         template: '<site-login></site-login>',
         controller: 'LoginCtrl'
       })
-      .when('/createaccount', {
-        templateUrl: 'views/login.html',
+      .when('/create-account', {
+        template: '<site-login></site-login>',
         controller: 'LoginCtrl'
       })
       .when('/account', {
