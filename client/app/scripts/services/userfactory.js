@@ -13,15 +13,18 @@ angular.module('nightwalkerApp')
     const base = 'http://api.optonox.com:3000'
     let user = {}
     const store = $window.localStorage
-//    let cart = angular.fromJson(store.cart)
+
+    function checkToken () {
+      return AuthTokenFactory.getToken()
+    }
 
     function setUser (newUser) {
       user.currentUser = newUser
     }
 
-    function resolveAndSet (q, userToSet) {
-      q.resolve(userToSet)
-      user.currentUser = userToSet
+    function resolveAndSet (q, returnedUser) {
+      q.resolve(returnedUser)
+      user.currentUser = returnedUser
     }
 
     function getUser () {
@@ -29,7 +32,8 @@ angular.module('nightwalkerApp')
       const guestUser = {
         cart: []
       }
-      if (AuthTokenFactory.getToken()) {
+
+      if (checkToken()) {
         $http.get(base + '/user')
           .then(response => {
             resolveAndSet(deferred, response.data.user)
@@ -38,21 +42,23 @@ angular.module('nightwalkerApp')
             AuthTokenFactory.setToken()
             resolveAndSet(deferred, guestUser)
           })
+        // There is a user object in storage, validate it
       } else if (store.getItem('user')) {
         try {
-          const storedUser = angular.fromJson(store.getItem('user'))
-          resolveAndSet(deferred, storedUser)
+          const returnedUser = angular.fromJson(store.getItem('user'))
+          if (Array.isArray(returnedUser.cart)) {
+            resolveAndSet(deferred, returnedUser)
+          } else {
+            throw new Error('Invalid user')
+          }
         } catch (e) {
           resolveAndSet(deferred, guestUser)
         }
+        // No auth-token and no user in storage, set to default
       } else {
         resolveAndSet(deferred, guestUser)
       }
       return deferred.promise
-    }
-
-    function checkToken () {
-      return AuthTokenFactory.getToken()
     }
 
     function signup (email, password, firstName, lastName) {

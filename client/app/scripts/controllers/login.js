@@ -11,11 +11,20 @@
 
 angular.module('nightwalkerApp')
   .controller('LoginCtrl', function ($scope, $window, $location, UserFactory) {
+    // TODO: Examine
     // Do not show the login option if on signup route
     if ($location.path() === '/create-account') {
       $scope.showLogin = false
     } else {
       $scope.showLogin = true
+    }
+
+    $scope.changeScreen = () => {
+      if ($location.path() === '/signup') {
+        $location.path('/login')
+      } else {
+        $location.path('/signup')
+      }
     }
 
     $scope.modalCart = false
@@ -34,14 +43,6 @@ angular.module('nightwalkerApp')
 
     $scope.guestCheckout = () => {
       $location.path('/checkout')
-    }
-
-    $scope.changeScreen = () => {
-      if ($location.path() === '/signup') {
-        $location.path('/login')
-      } else {
-        $location.path('/signup')
-      }
     }
 
     $scope.showModalCart = () => {

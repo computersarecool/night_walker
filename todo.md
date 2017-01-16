@@ -33,7 +33,9 @@
         - Login controller and its interaction with the user factory    
         - Check if we need user.current user
         - Call get user on first load
-        PICKUP login.js Signup function
+        PICKUP login.js: 
+        - Fix location path show / hide
+        - Signup function
         - Login line 56 is watchin the user neccesary all the time?
 
 
@@ -42,7 +44,7 @@
         - Global constant for route prefix
         
     - Delete token in addProduct and checkout routes and any invalid route
-
+    - What is html5 mode?
     - When posting to add items, how are the items stored? Same thing for signing up, where is the cart? Same thing for skus?
     - Store a client ID instead of the user cart on the browser ?
     - email field in login in angular is set to text
