@@ -11,32 +11,42 @@
 angular.module('nightwalkerApp')
   .factory('UserFactory', function ($window, $http, $location, $q, AuthTokenFactory, ModalService) {
     const base = 'http://api.optonox.com:3000'
-    const store = $window.localStorage
-    let cart = angular.fromJson(store.cart)
     let user = {}
+    const store = $window.localStorage
+//    let cart = angular.fromJson(store.cart)
 
     function setUser (newUser) {
       user.currentUser = newUser
     }
 
+    function resolveAndSet (q, userToSet) {
+      q.resolve(userToSet)
+      user.currentUser = userToSet
+    }
+
     function getUser () {
       const deferred = $q.defer()
+      const guestUser = {
+        cart: []
+      }
       if (AuthTokenFactory.getToken()) {
         $http.get(base + '/user')
           .then(response => {
-            deferred.resolve(response.data.user)
-            user.currentUser = response.data.user
+            resolveAndSet(deferred, response.data.user)
           }, httpError => {
             // Remove key because it was invalid
             AuthTokenFactory.setToken()
-            deferred.reject(httpError)
+            resolveAndSet(deferred, guestUser)
           })
-      } else {
-        const guestUser = {
-          cart: cart
+      } else if (store.getItem('user')) {
+        try {
+          const storedUser = angular.fromJson(store.getItem('user'))
+          resolveAndSet(deferred, storedUser)
+        } catch (e) {
+          resolveAndSet(deferred, guestUser)
         }
-        deferred.resolve(guestUser)
-        user.currentUser = guestUser
+      } else {
+        resolveAndSet(deferred, guestUser)
       }
       return deferred.promise
     }
