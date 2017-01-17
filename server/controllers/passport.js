@@ -32,10 +32,20 @@ module.exports = passport => {
       newUser.password = req.body.password
       newUser.firstName = req.body.firstName
       newUser.lastName = req.body.lastName
-      const cart = JSON.parse(req.body.cart)
-      if (cart && Array.isArray(cart)) {
-        newUser.cart = JSON.parse(cart)
+
+      // Cart comes from local storage so make sure it is a valid array
+      let cart
+      try {
+        cart = JSON.parse(req.body.user).cart
+        if (!Array.isArray(cart)) {
+          throw new Error('Invalid Data')
+        }
+      } catch (e) {
+        cart = []
       }
+
+      newUser.cart = cart
+
       newUser.save(err => {
         if (err) {
           return done(err)

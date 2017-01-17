@@ -4,7 +4,7 @@ const passport = require('passport')
 const secret = require('../../../credentials').jwtSecret
 require('../../controllers/passport')(passport)
 
-router.post('/signup', (req, res, next) => {
+router.post('/create-account', (req, res, next) => {
   authenticate('local-signup', req, res, next)
 })
 

@@ -1,5 +1,7 @@
 # TODO:
-
+  -- Remove all optional curly braces in js
+  -- Check babel features (concise syntax, arrow functions) 
+  
   DATABASE
     - Database design
     - use schema design to improve findProductByFlavor in database.js
@@ -30,13 +32,10 @@
     -- Switch to using API domain --
     
     PICKUP: 
-        - Login controller and its interaction with the user factory    
-        - Check if we need user.current user
+        -- By The End Of login Route / UserFac Check if we need user.current user
+        PICKUP login.js:
         - Call get user on first load
-        PICKUP login.js: 
-        - Fix location path show / hide
-        - Signup function
-        - Login line 56 is watchin the user neccesary all the time?
+        - Login line 56 is watching the user neccesary all the time?
 
 
         - Global variable for baseurl

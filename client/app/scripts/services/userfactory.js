@@ -61,22 +61,23 @@ angular.module('nightwalkerApp')
       return deferred.promise
     }
 
-    function signup (email, password, firstName, lastName) {
-      return $http.post(base + '/authenticate/signup', {
+    function createAccount (email, password, firstName, lastName) {
+      return $http.post(base + '/authenticate/create-account', {
         email: email,
         password: password,
         firstName: firstName,
         lastName: lastName,
-        cart: store.getItem('cart')
-      }).then(function success (response) {
+        user: store.getItem('user')
+      }).then(response => {
         AuthTokenFactory.setToken(response.data.token)
         user.currentUser = response.data.user
         store.removeItem('cart')
         $location.path('/account')
-      }, function error (response) {
-        if (response.status === 401) {
-          window.alert(response.data)
-        }
+      }, httpError => {
+        ModalService.showError({
+          text: 'There was an error retreiving your request',
+          footer: 'Please contact support'
+        })
       })
     }
 
@@ -166,7 +167,7 @@ angular.module('nightwalkerApp')
       setUser,
       getUser,
       checkToken,
-      signup,
+      createAccount,
       login,
       logout,
       addToCart,

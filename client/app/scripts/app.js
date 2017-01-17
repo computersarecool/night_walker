@@ -48,11 +48,11 @@ angular
           }
         }
       })
-      .when('/login', {
+      .when('/create-account', {
         template: '<site-login></site-login>',
         controller: 'LoginCtrl'
       })
-      .when('/create-account', {
+      .when('/login', {
         template: '<site-login></site-login>',
         controller: 'LoginCtrl'
       })

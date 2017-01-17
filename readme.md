@@ -3,7 +3,8 @@ To start:
     mongod --dbpath ./data/db/ --logpath ./data/logs/mongodb.log --logappend --smallfiles &
     
 To add content to database:
-    run testdata.js
+    (From database directory)
+    mongo ../testdata.js
 
 To improve performance:
     echo 1 > /proc/sys/vm/drop_caches

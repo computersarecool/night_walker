@@ -11,39 +11,19 @@
 
 angular.module('nightwalkerApp')
   .controller('LoginCtrl', function ($scope, $window, $location, UserFactory) {
-    // TODO: Examine
-    // Do not show the login option if on signup route
-    if ($location.path() === '/create-account') {
-      $scope.showLogin = false
-    } else {
-      $scope.showLogin = true
-    }
-
-    $scope.changeScreen = () => {
-      if ($location.path() === '/signup') {
-        $location.path('/login')
-      } else {
-        $location.path('/signup')
-      }
-    }
-
     $scope.modalCart = false
 
-    $scope.signup = (email, password, firstName, lastName) => {
-      UserFactory.signup(email, password, firstName, lastName)
-    }
+    $scope.showLogin = $location.path() === '/login'
 
-    $scope.login = (email, password) => {
-      UserFactory.login(email, password)
-    }
+    $scope.changeScreen = () => $location.path() === '/login' ? $location.path('/create-account') : $location.path('/login')
 
-    $scope.logout = () => {
-      UserFactory.logout()
-    }
+    $scope.createAccount = (email, password, firstName, lastName) => UserFactory.createAccount(email, password, firstName, lastName)
 
-    $scope.guestCheckout = () => {
-      $location.path('/checkout')
-    }
+    $scope.login = (email, password) => UserFactory.login(email, password)
+
+    $scope.logout = () => UserFactory.logout()
+
+    $scope.guestCheckout = () => $location.path('/checkout')
 
     $scope.showModalCart = () => {
       $scope.modalCart = !$scope.modalCart
