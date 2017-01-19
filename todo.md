@@ -25,26 +25,27 @@
     - Reset email password route
     - Create email templates
     - Finalize package.json
+    - On user route only send back needed data
     
   CLIENT
     -- Switch to writing ES 2015 --
     -- Switch to using/ Standard JS --
     -- Switch to using API domain --
-    
-    PICKUP: 
-        -- By The End Of login Route / UserFac Check if we need user.current user
-        PICKUP login.js:
-        - Call get user on first load
-        - Login line 56 is watching the user neccesary all the time?
+    -- Style modal popup --
+    -- Global variable for baseurl / Global bad request --
 
 
-        - Global variable for baseurl
-        - Stored token making a get request, userfactory, getting 404 at start and creating an account
-        - Global constant for route prefix
-        
-    - Delete token in addProduct and checkout routes and any invalid route
-    - What is html5 mode?
-    - When posting to add items, how are the items stored? Same thing for signing up, where is the cart? Same thing for skus?
+    -- By The End Of login Route / UserFac Check if we need user.current user
+    -- Login line 56 is watching the user neccesary all the time?     
+
+     PICKUP 
+     ☃ Add to cart in user factory
+     
+     
+     - Call get user on first load
+     - What happens if you go to account route without a token?
+     - Delete token in addProduct and checkout routes and any invalid route
+     - When posting to add items, how are the items stored? Same thing for signing up, where is the cart? Same thing for skus?
     - Store a client ID instead of the user cart on the browser ?
     - email field in login in angular is set to text
     - Client side form verification
@@ -93,6 +94,7 @@
       - Why does a directive have a controller
       - Should the main.html view just be a directive?
       - Use $scope or var in controllers (i.e. product Controller)
+      - What is html5 mode and is it important?
 
     JAVASCRIPT
 

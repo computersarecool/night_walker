@@ -1,4 +1,4 @@
 <div id="modal" ng-show="showModal" ng-click="showModal=false">
   <p class="modal-info">{{message.text}}</p>
-  <p class="modal-footer">{{message.footer}}</p>
+  <p class="modal-footer">{{message.footer || "Please try again"}}</p>
 </div>

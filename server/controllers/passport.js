@@ -10,7 +10,7 @@ module.exports = passport => {
   }, (req, email, password, done) => {
     // make sure the email address is valid
     if (!validator.isEmail(email)) {
-      const error = new Error('Invalid email')
+      const error = new Error('the email entered was invalid')
       error.status = 401
       error.type = 'InvalidCredentials'
       return done(error)
@@ -21,7 +21,7 @@ module.exports = passport => {
         return done(err)
       }
       if (user) {
-        const error = new Error('That email is already taken')
+        const error = new Error('that email is already taken')
         error.status = 401
         error.type = 'InvalidCredentials'
         return done(null, null, error)
@@ -80,9 +80,20 @@ module.exports = passport => {
           error.type = 'InvalidCredentials'
           return done(null, null, error)
         }
-        // user logged in correctly - add items in cart then return user
-        const cart = JSON.parse(req.body.cart)
-        if (cart && Array.isArray(cart)) {
+
+        // user logged in correctly - Verify the cart is valid
+        let cart
+        try {
+          cart = JSON.parse(req.body.user).cart
+          if (!Array.isArray(cart)) {
+            throw new Error('Invalid Data')
+          }
+        } catch (e) {
+          cart = []
+        }
+
+        // The cart has items in it
+        if (cart) {
           for (let i = 0; i < cart.length; i++) {
             user.cart.push(cart[i])
           }
@@ -92,8 +103,8 @@ module.exports = passport => {
             }
             done(null, user)
           })
+        // No items in cart, return user
         } else {
-          // there is no temp cart - return the user
           return done(null, user)
         }
       })

@@ -32,26 +32,6 @@ angular.module('nightwalkerApp')
       $scope.pickedProduct.sku = '1' + $scope.flavorIndex + $scope.pickedProduct.size.waistSize + $scope.pickedProduct.size.inseam
     }
 
-    $scope.addToCart = () => {
-      const sku = $scope.pickedProduct.sku
-      const store = $window.localStorage
-      let cart = angular.fromJson(store.getItem('cart'))
-
-      // Add to cart in DB if user is logged in otherwise add to local cart
-      if (UserFactory.currentUser.loggedIn) {
-        UserFactory.addToCart(sku)
-      } else {
-        if (cart) {
-          cart.push(sku)
-        } else {
-          cart = [sku]
-        }
-        store.setItem('cart', angular.toJson(cart))
-        UserFactory.currentUser.cart = cart
-      }
-      document.querySelector('#checkout-now').classList.remove('hidden')
-    }
-
     $scope.goToCheckout = UserFactory.goToCheckout
 
     $scope.startScroll = e => {
@@ -124,5 +104,10 @@ angular.module('nightwalkerApp')
       let yOffset = $window.scrollY
       element.style.top = yOffset + 'px'
       element.classList.toggle('hidden')
+    }
+
+    $scope.addToCart = () => {
+      UserFactory.addToCart($scope.pickedProduct.sku)
+      document.querySelector('#checkout-now').classList.remove('hidden')
     }
   })

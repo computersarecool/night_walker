@@ -17,9 +17,7 @@ angular.module('nightwalkerApp')
 
     $scope.changeScreen = () => $location.path() === '/login' ? $location.path('/create-account') : $location.path('/login')
 
-    $scope.createAccount = (email, password, firstName, lastName) => UserFactory.createAccount(email, password, firstName, lastName)
-
-    $scope.login = (email, password) => UserFactory.login(email, password)
+    $scope.submitUserDetails = (route, email, password, firstName = null, lastName = null) => UserFactory.submitUserDetails('authenticate/' + route, email, password, firstName, lastName)
 
     $scope.logout = () => UserFactory.logout()
 

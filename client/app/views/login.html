@@ -1,14 +1,16 @@
 <!-- Show if the user is logged in -->
 <div ng-show="showLogin" class="container">
   
-  <form novalidate ng-submit="login(username, password)">
+  <form novalidate ng-submit="submitUserDetails('login', username, password)">
     <label>Email<input type="text" ng-model="username"></label>
     <label>Password<input type="password" ng-model="password"></label>
     <button type="submit">Login</button>
   </form>
 
   <br>
+
   <button ng-click="logout()">Logout</button>
+
   <div ng-click="changeScreen()">
     Need to sign up?
   </div>
@@ -23,19 +25,21 @@
     This is the signup form
   </div>
 
-  <form novalidate ng-submit="createAccount(email, password, firstName, lastName)">
+  <form novalidate ng-submit="submitUserDetails('create-account', email, password, firstName, lastName)">
     <input type="text" ng-model="email">Email<br>
     <input type="password" ng-model="password">Password<br>
     <input type="text" ng-model="firstName">First Name<br>
     <input type="text" ng-model="lastName">Last Name<br>
     <button type="submit">Submit</button>
   </form>
+
   <br>
 
   <!-- Click to switch -->  
   <p ng-click="changeScreen()">
     Already have an account?
   </p>
+
   <p>
     By signing up you agree to our Terms and conditions (don't worry, we are cool)
   </p>

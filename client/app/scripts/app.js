@@ -49,11 +49,11 @@ angular
         }
       })
       .when('/create-account', {
-        template: '<site-login></site-login>',
+        templateUrl: '/views/login.html',
         controller: 'LoginCtrl'
       })
       .when('/login', {
-        template: '<site-login></site-login>',
+        templateUrl: '/views/login.html',
         controller: 'LoginCtrl'
       })
       .when('/account', {

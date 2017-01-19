@@ -10,9 +10,13 @@
  */
 angular.module('nightwalkerApp')
   .factory('UserFactory', function ($window, $http, $location, $q, AuthTokenFactory, ModalService) {
-    const base = 'http://api.optonox.com:3000'
-    let user = {}
+    // Current user property is set by calling getUser or set to guestUser
+    const base = 'http://optonox.com:3000/'
     const store = $window.localStorage
+    let user = {}
+    const guestUser = {
+      cart: []
+    }
 
     function checkToken () {
       return AuthTokenFactory.getToken()
@@ -29,12 +33,8 @@ angular.module('nightwalkerApp')
 
     function getUser () {
       const deferred = $q.defer()
-      const guestUser = {
-        cart: []
-      }
-
       if (checkToken()) {
-        $http.get(base + '/user')
+        $http.get(base + 'user')
           .then(response => {
             resolveAndSet(deferred, response.data.user)
           }, httpError => {
@@ -61,52 +61,39 @@ angular.module('nightwalkerApp')
       return deferred.promise
     }
 
-    function createAccount (email, password, firstName, lastName) {
-      return $http.post(base + '/authenticate/create-account', {
+    function handleWrongCreds (httpError) {
+      if (httpError.status === 401) {
+        ModalService.showError({
+          text: `We are sorry, ${httpError.data.error.message}`
+        })
+      } else {
+        ModalService.showError({
+          text: 'There was an error retreiving your request',
+          footer: 'Please contact support'
+        })
+      }
+    }
+
+    function successLogin (response) {
+      AuthTokenFactory.setToken(response.data.token)
+      user.currentUser = response.data.user
+      store.removeItem('user')
+      $location.path('/account')
+    }
+
+    function submitUserDetails (route, email, password, firstName, lastName) {
+      return $http.post(base + route, {
         email: email,
         password: password,
         firstName: firstName,
         lastName: lastName,
         user: store.getItem('user')
-      }).then(response => {
-        AuthTokenFactory.setToken(response.data.token)
-        user.currentUser = response.data.user
-        store.removeItem('cart')
-        $location.path('/account')
-      }, httpError => {
-        ModalService.showError({
-          text: 'There was an error retreiving your request',
-          footer: 'Please contact support'
-        })
-      })
-    }
-
-    function login (email, password) {
-      return $http.post(base + '/authenticate/login', {
-        email: email,
-        password: password,
-        cart: store.getItem('cart')
-      }).then(function success (response) {
-        AuthTokenFactory.setToken(response.data.token)
-        user.currentUser = response.data.user
-        store.removeItem('cart')
-        $location.path('/account')
-      }, function error (response) {
-        // TODO: Better error handling
-        if (response.status === 401) {
-          console.log(response)
-          window.alert(response.data)
-        }
-        // Unknown error
-        return undefined
-      })
+      }).then(successLogin, handleWrongCreds)
     }
 
     function logout () {
       AuthTokenFactory.setToken()
-      user.currentUser = {
-        loggedIn: false
-      }
+      user.currentUser = guestUser
       $location.path('/')
     }
 
@@ -164,11 +151,11 @@ angular.module('nightwalkerApp')
     }
 
     user = {
+      currentUser,
       setUser,
       getUser,
       checkToken,
-      createAccount,
-      login,
+      submitUserDetails,
       logout,
       addToCart,
       updateCart,
