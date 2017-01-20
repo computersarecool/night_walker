@@ -27,9 +27,6 @@ angular
       .when('/contact', {
         templateUrl: 'views/contact.html'
       })
-      .when('/shop', {
-        redirectTo: '/shop/alternating-current'
-      })
       .when('/shop/:edition', {
         templateUrl: 'views/shop.html',
         controller: 'ShopCtrl',

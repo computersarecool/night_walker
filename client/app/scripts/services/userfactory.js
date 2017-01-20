@@ -22,14 +22,9 @@ angular.module('nightwalkerApp')
       return AuthTokenFactory.getToken()
     }
 
-    function setUser (newUser) {
-      user.currentUser = newUser
-      store.setItem('user', angular.toJson(newUser))
-    }
-
     function resolveAndSet (q, returnedUser) {
       q.resolve(returnedUser)
-      setUser(returnedUser)
+      user.currentUser = returnedUser
     }
 
     function getUser () {
@@ -77,12 +72,12 @@ angular.module('nightwalkerApp')
 
     function successLogin (response) {
       AuthTokenFactory.setToken(response.data.token)
-      setUser(response.data.user)
+      user.currentUser = response.data.user
       $location.path('/account')
     }
 
     function submitUserDetails (route, email, password, firstName, lastName) {
-      const user = angular.fromJson(store.getItem('user'))
+      user = angular.fromJson(store.getItem('user'))
       return $http.post(base + route, {
         email,
         password,
@@ -94,21 +89,19 @@ angular.module('nightwalkerApp')
 
     function logout () {
       AuthTokenFactory.setToken()
-      setUser(guestUser)
+      user.currentUser = guestUser
       $location.path('/')
     }
 
-    function addToCart (items) {
+    function addToCart (item) {
       if (checkToken()) {
-        // Add to DB cart and remove from localStorage if logged in
-        return $http.post(base + 'addproduct', {items})
+        return $http.post(base + 'addproduct', [item])
           .then(response => {
-            user.currentUser = response.data
-            store.removeItem('cart')
+            // Currently do nothing because they are added in to local storage too
+            user.currentUser = response.data.user
           }, httpError => {
-            // TODO: Better error handling
             ModalService.showError({
-              text: 'There was a problem adding your item to your cart',
+              text: 'There was an error adding your item',
               footer: 'Please contact support'
             })
           })
@@ -119,8 +112,8 @@ angular.module('nightwalkerApp')
         } catch (e) {
           user = guestUser
         }
-        user.cart.push(items)
-        setUser(user)
+        user.cart.push(item)
+        store.setItem('user', angular.toJson(user))
       }
     }
 
@@ -148,7 +141,6 @@ angular.module('nightwalkerApp')
     getUser()
 
     user = {
-      setUser,
       getUser,
       checkToken,
       submitUserDetails,

@@ -11,6 +11,14 @@ function isValid (sku, index, array) {
 
 function findUserAndUpdate (email, items, callback) {
   // make sure all items are valid
+  if (!Array.isArray(items)) {
+    const error = new Error('The request is malformed')
+    error.name = 'Malformed Data'
+    error.status = 404
+    error.type = 'MalformedData'
+    return callback(error)
+  }
+
   if (!items.every(isValid)) {
     const error = new Error('Some items in cart not found')
     error.name = 'Item not found'
@@ -18,6 +26,7 @@ function findUserAndUpdate (email, items, callback) {
     error.type = 'ItemNotFound'
     return callback(error)
   }
+
   Users.findOneAndUpdate({email}, {$push: {cart: items}}, (err, user) => {
     if (err) {
       return callback(err)

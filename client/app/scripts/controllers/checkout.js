@@ -47,7 +47,7 @@ angular.module('nightwalkerApp')
           user: UserFactory.currentUser,
           shippingDetails: $scope.shippingDetails
         }).then(function success (response) {
-          UserFactory.setUser(response.data)
+          UserFactory.currentUser = response.data
           // Only needed if user is checking out as guest, but do anyway
           $window.localStorage.removeItem('cart')
           $location.path('/congratulations')
