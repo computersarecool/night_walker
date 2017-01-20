@@ -10,7 +10,7 @@
  */
 angular.module('nightwalkerApp')
   .factory('UserFactory', function ($window, $http, $location, $q, AuthTokenFactory, ModalService) {
-    // Current user property is set by calling getUser or set to guestUser
+    // The currentUser property is set by calling getUser or set to guestUser
     const base = 'http://optonox.com:3000/'
     const store = $window.localStorage
     let user = {}
@@ -24,11 +24,12 @@ angular.module('nightwalkerApp')
 
     function setUser (newUser) {
       user.currentUser = newUser
+      store.setItem('user', angular.toJson(newUser))
     }
 
     function resolveAndSet (q, returnedUser) {
       q.resolve(returnedUser)
-      user.currentUser = returnedUser
+      setUser(returnedUser)
     }
 
     function getUser () {
@@ -36,13 +37,13 @@ angular.module('nightwalkerApp')
       if (checkToken()) {
         $http.get(base + 'user')
           .then(response => {
-            resolveAndSet(deferred, response.data.user)
+            resolveAndSet(deferred, response.data)
           }, httpError => {
             // Remove key because it was invalid
             AuthTokenFactory.setToken()
             resolveAndSet(deferred, guestUser)
           })
-        // There is a user object in storage, validate it
+      // There is a user object in storage, validate the user
       } else if (store.getItem('user')) {
         try {
           const returnedUser = angular.fromJson(store.getItem('user'))
@@ -54,7 +55,7 @@ angular.module('nightwalkerApp')
         } catch (e) {
           resolveAndSet(deferred, guestUser)
         }
-        // No auth-token and no user in storage, set to default
+      // No auth-token and no user in storage, set to default
       } else {
         resolveAndSet(deferred, guestUser)
       }
@@ -76,57 +77,51 @@ angular.module('nightwalkerApp')
 
     function successLogin (response) {
       AuthTokenFactory.setToken(response.data.token)
-      user.currentUser = response.data.user
-      store.removeItem('user')
+      setUser(response.data.user)
       $location.path('/account')
     }
 
     function submitUserDetails (route, email, password, firstName, lastName) {
+      const user = angular.fromJson(store.getItem('user'))
       return $http.post(base + route, {
-        email: email,
-        password: password,
-        firstName: firstName,
-        lastName: lastName,
-        user: store.getItem('user')
+        email,
+        password,
+        firstName,
+        lastName,
+        user
       }).then(successLogin, handleWrongCreds)
     }
 
     function logout () {
       AuthTokenFactory.setToken()
-      user.currentUser = guestUser
+      setUser(guestUser)
       $location.path('/')
     }
 
     function addToCart (items) {
-      if (user.currentUser.loggedIn) {
+      if (checkToken()) {
         // Add to DB cart and remove from localStorage if logged in
-        return $http.post(base + '/addproduct', {
-          items: items
-        }).then(function success (response) {
-          user.currentUser = response.data
-          store.removeItem('cart')
-        }, function error (response) {
-          // TODO: Better error handling
-          alert('There was an error with your request')
-          return undefined
-        })
-      } else if (!user.currentUser) {
-        // Add to temporary user cart and storage if there is no user
-        var cart = angular.fromJson(store.getItem('cart'))
-        if (cart) {
-          cart.push(items)
-        } else {
-          cart = [items]
-        }
-        store.setItem('cart', angular.toJson(cart))
-        user.currentUser = {
-          'cart': cart
-        }
+        return $http.post(base + 'addproduct', {items})
+          .then(response => {
+            user.currentUser = response.data
+            store.removeItem('cart')
+          }, httpError => {
+            // TODO: Better error handling
+            ModalService.showError({
+              text: 'There was a problem adding your item to your cart',
+              footer: 'Please contact support'
+            })
+          })
       } else {
-        // Add to temporary user cart if this is non-logged in user
-        user.currentUser.cart = cart
+        let user
+        try {
+          user = angular.fromJson(store.getItem('user'))
+        } catch (e) {
+          user = guestUser
+        }
+        user.cart.push(items)
+        setUser(user)
       }
-      return undefined
     }
 
     function updateCart (itemSku, quantity) {
@@ -150,8 +145,9 @@ angular.module('nightwalkerApp')
       $location.path('/checkout')
     }
 
+    getUser()
+
     user = {
-      currentUser,
       setUser,
       getUser,
       checkToken,

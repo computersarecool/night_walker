@@ -13,19 +13,28 @@ router.post('/login', (req, res, next) => {
 })
 
 const authenticate = (type, req, res, next) => {
-  passport.authenticate(type, {session: false}, (err, user, info) => {
+  passport.authenticate(type, {session: false}, (err, dbUser, info) => {
     if (err) {
       return next(err)
     }
-    if (!user) {
+    if (!dbUser) {
       return next(info)
     }
     jwt.sign({
-      email: user.email
+      email: dbUser.email
     }, secret, {noTimestamp: false}, (err, token) => {
       if (err) {
         return next(err)
       }
+
+      const {firstName, email, cart} = dbUser
+
+      const user = {
+        firstName,
+        email,
+        cart
+      }
+
       res.json({
         user,
         token

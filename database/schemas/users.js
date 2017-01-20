@@ -28,37 +28,29 @@ const userSchema = new Schema({
   dateJoined: {
     type: Date,
     default: Date.now
-  },
-  loggedIn: {
-    type: Boolean,
-    default: true
   }
 })
 
 // encrypt user password before saving
-userSchema.pre('save', function (next) {
-  const user = this
+userSchema.methods.hashPassword = function (password, callback) {
   bcrypt.genSalt(saltWorkFactor, function (err, salt) {
     if (err) {
-      err.email = true
-      return next(err)
+      return callback(err)
     }
-    bcrypt.hash(user.password, salt, function (err, hash) {
+    bcrypt.hash(password, salt, function (err, hash) {
       if (err) {
-        err.email = true
-        return next(err)
+        return callback(err)
       }
-      user.password = hash
-      next()
+      callback(null, hash)
     })
   })
-})
+}
 
 // compare hashed passwords
 userSchema.methods.checkPassword = function (candidatePassword, callback) {
-  bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
+  const user = this
+  bcrypt.compare(candidatePassword, user.password, function (err, isMatch) {
     if (err) {
-      err.email = true
       return callback(err)
     }
     callback(null, isMatch)

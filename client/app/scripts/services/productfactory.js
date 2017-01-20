@@ -10,7 +10,7 @@
  */
 angular.module('nightwalkerApp')
   .factory('ProductFactory', function ($http, $q, ModalService) {
-    const base = 'http://api.optonox.com:3000'
+    const base = 'http://optonox.com:3000'
 
     function getEdition (edition) {
       const deferred = $q.defer()

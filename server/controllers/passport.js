@@ -26,6 +26,7 @@ module.exports = passport => {
         error.type = 'InvalidCredentials'
         return done(null, null, error)
       }
+
       // create new user and add items if in cart
       const newUser = new Users()
       newUser.email = req.body.email
@@ -35,22 +36,27 @@ module.exports = passport => {
 
       // Cart comes from local storage so make sure it is a valid array
       let cart
-      try {
-        cart = JSON.parse(req.body.user).cart
-        if (!Array.isArray(cart)) {
-          throw new Error('Invalid Data')
-        }
-      } catch (e) {
+      if (req.body.user) {
+        cart = req.body.user.cart
+      }
+
+      if (!Array.isArray(cart)) {
         cart = []
       }
 
       newUser.cart = cart
 
-      newUser.save(err => {
+      newUser.hashPassword(newUser.password, (err, hash) => {
         if (err) {
           return done(err)
         }
-        return done(null, newUser)
+        newUser.password = hash
+        newUser.save(err => {
+          if (err) {
+            return done(err)
+          }
+          return done(null, newUser)
+        })
       })
     })
   }))
@@ -74,6 +80,7 @@ module.exports = passport => {
         if (err) {
           return done(err)
         }
+
         if (!authenticated) {
           const error = new Error('Incorrect email or password')
           error.status = 401
@@ -81,14 +88,13 @@ module.exports = passport => {
           return done(null, null, error)
         }
 
-        // user logged in correctly - Verify the cart is valid
+        // User logged in. Cart comes from local storage so make sure it is a valid array
         let cart
-        try {
-          cart = JSON.parse(req.body.user).cart
-          if (!Array.isArray(cart)) {
-            throw new Error('Invalid Data')
-          }
-        } catch (e) {
+        if (req.body.user) {
+          cart = req.body.user.cart
+        }
+
+        if (!Array.isArray(cart)) {
           cart = []
         }
 

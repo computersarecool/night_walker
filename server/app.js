@@ -25,7 +25,7 @@ module.exports = callback => {
     app.use(passport.initialize())
     app.use(cors(configureCors))
     app.use(apiRouter)
-    //    app.use(subdomain('api', apiRouter))
+    //app.use(subdomain('api', apiRouter))
 
     // development static file server and errors
     if (inDevelopment) {

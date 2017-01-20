@@ -9,8 +9,14 @@ router.get('/', expressJwt({secret}), (req, res, next) => {
     if (err) {
       return next(err)
     }
-    // TODO: Only send back neccesary information (i.e. not password)
-    res.json({user})
+
+    const {firstName, email, cart} = user
+
+    res.json({
+      firstName,
+      email,
+      cart
+    })
   })
 })
 
