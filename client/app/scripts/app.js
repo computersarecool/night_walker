@@ -55,7 +55,17 @@ angular
       })
       .when('/account', {
         templateUrl: 'views/account.html',
-        controller: 'AccountCtrl'
+        controller: 'AccountCtrl',
+        resolve: {
+          check: ($location, UserFactory, ModalService) => {
+            if (!UserFactory.checkToken()) {
+              $location.path('/login')
+              ModalService.showError({
+                text: 'Please login'
+              })
+            }
+          }
+        }
       })
       .when('/cart', {
         templateUrl: 'views/checkoutcart.html',

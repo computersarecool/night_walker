@@ -25,6 +25,9 @@ angular.module('nightwalkerApp')
     function resolveAndSet (q, returnedUser) {
       q.resolve(returnedUser)
       user.currentUser = returnedUser
+      if (!checkToken()) {
+        store.setItem('user', angular.toJson(guestUser))
+      }
     }
 
     function getUser () {
@@ -77,7 +80,7 @@ angular.module('nightwalkerApp')
     }
 
     function submitUserDetails (route, email, password, firstName, lastName) {
-      user = angular.fromJson(store.getItem('user'))
+      const user = angular.fromJson(store.getItem('user'))
       return $http.post(base + route, {
         email,
         password,
@@ -90,16 +93,18 @@ angular.module('nightwalkerApp')
     function logout () {
       AuthTokenFactory.setToken()
       user.currentUser = guestUser
+      store.removeItem('user')
       $location.path('/')
     }
 
     function addToCart (item) {
       if (checkToken()) {
-        return $http.post(base + 'addproduct', [item])
+        return $http.post(base + 'addproduct', {items: [item]})
           .then(response => {
             // Currently do nothing because they are added in to local storage too
             user.currentUser = response.data.user
           }, httpError => {
+            console.log(httpError)
             ModalService.showError({
               text: 'There was an error adding your item',
               footer: 'Please contact support'

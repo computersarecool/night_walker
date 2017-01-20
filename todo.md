@@ -25,27 +25,18 @@
     - Reset email password route
     - Create email templates
     - Finalize package.json
-    - On user route only send back needed data
-    
+     
   CLIENT
     -- Switch to writing ES 2015 --
     -- Switch to using/ Standard JS --
     -- Switch to using API domain --
     -- Style modal popup --
     -- Global variable for baseurl / Global bad request --
-
-
-    -- By The End Of login Route / UserFac Check if we need user.current user
-    -- Login line 56 is watching the user neccesary all the time?     
+    -- Is $scope.$watch neccesary as in the account controllers? --
 
      PICKUP 
-     ☃ Add to cart in user factory
-     
-     
-     - Call get user on first load
-     - What happens if you go to account route without a token?
-     - Delete token in addProduct and checkout routes and any invalid route
-     - When posting to add items, how are the items stored? Same thing for signing up, where is the cart? Same thing for skus?
+    - Delete token in addProduct and checkout routes and any invalid route
+    - When posting to add items, how are the items stored? Same thing for signing up, where is the cart? Same thing for skus?
     - Store a client ID instead of the user cart on the browser ?
     - email field in login in angular is set to text
     - Client side form verification
@@ -92,8 +83,7 @@
       - What does compile do in a directive?
       - Why is link returned in directive?
       - Why does a directive have a controller
-      - Should the main.html view just be a directive?
-      - Use $scope or var in controllers (i.e. product Controller)
+      - Use $scope or var in controllers (i.e. product Controller) [asked before]
       - What is html5 mode and is it important?
 
     JAVASCRIPT

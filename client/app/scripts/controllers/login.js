@@ -27,7 +27,6 @@ angular.module('nightwalkerApp')
       $scope.modalCart = !$scope.modalCart
     }
 
-    // TODO: Is this neccesary?
     // This makes sure that the user is in sync with the user fetched from the DB
     $scope.$watch(() => {
       return UserFactory.currentUser
