@@ -35,6 +35,8 @@
     -- Is $scope.$watch neccesary as in the account controllers? --
 
      PICKUP 
+    🐌  Cart route. Also check loggiing in / out and adding items
+    
     - Delete token in addProduct and checkout routes and any invalid route
     - When posting to add items, how are the items stored? Same thing for signing up, where is the cart? Same thing for skus?
     - Store a client ID instead of the user cart on the browser ?

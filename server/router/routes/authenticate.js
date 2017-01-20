@@ -18,6 +18,9 @@ const authenticate = (type, req, res, next) => {
       return next(err)
     }
     if (!dbUser) {
+      info.name = 'Invalid Credentials'
+      info.type = 'Invalid Credentials'
+      info.status = 401
       return next(info)
     }
     jwt.sign({
