@@ -8,22 +8,20 @@
  * Controller of the nightwalkerApp
  */
 angular.module('nightwalkerApp')
-  .controller('CheckoutCtrl', function ($scope, $window, $location, $http, items, UserFactory) {
-    var base = 'http://api.optonox.com:3000'
-
+  .controller('CheckoutCtrl', function ($scope, $window, $location, $http, items, UserFactory, base) {
     $scope.items = items
     $scope.user = UserFactory.currentUser
     $scope.goToCheckout = UserFactory.goToCheckout
 
-    $scope.removeItem = function (item) {
+    $scope.removeItem = item => {
       item.quantity = 0
       $scope.updateCart(item)
     }
 
-    $scope.updateCart = function (item) {
-      for (var i = 0; i < $scope.items.length; i++) {
+    $scope.updateCart = item => {
+      for (let i = 0; i < $scope.items.length; i++) {
         if ($scope.items[i].product.sku === item.product.sku) {
-          var itemIndex = i
+          let itemIndex = i
           if (item.quantity) {
             $scope.items[i] = item
           } else {
@@ -35,7 +33,7 @@ angular.module('nightwalkerApp')
       UserFactory.updateCart(item.product.sku, item.quantity)
     }
 
-    $scope.process = function (status, response) {
+    $scope.process = (status, response) => {
       if (response.error) {
         // TODO: Do something meaningful with validation error from stripe
         // needs to go to server

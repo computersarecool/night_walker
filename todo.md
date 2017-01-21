@@ -1,16 +1,13 @@
 # TODO:
-  -- Remove all optional curly braces in js
-  -- Check babel features (concise syntax, arrow functions) 
-  
   DATABASE
     - Database design
     - use schema design to improve findProductByFlavor in database.js
-    - Save user card information in database.js
+    - Save user stripe token information in database.js
     NOTES:
       - Start by looking at what the API returns
       - For the individual products, combine size information / sizes / distinctSizes
       - Add flavor index
-      - remove SKU
+      - remove SKU from irrelevant collection
       
   SERVER
     - "DevOps"
@@ -24,21 +21,16 @@
         
     - Reset email password route
     - Create email templates
-    - Finalize package.json
+    - Update and finalize package.json
      
   CLIENT
-    -- Switch to writing ES 2015 --
-    -- Switch to using/ Standard JS --
     -- Switch to using API domain --
-    -- Style modal popup --
-    -- Global variable for baseurl / Global bad request --
     -- Is $scope.$watch neccesary as in the account controllers? --
 
      PICKUP 
-    🐌  Cart route. Also check loggiing in / out and adding items
-    
     - Delete token in addProduct and checkout routes and any invalid route
     - When posting to add items, how are the items stored? Same thing for signing up, where is the cart? Same thing for skus?
+    - Show the address form if not logged in on checkout line 37
     - Store a client ID instead of the user cart on the browser ?
     - email field in login in angular is set to text
     - Client side form verification
@@ -49,10 +41,12 @@
     - Make rotating cube style something like a directive
     - Make skus consistently numbers, right now inconsistent in the geturl function
     - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json    
-    - Finalize Bower.json / package.json(s)
+    - Update and finalize Bower.json / package.json(s)
     - Make sure we need all scripts
     - Use newest possible scripts from 
     - Finish site-gallery directive
+    - babelify
+    
     STYLE
         - Style the modal dialog box
     

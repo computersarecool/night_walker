@@ -15,7 +15,7 @@
   <!-- Cart -->
   <div id="modal-cart" ng-show="modalCart">
     <!-- User is signed in -->
-    <div ng-show="user.loggedIn">
+    <div ng-show="user.firstName">
       <!-- No items in cart -->
       <div ng-show="!user.cart.length">
         <p>
@@ -55,7 +55,7 @@
     </div>
    
     <!-- User is not signed in -->      
-    <div ng-show="!user.loggedIn">
+    <div ng-show="!user.firstName">
       <!-- No items in cart -->
       <div ng-show="!user.cart.length">
         <p>

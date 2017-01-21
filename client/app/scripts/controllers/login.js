@@ -17,7 +17,7 @@ angular.module('nightwalkerApp')
 
     $scope.changeScreen = () => $location.path() === '/login' ? $location.path('/create-account') : $location.path('/login')
 
-    $scope.submitUserDetails = (route, email, password, firstName = null, lastName = null) => UserFactory.submitUserDetails('authenticate/' + route, email, password, firstName, lastName)
+    $scope.submitUserDetails = (route, email, password, firstName = null, lastName = null) => UserFactory.submitUserDetails('/authenticate/' + route, email, password, firstName, lastName)
 
     $scope.logout = () => UserFactory.logout()
 
@@ -25,6 +25,10 @@ angular.module('nightwalkerApp')
 
     $scope.showModalCart = () => {
       $scope.modalCart = !$scope.modalCart
+    }
+
+    $scope.notHome = () => {
+      return $location.path() !== '/'
     }
 
     // This makes sure that the user is in sync with the user fetched from the DB

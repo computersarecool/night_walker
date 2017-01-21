@@ -9,7 +9,7 @@ function isValid (sku, index, array) {
   return Products.findOne({sku})
 }
 
-function findUserAndUpdate (email, items, callback) {
+function findUserAndUpdate (email, items, replace, callback) {
   // make sure all items are valid
   if (!Array.isArray(items)) {
     const error = new Error('The request is malformed')
@@ -25,6 +25,28 @@ function findUserAndUpdate (email, items, callback) {
     error.status = 404
     error.type = 'ItemNotFound'
     return callback(error)
+  }
+
+  // The user's entire cart is being updated here
+  if (replace) {
+    Users.findOne({email}, (err, user) => {
+      if (err) {
+        return callback(err)
+      }
+      if (!user) {
+        let error = new Error('Wrong email or password')
+        error.type = 'InvalidCredentials'
+        error.status = 401
+        return callback(error)
+      }
+      user.cart = items
+      user.save(err => {
+        if (err) {
+          return callback(err)
+        }
+        return callback(null, user)
+      })
+    })
   }
 
   Users.findOneAndUpdate({email}, {$push: {cart: items}}, (err, user) => {

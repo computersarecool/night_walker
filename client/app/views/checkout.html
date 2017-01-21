@@ -6,7 +6,7 @@
     </p>
   </div>
   <!-- Show login options if not logged in -->
-  <div ng-show="!user.loggedIn">
+  <div ng-show="!user.firstName">
     <div>
       <p>
         You are checking out as a guest
@@ -21,7 +21,7 @@
   </div>
     
   <!-- Just welcome message if logged in -->
-  <div ng-show="user.loggedIn">
+  <div ng-show="user.firstName">
     <p>
       Welcome {{user.name}}. This is your cart
     </p>

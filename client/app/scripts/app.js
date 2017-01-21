@@ -16,6 +16,7 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
+  .constant('base', 'http://optonox.com:3000')
   .config(($routeProvider, $locationProvider, $httpProvider) => {
     $routeProvider
       .when('/', {
@@ -102,17 +103,6 @@ angular
     Stripe.setPublishableKey('pk_test_uEnw6EZC8otddMKeJUiZsHFz')
   })
   .run(($rootScope, $location) => {
-    $rootScope.$on('$locationChangeStart', event => {
-      // TODO: Remove Hack because nav does not exist yet
-      const nav = document.querySelector('nav')
-      if (nav) {
-        if ($location.path() === '/') {
-          nav.classList.remove('horizontal')
-        } else {
-          nav.classList.add('horizontal')
-        }
-      }
-    })
     $rootScope.$on('$routeChangeError', (event, curRoute, prevRoute, rejection) => {
       $location.path(prevRoute.$$route.originalPath)
     })

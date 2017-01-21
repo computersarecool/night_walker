@@ -9,9 +9,7 @@
  * Factory in the nightwalkerApp.
  */
 angular.module('nightwalkerApp')
-  .factory('ProductFactory', function ($http, $q, ModalService) {
-    const base = 'http://optonox.com:3000'
-
+  .factory('ProductFactory', function ($http, $q, ModalService, base) {
     function getEdition (edition) {
       const deferred = $q.defer()
       $http.get(base + '/editions/' + edition)
@@ -42,25 +40,28 @@ angular.module('nightwalkerApp')
     }
 
     function getInfoFromSkus (skus) {
-      // Change into an Array of quantity per sku
-      var skuObject = {}
-      for (var i = 0; i < skus.length; ++i) {
+      // Change cart from an array to an object with key being sku and v being number
+      const skuObject = {}
+      for (let i = 0; i < skus.length; ++i) {
         if (!skuObject[skus[i]]) {
           skuObject[skus[i]] = 0
         }
         ++skuObject[skus[i]]
       }
       return $http.post(base + '/skus', skuObject)
-        .then(function success (response) {
+        .then(response => {
           return response.data
-        }, function error (httpError) {
-          throw httpError.status + ' : ' + httpError.data
+        }, httpError => {
+          ModalService.showError({
+            text: 'There was an error retreiving your request',
+            footer: 'Please contact support'
+          })
         })
     }
 
     return {
-      getEdition: getEdition,
-      getProduct: getProduct,
-      getInfoFromSkus: getInfoFromSkus
+      getEdition,
+      getProduct,
+      getInfoFromSkus
     }
   })

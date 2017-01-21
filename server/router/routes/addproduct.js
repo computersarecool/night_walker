@@ -5,7 +5,7 @@ const databaseController = require('../../controllers/database')
 
 // Verify the JWT and sets req.user to JWT contents
 router.post('/', expressJwt({secret}), (req, res, next) => {
-  databaseController.findUserAndUpdate(req.user.email, req.body.items, (err, user) => {
+  databaseController.findUserAndUpdate(req.user.email, req.body.items, req.body.replace, (err, user) => {
     if (err) {
       return next(err)
     }

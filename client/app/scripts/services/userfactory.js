@@ -9,9 +9,8 @@
  * Factory in the nightwalkerApp.
  */
 angular.module('nightwalkerApp')
-  .factory('UserFactory', function ($window, $http, $location, $q, AuthTokenFactory, ModalService) {
+  .factory('UserFactory', function ($window, $http, $location, $q, AuthTokenFactory, ModalService, base) {
     // The currentUser property is set by calling getUser or set to guestUser
-    const base = 'http://optonox.com:3000/'
     const store = $window.localStorage
     let user = {}
     const guestUser = {
@@ -33,7 +32,7 @@ angular.module('nightwalkerApp')
     function getUser () {
       const deferred = $q.defer()
       if (checkToken()) {
-        $http.get(base + 'user')
+        $http.get(base + '/user')
           .then(response => {
             resolveAndSet(deferred, response.data)
           }, httpError => {
@@ -99,43 +98,51 @@ angular.module('nightwalkerApp')
 
     function addToCart (item) {
       if (checkToken()) {
-        return $http.post(base + 'addproduct', {items: [item]})
-          .then(response => {
-            // Currently do nothing because they are added in to local storage too
-            user.currentUser = response.data.user
-          }, httpError => {
-            console.log(httpError)
-            ModalService.showError({
-              text: 'There was an error adding your item',
-              footer: 'Please contact support'
-            })
+        return $http.post(base + '/addproduct', {
+          items: [item],
+          replace: false
+        })
+        .then(response => {
+          // Currently do nothing because they are added in to local storage too
+          user.currentUser = response.data.user
+        }, httpError => {
+          console.log(httpError)
+          ModalService.showError({
+            text: 'There was an error adding your item',
+            footer: 'Please contact support'
           })
+        })
       } else {
-        let user
+        let activeUser
         try {
-          user = angular.fromJson(store.getItem('user'))
+          activeUser = angular.fromJson(store.getItem('user'))
         } catch (e) {
-          user = guestUser
+          activeUser = guestUser
         }
-        user.cart.push(item)
-        store.setItem('user', angular.toJson(user))
+        activeUser.cart.push(item)
+        store.setItem('user', angular.toJson(activeUser))
+        user.currentUser = activeUser
       }
     }
 
     function updateCart (itemSku, quantity) {
-      // TODO: Check with database to make sure the amount is available
-      var selectCart = user.currentUser.cart.filter(function (oldItemSku) {
+      const selectCart = user.currentUser.cart.filter(oldItemSku => {
         return oldItemSku !== itemSku
       })
 
-      for (var i = 0; i < quantity; i++) {
+      for (let i = 0; i < quantity; i++) {
         selectCart.push(itemSku)
       }
 
       user.currentUser.cart = selectCart
 
-      if (!user.currentUser.loggedIn) {
-        store.setItem('cart', angular.toJson(user.currentUser.cart))
+      if (!checkToken) {
+        store.setItem('user', angular.toJson(user.currentUser))
+      } else {
+        $http.post(base + '/addproduct', {
+          items: selectCart,
+          replace: true
+        })
       }
     }
 
