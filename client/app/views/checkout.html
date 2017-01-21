@@ -5,6 +5,7 @@
       You do not have any items in your cart. Would you like to <a ng-href="/shop">shop for some?</a>
     </p>
   </div>
+
   <!-- Show login options if not logged in -->
   <div ng-show="!user.firstName">
     <div>
@@ -20,7 +21,7 @@
     </div>
   </div>
     
-  <!-- Just welcome message if logged in -->
+  <!-- Welcome message if logged in -->
   <div ng-show="user.firstName">
     <p>
       Welcome {{user.name}}. This is your cart
@@ -31,7 +32,7 @@
 
   <!-- Address and payment form -->
   <div>
-    <form stripe-form="process">
+    <form novalidate stripe-form="process">
       <!-- TODO: Show the address form if not logged in-->
       <div>
         <p>

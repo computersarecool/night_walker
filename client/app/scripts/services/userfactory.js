@@ -13,6 +13,7 @@ angular.module('nightwalkerApp')
     // The currentUser property is set by calling getUser or set to guestUser
     const store = $window.localStorage
     let user = {}
+    const currentUser = null
     const guestUser = {
       cart: []
     }
@@ -25,7 +26,7 @@ angular.module('nightwalkerApp')
       q.resolve(returnedUser)
       user.currentUser = returnedUser
       if (!checkToken()) {
-        store.setItem('user', angular.toJson(guestUser))
+        store.setItem('user', angular.toJson(returnedUser))
       }
     }
 
@@ -36,9 +37,13 @@ angular.module('nightwalkerApp')
           .then(response => {
             resolveAndSet(deferred, response.data)
           }, httpError => {
-            // Remove key because it was invalid
-            AuthTokenFactory.setToken()
-            resolveAndSet(deferred, guestUser)
+            if (httpError.status === 401) {
+              // Remove key and clear user because key was invalid
+              AuthTokenFactory.setToken()
+              resolveAndSet(deferred, guestUser)
+            } else {
+              resolveAndSet(deferred, guestUser)
+            }
           })
       // There is a user object in storage, validate the user
       } else if (store.getItem('user')) {
@@ -75,6 +80,7 @@ angular.module('nightwalkerApp')
     function successLogin (response) {
       AuthTokenFactory.setToken(response.data.token)
       user.currentUser = response.data.user
+      store.removeItem('user')
       $location.path('/account')
     }
 
@@ -103,14 +109,18 @@ angular.module('nightwalkerApp')
           replace: false
         })
         .then(response => {
-          // Currently do nothing because they are added in to local storage too
           user.currentUser = response.data.user
         }, httpError => {
-          console.log(httpError)
-          ModalService.showError({
-            text: 'There was an error adding your item',
-            footer: 'Please contact support'
-          })
+          if (httpError.status === 401) {
+            // Remove key and clear user because key was invalid
+            AuthTokenFactory.setToken()
+            getUser()
+          } else {
+            ModalService.showError({
+              text: 'There was an error adding your item',
+              footer: 'Please contact support'
+            })
+          }
         })
       } else {
         let activeUser
@@ -150,9 +160,15 @@ angular.module('nightwalkerApp')
       $location.path('/checkout')
     }
 
-    getUser()
-
+    /*
+    getUser().then(returnedUser => {
+      user.currentUser = returnedUser
+    }, httpError => {
+      // Unable to set user
+    })
+*/
     user = {
+      currentUser,
       getUser,
       checkToken,
       submitUserDetails,

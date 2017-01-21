@@ -10,7 +10,7 @@
 angular.module('nightwalkerApp')
   .controller('CheckoutCtrl', function ($scope, $window, $location, $http, items, UserFactory, base) {
     $scope.items = items
-    $scope.user = UserFactory.currentUser
+    $scope.user = UserFactory.getUser()
     $scope.goToCheckout = UserFactory.goToCheckout
 
     $scope.removeItem = item => {

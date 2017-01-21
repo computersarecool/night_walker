@@ -13,6 +13,8 @@ angular.module('nightwalkerApp')
   .controller('LoginCtrl', function ($scope, $window, $location, UserFactory) {
     $scope.modalCart = false
 
+    $scope.user = UserFactory.user
+
     $scope.showLogin = $location.path() === '/login'
 
     $scope.changeScreen = () => $location.path() === '/login' ? $location.path('/create-account') : $location.path('/login')
@@ -31,10 +33,10 @@ angular.module('nightwalkerApp')
       return $location.path() !== '/'
     }
 
-    // This makes sure that the user is in sync with the user fetched from the DB
     $scope.$watch(() => {
       return UserFactory.currentUser
     }, () => {
+      console.log('a')
       $scope.user = UserFactory.currentUser
     })
   })

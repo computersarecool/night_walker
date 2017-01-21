@@ -1,15 +1,27 @@
-<!-- Show if the user is logged in -->
+<!-- Show if the user is logging in -->
 <div ng-show="showLogin" class="container">
-  
-  <form novalidate ng-submit="submitUserDetails('/login', username, password)">
-    <label>Email<input type="text" ng-model="username"></label>
-    <label>Password<input type="password" ng-model="password"></label>
-    <button type="submit">Login</button>
+  <form novalidate name="loginForm" ng-submit="submitUserDetails('/login', username, password)">
+    <div>
+      <label>
+        Email
+        <input type="email" ng-model="username" name="username" required>
+        <p ng-show="loginForm.username.$invalid && !loginForm.username.$pristine">Your email is not valid</p>
+      </label>
+    </div>
+
+    <div>
+      <label>
+        Password
+        <input type="password" ng-model="password" name="password"required>
+        <p ng-show="loginForm.password.$invalid && !loginForm.password.$pristine">Your password is required</p>
+      </label>
+    </div>
+
+    <button type="submit" ng-disabled="loginForm.$invalid">Login</button>
+
   </form>
 
   <br>
-
-  <button ng-click="logout()">Logout</button>
 
   <div ng-click="changeScreen()">
     Need to sign up?
@@ -20,29 +32,53 @@
 
 <!-- Show if the user is signing up -->
 <div ng-show="!showLogin" class="container">
-  
   <div>
     This is the signup form
   </div>
 
-  <form novalidate ng-submit="submitUserDetails('/create-account', email, password, firstName, lastName)">
-    <input type="text" ng-model="email">Email<br>
-    <input type="password" ng-model="password">Password<br>
-    <input type="text" ng-model="firstName">First Name<br>
-    <input type="text" ng-model="lastName">Last Name<br>
-    <button type="submit">Submit</button>
+  <form novalidate name="signupForm" ng-submit="submitUserDetails('create-account', email, password, firstName, lastName)">
+    <div>
+      <label>
+        First Name
+        <input type="text" ng-model="firstName" name="firstName" required>
+        <p ng-show="signupForm.firstName.$invalid && !signupForm.firstName.$pristine">Your first name is required</p>
+      </label>
+    </div>
+
+    <div>
+      <label>
+        Last Name
+        <input type="text" ng-model="lastName" name="lastName" required>
+        <p ng-show="signupForm.lastName.$invalid && !signupForm.lastName.$pristine">Your last name is required</p>
+      </label>
+    </div>
+
+
+    <div>
+      <label>
+        Email
+        <input type="email" ng-model="email" name="email" required>
+        <p ng-show="signupForm.email.$invalid && !signupForm.email.$pristine">Your email is not valid</p>
+      </label>
+    </div>
+
+    <div>
+      <label>
+        Password
+        <input type="password" ng-model="password" required>
+        <p ng-show="signupForm.password.$invalid && !signupForm.password.$pristine">A password is required</p>
+      </label>
+    </div>
+
+    <button type="submit" ng-disabled="signupForm.$invalid">Submit</button>
+
   </form>
 
   <br>
 
-  <!-- Click to switch -->  
+  <!-- Click to switch login / signup -->
   <p ng-click="changeScreen()">
     Already have an account?
   </p>
 
-  <p>
-    By signing up you agree to our Terms and conditions (don't worry, we are cool)
-  </p>
-  
 </div>
-

@@ -24,26 +24,17 @@
     - Update and finalize package.json
      
   CLIENT
-    -- Switch to using API domain --
-    -- Is $scope.$watch neccesary as in the account controllers? --
-
      PICKUP 
-    - Delete token in addProduct and checkout routes and any invalid route
-    - When posting to add items, how are the items stored? Same thing for signing up, where is the cart? Same thing for skus?
-    - Show the address form if not logged in on checkout line 37
-    - Store a client ID instead of the user cart on the browser ?
-    - email field in login in angular is set to text
-    - Client side form verification
+    - User model across page
+    - Client side checkout form verification model after login
+    - Save user information to expedite form filling out    
     - Only show view cart when there are things inside it
-    - Save user information to expediate form filling out
-    - Stripeform directive line 23 is $apply neccesary
-    - remove <base> tag
-    - Make rotating cube style something like a directive
-    - Make skus consistently numbers, right now inconsistent in the geturl function
     - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json    
     - Update and finalize Bower.json / package.json(s)
     - Make sure we need all scripts
+    - Show the address form if not logged in on checkout line 37    
     - Use newest possible scripts from 
+    - email field in login in angular is set to text    
     - Finish site-gallery directive
     - babelify
     
@@ -81,6 +72,9 @@
       - Why does a directive have a controller
       - Use $scope or var in controllers (i.e. product Controller) [asked before]
       - What is html5 mode and is it important?
+      - Why use base tag
+      - The $scope.$watch and UserFactory.getUser() issue (in login.js), how to watch item in storage
+
 
     JAVASCRIPT
 

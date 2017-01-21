@@ -49,7 +49,8 @@ function findUserAndUpdate (email, items, replace, callback) {
     })
   }
 
-  Users.findOneAndUpdate({email}, {$push: {cart: items}}, (err, user) => {
+  // items will be a single item in an array (so that this function could also replace carts)
+  Users.findOneAndUpdate({email}, {$push: {cart: items[0]}}, (err, user) => {
     if (err) {
       return callback(err)
     }

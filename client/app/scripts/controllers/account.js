@@ -10,7 +10,7 @@
  */
 angular.module('nightwalkerApp')
   .controller('AccountCtrl', function ($scope, $location, UserFactory) {
-    $scope.user = UserFactory.currentUser
+//    $scope.user = UserFactory.getUser()
 
     $scope.logout = UserFactory.logout
 

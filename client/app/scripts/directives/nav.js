@@ -8,7 +8,6 @@
  */
 angular.module('nightwalkerApp')
   .directive('siteNav', function ($location) {
-    console.log($location.path())
     return {
       restrict: 'E',
       templateUrl: 'partials/nav.html',
