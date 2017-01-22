@@ -174,6 +174,7 @@ angular.module('nightwalkerApp')
       guestUser,
       currentUser,
       getUser,
+      setUser,
       checkToken,
       submitUserDetails,
       logout,

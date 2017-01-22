@@ -22,11 +22,11 @@
     - Create email templates
     - Reset email password route
     - Update and finalize package.json
-     
+    - Save user orders. Order numbers
+    
   CLIENT
     * PICKUP 
     - Finish site-gallery directive      
-    - Save user information to expedite form filling out     
     - Update and finalize Bower.json / package.json(s)
     - Make sure we need all scripts
     - babelify
