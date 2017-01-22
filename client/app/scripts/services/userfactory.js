@@ -9,11 +9,10 @@
  * Factory in the nightwalkerApp.
  */
 angular.module('nightwalkerApp')
-  .factory('UserFactory', function ($window, $http, $location, $q, AuthTokenFactory, ModalService, base) {
-    // The currentUser property is set by calling getUser or set to guestUser
-    const store = $window.localStorage
+  .factory('UserFactory', function ($rootScope, $window, $http, $location, $q, AuthTokenFactory, ModalService, base) {
     let user = {}
-    const currentUser = null
+    const store = $window.localStorage
+
     const guestUser = {
       cart: []
     }
@@ -28,6 +27,15 @@ angular.module('nightwalkerApp')
       if (!checkToken()) {
         store.setItem('user', angular.toJson(returnedUser))
       }
+      $rootScope.$broadcast('user:updated', returnedUser)
+    }
+
+    function setUser (newUser) {
+      user.currentUser = newUser
+      if (!checkToken()) {
+        store.setItem('user', angular.toJson(newUser))
+      }
+      $rootScope.$broadcast('user:updated', newUser)
     }
 
     function getUser () {
@@ -79,7 +87,7 @@ angular.module('nightwalkerApp')
 
     function successLogin (response) {
       AuthTokenFactory.setToken(response.data.token)
-      user.currentUser = response.data.user
+      setUser(response.data.user)
       store.removeItem('user')
       $location.path('/account')
     }
@@ -97,7 +105,7 @@ angular.module('nightwalkerApp')
 
     function logout () {
       AuthTokenFactory.setToken()
-      user.currentUser = guestUser
+      setUser(guestUser)
       store.removeItem('user')
       $location.path('/')
     }
@@ -109,7 +117,7 @@ angular.module('nightwalkerApp')
           replace: false
         })
         .then(response => {
-          user.currentUser = response.data.user
+          setUser(response.data.user)
         }, httpError => {
           if (httpError.status === 401) {
             // Remove key and clear user because key was invalid
@@ -131,7 +139,7 @@ angular.module('nightwalkerApp')
         }
         activeUser.cart.push(item)
         store.setItem('user', angular.toJson(activeUser))
-        user.currentUser = activeUser
+        setUser(activeUser)
       }
     }
 
@@ -160,14 +168,10 @@ angular.module('nightwalkerApp')
       $location.path('/checkout')
     }
 
-    /*
-    getUser().then(returnedUser => {
-      user.currentUser = returnedUser
-    }, httpError => {
-      // Unable to set user
-    })
-*/
+    const currentUser = getUser()
+
     user = {
+      guestUser,
       currentUser,
       getUser,
       checkToken,

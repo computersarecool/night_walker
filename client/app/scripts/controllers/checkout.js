@@ -8,10 +8,20 @@
  * Controller of the nightwalkerApp
  */
 angular.module('nightwalkerApp')
-  .controller('CheckoutCtrl', function ($scope, $window, $location, $http, items, UserFactory, base) {
+  .controller('CheckoutCtrl', function ($scope, $window, $location, $http, items, UserFactory, ModalService, base) {
     $scope.items = items
-    $scope.user = UserFactory.getUser()
+
     $scope.goToCheckout = UserFactory.goToCheckout
+
+    $scope.user = UserFactory.getUser().then(results => {
+      $scope.user = results
+    }, httpError => {
+      $scope.user = UserFactory.getUser
+    })
+
+    $scope.$on('user:updated', (event, data) => {
+      $scope.user = data
+    })
 
     $scope.removeItem = item => {
       item.quantity = 0
@@ -35,23 +45,23 @@ angular.module('nightwalkerApp')
 
     $scope.process = (status, response) => {
       if (response.error) {
-        // TODO: Do something meaningful with validation error from stripe
-        // needs to go to server
-        alert(response.error.message)
+        ModalService.showError({
+          text: `We are sorry we, ${response.error.message}`
+        })
       } else {
         $http.post(base + '/checkout', {
           card: response.card,
           stripeToken: response.id,
-          user: UserFactory.currentUser,
+          user: $scope.user,
           shippingDetails: $scope.shippingDetails
-        }).then(function success (response) {
-          UserFactory.currentUser = response.data
-          // Only needed if user is checking out as guest, but do anyway
-          $window.localStorage.removeItem('cart')
+        }).then(response => {
+          UserFactory.setUser(response.data)
           $location.path('/congratulations')
-        }, function error (response) {
-          // TODO: Do something meaningful with error from API
-//          alert(response.data.error.message)
+        }, httpError => {
+          ModalService.showError({
+            text: 'There was an error with your purchase.',
+            footer: 'Please contact support'
+          })
         })
       }
     }

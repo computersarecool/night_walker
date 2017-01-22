@@ -10,7 +10,7 @@
       - remove SKU from irrelevant collection
       
   SERVER
-    - "DevOps"
+   * "DevOps"
         - systemd startup script
         - log rotation
         - jsdoc
@@ -18,31 +18,23 @@
         - favicon best practices
         - SPF policy
         - Look into name server issues
-        
-    - Reset email password route
+
     - Create email templates
+    - Reset email password route
     - Update and finalize package.json
      
   CLIENT
-     PICKUP 
-    - User model across page
-    - Client side checkout form verification model after login
-    - Save user information to expedite form filling out    
-    - Only show view cart when there are things inside it
-    - Add moduleType, license, ignore, main, homepage, repo, resolution to bower.json    
+    * PICKUP 
+    - Finish site-gallery directive      
+    - Save user information to expedite form filling out     
     - Update and finalize Bower.json / package.json(s)
     - Make sure we need all scripts
-    - Show the address form if not logged in on checkout line 37    
-    - Use newest possible scripts from 
-    - email field in login in angular is set to text    
-    - Finish site-gallery directive
     - babelify
     
     STYLE
-        - Style the modal dialog box
-    
-  DESIGN
-      Product page details
+     * Modal dialog box
+
+     *  Product page details
 	    - Short description
         - Price
 	    - Product info
@@ -51,7 +43,7 @@
 	    - add to cart
         - free shipping
 
-      Media
+    *  Media
         - Black and white stripes as background, front photos pngs
         - fruity background on product images
         - Have all home gallery images fade to white on sides (which might be the shop pages too)
@@ -73,7 +65,7 @@
       - Use $scope or var in controllers (i.e. product Controller) [asked before]
       - What is html5 mode and is it important?
       - Why use base tag
-      - The $scope.$watch and UserFactory.getUser() issue (in login.js), how to watch item in storage
+
 
 
     JAVASCRIPT

@@ -10,13 +10,16 @@
  */
 angular.module('nightwalkerApp')
   .controller('AccountCtrl', function ($scope, $location, UserFactory) {
-//    $scope.user = UserFactory.getUser()
+
+    $scope.user = UserFactory.getUser().then(results => {
+      $scope.user = results
+    }, httpError => {
+      $scope.user = UserFactory.getUser
+    })
+
+    $scope.$on('user:updated', (event, data) => {
+      $scope.user = data
+    })
 
     $scope.logout = UserFactory.logout
-
-    $scope.$watch(() => {
-      return UserFactory.currentUser
-    }, () => {
-      $scope.user = UserFactory.currentUser
-    }, true)
   })

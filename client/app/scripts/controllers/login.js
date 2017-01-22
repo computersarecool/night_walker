@@ -13,7 +13,15 @@ angular.module('nightwalkerApp')
   .controller('LoginCtrl', function ($scope, $window, $location, UserFactory) {
     $scope.modalCart = false
 
-    $scope.user = UserFactory.user
+    $scope.user = UserFactory.getUser().then(results => {
+      $scope.user = results
+    }, httpError => {
+      $scope.user = UserFactory.getUser
+    })
+
+    $scope.$on('user:updated', (event, data) => {
+      $scope.user = data
+    })
 
     $scope.showLogin = $location.path() === '/login'
 
@@ -32,11 +40,4 @@ angular.module('nightwalkerApp')
     $scope.notHome = () => {
       return $location.path() !== '/'
     }
-
-    $scope.$watch(() => {
-      return UserFactory.currentUser
-    }, () => {
-      console.log('a')
-      $scope.user = UserFactory.currentUser
-    })
   })
