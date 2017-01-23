@@ -197,8 +197,7 @@ function notifyHQ (errorResponse, extraData = null) {
 
 function logFinal (err, id) {
   if (err) {
-    return logger.error(err,
-      `Unable to send error email:
+    return logger.error(err, `Unable to send error email:
 Name: ${err.name}
 Status: ${err.status}
 Type: ${err.type}

@@ -22,7 +22,6 @@
     - Create email templates
     - Reset email password route
     - Update and finalize package.json
-    - Save user orders. Order numbers
     
   CLIENT
     * PICKUP 

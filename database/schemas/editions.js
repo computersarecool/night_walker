@@ -1,20 +1,14 @@
-var mongoose = require('mongoose')
-var Schema = mongoose.Schema
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-var editionsSchema = new Schema({
-  name: {
-    type: String
-  },
-  urlSafeName: {
-    type: String
-  },
-  kind: {
-    type: String
-  },
+const editionsSchema = new Schema({
+  name: String,
+  urlSafeName: String,
+  kind: String,
   members: {
     pants: {}
   }
 })
 
-var Editions = mongoose.model('Editions', editionsSchema)
+const Editions = mongoose.model('Editions', editionsSchema)
 module.exports = Editions

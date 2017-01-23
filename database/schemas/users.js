@@ -4,27 +4,13 @@ const Schema = mongoose.Schema
 const saltWorkFactor = 10
 
 const userSchema = new Schema({
-  email: {
-    type: String
-  },
-  firstName: {
-    type: String
-  },
-  lastName: {
-    type: String
-  },
-  addresses: {
-    type: Array
-  },
-  cart: {
-    type: Array
-  },
-  password: {
-    type: String
-  },
-  orders: {
-    type: Array
-  },
+  email: String,
+  firstName: String,
+  lastName: String,
+  addresses: Array,
+  cart: Array,
+  password: String,
+  orders: Array,
   dateJoined: {
     type: Date,
     default: Date.now

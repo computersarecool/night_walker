@@ -1,3 +1,4 @@
+3/* global angular */
 'use strict'
 
 /**
@@ -7,46 +8,41 @@
  * # CheckoutCtrl
  * Controller of the nightwalkerApp
  */
+
 angular.module('nightwalkerApp')
-  .controller('CheckoutCtrl', function ($scope, $window, $location, $http, items, UserFactory, ModalService, base) {
+  .controller('CheckoutCtrl', function ($scope, $window, $location, $http, UserFactory, ModalService, base, user, items) {
+    $scope.user = user
+
     $scope.items = items
-
-    $scope.goToCheckout = UserFactory.goToCheckout
-
-    $scope.user = UserFactory.getUser().then(results => {
-      $scope.user = results
-    }, httpError => {
-      $scope.user = UserFactory.getUser
-    })
 
     $scope.$on('user:updated', (event, data) => {
       $scope.user = data
     })
 
-    $scope.removeItem = item => {
-      item.quantity = 0
-      $scope.updateCart(item)
-    }
+    $scope.goToCheckout = UserFactory.goToCheckout
 
-    $scope.updateCart = item => {
+    $scope.updateCart = (add, item, replace) => {
       for (let i = 0; i < $scope.items.length; i++) {
         if ($scope.items[i].product.sku === item.product.sku) {
-          let itemIndex = i
-          if (item.quantity) {
-            $scope.items[i] = item
+          if (add) {
+            $scope.items[i].quantity += 1
           } else {
-            $scope.items.splice(itemIndex, 1)
+            $scope.items[i].quantity -= 1
           }
-          break
+          if (replace || !$scope.items[i].quantity) {
+            $scope.items[i].quantity = 0
+            $scope.items.splice(i, 1)
+          }
         }
+        return UserFactory.updateCart(item.product.sku, item.quantity)
       }
-      UserFactory.updateCart(item.product.sku, item.quantity)
     }
 
     $scope.process = (status, response) => {
       if (response.error) {
         ModalService.showError({
-          text: `We are sorry we, ${response.error.message}`
+          text: `We are sorry we, ${response.error.message}`,
+          footer: 'Please try with a different payment card'
         })
       } else {
         $http.post(base + '/checkout', {
@@ -58,6 +54,7 @@ angular.module('nightwalkerApp')
           UserFactory.setUser(response.data)
           $location.path('/congratulations')
         }, httpError => {
+          document.querySelector('payment-submit').disabled = false
           ModalService.showError({
             text: 'There was an error with your purchase.',
             footer: 'Please contact support'

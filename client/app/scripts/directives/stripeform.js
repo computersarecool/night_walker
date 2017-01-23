@@ -11,7 +11,7 @@ angular.module('nightwalkerApp')
     return {
       restrict: 'A',
       link: function (scope, element, attrs) {
-        var form = angular.element(element)
+        const form = angular.element(element)
 
         form.on('submit', function (e) {
           var button = form.find('button')

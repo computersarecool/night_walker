@@ -1,13 +1,13 @@
 <div id="checkout-view" class="container">
   <!-- Show if there are not items in cart -->
-  <div ng-show="!items">
+  <div ng-show="!user.cart.length">
     <p>
       You do not have any items in your cart. Would you like to <a ng-href="/shop">shop for some?</a>
     </p>
   </div>
 
   <!-- Show login options if not logged in -->
-  <div ng-show="!user.firstName">
+  <div ng-show="!user.firstName && user.cart.length">
     <div>
       <p>
         You are checking out as a guest
@@ -24,14 +24,14 @@
   <!-- Welcome message if logged in -->
   <div ng-show="user.firstName">
     <p>
-      Welcome {{user.name}}. This is your cart
+      Hi {{user.firstName}}. This is your cart
     </p>
   </div>
   
   <site-checkout-cart></site-checkout-cart>
 
   <!-- Address and payment form -->
-  <div>
+  <div ng-show="user.cart.length">
     <form novalidate name="checkoutForm" stripe-form="process">
       <div>
         <div>
@@ -115,7 +115,7 @@
             </label>
           </div>
 
-          <button type="submit" ng-disabled="checkoutForm.$invalid">Pay</button>
+          <button type="submit" id="payment-submit" ng-disabled="checkoutForm.$invalid">Pay</button>
 
         </div>
       </div>

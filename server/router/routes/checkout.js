@@ -7,12 +7,9 @@ const mailController = require('../../controllers/mail')
 const stripeCharge = require('../../controllers/stripe')
 const validator = require('validator')
 
-// check if user is registered or has a valid email
-router.post('/', (req, res, next) => {
-  const user = req.body.user
-  if (user._id) {
-    return next()
-  }
+// Check if this is a registered user and validate email
+router.use('/', expressJwt({secret: secret, credentialsRequired: false}), (req, res, next) => {
+  // Input validation
   if (!validator.isEmail(req.body.shippingDetails.email)) {
     const error = new Error('Your email address is not valid')
     error.name = 'Invalid Email'
@@ -20,28 +17,33 @@ router.post('/', (req, res, next) => {
     error.type = 'MalformedData'
     return next(error)
   }
-  checkout(req, res, user, next)
+  // The req.user will only exist if logged in (JWT)
+  if (req.user) {
+    return getUser(req, res, next)
+  }
+  checkout(req, res, req.body.user, next)
 })
 
-// verify the JWT and set req.user to JWT contents
-router.use('/', expressJwt({secret}), (req, res, next) => {
+function getUser (req, res, next) {
   databaseController.findUserByEmail(req.user.email, (err, user) => {
     if (err) {
       return next(err)
     }
     checkout(req, res, user, next)
   })
-})
+}
 
 function checkout (req, res, user, next) {
-  // input validation
+  // Input validation
   if (!Array.isArray(user.cart)) {
-    const cartError = new Error('There was an error with your cart data')
-    cartError.type('MalformedDataException')
-    cartError.status = 400
-    return next(cartError)
+    const error = new Error('There was an error with your cart data')
+    error.type = 'MalformedDataException'
+    error.status = 400
+    return next(error)
   }
+
   const shippingDetails = req.body.shippingDetails
+
   databaseController.getTotalCost(user.cart, (err, amount) => {
     if (err) {
       return next(err)
@@ -61,17 +63,24 @@ function checkout (req, res, user, next) {
           if (err) {
             return next(err)
           }
-          // send back the final user
-          const responseUser = JSON.parse(JSON.stringify(user))
-          responseUser.cart = []
+
+          // send back the simplified user
+          let responseUser = {cart: []}
+          if (user.firstName) {
+            responseUser.email = user.email
+            responseUser.firstName = user.firstName
+          }
+
           res.json(responseUser)
 
           // send email notifications and save order in db
           mailController.formatPurchaseEmail(shipmentInfo, shippingDetails, (rawMailOptions, simpleMailOptions) => {
             databaseController.createOrder(user, shippingDetails, order => {
-              simpleMailOptions.orderNumber = order._id.toString().substr(-10)
+              const simpleOrderNumber = order._id.toString().substr(-10)
+              simpleMailOptions.orderNumber = simpleOrderNumber
               mailController.emailCustomer(simpleMailOptions)
               mailController.sendRawEmail(rawMailOptions)
+              order.orderNumber = simpleOrderNumber
               order.trackingCode = simpleMailOptions.trackingCode
               databaseController.saveOrder(order, user)
             })

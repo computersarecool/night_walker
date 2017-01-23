@@ -105,8 +105,8 @@ angular.module('nightwalkerApp')
 
     function logout () {
       AuthTokenFactory.setToken()
-      setUser(guestUser)
       store.removeItem('user')
+      setUser(guestUser)
       $location.path('/')
     }
 
@@ -117,7 +117,7 @@ angular.module('nightwalkerApp')
           replace: false
         })
         .then(response => {
-          setUser(response.data.user)
+          setUser(response.data)
         }, httpError => {
           if (httpError.status === 401) {
             // Remove key and clear user because key was invalid
@@ -153,15 +153,15 @@ angular.module('nightwalkerApp')
       }
 
       user.currentUser.cart = selectCart
+      setUser(user.currentUser)
 
-      if (!checkToken) {
-        store.setItem('user', angular.toJson(user.currentUser))
-      } else {
-        $http.post(base + '/addproduct', {
+      if (checkToken()) {
+        return $http.post(base + '/addproduct', {
           items: selectCart,
           replace: true
         })
       }
+      store.setItem('user', angular.toJson(user.currentUser))
     }
 
     function goToCheckout () {

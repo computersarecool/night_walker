@@ -1,71 +1,33 @@
-var mongoose = require('mongoose')
-var Schema = mongoose.Schema
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-var productSchema = new Schema({
-  name: {
-    type: String
-  },
-  distinctSizes: {
-    type: Array
-  },
-  kind: {
-    type: String
-  },
-  type: {
-    type: String
-  },
-  edition: {
-    type: String
-  },
-  safeEdition: {
-    type: String
-  },
-  msrp: {
-    type: Number
-  },
-  currentPrice: {
-    type: Number
-  },
-  description: {
-    type: String
-  },
-  aboutSpecific: {
-    type: String
-  },
-  careInstructions: {
-    type: String
-  },
-  sizeGuide: {
-    type: String
-  },
-  shortDescription: {
-    type: String
-  },
-  flavor: {
-    type: String
-  },
-  safeFlavor: {
-    type: String
-  },
-  sizeInformation: {
-    type: Array
-  },
-  details: {
-    type: Array
-  },
+const productSchema = new Schema({
+  name: String,
+  distinctSizes: Array,
+  kind: String,
+  type: String,
+  edition: String,
+  safeEdition: String,
+  msrp: Number,
+  currentPrice: Number,
+  description: String,
+  aboutSpecific: String,
+  careInstructions: String,
+  sizeGuide: String,
+  shortDescription: String,
+  flavor: String,
+  safeFlavor: String,
+  sizeInformation: Array,
+  details: Array,
+  sku: String,
+  extraDetails: Array,
   sizes: {
     type: {}
   },
   images: {
     type: {}
-  },
-  sku: {
-    type: String
-  },
-  extraDetails: {
-    type: Array
   }
 })
 
-var Products = mongoose.model('Products', productSchema)
+const Products = mongoose.model('Products', productSchema)
 module.exports = Products

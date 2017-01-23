@@ -81,6 +81,7 @@ angular
         templateUrl: 'views/checkout.html',
         controller: 'CheckoutCtrl',
         resolve: {
+          user: UserFactory => UserFactory.getUser(),
           items: (ProductFactory, UserFactory) => {
             return ProductFactory.getInfoFromSkus(UserFactory.currentUser.cart)
           }

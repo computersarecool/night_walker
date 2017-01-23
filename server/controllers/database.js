@@ -27,7 +27,7 @@ function findUserAndUpdate (email, items, replace, callback) {
     return callback(error)
   }
 
-  // The user's entire cart is being updated here
+  // The user's entire cart is being replaced
   if (replace) {
     Users.findOne({email}, (err, user) => {
       if (err) {
@@ -47,21 +47,21 @@ function findUserAndUpdate (email, items, replace, callback) {
         return callback(null, user)
       })
     })
+  } else {
+    // items will be a single item in an array (so that this function could also replace carts)
+    Users.findOneAndUpdate({email}, {$push: {cart: items[0]}}, {new: true}, (err, user) => {
+      if (err) {
+        return callback(err)
+      }
+      if (!user) {
+        let error = new Error('Wrong email or password')
+        error.type = 'InvalidCredentials'
+        error.status = 401
+        return callback(error)
+      }
+      callback(null, user)
+    })
   }
-
-  // items will be a single item in an array (so that this function could also replace carts)
-  Users.findOneAndUpdate({email}, {$push: {cart: items[0]}}, (err, user) => {
-    if (err) {
-      return callback(err)
-    }
-    if (!user) {
-      let error = new Error('Wrong email or password')
-      error.type = 'InvalidCredentials'
-      error.status = 401
-      return callback(error)
-    }
-    callback(null, user)
-  })
 }
 
 function findDBUser (user, callback) {
@@ -213,8 +213,8 @@ function saveOrder (order, user) {
     if (err) {
       return mailController.notifyHQ(err, logError, [order, user])
     }
-    // member checkout, save order with user
-    if (order.userOrder) {
+    // The user.firstName willy only be set when logged in (from the JWT)
+    if (user.firstName) {
       findDBUser(user, dbUser => {
         dbUser.orders.push(order._id)
         dbUser.cart = []
