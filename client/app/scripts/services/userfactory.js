@@ -110,6 +110,52 @@ angular.module('nightwalkerApp')
       $location.path('/')
     }
 
+    function resetPassword (email) {
+      const deferred = $q.defer()
+      $http.post(base + '/reset-password/reset', {email})
+      .then(response => {
+        deferred.resolve()
+      }, httpError => {
+        if (httpError.status === 401) {
+          ModalService.showError({
+            text: 'We could not find an account with that email.',
+            footer: 'Please try again'
+          })
+        } else {
+          ModalService.showError({
+            text: 'There was an error resetting your password',
+            footer: 'Please contact support'
+          })
+        }
+      })
+      return deferred.promise
+    }
+
+    function updatePassword (email, resetCode, newPassword) {
+      const deferred = $q.defer()
+      $http.post(base + '/reset-password/update', {
+        email,
+        resetCode,
+        newPassword
+      })
+      .then(response => {
+        deferred.resolve()
+      }, httpError => {
+        if (httpError.status === 401) {
+          ModalService.showError({
+            text: 'We could not find an account with that email.',
+            footer: 'Please try again'
+          })
+        } else {
+          ModalService.showError({
+            text: 'There was an error updating your password',
+            footer: 'Please contact support'
+          })
+        }
+      })
+      return deferred.promise
+    }
+
     function addToCart (item) {
       if (checkToken()) {
         return $http.post(base + '/addproduct', {
@@ -178,6 +224,8 @@ angular.module('nightwalkerApp')
       checkToken,
       submitUserDetails,
       logout,
+      resetPassword,
+      updatePassword,
       addToCart,
       updateCart,
       goToCheckout

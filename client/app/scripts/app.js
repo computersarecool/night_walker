@@ -68,6 +68,10 @@ angular
           }
         }
       })
+      .when('/reset-password', {
+        templateUrl: 'views/reset_password.html',
+        controller: 'LoginCtrl'
+      })
       .when('/cart', {
         templateUrl: 'views/checkoutcart.html',
         controller: 'CheckoutCtrl',

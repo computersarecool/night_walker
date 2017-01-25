@@ -13,6 +13,8 @@ angular.module('nightwalkerApp')
   .controller('LoginCtrl', function ($scope, $window, $location, UserFactory) {
     $scope.modalCart = false
 
+    $scope.resetInProgress = false
+
     $scope.user = UserFactory.getUser().then(results => {
       $scope.user = results
     }, httpError => {
@@ -35,6 +37,19 @@ angular.module('nightwalkerApp')
 
     $scope.showModalCart = () => {
       $scope.modalCart = !$scope.modalCart
+    }
+
+    $scope.resetPassword = email => {
+      UserFactory.resetPassword(email).then(success => {
+        $scope.resetInProgress = true
+      })
+    }
+
+    $scope.updatePassword = (email, resetCode, newPassword) => {
+      UserFactory.updatePassword(email, resetCode, newPassword).then(success => {
+        $scope.resetInProgress = false
+        $location.path('/login')
+      })
     }
 
     $scope.notHome = () => {

@@ -9,6 +9,12 @@ module.exports = passport => {
     passReqToCallback: true
   }, (req, email, password, done) => {
     // make sure the email address is valid
+    if (password.length < 3) {
+      const error = new Error('the password entered was too short')
+      error.status = 401
+      error.type = 'InvalidCredentials'
+      return done(error)
+    }
     if (!validator.isEmail(email)) {
       const error = new Error('the email entered was invalid')
       error.status = 401

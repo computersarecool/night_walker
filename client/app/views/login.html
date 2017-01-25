@@ -12,7 +12,7 @@
     <div>
       <label>
         Password
-        <input type="password" ng-model="password" name="password"required>
+        <input type="password" ng-model="password" name="password" ng-minlength="3" required>
         <p ng-show="loginForm.password.$invalid && !loginForm.password.$pristine">Your password is required</p>
       </label>
     </div>
@@ -64,8 +64,8 @@
 
     <div>
       <label>
-        Password
-        <input type="password" ng-model="password" required>
+        Password (Minimum length 3)
+        <input type="password" ng-model="password" ng-minlength="3" required>
         <p ng-show="signupForm.password.$invalid && !signupForm.password.$pristine">A password is required</p>
       </label>
     </div>

@@ -64,6 +64,21 @@ function findUserAndUpdate (email, items, replace, callback) {
   }
 }
 
+function findAndResetCode (email, resetCode, callback) {
+  Users.findOneAndUpdate({email}, {resetCode}, null, (err, user) => {
+    if (err) {
+      return callback(err)
+    }
+    if (!user) {
+      let error = new Error('Wrong email or password')
+      error.type = 'InvalidCredentials'
+      error.status = 401
+      return callback(error)
+    }
+    callback(null, user)
+  })
+}
+
 function findDBUser (user, callback) {
   Users.findOne({_id: user._id}, (err, dbUser) => {
     if (err) {
@@ -232,6 +247,7 @@ module.exports = {
   findUserAndUpdate,
   findUserByEmail,
   findEdition,
+  findAndResetCode,
   getItemDetails,
   findProductByFlavor,
   getTotalCost,

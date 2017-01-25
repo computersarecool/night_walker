@@ -6,6 +6,7 @@ router.use('/editions', require('./routes/editions'))
 router.use('/shop/alternating-current', require('./routes/getproduct'))
 router.use('/authenticate', require('./routes/authenticate'))
 router.use('/skus', require('./routes/skus'))
+router.use('/reset-password', require('./routes/reset_password'))
 router.use('/user', require('./routes/user'))
 
 module.exports = router
