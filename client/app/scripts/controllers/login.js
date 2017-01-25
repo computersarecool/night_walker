@@ -50,7 +50,7 @@ angular.module('nightwalkerApp')
     $scope.updatePassword = (email, resetCode, newPassword) => {
       UserFactory.updatePassword(email, resetCode, newPassword).then(success => {
         $scope.resetInProgress = false
-        $location.path('/account')
+        $location.path('/login')
       })
     }
 

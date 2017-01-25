@@ -1,7 +1,7 @@
 const crypto = require('crypto')
 const router = require('express').Router()
 const databaseController = require('../../controllers/database')
-const mail = require('../../controllers/mail')
+const mailController = require('../../controllers/mail')
 
 router.post('/reset', (req, res, next) => {
   crypto.randomBytes(5, (err, buf) => {
@@ -16,7 +16,7 @@ router.post('/reset', (req, res, next) => {
         return next(err)
       }
       // Email reset code
-      mail.sendPasswordReset(user.email, (err, res) => {
+      mailController.sendPasswordReset(user.email, resetCode, (err, id) => {
         if (err) {
           return next(err)
         }
@@ -43,7 +43,7 @@ router.post('/update', (req, res, next) => {
       error.type = 'InvalidCredentials'
       return next(error)
     } else {
-      dbUser.hashPassword(req.body.password, (err, hash) => {
+      dbUser.hashPassword(req.body.newPassword, (err, hash) => {
         if (err) {
           return next(err)
         }

@@ -18,13 +18,12 @@
         - favicon best practices
         - SPF policy
         - Look into name server issues
+        - Update and finalize package.json
 
-    - Create email templates
-    - Reset email password route
-    - Update and finalize package.json
+   - Create email templates
     
   CLIENT
-    * PICKUP 
+
     - Finish site-gallery directive      
     - Update and finalize Bower.json / package.json(s)
     - Make sure we need all scripts
