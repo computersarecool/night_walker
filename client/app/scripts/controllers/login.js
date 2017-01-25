@@ -39,6 +39,8 @@ angular.module('nightwalkerApp')
       $scope.modalCart = !$scope.modalCart
     }
 
+    $scope.forgotRedirect = () => $location.path('/reset-password')
+
     $scope.resetPassword = email => {
       UserFactory.resetPassword(email).then(success => {
         $scope.resetInProgress = true
@@ -48,7 +50,7 @@ angular.module('nightwalkerApp')
     $scope.updatePassword = (email, resetCode, newPassword) => {
       UserFactory.updatePassword(email, resetCode, newPassword).then(success => {
         $scope.resetInProgress = false
-        $location.path('/login')
+        $location.path('/account')
       })
     }
 

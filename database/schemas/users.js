@@ -10,7 +10,10 @@ const userSchema = new Schema({
   addresses: Array,
   cart: Array,
   password: String,
-  resetCode: String,
+  resetCode: {
+    type: String,
+    default: ''
+  },
   orders: Array,
   dateJoined: {
     type: Date,

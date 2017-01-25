@@ -195,6 +195,33 @@ function notifyHQ (errorResponse, extraData = null) {
   })
 }
 
+function sendPasswordReset (emailAddress, resetCode, callback) {
+  const params = {
+    Destination: {
+      ToAddresses: [emailAddress]
+    },
+    Message: {
+      Subject: {
+        Data: 'Your NightWalker reset Code'
+      },
+      Body: {
+        Html: {
+          Data: `<h1>Here is your Nightwalker reset code:</h1>
+<p>${resetCode}</p>
+<p>Please visit NightWalker to reset your password</p>`
+        }
+      }
+    },
+    Source: 'paperwork@willynolan.com'
+  }
+  ses.sendEmail(params, (err, id) => {
+    if (err) {
+      return callback(err)
+    }
+    callback(null, id)
+  })
+}
+
 function logFinal (err, id) {
   if (err) {
     return logger.error(err, `Unable to send error email:
@@ -208,6 +235,7 @@ Stack: ${err.stack}`)
 
 module.exports = {
   sendRawEmail,
+  sendPasswordReset,
   formatPurchaseEmail,
   emailCustomer,
   notifyHQ

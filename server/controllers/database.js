@@ -88,6 +88,15 @@ function findDBUser (user, callback) {
   })
 }
 
+function findDBUserByEmail (email, callback) {
+  Users.findOne({email}, (err, dbUser) => {
+    if (err) {
+      return callback(err)
+    }
+    callback(null, dbUser)
+  })
+}
+
 function findUserByEmail (email, callback) {
   Users.findOne({email}, (err, user) => {
     if (err) {
@@ -246,6 +255,7 @@ function saveOrder (order, user) {
 module.exports = {
   findUserAndUpdate,
   findUserByEmail,
+  findDBUserByEmail,
   findEdition,
   findAndResetCode,
   getItemDetails,
