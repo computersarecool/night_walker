@@ -1,38 +1,35 @@
 # TODO:
   DATABASE
-    - Database design
-    - use schema design to improve findProductByFlavor in database.js
-    - Save user stripe token information in database.js
-    NOTES:
-      - Start by looking at what the API returns
+    [] Add flavor index
+      - Database design
+      - use schema design to improve findProductByFlavor in database.js
+      - Save user stripe token information in database.js
       - For the individual products, combine size information / sizes / distinctSizes
-      - Add flavor index
       - remove SKU from irrelevant collection
       
   SERVER
+   [] Create email templates
+   
    * "DevOps"
-        - systemd startup script
-        - log rotation
-        - jsdoc
-        - Move static assets to cloudfront
-        - favicon best practices
-        - SPF policy
-        - Look into name server issues
-        - Update and finalize package.json
-
-   - Create email templates
+        []  Move static assets to cloudfront
+        []  favicon best practices
+        []  systemd startup script / elastic startup
+        []  Look into name server issues
+        []   Update and finalize package.json
+          - log rotation
+          - jsdoc
+          - SPF policy
     
   CLIENT
-
-    - Finish site-gallery directive      
-    - Update and finalize Bower.json / package.json(s)
-    - Make sure we need all scripts
-    - babelify
+    []  Finish site-gallery directive
+      - Update and finalize Bower.json / package.json(s)
+      - Make sure we need all scripts
+      - babelify
     
     STYLE
      * Modal dialog box
-
-     *  Product page details
+ 
+     * Product page details
 	    - Short description
         - Price
 	    - Product info
@@ -44,6 +41,7 @@
     *  Media
         - Black and white stripes as background, front photos pngs
         - fruity background on product images
+        - Make favicon
         - Have all home gallery images fade to white on sides (which might be the shop pages too)
         - Fade to white on background image for shop gallery page (later make transparent cut out for bg image)
         - Create web font
@@ -70,7 +68,7 @@
 
     NODE
 
-    EXPRESS
+    EX PRESS
     
     MONGODB:
 
