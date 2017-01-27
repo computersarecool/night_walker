@@ -38,6 +38,18 @@ angular.module('nightwalkerApp')
       $rootScope.$broadcast('user:updated', newUser)
     }
 
+    function clearCart () {
+      user.currentUser.cart = []
+      if (checkToken()) {
+        $http.post(base + '/product', {
+          items: [],
+          replace: true
+        }).then(() => $rootScope.$broadcast('user:updated', user.currentUser))
+      } else {
+        store.setItem('user', angular.toJson(user.currentUser))
+      }
+    }
+
     function getUser () {
       const deferred = $q.defer()
       if (checkToken()) {
@@ -221,6 +233,7 @@ angular.module('nightwalkerApp')
       currentUser,
       getUser,
       setUser,
+      clearCart,
       checkToken,
       submitUserDetails,
       logout,

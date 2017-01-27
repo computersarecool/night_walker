@@ -1,30 +1,29 @@
 # TODO:
   DATABASE
-    [] Add flavor index
-      - Database design
-      - use schema design to improve findProductByFlavor in database.js
-      - Save user stripe token information in database.js
-      - For the individual products, combine size information / sizes / distinctSizes
-      - remove SKU from irrelevant collection
+       - Database design
+       - use schema design to improve findProductByFlavor in database.js
+       - Save user stripe token information in database.js
+       - For the individual products, combine size information / sizes / distinctSizes
+       - remove SKU from irrelevant collection
       
   SERVER
-   [] Create email templates
+    [] Create email templates
    
-   * "DevOps"
-        []  Move static assets to cloudfront
-        []  favicon best practices
-        []  systemd startup script / elastic startup
-        []  Look into name server issues
-        []   Update and finalize package.json
+    * "DevOps"
+      []  Move static assets to cloudfront
+      []  favicon best practices
+      []  systemd startup script / elastic startup
+      []  Look into name server issues
+      []  Update and finalize package.json
           - log rotation
           - jsdoc
           - SPF policy
     
   CLIENT
     []  Finish site-gallery directive
-      - Update and finalize Bower.json / package.json(s)
-      - Make sure we need all scripts
-      - babelify
+        - Update and finalize Bower.json / package.json(s)
+        - Make sure we need all scripts
+        - babelify
     
     STYLE
      * Modal dialog box

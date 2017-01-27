@@ -9,7 +9,7 @@
  * Factory in the nightwalkerApp.
  */
 angular.module('nightwalkerApp')
-  .factory('ProductFactory', function ($http, $q, ModalService, base) {
+  .factory('ProductFactory', function ($http, $q, ModalService, $location, UserFactory, base) {
     function getEdition (edition) {
       const deferred = $q.defer()
       $http.get(base + '/editions/' + edition)
@@ -56,6 +56,7 @@ angular.module('nightwalkerApp')
             text: 'There was an error retreiving your request',
             footer: 'Please contact support'
           })
+          UserFactory.clearCart()
         })
     }
 

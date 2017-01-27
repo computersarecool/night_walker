@@ -10,9 +10,6 @@
  */
 angular.module('nightwalkerApp')
   .controller('ProductCtrl', function ($scope, $window, $location, UserFactory, product) {
-    // TODO: This is a fake way to get the flavor index - it will come from DB
-    product.flavorIndex = 1
-
     let xNow
     let xPrevious
     let xDelta
@@ -29,7 +26,7 @@ angular.module('nightwalkerApp')
     }
 
     $scope.changeSize = () => {
-      $scope.pickedProduct.sku = '1' + $scope.flavorIndex + $scope.pickedProduct.size.waistSize + $scope.pickedProduct.size.inseam
+      $scope.pickedProduct.sku = '1' + $scope.product.flavorIndex + $scope.pickedProduct.size.waistSize + $scope.pickedProduct.size.inseam
     }
 
     $scope.goToCheckout = UserFactory.goToCheckout

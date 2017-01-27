@@ -80,7 +80,8 @@ var flavors = [
       detail: 'http://placehold.it/400x650',
       front: 'http://placehold.it/350x650',
       side: 'http://placehold.it/450x650'
-    }
+    },
+    flavorIndex: "1"
   },
   {
     flavor: 'nectarine',
@@ -91,7 +92,8 @@ var flavors = [
       detail: 'http://placehold.it/400x650',
       front: 'http://placehold.it/350x650',
       side: 'http://placehold.it/450x650'
-    }    
+    },
+    flavorIndex: "2"
   },
   {
     flavor: 'lemon',
@@ -102,7 +104,8 @@ var flavors = [
       detail: 'http://placehold.it/400x650',
       front: 'http://placehold.it/350x650',
       side: 'http://placehold.it/450x650'
-    }    
+    },
+    flavorIndex: "3"
   },
   {
     flavor: 'apple',
@@ -113,7 +116,8 @@ var flavors = [
       detail: 'http://placehold.it/400x650',
       front: 'http://placehold.it/350x650',
       side: 'http://placehold.it/450x650'
-    }    
+    },
+    flavorIndex: "4"
   },
   {
     flavor: 'electricity',
@@ -124,7 +128,8 @@ var flavors = [
       detail: 'http://placehold.it/400x650',
       front: 'http://placehold.it/350x650',
       side: 'http://placehold.it/450x650'
-    }    
+    },
+    flavorIndex: "5"
   },
   {
     flavor: 'plum crazy',
@@ -135,7 +140,8 @@ var flavors = [
       detail: 'http://placehold.it/400x650',
       front: 'http://placehold.it/350x650',
       side: 'http://placehold.it/450x650'
-    }    
+    },
+    flavorIndex: "6"
   },
   {
     flavor: 'powder',
@@ -146,7 +152,8 @@ var flavors = [
       detail: 'http://placehold.it/400x650',
       front: 'http://placehold.it/350x650',
       side: 'http://placehold.it/450x650'
-    }    
+    },
+    flavorIndex: "7"
   },
   {
     flavor: 'proton powder',
@@ -157,7 +164,8 @@ var flavors = [
       detail: 'http://placehold.it/400x650',
       front: 'http://placehold.it/350x650',
       side: 'http://placehold.it/450x650'
-    }    
+    },
+    flavorIndex: "8"
   }
 ];
 

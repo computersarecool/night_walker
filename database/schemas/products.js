@@ -8,6 +8,7 @@ const productSchema = new Schema({
   type: String,
   edition: String,
   safeEdition: String,
+  flavorIndex: String,
   msrp: Number,
   currentPrice: Number,
   description: String,
