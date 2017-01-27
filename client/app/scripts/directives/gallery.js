@@ -1,4 +1,5 @@
-// 'use strict'
+/* global angular */
+'use strict'
 
 /**
  * @ngdoc directive
