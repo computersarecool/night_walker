@@ -1,3 +1,4 @@
+// TODO: DELETE ME
 /* global angular */
 'use strict'
 
@@ -9,17 +10,17 @@
  */
 angular.module('nightwalkerApp')
   .directive('siteGallery', function ($location, $interval, $timeout, $window) {
-    var paragraph = angular.element('<p></p>')
-    var cherryPant = angular.element('<img id="cherry-gallery" class="gallery front"></img>')
-    var nectarinePant = angular.element('<img id="nectarine-gallery" class="gallery"></img>')
-    var lemonPant = angular.element('<img id="lemon-gallery" class="gallery"></img>')
-    var applePant = angular.element('<img id="apple-gallery" class="gallery"></img>')
-    var electricityPant = angular.element('<img id="electricity-gallery" class="gallery"></img>')
-    var plumCrazyPant = angular.element('<img id="plum-crazy-gallery" class="gallery"></img>')
-    var powderPant = angular.element('<img id="powder-gallery" class="gallery"></img>')
-    var protonPowderPant = angular.element('<img id="proton-powder-gallery" class="gallery"></img>')
+    let paragraph = angular.element('<p></p>')
+    let cherryPant = angular.element('<img id="cherry-gallery" class="gallery front"></img>')
+    let nectarinePant = angular.element('<img id="nectarine-gallery" class="gallery"></img>')
+    let lemonPant = angular.element('<img id="lemon-gallery" class="gallery"></img>')
+    let applePant = angular.element('<img id="apple-gallery" class="gallery"></img>')
+    let electricityPant = angular.element('<img id="electricity-gallery" class="gallery"></img>')
+    let plumCrazyPant = angular.element('<img id="plum-crazy-gallery" class="gallery"></img>')
+    let powderPant = angular.element('<img id="powder-gallery" class="gallery"></img>')
+    let protonPowderPant = angular.element('<img id="proton-powder-gallery" class="gallery"></img>')
 
-    var galleryImages = [
+    const galleryImages = [
       protonPowderPant,
       powderPant,
       plumCrazyPant,
@@ -30,24 +31,21 @@ angular.module('nightwalkerApp')
       cherryPant
     ]
 
-    var link = function (scope, element, attrs) {
-      var currentFlavor
+    let link = function (scope, element, attrs) {
+      let currentFlavor
 
-      // TODO: Load smaller images based on screen size
-      galleryImages.forEach(function (galleryImage) {
+      galleryImages.forEach(galleryImage => {
         galleryImage.attr('src', 'images/front_gallery/' + galleryImage.attr('id') + '.jpg')
       })
 
-
-      // Function to change the pant's color if no device orientation
+      // Function to change the pant's color if not mobile
       function autoColorChange (newFlavor) {
-        var oldPant = document.querySelector('img.gallery.front')
-        var newPant = document.querySelector('#' + newFlavor + '-gallery')
+        const oldPant = document.querySelector('img.gallery.front')
+        const newPant = document.querySelector('#' + newFlavor + '-gallery')
         newPant.className = 'gallery next'
         oldPant.className = 'gallery fade'
         $timeout(changePant, 500, true, oldPant, newPant)
       }
-
 
       // Changepant for transitiion end
       function changePant (oldPant, newPant) {
@@ -55,12 +53,11 @@ angular.module('nightwalkerApp')
         newPant.className = 'gallery front'
       }
 
-
       // Function to change with device movement
       function colorChange (newFlavor) {
         if (newFlavor !== currentFlavor) {
-          var oldPant = document.querySelector('img.gallery.front')
-          var newPant = document.querySelector('#' + newFlavor + '-gallery')
+          const oldPant = document.querySelector('img.gallery.front')
+          const newPant = document.querySelector('#' + newFlavor + '-gallery')
           if (oldPant && newPant) {
             newPant.className = newPant.className + ' next'
             oldPant.className = 'gallery fade'
@@ -69,7 +66,6 @@ angular.module('nightwalkerApp')
           }
         }
       }
-
 
       // If device orientation is supported
       if ($window.DeviceOrientationEvent && $window.screen.width <= 980) {

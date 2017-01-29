@@ -20,7 +20,8 @@ angular
   .config(($routeProvider, $locationProvider, $httpProvider) => {
     $routeProvider
       .when('/', {
-        template: '<site-gallery></site-gallery>'
+        templateUrl: 'views/rotation_gallery.html',
+        controller: 'RotationGalleryCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html'

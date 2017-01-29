@@ -189,7 +189,7 @@ div.main
   z-index -1
 
 
-// Gallery Animation
+// Gallery page
 site-gallery
   position absolute
   width 100vw
@@ -203,19 +203,22 @@ img.gallery
   margin 0 auto  
   z-index -3
   opacity 1
+
+img.gallery.front
+  z-index 0
     
 img.gallery.next
   z-index -2    
   
 img.gallery.fade
-  z-index -2
+  z-index -1
   opacity 0
   transition opacity cubic-bezier(.25, .25, .75, .75) .5s
 
-img.gallery.front
-  z-index -1
+.loading-gallery.done-loading
+  display none
 
-// End of gallery animation
+// End of gallery page
 
   
 // Shop page

@@ -1,0 +1,19 @@
+<div>
+
+  <div class="loading-gallery">
+    <p>
+      Please wait, flavors are loading
+    </p>
+  </div>
+
+  <div class="loading-gallery mobile">
+    <p>
+      To see all flavors please rotate your device
+    </p>
+  </div>
+
+  <div ng-show="!imagesToLoad">
+    <img ng-repeat="flavor in flavors" ng-attr-id="{{flavor}}" ng-src="images/front_gallery/{{flavor + '-gallery.jpg'}}" ng-class="{front:$first}" class="gallery" site-image-load load-success="loadSuccess()" load-error="loadError()">
+  </div>
+
+</div>

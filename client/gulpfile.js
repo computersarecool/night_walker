@@ -50,7 +50,8 @@ gulp.task('stylus', () => {
       browsers: ['last 5 versions']
     }))
     .pipe(rename('main.css'))
-    .pipe(gulp.dest(path.join(build, 'styles')))
+    .pipe(gulp.dest('app/styles/'))
+  //  .pipe(gulp.dest(path.join(build, 'styles')))
 })
 
 // transpile js
