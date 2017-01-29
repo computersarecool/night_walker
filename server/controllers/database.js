@@ -191,8 +191,36 @@ function getTotalCost (cartItems, callback) {
   })
 
   Promise.all(promises).then(values => {
-    const orderTotal = values.reduce((lvalue, rvalue) => lvalue + rvalue)
+    const orderTotal = values.reduce((lhs, rhs) => lhs + rhs)
     callback(null, orderTotal)
+  }).catch(() => {
+    const error = new Error('There was an error retreiving your order total')
+    error.type('MalformedDataException')
+    error.status = 400
+    callback(error)
+  })
+}
+
+function getDetailsBySku (cartItems, callback) {
+  const promises = cartItems.map(sku => {
+    return new Promise((resolve, reject) => {
+      Products.findOne({sku}.lean(), (err, product) => {
+        if (err) {
+          return reject(err)
+        }
+        resolve(
+          {
+            sku: product.currentPrice,
+            flavor: product.flavor,
+            description: product.description,
+            sizes: product.sizes
+          })
+      })
+    })
+  })
+
+  Promise.all(promises).then(details => {
+    callback(null, details)
   }).catch(() => {
     const error = new Error('There was an error retreiving your order total')
     error.type('MalformedDataException')
@@ -260,6 +288,7 @@ module.exports = {
   findAndResetCode,
   getItemDetails,
   findProductByFlavor,
+  getDetailsBySku,
   getTotalCost,
   createOrder,
   saveOrder

@@ -55,7 +55,7 @@ angular.module('nightwalkerApp')
     function changeColor (newIndex) {
       if (newIndex !== currentIndex) {
         const currentFront = document.querySelector('img.gallery.front')
-        // Make sure there is actually something in from otherwise there will be an error
+        // Make sure there is actually an element in front
         if (currentFront) {
           const newFront = document.querySelector('#' + $scope.flavors[newIndex])
           currentFront.className = 'gallery fade'
@@ -138,10 +138,10 @@ angular.module('nightwalkerApp')
       document.querySelector('.loading-gallery').classList.add('done-loading')
       document.querySelector('.loading-gallery.mobile').classList.add('done-loading')
 
-      if ($window.DeviceOrientationEvent) {
+      if (typeof $window.orientation !== 'undefined' || navigator.userAgent.indexOf('IEMobile') !== -1) {
         $window.addEventListener('deviceorientation', watchDirection)
       } else {
-        $interval(autoChangeColor, 3000)
+        $interval(autoChangeColor, 2000)
       }
     }
   })

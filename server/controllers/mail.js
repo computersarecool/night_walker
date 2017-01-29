@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const EmailTemplate = require('email-tremplates').EmailTemplate
 const downloader = require('./downloader')
 const logger = require('./logger')
 const aws = require('aws-sdk')
@@ -32,23 +33,83 @@ function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
     lastName: shippingDetails.lastName,
     trackingCode: shipmentInfo.tracking_code,
     toAddresses: [shippingDetails.email],
-    subject: 'NightWalker order confirmation',
+    subject: 'NightWalker Order Confirmation',
     fromAddress: rawMailOptions.fromAddress
   }
   callback(rawMailOptions, simpleMailOptions)
 }
 
-function emailCustomer (emailInfo) {
+function emailCustomer (emailInfo, shippingDetails) {
+  const templateDir = path.join(__dirname, 'email_templates', 'order_confirmation')
+  let orderConfirmation = new EmailTemplate(templateDir)
+  const details = {
+    firstName: emailInfo.firstName,
+    lastName: emailInfo.lastName,
+    address1: shippingDetails.address1,
+    address2: shippingDetails.address2,
+    city: shippingDetails.city,
+    state: shippingDetails.state,
+    zip: shippingDetails.zip,
+    trackingCode: emailInfo.trackingCode,
+    orderNumber: emailInfo.orderNumber,
+    items: shippingDetails.costDetails
+  }
+
+  orderConfirmation.render(details, (err, result) => {
+    if (err) {
+      return notifyHQ(err, logFinal)
+    }
+
+    const params = {
+      Destination: {
+        ToAddresses: emailInfo.toAddresses
+      },
+      Message: {
+        Subject: {
+          Data: emailInfo.subject
+        },
+        Body: {
+          Html: {
+            Data: result.html,
+            Charset: 'utf-8'
+          },
+          Text: {
+            Data: result.txt,
+            Charset: 'utf-8'
+          }
+        }
+      },
+      Source: emailInfo.fromAddress,
+      ReplyToAddresses: [
+        emailInfo.fromAddress
+      ]
+    }
+
+    ses.sendEmail(params, (err, id) => {
+      if (err) {
+        notifyHQ(err, logFinal)
+      }
+    })
+  })
+}
+
+/*
   const regExReplacements = {
     '#FIRSTNAME': emailInfo.firstName,
     '#LASTNAME': emailInfo.lastName,
+    '#ADDRESS1': shippingDetails.address1,
+    '#ADDRESS2': shippingDetails.address2,
+    '#CITY': shippingDetails.city,
+    '#STATE': shippingDetails.state,
+    '#ZIP': shippingDetails.zip,
     '#TRACKINGCODE': emailInfo.trackingCode,
     '#ORDERNUMBER': emailInfo.orderNumber
   }
 
+
   const regex = new RegExp(Object.keys(regExReplacements).join('|'), 'g')
 
-  fs.readFile(path.join(__dirname, '../templates/emails', 'customer_confirmation.html'), {encoding: 'utf-8'}, (err, data) => {
+  fs.readFile(path.join(__dirname, '../templates/emails', 'order_confirmation_final.html'), {encoding: 'utf-8'}, (err, data) => {
     if (err) {
       return notifyHQ(err, logFinal)
     }
@@ -57,7 +118,7 @@ function emailCustomer (emailInfo) {
       return regExReplacements[match] || match
     })
 
-    fs.readFile(path.join(__dirname, '../templates/emails', 'text_customer_confirmation.txt'), {encoding: 'utf-8'}, (err, data) => {
+    fs.readFile(path.join(__dirname, '../templates/emails', 'order_confirmation.txt'), {encoding: 'utf-8'}, (err, data) => {
       if (err) {
         return notifyHQ(err, logFinal)
       }
@@ -99,6 +160,7 @@ function emailCustomer (emailInfo) {
     })
   })
 }
+*/
 
 function sendRawEmail (rawMailOptions) {
   // rawMailOptions is {fromName, fromAddress, subject, body, files, allRecipients}
@@ -149,7 +211,6 @@ function closeAndSend (rawMail, rawMailOptions) {
   // add final emailBoundary marker
   rawMail += '--' + emailBoundary
 
-  // create email parameters
   const params = {
     RawMessage: {Data: new Buffer(rawMail)},
     Destinations: rawMailOptions.allRecipients,

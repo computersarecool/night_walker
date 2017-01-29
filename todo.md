@@ -15,10 +15,9 @@
           - SPF policy
     
   CLIENT
-    []  Finish site-gallery directive
-        - Update and finalize Bower.json / package.json(s)
-        - Make sure we need all scripts
-        - babelify
+      - Update and finalize Bower.json / package.json(s)
+      - Make sure we need all scripts
+      - babelify
     
     STYLE
      * Modal dialog box
@@ -78,11 +77,11 @@
 
 
 Things I would have liked to have done better:
-- Database design
-       - Database design
-       - use schema design to improve findProductByFlavor in database.js
-       - Save user stripe token information in database.js
-       - For the individual products, combine size information / sizes / distinctSizes
-       - remove SKU from irrelevant collection
+- Database
+   - Database design
+   - use schema design to improve findProductByFlavor in database.js
+   - Save user stripe token information in database.js
+   - For the individual products, combine size information / sizes / distinctSizes
+   - remove SKU from irrelevant collection
 
 - Email Templatizing

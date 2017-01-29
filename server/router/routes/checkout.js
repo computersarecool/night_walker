@@ -72,17 +72,24 @@ function checkout (req, res, user, next) {
           }
 
           res.json(responseUser)
+          databaseController.getDetailsBySku(user.cart, (err, details) => {
+            if (err) {
+              return next(err)
+            }
 
-          // send email notifications and save order in db
-          mailController.formatPurchaseEmail(shipmentInfo, shippingDetails, (rawMailOptions, simpleMailOptions) => {
-            databaseController.createOrder(user, shippingDetails, order => {
-              const simpleOrderNumber = order._id.toString().substr(-10)
-              simpleMailOptions.orderNumber = simpleOrderNumber
-              mailController.emailCustomer(simpleMailOptions)
-              mailController.sendRawEmail(rawMailOptions)
-              order.orderNumber = simpleOrderNumber
-              order.trackingCode = simpleMailOptions.trackingCode
-              databaseController.saveOrder(order, user)
+            shippingDetails.costDetails = details
+
+            // send email notifications and save order in db
+            mailController.formatPurchaseEmail(shipmentInfo, shippingDetails, (rawMailOptions, simpleMailOptions) => {
+              databaseController.createOrder(user, shippingDetails, order => {
+                const simpleOrderNumber = order._id.toString().substr(-10)
+                simpleMailOptions.orderNumber = simpleOrderNumber
+                mailController.emailCustomer(simpleMailOptions, shippingDetails)
+                mailController.sendRawEmail(rawMailOptions)
+                order.orderNumber = simpleOrderNumber
+                order.trackingCode = simpleMailOptions.trackingCode
+                databaseController.saveOrder(order, user)
+              })
             })
           })
         })
