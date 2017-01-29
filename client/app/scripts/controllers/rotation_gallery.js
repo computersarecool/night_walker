@@ -54,7 +54,6 @@ angular.module('nightwalkerApp')
 
     function changeColor (newIndex) {
       if (newIndex !== currentIndex) {
-        console.log('new index is', $scope.flavors[newIndex])
         const currentFront = document.querySelector('img.gallery.front')
         // Make sure there is actually something in from otherwise there will be an error
         if (currentFront) {
