@@ -83,50 +83,50 @@ angular.module('nightwalkerApp')
             changeColor(0)
             break
           case oldDirection < 22.5 && direction >= 22.5 && direction < 67.5:
-            changeColor(1)
+            changeColor(7)
             break
           case oldDirection < 67.5 && direction >= 67.5 && direction < 112.5:
-            changeColor(2)
+            changeColor(6)
             break
           case oldDirection < 112.5 && direction >= 112.5 && direction < 157.5:
-            changeColor(3)
+            changeColor(5)
             break
           case oldDirection < 157.5 && direction >= 157.5 && direction < 202.5:
             changeColor(4)
             break
           case oldDirection < 202.5 && direction >= 202.5 && direction < 247.5:
-            changeColor(5)
+            changeColor(3)
             break
           case oldDirection < 247.5 && direction >= 247.5 && direction < 292.5:
-            changeColor(6)
+            changeColor(2)
             break
           case oldDirection < 292.5 && direction >= 292.5 && direction < 337.5:
-            changeColor(7)
+            changeColor(1)
             break
            // Opposite direction
           case oldDirection > 22.5 && direction <= 22.5:
-            changeColor(0)
+            changeColor(7)
             break
           case oldDirection > 67.5 && direction <= 67.5 && direction > 22.5:
-            changeColor(1)
-            break
-          case oldDirection > 112.5 && direction <= 112.5 && direction > 67.5:
-            changeColor(2)
-            break
-          case oldDirection > 157.5 && direction <= 157.5 && direction > 112.5:
-            changeColor(3)
-            break
-          case oldDirection > 202.5 && direction <= 202.5 && direction > 157.5:
-            changeColor(4)
-            break
-          case oldDirection > 247.5 && direction <= 247.5 && direction > 202.5:
-            changeColor(5)
-            break
-          case oldDirection > 292.5 && direction <= 292.5 && direction > 247.5:
             changeColor(6)
             break
+          case oldDirection > 112.5 && direction <= 112.5 && direction > 67.5:
+            changeColor(5)
+            break
+          case oldDirection > 157.5 && direction <= 157.5 && direction > 112.5:
+            changeColor(4)
+            break
+          case oldDirection > 202.5 && direction <= 202.5 && direction > 157.5:
+            changeColor(3)
+            break
+          case oldDirection > 247.5 && direction <= 247.5 && direction > 202.5:
+            changeColor(2)
+            break
+          case oldDirection > 292.5 && direction <= 292.5 && direction > 247.5:
+            changeColor(1)
+            break
           case oldDirection > 337.5 && direction <= 337.5 && direction > 292.5:
-            changeColor(7)
+            changeColor(0)
             break
         }
         // Set old direction to the previous value
