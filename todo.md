@@ -2,7 +2,6 @@
   DATABASE
       
   SERVER
-    [] Create email templates
         
     * "DevOps"
       []  Move static assets to cloudfront
@@ -15,6 +14,9 @@
           - SPF policy
     
   CLIENT
+      PICKUP:
+      Avoid undefined error when leaving gallery because images are gone
+      
       - Update and finalize Bower.json / package.json(s)
       - Make sure we need all scripts
       - babelify
@@ -45,15 +47,14 @@
         - optimize sizeof all images
 
 
-    Reset Email email
-        - 
- 
 
-    Order Confirmation Email
-        - Real tracking number
-        - Logo
-        - Real response email
-        - Real address
+        - Reset Password Email
+        
+        - Order Confirmation Email
+            - Real tracking number
+            - Logo
+            - Real response email
+            - Real address
 
 
 
@@ -84,11 +85,9 @@
       -  travis.yml
       -  buildignore
       
-    UNIT TESTING
-    
     MISC
       - Editor config
-
+      - Unit testing
 
 
 Things I would have liked to have done better:
@@ -99,3 +98,5 @@ Things I would have liked to have done better:
    - For the individual products, combine size information / sizes / distinctSizes
    - remove SKU from irrelevant collection
 
+- Mail Controller
+   - Abstracted the emailing process even more (more generic methods)
