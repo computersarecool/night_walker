@@ -43,7 +43,22 @@
         - fade to white for product photos
         - Consider reusing the home sprite images on poster gallery as they will load quicker
         - optimize sizeof all images
-      
+
+
+    Reset Email email
+        - 
+ 
+
+    Order Confirmation Email
+        - Real tracking number
+        - Logo
+        - Real response email
+        - Real address
+
+
+
+
+
 ### ONGOING QUESTIONS:
     ANGULAR
       - Pages like 'About' do not need a controller. Do we use a null controller?

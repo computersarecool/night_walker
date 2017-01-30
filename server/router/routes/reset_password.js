@@ -4,7 +4,7 @@ const databaseController = require('../../controllers/database')
 const mailController = require('../../controllers/mail')
 
 router.post('/reset', (req, res, next) => {
-  crypto.randomBytes(5, (err, buf) => {
+  crypto.randomBytes(7, (err, buf) => {
     if (err) {
       return next(err)
     }

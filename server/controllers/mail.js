@@ -1,7 +1,4 @@
-const fs = require('fs')
-const path = require('path')
-const juice = require('juice')
-const EmailTemplate = require('email-templates').EmailTemplate
+const formatEmail = require('./email_formatter')
 const downloader = require('./downloader')
 const logger = require('./logger')
 const aws = require('aws-sdk')
@@ -40,6 +37,23 @@ function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
 }
 
 function emailCustomer (emailInfo, shippingDetails) {
+  const directory = 'order_confirmation'
+  const subject = emailInfo.subject
+  const toAddressArray = emailInfo.toAddresses
+  const renderData = {
+    firstName: emailInfo.firstName,
+    lastName: emailInfo.lastName,
+    address1: shippingDetails.address1,
+    address2: shippingDetails.address2,
+    city: shippingDetails.city,
+    state: shippingDetails.state,
+    zip: shippingDetails.zip,
+    trackingCode: emailInfo.trackingCode,
+    orderNumber: emailInfo.orderNumber,
+    items: shippingDetails.individualDetails,
+    totalCost: shippingDetails.totalCost
+  }
+
   const regExReplacements = {
     '#FIRSTNAME': emailInfo.firstName,
     '#LASTNAME': emailInfo.lastName,
@@ -52,73 +66,35 @@ function emailCustomer (emailInfo, shippingDetails) {
     '#ORDERNUMBER': emailInfo.orderNumber
   }
 
-  const regex = new RegExp(Object.keys(regExReplacements).join('|'), 'g')
-
-  fs.readFile(path.join(__dirname, '../email_templates', 'order_confirmation', 'text.txt'), {encoding: 'utf-8'}, (err, data) => {
+  formatEmail(directory, regExReplacements, renderData, subject, toAddressArray, (err, params) => {
     if (err) {
       return notifyHQ(err, logFinal)
     }
-
-    const textEmail = data.replace(regex, match => {
-      return regExReplacements[match] || match
-    })
-
-    const templateDir = path.join(__dirname, '../email_templates', 'order_confirmation')
-    let orderConfirmation = new EmailTemplate(templateDir)
-    const details = {
-      firstName: emailInfo.firstName,
-      lastName: emailInfo.lastName,
-      address1: shippingDetails.address1,
-      address2: shippingDetails.address2,
-      city: shippingDetails.city,
-      state: shippingDetails.state,
-      zip: shippingDetails.zip,
-      trackingCode: emailInfo.trackingCode,
-      orderNumber: emailInfo.orderNumber,
-      items: shippingDetails.individualDetails,
-      totalCost: shippingDetails.totalCost
-    }
-
-    orderConfirmation.render(details, (err, result) => {
+    ses.sendEmail(params, (err, id) => {
       if (err) {
-        return notifyHQ(err, logFinal)
+        notifyHQ(err, logFinal)
       }
+    })
+  })
+}
 
-      // Need to re-juice because the node-email-tempalte is not actually inlining styles
-      juice.juiceResources(result.html, {webResources: {relativeTo: '__dirname'}}, (err, htmlEmail) => {
-        if (err) {
-          return notifyHQ(err, logFinal)
-        }
-        const params = {
-          Destination: {
-            ToAddresses: emailInfo.toAddresses
-          },
-          Message: {
-            Subject: {
-              Data: emailInfo.subject
-            },
-            Body: {
-              Html: {
-                Data: htmlEmail,
-                Charset: 'utf-8'
-              },
-              Text: {
-                Data: textEmail,
-                Charset: 'utf-8'
-              }
-            }
-          },
-          Source: emailInfo.fromAddress,
-          ReplyToAddresses: [
-            emailInfo.fromAddress
-          ]
-        }
-        ses.sendEmail(params, (err, id) => {
-          if (err) {
-            notifyHQ(err, logFinal)
-          }
-        })
-      })
+function sendPasswordReset (emailAddress, resetCode, callback) {
+  const directory = 'reset_password'
+  const subject = 'NightWalker.com Password Reset Code'
+  const renderData = {resetCode}
+  const regExReplacements = {
+    '#RESETCODE': resetCode
+  }
+
+  formatEmail(directory, regExReplacements, renderData, subject, [emailAddress], (err, params) => {
+    if (err) {
+      return notifyHQ(err, logFinal)
+    }
+    ses.sendEmail(params, (err, id) => {
+      if (err) {
+        return callback(err)
+      }
+      callback(null, id)
     })
   })
 }
@@ -214,33 +190,6 @@ function notifyHQ (errorResponse, extraData = null) {
       return logFinal(err)
     }
     logFinal(null, id)
-  })
-}
-
-function sendPasswordReset (emailAddress, resetCode, callback) {
-  const params = {
-    Destination: {
-      ToAddresses: [emailAddress]
-    },
-    Message: {
-      Subject: {
-        Data: 'Your NightWalker reset Code'
-      },
-      Body: {
-        Html: {
-          Data: `<h1>Here is your Nightwalker reset code:</h1>
-<p>${resetCode}</p>
-<p>Please visit NightWalker to reset your password</p>`
-        }
-      }
-    },
-    Source: 'paperwork@willynolan.com'
-  }
-  ses.sendEmail(params, (err, id) => {
-    if (err) {
-      return callback(err)
-    }
-    callback(null, id)
   })
 }
 
