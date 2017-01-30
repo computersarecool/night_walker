@@ -1,4 +1,0 @@
-Congratulations on your purchase
-Hey, #FIRSTNAME #LASTNAME, your order is on its way.
-Your tracking code is #TRACKINGCODE.
-Your order number is #ORDERNUMBER

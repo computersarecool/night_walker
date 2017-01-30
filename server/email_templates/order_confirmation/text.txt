@@ -1,0 +1,13 @@
+Thanks for shopping at NightWalker. Your purchase is on its way.
+
+#FIRSTNAME #LASTNAME
+#ADDRESS1 #ADDRESS2
+#CITY
+#STATE
+#ZIP
+
+Your order is ##ORDERNUMBER
+And your tracking number is USPS ##TRACKINGCODE
+
+Acme Inc. 123 Van Ness, San Francisco 94102
+Questions? Email help@acme.inc

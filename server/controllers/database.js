@@ -195,7 +195,7 @@ function getTotalCost (cartItems, callback) {
     callback(null, orderTotal)
   }).catch(() => {
     const error = new Error('There was an error retreiving your order total')
-    error.type('MalformedDataException')
+    error.type = 'MalformedData'
     error.status = 400
     callback(error)
   })
@@ -204,15 +204,16 @@ function getTotalCost (cartItems, callback) {
 function getDetailsBySku (cartItems, callback) {
   const promises = cartItems.map(sku => {
     return new Promise((resolve, reject) => {
-      Products.findOne({sku}.lean(), (err, product) => {
+      Products.findOne({sku}).lean().exec((err, product) => {
         if (err) {
           return reject(err)
         }
         resolve(
           {
-            sku: product.currentPrice,
-            flavor: product.flavor,
             description: product.description,
+            flavor: product.flavor,
+            sku: sku,
+            currentPrice: product.currentPrice,
             sizes: product.sizes
           })
       })
@@ -221,9 +222,11 @@ function getDetailsBySku (cartItems, callback) {
 
   Promise.all(promises).then(details => {
     callback(null, details)
-  }).catch(() => {
+  }).catch(e => {
+    console.log('The error is')
+    console.log(e)
     const error = new Error('There was an error retreiving your order total')
-    error.type('MalformedDataException')
+    error.type = 'MalformedData'
     error.status = 400
     callback(error)
   })

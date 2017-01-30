@@ -70,15 +70,16 @@ function checkout (req, res, user, next) {
             responseUser.email = user.email
             responseUser.firstName = user.firstName
           }
-
           res.json(responseUser)
+
+          // add order information for email purposes
           databaseController.getDetailsBySku(user.cart, (err, details) => {
             if (err) {
               return next(err)
             }
 
-            shippingDetails.costDetails = details
-
+            shippingDetails.individualDetails = details
+            shippingDetails.totalCost = amount
             // send email notifications and save order in db
             mailController.formatPurchaseEmail(shipmentInfo, shippingDetails, (rawMailOptions, simpleMailOptions) => {
               databaseController.createOrder(user, shippingDetails, order => {

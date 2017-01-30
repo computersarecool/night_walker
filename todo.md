@@ -3,7 +3,7 @@
       
   SERVER
     [] Create email templates
-   
+        
     * "DevOps"
       []  Move static assets to cloudfront
       []  favicon best practices
@@ -84,4 +84,3 @@ Things I would have liked to have done better:
    - For the individual products, combine size information / sizes / distinctSizes
    - remove SKU from irrelevant collection
 
-- Email Templatizing

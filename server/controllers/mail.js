@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
-const EmailTemplate = require('email-tremplates').EmailTemplate
+const juice = require('juice')
+const EmailTemplate = require('email-templates').EmailTemplate
 const downloader = require('./downloader')
 const logger = require('./logger')
 const aws = require('aws-sdk')
@@ -27,7 +28,6 @@ function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
     }]
   }
 
-  // TODO: restructure to use destructuring
   const simpleMailOptions = {
     firstName: shippingDetails.firstName,
     lastName: shippingDetails.lastName,
@@ -40,60 +40,6 @@ function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
 }
 
 function emailCustomer (emailInfo, shippingDetails) {
-  const templateDir = path.join(__dirname, 'email_templates', 'order_confirmation')
-  let orderConfirmation = new EmailTemplate(templateDir)
-  const details = {
-    firstName: emailInfo.firstName,
-    lastName: emailInfo.lastName,
-    address1: shippingDetails.address1,
-    address2: shippingDetails.address2,
-    city: shippingDetails.city,
-    state: shippingDetails.state,
-    zip: shippingDetails.zip,
-    trackingCode: emailInfo.trackingCode,
-    orderNumber: emailInfo.orderNumber,
-    items: shippingDetails.costDetails
-  }
-
-  orderConfirmation.render(details, (err, result) => {
-    if (err) {
-      return notifyHQ(err, logFinal)
-    }
-
-    const params = {
-      Destination: {
-        ToAddresses: emailInfo.toAddresses
-      },
-      Message: {
-        Subject: {
-          Data: emailInfo.subject
-        },
-        Body: {
-          Html: {
-            Data: result.html,
-            Charset: 'utf-8'
-          },
-          Text: {
-            Data: result.txt,
-            Charset: 'utf-8'
-          }
-        }
-      },
-      Source: emailInfo.fromAddress,
-      ReplyToAddresses: [
-        emailInfo.fromAddress
-      ]
-    }
-
-    ses.sendEmail(params, (err, id) => {
-      if (err) {
-        notifyHQ(err, logFinal)
-      }
-    })
-  })
-}
-
-/*
   const regExReplacements = {
     '#FIRSTNAME': emailInfo.firstName,
     '#LASTNAME': emailInfo.lastName,
@@ -106,61 +52,76 @@ function emailCustomer (emailInfo, shippingDetails) {
     '#ORDERNUMBER': emailInfo.orderNumber
   }
 
-
   const regex = new RegExp(Object.keys(regExReplacements).join('|'), 'g')
 
-  fs.readFile(path.join(__dirname, '../templates/emails', 'order_confirmation_final.html'), {encoding: 'utf-8'}, (err, data) => {
+  fs.readFile(path.join(__dirname, '../email_templates', 'order_confirmation', 'text.txt'), {encoding: 'utf-8'}, (err, data) => {
     if (err) {
       return notifyHQ(err, logFinal)
     }
 
-    const outgoingHTMLEmail = data.replace(regex, match => {
+    const textEmail = data.replace(regex, match => {
       return regExReplacements[match] || match
     })
 
-    fs.readFile(path.join(__dirname, '../templates/emails', 'order_confirmation.txt'), {encoding: 'utf-8'}, (err, data) => {
+    const templateDir = path.join(__dirname, '../email_templates', 'order_confirmation')
+    let orderConfirmation = new EmailTemplate(templateDir)
+    const details = {
+      firstName: emailInfo.firstName,
+      lastName: emailInfo.lastName,
+      address1: shippingDetails.address1,
+      address2: shippingDetails.address2,
+      city: shippingDetails.city,
+      state: shippingDetails.state,
+      zip: shippingDetails.zip,
+      trackingCode: emailInfo.trackingCode,
+      orderNumber: emailInfo.orderNumber,
+      items: shippingDetails.individualDetails,
+      totalCost: shippingDetails.totalCost
+    }
+
+    orderConfirmation.render(details, (err, result) => {
       if (err) {
         return notifyHQ(err, logFinal)
       }
 
-      const outgoingTextEmail = data.replace(regex, match => {
-        return regExReplacements[match] || match
-      })
-
-      const params = {
-        Destination: {
-          ToAddresses: emailInfo.toAddresses
-        },
-        Message: {
-          Subject: {
-            Data: emailInfo.subject
-          },
-          Body: {
-            Html: {
-              Data: outgoingHTMLEmail,
-              Charset: 'utf-8'
-            },
-            Text: {
-              Data: outgoingTextEmail,
-              Charset: 'utf-8'
-            }
-          }
-        },
-        Source: emailInfo.fromAddress,
-        ReplyToAddresses: [
-          emailInfo.fromAddress
-        ]
-      }
-
-      ses.sendEmail(params, (err, id) => {
+      // Need to re-juice because the node-email-tempalte is not actually inlining styles
+      juice.juiceResources(result.html, {webResources: {relativeTo: '__dirname'}}, (err, htmlEmail) => {
         if (err) {
-          notifyHQ(err, logFinal)
+          return notifyHQ(err, logFinal)
         }
+        const params = {
+          Destination: {
+            ToAddresses: emailInfo.toAddresses
+          },
+          Message: {
+            Subject: {
+              Data: emailInfo.subject
+            },
+            Body: {
+              Html: {
+                Data: htmlEmail,
+                Charset: 'utf-8'
+              },
+              Text: {
+                Data: textEmail,
+                Charset: 'utf-8'
+              }
+            }
+          },
+          Source: emailInfo.fromAddress,
+          ReplyToAddresses: [
+            emailInfo.fromAddress
+          ]
+        }
+        ses.sendEmail(params, (err, id) => {
+          if (err) {
+            notifyHQ(err, logFinal)
+          }
+        })
       })
     })
   })
 }
-*/
 
 function sendRawEmail (rawMailOptions) {
   // rawMailOptions is {fromName, fromAddress, subject, body, files, allRecipients}
