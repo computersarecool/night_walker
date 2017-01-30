@@ -1,17 +1,22 @@
 {
-  "name": "server",
-  "version": "0.0.0",
+  "name": "nightwalker_server",
+  "version": "1.0.0",
   "private": true,
+  "description": "The server for NightWalker",
+  "engines": {
+    "node": "^6.9.4"
+  },
+
   "scripts": {
     "start": "NODE_ENV=production nodemon ./bin/www.js",
-    "test": "NODE_ENV=development nodemon ./bin/www.js",
-    "email": "node ./templates/emails/prep_email.js"
+    "test": "NODE_ENV=development nodemon ./bin/www.js"
   },
   "dependencies": {
     "aws-sdk": "^2.7.10",
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",
     "ejs": "^2.5.5",
+    "juice": "^4.0.2",
     "email-templates": "^2.5.4",
     "express": "^4.14.0",
     "express-jwt": "^5.1.0",
@@ -29,7 +34,8 @@
     "winston": "^2.3.0"
   },
   "devDependencies": {
-    "juice": "^4.0.2",
     "nodemon": "^1.11.0"
-  }
+  },
+  "author": "Willy Nolan <willy@willynolan.com> (http://wwww.willynolan.com)",
+  "license": "ISC"
 }

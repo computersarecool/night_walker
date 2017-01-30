@@ -1,17 +1,14 @@
 {
-  "name": "database",
+  "name": "nightwalker_database",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
+  "description": "MongoDB schemas and configuration file for NightWalker",
   "main": "index.js",
   "dependencies": {
     "bcryptjs": "^2.4.0",
     "mongoose": "^4.5.10",
     "winston": "^2.3.0"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "author": "Willy Nolan <willy@willynolan.com> (http://wwww.willynolan.com)",
   "license": "ISC"
 }

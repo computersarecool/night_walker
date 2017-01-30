@@ -1,6 +1,6 @@
 {
-  "name": "nightwalker",
-  "description": "Website for NightWalker clothing line",
+  "name": "nightwalker_client",
+  "description": "Bower.json for NightWalker client code",
   "authors": [
     {
       "name": "Willy Nolan",

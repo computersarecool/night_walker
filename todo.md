@@ -2,24 +2,30 @@
   DATABASE
       
   SERVER
-        
-    * "DevOps"
-      []  Move static assets to cloudfront
-      []  favicon best practices
       []  systemd startup script / elastic startup
       []  Look into name server issues
-      []  Update and finalize package.json
+      []  npm Shrinkwrap
           - log rotation
           - jsdoc
           - SPF policy
     
   CLIENT
-      PICKUP:
-      Avoid undefined error when leaving gallery because images are gone
-      
-      - Update and finalize Bower.json / package.json(s)
-      - Make sure we need all scripts
-      - babelify
+      []  Add all missing gulp packages  
+      []  Google analytics
+      []  Move static assets / app directory to cloudfront + favicon best practices
+
+          Minify everything
+          Make all resource (i.e. images, html) links relative to home directory
+          Make CDN Mirror this structure
+              images
+              partials
+              scripts
+              styles
+              views
+          Concat js / css
+          Put those files to CDN
+          Replace js / css reference in page to CDN file
+
     
     STYLE
      * Modal dialog box
@@ -47,18 +53,11 @@
         - optimize sizeof all images
 
 
-
-        - Reset Password Email
-        
         - Order Confirmation Email
             - Real tracking number
             - Logo
             - Real response email
             - Real address
-
-
-
-
 
 ### ONGOING QUESTIONS:
     ANGULAR

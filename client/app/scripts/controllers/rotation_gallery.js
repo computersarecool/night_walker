@@ -41,6 +41,7 @@ angular.module('nightwalkerApp')
       }
     }
 
+    let rotateInterval
     let currentIndex = 0
 
     // Device orientation not supported
@@ -141,7 +142,11 @@ angular.module('nightwalkerApp')
       if (typeof $window.orientation !== 'undefined' || navigator.userAgent.indexOf('IEMobile') !== -1) {
         $window.addEventListener('deviceorientation', watchDirection)
       } else {
-        $interval(autoChangeColor, 2000)
+        rotateInterval = $interval(autoChangeColor, 2000)
       }
     }
+
+    $scope.$on('$destroy', () => {
+      $interval.cancel(rotateInterval)
+    })
   })

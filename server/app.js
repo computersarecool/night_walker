@@ -29,8 +29,6 @@ module.exports = callback => {
 
     // development static file server and errors
     if (inDevelopment) {
-      // temporarily here to check email formatting
-      app.use(express.static(path.join(__dirname, 'templates/emails')))
       app.use(express.static(path.join(__dirname, '../client/')))
       app.use(express.static(path.join(__dirname, '../client/app')))
     }

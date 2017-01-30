@@ -6,6 +6,6 @@ To add content to database:
     (From database directory)
     mongo ../testdata.js
 
-To improve performance:
+To improve performance on low resource machine:
     echo 1 > /proc/sys/vm/drop_caches
     echo vm.swappiness=0 | sudo tee -a /etc/sysctl.conf

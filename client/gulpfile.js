@@ -1,3 +1,4 @@
+// NEED: Usemin, standard, imagemin, sbgmin, htmlmin, ngmin, karma
 const path = require('path')
 const wiredep = require('wiredep').stream
 const gulp = require('gulp')
@@ -6,9 +7,9 @@ const sourcemaps = require('gulp-sourcemaps')
 const useref = require('gulp-useref')
 const gulpIf = require('gulp-if')
 const uglify = require('gulp-uglify')
+const cssnano = require('gulp-cssnano')
 const stylus = require('gulp-stylus')
 const autoprefixer = require('gulp-autoprefixer')
-const cssnano = require('gulp-cssnano')
 const rename = require('gulp-rename')
 const del = require('del')
 const dist = '../dist/'
