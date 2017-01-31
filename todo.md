@@ -5,6 +5,7 @@
 ## SERVER
 * - [ ]  systemd startup script / elastic startup
 - [ ]  fix name server issues
+- [ ]  get domain
 - log rotation
 - jsdoc
 - SPF policy
