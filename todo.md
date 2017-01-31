@@ -4,7 +4,7 @@
       
 ## SERVER
 * - [ ]  systemd startup script / elastic startup
-* - [ ]  Look into name server issues
+- [ ]  fix name server issues
           - log rotation
           - jsdoc
           - SPF policy
