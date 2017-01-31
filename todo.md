@@ -1,9 +1,9 @@
 # TODO:
-  ##DATABASE
+  ## DATABASE
       
-  ##SERVER
-      []  systemd startup script / elastic startup
-      []  Look into name server issues
+  ## SERVER
+     - [ ]  systemd startup script / elastic startup
+     - [ ]  Look into name server issues
           - log rotation
           - jsdoc
           - SPF policy
