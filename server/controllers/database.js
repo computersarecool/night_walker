@@ -235,7 +235,6 @@ function getDetailsBySku (cartItems, callback) {
 function createOrder (user, shippingDetails, callback) {
   const successOrder = new Orders()
   if (user._id) {
-    // TODO: save card info if user
     successOrder.userOrder = true
     successOrder.userID = user._id
   } else {

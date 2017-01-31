@@ -54,19 +54,7 @@ function emailCustomer (emailInfo, shippingDetails) {
     totalCost: shippingDetails.totalCost
   }
 
-  const regExReplacements = {
-    '#FIRSTNAME': emailInfo.firstName,
-    '#LASTNAME': emailInfo.lastName,
-    '#ADDRESS1': shippingDetails.address1,
-    '#ADDRESS2': shippingDetails.address2,
-    '#CITY': shippingDetails.city,
-    '#STATE': shippingDetails.state,
-    '#ZIP': shippingDetails.zip,
-    '#TRACKINGCODE': emailInfo.trackingCode,
-    '#ORDERNUMBER': emailInfo.orderNumber
-  }
-
-  formatEmail(directory, regExReplacements, renderData, subject, toAddressArray, (err, params) => {
+  formatEmail(directory, renderData, subject, toAddressArray, (err, params) => {
     if (err) {
       return notifyHQ(err, logFinal)
     }
@@ -82,11 +70,8 @@ function sendPasswordReset (emailAddress, resetCode, callback) {
   const directory = 'reset_password'
   const subject = 'NightWalker.com Password Reset Code'
   const renderData = {resetCode}
-  const regExReplacements = {
-    '#RESETCODE': resetCode
-  }
 
-  formatEmail(directory, regExReplacements, renderData, subject, [emailAddress], (err, params) => {
+  formatEmail(directory, renderData, subject, [emailAddress], (err, params) => {
     if (err) {
       return notifyHQ(err, logFinal)
     }

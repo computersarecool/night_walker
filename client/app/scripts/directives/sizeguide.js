@@ -8,8 +8,6 @@
  * # sizeGuide
  */
 
-// TODO: When do controllers need to be set in angular?
-
 angular.module('nightwalkerApp')
   .directive('siteSizeGuide', function () {
     return {

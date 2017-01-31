@@ -47,10 +47,19 @@ function createAddress (shippingDetails, callback) {
   })
 }
 
-function createParcel (toAddress, shippingDetails, emailCallback) {
+function createParcel (toAddress, shippingDetails, cart, emailCallback) {
+  let packageType
+  if (cart.length < 2) {
+    packageType = 'SmallFlatRateBox'
+  } else if (cart.length < 4) {
+    packageType = 'MediumFlatRateBox'
+  } else {
+    packageType = 'LargeFlatRateBox'
+  }
+
   easypost.Parcel.create({
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'test',
-    predefined_package: 'SmallFlatRateBox',
+    predefined_package: packageType,
     weight: 21.2
   }, (err, parcel) => {
     if (err) {

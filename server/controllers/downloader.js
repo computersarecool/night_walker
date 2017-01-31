@@ -17,7 +17,6 @@ function downloadFile (fileObj, callback) {
     res.on('end', () => {
       let buffer = Buffer.concat(datachunks).toString('base64')
       callback(null, {
-        // TODO: Make filename a real path name
         filename: path.basename(url.parse(fileObj.url).pathname),
         mimetype: res.headers['content-type'],
         file: buffer

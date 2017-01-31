@@ -1,7 +1,6 @@
 const mailController = require('./mail')
 
 function handler (err, req, res, next) {
-  // TODO: this error comes from JWT.verify - delete the invalid token
   if (err.name === 'UnauthorizedError') {
     err.status = 401
     err.message = 'Invalid Token'

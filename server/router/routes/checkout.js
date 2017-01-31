@@ -59,7 +59,7 @@ function checkout (req, res, user, next) {
           return next(err)
         }
         // create parcel
-        shippingController.createParcel(toAddress, shippingDetails, (err, shipmentInfo) => {
+        shippingController.createParcel(toAddress, shippingDetails, user.cart, (err, shipmentInfo) => {
           if (err) {
             return next(err)
           }

@@ -1,13 +1,22 @@
 Thanks for shopping at NightWalker. Your purchase is on its way.
 
-#FIRSTNAME #LASTNAME
-#ADDRESS1 #ADDRESS2
-#CITY
-#STATE
-#ZIP
+<%= firstName %> <%= lastName %>
 
-Your order is ##ORDERNUMBER
-And your tracking number is USPS ##TRACKINGCODE
+Order #<%= orderNumber %>
+Tracking #<%= trackingCode %>
+
+<%= address1 %>
+<%= address2 %>
+<%= city %>
+<%= state %>
+<%= zip %>
+
+<% for (let i = 0; i < items.length; i++) { %>
+<%= items[i].description %> in <%= items[i].flavor %>. Size <%= items[i].sizes.waistSize %> x <%= items[i].sizes.inseam %>
+$ <%= (items[i].currentPrice / 100).toFixed(2) %>
+<% } %>
+
+Total $ <%= (totalCost / 100).toFixed(2) %>
 
 Acme Inc. 123 Van Ness, San Francisco 94102
 Questions? Email help@acme.inc

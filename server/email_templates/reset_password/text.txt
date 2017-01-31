@@ -1,3 +1,6 @@
 Hello,
-Your NightWalker.com password reset code is #RESETCODE
+Your NightWalker.com password reset code is
+
+<%= resetCode %>
+
 Please visit nightwalker.com to reset your password
