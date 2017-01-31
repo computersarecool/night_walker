@@ -29,8 +29,8 @@
 ```
     
 ## STYLE
-- Modal dialog box
-- Product page details
+#### Modal dialog box
+#### Product page details
   - Short description
   - Price
   - Product info
@@ -39,7 +39,7 @@
   - add to cart
   - free shipping
   
--Media
+#### Media
   - Black and white stripes as background, front photos pngs
   - fruity background on product images
   - Make favicon
@@ -52,11 +52,9 @@
   - Consider reusing the home sprite images on poster gallery as they will load quicker
   - optimize sizeof all images
   
--Order Confirmation Email
-  - Real tracking number
+#### Order Confirmation Email
   - Logo
-  - Real response email
-  - Real address
+  - Real response email address
 
 ### ONGOING QUESTIONS:
 - ANGULAR
@@ -71,29 +69,29 @@
 
 
 
-### JAVASCRIPT
+#### JAVASCRIPT
 
-### NODE
+#### NODE
 
-### EXPRESS
+#### EXPRESS
 
-### MONGODB:
-### YEOMAN:
+#### MONGODB:
+#### YEOMAN:
   -  travis.yml
   -  buildignore
     
-###  MISC
+####  MISC
   - Editor config
   - Unit testing
 
 
-### Things I would have liked to have done better:
-- Database
+##### Things I would have liked to have done better:
+###### Database
   - Database design
   - use schema design to improve findProductByFlavor in database.js
   - Save user stripe token information in database.js
   - For the individual products, combine size information / sizes / distinctSizes
   - remove SKU from irrelevant collection
 
-- Mail Controller
+###### Mail Controller
   - Abstracted the emailing process even more (more generic methods)
