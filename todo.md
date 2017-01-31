@@ -1,7 +1,8 @@
 # TODO:
-  ## DATABASE
+
+## DATABASE
       
-  ## SERVER
+## SERVER
      - [ ]  systemd startup script / elastic startup
      - [ ]  Look into name server issues
           - log rotation
