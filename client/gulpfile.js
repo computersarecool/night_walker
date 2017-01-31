@@ -1,16 +1,17 @@
-// NEED: Usemin, standard, imagemin, sbgmin, htmlmin, ngmin, karma
+// NEED: Usemin, imagemin, sbgmin, htmlmin, ngmin, karma
 const path = require('path')
 const wiredep = require('wiredep').stream
 const gulp = require('gulp')
 const babel = require('gulp-babel')
 const sourcemaps = require('gulp-sourcemaps')
 const useref = require('gulp-useref')
-const gulpIf = require('gulp-if')
-const uglify = require('gulp-uglify')
-const cssnano = require('gulp-cssnano')
+const standard = require('gulp-standard')
 const stylus = require('gulp-stylus')
 const autoprefixer = require('gulp-autoprefixer')
 const rename = require('gulp-rename')
+const gulpIf = require('gulp-if')
+const uglify = require('gulp-uglify')
+const cssnano = require('gulp-cssnano')
 const del = require('del')
 const dist = '../dist/'
 const build = '../build/'
@@ -24,13 +25,13 @@ gulp.task('clean:build', () => {
   return del.sync(build, {force: true})
 })
 
-// move bower_components directory
+// copy app directory
 gulp.task('copyApp', () => {
   return gulp.src(['app/**/*'])
     .pipe(gulp.dest(build))
 })
 
-// move bower_components directory
+// copy bower_components directory
 gulp.task('copyBower', () => {
   return gulp.src(['bower_components/**/*'])
     .pipe(gulp.dest(path.join(build, '..', 'bower_components')))
@@ -41,6 +42,15 @@ gulp.task('wiredep', () => {
   return gulp.src('app/index.html')
     .pipe(wiredep())
     .pipe(gulp.dest(build))
+})
+
+// check js
+gulp.task('standard', () => {
+  return gulp.src(['app/**/*.js'])
+    .pipe(standard())
+    .pipe(standard.reporter('default', {
+      breakOnError: true
+    }))
 })
 
 // transpile stylus, prefix and place css file

@@ -147,6 +147,8 @@ angular.module('nightwalkerApp')
     }
 
     $scope.$on('$destroy', () => {
-      $interval.cancel(rotateInterval)
+      if (rotateInterval) {
+        $interval.cancel(rotateInterval)
+      }
     })
   })

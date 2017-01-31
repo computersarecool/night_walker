@@ -4,7 +4,6 @@
   SERVER
       []  systemd startup script / elastic startup
       []  Look into name server issues
-      []  npm Shrinkwrap
           - log rotation
           - jsdoc
           - SPF policy

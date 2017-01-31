@@ -10,7 +10,6 @@
  */
 angular.module('nightwalkerApp')
   .controller('AccountCtrl', function ($scope, $location, UserFactory) {
-
     $scope.user = UserFactory.getUser().then(results => {
       $scope.user = results
     }, httpError => {

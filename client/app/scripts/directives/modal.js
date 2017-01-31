@@ -22,10 +22,6 @@ angular.module('nightwalkerApp')
           scope.showModal = true
         }
 
-        function clearError () {
-          scope.showModal = false
-        }
-
         ModalService.registerInfoCallback(showInfo)
         ModalService.registerErrorCallback(showError)
       }
