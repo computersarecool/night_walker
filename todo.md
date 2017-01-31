@@ -14,7 +14,8 @@
 - [ ] Google analytics
 - [ ] Move static assets / app directory to cloudfront + favicon best practices
      
-     Minify everything
+```
+    Minify everything
           Make all resource (i.e. images, html) links relative to home directory
           Make CDN Mirror this structure
               images
@@ -25,7 +26,7 @@
           Concat js / css
           Put those files to CDN
           Replace js / css reference in page to CDN file
-
+```
     
 ## STYLE
 - Modal dialog box
