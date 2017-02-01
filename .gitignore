@@ -20,3 +20,4 @@ database/data/db/*
 database/data/logs/*
 !database/data/logs/.gitkeep
 build
+dist/scripts

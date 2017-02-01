@@ -23,21 +23,9 @@ gulp.task('clean:dist', () => {
   return del.sync(dist, {force: true})
 })
 
-// copy app directory
-// gulp.task('copyApp', () => {
-//  return gulp.src(['app/**/*'])
-//    .pipe(gulp.dest(dist))
-// })
-//
-// copy bower_components directory
-// gulp.task('copyBower', () => {
-//  return gulp.src(['bower_components/**/*'])
-//    .pipe(gulp.dest(path.join(dist, '..', 'bower_components')))
-// })
-
 // check js
 gulp.task('standard', () => {
-  return gulp.src(['app/**/*.js'])
+  return gulp.src(['app/*.js, app/**/*.js'])
     .pipe(standard())
     .pipe(standard.reporter('default', {
       breakOnError: true
@@ -45,7 +33,7 @@ gulp.task('standard', () => {
 })
 
 gulp.task('ngAnnotate', () => {
-  return gulp.src('app/**/*.js')
+  return gulp.src(['app/*.js', 'app/**/*.js'])
     .pipe(ngAnnotate())
     .pipe(gulp.dest(dist))
 })
