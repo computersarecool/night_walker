@@ -54,14 +54,21 @@ gulp.task('babel', () => {
 gulp.task('wiredep', () => {
   return gulp.src('app/index.html', {base: './'})
     .pipe(wiredep())
-    .pipe(gulp.dest('./'))
+    .pipe(gulp.dest(dist))
+})
+
+gulp.task('wiredepDist', () => {
+  return gulp.src('app/index.html')
+    .pipe(wiredep())
+    .pipe(gulp.dest(dist))
 })
 
 // make all bower references to google cdn
 gulp.task('cdnizer', () => {
-  return gulp.src('app/index.html')
+  return gulp.src(path.join(dist, 'index.html'))
     .pipe(cdnizer({
       relativeRoot: __dirname,
+      allowRev: false,
       bowerComponents: 'bower_components',
       files: [
         'cdnjs:angular.js:angular.min.js@1.5.0',
@@ -100,8 +107,11 @@ gulp.task('minify:images', () => {
 })
 
 gulp.task('minify:html', () => {
-  return gulp.src(path.join(dist, '**/*.html'))
-    .pipe(htmlmin({collapseWhitespace: true}))
+  return gulp.src('app/**/*.html')
+    .pipe(htmlmin({
+      collapseWhitespace: true,
+      removeComments: true
+    }))
     .pipe(gulp.dest(dist))
 })
 
@@ -122,9 +132,13 @@ gulp.task('minify:css', () => {
 })
 
 gulp.task('default', ['wiredep'])
+
 gulp.task('prep', callback => {
-  runSequence('clean:dist', 'standard', 'wiredep', 'babel', 'ngAnnotate', 'stylus', 'cdnizer', 'useref', callback)
+  runSequence('clean:dist', 'standard', 'wiredepDist', 'babel', 'ngAnnotate', 'stylus', 'useref', callback)
 })
 
-gulp.task('min', ['minify:images', 'minify:html', 'minify:js', 'minify:css'])
+gulp.task('min', callback => {
+  runSequence('cdnizer', ['minify:images', 'minify:html', 'minify:js', 'minify:css'])
+})
+
 gulp.task('final', ['minPrep'])
