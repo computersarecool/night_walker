@@ -98,3 +98,5 @@ Minify everything
 
 ###### Mail Controller
   - Abstracted the emailing process even more (more generic methods)
+
+###### Testing

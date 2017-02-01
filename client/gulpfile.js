@@ -1,9 +1,9 @@
-// NEED: Usemin, imagemin, svgmin, htmlmin, ngmin, karma
 const path = require('path')
 const gulp = require('gulp')
 const del = require('del')
 const standard = require('gulp-standard')
 const wiredep = require('wiredep').stream
+const ngAnnotate = require('gulp-ng-annotate')
 const stylus = require('gulp-stylus')
 const autoprefixer = require('gulp-autoprefixer')
 const rename = require('gulp-rename')
@@ -13,6 +13,8 @@ const useref = require('gulp-useref')
 const googlecdn = require('gulp-google-cdn')
 const cssnano = require('gulp-cssnano')
 const htmlmin = require('gulp-htmlmin')
+const imagemin = require('gulp-imagemin')
+const pump = require('pump')
 const uglify = require('gulp-uglify')
 const dist = '../dist/'
 
@@ -40,6 +42,12 @@ gulp.task('standard', () => {
     .pipe(standard.reporter('default', {
       breakOnError: true
     }))
+})
+
+gulp.task('ngAnnotate', () => {
+  return gulp.src('app/**/*.js')
+    .pipe(ngAnnotate())
+    .pipe(gulp.dest(dist))
 })
 
 // keep dependencies up to date with bower.json by filling in <!--bower:--> blocks
@@ -87,21 +95,35 @@ gulp.task('useref', () => {
 })
 
 // minifiers
+gulp.task('minify:iamges', () => {
+  gulp.src('app/images/**/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest(path.join(dist, 'images')))
+})
+
+gulp.task('minify:html', () => {
+  return gulp.src(path.join(dist, '**/*.html'))
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest(dist))
+})
+
+gulp.task('minify:js', callback => {
+  pump([
+    gulp.src(path.join(dist, '/**/.js')),
+    uglify(),
+    gulp.dest(dist)
+  ], callback)
+})
+
 gulp.task('minify:css', () => {
-  return gulp.src('app/styles/main.css')
+  return gulp.src(path.join(dist, '/**/main.css'))
     .pipe(sourcemaps.init())
     .pipe(cssnano())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(dist))
 })
 
-gulp.task('minify:html', () => {
-  return gulp.src('app/**/*.html')
-    .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('dist'))
-})
-
 gulp.task('default', ['wiredep'])
-gulp.task('prep', ['clean:dist', 'standard', 'wiredep', 'stylus', 'useref'])
-gulp.task('minPrep', ['clean:dist', 'standard', 'wiredep', 'stylus', 'useref', 'minify:css'])
-gulp.task('final', ['clean:dist', 'standard', 'wiredep', 'stylus', 'useref'])
+gulp.task('prep', ['clean:dist', 'standard', 'ngMin', 'wiredep', 'stylus', 'useref'])
+gulp.task('minPrep', ['prep', 'minify:images', 'minify:html', 'minify:js', 'minify:css'])
+gulp.task('final', ['minPrep'])
