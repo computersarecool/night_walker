@@ -13,8 +13,7 @@
   - jsdoc
    
 ## CLIENT
-* - [ ] Finish gulpfile and test
-- [ ] Check triple angular include in cdnizer
+* - [ ] Bower links in fallback cdnizer
 - [ ] Move static assets / app directory to cloudfront + favicon best practices
 - [ ] Google analytics
      

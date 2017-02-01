@@ -33,21 +33,9 @@ gulp.task('standard', () => {
     }))
 })
 
-gulp.task('ngAnnotate', () => {
-  return gulp.src(path.join(dist, '**/*.js'))
-    .pipe(ngAnnotate())
-    .pipe(gulp.dest(dist))
-})
-
-// transpile js
-gulp.task('babel', () => {
-  return gulp.src('app/scripts/**/*.js')
-    .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['es2015']
-    }))
-    .pipe(sourcemaps.write('maps'))
-    .pipe(gulp.dest(path.join(dist, 'scripts')))
+gulp.task('copyBower', () => {
+  return gulp.src(['bower_components/**/*'])
+    .pipe(gulp.dest(path.join(dist, 'bower_components')))
 })
 
 // keep dependencies up to date with bower.json by filling in <!--bower:--> blocks
@@ -63,20 +51,20 @@ gulp.task('wiredepDist', () => {
     .pipe(gulp.dest(dist))
 })
 
-// make all bower references to google cdn
-gulp.task('cdnizer', () => {
-  return gulp.src(path.join(dist, 'index.html'))
-    .pipe(cdnizer({
-      relativeRoot: __dirname,
-      allowRev: false,
-      bowerComponents: 'bower_components',
-      files: [
-        'cdnjs:angular.js:angular.min.js@1.5.0',
-        'cdnjs:angular.js:angular-resource.min.js@1.5.0',
-        'cdnjs:angular.js:angular-sanitize.min.js@1.5.0',
-        'cdnjs:angular.js:angular-route.min.js@1.5.0'
-      ]
+// transpile js
+gulp.task('babel', () => {
+  return gulp.src('app/scripts/**/*.js')
+    .pipe(sourcemaps.init())
+    .pipe(babel({
+      presets: ['es2015']
     }))
+    .pipe(sourcemaps.write('maps'))
+    .pipe(gulp.dest(path.join(dist, 'scripts')))
+})
+
+gulp.task('ngAnnotate', () => {
+  return gulp.src(path.join(dist, '**/*.js'))
+    .pipe(ngAnnotate())
     .pipe(gulp.dest(dist))
 })
 
@@ -99,6 +87,23 @@ gulp.task('useref', () => {
     .pipe(gulp.dest(dist))
 })
 
+// make all bower references to google cdn
+gulp.task('cdnizer', () => {
+  return gulp.src(path.join(dist, 'index.html'))
+    .pipe(cdnizer({
+      relativeRoot: __dirname,
+      allowRev: false,
+      bowerComponents: 'bower_components',
+      files: [
+        'cdnjs:angular.js:angular.min.js@1.5.0',
+        'cdnjs:angular.js:angular-resource.min.js@1.5.0',
+        'cdnjs:angular.js:angular-sanitize.min.js@1.5.0',
+        'cdnjs:angular.js:angular-route.min.js@1.5.0'
+      ]
+    }))
+    .pipe(gulp.dest(dist))
+})
+
 // minifiers
 gulp.task('minify:images', () => {
   return gulp.src('app/images/**/*')
@@ -107,7 +112,7 @@ gulp.task('minify:images', () => {
 })
 
 gulp.task('minify:html', () => {
-  return gulp.src('app/**/*.html')
+  return gulp.src(path.join(dist, '**/*.html'))
     .pipe(htmlmin({
       collapseWhitespace: true,
       removeComments: true
@@ -134,10 +139,10 @@ gulp.task('minify:css', () => {
 gulp.task('default', ['wiredep'])
 
 gulp.task('prep', callback => {
-  runSequence('clean:dist', 'standard', 'wiredepDist', 'babel', 'ngAnnotate', 'stylus', 'useref', callback)
+  runSequence('clean:dist', 'standard', 'copyBower', 'wiredepDist', 'babel', 'ngAnnotate', 'stylus', 'useref', callback)
 })
 
-gulp.task('min', callback => {
+gulp.task('cdnMin', callback => {
   runSequence('cdnizer', ['minify:images', 'minify:html', 'minify:js', 'minify:css'])
 })
 
