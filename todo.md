@@ -18,17 +18,17 @@
 - [ ] Move static assets / app directory to cloudfront + favicon best practices
      
 ```
-    Minify everything
-          Make all resource (i.e. images, html) links relative to home directory
-          Make CDN Mirror this structure
-              images
-              partials
-              scripts
-              styles
-              views
-          Concat js / css
-          Put those files to CDN
-          Replace js / css reference in page to CDN file
+Minify everything
+      Make all resource (i.e. images, html) links relative to home directory
+      Make CDN Mirror this structure
+          images
+          partials
+          scripts
+          styles
+          views
+      Concat js / css
+      Put those files to CDN
+      Replace js / css reference in page to CDN file
 ```
     
 ## STYLE
