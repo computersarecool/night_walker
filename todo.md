@@ -14,6 +14,7 @@
    
 ## CLIENT
 * - [ ]  Confirm imagemin works
+- [ ] Make ngAnnotate work
 - [ ] Check triple angular include in cdnizer
 - [ ] Move static assets / app directory to cloudfront + favicon best practices
 - [ ] Google analytics
