@@ -8,15 +8,15 @@
     }
   ],
   "dependencies": {
-    "angular": "~1.5",
-    "angular-resource": "~1.5",
-    "angular-sanitize": "~1.5",
-    "angular-route": "~1.5",
-    "ngtouch": "~1.0.1"
+    "angular": "1.5",
+    "angular-resource": "1.5",
+    "angular-sanitize": "1.5",
+    "angular-route": "1.5",
+    "ngtouch": "1.0.1"
   },
   "devDependencies": {
-    "angular-mocks": "~1.5",
-    "angular-scenario": "~1.5"
+    "angular-mocks": "1.5",
+    "angular-scenario": "1.5"
   },
   "private": true,
   "appPath": "app"
