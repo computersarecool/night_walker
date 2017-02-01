@@ -26,7 +26,7 @@ gulp.task('clean:dist', () => {
 
 // check js
 gulp.task('standard', () => {
-  return gulp.src('app/**/*.js')
+  return gulp.src(['app/**/*.js', '!app/bower_components/**'])
     .pipe(standard())
     .pipe(standard.reporter('default', {
       breakOnError: false
@@ -122,9 +122,9 @@ gulp.task('minify:html', () => {
 
 gulp.task('minify:js', callback => {
   pump([
-    gulp.src(path.join(dist, '/**/.js')),
+    gulp.src(path.join(dist, 'scripts', 'scripts.js'), {base: './'}),
     uglify(),
-    gulp.dest(dist)
+    gulp.dest('./')
   ], callback)
 })
 

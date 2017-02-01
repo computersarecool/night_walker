@@ -13,8 +13,7 @@
   - jsdoc
    
 ## CLIENT
-* - [ ] Bower links in fallback cdnizer
-- [ ] Move static assets / app directory to cloudfront + favicon best practices
+* - [ ] Move static assets / app directory to cloudfront + favicon best practices
 - [ ] Google analytics
      
 ```
