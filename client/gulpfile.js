@@ -52,9 +52,9 @@ gulp.task('babel', () => {
 
 // keep dependencies up to date with bower.json by filling in <!--bower:--> blocks
 gulp.task('wiredep', () => {
-  return gulp.src('app/index.html')
+  return gulp.src('app/index.html', {base: './'})
     .pipe(wiredep())
-    .pipe(gulp.dest('app/index'))
+    .pipe(gulp.dest('./'))
 })
 
 // make all bower references to google cdn
