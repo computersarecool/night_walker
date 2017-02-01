@@ -11,9 +11,9 @@ const babel = require('gulp-babel')
 const sourcemaps = require('gulp-sourcemaps')
 const useref = require('gulp-useref')
 const googlecdn = require('gulp-google-cdn')
-const gulpIf = require('gulp-if')
-const uglify = require('gulp-uglify')
 const cssnano = require('gulp-cssnano')
+const htmlmin = require('gulp-htmlmin')
+const uglify = require('gulp-uglify')
 const dist = '../dist/'
 
 // delete the already existing dist folder
@@ -95,7 +95,13 @@ gulp.task('minify:css', () => {
     .pipe(gulp.dest(dist))
 })
 
+gulp.task('minify:html', () => {
+  return gulp.src('app/**/*.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('dist'))
+})
+
 gulp.task('default', ['wiredep'])
 gulp.task('prep', ['clean:dist', 'standard', 'wiredep', 'stylus', 'useref'])
-gulp.task('minPrep', ['clean:dist', 'standard', 'wiredep', 'stylus', 'useref'])
+gulp.task('minPrep', ['clean:dist', 'standard', 'wiredep', 'stylus', 'useref', 'minify:css'])
 gulp.task('final', ['clean:dist', 'standard', 'wiredep', 'stylus', 'useref'])
