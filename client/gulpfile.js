@@ -112,6 +112,6 @@ gulp.task('minify:css', () => {
 })
 
 gulp.task('default', ['wiredep'])
-gulp.task('prep', ['clean:dist', 'standard', 'ngAnnotate', 'babel', 'wiredep', 'stylus', 'useref', 'googlecdn'])
+gulp.task('prep', gulp.series('clean:dist', 'standard', 'ngAnnotate', 'babel', 'wiredep', 'stylus', 'useref'))
 gulp.task('minPrep', ['prep', 'minify:images', 'minify:html', 'minify:js', 'minify:css'])
 gulp.task('final', ['minPrep'])
