@@ -34,7 +34,7 @@ gulp.task('standard', () => {
 })
 
 gulp.task('copyBower', () => {
-  return gulp.src(['bower_components/**/*'])
+  return gulp.src(['app/bower_components/**/*'])
     .pipe(gulp.dest(path.join(dist, 'bower_components')))
 })
 
@@ -42,7 +42,7 @@ gulp.task('copyBower', () => {
 gulp.task('wiredep', () => {
   return gulp.src('app/index.html', {base: './'})
     .pipe(wiredep())
-    .pipe(gulp.dest(dist))
+    .pipe(gulp.dest('./'))
 })
 
 gulp.task('wiredepDist', () => {
