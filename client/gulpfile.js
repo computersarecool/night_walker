@@ -1,6 +1,7 @@
 const path = require('path')
 const gulp = require('gulp')
 const del = require('del')
+const runSequence = require('run-sequence')
 const standard = require('gulp-standard')
 const wiredep = require('wiredep').stream
 const ngAnnotate = require('gulp-ng-annotate')
@@ -10,7 +11,7 @@ const rename = require('gulp-rename')
 const babel = require('gulp-babel')
 const sourcemaps = require('gulp-sourcemaps')
 const useref = require('gulp-useref')
-const googlecdn = require('gulp-google-cdn')
+const cdnizer = require('gulp-cdnizer')
 const cssnano = require('gulp-cssnano')
 const htmlmin = require('gulp-htmlmin')
 const imagemin = require('gulp-imagemin')
@@ -53,14 +54,23 @@ gulp.task('babel', () => {
 gulp.task('wiredep', () => {
   return gulp.src('app/index.html')
     .pipe(wiredep())
-    .pipe(gulp.dest(dist))
+    .pipe(gulp.dest('app/index'))
 })
 
 // make all bower references to google cdn
-gulp.task('googlecdn', () => {
-  return gulp.src(path.join(dist, 'index.html'))
-    .pipe(googlecdn(require('./bower.json')))
-    .pipe(gulp.dest('dist'))
+gulp.task('cdnizer', () => {
+  return gulp.src('app/index.html')
+    .pipe(cdnizer({
+      relativeRoot: __dirname,
+      bowerComponents: 'bower_components',
+      files: [
+        'cdnjs:angular.js:angular.min.js@1.5.0',
+        'cdnjs:angular.js:angular-resource.min.js@1.5.0',
+        'cdnjs:angular.js:angular-sanitize.min.js@1.5.0',
+        'cdnjs:angular.js:angular-route.min.js@1.5.0'
+      ]
+    }))
+    .pipe(gulp.dest(dist))
 })
 
 // transpile stylus, prefix and move css file
@@ -112,6 +122,9 @@ gulp.task('minify:css', () => {
 })
 
 gulp.task('default', ['wiredep'])
-gulp.task('prep', gulp.series('clean:dist', 'standard', 'ngAnnotate', 'babel', 'wiredep', 'stylus', 'useref'))
+gulp.task('prep', callback => {
+  runSequence('clean:dist', 'standard', 'ngAnnotate', 'wiredep', 'babel', 'stylus', 'useref', 'cdnizer', callback)
+})
+
 gulp.task('minPrep', ['prep', 'minify:images', 'minify:html', 'minify:js', 'minify:css'])
 gulp.task('final', ['minPrep'])

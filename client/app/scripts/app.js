@@ -13,8 +13,7 @@ angular
   .module('nightwalkerApp', [
     'ngResource',
     'ngRoute',
-    'ngSanitize',
-    'ngTouch'
+    'ngSanitize'
   ])
   .constant('base', 'http://35.164.160.104:3000')
   .config(($routeProvider, $locationProvider, $httpProvider) => {
