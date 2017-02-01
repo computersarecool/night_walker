@@ -25,10 +25,10 @@ gulp.task('clean:dist', () => {
 
 // check js
 gulp.task('standard', () => {
-  return gulp.src(['app/*.js, app/**/*.js'])
+  return gulp.src('app/**/*.js')
     .pipe(standard())
     .pipe(standard.reporter('default', {
-      breakOnError: true
+      breakOnError: false
     }))
 })
 
@@ -36,6 +36,17 @@ gulp.task('ngAnnotate', () => {
   return gulp.src(['app/*.js', 'app/**/*.js'])
     .pipe(ngAnnotate())
     .pipe(gulp.dest(dist))
+})
+
+// transpile js
+gulp.task('babel', () => {
+  return gulp.src('app/scripts/**/*.js')
+    .pipe(sourcemaps.init())
+    .pipe(babel({
+      presets: ['es2015']
+    }))
+    .pipe(sourcemaps.write('maps'))
+    .pipe(gulp.dest(path.join(dist, 'scripts')))
 })
 
 // keep dependencies up to date with bower.json by filling in <!--bower:--> blocks
@@ -46,10 +57,10 @@ gulp.task('wiredep', () => {
 })
 
 // make all bower references to google cdn
-gulp.task('cdn', () => {
-  return gulp.src('app/index.html')
+gulp.task('googlecdn', () => {
+  return gulp.src(path.join(dist, 'index.html'))
     .pipe(googlecdn(require('./bower.json')))
-    .pipe(gulp.des('dist'))
+    .pipe(gulp.dest('dist'))
 })
 
 // transpile stylus, prefix and move css file
@@ -64,26 +75,15 @@ gulp.task('stylus', () => {
     .pipe(gulp.dest(path.join(dist, 'styles')))
 })
 
-// transpile js
-gulp.task('babel', () => {
-  return gulp.src('app/scripts/**/*.js')
-    .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['es2015']
-    }))
-    .pipe(sourcemaps.write('maps'))
-    .pipe(gulp.dest(path.join(dist, 'scripts')))
-})
-
 // go through the <!--build:--> blocks and concat and update references
 gulp.task('useref', () => {
   return gulp.src(path.join(dist, 'index.html'))
-    .pipe(useref({searchPath: ['client', 'client/app']}))
+    .pipe(useref({searchPath: [dist, path.join(dist, 'app')]}))
     .pipe(gulp.dest(dist))
 })
 
 // minifiers
-gulp.task('minify:iamges', () => {
+gulp.task('minify:images', () => {
   gulp.src('app/images/**/*')
     .pipe(imagemin())
     .pipe(gulp.dest(path.join(dist, 'images')))
@@ -112,6 +112,6 @@ gulp.task('minify:css', () => {
 })
 
 gulp.task('default', ['wiredep'])
-gulp.task('prep', ['clean:dist', 'standard', 'ngMin', 'wiredep', 'stylus', 'useref'])
+gulp.task('prep', ['clean:dist', 'standard', 'ngAnnotate', 'babel', 'wiredep', 'stylus', 'useref', 'googlecdn'])
 gulp.task('minPrep', ['prep', 'minify:images', 'minify:html', 'minify:js', 'minify:css'])
 gulp.task('final', ['minPrep'])
