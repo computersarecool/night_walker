@@ -13,9 +13,10 @@
   - jsdoc
    
 ## CLIENT
-* - [ ]  Add all missing gulp packages  
-- [ ] Google analytics
+* - [ ]  Confirm imagemin works
+- [ ] Check triple angular include in cdnizer
 - [ ] Move static assets / app directory to cloudfront + favicon best practices
+- [ ] Google analytics
      
 ```
 Minify everything
