@@ -34,7 +34,7 @@ gulp.task('standard', () => {
 })
 
 gulp.task('ngAnnotate', () => {
-  return gulp.src(['app/*.js', 'app/**/*.js'])
+  return gulp.src(path.join(dist, '**/*.js'))
     .pipe(ngAnnotate())
     .pipe(gulp.dest(dist))
 })
@@ -88,13 +88,13 @@ gulp.task('stylus', () => {
 // go through the <!--build:--> blocks and concat and update references
 gulp.task('useref', () => {
   return gulp.src(path.join(dist, 'index.html'))
-    .pipe(useref({searchPath: [dist, path.join(dist, 'app')]}))
+    .pipe(useref())
     .pipe(gulp.dest(dist))
 })
 
 // minifiers
 gulp.task('minify:images', () => {
-  gulp.src('app/images/**/*')
+  return gulp.src('app/images/**/*')
     .pipe(imagemin())
     .pipe(gulp.dest(path.join(dist, 'images')))
 })
@@ -123,7 +123,8 @@ gulp.task('minify:css', () => {
 
 gulp.task('default', ['wiredep'])
 gulp.task('prep', callback => {
-  runSequence('clean:dist', 'standard', 'ngAnnotate', 'wiredep', 'babel', 'stylus', 'useref', 'cdnizer', callback)
+  runSequence('clean:dist', 'standard', 'wiredep', 'babel', 'ngAnnotate', 'stylus', 'cdnizer', 'useref', callback)
 })
 
 gulp.task('min', ['minify:images', 'minify:html', 'minify:js', 'minify:css'])
+gulp.task('final', ['minPrep'])
