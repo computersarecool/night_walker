@@ -3,12 +3,14 @@
 ## DATABASE
       
 ## SERVER
-* - [ ]  systemd startup script / elastic startup
-- [ ]  fix name server issues
-- [ ]  get domain
-- log rotation
-- jsdoc
-- SPF policy
+* AWS
+  - [ ]  systemd startup script || starting elastically
+  - [ ]  fix name server issues
+  - [ ]  get domain
+  - SPF policy
+* Other
+  - log rotation
+  - jsdoc
    
 ## CLIENT
 * - [ ]  Add all missing gulp packages  
