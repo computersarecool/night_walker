@@ -126,5 +126,4 @@ gulp.task('prep', callback => {
   runSequence('clean:dist', 'standard', 'ngAnnotate', 'wiredep', 'babel', 'stylus', 'useref', 'cdnizer', callback)
 })
 
-gulp.task('minPrep', ['prep', 'minify:images', 'minify:html', 'minify:js', 'minify:css'])
-gulp.task('final', ['minPrep'])
+gulp.task('min', ['minify:images', 'minify:html', 'minify:js', 'minify:css'])
