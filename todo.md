@@ -6,7 +6,6 @@
 * AWS
   - [ ]  systemd startup script || starting elastically
   - [ ]  fix name server issues
-  - [ ]  get domain
   - SPF policy
 * Other
   - log rotation
@@ -14,22 +13,7 @@
    
 ## CLIENT
 * - [ ] Move static assets / app directory to cloudfront + favicon best practices
-- [ ] Google analytics
      
-```
-Minify everything
-      Make all resource (i.e. images, html) links relative to home directory
-      Make CDN Mirror this structure
-          images
-          partials
-          scripts
-          styles
-          views
-      Concat js / css
-      Put those files to CDN
-      Replace js / css reference in page to CDN file
-```
-    
 ## STYLE
 #### Modal dialog box
 #### Product page details
@@ -68,8 +52,6 @@ Minify everything
   - Use $scope or var in controllers (i.e. product Controller) [asked before]
   - What is html5 mode and is it important?
   - Why use base tag
-
-
 
 #### JAVASCRIPT
 

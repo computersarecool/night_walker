@@ -1,5 +1,9 @@
 const path = require('path')
 const gulp = require('gulp')
+const awspublish = require('gulp-awspublish')
+const accessKeyId = require('../credentials').aws_access_key_id
+const secretAccessKey = require('../credentials').aws_secret_access_key
+const region = 'us-west-2'
 const del = require('del')
 const runSequence = require('run-sequence')
 const standard = require('gulp-standard')
@@ -134,6 +138,29 @@ gulp.task('minify:css', () => {
     .pipe(cssnano())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(dist))
+})
+
+// add files to aws
+gulp.task('aws', () => {
+  const params = {
+    Bucket: 'nightwalker.clothing'
+  }
+
+  const publisher = awspublish.create({
+    region,
+    accessKeyId,
+    secretAccessKey,
+    params
+  })
+
+  const headers = {
+    'Cache-Control': 'max-age=315360000, no-transform, public'
+  }
+
+  return gulp.src(path.join(dist, '**'))
+    .pipe(awspublish.gzip({ext: '.gz'}))
+    .pipe(publisher.publish(headers))
+    .pipe(publisher.cache())
 })
 
 gulp.task('default', ['wiredep'])

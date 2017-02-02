@@ -21,3 +21,4 @@ database/data/logs/*
 !database/data/logs/.gitkeep
 build
 dist
+client/.awspublish*
