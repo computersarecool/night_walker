@@ -4,10 +4,10 @@
       
 ## SERVER
 * Popup loft
-  - SPF policy 
   - [ ] Fix name server issues
   - [ ] Updating cloudfront cache
   - [ ] Using Elastic Beanstalk
+  - [ ] SPF policy 
   - [ ] Why different regions for each service
 * Other
   - [ ] systemd startup script
