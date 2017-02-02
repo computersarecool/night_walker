@@ -15,6 +15,8 @@
   - jsdoc
    
 ## CLIENT
+* Other
+  - [ ] Replace any references to dev server in code
      
 ## STYLE
 #### Modal dialog box
