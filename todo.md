@@ -3,7 +3,7 @@
 ## DATABASE
       
 ## SERVER
-* Popup loft
+* AWS
   - [ ] Fix name server issues
   - [ ] Updating cloudfront cache
   - [ ] Using Elastic Beanstalk
