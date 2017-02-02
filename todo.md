@@ -12,7 +12,7 @@
   - jsdoc
    
 ## CLIENT
-* - [ ] Move static assets / app directory to cloudfront + favicon best practices
+* - [ ] Rename static assets / gzip + favicon best practices
      
 ## STYLE
 #### Modal dialog box
