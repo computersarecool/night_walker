@@ -116,7 +116,7 @@ gulp.task('minify:images', () => {
 })
 
 gulp.task('minify:html', () => {
-  return gulp.src(path.join(dist, '**/*.html'))
+  return gulp.src([path.join(dist, 'index.html'), 'app/**/*.html', '!app/index.html'])
     .pipe(htmlmin({
       collapseWhitespace: true,
       removeComments: true
@@ -143,7 +143,7 @@ gulp.task('minify:css', () => {
 // add files to aws
 gulp.task('aws', () => {
   const params = {
-    Bucket: 'nightwalker.clothing'
+    Bucket: 'nightwalkerdotclothing'
   }
 
   const publisher = awspublish.create({
@@ -158,7 +158,6 @@ gulp.task('aws', () => {
   }
 
   return gulp.src(path.join(dist, '**'))
-    .pipe(awspublish.gzip({ext: '.gz'}))
     .pipe(publisher.publish(headers))
     .pipe(publisher.cache())
 })

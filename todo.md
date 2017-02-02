@@ -3,16 +3,18 @@
 ## DATABASE
       
 ## SERVER
-* AWS
-  - [ ]  systemd startup script || starting elastically
-  - [ ]  fix name server issues
-  - SPF policy
+* Popup loft
+  - SPF policy 
+  - [ ] Fix name server issues
+  - [ ] Updating cloudfront cache
+  - [ ] Using Elastic Beanstalk
+  - [ ] Why different regions for each service
 * Other
+  - [ ] systemd startup script
   - log rotation
   - jsdoc
    
 ## CLIENT
-* - [ ] Rename static assets / gzip + favicon best practices
      
 ## STYLE
 #### Modal dialog box
