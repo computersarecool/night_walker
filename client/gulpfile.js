@@ -1,5 +1,6 @@
 const path = require('path')
 const gulp = require('gulp')
+const replace = require('gulp-string-replace')
 const awspublish = require('gulp-awspublish')
 const accessKeyId = require('../credentials').aws_access_key_id
 const secretAccessKey = require('../credentials').aws_secret_access_key
@@ -26,6 +27,12 @@ const dist = '../dist/'
 // delete the already existing dist folder
 gulp.task('clean:dist', () => {
   return del.sync(dist, {force: true})
+})
+
+gulp.task('replace', () => {
+  gulp.src([path.join(dist, 'scripts', 'scripts.js')])
+    .pipe(replace('http://optonox.com:3000', 'http://nightwalker.clothing'))
+    .pipe(gulp.dest(dist))
 })
 
 // check js
@@ -165,7 +172,7 @@ gulp.task('aws', () => {
 gulp.task('default', ['wiredep'])
 
 gulp.task('prep', callback => {
-  runSequence('clean:dist', 'standard', 'copyBower', 'wiredepDist', 'babel', 'ngAnnotate', 'stylus', 'useref', callback)
+  runSequence('clean:dist', 'standard', 'copyBower', 'wiredepDist', 'babel', 'ngAnnotate', 'stylus', 'useref', 'replace', callback)
 })
 
 gulp.task('cdnMin', callback => {
