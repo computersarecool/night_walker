@@ -1,0 +1,9 @@
+[Unit]
+Description=Mongod instance for NightWalker
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/mongod --dbpath /data/db/nightwalker  --bind_ip 127.0.0.1
+
+[Install]
+WantedBy=multi-user.target

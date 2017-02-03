@@ -11,12 +11,11 @@
   - [ ] Why different regions for each service
 * Other
   - [ ] systemd startup script
-  - log rotation
+  - [ ] log rotation
   - jsdoc
    
 ## CLIENT
 * Other
-  - [ ] Replace any references to dev server in code
      
 ## STYLE
 #### Modal dialog box
