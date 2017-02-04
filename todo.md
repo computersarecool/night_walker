@@ -10,9 +10,8 @@
   - [ ] SPF policy 
   - [ ] Why different regions for each service
 * Other
-  - [ ] systemd startup script
+  - [ ] systemd startup script / journalctl
   - [ ] Make purchase actually remove items from DB
-  - [ ] log rotation
   - jsdoc
    
 ## CLIENT
