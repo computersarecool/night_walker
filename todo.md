@@ -11,6 +11,7 @@
   - [ ] Why different regions for each service
 * Other
   - [ ] systemd startup script
+  - [ ] Make purchase actually remove items from DB
   - [ ] log rotation
   - jsdoc
    

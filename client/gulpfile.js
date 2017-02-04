@@ -17,10 +17,12 @@ const babel = require('gulp-babel')
 const sourcemaps = require('gulp-sourcemaps')
 const useref = require('gulp-useref')
 const cdnizer = require('gulp-cdnizer')
-const cssnano = require('gulp-cssnano')
+const cleanCSS = require('gulp-clean-css')
 const htmlmin = require('gulp-htmlmin')
 const imagemin = require('gulp-imagemin')
 const pump = require('pump')
+const rev = require('gulp-rev')
+const revReplace = require('gulp-rev-replace')
 const uglify = require('gulp-uglify')
 const dist = '../dist/'
 
@@ -142,9 +144,13 @@ gulp.task('minify:js', callback => {
 gulp.task('minify:css', () => {
   return gulp.src(path.join(dist, '/**/main.css'))
     .pipe(sourcemaps.init())
-    .pipe(cssnano())
+    .pipe(cleanCSS())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(dist))
+})
+
+gulp.task('replace', () => {
+
 })
 
 // add files to aws
@@ -167,6 +173,7 @@ gulp.task('aws', () => {
   return gulp.src(path.join(dist, '**'))
     .pipe(publisher.publish(headers))
     .pipe(publisher.cache())
+    .pipe(awspublish.reporter())
 })
 
 gulp.task('default', ['wiredep'])
@@ -178,5 +185,3 @@ gulp.task('prep', callback => {
 gulp.task('cdnMin', callback => {
   runSequence('cdnizer', ['minify:images', 'minify:html', 'minify:js', 'minify:css'])
 })
-
-gulp.task('final', ['minPrep'])
