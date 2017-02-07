@@ -5,18 +5,21 @@
 ## SERVER
 * AWS
   - [ ] Fix name server issues
-  - [ ] Updating cloudfront cache
   - [ ] Using Elastic Beanstalk
   - [ ] SPF policy 
   - [ ] Why different regions for each service
+  - [ ] Updating cloudfront cache
+    - [ ] File-rev all files?
+
 * Other
   - [ ] systemd startup script / journalctl
-  - [ ] Make purchase actually remove items from DB
   - jsdoc
    
 ## CLIENT
 * Other
-     
+  - [ ] SEO Optimize
+  - [ ] Allow client to reach all routes directly
+
 ## STYLE
 #### Modal dialog box
 #### Product page details

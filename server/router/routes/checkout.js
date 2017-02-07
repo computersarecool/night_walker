@@ -89,6 +89,9 @@ function checkout (req, res, user, next) {
                 mailController.sendRawEmail(rawMailOptions)
                 order.orderNumber = simpleOrderNumber
                 order.trackingCode = simpleMailOptions.trackingCode
+                // Remove items from database
+                databaseController.removeItems(user.cart)
+                // Save items
                 databaseController.saveOrder(order, user)
               })
             })

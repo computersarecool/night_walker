@@ -262,6 +262,10 @@ ${shippingDetails.zip}`
   callback(successOrder)
 }
 
+function removeItems (items) {
+  items.forEach(sku => Products.findOne({sku}).remove().exec())
+}
+
 function saveOrder (order, user) {
   order.save((err, order, numaffected) => {
     if (err) {
@@ -293,5 +297,6 @@ module.exports = {
   getDetailsBySku,
   getTotalCost,
   createOrder,
+  removeItems,
   saveOrder
 }
