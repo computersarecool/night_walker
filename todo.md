@@ -24,7 +24,7 @@
 ## STYLE
 * Modal cart
  - [x] Not signed in / no items in cart
- - PICKUP  div.main
+ - PICKUP  shop page
  
 #### Modal dialog box
 #### Product page details

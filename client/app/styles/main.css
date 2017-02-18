@@ -268,6 +268,9 @@ div.main {
   right: 0;
   z-index: -1;
 }
+.container {
+  padding-top: 6vh;
+}
 site-gallery {
   position: absolute;
   width: 100vw;
@@ -295,9 +298,6 @@ img.gallery.fade {
 }
 .loading-gallery.done-loading {
   display: none;
-}
-.container {
-  padding-top: 5vh;
 }
 #collection-container {
   text-align: center;
@@ -488,9 +488,8 @@ td {
   margin-top: 14vh;
   margin-bottom: 2vh;
 }
-#checkout-view,
-#contact-container {
-  margin-top: 6vh;
+.about.container {
+  padding-top: 6vh;
 }
 @media screen and (max-aspect-ratio: 320/510) {
   header {

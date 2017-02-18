@@ -46,7 +46,7 @@ electricity = #3c77b6
 
 gray-cover = #6f6f6f
 
-nav-offset = 5vh
+nav-offset = 6vh
 
 // Display items
 html, body
@@ -242,7 +242,7 @@ nav.horizontal li
 
 
 
-// Main div
+// Main div and pages
 div.main
   position absolute
   height 93vh
@@ -251,6 +251,8 @@ div.main
   right 0
   z-index -1
 
+.container
+  padding-top nav-offset
 
 // Gallery page
 site-gallery
@@ -280,12 +282,8 @@ img.gallery.fade
 
 .loading-gallery.done-loading
   display none
-
 // End of gallery page
 
-// Pages
-.container
-  padding-top nav-offset
 
 // Shop page
 #collection-container
@@ -376,7 +374,7 @@ img.poster
 
   // End buttons
   
-  // Item details  
+// Item details
 #details
   position absolute
   text-align left
@@ -428,7 +426,7 @@ img.poster
   right 0
   color red
   
-  // End of item details
+// End of item details
 
 #size-guide
   margin-top 7vh
@@ -487,23 +485,12 @@ td
 #add-to-cart, #checkout-now
   margin-top 14vh
   margin-bottom 2vh
-
 // End of product page
 
-// Checkout page
-#checkout-view
-  
-// End of checkout page
-
 // About page
+.about.container
+  padding-top nav-offset
 // End of about page
-
-
-// Contact page
-#contact-container
-  margin-top 6vh
-
-// End of contact page
 
 
 // < 3/2 Aspect ratio
