@@ -57,17 +57,6 @@ ol,
 ul {
   list-style: none;
 }
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: '';
-  content: none;
-}
 a:focus {
   outline: 0;
 }
@@ -106,9 +95,6 @@ a:link,
 a:visited {
   text-decoration: none;
 }
-.container {
-  margin-top: 6vh;
-}
 header {
   height: 6.5vh;
   margin-top: 0.5vh;
@@ -123,28 +109,98 @@ site-cart {
   height: 6vh;
   width: 8vw;
   margin-right: 3vw;
-  background: rgba(20,20,255,0.6);
 }
 site-cart .words {
   text-align: center;
   line-height: 6vh;
 }
-#modal-cart {
+.wrap {
+  -webkit-perspective: 32vw;
+          perspective: 32vw;
+  -webkit-perspective-origin: 50% 0.5em;
+          perspective-origin: 50% 0.5em;
+}
+.cart-cube {
+  position: relative;
+  width: 7.5vw;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+.cart-cube div {
+  position: absolute;
+  width: 7.5vw;
+  height: 7.5vw;
+  box-shadow: inset 0 0 1vw rgba(125,125,125,0.8);
+  text-align: center;
+  line-height: 7.5vw;
+}
+.back {
+  -webkit-transform: translateZ(-3.75vw) rotateY(180deg);
+          transform: translateZ(-3.75vw) rotateY(180deg);
+}
+.right {
+  -webkit-transform: rotateY(-270deg) translateX(3.75vw);
+          transform: rotateY(-270deg) translateX(3.75vw);
+  -webkit-transform-origin: top right;
+      -ms-transform-origin: top right;
+          transform-origin: top right;
+}
+.left {
+  -webkit-transform: rotateY(270deg) translateX(-3.75vw);
+          transform: rotateY(270deg) translateX(-3.75vw);
+  -webkit-transform-origin: center left;
+      -ms-transform-origin: center left;
+          transform-origin: center left;
+}
+.top {
+  -webkit-transform: rotateX(-90deg) translateY(-3.75vw);
+          transform: rotateX(-90deg) translateY(-3.75vw);
+  -webkit-transform-origin: top center;
+      -ms-transform-origin: top center;
+          transform-origin: top center;
+}
+.bottom {
+  -webkit-transform: rotateX(90deg) translateY(3.75vw);
+          transform: rotateX(90deg) translateY(3.75vw);
+  -webkit-transform-origin: bottom center;
+      -ms-transform-origin: bottom center;
+          transform-origin: bottom center;
+}
+.front {
+  -webkit-transform: translateZ(3.75vw);
+          transform: translateZ(3.75vw);
+}
+div.words {
+  color: #524594;
+  box-shadow: none;
+  text-shadow: 1px 1px 4px #f62b69;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+}
+.cart-container {
+  color: #fff;
   position: absolute;
   left: 0;
-  line-height: 6vh;
+  line-height: 8vh;
   width: 100vw;
-  background: rgba(111,111,111,0.96);
+  background: #6f6f6f;
+  padding-left: 1em;
 }
 .checkout-options {
   float: left;
   clear: left;
 }
-#close-cart {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  color: #f00;
+.cart-container a:nth-child(2) {
+  color: #e72844;
+}
+.cart-container a:nth-child(3) {
+  color: #f75337;
+}
+.cart-container a:nth-child(4) {
+  color: #f85f76;
+}
+.cart-container a:active {
+  background-color: #3c77b6;
 }
 nav {
   margin-top: 1vh;
@@ -176,7 +232,7 @@ nav ul.height-collapse {
 }
 nav.horizontal:after {
   content: "";
-  width: 97vw;
+  width: 87vw;
   display: inline-block;
 }
 nav li {
@@ -193,13 +249,13 @@ nav li a {
   font-size: 7vw;
 }
 nav li:nth-child(1) > a {
-  color: #f0f;
+  color: #f62b69;
 }
 nav li:nth-child(2) > a {
-  color: #0f6cff;
+  color: #3c77b6;
 }
 nav li:nth-child(3) > a {
-  color: #3bdf09;
+  color: #524594;
 }
 nav.horizontal li {
   display: inline-block;
@@ -239,6 +295,9 @@ img.gallery.fade {
 }
 .loading-gallery.done-loading {
   display: none;
+}
+.container {
+  padding-top: 5vh;
 }
 #collection-container {
   text-align: center;
@@ -285,8 +344,8 @@ img.poster {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  width: 3.5vh;
-  height: 3.5vh;
+  width: 3.75vh;
+  height: 3.75vh;
   border-radius: 50%;
   color: #000;
   background: #000;
@@ -314,7 +373,7 @@ img.poster {
 }
 .right-ui {
   position: absolute;
-  right: 8vw;
+  right: 7.5vw;
 }
 .product-button {
   border: none;
@@ -439,5 +498,25 @@ td {
   }
   header img {
     height: 4.7vh;
+  }
+}
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotateY(0);
+            transform: rotateY(0);
+  }
+  to {
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
+  }
+}
+@keyframes spin {
+  from {
+    -webkit-transform: rotateY(0);
+            transform: rotateY(0);
+  }
+  to {
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
   }
 }

@@ -1,7 +1,4 @@
-// <link href='http://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
-// TODO: CDN Reset
-
-// Meyer reset
+// Selective Meyer reset
 html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, a, code, img, var, b, i, center, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td, article, aside, canvas, footer, header, nav, section, time, mark, audio, video
   margin 0
   padding 0
@@ -17,22 +14,13 @@ body
 ol, ul
   list-style none
   
-blockquote, q
-  quotes none
-  
-blockquote:before, blockquote:after, q:before, q:after
-  content ''
-  content none
-
 a:focus
   outline 0
 
 table
   border-collapse collapse
   border-spacing 0
-  
 // End of reset
-
 
 
 // Begin styles
@@ -44,7 +32,23 @@ site-header, site-gallery, site-nav
   display block
 
 
-// Globals  
+// Globals
+
+// Color Variables
+cherry = #e72844
+nectarine = #f75337
+lemon = #fed959
+apple = #00a07e
+plum-crazy = #524594
+powder = #f85f76
+proton-powder = #f62b69
+electricity = #3c77b6
+
+gray-cover = #6f6f6f
+
+nav-offset = 5vh
+
+// Display items
 html, body
   box-sizing border-box
   font-family 'Arial', sans-serif
@@ -59,7 +63,6 @@ html, body
 .display-none
   display none
 
-
 .clearfix:after
   content: ""
   display: table
@@ -70,17 +73,13 @@ html, body
 a:link, a:visited
  text-decoration none    
 
-// Main page
-.container
-  margin-top nav-height
-  
-// Header container
+// Home page
+// Header
 header
   height 6.5 vh
   margin-top .5vh  
   border-bottom 1vh solid black
 
-      
 // Header logo  
 header img
   height 5.4vh
@@ -93,28 +92,92 @@ site-cart
   height 6vh
   width 8vw
   margin-right 3vw
-  background rgba(20, 20, 255, .6)
 
 site-cart .words
   text-align center
   line-height 6vh
 
-#modal-cart
+// Cube
+.wrap
+  perspective: 32vw
+  perspective-origin: 50% 0.5em;
+
+.cart-cube
+  position relative
+  width: 7.5vw
+  transform-style: preserve-3d;
+  //animation spin 5s infinite linear
+
+.cart-cube div
+  position absolute
+  width 7.5vw
+  height 7.5vw
+  box-shadow inset 0 0 1vw rgba(125,125,125,0.8)
+  text-align center
+  line-height 7.5vw
+
+.back
+  transform translateZ(-3.75vw) rotateY(180deg)
+
+.right
+  transform rotateY(-270deg) translateX(3.75vw)
+  transform-origin top right;
+
+.left
+  transform rotateY(270deg) translateX(-3.75vw)
+  transform-origin center left;
+
+.top
+  transform rotateX(-90deg) translateY(-3.75vw)
+  transform-origin top center
+
+.bottom
+  transform rotateX(90deg) translateY(3.75vw)
+  transform-origin bottom center
+
+.front
+  transform translateZ(3.75vw)
+
+div.words
+  color plum-crazy
+  box-shadow none
+  text-shadow 1px 1px 4px proton-powder
+  transform translateZ(0)
+
+@keyframes spin
+   from {
+        transform: rotateY(0)
+   }
+   to {
+      transform:rotateY(360deg)
+   }
+
+//End of Cube
+
+.cart-container
+  color white
   position absolute
   left 0
-  line-height 6vh
+  line-height 8vh
   width 100vw
-  background rgba(111, 111, 111, 0.96)  
+  background gray-cover
+  padding-left 1em
 
 .checkout-options
   float left
   clear left
 
-#close-cart
-  position absolute
-  bottom 0
-  right 0
-  color red
+.cart-container a:nth-child(2)
+  color cherry
+
+.cart-container a:nth-child(3)
+  color nectarine
+
+.cart-container a:nth-child(4)
+  color powder
+
+.cart-container a:active
+  background-color electricity
 
 // Nav
 nav  
@@ -147,7 +210,7 @@ nav ul.height-collapse
 
 nav.horizontal:after 
   content ""    
-  width 97vw
+  width 87vw
   display inline-block
 
 nav li
@@ -164,13 +227,13 @@ nav li a
   font-size 7vw
   
 nav li:nth-child(1) > a
-  color rgb(255, 0, 255)
+  color proton-powder
 
 nav li:nth-child(2) > a
-  color rgb(15, 108, 255)
+  color electricity
   
 nav li:nth-child(3) > a
-  color rgb(59, 223, 9)
+  color plum-crazy
 
 nav.horizontal li
   display inline-block
@@ -220,7 +283,10 @@ img.gallery.fade
 
 // End of gallery page
 
-  
+// Pages
+.container
+  padding-top nav-offset
+
 // Shop page
 #collection-container
   text-align center
@@ -269,8 +335,8 @@ img.poster
 
 .gallery-picker
   appearance none
-  width 3.5vh
-  height 3.5vh
+  width 3.75vh
+  height 3.75vh
   border-radius 50%
   color black
   background black
@@ -299,7 +365,7 @@ img.poster
 
 .right-ui
   position absolute
-  right 8vw  
+  right 7.5vw
   
   // Buttons
 .product-button
@@ -448,70 +514,3 @@ td
   header img
     height 4.7vh
   
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-// Cube
-// .wrap 
-//   perspective: 800px
-//   //perspective-origin: 50% 50;
-
-// .cart-cube
-//   position relative
-//   width: 200px
-//   transform-style: preserve-3d;
-//   animation spin 5s infinite linear
-
-// .cart-cube div
-//   position absolute
-//   width 200px
-//   height 200px
-//   box-shadow inset 0 0 30px rgba(125,125,125,0.8)
-//   text-align center
-//   line-height 200px
-
-// .back
-//   transform translateZ(-100px) rotateY(180deg)
-  
-// .right
-//   transform rotateY(-270deg) translateX(100px)
-//   transform-origin top right;
-  
-// .left
-//   transform rotateY(270deg) translateX(-100px)
-//   transform-origin center left;
- 
-// .top
-//   transform rotateX(-90deg) translateY(-100px)
-//   transform-origin top center;
-
-// .bottom
-//   transform rotateX(90deg) translateY(100px)
-//   transform-origin bottom center
-
-// .front
-//   transform translateZ(100px)
-
-// div.words
-//   box-shadow none 
-//   text-shadow 2px 2px 3px rgb(255, 0, 0)
-//   transform translateZ(-25px)
-
-// @keyframes spin {
-//   from {transform: rotateY(0);}
-//   to {transform:rotateY(360deg)}
-// }
-//End of Cube

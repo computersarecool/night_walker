@@ -5,14 +5,15 @@
 ## SERVER
 * AWS
   - [ ] Fix name server issues
+  - [ ] Updating cloudfront cache
+    - [ ] File-rev all files?
   - [ ] Using Elastic Beanstalk
   - [ ] SPF policy 
   - [ ] Why different regions for each service
-  - [ ] Updating cloudfront cache
-    - [ ] File-rev all files?
 
 * Other
-  - [ ] systemd startup script / journalctl
+  - [ ] Improve systemd startup script / journalctl
+  - [ ] Get all latest Stripe and easypost credentials
   - jsdoc
    
 ## CLIENT
@@ -21,6 +22,10 @@
   - [ ] Allow client to reach all routes directly
 
 ## STYLE
+* Modal cart
+ - [x] Not signed in / no items in cart
+ - PICKUP  div.main
+ 
 #### Modal dialog box
 #### Product page details
   - Short description

@@ -1,4 +1,5 @@
 <div ng-click="showModalCart()">
+
   <!-- Cart Wrap -->
   <div class="wrap">
     <div class="cart-cube">
@@ -13,65 +14,69 @@
   </div>
 
   <!-- Cart -->
-  <div id="modal-cart" ng-show="modalCart">
+  <div id="modal-cart" class="cart-container" ng-show="modalCart">
     <!-- User is signed in -->
     <div ng-show="user.firstName">
       <!-- No items in cart -->
       <div ng-show="!user.cart.length">
         <p>
-          Your cart is empty. Would you like to:
+          Your cart is empty
         </p>
-        <a ng-href="/account">
+        <a ng-href="/account" class="modal-cart">
           <p>
-            View Account?
+            View Account
           </p>
         </a>
       </div>
 
       <!-- Items in cart -->
       <div ng-show="user.cart.length">
-        You have {{user.cart.length}} items in your cart. Would you like to:
-        <a ng-href="/checkout">
+        You have {{user.cart.length}} items in your cart
+        <a ng-href="/checkout" class="modal-cart">
           <p>
-            Check out?
+            Check out
           </p>
         </a>
-        <a ng-href="/account">
+        <a ng-href="/account" class="modal-cart">
           <p>
-            View Cart?
+            View Cart
           </p>
         </a>
-        <a ng-href="/account">
+        <a ng-href="/account" class="modal-cart">
           <p>
-            View Account?
+            View Account
           </p>
         </a>
         <a ng-click="logout()">
           <p>
-            Logout?
+            Logout
           </p>
         </a>
       </div>
     </div>
    
+
     <!-- User is not signed in -->      
     <div ng-show="!user.firstName">
       <!-- No items in cart -->
       <div ng-show="!user.cart.length">
         <p>
-          Welcome, would you like to:
+          Welcome to NightWalker
         </p>
-        <a ng-href="/login">
+
+        <a ng-href="/login" class="modal-cart">
           <p>
-            Log in?
+            Log in
           </p>
         </a>
-        <a ng-href="/create-account">
+
+        <a ng-href="/create-account" class="modal-cart">
           <p>
-            Create an Account?
+            Create an Account
           </p>
         </a>
-        <a ng-href="/shop">
+
+        <a ng-href="/shop" class="modal-cart">
           <p>
             Shop
           </p>
@@ -81,28 +86,34 @@
       <!-- Items in cart -->  
       <div ng-show="user.cart.length">
         <p>
-          You have {{user.cart.length}} items in your cart. Would you like to:
+          You have {{user.cart.length}} items in your cart
         </p>
-        <a ng-href="/checkout">
+
+        <a ng-href="/checkout" class="modal-cart">
           <p class="checkout-options">
-            Check out as a guest?
+            Check out as a guest
           </p>
         </a>
-      <a ng-href="/cart">
-        <p class="checkout-options">
-          View your cart?
-        </p>
-      </a>
-      <a ng-href="/login">
-        <p class="checkout-options">
-          Sign in?
-        </p>
-      </a>
-      <a ng-href="/create-account">
-        <p class="checkout-options">
-          Create an account?
-        </p>
-     </a>
-    </div>
+
+        <a ng-href="/cart" class="modal-cart">
+          <p class="checkout-options">
+            View your cart
+          </p>
+        </a>
+
+        <a ng-href="/login" class="modal-cart">
+          <p class="checkout-options">
+            Sign in
+          </p>
+        </a>
+
+        <a ng-href="/create-account" class="modal-cart">
+          <p class="checkout-options">
+            Create an account
+          </p>
+        </a>
+
+      </div>
+
   </div>
 </div>
