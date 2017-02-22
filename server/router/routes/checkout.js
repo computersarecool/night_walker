@@ -10,6 +10,13 @@ const validator = require('validator')
 // Check if this is a registered user and validate email
 router.use('/', expressJwt({secret: secret, credentialsRequired: false}), (req, res, next) => {
   // Input validation
+  if (!req.body.shippingDetails) {
+    const error = new Error('Your request is not valid')
+    error.name = 'Missing Shipping Data'
+    error.status = 400
+    error.type = 'MalformedData'
+    return next(error)
+  }
   if (!validator.isEmail(req.body.shippingDetails.email)) {
     const error = new Error('Your email address is not valid')
     error.name = 'Invalid Email'
