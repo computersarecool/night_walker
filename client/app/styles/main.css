@@ -171,9 +171,9 @@ site-cart .words {
           transform: translateZ(3.75vw);
 }
 div.words {
-  color: #524594;
+  color: #3f2c63;
   box-shadow: none;
-  text-shadow: 1px 1px 4px #f62b69;
+  text-shadow: 1px 1px 4px #ed243f;
   -webkit-transform: translateZ(0);
           transform: translateZ(0);
 }
@@ -184,23 +184,22 @@ div.words {
   line-height: 8vh;
   width: 100vw;
   background: #6f6f6f;
-  padding-left: 1em;
 }
 .checkout-options {
   float: left;
   clear: left;
 }
-.cart-container a:nth-child(2) {
-  color: #e72844;
+.cart-container p {
+  padding-left: 6vw;
 }
-.cart-container a:nth-child(3) {
-  color: #f75337;
+.cart-header {
+  border-bottom: 0.6vh solid #fff;
 }
-.cart-container a:nth-child(4) {
-  color: #f85f76;
+.cart-container a {
+  color: #26599a;
 }
 .cart-container a:active {
-  background-color: #3c77b6;
+  background-color: #26599a;
 }
 nav {
   margin-top: 1vh;
@@ -212,7 +211,7 @@ nav.horizontal {
   height: 6vh;
   min-height: 0;
   margin: 0;
-  background: #000;
+  border-bottom: 1vh solid #000;
   text-align: justify;
 }
 nav ul {
@@ -249,13 +248,13 @@ nav li a {
   font-size: 7vw;
 }
 nav li:nth-child(1) > a {
-  color: #f62b69;
+  color: #ed243f;
 }
 nav li:nth-child(2) > a {
-  color: #3c77b6;
+  color: #26599a;
 }
 nav li:nth-child(3) > a {
-  color: #524594;
+  color: #3f2c63;
 }
 nav.horizontal li {
   display: inline-block;
@@ -299,7 +298,7 @@ img.gallery.fade {
 .loading-gallery.done-loading {
   display: none;
 }
-#collection-container {
+.collection.container {
   text-align: center;
 }
 div.poster-container {
@@ -317,23 +316,25 @@ img.poster {
   font-weight: 700;
   color: #000;
 }
-#product-container {
+.product.container {
   text-align: center;
 }
-#individual-gallery {
+.individual-gallery {
   position: relative;
   overflow: hidden;
 }
-#gallery-holder {
+.gallery-holder {
   position: relative;
   width: 400%;
+  padding-left: 10%;
   margin-bottom: 6vh;
 }
 .individual-main {
   height: 81vh;
   float: left;
+  padding-right: 2.75em;
 }
-#view-picker {
+.view-picker {
   position: absolute;
   margin: 0 auto;
   left: 0;
@@ -348,12 +349,12 @@ img.poster {
   height: 3.75vh;
   border-radius: 50%;
   color: #000;
-  background: #000;
-  border: 0.5vh solid #000;
+  background: #26599a;
+  border: 0.5vh solid #26599a;
 }
 .gallery-picker:checked {
-  background: #f00;
-  border: 0.5vh solid #00f;
+  background: #26599a;
+  border: 0.5vh solid #ed243f;
 }
 .product-title {
   font-weight: 700;

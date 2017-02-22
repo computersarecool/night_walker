@@ -1,18 +1,20 @@
-<div id="product-container" class="container">
-  <div id="individual-gallery">
-    <div id="gallery-holder" class="clearfix" site-mouse-down="startScroll($event)" site-mouse-up="stopScroll()" site-mouse-move="scrollGallery($event)">
-      <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-front.jpg" alt="NightWalker Clothing" title="Men's Chinos and clothing">
-      <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-side.jpg" alt="NightWalker Clothing" title="Men's Chinos and clothing">
-      <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-detail.jpg" alt="NightWalker Clothing" title="Men's Chinos and clothing">
-      <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-back.jpg" alt="NightWalker Clothing" title="Men's Chinos and clothing">
+<div id="product-container" class="product container">
+  <div id="individual-gallery" class="individual-gallery">
+    <div id="gallery-holder" class="clearfix gallery-holder" site-mouse-down="startScroll($event)" site-mouse-up="stopScroll()" site-mouse-move="scrollGallery($event)">
+      <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-front.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
+      <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-side.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
+      <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-detail.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
+      <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-back.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
     </div>
-    <div id="view-picker">
+
+    <div id="view-picker" class="view-picker">
       <input id="front-view" class="gallery-picker" name="gallery-picker" type="radio" checked site-scroll-to></input>
       <input id="side-view" class="gallery-picker" name="gallery-picker" type="radio" site-scroll-to></input>
       <input id="detail-view" class="gallery-picker" name="gallery-picker" type="radio" site-scroll-to></input>
       <input id="back-view" class="gallery-picker" name="gallery-picker" type="radio" site-scroll-to></input>
     </div>
   </div>
+
   <div id="product-information">
     <h1 class="product-title">{{product.shortDescription}}</h1>
     <p class="product-price left-ui">{{product.price / 100 | currency}}</p>

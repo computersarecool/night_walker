@@ -1,9 +1,9 @@
-<div id="collection-container" class="container">
+<div id="collection-container" class="collection container">
   <div ng-repeat="flavor in edition.members.pants.flavors" class="poster-container">
-    <img ng-src="images/front_gallery/{{flavor | spacefilter}}-gallery.jpg" class="poster">
+    <img ng-src="images/front_gallery/{{flavor | spacefilter}}-gallery.jpg" class="poster" alt="NightWalker Chino in {{flavor}}" title="NightWalker Chino in {{flavor}}">
     <a ng-href="/shop/alternating-current/{{flavor | spacefilter}}">
-      <div class="pant-flavor">The flavor: {{flavor}}</div>
-      <div class="pant-price">Price: {{edition.members.pants.msrp / 100 | currency}}</div>
+      <p class="pant-flavor">The flavor: {{flavor}}</p>
+      <p class="pant-price">Price: {{edition.members.pants.msrp / 100 | currency:"$"}}</p>
     </a>
+  </div>
 </div>
-

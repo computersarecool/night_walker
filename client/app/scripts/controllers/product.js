@@ -17,6 +17,7 @@ angular.module('nightwalkerApp')
     let dragging = false
     let sizeGuide = document.querySelector('#sizemenu')
     let holder = document.querySelector('#gallery-holder')
+    const numberOfImages = 4
 
     $scope.product = product
 
@@ -42,14 +43,15 @@ angular.module('nightwalkerApp')
     }
 
     $scope.scrollGallery = e => {
-      let newPosition
+      const pictureWidth = document.querySelector('img.individual-main').offsetWidth
+      const maxXoffset = -pictureWidth * (numberOfImages - 1)
 
       if (dragging) {
         xNow = e.touches[0].screenX
         xDelta = xNow - xPrevious
         xOffset = xDelta + parseInt(holder.style.left)
 
-        if (xOffset <= -730 && xDelta <= 0 || xOffset >= 0 && xDelta >= 0) {
+        if (xOffset <= maxXoffset && xDelta <= 0 || xOffset >= 0 && xDelta >= 0) {
           return
         }
 
@@ -58,41 +60,33 @@ angular.module('nightwalkerApp')
           return
         }
 
-        newPosition = xOffset + xDelta
+        let newPosition = xOffset + xDelta
         holder.style.left = newPosition + 'px'
         xPrevious = xNow
 
-        switch (true) {
-          case newPosition > -20:
-            document.querySelector('#front-view').checked = true
-            break
-          case (newPosition > -40 && newPosition <= -20):
-            document.querySelector('#side-view').checked = true
-            break
-          case (newPosition > -60 && newPosition <= -40):
-            document.querySelector('#detail-view').checked = true
-            break
-          case (newPosition > -80 && newPosition <= -60):
-            document.querySelector('#back-view').checked = true
-            break
+        if (newPosition > -pictureWidth / 2) {
+          document.querySelector('#front-view').checked = true
+        } else if (newPosition <= -pictureWidth / 2 && newPosition > -pictureWidth * 4 / 3) {
+          document.querySelector('#side-view').checked = true
+        } else if (newPosition <= -pictureWidth * 4 / 3 && newPosition > -pictureWidth * 8 / 3) {
+          document.querySelector('#detail-view').checked = true
+        } else {
+          document.querySelector('#back-view').checked = true
         }
       }
     }
 
     $scope.scrollTo = pictureName => {
-      switch (pictureName) {
-        case 'front-view':
-          holder.style.left = '0px'
-          break
-        case 'side-view':
-          holder.style.left = '30px'
-          break
-        case 'detail-view':
-          holder.style.left = '70px'
-          break
-        case 'back-view':
-          holder.style.left = '120px'
-          break
+      const pictureWidth = document.querySelector('img.individual-main').offsetWidth
+      console.log(pictureWidth)
+      if (pictureName === 'front-view') {
+        holder.style.left = '0px'
+      } else if (pictureName === 'side-view') {
+        holder.style.left = pictureWidth + 'px'
+      } else if (pictureName === 'detail-view') {
+        holder.style.left = pictureWidth * 2 + 'px'
+      } else {
+        holder.style.left = pictureWidth * 3 + 'px'
       }
     }
 

@@ -35,17 +35,18 @@ site-header, site-gallery, site-nav
 // Globals
 
 // Color Variables
-cherry = #e72844
-nectarine = #f75337
-lemon = #fed959
-apple = #00a07e
-plum-crazy = #524594
-powder = #f85f76
-proton-powder = #f62b69
-electricity = #3c77b6
+cherry = #c71b39
+nectarine = #fa5132
+lemon = #feda60
+apple = #005b3a
+electricity = #26599a
+plum-crazy = #3f2c63
+powder = #e45c68
+proton-powder = #ed243f
 
 gray-cover = #6f6f6f
 
+// Widths and heights
 nav-offset = 6vh
 
 // Display items
@@ -86,7 +87,7 @@ header img
   margin-left 2vw
 
     
-// Shopping cart
+// Modal cart
 site-cart
   float right
   height 6vh
@@ -97,7 +98,7 @@ site-cart .words
   text-align center
   line-height 6vh
 
-// Cube
+  // Cube
 .wrap
   perspective: 32vw
   perspective-origin: 50% 0.5em;
@@ -152,7 +153,7 @@ div.words
       transform:rotateY(360deg)
    }
 
-//End of Cube
+  //End of Cube
 
 .cart-container
   color white
@@ -161,23 +162,34 @@ div.words
   line-height 8vh
   width 100vw
   background gray-cover
-  padding-left 1em
 
 .checkout-options
   float left
   clear left
 
-.cart-container a:nth-child(2)
-  color cherry
+.cart-container p
+  padding-left 6vw
 
-.cart-container a:nth-child(3)
-  color nectarine
+.cart-header
+  border-bottom .6vh solid white
 
-.cart-container a:nth-child(4)
-  color powder
+// Option: Colored Cart links
+//.cart-container a:nth-child(2)
+//  color cherry
+//
+//.cart-container a:nth-child(3)
+//  color nectarine
+//
+//.cart-container a:nth-child(4)
+//  color powder
+
+.cart-container a
+  color electricity
 
 .cart-container a:active
   background-color electricity
+
+// End of Modal cart
 
 // Nav
 nav  
@@ -190,7 +202,7 @@ nav.horizontal
   height nav-height
   min-height 0
   margin 0
-  background black
+  border-bottom 1vh solid black
   text-align justify
   
 nav ul
@@ -240,8 +252,6 @@ nav.horizontal li
 
 // End of Nav
 
-
-
 // Main div and pages
 div.main
   position absolute
@@ -286,7 +296,7 @@ img.gallery.fade
 
 
 // Shop page
-#collection-container
+.collection.container
   text-align center
   
 div.poster-container
@@ -307,24 +317,26 @@ img.poster
 
 
 // Product page
-#product-container
+.product.container
   text-align center
 
   // Product gallery
-#individual-gallery
+.individual-gallery
   position relative
   overflow hidden
   
-#gallery-holder
+.gallery-holder
   position relative
-  width 400%  
+  width 400%
+  padding-left 10%
   margin-bottom 6vh
 
 .individual-main
   height 81vh
   float left
+  padding-right 2.75em
 
-#view-picker  
+.view-picker
   position absolute
   margin 0 auto
   left 0
@@ -337,12 +349,12 @@ img.poster
   height 3.75vh
   border-radius 50%
   color black
-  background black
-  border .5vh solid black
+  background electricity
+  border .5vh solid electricity
       
 .gallery-picker:checked
-  background red
-  border .5vh solid blue
+  background electricity
+  border .5vh solid proton-powder
 
   // End of product gallery
 .product-title

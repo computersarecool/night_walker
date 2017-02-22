@@ -19,9 +19,10 @@
     <div ng-show="user.firstName">
       <!-- No items in cart -->
       <div ng-show="!user.cart.length">
-        <p>
+        <p class="cart-header">
           Your cart is empty
         </p>
+
         <a ng-href="/account" class="modal-cart">
           <p>
             View Account
@@ -31,22 +32,28 @@
 
       <!-- Items in cart -->
       <div ng-show="user.cart.length">
-        You have {{user.cart.length}} items in your cart
+        <p class="cart-header">
+          You have {{user.cart.length}} items in your cart
+        </p>
+
         <a ng-href="/checkout" class="modal-cart">
           <p>
             Check out
           </p>
         </a>
+
         <a ng-href="/account" class="modal-cart">
           <p>
             View Cart
           </p>
         </a>
+
         <a ng-href="/account" class="modal-cart">
           <p>
             View Account
           </p>
         </a>
+
         <a ng-click="logout()">
           <p>
             Logout
@@ -54,13 +61,12 @@
         </a>
       </div>
     </div>
-   
 
     <!-- User is not signed in -->      
     <div ng-show="!user.firstName">
       <!-- No items in cart -->
       <div ng-show="!user.cart.length">
-        <p>
+        <p class="cart-header">
           Welcome to NightWalker
         </p>
 
@@ -85,7 +91,7 @@
       
       <!-- Items in cart -->  
       <div ng-show="user.cart.length">
-        <p>
+        <p class="cart-header">
           You have {{user.cart.length}} items in your cart
         </p>
 
