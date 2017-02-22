@@ -22,11 +22,11 @@
   - [ ] Allow client to reach all routes directly
 
 ## STYLE
+### PICKUP  shop page | Hide overflow
+
 * Modal cart
- - [x] Not signed in / no items in cart
- - PICKUP  shop page
- 
-#### Modal dialog box
+ - [] Every modal cart options except: Not signed in / no items in cart
+
 #### Product page details
   - Short description
   - Price
