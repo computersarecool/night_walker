@@ -82,11 +82,11 @@ angular.module('nightwalkerApp')
       if (pictureName === 'front-view') {
         holder.style.left = '0px'
       } else if (pictureName === 'side-view') {
-        holder.style.left = pictureWidth + 'px'
+        holder.style.left = -pictureWidth + 'px'
       } else if (pictureName === 'detail-view') {
-        holder.style.left = pictureWidth * 2 + 'px'
+        holder.style.left = -pictureWidth * 2 + 'px'
       } else {
-        holder.style.left = pictureWidth * 3 + 'px'
+        holder.style.left = -pictureWidth * 3 + 'px'
       }
     }
 
