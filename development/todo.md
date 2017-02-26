@@ -22,11 +22,15 @@
   - [ ] Allow client to reach all routes directly
   - [ ] Make header logo an SVG
 
+  - [ ] Size chart and actual measurements in DB
+  - [ ] Write about and contact copy
+  - [ ] Make loading gif
+  - [ ] Check signed in modal cart
+  - [ ] Check all login / signup and account page
+  - [ ] Responsiveness
+  
 ## STYLE
-### PICKUP  shop page | Hide overflow
-
-* Modal cart
- - [] Every modal cart options except: Not signed in / no items in cart
+### PICKUP style size select
 
 #### Product page details
   - Short description

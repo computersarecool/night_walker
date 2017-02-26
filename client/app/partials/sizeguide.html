@@ -1,9 +1,8 @@
-<div id="table-holder" class="hidden modal">
-
+<div id="table-holder" class="display-none modal table-holder">
   <table id="size-chart">
     <caption>
-      <h1>No Vanity Sizing.</h1>
-      <p> Nightwalker's sizes reflect the actual size they are.</p>
+      <h1>NightWalker does not use "Vanity Sizing"</h1>
+      <p> Nightwalker's sizes reflect real measurements</p>
     </caption>
     <tr>
       <th scope="col">Listed Size</th>
@@ -21,10 +20,10 @@
     </tr>
     <tr>
       <td colspan="5">
-        <p id="size-copy">
+        <p id="sizing-copy" class="sizing-copy">
           This is a bunch of text describing the size chart.
         </p>
-        <img id="sizing-guide" src="http://placehold.it/150x250">
+        <img class="sizing-guide" src="http://placehold.it/150x250">
       </td>
     </tr>
     <tr>
@@ -43,7 +42,7 @@
     </tr>
   </table>
   
-  <button id="close-details" ng-click="toggleShow('#table-holder')">X</button>
+  <button class="close size-guide" ng-click="toggleShow('#table-holder')">X</button>
   
 </div>
 

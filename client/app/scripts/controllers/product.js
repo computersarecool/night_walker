@@ -78,7 +78,6 @@ angular.module('nightwalkerApp')
 
     $scope.scrollTo = pictureName => {
       const pictureWidth = document.querySelector('img.individual-main').offsetWidth
-      console.log(pictureWidth)
       if (pictureName === 'front-view') {
         holder.style.left = '0px'
       } else if (pictureName === 'side-view') {
@@ -90,11 +89,18 @@ angular.module('nightwalkerApp')
       }
     }
 
-    $scope.toggleShow = id => {
-      let element = document.querySelector(id)
-      let yOffset = $window.scrollY
-      element.style.top = yOffset + 'px'
-      element.classList.toggle('hidden')
+    $scope.toggleShow = selector => {
+      const element = document.querySelector(selector)
+      const headerHeight = document.querySelector('site-header').scrollHeight
+      const navHeight = document.querySelector('nav').scrollHeight
+      const yOffset = $window.scrollY
+
+      if (yOffset > headerHeight + navHeight) {
+        element.style.top = yOffset + 'px'
+      } else {
+        element.style.top = '0'
+      }
+      element.classList.toggle('display-none')
     }
 
     $scope.addToCart = () => {

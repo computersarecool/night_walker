@@ -29,7 +29,7 @@ nav-height = 6vh
 cube-size = 7vw
 
 // Custom directives
-site-header, site-gallery, site-nav
+site-header, site-gallery, site-nav, size-guide
   display block
 
 
@@ -81,18 +81,20 @@ a:link, a:visited
 
 // Home page
 // Header
+site-header
+  border-bottom .25em solid black
+
 header
   padding-top .2em
-  border-bottom .25em solid black
   width 97%
   flex 0
   display flex
 
 // Header logo  
-header a
-  flex 8 0 auto
-  padding-left 3%
+header a.logo
+  flex 1 0 auto
   width 80%
+  padding-left .3em
 
 img.header
   width 100%
@@ -101,12 +103,13 @@ img.header
 site-cart
   flex 0 1 auto
   width 15%
-
-.modal-cart
-  margin-left 25%
+  position relative
 
 // Cube
 .wrap
+  margin-left 25%
+  bottom .1em
+  margin-top .1em
   perspective: (cube-size * 3)
   perspective-origin: (cube-size / 2) (cube-size / 2)
 
@@ -147,14 +150,14 @@ site-cart
 .front
   transform translateZ(cube-size / 2)
 
-  // Option: Rotating cart
-@keyframes spin
-   from {
-        transform: rotateY(0)
-   }
-   to {
-      transform:rotateY(360deg)
-   }
+// Option: Rotating cart
+//@keyframes spin
+//   from {
+//        transform: rotateY(0)
+//   }
+//   to {
+//      transform:rotateY(360deg)
+//   }
 
 site-cart .item-count
   text-align center
@@ -166,11 +169,12 @@ site-cart .item-count
 
 .cart-container
   color white
+  z-index 2
   margin-top .4em
-  position absolute
+  position fixed
   left 0
-  font-size 1.5em
-  line-height 100%
+  font-size 1.1em
+  line-height 1.5em
   width 100%
   background gray-cover
 
@@ -206,13 +210,12 @@ site-cart .item-count
 // Nav
 site-nav
   position relative
-  z-index 5
+  z-index 1
 
 nav
   position absolute
   float left
-  z-index 1
-  margin .25em 0 0 .5em
+  padding .25em 0 0 .5em
 
 nav li
   margin-bottom .5em
@@ -226,37 +229,31 @@ nav li:nth-child(1) > a
   color proton-powder
 
 nav li:nth-child(2) > a
+  padding-right .6em
   color electricity
 
 nav li:nth-child(3) > a
   color plum-crazy
 
 nav.horizontal
+  position static
   width: 100%
-  height nav-height
-  min-height 0
-  margin 0
-  text-align justify
+  background white
   border-bottom .25em solid black
+  padding 0 0 0 .15em
 
-nav ul
-  transition max-height 2s
-  
+nav.horizontal ul
+  display flex
+  padding 0 0.3em
+
+nav.horizontal li
+  flex 1
+  display inline-block
+  margin .1em 0 0 0
+
 nav ul.collapsed
   max-width 0
   transition max-width .2s
-
-nav ul.height-collapse
-  max-height 0  
-
-nav.horizontal:after 
-  content ""    
-  width 87vw
-  display inline-block
-
-nav.horizontal li
-  margin-top .5vh
-  display inline-block
 
 // End of Nav
 
@@ -264,7 +261,7 @@ nav.horizontal li
 div.main
   flex 1
   position relative
-  z-index -1
+  z-index 0
   opacity .99 // opacity added for z-index
 
 // Gallery page
@@ -294,18 +291,26 @@ img.gallery.fade
 
 // Shop page
 .collection.container
-  text-align center
+  display flex
+  flex-direction column
   
 div.poster-container
-  width 100vw
-  height 90vh
-  margin 0 auto
-  border-bottom 3vw solid black
+  flex 1
+  border-bottom .4em solid black
+  display flex
+  flex-direction column
+  align-items center
+
+div.poster-container:last-child
+  border 0
 
 img.poster
-  height 75vh
+  flex 1
+  width 70%
 
-.poster-container .pant-flavor, .poster-container .pant-price
+div.poster-container a
+  flex 1
+  text-align center
   text-transform uppercase
   font-weight 700
   color black
@@ -316,43 +321,33 @@ img.poster
 // Product page
 .product.container
   text-align center
-  overflow hidden
 
   // Product gallery
 .individual-gallery
   position relative
   overflow hidden
-  
+
 .gallery-holder
   position relative
+  overflow hidden
   width 400%
-  padding-left 10%
-  margin-bottom 6vh
+  padding-left 18%
 
 .individual-main
-  height 81vh
+  width 21.5%
   float left
-  padding-right 2.75em
-
-.view-picker
-  position absolute
-  margin 0 auto
-  left 0
-  right 0
-  bottom 0.5vh
+  padding-right 2.95em
 
 .gallery-picker
   appearance none
-  width 3.75vh
-  height 3.75vh
+  width 1.2em
+  height 1.2em
   border-radius 50%
-  color black
   background electricity
-  border .5vh solid electricity
+  border .175em solid electricity
       
 .gallery-picker:checked
-  background electricity
-  border .5vh solid proton-powder
+  border .175em solid proton-powder
 
   // End of product gallery
 
@@ -361,13 +356,13 @@ img.poster
   font-weight 700
 
 .left-ui
-  margin-top 1.5em
+  margin-top .5em
   float left
   clear right
   margin-left 1.3em
 
 .right-ui
-  margin-top 1.5em
+  margin-top .5em
   float right
   margin-right 1.3em
 
@@ -376,7 +371,6 @@ img.poster
   border none
   background white
   padding 0
-  z-index -1
   float right
   clear right
 
@@ -385,29 +379,35 @@ img.poster
   clear right
 
 // Item details
-#details
+.details
   position absolute
   text-align left
-  width 100vw
-  min-height 35vh
-  z-index 5
-  margin-top -7vh
+  width 100%
+  min-height 40vh // so that the chart never collapses
+  z-index 3
   background rgba(111, 111, 111, 0.88)
   clear both
   display block
-  
+
+.details.display-none
+  display none
+
 .detail-tab
   float left
 
+.details li
+  font-size .9em
+  line-height 1.4em
+
 .detail-tab label
   position relative
-  margin-right 8vw
+  margin-right 2em
   color black
 
 .detail-tab ul
   display none
   position absolute
-  width 100vw
+  width 100%
   left 0
   border-top .4vh solid white
   padding-top 1vh
@@ -421,43 +421,31 @@ img.poster
 .detail-tab input
   display none
         
-#product-column
+.detail-tab, .care
   color white
 
-#brand-column
-  color gray
-
-#care-column
-  color black
-
-#close-details
+button.close
   position absolute
   bottom 0
   right 0
   color red
   
-// End of item details
-
-#sizemenu
-  margin-top 7vh
-  max-width 30%
+  // End of item details
 
   // Size Chart
-#table-holder
+.table-holder
   position absolute
-  margin-top -7vh
-  padding-bottom 4.5vh
   background rgba(111, 111, 111, 0.96)
     
 table
-  font-size 5vw
+  font-size 1em
   border 1px solid black
 
 caption
   text-align left
   
 caption h1
-  font-size 4.5vh
+  font-size .9em
   font-weight 700
 
 caption p
@@ -465,10 +453,7 @@ caption p
   padding-bottom .5vh
   font-size 3vh
   font-weight 400  
-  
-th, td
-  border-collapse collapse
-  
+
 th
   font-weight 600
   border-right 2px solid black
@@ -476,23 +461,29 @@ th
 td
   border 1px solid black  
 
-#size-copy
+.sizing-copy
   width 50%
+  padding margin 5%
   float left
 
-  
-#sizing-guide
+.sizing-guide
   float right
   width 50%
-  
+
+button.size-guide
+  position relative
+  float right
+  margin-right .125em
+
   // End of Size Chart
   
 // End of product page
 
 // About page
-.about.container
-  padding-top nav-offset
 // End of about page
+
+// Contact page
+// End of Contact page
 
 
 // < 3/2 Aspect ratio

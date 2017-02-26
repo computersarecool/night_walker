@@ -1,4 +1,4 @@
-<div id="product-container" class="product container clearfix">
+<div id="product-container" class="product container">
   <div id="individual-gallery" class="individual-gallery">
     <div id="gallery-holder" class="gallery-holder" site-mouse-down="startScroll($event)" site-mouse-up="stopScroll()" site-mouse-move="scrollGallery($event)">
       <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-front.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
@@ -27,10 +27,10 @@
       <button id="size-guide" class="product-button size-guide" ng-click="toggleShow('#table-holder')">Size Guide</button>
       <select id="select-size" class="product-select" ng-model="pickedProduct.size" ng-change="changeSize()" ng-options="'' + productSize.waistSize + 'x' + productSize.inseam for productSize in product.distinctSizes | orderBy: 'waistSize'"></select>
       <button id="add-to-cart" class="product-button" ng-click="addToCart()">Add this product</button>
-      <button id="checkout-now" class="product-button hidden" ng-click="goToCheckout()">Checkout now</button>
+      <button id="checkout-now" class="product-button display-none" ng-click="goToCheckout()">Checkout now</button>
     </div>
 
-    <div id="details" class="hidden">
+    <div id="details" class="details display-none">
       <div id="product-column" class="detail-tab">
         <input type="radio" id="product-tab" name="tab-group-1" checked>
         <label for="product-tab">Product</label>
@@ -39,15 +39,7 @@
         </ul>
       </div>
 
-      <div id="brand-column" class="detail-tab">
-        <input type="radio" id="brand-tab"  name="tab-group-1">
-        <label for="brand-tab">Brand</label>
-        <ul>
-          <li>{{product.aboutSpecific}}</li>
-        </ul>
-      </div>
-
-       <div id="care-column" class="detail-tab">
+       <div id="care-column" class="detail-tab care">
          <input type="radio" id="care-tab" name="tab-group-1">
          <label for="care-tab" name="tab-group-1">Care</label>
          <ul>
@@ -56,7 +48,7 @@
         </ul>
        </div>
 
-       <button id="close-details" ng-click="toggleShow('#details')">X</button>
+       <button class="close" ng-click="toggleShow('#details')">X</button>
     </div>
 
     <site-size-guide></site-size-guide>
