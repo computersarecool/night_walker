@@ -1,6 +1,6 @@
-<div id="product-container" class="product container">
+<div id="product-container" class="product container clearfix">
   <div id="individual-gallery" class="individual-gallery">
-    <div id="gallery-holder" class="clearfix gallery-holder" site-mouse-down="startScroll($event)" site-mouse-up="stopScroll()" site-mouse-move="scrollGallery($event)">
+    <div id="gallery-holder" class="gallery-holder" site-mouse-down="startScroll($event)" site-mouse-up="stopScroll()" site-mouse-move="scrollGallery($event)">
       <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-front.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
       <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-side.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
       <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-detail.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
@@ -17,8 +17,19 @@
 
   <div id="product-information">
     <h1 class="product-title">{{product.shortDescription}}</h1>
-    <p class="product-price left-ui">{{product.price / 100 | currency}}</p>
-    <button id="toggle-details" class="product-button right-ui" ng-click="toggleShow('#details')">Item Details</button>
+
+    <div class="price-details-select left-ui">
+      <p class="product-price">{{product.currentPrice / 100 | currency}}</p>
+      <button id="toggle-details" class="product-button" ng-click="toggleShow('#details')">Item Details</button>
+    </div>
+
+    <div class="size-select right-ui">
+      <button id="size-guide" class="product-button size-guide" ng-click="toggleShow('#table-holder')">Size Guide</button>
+      <select id="select-size" class="product-select" ng-model="pickedProduct.size" ng-change="changeSize()" ng-options="'' + productSize.waistSize + 'x' + productSize.inseam for productSize in product.distinctSizes | orderBy: 'waistSize'"></select>
+      <button id="add-to-cart" class="product-button" ng-click="addToCart()">Add this product</button>
+      <button id="checkout-now" class="product-button hidden" ng-click="goToCheckout()">Checkout now</button>
+    </div>
+
     <div id="details" class="hidden">
       <div id="product-column" class="detail-tab">
         <input type="radio" id="product-tab" name="tab-group-1" checked>
@@ -27,6 +38,7 @@
           <li ng-repeat="detail in product.details">{{detail}}</li>
         </ul>
       </div>
+
       <div id="brand-column" class="detail-tab">
         <input type="radio" id="brand-tab"  name="tab-group-1">
         <label for="brand-tab">Brand</label>
@@ -34,21 +46,20 @@
           <li>{{product.aboutSpecific}}</li>
         </ul>
       </div>
+
        <div id="care-column" class="detail-tab">
          <input type="radio" id="care-tab" name="tab-group-1">
          <label for="care-tab" name="tab-group-1">Care</label>
          <ul>
-          <li> {{product.careInstructions}}</li>
-          <li> {{product.sizeGuide}}</li>
+          <li>{{product.careInstructions}}</li>
+          <li>{{product.sizeGuide}}</li>
         </ul>
-      </div>
-      <button id="close-details" ng-click="toggleShow('#details')">X</button>
+       </div>
+
+       <button id="close-details" ng-click="toggleShow('#details')">X</button>
     </div>
-    <select id="sizemenu" class="right-ui" ng-model="pickedProduct.size" ng-change="changeSize()" ng-options="'' + productSize.waistSize + 'x' + productSize.inseam for productSize in product.distinctSizes | orderBy: 'waistSize'"></select>
-    <button id="size-guide" class="product-button left-ui" ng-click="toggleShow('#table-holder')">Size Guide</button>
-    <site-size-guide></site-size-guide>  
-    <button id="add-to-cart" class="product-button left-ui" ng-click="addToCart()"> Add this product {{pickedProduct.sku}}</button>
-    <button id="checkout-now" class="product-button right-ui hidden" ng-click="goToCheckout()"> Checkout now </button>
+
+    <site-size-guide></site-size-guide>
   </div>
 </div>
 

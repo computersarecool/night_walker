@@ -206,9 +206,9 @@ for (h = 0; h < flavors.length; h++) {
     };
 
     // Make Url safe name
-    item.safeFlavor = item['flavor'].replace(' ', '-');
-    item.safeEdition = item['edition'].replace(' ', '-');
-    item.shortDescription = "Alternating Current Chinos in " + item['flavor'];
+    item.safeFlavor = item['flavor'].replace(' ', '-')
+    item.safeEdition = item['edition'].replace(' ', '-')
+    item.shortDescription = "Alternating Current Chinos in " + toTitleCase(item['flavor'])
     item.sku = sku;
     item.distinctSizes = [
       "32x32",
@@ -242,7 +242,7 @@ for (h = 0; h < flavors.length; h++) {
     // Make url-safe name
     item.safeFlavor = item['flavor'].replace(' ', '-');
     item.safeEdition = item['edition'].replace(' ', '-');
-    item.shortDescription = "Alternating Current Chinos in " + item['flavor'];
+    item.shortDescription = "Alternating Current Chinos in " + toTitleCase(item['flavor']);
     item.sku = sku;
     item.distinctSizes = [
       "32x32",
@@ -252,7 +252,11 @@ for (h = 0; h < flavors.length; h++) {
   }
 }
 
-
+function toTitleCase (str) {
+  return str.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+  })
+}
 
 var edition = {
   name: 'Alternating Current',    

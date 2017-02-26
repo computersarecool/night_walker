@@ -20,6 +20,7 @@
 * Other
   - [ ] SEO Optimize
   - [ ] Allow client to reach all routes directly
+  - [ ] Make header logo an SVG
 
 ## STYLE
 ### PICKUP  shop page | Hide overflow

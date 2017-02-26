@@ -15,7 +15,7 @@ angular
     'ngRoute',
     'ngSanitize'
   ])
-  .constant('base', 'http://optonox.com:3000')
+  .constant('base', 'http://35.164.160.104:3000')
   .config(($routeProvider, $locationProvider, $httpProvider) => {
     $routeProvider
       .when('/', {
