@@ -226,6 +226,10 @@ angular.module('nightwalkerApp')
       $location.path('/checkout')
     }
 
+    function goToShop () {
+      $location.path('/shop')
+    }
+
     const currentUser = getUser()
 
     user = {
@@ -241,7 +245,8 @@ angular.module('nightwalkerApp')
       updatePassword,
       addToCart,
       updateCart,
-      goToCheckout
+      goToCheckout,
+      goToShop
     }
 
     return user

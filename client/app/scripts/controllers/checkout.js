@@ -19,6 +19,8 @@ angular.module('nightwalkerApp')
       $scope.user = data
     })
 
+    $scope.goToShop = UserFactory.goToShop
+
     $scope.goToCheckout = UserFactory.goToCheckout
 
     $scope.updateCart = (add, item, replace) => {

@@ -28,6 +28,9 @@ angular
       .when('/contact', {
         templateUrl: 'views/contact.html'
       })
+      .when('/shop', {
+        redirectTo: '/shop/alternating-current'
+      })
       .when('/shop/:edition', {
         templateUrl: 'views/shop.html',
         controller: 'ShopCtrl',
@@ -110,6 +113,7 @@ angular
   })
   .run(($rootScope, $location) => {
     $rootScope.$on('$routeChangeError', (event, curRoute, prevRoute, rejection) => {
+      console.log(`The error was ${event}`)
       $location.path(prevRoute.$$route.originalPath)
     })
   })

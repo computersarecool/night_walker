@@ -1,28 +1,32 @@
 <div class="container">
 
   <div ng-repeat="item in items">
-    <img src="http://placehold.it/100x100" alt="product thumbnail">
-    <p>
-      {{item.product.description}}
-    </p>
+    <div class="image-details">
+      <img src="http://placehold.it/100x100" alt="{{item.shortDescription}}" title="{{item.shortDescription}}">
+      <div class="short-details">
+        <p>
+          {{item.product.description}}
+        </p>
 
-    <p>
-      {{item.product.price / 100 | currency}}
-    </p>
+        <p>
+          {{item.product.currentPrice / 100 | currency}}
+        </p>
 
-    <p>
-      {{item.product.sizes.waistSize}} x {{item.product.sizes.inseam}}
-    </p>
+        <p>
+          {{item.product.sizes.waistSize}} x {{item.product.sizes.inseam}}
+        </p>
 
-    <p>
-      Quantity <span>{{item.quantity}}</span>
-    </p>
+        <p>
+          Quantity <span>{{item.quantity}}</span>
+        </p>
+      </div>
+    </div>
 
-    <button ng-click="updateCart(true, item)">Add one</button>
-
-    <button ng-click="updateCart(false, item)">Remove one</button>
-
-    <button ng-click="updateCart(false, item, true)">Delete</button>
+    <div class="button-holder">
+      <button class="ui-button" ng-click="updateCart(true, item)">Add one</button>
+      <button class="ui-button" ng-click="updateCart(false, item)">Remove one</button>
+      <button class="ui-button" ng-click="updateCart(false, item, true)">Delete</button>
+    </div>
 
   </div>
 </div>

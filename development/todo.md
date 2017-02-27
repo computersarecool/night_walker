@@ -21,17 +21,23 @@
   - [ ] SEO Optimize
   - [ ] Allow client to reach all routes directly
   - [ ] Make header logo an SVG
+  - [ ] Buy ssl cert
 
+  - [ ] Fix scoping issues when there are multiple items buttons dont work
   - [ ] Size chart and actual measurements in DB
   - [ ] Write about and contact copy
   - [ ] Should obfuscate email?
   - [ ] Make loading gif
   - [ ] Check signed in modal cart
   - [ ] Check all login / signup and account page
-  - [ ] Responsiveness
+  - [ ] Check responsiveness when page grows
+  - [ ] Remove the letter x from all non language content
   
 ## STYLE
-### PICKUP
+### PICKU
+#### Pages Left
+- [ ] Reset password
+- [ ] Checkout
 
 #### Product page details
   - Short description
