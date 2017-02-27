@@ -18,12 +18,9 @@
   <div id="product-information">
     <h1 class="product-title">{{product.shortDescription}}</h1>
 
-    <div class="price-details-select details-left">
+    <div class="extra-details">
       <p class="product-price">{{product.currentPrice / 100 | currency}}</p>
       <button id="toggle-details" class="product-button" ng-click="toggleShow('#details')">Item Details</button>
-    </div>
-
-    <div class="size-select details-right">
       <button id="size-guide" class="product-button size-guide" ng-click="toggleShow('#table-holder')">Size Guide</button>
       <select id="select-size" class="product-select" ng-model="pickedProduct.size" ng-change="changeSize()" ng-options="'' + productSize.waistSize + 'x' + productSize.inseam for productSize in product.distinctSizes | orderBy: 'waistSize'"></select>
       <button id="add-to-cart" class="product-button" ng-click="addToCart()">Add this product</button>
