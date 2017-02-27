@@ -30,7 +30,7 @@
   - [ ] Responsiveness
   
 ## STYLE
-### PICKUP style size select
+### PICKUP
 
 #### Product page details
   - Short description

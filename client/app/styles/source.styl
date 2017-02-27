@@ -56,6 +56,9 @@ html, body
   box-sizing inherit   
   outline none
 
+.hidden
+  visibility hidden
+
 .display-none
   display none
 
@@ -228,7 +231,7 @@ nav.horizontal
 
 nav.horizontal ul
   display flex
-  padding 0 0.3em
+  padding 0 0.55em
 
 nav.horizontal li
   flex 1
@@ -334,22 +337,35 @@ div.poster-container a
 .product-title
   font-weight 700
 
-div.extra-details
+.extra-detail
   display flex
 
-.product-button
+.extra-detail-left, .extra-detail-right
+  flex 1
+  display flex
+  flex-direction column
+  margin 3%
+
+.extra-details
+  margin 3%
+
+button.extra-details
   border none
-  padding .125em
-  background: electricity
-  background-image: linear-gradient(to bottom, electricity, cherry)
-  border-radius: 5%
+  padding .125em 0
+  background electricity
+  border-radius 5%
   color: white
 
-.product-button:hover
-  background: proton-powder
-  background-image: linear-gradient(to bottom, powder, electricity);
+button.extra-details:hover
+  background proton-powder
 
-// Item details
+select.extra-details
+  background electricity
+  color powder
+  font-weight 700
+  margin 2%
+
+// Item details modal
 .details
   position absolute
   text-align left
@@ -362,6 +378,9 @@ div.extra-details
 
 .details.display-none
   display none
+
+.details div ul li
+  margin-left .5em
 
 .detail-tab
   float left
@@ -397,9 +416,11 @@ div.extra-details
 
 button.close
   position absolute
+  font-size 1.2em
   bottom 0
   right 0
-  color red
+  margin-right .1em
+  color cherry
   
   // End of item details
 
@@ -413,9 +434,11 @@ table
   border 1px solid black
 
 caption
+  margin-left .25em
   text-align left
   
 caption h1
+  margin-top .25em
   font-size .9em
   font-weight 700
 

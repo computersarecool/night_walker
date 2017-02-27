@@ -82,6 +82,9 @@ body {
   box-sizing: inherit;
   outline: none;
 }
+.hidden {
+  visibility: hidden;
+}
 .display-none {
   display: none;
 }
@@ -249,7 +252,7 @@ nav.horizontal ul {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  padding: 0 0.3em;
+  padding: 0 0.55em;
 }
 nav.horizontal li {
   -webkit-flex: 1;
@@ -357,41 +360,42 @@ div.poster-container a {
 .product-title {
   font-weight: 700;
 }
-.details-left {
-  margin-top: 0.5em;
-  float: left;
-  clear: right;
-  margin-left: 1.3em;
+.extra-detail {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
-.details-right {
-  margin-top: 0.5em;
-  float: right;
-  margin-right: 1.3em;
+.extra-detail-left,
+.extra-detail-right {
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 3%;
 }
-.details-left button,
-.details-left p,
-.details-right button,
-.details-right select {
-  margin-top: 0.125em;
-  display: inline-block;
+.extra-details {
+  margin: 3%;
 }
-.product-button {
+button.extra-details {
   border: none;
-  padding: 0.125em;
-  float: right;
-  clear: right;
+  padding: 0.125em 0;
   background: #26599a;
-  background-image: linear-gradient(to bottom, #26599a, #c71b39);
   border-radius: 5%;
   color: #fff;
 }
-.product-button:hover {
+button.extra-details:hover {
   background: #ed243f;
-  background-image: linear-gradient(to bottom, #e45c68, #26599a);
 }
-.product-select {
-  float: right;
-  clear: right;
+select.extra-details {
+  background: #26599a;
+  color: #e45c68;
+  font-weight: 700;
+  margin: 2%;
 }
 .details {
   position: absolute;
@@ -405,6 +409,9 @@ div.poster-container a {
 }
 .details.display-none {
   display: none;
+}
+.details div ul li {
+  margin-left: 0.5em;
 }
 .detail-tab {
   float: left;
@@ -441,9 +448,11 @@ div.poster-container a {
 }
 button.close {
   position: absolute;
+  font-size: 1.2em;
   bottom: 0;
   right: 0;
-  color: #f00;
+  margin-right: 0.1em;
+  color: #c71b39;
 }
 .table-holder {
   position: absolute;
@@ -454,9 +463,11 @@ table {
   border: 1px solid #000;
 }
 caption {
+  margin-left: 0.25em;
   text-align: left;
 }
 caption h1 {
+  margin-top: 0.25em;
   font-size: 0.9em;
   font-weight: 700;
 }

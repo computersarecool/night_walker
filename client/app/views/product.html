@@ -1,6 +1,6 @@
 <div id="product-container" class="product container">
   <div id="individual-gallery" class="individual-gallery">
-    <div id="gallery-holder" class="gallery-holder" site-mouse-down="startScroll($event)" site-mouse-up="stopScroll()" site-mouse-move="scrollGallery($event)">
+    <div id="gallery-holder" class="gallery-holder" site-mouse-down="startScroll($event)" site-mouse-move="scrollGallery($event)">
       <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-front.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
       <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-side.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
       <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-detail.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
@@ -18,13 +18,18 @@
   <div id="product-information">
     <h1 class="product-title">{{product.shortDescription}}</h1>
 
-    <div class="extra-details">
-      <p class="product-price">{{product.currentPrice / 100 | currency}}</p>
-      <button id="toggle-details" class="product-button" ng-click="toggleShow('#details')">Item Details</button>
-      <button id="size-guide" class="product-button size-guide" ng-click="toggleShow('#table-holder')">Size Guide</button>
-      <select id="select-size" class="product-select" ng-model="pickedProduct.size" ng-change="changeSize()" ng-options="'' + productSize.waistSize + 'x' + productSize.inseam for productSize in product.distinctSizes | orderBy: 'waistSize'"></select>
-      <button id="add-to-cart" class="product-button" ng-click="addToCart()">Add this product</button>
-      <button id="checkout-now" class="product-button display-none" ng-click="goToCheckout()">Checkout now</button>
+    <div class="extra-detail">
+      <div class="extra-detail-left">
+        <p class="extra-details">{{product.currentPrice / 100 | currency}}</p>
+        <button id="toggle-details" class="extra-details" ng-click="toggleShow('#details')">Item Details</button>
+        <button id="size-guide" class="extra-details" ng-click="toggleShow('#table-holder')">Size Guide</button>
+      </div>
+
+      <div class="extra-detail-right">
+        <select id="select-size" class="extra-details" ng-model="pickedProduct.size" ng-change="changeSize()" ng-options="'' + productSize.waistSize + 'x' + productSize.inseam for productSize in product.distinctSizes | orderBy: 'waistSize'"></select>
+        <button id="add-to-cart" class="extra-details" ng-click="addToCart()">Add to Cart</button>
+        <button id="checkout-now" class="extra-details hidden" ng-click="goToCheckout()">Checkout now</button>
+     </div>
     </div>
 
     <div id="details" class="details display-none">

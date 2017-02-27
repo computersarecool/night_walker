@@ -14,8 +14,6 @@ angular.module('nightwalkerApp')
     let xPrevious
     let xDelta
     let xOffset
-    let dragging = false
-    let sizeGuide = document.querySelector('#sizemenu')
     let holder = document.querySelector('#gallery-holder')
     const numberOfImages = 4
 
@@ -33,51 +31,45 @@ angular.module('nightwalkerApp')
     $scope.goToCheckout = UserFactory.goToCheckout
 
     $scope.startScroll = e => {
-      dragging = true
       xPrevious = e.touches[0].screenX
-    }
-
-    $scope.stopScroll = () => {
-      dragging = false
-      xPrevious = undefined
     }
 
     $scope.scrollGallery = e => {
       const pictureWidth = document.querySelector('img.individual-main').offsetWidth
       const maxXoffset = -pictureWidth * (numberOfImages - 1)
+      xNow = e.touches[0].screenX
+      xDelta = xNow - xPrevious
+      xOffset = xDelta + parseInt(holder.style.left)
 
-      if (dragging) {
-        xNow = e.touches[0].screenX
-        xDelta = xNow - xPrevious
-        xOffset = xDelta + parseInt(holder.style.left)
+      // Set the offset on the element because it is initially undefined
+      if (isNaN(xOffset)) {
+        holder.style.left = '0px'
+        return
+      }
 
-        if (xOffset <= maxXoffset && xDelta <= 0 || xOffset >= 0 && xDelta >= 0) {
-          return
-        }
+      // Element is out of scroll bounds and user is still trying to scroll
+      if (xOffset <= maxXoffset && xDelta <= 0 || xOffset >= 0 && xDelta >= 0) {
+        return
+      }
 
-        if (isNaN(xOffset)) {
-          holder.style.left = '0px'
-          return
-        }
+      let newPosition = xOffset + xDelta
+      holder.style.left = newPosition + 'px'
+      xPrevious = xNow
 
-        let newPosition = xOffset + xDelta
-        holder.style.left = newPosition + 'px'
-        xPrevious = xNow
-
-        if (newPosition > -pictureWidth / 2) {
-          document.querySelector('#front-view').checked = true
-        } else if (newPosition <= -pictureWidth / 2 && newPosition > -pictureWidth * 4 / 3) {
-          document.querySelector('#side-view').checked = true
-        } else if (newPosition <= -pictureWidth * 4 / 3 && newPosition > -pictureWidth * 8 / 3) {
-          document.querySelector('#detail-view').checked = true
-        } else {
-          document.querySelector('#back-view').checked = true
-        }
+      if (newPosition > -pictureWidth / 2) {
+        document.querySelector('#front-view').checked = true
+      } else if (newPosition <= -pictureWidth / 2 && newPosition > -pictureWidth * 4 / 3) {
+        document.querySelector('#side-view').checked = true
+      } else if (newPosition <= -pictureWidth * 4 / 3 && newPosition > -pictureWidth * 8 / 3) {
+        document.querySelector('#detail-view').checked = true
+      } else {
+        document.querySelector('#back-view').checked = true
       }
     }
 
     $scope.scrollTo = pictureName => {
       const pictureWidth = document.querySelector('img.individual-main').offsetWidth
+
       if (pictureName === 'front-view') {
         holder.style.left = '0px'
       } else if (pictureName === 'side-view') {
@@ -92,14 +84,11 @@ angular.module('nightwalkerApp')
     $scope.toggleShow = selector => {
       const element = document.querySelector(selector)
       const headerHeight = document.querySelector('site-header').scrollHeight
-      const navHeight = document.querySelector('nav').scrollHeight
+      const navHeight = document.querySelector('site-nav').scrollHeight
       const yOffset = $window.scrollY
+      const difference = yOffset - headerHeight - navHeight - 2
 
-      if (yOffset > headerHeight + navHeight) {
-        element.style.top = yOffset + 'px'
-      } else {
-        element.style.top = '0'
-      }
+      element.style.top = difference + 'px'
       element.classList.toggle('display-none')
     }
 
