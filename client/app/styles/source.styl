@@ -24,16 +24,15 @@ table
 
 
 // Begin styles
+// Globals
 // Variables
 nav-height = 6vh
+nav-offset = 6vh
 cube-size = 7vw
 
 // Custom directives
 site-header, site-gallery, site-nav, size-guide
   display block
-
-
-// Globals
 
 // Color Variables
 cherry = #c71b39
@@ -47,9 +46,6 @@ proton-powder = #ed243f
 
 gray-cover = #6f6f6f
 
-// Widths and heights
-nav-offset = 6vh
-
 // Display items
 html, body
   box-sizing border-box
@@ -59,51 +55,44 @@ html, body
 *, *:before, *:after
   box-sizing inherit   
   outline none
-  
-.hidden
-  visibility hidden
 
 .display-none
   display none
-
-.clearfix:after
-  content: ""
-  display: table
-  clear: both
-
-body
-  display flex
-  flex-direction column
 
 // All links
 a:link, a:visited
   text-decoration none
 
-// Home page
+body
+  display flex
+  flex-direction column
+
 // Header
 site-header
+  flex 1
+  width 100%
   border-bottom .25em solid black
 
 header
   padding-top .2em
-  width 97%
-  flex 0
-  display flex
+  width 100%
+  height 100%
 
 // Header logo  
 header a.logo
-  flex 1 0 auto
+  display inline-block
   width 80%
   padding-left .3em
+  vertical-align top
 
 img.header
   width 100%
+  height auto
 
 // Modal cart
 site-cart
-  flex 0 1 auto
   width 15%
-  position relative
+  display inline-block
 
 // Cube
 .wrap
@@ -205,7 +194,7 @@ site-cart .item-count
 //  color powder
 
 
-// End of Modal cart
+// End of Header
 
 // Nav
 site-nav
@@ -259,10 +248,10 @@ nav ul.collapsed
 
 // Main div and pages
 div.main
-  flex 1
+  flex 18
+  height 93%
   position relative
-  z-index 0
-  opacity .99 // opacity added for z-index
+  opacity .999 // opacity added for z-index
 
 // Gallery page
 img.gallery
@@ -484,13 +473,3 @@ button.size-guide
 
 // Contact page
 // End of Contact page
-
-
-// < 3/2 Aspect ratio
-@media screen and (max-aspect-ratio: 320/510)
-  header
-    height 6vh
-
-  header img
-    height 4.7vh
-  
