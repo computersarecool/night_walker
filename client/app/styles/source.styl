@@ -69,16 +69,11 @@ body
 
 // Header
 site-header
-  flex 1
   width 100%
   border-bottom .25em solid black
-
-header
   padding-top .2em
-  width 100%
-  height 100%
 
-// Header logo  
+// Header logo
 header a.logo
   display inline-block
   width 80%
@@ -248,8 +243,7 @@ nav ul.collapsed
 
 // Main div and pages
 div.main
-  flex 18
-  height 93%
+  flex 16
   position relative
   opacity .999 // opacity added for z-index
 
@@ -279,10 +273,6 @@ img.gallery.fade
 
 
 // Shop page
-.collection.container
-  display flex
-  flex-direction column
-  
 div.poster-container
   flex 1
   border-bottom .4em solid black
@@ -344,24 +334,36 @@ div.poster-container a
 .product-title
   font-weight 700
 
-.left-ui
+.details-left
   margin-top .5em
   float left
   clear right
   margin-left 1.3em
 
-.right-ui
+.details-right
   margin-top .5em
   float right
   margin-right 1.3em
 
   // Buttons
+.details-left button, .details-left p, .details-right button, .details-right select
+  margin-top .125em
+  display inline-block
+
 .product-button
   border none
-  background white
-  padding 0
+  padding .125em
   float right
   clear right
+  background: electricity
+  background-image: linear-gradient(to bottom, electricity, cherry)
+  border-radius: 5%
+  color: white
+
+.product-button:hover
+  background: proton-powder
+  background-image: linear-gradient(to bottom, powder, electricity);
+
 
 .product-select
   float right

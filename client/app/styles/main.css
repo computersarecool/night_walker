@@ -98,16 +98,9 @@ body {
           flex-direction: column;
 }
 site-header {
-  -webkit-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
   width: 100%;
   border-bottom: 0.25em solid #000;
-}
-header {
   padding-top: 0.2em;
-  width: 100%;
-  height: 100%;
 }
 header a.logo {
   display: inline-block;
@@ -270,10 +263,9 @@ nav ul.collapsed {
   transition: max-width 0.2s;
 }
 div.main {
-  -webkit-flex: 18;
-      -ms-flex: 18;
-          flex: 18;
-  height: 93%;
+  -webkit-flex: 16;
+      -ms-flex: 16;
+          flex: 16;
   position: relative;
   opacity: 0.999;
 }
@@ -297,14 +289,6 @@ img.gallery.fade {
 }
 .loading-gallery.done-loading {
   display: none;
-}
-.collection.container {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
 }
 div.poster-container {
   -webkit-flex: 1;
@@ -373,23 +357,37 @@ div.poster-container a {
 .product-title {
   font-weight: 700;
 }
-.left-ui {
+.details-left {
   margin-top: 0.5em;
   float: left;
   clear: right;
   margin-left: 1.3em;
 }
-.right-ui {
+.details-right {
   margin-top: 0.5em;
   float: right;
   margin-right: 1.3em;
 }
+.details-left button,
+.details-left p,
+.details-right button,
+.details-right select {
+  margin-top: 0.125em;
+  display: inline-block;
+}
 .product-button {
   border: none;
-  background: #fff;
-  padding: 0;
+  padding: 0.125em;
   float: right;
   clear: right;
+  background: #26599a;
+  background-image: linear-gradient(to bottom, #26599a, #c71b39);
+  border-radius: 5%;
+  color: #fff;
+}
+.product-button:hover {
+  background: #ed243f;
+  background-image: linear-gradient(to bottom, #e45c68, #26599a);
 }
 .product-select {
   float: right;
