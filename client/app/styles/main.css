@@ -381,12 +381,13 @@ div.poster-container a {
 .extra-details {
   margin: 3%;
 }
-button.extra-details {
+.ui-button {
   border: none;
-  padding: 0.125em 0;
+  padding: 0.6em;
   background: #26599a;
-  border-radius: 5%;
+  border-radius: 0.3em;
   color: #fff;
+  float: right;
 }
 button.extra-details:hover {
   background: #ed243f;
@@ -497,4 +498,39 @@ button.size-guide {
   position: relative;
   float: right;
   margin-right: 0.125em;
+}
+.login-container {
+  margin: 0 0.2em 0 0.5em;
+}
+form.signup {
+  margin-top: 0.5em;
+}
+form.signup label {
+  display: inline-block;
+  margin-bottom: 0.35em;
+}
+.firstname.input {
+  border: 0.175em solid #3f2c63;
+}
+.lastname.input {
+  border: 0.175em solid #005b3a;
+}
+.email.input {
+  border: 0.175em solid #c71b39;
+}
+.password.input {
+  border: 0.175em solid #fa5132;
+}
+.login-container button {
+  margin: 0.2em;
+}
+.login-button {
+  float: left;
+}
+.go-to-other {
+  margin-top: 0.25em;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
 }

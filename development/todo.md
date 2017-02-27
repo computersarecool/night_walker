@@ -24,6 +24,7 @@
 
   - [ ] Size chart and actual measurements in DB
   - [ ] Write about and contact copy
+  - [ ] Should obfuscate email?
   - [ ] Make loading gif
   - [ ] Check signed in modal cart
   - [ ] Check all login / signup and account page

@@ -21,14 +21,14 @@
     <div class="extra-detail">
       <div class="extra-detail-left">
         <p class="extra-details">{{product.currentPrice / 100 | currency}}</p>
-        <button id="toggle-details" class="extra-details" ng-click="toggleShow('#details')">Item Details</button>
-        <button id="size-guide" class="extra-details" ng-click="toggleShow('#table-holder')">Size Guide</button>
+        <button id="toggle-details" class="extra-details ui-button" ng-click="toggleShow('#details')">Item Details</button>
+        <button id="size-guide" class="extra-details ui-button" ng-click="toggleShow('#table-holder')">Size Guide</button>
       </div>
 
       <div class="extra-detail-right">
         <select id="select-size" class="extra-details" ng-model="pickedProduct.size" ng-change="changeSize()" ng-options="'' + productSize.waistSize + 'x' + productSize.inseam for productSize in product.distinctSizes | orderBy: 'waistSize'"></select>
-        <button id="add-to-cart" class="extra-details" ng-click="addToCart()">Add to Cart</button>
-        <button id="checkout-now" class="extra-details hidden" ng-click="goToCheckout()">Checkout now</button>
+        <button id="add-to-cart" class="extra-details ui-button" ng-click="addToCart()">Add to Cart</button>
+        <button id="checkout-now" class="extra-details ui-button hidden" ng-click="goToCheckout()">Checkout now</button>
      </div>
     </div>
 
