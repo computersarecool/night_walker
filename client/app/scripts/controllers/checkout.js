@@ -24,6 +24,7 @@ angular.module('nightwalkerApp')
     $scope.goToCheckout = UserFactory.goToCheckout
 
     $scope.updateCart = (add, item, replace) => {
+      console.log(item)
       for (let i = 0; i < $scope.items.length; i++) {
         if ($scope.items[i].product.sku === item.product.sku) {
           if (add) {

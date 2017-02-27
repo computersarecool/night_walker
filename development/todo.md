@@ -23,7 +23,7 @@
   - [ ] Make header logo an SVG
   - [ ] Buy ssl cert
 
-  - [ ] Fix scoping issues when there are multiple items buttons dont work
+  - [ ] Fix updatecart function from within cart page
   - [ ] Size chart and actual measurements in DB
   - [ ] Write about and contact copy
   - [ ] Should obfuscate email?
