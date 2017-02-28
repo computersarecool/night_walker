@@ -29,6 +29,7 @@
 
   - [ ] Convert .details popup to flexbox
   - [ ] Write about and contact copy
+  - [ ] Implement Flavor ID
   - [ ] Should obfuscate email?
   - [ ] Make loading gif
   - [ ] Sunglasses logo on about us
