@@ -5,23 +5,15 @@ function toTitleCase (str) {
   })
 }
 
-const edition = {
-  name: 'First Flavors',
-  urlName: 'first-flavors',
-  kind: 'clothing',
-  members: [
-    pantGenerics
-  ]
-}
+var editionName = 'First Flavors'
+var urlName = 'first-flavors'
+var totalPairs = 120
 
-db.editions.insert(edition)
-
-const totalPairs = 120
-const pantGenerics = {
+var pantGenerics = {
   type: 'pants,',
   name: 'chinos',
-  edition: edition.name,
-  urlEdition: edition.urlName,
+  edition: editionName,
+  urlEdition: urlName,
   flavors: [
     'cherry',
     'nectarine',
@@ -33,14 +25,23 @@ const pantGenerics = {
     'proton powder'
   ],
   msrp: 6900,
-  description: `The ${edition.name} Original Chino`,
+  description: `The ${editionName} Original Chino`,
   aboutSpecific: `Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only ${totalPairs} exist`,
   careInstructions: 'Machine wash cold and hang dry',
   sizeInfo: `True to size: The model is 5'10", 150 lbs and is wearing a size 30×30. Click here for sizing information`,
   details: ['Metal zippers on every pocket', 'Checkered under cuff', 'Tuxedo belt clasps', 'True to size', '97% cotton, 3% polyester', 'Free shipping']
 }
 
-const sizeInformation = [
+var edition = {
+  name: editionName,
+  urlName: urlName,
+  kind: 'clothing',
+  members: [
+    pantGenerics
+  ]
+}
+
+var sizeInformation = [
   {
     'Listed Size': '29×29',
     'Waist': '29',
@@ -98,7 +99,7 @@ const sizeInformation = [
   }
 ]
 
-const flavors = [
+var flavors = [
   {
     flavor: 'cherry',
     extraDetails: ['Soft Fabric'],
@@ -189,7 +190,7 @@ const flavors = [
   }
 ]
 
-const flavorsPerSize = {
+var flavorsPerSize = {
   '30×30': {
     'waistSize': 30,
     'inseam': 30,
@@ -277,31 +278,31 @@ const flavorsPerSize = {
 }
 
 // Things that should only be added to the individual product
-const currentPrice = 6900
-const editionIndex = '1'
-const detailsToTransfer = ['msrp', 'description', 'aboutSpecific', 'careInstructions', 'sizeInfo']
+var currentPrice = 6900
+var editionIndex = '1'
+var detailsToTransfer = ['msrp', 'description', 'aboutSpecific', 'careInstructions', 'sizeInfo']
 // For every flavor
-for (let flavor of flavors) {
+for (var h = 0; h < flavors.length; h++) {
   // For every size
-  for (let size in flavorsPerSize) {
+  for (var size in flavorsPerSize) {
     // Get the total number of units in this size
-    for (let i = 0; i < size[flavor.flavor]; i++) {
+    for (var i = 0; i < flavorsPerSize[size][flavors[h].flavor]; i++) {
       // Clone all basic details
-      let {waistSize, inseam} = size
-      let {flavorIndex} = flavor
-      let item = JSON.parse(JSON.stringify(flavor))
+      var {waistSize, inseam} = size
+      var {flavorIndex} = flavors[h].flavorIndex
+      var item = JSON.parse(JSON.stringify(flavors[h]))
 
       // Add size information
       item.sizeInformation = sizeInformation
 
       // Set properties from selected pantGenerics
-      for (let detail of detailsToTransfer) {
+      for (var detail of detailsToTransfer) {
         item[detail] = pantGenerics[detail]
       }
 
       // Add extraDetails
-      for (let detail of pantGenerics['details']) {
-        item['extraDetails'].push(detail)
+      for (var extraDetail of pantGenerics['details']) {
+        item['extraDetails'].push(extraDetail)
       }
 
       // Set sizes property
@@ -314,9 +315,11 @@ for (let flavor of flavors) {
       item.sku = editionIndex + flavorIndex + waistSize + inseam
       item.currentPrice = currentPrice
       item.urlFlavor = item['flavor'].replace(' ', '-')
-      item.shortDescription = 'Alternating Current Chinos in ' + toTitleCase(flavor.flavor)
+      item.shortDescription = 'Alternating Current Chinos in ' + toTitleCase(flavors[h].flavor)
       item.distinctSizes = Object.keys(flavorsPerSize)
       db.products.insert(item)
     }
   }
 }
+
+db.editions.insert(edition)
