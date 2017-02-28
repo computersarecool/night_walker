@@ -66,6 +66,9 @@ html, body
 a:link, a:visited
   text-decoration none
 
+.link-container
+  display inline-block
+
 body
   display flex
   flex-direction column
@@ -78,7 +81,6 @@ site-header
 
 // Header logo
 header a.logo
-  display inline-block
   width 80%
   padding-left .3em
   vertical-align top
@@ -474,13 +476,16 @@ button.size-guide
 // End of product page
 
 // Login and Signup page
-.login-container
+.get-info-container
   margin 0 .2em 0 .5em
 
-form.signup
+.pre-info
+  margin .25em .25em .25em 0
+
+form.get-info
   margin-top .5em
 
-form.signup label
+form.get-info label
   display inline-block
   margin-bottom .35em
 
@@ -496,7 +501,7 @@ form.signup label
 .password.input
   border .175em solid nectarine
 
-.login-container button
+.get-info-container button
   margin .2em
 
 .login-button
@@ -561,3 +566,54 @@ div.short-details p
   margin .2em
   background cherry
   flex 1
+
+// Checkout page
+.guest-checkout
+  border-bottom .4em solid black
+
+.checkout-header
+  margin-bottom .7em
+  margin-top .8em
+  font-weight 700
+
+.checkout-form-holder
+  border-top .4em solid black
+
+.pre-info .link-container
+  display block
+
+.checkout-button
+  min-width 5em
+  float none
+
+.checkout-button.pay
+  background proton-powder
+  margin .8em auto 0 auto
+  display block
+
+.checkout-form p
+  margin-top .2em
+
+input.first
+  border .175em solid cherry
+
+input.second
+  border .175em solid nectarine
+
+input.third
+  border .175em solid lemon
+
+input.fourth
+  border .175em solid apple
+
+input.fifth
+  border .175em solid electricity
+
+input.sixth
+  border .175em solid plum-crazy
+
+input.seventh
+  border .175em solid proton-powder
+
+input.eighth
+  border .175em solid powder

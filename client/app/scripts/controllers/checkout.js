@@ -23,21 +23,20 @@ angular.module('nightwalkerApp')
 
     $scope.goToCheckout = UserFactory.goToCheckout
 
-    $scope.updateCart = (add, item, replace) => {
-      console.log(item)
-      for (let i = 0; i < $scope.items.length; i++) {
-        if ($scope.items[i].product.sku === item.product.sku) {
-          if (add) {
-            $scope.items[i].quantity += 1
-          } else {
-            $scope.items[i].quantity -= 1
+    $scope.updateCart = (add, newItem, replace) => {
+      for (let item of $scope.items) {
+        if (item.product.sku === newItem.product.sku) {
+          add ? item.quantity += 1 : item.quantity -= 1
+
+          if (replace || !item.quantity) {
+            const index = $scope.items.indexOf(item)
+            item.quantity = 0
+            if (index > -1) {
+              $scope.items.splice(index, 1)
+            }
           }
-          if (replace || !$scope.items[i].quantity) {
-            $scope.items[i].quantity = 0
-            $scope.items.splice(i, 1)
-          }
+          return UserFactory.updateCart(item.product.sku, item.quantity)
         }
-        return UserFactory.updateCart(item.product.sku, item.quantity)
       }
     }
 

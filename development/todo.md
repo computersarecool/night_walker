@@ -23,11 +23,11 @@
   - [ ] Make header logo an SVG
   - [ ] Buy ssl cert
 
-  - [ ] Fix updatecart function from within cart page
   - [ ] Size chart and actual measurements in DB
   - [ ] Write about and contact copy
   - [ ] Should obfuscate email?
   - [ ] Make loading gif
+  - [ ] Sunglasses logo on about us
   - [ ] Check signed in modal cart
   - [ ] Check all login / signup and account page
   - [ ] Check responsiveness when page grows

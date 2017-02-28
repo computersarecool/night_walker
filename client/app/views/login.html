@@ -1,5 +1,5 @@
 <!-- Show if the user is logging in -->
-<div ng-show="showLogin" class="login-container">
+<div ng-show="showLogin" class="get-info-container">
   <form novalidate name="loginForm" ng-submit="submitUserDetails('/login', username, password)">
     <div>
       <label>
@@ -38,12 +38,14 @@
 
 
 <!-- Show if the user is signing up -->
-<div ng-show="!showLogin" class="login-container">
-  <p>
-    Our sign up form is simple, and we will never spam you
-  </p>
+<div ng-show="!showLogin" class="get-info-container">
+  <div class="pre-info">
+    <p>
+      Our sign up form is simple, and we will never spam you
+    </p>
+  </div>
 
-  <form novalidate class="signup" name="signupForm" ng-submit="submitUserDetails('create-account', email, password, firstName, lastName)">
+  <form novalidate class="get-info" name="signupForm" ng-submit="submitUserDetails('create-account', email, password, firstName, lastName)">
 
     <div>
       <label>

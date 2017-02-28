@@ -1,4 +1,5 @@
-<div id="checkout-view" class="container">
+<div id="checkout-view" class="get-info-container">
+
   <!-- Show if there are not items in cart -->
   <div ng-show="!user.cart.length">
     <p>
@@ -6,119 +7,144 @@
     </p>
   </div>
 
-  <!-- Show login options if not logged in -->
-  <div ng-show="!user.firstName && user.cart.length">
-    <div>
+  <!-- Show if not logged in -->
+  <div ng-show="!user.firstName && user.cart.length" class="guest-checkout">
+    <div class="pre-info">
       <p>
         You are checking out as a guest
       </p>
       <p>
-        If you would like to create an account <a ng-href="/signup">sign up</a>
+        If you would like to create an account <a class="link-container" ng-href="/create-account"><button class="ui-button checkout-button">Sign Up</button></a>
       </p>
       <p>
-        Or if you already have an account <a ng-href="/login">log in</a>
+        Or if you already have an account <a class="link-container" ng-href="/login"><button class="ui-button checkout-button">Login</button></a>
       </p>
     </div>
   </div>
     
-  <!-- Welcome message if logged in -->
+  <!-- Show if logged in -->
   <div ng-show="user.firstName">
     <p>
-      Hi {{user.firstName}}. This is your cart
+      Hi {{user.firstName}}
+    </p>
+    <p>
+      This is your cart
     </p>
   </div>
   
   <site-checkout-cart></site-checkout-cart>
 
   <!-- Address and payment form -->
-  <div ng-show="user.cart.length">
-    <form novalidate name="checkoutForm" stripe-form="process">
-      <div>
-        <div>
-          <p>
-            Shipping Details
-          </p>
+  <div ng-show="user.cart.length" class="checkout-form-holder">
+    <form novalidate class="checkout-form" name="checkout-form" stripe-form="process">
 
+      <h2 class="checkout-header">
+        Shipping Details
+      </h2>
+
+      <label>
+        <p>
+          First Name
+        </p>
+        <input class="first" type="text" ng-model="shippingDetails.firstName" required>
+      </label>
+
+      <label>
+        <p>
+          Last Name
+        </p>
+        <input class="second" type="text" ng-model="shippingDetails.lastName" required>
+      </label>
+
+      <label>
+        <p>
+          Address
+        </p>
+        <input class="third" type="text" ng-model="shippingDetails.address1" required>
+      </label>
+
+      <label>
+        <p>
+          Address <small>(continued)</small>
+        </p>
+        <input class="fourth" type="text" ng-model="shippingDetails.address2">
+      </label>
+
+      <label>
+        <p>
+          City
+        </p>
+        <input class="fifth" type="text" ng-model="shippingDetails.city" required>
+      </label>
+
+       <label>
+         <p>
+           State
+         </p>
+         <input class="sixth" type="text" ng-model="shippingDetails.state" required>
+       </label>
+
+       <label>
+         <p>
+          Zip Code
+         </p>
+         <input class="seventh" type="text" ng-model="shippingDetails.zip" required>
+       </label>
+
+       <label>
+         <p>
+          E-mail Address
+         </p>
+         <input class="eighth" type="email" ng-model="shippingDetails.email" required>
+       </label>
+
+       <label>
+         <p>
+          Telephone Number <span class="form-optional"><small>(optional)</small></span>
+
+         </p>
+         <input class="first" type="tel" ng-model="shippingDetails.telephone">
+       </label>
+
+       <!-- Financial Details -->
+        <h2 class="checkout-header">
+          Payment Details
+        </h2>
+
+        <div class="form-row">
           <label>
-            First Name
-            <input type="text" ng-model="shippingDetails.firstName" required>
-          </label>
-
-          <label>
-            Last Name
-            <input type="text" ng-model="shippingDetails.lastName" required>
-          </label>
-
-          <label>
-            Address
-            <input type="text" ng-model="shippingDetails.address1" required>
-          </label>
-
-          <label>
-            Address (continued)
-            <input type="text" ng-model="shippingDetails.address2">
-          </label>
-
-          <label>
-            City
-            <input type="text" ng-model="shippingDetails.city" required>
-          </label>
-
-          <label>
-            State
-            <input type="text" ng-model="shippingDetails.state" required>
-          </label>
-
-          <label>
-            Zip
-            <input type="text" ng-model="shippingDetails.zip" required>
-          </label>
-
-          <label>
-            Email
-            <input type="email" ng-model="shippingDetails.email" required>
-          </label>
-
-          <label>
-            Telephone Number
-            <input type="tel" ng-model="shippingDetails.telephone">
-            <span class="form-optional">Optional</span></label>
-
-          <!-- Financial Details -->
-          <p>
-            Payment Details
-          </p>
-
-          <div class="form-row">
-            <label>
+            <p>
               Card Number
-              <input type="text" size="20" data-stripe="number" ng-model="shippingDetails.card" required>
-            </label>
-          </div>
-
-          <div class="form-row">
-            <label>
-              CVC
-              <input type="text" size="4" data-stripe="cvc" ng-model="shippingDetails.cvc" required>
-            </label>
-          </div>
-
-          <div class="form-row">
-            <label>
-              Expiration (MM)
-              <input type="text" size="2" data-stripe="exp-month" ng-model="shippingDetails.exprDay" required>
-            </label>
-
-            <label>
-              (YYYY)
-              <input type="text" size="4" data-stripe="exp-year" ng-model="shippingDetails.exprYear" required>
-            </label>
-          </div>
-
-          <button type="submit" id="payment-submit" ng-disabled="checkoutForm.$invalid">Pay</button>
-
+            </p>
+            <input class="second" type="text" size="20" data-stripe="number" ng-model="shippingDetails.card" required>
+          </label>
         </div>
-      </div>
+
+       <div class="form-row">
+         <label>
+           <p>
+             CVC
+           </p>
+           <input class="third" type="text" size="4" data-stripe="cvc" ng-model="shippingDetails.cvc" required>
+         </label>
+       </div>
+
+       <div class="form-row">
+         <p>
+           Expiration
+         </p>
+         <label>
+           <input class="fourth" type="text" size="2" data-stripe="exp-month" ng-model="shippingDetails.exprDay" required><span><small>(MM)</small></span>
+         </label>
+
+         <label>
+          <input class="fifth" type="text" size="4" data-stripe="exp-year" ng-model="shippingDetails.exprYear" required><span><small>(YYYY)</small></span>
+         </label>
+
+       </div>
+       <button type="submit" id="payment-submit" class="ui-button checkout-button pay" ng-disabled="checkout-form.$invalid">Pay</button>
     </form>
+
   </div>
+
 </div>
