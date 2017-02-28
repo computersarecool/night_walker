@@ -288,8 +288,9 @@ for (var h = 0; h < flavors.length; h++) {
     // Get the total number of units in this size
     for (var i = 0; i < flavorsPerSize[size][flavors[h].flavor]; i++) {
       // Clone all basic details
-      var {waistSize, inseam} = size
-      var {flavorIndex} = flavors[h].flavorIndex
+      var waistSize = size.substring(0, 2)
+      var inseam = size.substring(3)
+      var flavorIndex = flavors[h].flavorIndex
       var item = JSON.parse(JSON.stringify(flavors[h]))
 
       // Add size information
