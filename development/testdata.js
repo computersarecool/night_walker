@@ -43,59 +43,60 @@ var edition = {
 
 var sizeInformation = [
   {
-    'Listed Size': '29×29',
-    'Waist': '29',
-    'Inseam': '29',
-    'Outseam': '30',
-    'Rise': '6',
-    'Knee': '12',
-    'Leg Opening': '5',
-    'Pocket Opening': '7',
-    'Pocket Depth': '9'
+    'Listed Size': '30×30',
+    'Waist': '14.5',
+    'Front Rise': '10',
+    'Thigh': '11',
+    'Knee': '8',
+    'Leg Opening': '7.5'
   },
   {
-    'Listed Size': '33×33',
-    'Waist': '29',
-    'Inseam': '29',
-    'Outseam': '30',
-    'Rise': '6',
-    'Knee': '12',
-    'Leg Opening': '5',
-    'Pocket Opening': '7',
-    'Pocket Depth': '9'
+    'Listed Size': '32×32',
+    'Waist': '15.5',
+    'Front Rise': '9.5',
+    'Thigh': '11',
+    'Knee': '8.25',
+    'Leg Opening': '8'
+  },
+  {
+    'Listed Size': '34×32',
+    'Waist': '16',
+    'Front Rise': '10.5',
+    'Thigh': '10.5',
+    'Knee': '8.5',
+    'Leg Opening': '8'
+  },
+  {
+    'Listed Size': '34×34',
+    'Waist': '18.25',
+    'Front Rise': '10.5',
+    'Thigh': '11',
+    'Knee': '9',
+    'Leg Opening': '8'
+  },
+  {
+    'Listed Size': '36×32',
+    'Waist': '18',
+    'Front Rise': '10.5',
+    'Thigh': '11.5',
+    'Knee': '9',
+    'Leg Opening': '8.5'
+  },
+  {
+    'Listed Size': '36×36',
+    'Waist': '18.7',
+    'Front Rise': '11',
+    'Thigh': '11',
+    'Knee': '9.35',
+    'Leg Opening': '8.5'
   },
   {
     'Listed Size': '38×36',
-    'Waist': '29',
-    'Inseam': '29',
-    'Outseam': '30',
-    'Rise': '6',
-    'Knee': '12',
-    'Leg Opening': '5',
-    'Pocket Opening': '7',
-    'Pocket Depth': '9'
-  },
-  {
-    'Listed Size': '36×34',
-    'Waist': '29',
-    'Inseam': '29',
-    'Outseam': '30',
-    'Rise': '6',
-    'Knee': '12',
-    'Leg Opening': '5',
-    'Pocket Opening': '7',
-    'Pocket Depth': '9'
-  },
-  {
-    'Listed Size': '32×30',
-    'Waist': '29',
-    'Inseam': '29',
-    'Outseam': '30',
-    'Rise': '6',
-    'Knee': '12',
-    'Leg Opening': '5',
-    'Pocket Opening': '7',
-    'Pocket Depth': '9'
+    'Waist': '18.8',
+    'Front Rise': '11',
+    'Thigh': '11.5',
+    'Knee': '9.5',
+    'Leg Opening': '9'
   }
 ]
 
@@ -194,14 +195,14 @@ var flavorsPerSize = {
   '30×30': {
     'waistSize': 30,
     'inseam': 30,
-    'cherry': 1,
-    'nectarine': 5,
-    'lemon': 4,
-    'apple': 66,
-    'electricity': 77,
-    'plum-crazy': 99,
-    'powder': 25,
-    'proton-powder': 66
+    'cherry': 9,
+    'nectarine': 11,
+    'lemon': 10,
+    'apple': 10,
+    'electricity': 9,
+    'plum-crazy': 12,
+    'powder': 5,
+    'proton-powder': 0
   },
   '32×32': {
     'waistSize': 32,
