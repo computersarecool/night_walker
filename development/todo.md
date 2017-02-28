@@ -1,7 +1,11 @@
 # TODO:
 
 ## DATABASE
-      
+* General
+  - [ ] Size chart and actual measurements in DB
+  - [ ] Inventory in DB
+  - [ ] Write better item copy
+  
 ## SERVER
 * AWS
   - [ ] Fix name server issues
@@ -19,25 +23,19 @@
 ## CLIENT
 * Other
   - [ ] SEO Optimize
-  - [ ] Allow client to reach all routes directly
+  - [ ] Allow client to reach all routes through bookmarks
   - [ ] Make header logo an SVG
-  - [ ] Buy ssl cert
+  - [ ] Implement ssl cert
 
-  - [ ] Size chart and actual measurements in DB
+  - [ ] Convert .details popup to flexbox
   - [ ] Write about and contact copy
   - [ ] Should obfuscate email?
   - [ ] Make loading gif
   - [ ] Sunglasses logo on about us
-  - [ ] Check signed in modal cart
-  - [ ] Check all login / signup and account page
+  - [ ] Remove the letter x from all non language content  
   - [ ] Check responsiveness when page grows
-  - [ ] Remove the letter x from all non language content
   
 ## STYLE
-### PICKU
-#### Pages Left
-- [ ] Reset password
-- [ ] Checkout
 
 #### Product page details
   - Short description

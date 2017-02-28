@@ -402,7 +402,7 @@ select.extra-details {
 }
 input:disabled,
 button:disabled {
-  background: #aeaeae;
+  background: #6f6f6f;
 }
 .details {
   position: absolute;
@@ -680,4 +680,42 @@ input.eighth {
 }
 .electricity {
   background: #26599a;
+}
+div.congrats {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.congrats p {
+  margin-top: 1.5em;
+}
+.congrats img {
+  margin-top: 2em;
+}
+.modal-message {
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 90%;
+  padding: 2em;
+  background: #c71b39;
+}
+.modal-message button {
+  color: #ed243f;
+  border: 0.125em #000;
+  margin: 1.25em auto 0 auto;
+  display: block;
 }

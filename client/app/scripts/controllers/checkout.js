@@ -43,7 +43,7 @@ angular.module('nightwalkerApp')
     $scope.process = (status, response) => {
       if (response.error) {
         ModalService.showError({
-          text: `We are sorry we, ${response.error.message}`,
+          text: `We are sorry, ${response.error.message}`,
           footer: 'Please try with a different payment card'
         })
       } else {

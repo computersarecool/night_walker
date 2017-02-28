@@ -30,6 +30,7 @@ nav-height = 6vh
 nav-offset = 6vh
 cube-size = 7vw
 
+
 // Custom directives
 site-header, site-gallery, site-nav, size-guide
   display block
@@ -43,7 +44,6 @@ electricity = #26599a
 plum-crazy = #3f2c63
 powder = #e45c68
 proton-powder = #ed243f
-
 gray-cover = #6f6f6f
 
 // Display items
@@ -369,7 +369,7 @@ select.extra-details
   margin 2%
 
 input:disabled, button:disabled
-  background #aeaeae
+  background gray-cover
 
 // Item details modal
 .details
@@ -626,3 +626,31 @@ input.eighth
 
 .electricity
   background electricity
+
+div.congrats
+  display flex
+  justify-content center
+  align-items center
+  flex-direction column
+
+.congrats p
+  margin-top 1.5em
+
+.congrats img
+  margin-top 2em
+
+.modal-message
+  position fixed
+  z-index 1
+  top 50%
+  left 50%
+  transform translate(-50%, -50%)
+  width 90%
+  padding 2em
+  background cherry
+
+.modal-message button
+  color proton-powder
+  border .125em black
+  margin 1.25em auto 0 auto
+  display block

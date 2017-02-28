@@ -1,4 +1,5 @@
-<div id="modal" ng-show="showModal" ng-click="showModal=false">
+<div id="modal" class="modal-message" ng-show="showModal" ng-click="showModal=false">
   <p class="modal-info">{{message.text}}</p>
   <p class="modal-footer">{{message.footer || "Please try again"}}</p>
+  <button class="ui-button checkout-button" ng-click="showModal=false">Close</button>
 </div>
