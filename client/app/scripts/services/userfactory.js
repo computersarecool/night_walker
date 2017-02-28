@@ -226,6 +226,10 @@ angular.module('nightwalkerApp')
       $location.path('/checkout')
     }
 
+    function goToCart () {
+      $location.path('/cart')
+    }
+
     function goToShop () {
       $location.path('/shop')
     }
@@ -246,6 +250,7 @@ angular.module('nightwalkerApp')
       addToCart,
       updateCart,
       goToCheckout,
+      goToCart,
       goToShop
     }
 

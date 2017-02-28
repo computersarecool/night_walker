@@ -20,5 +20,6 @@ angular.module('nightwalkerApp')
       $scope.user = data
     })
 
+    $scope.goToCart = UserFactory.goToCart
     $scope.logout = UserFactory.logout
   })

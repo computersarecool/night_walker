@@ -400,6 +400,10 @@ select.extra-details {
   font-weight: 700;
   margin: 2%;
 }
+input:disabled,
+button:disabled {
+  background: #aeaeae;
+}
 .details {
   position: absolute;
   text-align: left;
@@ -502,7 +506,7 @@ button.size-guide {
   margin-right: 0.125em;
 }
 .get-info-container {
-  margin: 0 0.2em 0 0.5em;
+  margin: 0.25em 0.2em 0 0.5em;
 }
 .pre-info {
   margin: 0.25em 0.25em 0.25em 0;
@@ -670,4 +674,10 @@ input.seventh {
 }
 input.eighth {
   border: 0.175em solid #e45c68;
+}
+.proton {
+  background: #ed243f;
+}
+.electricity {
+  background: #26599a;
 }

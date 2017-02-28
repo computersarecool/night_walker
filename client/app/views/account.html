@@ -1,20 +1,21 @@
-<div class="container">
-    This is the account view.
-</div>
-<div>
+<div class="get-info-container">
+  <p>
     Welcome {{user.firstName}} {{user.lastName}}
-</div>
-<div>   
+  </p>
+  <p>
     This is your account {{user.lastName}}
-</div>
-<div>
-  Your email {{user.email}}
-</div>
-<div>
-  Your addresses {{user.addresses}}
-</div>
-<div>
-    Your cart {{user.cart}}
-</div>
-<button ng-click="logout()">Logout</button>
+  </p>
+  <p>
+    Your email is: {{user.email}}
+  </p>
 
+  <p>
+    If you have any questions please
+  </p>
+  <p>
+    <a ng-href="/contact">contact us</a>
+  </p>
+
+  <button class="ui-button checkout-button proton" ng-click="goToCart()">View Your Cart</button>
+  <button class="ui-button checkout-button electricity" ng-click="logout()">Logout</button>
+</div>
