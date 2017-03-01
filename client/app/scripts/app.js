@@ -29,7 +29,7 @@ angular
         templateUrl: 'views/contact.html'
       })
       .when('/shop', {
-        redirectTo: '/shop/alternating-current'
+        redirectTo: '/shop/first-flavors'
       })
       .when('/shop/:edition', {
         templateUrl: 'views/shop.html',
@@ -40,7 +40,7 @@ angular
           }
         }
       })
-      .when('/shop/alternating-current/:flavor', {
+      .when('/shop/first-flavors/:flavor', {
         templateUrl: '/views/product.html',
         controller: 'ProductCtrl',
         resolve: {

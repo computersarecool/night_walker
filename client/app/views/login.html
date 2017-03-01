@@ -7,7 +7,7 @@
           Email
         </p>
         <input class="email input" type="email" ng-model="username" name="username" required>
-        <p ng-show="loginForm.username.$invalid && !loginForm.username.$pristine">Your email is not valid</p>
+        <p ng-show="loginForm.username.$invalid && !loginForm.username.$pristine"><small class="warning">Your email is not valid</small></p>
       </label>
     </div>
 
@@ -17,7 +17,7 @@
           Password
         </p>
         <input class="password input" type="password" ng-model="password" name="password" ng-minlength="3" required>
-        <p ng-show="loginForm.password.$invalid && !loginForm.password.$pristine">Your password is required</p>
+        <p ng-show="loginForm.password.$invalid && !loginForm.password.$pristine"><small class="warning">Your password is required</small></p>
       </label>
     </div>
 
@@ -53,7 +53,7 @@
           First Name
         </p>
         <input class="firstname input" type="text" ng-model="firstName" name="firstName" required>
-        <p ng-show="signupForm.firstName.$invalid && !signupForm.firstName.$pristine">Your first name is required</p>
+        <p ng-show="signupForm.firstName.$invalid && !signupForm.firstName.$pristine"><small class="warning">Your first name is required</small></p>
       </label>
     </div>
 
@@ -63,7 +63,7 @@
           Last Name
         </p>
         <input class="lastname input" type="text" ng-model="lastName" name="lastName" required>
-        <p ng-show="signupForm.lastName.$invalid && !signupForm.lastName.$pristine">Your last name is required</p>
+        <p ng-show="signupForm.lastName.$invalid && !signupForm.lastName.$pristine"><small class="warning">Your last name is required</small></p>
       </label>
     </div>
 
@@ -73,7 +73,7 @@
           Email
         </p>
         <input class="email input" type="email" ng-model="email" name="email" required>
-        <p ng-show="signupForm.email.$invalid && !signupForm.email.$pristine">Your email is not valid</p>
+        <p ng-show="signupForm.email.$invalid && !signupForm.email.$pristine"><small class="warning">Your email is not valid</small></p>
       </label>
     </div>
 
@@ -83,7 +83,7 @@
           Password <small>(Min length 3)</small>
         </p>
         <input class="password input" type="password" ng-model="password" ng-minlength="3" required>
-        <p ng-show="signupForm.password.$invalid && !signupForm.password.$pristine">A password is required</p>
+        <p ng-show="signupForm.password.$invalid && !signupForm.password.$pristine"><small class="warning">A password is required</small></p>
       </label>
     </div>
 

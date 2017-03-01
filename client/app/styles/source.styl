@@ -26,14 +26,7 @@ table
 // Begin styles
 // Globals
 // Variables
-nav-height = 6vh
-nav-offset = 6vh
 cube-size = 7vw
-
-
-// Custom directives
-site-header, site-gallery, site-nav, size-guide
-  display block
 
 // Color Variables
 cherry = #c71b39
@@ -46,15 +39,19 @@ powder = #e45c68
 proton-powder = #ed243f
 gray-cover = #6f6f6f
 
-// Display items
+// Custom directives
+site-header, site-gallery, site-nav, size-guide
+  display block
+
+// General items
+*, *:before, *:after
+  box-sizing inherit
+  outline none
+
 html, body
   box-sizing border-box
   font-family 'Arial', sans-serif
   height 100%
-
-*, *:before, *:after
-  box-sizing inherit   
-  outline none
 
 .hidden
   visibility hidden
@@ -65,6 +62,9 @@ html, body
 // All links
 a:link, a:visited
   text-decoration none
+
+small.warning
+  color cherry
 
 .link-container
   display inline-block
@@ -449,8 +449,8 @@ caption h1
   font-weight 700
 
 caption p
-  padding-top 1.5vh
-  padding-bottom .5vh
+  padding-top 1em
+  padding-bottom .25em
   font-size 3vh
   font-weight 400  
 
@@ -650,7 +650,7 @@ div.congrats
   background cherry
 
 .modal-message button
-  color proton-powder
+  color black
   border .125em black
   margin 1.25em auto 0 auto
   display block

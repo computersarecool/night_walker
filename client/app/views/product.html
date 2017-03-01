@@ -1,10 +1,10 @@
 <div id="product-container" class="product container">
   <div id="individual-gallery" class="individual-gallery">
     <div id="gallery-holder" class="gallery-holder" site-mouse-down="startScroll($event)" site-mouse-move="scrollGallery($event)">
-      <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-front.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
-      <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-side.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
-      <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-detail.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
-      <img class="individual-main" ng-src="../images/individual/{{product.safeFlavor | underscoreFilter}}/{{product.safeFlavor}}-back.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
+      <img class="individual-main" ng-src="../images/individual/{{product.urlFlavor | underscoreFilter}}/{{product.urlFlavor}}-front.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
+      <img class="individual-main" ng-src="../images/individual/{{product.urlFlavor | underscoreFilter}}/{{product.urlFlavor}}-side.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
+      <img class="individual-main" ng-src="../images/individual/{{product.urlFlavor | underscoreFilter}}/{{product.urlFlavor}}-detail.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
+      <img class="individual-main" ng-src="../images/individual/{{product.urlFlavor | underscoreFilter}}/{{product.urlFlavor}}-back.jpg" alt="NightWalker Chino in {{product.flavor}}" title="NightWalker Chino in {{product.flavor}}">
     </div>
 
     <div id="view-picker" class="view-picker">
@@ -26,7 +26,7 @@
       </div>
 
       <div class="extra-detail-right">
-        <select id="select-size" class="extra-details" ng-model="pickedProduct.size" ng-change="changeSize()" ng-options="'' + productSize.waistSize + 'x' + productSize.inseam for productSize in product.distinctSizes | orderBy: 'waistSize'"></select>
+        <select id="select-size" class="extra-details" ng-model="pickedProduct.size" ng-change="changeSize()" ng-options="'' + productSize.waistSize + '⨉' + productSize.inseam for productSize in product.distinctSizes | orderBy: 'waistSize'"></select>
         <button id="add-to-cart" class="extra-details ui-button" ng-click="addToCart()">Add to Cart</button>
         <button id="checkout-now" class="extra-details ui-button hidden" ng-click="goToCheckout()">Checkout now</button>
      </div>
@@ -37,7 +37,7 @@
         <input type="radio" id="product-tab" name="tab-group-1" checked>
         <label for="product-tab">Product</label>
         <ul>
-          <li ng-repeat="detail in product.details">{{detail}}</li>
+          <li ng-repeat="detail in product.extraDetails">{{detail}}</li>
         </ul>
       </div>
 
@@ -50,7 +50,7 @@
         </ul>
        </div>
 
-       <button class="close" ng-click="toggleShow('#details')">X</button>
+       <button class="close" ng-click="toggleShow('#details')">&#10005</button>
     </div>
 
     <site-size-guide></site-size-guide>

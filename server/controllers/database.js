@@ -112,8 +112,8 @@ function findUserByEmail (email, callback) {
   })
 }
 
-function findEdition (urlSafeName, callback) {
-  Editions.findOne({urlSafeName}, (err, edition) => {
+function findEdition (urlName, callback) {
+  Editions.findOne({urlName}, (err, edition) => {
     if (err) {
       return callback(err)
     }
@@ -156,8 +156,8 @@ function getItemDetails (skuObj, callback) {
   })
 }
 
-function findProductByFlavor (safeFlavor, callback) {
-  Products.findOne({safeFlavor}).lean().exec((err, product) => {
+function findProductByFlavor (urlFlavor, callback) {
+  Products.findOne({urlFlavor}).lean().exec((err, product) => {
     if (err) {
       return callback(err)
     }
@@ -168,7 +168,7 @@ function findProductByFlavor (safeFlavor, callback) {
       return callback(error)
     }
     // TODO: Use schema design to improve this
-    Products.distinct('sizes', {safeFlavor}, (err, distinctSizes) => {
+    Products.distinct('sizes', {urlFlavor}, (err, distinctSizes) => {
       if (err) {
         return callback(err)
       }

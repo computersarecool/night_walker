@@ -27,7 +27,7 @@ angular.module('nightwalkerApp')
 
     function getProduct (flavor) {
       const deferred = $q.defer()
-      $http.get(base + '/shop/alternating-current/' + flavor)
+      $http.get(base + '/shop/first-flavors/' + flavor)
         .then(response => {
           deferred.resolve(response.data)
         }, httpError => {

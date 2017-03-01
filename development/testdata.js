@@ -10,7 +10,7 @@ var urlName = 'first-flavors'
 var totalPairs = 120
 
 var pantGenerics = {
-  type: 'pants,',
+  type: 'pants',
   name: 'chinos',
   edition: editionName,
   urlEdition: urlName,
@@ -36,9 +36,9 @@ var edition = {
   name: editionName,
   urlName: urlName,
   kind: 'clothing',
-  members: [
-    pantGenerics
-  ]
+  members: {
+    chinos: pantGenerics
+  }
 }
 
 var sizeInformation = [

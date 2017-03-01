@@ -70,17 +70,17 @@ site-nav,
 size-guide {
   display: block;
 }
-html,
-body {
-  box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
-  height: 100%;
-}
 *,
 *:before,
 *:after {
   box-sizing: inherit;
   outline: none;
+}
+html,
+body {
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+  height: 100%;
 }
 .hidden {
   visibility: hidden;
@@ -91,6 +91,9 @@ body {
 a:link,
 a:visited {
   text-decoration: none;
+}
+small.warning {
+  color: #c71b39;
 }
 .link-container {
   display: inline-block;
@@ -479,8 +482,8 @@ caption h1 {
   font-weight: 700;
 }
 caption p {
-  padding-top: 1.5vh;
-  padding-bottom: 0.5vh;
+  padding-top: 1em;
+  padding-bottom: 0.25em;
   font-size: 3vh;
   font-weight: 400;
 }
@@ -714,7 +717,7 @@ div.congrats {
   background: #c71b39;
 }
 .modal-message button {
-  color: #ed243f;
+  color: #000;
   border: 0.125em #000;
   margin: 1.25em auto 0 auto;
   display: block;
