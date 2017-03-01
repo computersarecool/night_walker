@@ -200,9 +200,9 @@ var flavorsPerSize = {
     'lemon': 10,
     'apple': 10,
     'electricity': 9,
-    'plum-crazy': 12,
+    'plum crazy': 12,
     'powder': 5,
-    'proton-powder': 0
+    'proton powder': 0
   },
   '32×32': {
     'waistSize': 32,
@@ -212,9 +212,9 @@ var flavorsPerSize = {
     'lemon': 4,
     'apple': 66,
     'electricity': 77,
-    'plum-crazy': 99,
+    'plum crazy': 99,
     'powder': 25,
-    'proton-powder': 66
+    'proton powder': 66
   },
   '34×32': {
     'waistSize': 34,
@@ -224,9 +224,9 @@ var flavorsPerSize = {
     'lemon': 4,
     'apple': 66,
     'electricity': 77,
-    'plum-crazy': 99,
+    'plum crazy': 99,
     'powder': 25,
-    'proton-powder': 66
+    'proton powder': 66
   },
   '34×34': {
     'waistSize': 34,
@@ -236,9 +236,9 @@ var flavorsPerSize = {
     'lemon': 4,
     'apple': 66,
     'electricity': 77,
-    'plum-crazy': 99,
+    'plum crazy': 99,
     'powder': 25,
-    'proton-powder': 66
+    'proton powder': 66
   },
   '36×32': {
     'waistSize': 36,
@@ -248,9 +248,9 @@ var flavorsPerSize = {
     'lemon': 4,
     'apple': 66,
     'electricity': 77,
-    'plum-crazy': 99,
+    'plum crazy': 99,
     'powder': 25,
-    'proton-powder': 66
+    'proton powder': 66
   },
   '36×36': {
     'waistSize': 36,
@@ -260,9 +260,9 @@ var flavorsPerSize = {
     'lemon': 4,
     'apple': 66,
     'electricity': 77,
-    'plum-crazy': 99,
+    'plum crazy': 99,
     'powder': 25,
-    'proton-powder': 66
+    'proton powder': 66
   },
   '38×36': {
     'waistSize': 38,
@@ -272,9 +272,9 @@ var flavorsPerSize = {
     'lemon': 4,
     'apple': 66,
     'electricity': 77,
-    'plum-crazy': 99,
+    'plum crazy': 99,
     'powder': 25,
-    'proton-powder': 66
+    'proton powder': 66
   }
 }
 
@@ -317,7 +317,7 @@ for (var h = 0; h < flavors.length; h++) {
       item.sku = editionIndex + flavorIndex + waistSize + inseam
       item.currentPrice = currentPrice
       item.urlFlavor = item['flavor'].replace(' ', '-')
-      item.shortDescription = 'Alternating Current Chinos in ' + toTitleCase(flavors[h].flavor)
+      item.shortDescription = 'First Flavors Chinos in ' + toTitleCase(flavors[h].flavor)
       item.distinctSizes = Object.keys(flavorsPerSize)
       db.products.insert(item)
     }

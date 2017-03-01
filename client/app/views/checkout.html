@@ -24,19 +24,21 @@
     
   <!-- Show if logged in -->
   <div ng-show="user.firstName">
-    <p>
-      Hi {{user.firstName}}
-    </p>
-    <p>
-      This is your cart
-    </p>
+    <div class="pre-info">
+      <p>
+        Hi {{user.firstName}}
+      </p>
+      <p>
+        This is your cart
+      </p>
+    </div>
   </div>
   
   <site-checkout-cart></site-checkout-cart>
 
   <!-- Address and payment form -->
   <div ng-show="user.cart.length" class="checkout-form-holder">
-    <form novalidate class="checkout-form" name="checkout-form" stripe-form="process">
+    <form novalidate class="checkout-form" name="checkoutForm" stripe-form="process">
 
       <h2 class="checkout-header">
         Shipping Details
@@ -101,7 +103,6 @@
        <label>
          <p>
           Telephone Number <span class="form-optional"><small>(optional)</small></span>
-
          </p>
          <input class="first" type="tel" ng-model="shippingDetails.telephone">
        </label>
@@ -142,7 +143,10 @@
          </label>
 
        </div>
-       <button type="submit" id="payment-submit" class="ui-button checkout-button pay" ng-disabled="checkout-form.$invalid">Pay</button>
+       <p ng-show="checkoutForm.$invalid">
+         <small class="warning">Your information is not valid. Please fill in all required fields</small>
+       </p>
+       <button type="submit" id="payment-submit" class="ui-button checkout-button pay" ng-disabled="checkoutForm.$invalid">Pay</button>
     </form>
 
   </div>

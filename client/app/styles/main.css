@@ -404,7 +404,8 @@ select.extra-details {
   margin: 2%;
 }
 input:disabled,
-button:disabled {
+button:disabled,
+.checkout-button.pay:disabled {
   background: #6f6f6f;
 }
 .details {
@@ -612,6 +613,8 @@ div.short-details p {
   -webkit-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  font-size: 0.8em;
+  margin-top: 0.2em;
 }
 .button-holder {
   display: -webkit-flex;
@@ -721,4 +724,13 @@ div.congrats {
   border: 0.125em #000;
   margin: 1.25em auto 0 auto;
   display: block;
+}
+p.account {
+  margin: 0.25em;
+}
+p.almost-last {
+  margin-bottom: 0;
+}
+p.last {
+  margin-top: 0;
 }
