@@ -24,45 +24,23 @@
 * Other
   - [ ] SEO Optimize
   - [ ] Allow client to reach all routes through bookmarks
-  - [ ] Make header logo an SVG
   - [ ] Implement ssl cert
-
+  - [ ] Make favicon
+  - [ ] Make header logo an SVG
+  - [ ] Have all home gallery images fade to white on sides (which might be the shop pages too)  
+  - [ ] Optimize size of images
   - [ ] Convert .details popup to flexbox
   - [ ] Write about and contact copy
-  - [ ] Implement Flavor ID
   - [ ] Should obfuscate email?
   - [ ] Make loading gif
-  - [ ] Sunglasses logo on about us
-  - [ ] Remove the letter x from all non language content  
+  - [ ] Sunglasses SVG logo on about us
   - [ ] Check responsiveness when page grows
+  - [ ] Add logo to email
+  - [ ] Real response email address
   
-## STYLE
-
-#### Product page details
-  - Short description
-  - Price
-  - Product info
-  - size selector
-  - size guide
-  - add to cart
-  - free shipping
-  
-#### Media
+#### Media Concepts
   - Black and white stripes as background, front photos pngs
   - fruity background on product images
-  - Make favicon
-  - Have all home gallery images fade to white on sides (which might be the shop pages too)
-  - Fade to white on background image for shop gallery page (later make transparent cut out for bg image)
-  - Create web font
-  - SVG Logo and shopping cart
-  - background images on home / shop
-  - fade to white for product photos
-  - Consider reusing the home sprite images on poster gallery as they will load quicker
-  - optimize sizeof all images
-  
-#### Order Confirmation Email
-  - Logo
-  - Real response email address
 
 ### ONGOING QUESTIONS:
 - ANGULAR
@@ -70,27 +48,16 @@
   - Saving a route and not getting a 404 (i.e. bookmarks)
   - What does compile do in a directive?
   - Why is link returned in directive?
-  - Why does a directive have a controller
-  - Use $scope or var in controllers (i.e. product Controller) [asked before]
   - What is html5 mode and is it important?
   - Why use base tag
-
-#### JAVASCRIPT
-
-#### NODE
-
-#### EXPRESS
-
-#### MONGODB:
+  
+#### MongoDB
+  -  How is data uploaded
+  
 #### YEOMAN:
   -  travis.yml
   -  buildignore
     
-####  MISC
-  - Editor config
-  - Unit testing
-
-
 ##### Things I would have liked to have done better:
 ###### Database
   - Database design
@@ -103,3 +70,4 @@
   - Abstracted the emailing process even more (more generic methods)
 
 ###### Testing
+  - Added full testing
