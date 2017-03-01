@@ -45,6 +45,7 @@ var sizeInformation = [
   {
     'Listed Size': '30×30',
     'Waist': '14.5',
+    'Inseam': '29.5',
     'Front Rise': '10',
     'Thigh': '11',
     'Knee': '8',
@@ -53,6 +54,7 @@ var sizeInformation = [
   {
     'Listed Size': '32×32',
     'Waist': '15.5',
+    'Inseam': '31.5',
     'Front Rise': '9.5',
     'Thigh': '11',
     'Knee': '8.25',
@@ -61,6 +63,7 @@ var sizeInformation = [
   {
     'Listed Size': '34×32',
     'Waist': '16',
+    'Inseam': '31.5',
     'Front Rise': '10.5',
     'Thigh': '10.5',
     'Knee': '8.5',
@@ -69,6 +72,7 @@ var sizeInformation = [
   {
     'Listed Size': '34×34',
     'Waist': '18.25',
+    'Inseam': '33',
     'Front Rise': '10.5',
     'Thigh': '11',
     'Knee': '9',
@@ -77,6 +81,7 @@ var sizeInformation = [
   {
     'Listed Size': '36×32',
     'Waist': '18',
+    'Inseam': '32.5',
     'Front Rise': '10.5',
     'Thigh': '11.5',
     'Knee': '9',
@@ -85,6 +90,7 @@ var sizeInformation = [
   {
     'Listed Size': '36×36',
     'Waist': '18.7',
+    'Inseam': '35',
     'Front Rise': '11',
     'Thigh': '11',
     'Knee': '9.35',
@@ -93,6 +99,7 @@ var sizeInformation = [
   {
     'Listed Size': '38×36',
     'Waist': '18.8',
+    'Inseam': '36',
     'Front Rise': '11',
     'Thigh': '11.5',
     'Knee': '9.5',
@@ -103,7 +110,7 @@ var sizeInformation = [
 var flavors = [
   {
     flavor: 'cherry',
-    extraDetails: ['Soft Fabric'],
+    extraDetails: ['Made with a soft yet strong fabric'],
     images: {
       back: 'http://placehold.it/400x650',
       detail: 'http://placehold.it/400x650',
@@ -114,7 +121,7 @@ var flavors = [
   },
   {
     flavor: 'nectarine',
-    extraDetails: ['Strong fabric'],
+    extraDetails: ['Made with our most durable fabric'],
     images: {
       back: 'http://placehold.it/400x650',
       detail: 'http://placehold.it/400x650',
@@ -125,7 +132,7 @@ var flavors = [
   },
   {
     flavor: 'lemon',
-    extraDetails: ['Durable fabric'],
+    extraDetails: ['Made with our most durable fabric'],
     images: {
       back: 'http://placehold.it/400x650',
       detail: 'http://placehold.it/400x650',
@@ -136,7 +143,7 @@ var flavors = [
   },
   {
     flavor: 'apple',
-    extraDetails: ['Sleek fabric'],
+    extraDetails: ['Made with a comfotable and durable fabric'],
     images: {
       back: 'http://placehold.it/400x650',
       detail: 'http://placehold.it/400x650',
@@ -147,7 +154,7 @@ var flavors = [
   },
   {
     flavor: 'electricity',
-    extraDetails: ['bursoft fabric'],
+    extraDetails: ['Made with a soft and strong fabric'],
     images: {
       back: 'http://placehold.it/400x650',
       detail: 'http://placehold.it/400x650',
@@ -158,7 +165,7 @@ var flavors = [
   },
   {
     flavor: 'plum crazy',
-    extraDetails: ['bursoft fabric'],
+    extraDetails: ['Made with a fabric that hangs "just right"'],
     images: {
       back: 'http://placehold.it/400x650',
       detail: 'http://placehold.it/400x650',
@@ -169,7 +176,7 @@ var flavors = [
   },
   {
     flavor: 'powder',
-    extraDetails: ['bursoft fabric'],
+    extraDetails: ['Made with a soft yet strong fabric'],
     images: {
       back: 'http://placehold.it/400x650',
       detail: 'http://placehold.it/400x650',
@@ -180,7 +187,7 @@ var flavors = [
   },
   {
     flavor: 'proton powder',
-    extraDetails: ['bursoft fabric'],
+    extraDetails: ['Made with a soft yet strong fabric'],
     images: {
       back: 'http://placehold.it/400x650',
       detail: 'http://placehold.it/400x650',
