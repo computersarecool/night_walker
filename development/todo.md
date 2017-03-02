@@ -12,10 +12,6 @@
   - [ ] Implement ssl cert
   - [ ] Change API to use subdomain
   
-  - [ ] Optimize size of images to height of 748 AND
-  - [ ] Have all home gallery images fade to white on sides (which might be the shop pages too)
-  - [ ] Edit size_guide.svg
-  
   - [ ] Check responsiveness when page grows
   
 ## Low Priority
