@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
-const secret = require('../../../credentials').jwtSecret
+const {jwtSecret} = require('../../../credentials')
 require('../../controllers/passport')(passport)
 
 router.post('/create-account', (req, res, next) => {
@@ -25,7 +25,7 @@ const authenticate = (type, req, res, next) => {
     }
     jwt.sign({
       email: dbUser.email
-    }, secret, {noTimestamp: false}, (err, token) => {
+    }, jwtSecret, {noTimestamp: false}, (err, token) => {
       if (err) {
         return next(err)
       }

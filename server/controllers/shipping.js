@@ -1,5 +1,4 @@
-const apiKey = require('../../credentials').easyPostApiKey
-const easypost = require('node-easypost')(apiKey)
+const easypost = require('node-easypost')(require('../../credentials').easyPostApiKey)
 const logger = require('./logger')
 
 const fromAddress = {

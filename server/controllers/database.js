@@ -1,9 +1,11 @@
-const Products = require('../../database').Products
-const Users = require('../../database').Users
-const Orders = require('../../database').Orders
-const Editions = require('../../database').Editions
 const mailController = require('./mail')
-const logError = require('./error_handler').logFinal
+const {logFinal} = require('./error_handler')
+const {
+  Products,
+  Users,
+  Orders,
+  Editions
+} = require('../../database')
 
 function isValid (sku, index, array) {
   return Products.findOne({sku})
@@ -269,7 +271,7 @@ function removeItems (items) {
 function saveOrder (order, user) {
   order.save((err, order, numaffected) => {
     if (err) {
-      return mailController.notifyHQ(err, logError, [order, user])
+      return mailController.notifyHQ(err, logFinal, [order, user])
     }
     // The user.firstName will only be set when logged in (from the JWT)
     if (user.firstName) {
@@ -278,7 +280,7 @@ function saveOrder (order, user) {
         dbUser.cart = []
         dbUser.save(err => {
           if (err) {
-            mailController.notifyHQ(err, logError, [order, user])
+            mailController.notifyHQ(err, logFinal, [order, user])
           }
         })
       })

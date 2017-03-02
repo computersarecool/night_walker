@@ -1,7 +1,7 @@
 const path = require('path')
 const cons = require('consolidate')
 const juice = require('juice')
-const paperWorkEmailAddress = require('../../credentials')
+const {paperWorkEmailAddress} = require('../../credentials')
 
 module.exports = (directory, renderData, subject, toAddressArray, callback) => {
   const templateDir = path.join(__dirname, '../email_templates', directory)
