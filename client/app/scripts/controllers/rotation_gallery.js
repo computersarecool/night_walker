@@ -136,8 +136,7 @@ angular.module('nightwalkerApp')
     })()
 
     function beginRotation () {
-      document.querySelector('.loading-gallery').classList.add('done-loading')
-      document.querySelector('.loading-gallery.mobile').classList.add('done-loading')
+      document.querySelector('.loading-container').classList.add('done-loading')
 
       if (typeof $window.orientation !== 'undefined' || navigator.userAgent.indexOf('IEMobile') !== -1) {
         $window.addEventListener('deviceorientation', watchDirection)

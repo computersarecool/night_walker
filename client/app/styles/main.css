@@ -295,7 +295,32 @@ img.gallery.fade {
   opacity: 0;
   transition: opacity cubic-bezier(0.25, 0.25, 0.75, 0.75) 0.5s;
 }
-.loading-gallery.done-loading {
+.loading-container {
+  margin-top: 6.5em;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.loading-gallery {
+  margin-top: 0.2em;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.loading-gallery.rotate {
+  -webkit-animation: spin 4s infinite linear;
+          animation: spin 4s infinite linear;
+}
+.loading-container.done-loading {
   display: none;
 }
 div.poster-container {
@@ -733,4 +758,24 @@ p.almost-last {
 }
 p.last {
   margin-top: 0;
+}
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
 }

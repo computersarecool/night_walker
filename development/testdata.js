@@ -45,7 +45,7 @@ var sizeInformation = [
   {
     'Listed Size': '30×30',
     'Waist': '14.5',
-    'Inseam': '29.5',
+    'Inseam': '30',
     'Front Rise': '10',
     'Thigh': '11',
     'Knee': '8',
@@ -54,7 +54,7 @@ var sizeInformation = [
   {
     'Listed Size': '32×32',
     'Waist': '15.5',
-    'Inseam': '31.5',
+    'Inseam': '31',
     'Front Rise': '9.5',
     'Thigh': '11',
     'Knee': '8.25',
@@ -63,7 +63,7 @@ var sizeInformation = [
   {
     'Listed Size': '34×32',
     'Waist': '16',
-    'Inseam': '31.5',
+    'Inseam': '32',
     'Front Rise': '10.5',
     'Thigh': '10.5',
     'Knee': '8.5',
@@ -72,7 +72,7 @@ var sizeInformation = [
   {
     'Listed Size': '34×34',
     'Waist': '18.25',
-    'Inseam': '33',
+    'Inseam': '33.5',
     'Front Rise': '10.5',
     'Thigh': '11',
     'Knee': '9',
@@ -81,7 +81,7 @@ var sizeInformation = [
   {
     'Listed Size': '36×32',
     'Waist': '18',
-    'Inseam': '32.5',
+    'Inseam': '31',
     'Front Rise': '10.5',
     'Thigh': '11.5',
     'Knee': '9',
@@ -99,7 +99,7 @@ var sizeInformation = [
   {
     'Listed Size': '38×36',
     'Waist': '18.8',
-    'Inseam': '36',
+    'Inseam': '35',
     'Front Rise': '11',
     'Thigh': '11.5',
     'Knee': '9.5',
@@ -206,7 +206,7 @@ var flavorsPerSize = {
     'nectarine': 11,
     'lemon': 10,
     'apple': 10,
-    'electricity': 9,
+    'electricity': 10,
     'plum crazy': 12,
     'powder': 5,
     'proton powder': 0
@@ -214,74 +214,74 @@ var flavorsPerSize = {
   '32×32': {
     'waistSize': 32,
     'inseam': 32,
-    'cherry': 1,
-    'nectarine': 5,
-    'lemon': 4,
-    'apple': 66,
-    'electricity': 77,
-    'plum crazy': 99,
-    'powder': 25,
-    'proton powder': 66
+    'cherry': 13,
+    'nectarine': 11,
+    'lemon': 12,
+    'apple': 10,
+    'electricity': 10,
+    'plum crazy': 13,
+    'powder': 1,
+    'proton powder': 10
   },
   '34×32': {
     'waistSize': 34,
     'inseam': 32,
-    'cherry': 1,
-    'nectarine': 5,
-    'lemon': 4,
-    'apple': 66,
-    'electricity': 77,
-    'plum crazy': 99,
-    'powder': 25,
-    'proton powder': 66
+    'cherry': 14,
+    'nectarine': 14,
+    'lemon': 14,
+    'apple': 10,
+    'electricity': 12,
+    'plum crazy': 14,
+    'powder': 10,
+    'proton powder': 4
   },
   '34×34': {
     'waistSize': 34,
     'inseam': 34,
-    'cherry': 1,
-    'nectarine': 5,
-    'lemon': 4,
-    'apple': 66,
-    'electricity': 77,
-    'plum crazy': 99,
+    'cherry': 8,
+    'nectarine': 7,
+    'lemon': 8,
+    'apple': 7,
+    'electricity': 7,
+    'plum crazy': 7,
     'powder': 25,
-    'proton powder': 66
+    'proton powder': 7
   },
   '36×32': {
     'waistSize': 36,
     'inseam': 32,
-    'cherry': 1,
-    'nectarine': 5,
+    'cherry': 4,
+    'nectarine': 8,
     'lemon': 4,
-    'apple': 66,
-    'electricity': 77,
-    'plum crazy': 99,
-    'powder': 25,
-    'proton powder': 66
+    'apple': 4,
+    'electricity': 7,
+    'plum crazy': 3,
+    'powder': 2,
+    'proton powder': 1
   },
   '36×36': {
     'waistSize': 36,
     'inseam': 36,
-    'cherry': 1,
-    'nectarine': 5,
+    'cherry': 5,
+    'nectarine': 6,
     'lemon': 4,
-    'apple': 66,
-    'electricity': 77,
-    'plum crazy': 99,
-    'powder': 25,
-    'proton powder': 66
+    'apple': 4,
+    'electricity': 6,
+    'plum crazy': 6,
+    'powder': 4,
+    'proton powder': 2
   },
   '38×36': {
     'waistSize': 38,
     'inseam': 36,
-    'cherry': 1,
+    'cherry': 3,
     'nectarine': 5,
     'lemon': 4,
-    'apple': 66,
-    'electricity': 77,
-    'plum crazy': 99,
-    'powder': 25,
-    'proton powder': 66
+    'apple': 4,
+    'electricity': 6,
+    'plum crazy': 0,
+    'powder': 4,
+    'proton powder': 2
   }
 }
 

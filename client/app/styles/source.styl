@@ -139,14 +139,14 @@ site-cart
 .front
   transform translateZ(cube-size / 2)
 
-// Option: Rotating cart
-//@keyframes spin
-//   from {
-//        transform: rotateY(0)
-//   }
-//   to {
-//      transform:rotateY(360deg)
-//   }
+
+@keyframes spin
+  from {
+    transform: rotate(0)
+  }
+  to {
+    transform:rotate(359deg)
+  }
 
 site-cart .item-count
   text-align center
@@ -271,7 +271,23 @@ img.gallery.fade
   opacity 0
   transition opacity cubic-bezier(.25, .25, .75, .75) .5s
 
-.loading-gallery.done-loading
+
+// Loading sign
+.loading-container
+  margin-top 6.5em
+  display flex
+  flex-direction column
+  justify-content center
+  align-items center
+
+.loading-gallery
+  margin-top .2em
+  flex 1
+
+.loading-gallery.rotate
+  animation spin 4s infinite linear
+
+.loading-container.done-loading
   display none
 
 // End of gallery page
