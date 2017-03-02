@@ -1,6 +1,6 @@
 const mailController = require('./mail')
 
-function handler (err, req, res, next) {
+module.exports = (err, req, res, next) => {
   if (err.name === 'UnauthorizedError') {
     err.status = 401
     err.message = 'Invalid Token'
@@ -27,8 +27,4 @@ function handler (err, req, res, next) {
     errorResponse.stack = err.stack
     mailController.notifyHQ(errorResponse)
   }
-}
-
-module.exports = {
-  handler
 }

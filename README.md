@@ -2,8 +2,8 @@
     mongod --dbpath /data/db/nightwalker &>/dev/null &
 
 ##### To add content to database:
-    (From database directory)
-    mongo ../development/testdata.js
+    (From development directory)
+    mongo localhost:27017/production ./inventory.js
 
 ##### Deployment scripts
 npm run-script copyServices

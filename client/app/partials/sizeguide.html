@@ -8,37 +8,34 @@
       <th scope="col">Listed Size</th>
       <th scope="col">Waist</th>
       <th scope="col">Inseam</th>
-      <th scope="col">Outseam</th>
-      <th scope="col">Rise</th>
+      <th scope="col">Front Rise</th>
     </tr>
     <tr ng-repeat="eachSize in product.sizeInformation">
       <td>{{eachSize['Listed Size']}}</td>
       <td>{{eachSize['Waist']}}</td>
       <td>{{eachSize['Inseam']}}</td>
-      <td>{{eachSize['Outseam']}}</td>
-      <td>{{eachSize['Rise']}}</td>
+      <td>{{eachSize['Front Rise']}}</td>
     </tr>
     <tr>
       <td colspan="5">
-        <p id="sizing-copy" class="sizing-copy">
-          NightWalker believes very strongly in accurate sizing information
+        <p class="sizing-copy">
+          NightWalker believes very strongly in accurate sizing information.
+          We do not practice "vanity sizing", so the measurements here are the actual, measured sizes
         </p>
-        <img class="sizing-guide" src="http://placehold.it/150x250">
+        <img class="sizing-guide" src="images/size_guide.svg">
       </td>
     </tr>
     <tr>
       <th scope="col">Listed Size</th>    
+      <th scope="col">Thigh</th>
       <th scope="col">Knee</th>
       <th scope="col">Leg Opening</th>
-      <th scope="col">Pocket Opening</th>
-      <th scope="col">Pocket Depth</th>
     </tr>
     <tr ng-repeat="eachSize in product.sizeInformation">
       <td>{{eachSize['Listed Size']}}</td>    
+      <td>{{eachSize['Thigh']}}</td>
       <td>{{eachSize['Knee']}}</td>
       <td>{{eachSize['Leg Opening']}}</td>
-      <td>{{eachSize['Pocket Opening']}}</td>
-      <td>{{eachSize['Pocket Depth']}}</td>        
     </tr>
   </table>
   

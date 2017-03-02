@@ -6,7 +6,7 @@ const logger = require('morgan')
 const bodyParser = require('body-parser')
 const passport = require('passport')
 const apiRouter = require('./router/api')
-const errorHandler = require('./controllers/error_handler').handler
+const errorHandler = require('./controllers/error_handler')
 const inDevelopment = process.env.NODE_ENV === 'development'
 const app = express()
 
