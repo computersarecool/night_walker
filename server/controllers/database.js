@@ -271,7 +271,7 @@ function saveOrder (order, user) {
     if (err) {
       return mailController.notifyHQ(err, logError, [order, user])
     }
-    // The user.firstName willy only be set when logged in (from the JWT)
+    // The user.firstName will only be set when logged in (from the JWT)
     if (user.firstName) {
       findDBUser(user, dbUser => {
         dbUser.orders.push(order._id)

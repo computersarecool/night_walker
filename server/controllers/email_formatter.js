@@ -1,6 +1,7 @@
 const path = require('path')
 const cons = require('consolidate')
 const juice = require('juice')
+const paperWorkEmailAddress = require('../../credentials')
 
 module.exports = (directory, renderData, subject, toAddressArray, callback) => {
   const templateDir = path.join(__dirname, '../email_templates', directory)
@@ -32,8 +33,8 @@ module.exports = (directory, renderData, subject, toAddressArray, callback) => {
                   }
                 }
               },
-              Source: 'paperwork@willynolan.com',
-              ReplyToAddresses: ['paperwork@willynolan.com']
+              Source: paperWorkEmailAddress,
+              ReplyToAddresses: [paperWorkEmailAddress]
             }
             callback(null, params)
           }).catch(err => callback(err))

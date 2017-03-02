@@ -13,11 +13,11 @@ function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
   const label = shipmentInfo.postage_label.label_url
   const rawMailOptions = {
     subject: 'New purchase (and label)',
-    toName: 'Willy Nolan',
-    toAddress: 'willy@willynolan.com',
+    toName: 'NightWalker Paperwork',
+    toAddress: 'paperwork@nightwalker.clothing',
     fromName: 'Nightwalker Paperwork',
-    fromAddress: 'paperwork@willynolan.com',
-    allRecipients: ['willy@willynolan.com'],
+    fromAddress: 'paperwork@nightwalker.clothing',
+    allRecipients: ['paperwork@nightwalker.clothing'],
     body: 'A purchase was made. The label is attached',
     files: [{
       filename: 'label' + label.substring(1, 10),
@@ -68,7 +68,7 @@ function emailCustomer (emailInfo, shippingDetails) {
 
 function sendPasswordReset (emailAddress, resetCode, callback) {
   const directory = 'reset_password'
-  const subject = 'NightWalker.com Password Reset Code'
+  const subject = 'NightWalker Password Reset Code'
   const renderData = {resetCode}
 
   formatEmail(directory, renderData, subject, [emailAddress], (err, params) => {
@@ -151,7 +151,7 @@ function closeAndSend (rawMail, rawMailOptions) {
 function notifyHQ (errorResponse, extraData = null) {
   const params = {
     Destination: {
-      ToAddresses: ['willy@willynolan.com']
+      ToAddresses: ['paperwork@nightwalker.clothing']
     },
     Message: {
       Subject: {
@@ -168,7 +168,7 @@ function notifyHQ (errorResponse, extraData = null) {
         }
       }
     },
-    Source: 'paperwork@willynolan.com'
+    Source: 'paperwork@nightwalker.clothing'
   }
   ses.sendEmail(params, (err, id) => {
     if (err) {

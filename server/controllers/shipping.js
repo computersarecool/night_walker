@@ -3,15 +3,15 @@ const easypost = require('node-easypost')(apiKey)
 const logger = require('./logger')
 
 const fromAddress = {
-  name: 'Willy Nolan',
+  name: 'NightWalker Paperwork',
   street1: '118 2nd Street',
   street2: '4th Floor',
   city: 'San Francisco',
   state: 'CA',
   zip: '94105',
   phone: '415-123-4567',
-  email: 'paperwork@willynolan.com',
-  fromName: 'Willy Nolan'
+  email: 'paperwork@nightwalker.clothing',
+  fromName: 'NightWalker Paperwork'
 }
 
 function createAddress (shippingDetails, callback) {

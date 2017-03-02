@@ -11,7 +11,7 @@
     - Why different regions for each service
 
 * Other
-  - [ ] Set up and send from correct emails (Zoho)
+  - [ ] Finish email template
   - [ ] Set up phone number Twilio
   - [ ] Improve systemd startup script / journalctl
   - [ ] Get all latest and product Stripe and Easypost credentials
