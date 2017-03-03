@@ -41,9 +41,6 @@ angular.module('nightwalkerApp')
     }
 
     $scope.process = (status, response) => {
-
-      document.querySelector('.loading-container').classList.add('done-loading')
-
       if (response.error) {
         ModalService.showError({
           text: `We are sorry, ${response.error.message}`,
@@ -56,9 +53,11 @@ angular.module('nightwalkerApp')
           user: $scope.user,
           shippingDetails: $scope.shippingDetails
         }).then(response => {
+          document.querySelector('.loading-container').classList.add('done-loading')
           UserFactory.setUser(response.data)
           $location.path('/congratulations')
         }, httpError => {
+          document.querySelector('.loading-container').classList.add('done-loading')
           document.querySelector('payment-submit').disabled = false
           ModalService.showError({
             text: 'There was an error with your purchase.',

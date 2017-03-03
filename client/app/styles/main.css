@@ -323,6 +323,14 @@ img.gallery.fade {
 .loading-container.done-loading {
   display: none;
 }
+.checkout.loading-container {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
 div.poster-container {
   -webkit-flex: 1;
       -ms-flex: 1;
