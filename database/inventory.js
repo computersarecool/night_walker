@@ -111,89 +111,41 @@ var flavors = [
   {
     flavor: 'cherry',
     extraDetails: ['Made with a soft yet strong fabric'],
-    images: {
-      back: 'http://placehold.it/400x650',
-      detail: 'http://placehold.it/400x650',
-      front: 'http://placehold.it/350x650',
-      side: 'http://placehold.it/450x650'
-    },
     flavorIndex: '1'
   },
   {
     flavor: 'nectarine',
     extraDetails: ['Made with our most durable fabric'],
-    images: {
-      back: 'http://placehold.it/400x650',
-      detail: 'http://placehold.it/400x650',
-      front: 'http://placehold.it/350x650',
-      side: 'http://placehold.it/450x650'
-    },
     flavorIndex: '2'
   },
   {
     flavor: 'lemon',
     extraDetails: ['Made with our most durable fabric'],
-    images: {
-      back: 'http://placehold.it/400x650',
-      detail: 'http://placehold.it/400x650',
-      front: 'http://placehold.it/350x650',
-      side: 'http://placehold.it/450x650'
-    },
     flavorIndex: '3'
   },
   {
     flavor: 'apple',
     extraDetails: ['Made with a comfotable and durable fabric'],
-    images: {
-      back: 'http://placehold.it/400x650',
-      detail: 'http://placehold.it/400x650',
-      front: 'http://placehold.it/350x650',
-      side: 'http://placehold.it/450x650'
-    },
     flavorIndex: '4'
   },
   {
     flavor: 'electricity',
     extraDetails: ['Made with a soft and strong fabric'],
-    images: {
-      back: 'http://placehold.it/400x650',
-      detail: 'http://placehold.it/400x650',
-      front: 'http://placehold.it/350x650',
-      side: 'http://placehold.it/450x650'
-    },
     flavorIndex: '5'
   },
   {
     flavor: 'plum crazy',
     extraDetails: ['Made with a fabric that hangs "just right"'],
-    images: {
-      back: 'http://placehold.it/400x650',
-      detail: 'http://placehold.it/400x650',
-      front: 'http://placehold.it/350x650',
-      side: 'http://placehold.it/450x650'
-    },
     flavorIndex: '6'
   },
   {
     flavor: 'powder',
     extraDetails: ['Made with a soft yet strong fabric'],
-    images: {
-      back: 'http://placehold.it/400x650',
-      detail: 'http://placehold.it/400x650',
-      front: 'http://placehold.it/350x650',
-      side: 'http://placehold.it/450x650'
-    },
     flavorIndex: '7'
   },
   {
     flavor: 'proton powder',
     extraDetails: ['Made with a soft yet strong fabric'],
-    images: {
-      back: 'http://placehold.it/400x650',
-      detail: 'http://placehold.it/400x650',
-      front: 'http://placehold.it/350x650',
-      side: 'http://placehold.it/450x650'
-    },
     flavorIndex: '8'
   }
 ]

@@ -2,7 +2,9 @@
 
   <div ng-repeat="item in items">
     <div class="image-details">
-      <img src="http://placehold.it/100x100" alt="{{item.shortDescription}}" title="{{item.shortDescription}}">
+      <div class="thumbnail">
+        <img ng-src="images/front_gallery/{{item.product.flavor | spacefilter}}-gallery.jpg" class="tiny" alt="{{item.product.shortDescription}}" title="{{item.product.shortDescription}}">
+      </div>
       <div class="short-details">
         <p>
           {{item.product.shortDescription}}

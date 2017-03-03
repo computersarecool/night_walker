@@ -41,6 +41,9 @@ angular.module('nightwalkerApp')
     }
 
     $scope.process = (status, response) => {
+
+      document.querySelector('.loading-container').classList.add('done-loading')
+
       if (response.error) {
         ModalService.showError({
           text: `We are sorry, ${response.error.message}`,

@@ -15,7 +15,7 @@ angular
     'ngRoute',
     'ngSanitize'
   ])
-  .constant('base', 'http://api.optonox.com')
+  .constant('base', 'https://api.optonox.com')
   .config(($routeProvider, $locationProvider, $httpProvider) => {
     $routeProvider
       .when('/', {
@@ -113,7 +113,6 @@ angular
   })
   .run(($rootScope, $location) => {
     $rootScope.$on('$routeChangeError', (event, curRoute, prevRoute, rejection) => {
-      console.log(`The error was ${event}`)
       $location.path(prevRoute.$$route.originalPath)
     })
   })

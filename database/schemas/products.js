@@ -24,9 +24,6 @@ const productSchema = new Schema({
   extraDetails: Array,
   sizes: {
     type: {}
-  },
-  images: {
-    type: {}
   }
 })
 

@@ -17,17 +17,16 @@ npm run-script copyServices
     prep, cdnMin, aws tasks
 
 
-
 #### Bonus Material
-#### Additional Media Concepts
+##### Additional Media Concepts
   - Black and white stripes as background on gallery
   - fruity background on shop images
-
-#### MongoDB
-  - How do enterprise sized businesses upload data
   
-### ONGOING QUESTIONS:
-- ANGULAR
+###### Ongoing QUESTIONS:
+- MongoDB
+  - How do enterprise sized businesses upload data
+
+- Angular
   - Pages like 'About' do not need a controller - do we use a null controller?
   - Best way to be able to reach routes when using a CDN
   - What does compile do in a directive?

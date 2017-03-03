@@ -10,9 +10,9 @@ const ses = new aws.SES()
 const emailBoundary = 'boundarydivider'
 
 function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
-  let body = 'A purchase was made. The label is attached'
-  for (let item in shippingDetails.individualDetails) {
-    body += `${item.description} in ${item.flavor} Size ${item.sizes.waistSize} x ${item.sizes.inseam}\n`
+  let body = '<p>A purchase was made - the label is attached</p>'
+  for (let item of shippingDetails.individualDetails) {
+    body += `<p>${item.description} in ${item.flavor} Size ${item.sizes.waistSize}x${item.sizes.inseam} </p>`
   }
 
   const label = shipmentInfo.postage_label.label_url
