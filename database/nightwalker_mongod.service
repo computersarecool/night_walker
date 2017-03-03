@@ -5,8 +5,8 @@ After=network.target
 [Service]
 Restart=always
 RestartSec=10
-#ExecStart=/usr/bin/mongod --dbpath /data/db/nightwalker  --bind_ip 127.0.0.1
-ExecStart=/usr/bin/mongod --dbpath /data/db/nightwalker
+ExecStart=/usr/bin/mongod --dbpath /data/db/nightwalker  --bind_ip 127.0.0.1
+#ExecStart=/usr/bin/mongod --dbpath /data/db/nightwalker
 
 [Install]
 WantedBy=multi-user.target
