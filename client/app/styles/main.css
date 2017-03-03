@@ -759,6 +759,34 @@ p.almost-last {
 p.last {
   margin-top: 0;
 }
+.contact.container,
+.about.container {
+  width: 80%;
+  margin: 0 auto;
+}
+.contact.container p,
+.about.container p {
+  margin-top: 1.4em;
+}
+.contact.container p.first,
+.about.container p.first {
+  margin-top: 0.4em;
+}
+.final-logo {
+  display: block;
+  width: 40%;
+  margin: 0 auto;
+}
+small.closing {
+  font-size: 0.7em;
+}
+ul.donation li {
+  margin-top: 0.2em;
+  font-size: 0.7em;
+}
+.before-logo {
+  margin-bottom: 1.4em;
+}
 @-webkit-keyframes spin {
   from {
     -webkit-transform: rotate(0);

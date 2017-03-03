@@ -2,43 +2,42 @@
     mongod --dbpath /data/db/nightwalker &>/dev/null &
 
 ##### To add content to database:
-    (From development directory)
-    mongo localhost:27017/production ./inventory.js
+    (From database directory)
+    Test:
+      mongo localhost:27017/test ./inventory.js
 
+    Production:
+      mongo localhost:27017/production ./inventory.js
+      
 ##### Deployment scripts
 npm run-script copyServices
-    (copy service files to /etc/systemd/system dir)
+    (copy service files to /etc/systemd/system)
     
 (from the client directory) gulp 
     prep, cdnMin, aws tasks
 
 
 
-## Bonus Material
-#### Media Concepts
-  - Black and white stripes as background, front photos pngs
-  - fruity background on product images
+#### Bonus Material
+#### Additional Media Concepts
+  - Black and white stripes as background on gallery
+  - fruity background on shop images
 
+#### MongoDB
+  - How do enterprise sized businesses upload data
+  
 ### ONGOING QUESTIONS:
 - ANGULAR
-  - Pages like 'About' do not need a controller. Do we use a null controller?
-  - Saving a route and not getting a 404 (i.e. bookmarks)
+  - Pages like 'About' do not need a controller - do we use a null controller?
+  - Best way to be able to reach routes when using a CDN
   - What does compile do in a directive?
   - Why is link returned in directive?
-  - What is html5 mode and is it important?
-  - Why use base tag
-  
-#### MongoDB
-  -  How is data uploaded
-  
-#### YEOMAN:
-  -  travis.yml
-  -  buildignore
-    
+
+- AWS
+  - Updating cloudfront cache / File-rev all files?
+  - Using Elastic Beanstalk
+
 ##### Things I would have liked to have done better:
-###### Dev Ops
-  - Handled the cloudfront routing better
-  
 ###### Database
   - Database design
   - use schema design to improve findProductByFlavor in database.js
@@ -52,4 +51,7 @@ npm run-script copyServices
 ###### Testing
   - Added full testing
 
-###### Used JSdoc
+###### General
+  - Used JSdoc
+  - SEO Optimize
+  - SPF policy / DKIM

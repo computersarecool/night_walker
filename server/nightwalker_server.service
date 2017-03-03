@@ -3,6 +3,8 @@ Description=NightWalker Server Service
 After=network.target
 
 [Service]
+Restart=always
+RestartSec=10
 Environment=NODE_ENV=production
 ExecStart=/usr/bin/node /mnt/nightwalker/server/bin/www.js
 

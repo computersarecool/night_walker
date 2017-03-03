@@ -4,7 +4,7 @@ const path = require('path')
 const http = require('http')
 const https = require('https')
 const logger = require('../controllers/logger')
-const {sslPath} = require('../../credentials')
+const {SSLPaths} = require('../../credentials')
 const ports = {
   production: {
     insecurePort: 80,
@@ -12,11 +12,13 @@ const ports = {
   },
   development: {
     insecurePort: 3000,
-    securePort: 3003
+    securePort: 443
   }
 }
 
-const {insecurePort, securePort} = ports[process.env.NODE_ENV]
+// env will either be production or development
+const env = process.env.NODE_ENV
+const {insecurePort, securePort} = ports[env]
 
 require('../app')(app => {
   http.createServer((req, res) => {
@@ -26,13 +28,13 @@ require('../app')(app => {
     })
     res.end('Redirection to TLS')
   }).listen(insecurePort, () => {
-    logger.info(`Express server listening on insecure port ${insecurePort}`)
+    logger.info(`${env} Express server listening on insecure port ${insecurePort}`)
   })
 
   https.createServer({
-    key: fs.readFileSync(path.join(sslPath, 'privkey.pem')),
-    cert: fs.readFileSync(path.join(sslPath, 'cert.pem'))
+    key: fs.readFileSync(path.join(SSLPaths[env], 'privkey.pem')),
+    cert: fs.readFileSync(path.join(SSLPaths[env], 'cert.pem'))
   }, app).listen(securePort, () => {
-    logger.info(`Express server listening on secure port ${securePort}`)
+    logger.info(`${env} Express server listening on secure port ${securePort}`)
   })
 })

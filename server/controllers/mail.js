@@ -10,6 +10,11 @@ const ses = new aws.SES()
 const emailBoundary = 'boundarydivider'
 
 function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
+  let body = 'A purchase was made. The label is attached'
+  for (let item in shippingDetails.individualDetails) {
+    body += `${item.description} in ${item.flavor} Size ${item.sizes.waistSize} x ${item.sizes.inseam}\n`
+  }
+
   const label = shipmentInfo.postage_label.label_url
   const rawMailOptions = {
     subject: 'New purchase (and label)',
@@ -18,7 +23,7 @@ function formatPurchaseEmail (shipmentInfo, shippingDetails, callback) {
     fromName: 'Nightwalker Paperwork',
     fromAddress: 'paperwork@nightwalker.clothing',
     allRecipients: ['paperwork@nightwalker.clothing'],
-    body: 'A purchase was made. The label is attached',
+    body: body,
     files: [{
       filename: 'label' + label.substring(1, 10),
       url: label
