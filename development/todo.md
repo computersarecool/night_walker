@@ -8,9 +8,9 @@
   
 ## TODO
   - [ ] Improve systemd startup script / journalctl
-  - [ ] Allow client to reach all routes through bookmarks
   - [ ] Implement ssl cert
   - [ ] Change API to use subdomain
+  - [ ] Allow client to reach all routes through bookmarks
   
   - [ ] Check responsiveness when page grows
   

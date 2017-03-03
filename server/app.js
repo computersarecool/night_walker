@@ -40,7 +40,6 @@ module.exports = callback => {
       next(err)
     })
 
-    // TODO: production static file server and errors
     app.use(errorHandler)
     callback(app)
   })
