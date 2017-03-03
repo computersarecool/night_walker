@@ -1,10 +1,9 @@
 [Unit]
-Description=NightWalker Service
+Description=NightWalker Server Service
 After=network.target
 
 [Service]
 Environment=NODE_ENV=production
-Environment=PORT=80
 ExecStart=/usr/bin/node /mnt/nightwalker/server/bin/www.js
 
 [Install]

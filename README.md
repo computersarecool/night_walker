@@ -36,6 +36,9 @@ npm run-script copyServices
   -  buildignore
     
 ##### Things I would have liked to have done better:
+###### Dev Ops
+  - Handled the cloudfront routing better
+  
 ###### Database
   - Database design
   - use schema design to improve findProductByFlavor in database.js

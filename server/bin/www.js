@@ -24,13 +24,14 @@ require('../app')(app => {
       'Content-Type': 'text/plain',
       'Location': `https://${req.headers.host + req.url}`
     })
+    res.end('Redirection to TLS')
   }).listen(insecurePort, () => {
-    logger.info(`Express server listening on secure port ${insecurePort}`)
+    logger.info(`Express server listening on insecure port ${insecurePort}`)
   })
 
   https.createServer({
     key: fs.readFileSync(path.join(sslPath, 'privkey.pem')),
-    cert: fs.readFileSync(path.join(sslPath, 'fullchain.pem'))
+    cert: fs.readFileSync(path.join(sslPath, 'cert.pem'))
   }, app).listen(securePort, () => {
     logger.info(`Express server listening on secure port ${securePort}`)
   })
