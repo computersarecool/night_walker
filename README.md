@@ -2,7 +2,9 @@
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
 
 # What is this?
-  NightWalker is a colorful clothing line that is trying to explore the technological future while paying homage to the (1980s) past. It is inspired by the 80s and designed in 3-D.
+### A Colorful MEAN App for a colorful clothing line
+
+  NightWalker is a colorful clothing line that is trying to explore the technological future while paying homage to the (1980s) past. It is inspired by the 80s and designed in 3D.
 
   This is the code for the NightWalker MEAN Web App and the rest of this README is just notes for how to get standard and notes from the its development
   
@@ -14,9 +16,11 @@
   * [Gimp](https://www.gimp.org/ "Gimp")
   * [Inkscape](https://inkscape.org/ "Inkscape")
   * [Free Software Foundation](https://www.fsf.org "FSF")
-  * [Electronic Frontier Foundation Foundation](https://www.eff.org "EFF")  
+  * [Electronic Frontier Foundation Foundation](https://www.eff.org "EFF") 
   
-  A portion of each sale goes directly to one of those organizations, Thank You
+  A portion of each sale goes directly to one of those organizations. 
+  
+  Thank You
 ***
 
 ### To Start
