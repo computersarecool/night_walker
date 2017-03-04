@@ -235,6 +235,7 @@ nav li a {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 1.5em;
+  transition: font-size 0.7s;
 }
 nav li:nth-child(1) > a {
   color: #ed243f;
@@ -853,12 +854,30 @@ ul.donation li {
     -webkit-transform: translateZ(1.5em);
             transform: translateZ(1.5em);
   }
+  .cart-container {
+    text-align: right;
+    width: 16em;
+    position: absolute;
+    right: 0;
+    left: auto;
+  }
+  .cart-container p {
+    padding-right: 1em;
+  }
+  .checkout-options {
+    float: none;
+  }
   img.gallery {
     left: 0;
     margin: auto;
+    transition: margin 0.7s;
   }
-  .about.container {
-    height: 100%;
+  .get-info-container {
+    width: 16em;
+    margin: 0 auto;
+  }
+  .get-info-container button {
+    float: none;
   }
 }
 @media screen and (min-width: 44em) {
@@ -866,6 +885,7 @@ ul.donation li {
   .contact.container {
     margin-top: 1.25em;
     font-size: 1.4em;
+    transition: font-size 0.7s;
   }
   .final-logo {
     margin: 0;
@@ -879,6 +899,7 @@ ul.donation li {
 @media screen and (min-width: 54em) {
   nav li a {
     font-size: 4.2em;
+    transition: font-size 0.7s;
   }
 }
 @-webkit-keyframes spin {

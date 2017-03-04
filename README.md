@@ -37,7 +37,7 @@
   - Updating cloudfront cache / File-rev all files?
   - Using Elastic Beanstalk
 
-##### Things I would have liked to have done better
+##### Things I would have liked to have done (or done better)
 ###### Database
   - Database design
   - use schema design to improve findProductByFlavor in database.js
