@@ -17,7 +17,8 @@ const ports = {
 }
 
 // env will either be production or development
-const env = process.env.NODE_ENV
+//const env = process.env.NODE_ENV
+const env = 'production'
 const {insecurePort, securePort} = ports[env]
 
 require('../app')(app => {

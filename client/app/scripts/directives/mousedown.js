@@ -10,16 +10,17 @@
 angular.module('nightwalkerApp')
   .directive('siteMouseDown', function () {
     return function (scope, elem, attrs) {
-      elem.bind('touchstart mousedown', function (e) {
-        if (e.type === 'mousedown') {
+      elem.bind('touchstart', function (e) {
+/*        if (e.type === 'mousedown') {
           e.touches = [{
             clientX: e.clientX,
             clientY: e.clientY
           }]
         }
 
-        //        e.stopPropagation()
-        //        e.preventDefault()
+        e.stopPropagation()
+        e.preventDefault()
+*/
         scope.$event = e
         scope.$apply(attrs['siteMouseDown'])
       })

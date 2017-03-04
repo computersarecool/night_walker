@@ -86,8 +86,9 @@ angular.module('nightwalkerApp')
       const headerHeight = document.querySelector('site-header').scrollHeight
       const navHeight = document.querySelector('site-nav').scrollHeight
       const yOffset = $window.scrollY
-      const difference = yOffset - headerHeight - navHeight - 2
+      let difference = yOffset - headerHeight - navHeight - 2
 
+      difference = difference > 0 ? difference : 0
       element.style.top = difference + 'px'
       element.classList.toggle('display-none')
     }

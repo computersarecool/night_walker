@@ -214,6 +214,8 @@ nav li a
   font-weight 700
   font-size 1.5em
   transition font-size .7s
+  display inline-block
+
 nav li:nth-child(1) > a
   color proton-powder
 
@@ -723,11 +725,38 @@ ul.donation li
 .before-logo
   margin-bottom 1.4em
 
+ul.donation > li:nth-child(1) > a, ul.donation > li:nth-child(1) > a:visited
+  color electricity
+
+ul.donation > li:nth-child(2) > a, ul.donation > li:nth-child(2) > a:visited
+  color powder
+
+ul.donation > li:nth-child(3) > a, ul.donation > li:nth-child(3) > a:visited
+  color apple
+
+@media screen and (min-width: 35em)
+  img.poster
+    max-height 43em
+    width auto
 
 @media screen and (min-width: 39em)
   responsize-cube-size = 3em
   three-cube-size = 9em
   half-cube-size = 1.5em
+
+  nav.horizontal
+    position absolute
+    border none
+    background none
+    max-width 14em
+
+  nav.horizontal ul
+    flex-direction column
+
+  nav li a
+    font-size 2.4em
+    transition font-size .7s
+    margin-bottom .5em
 
   site-cart
     float right
@@ -781,33 +810,72 @@ ul.donation li
   .checkout-options
     float none
 
+  // End of cart
+
+  // Home page
   img.gallery
     left 0
     margin auto
     transition margin .7s
 
+  // Get info forms
   .get-info-container
-    width 16em
+    float right
+    width 24em
     margin 0 auto
 
   .get-info-container button
     float none
 
+  // About and contact
+  .contact.container, .about.container
+    width 64%
+    margin-left 13em
+
+  // Product page
+  .gallery-holder
+    width auto
+    padding-left 17em
+
+  .all-info
+    float right
+    width 50%
+
+  .product-title
+    font-size 1.7em
+    margin-top .25em
+
+  .individual-main
+    float right
+    max-width 17em
+
+  .view-picker
+    display none
+
+  .checkout-cart-container
+    width 68%
+    float right
+
 @media screen and (min-width: 44em)
   .about.container, .contact.container
+    width 58%
     margin-top 1.25em
     font-size 1.4em
     transition font-size .7s
+
+  nav li a
+    font-size 3.3em
 
   .final-logo
     margin 0
     width 12em
 
-  img.poster
-    max-height 55em
-    width auto
+  .get-info-container
+    width 50%
 
-@media screen and (min-width: 54em)
-  nav li a
-    font-size 4.2em
-    transition font-size .7s
+  .checkout-button.pay
+    margin 0
+
+@media screen and (min-width: 56em)
+  .contact.container, .about.container
+    margin-left 15em

@@ -25,7 +25,7 @@
   
 ##### Ongoing Questions
 - MongoDB
-  - How do enterprise sized businesses upload data?
+  - How do enterprise businesses upload data?
 
 - Angular
   - Pages like 'About' do not need a controller - do we use a null controller?
