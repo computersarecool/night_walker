@@ -3,6 +3,7 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 
   <img src="https://nightwalker.clothing/images/text_logo.svg" alt="NightWalker Logo" style="width: 200px;"/>
+  <div style="height: 50px; width: 50px; display:inline-block; background:#c71b39"></div>"
 # What is this?
 ### A Colorful MEAN App for a colorful clothing line
 
@@ -12,7 +13,6 @@
   
   To actually buy something from NightWalker go to [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website")
   
-  *Specifics*
   This project was written in / runs on
   ```
   MongoDB 3.2
