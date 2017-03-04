@@ -3,7 +3,16 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 
   <img src="https://nightwalker.clothing/images/text_logo.svg" alt="NightWalker Logo" style="width: 200px;"/>
+
   <img src="https://dummyimage.com/50/c71b39/c71b39.jpg" alt="Cherry Flavor" style="width: 50px;"/>
+  <img src="https://dummyimage.com/50/fa5132/fa5132.jpg" alt="Nectarine Flavor" style="width: 50px;"/>
+  <img src="https://dummyimage.com/50/feda60/feda60.jpg" alt="Lemon Flavor" style="width: 50px;"/>
+  <img src="https://dummyimage.com/50/005b3a/005b3a.jpg" alt="Apple Flavor" style="width: 50px;"/>
+  <img src="https://dummyimage.com/50/26599a/26599a.jpg" alt="Electricity Flavor" style="width: 50px;"/>
+  <img src="https://dummyimage.com/50/3f2c63/3f2c63.jpg" alt="Plumn Crazy Flavor" style="width: 50px;"/>
+  <img src="https://dummyimage.com/50/e45c68/e45c68.jpg" alt="Powder Flavor" style="width: 50px;"/>
+  <img src="https://dummyimage.com/50/ed243f/ed243f.jpg" alt="Proton-Powder Flavor" style="width: 50px;"/>
+
 
 # What is this?
 ### A Colorful MEAN App for a colorful clothing line
