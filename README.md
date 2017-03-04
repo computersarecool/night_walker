@@ -10,15 +10,11 @@
       mongo localhost:27017/production ./inventory.js
       
 ##### Deployment scripts
-npm run-script copyServices
     (copy service files to /etc/systemd/system)
+    npm run-script copyServices
     
-(from the client directory) gulp 
+    (from the client directory gulp)
     prep, cdnMin, aws tasks
-
-## TODO
-  - [ ] Check responsiveness when page grows
-  - [ ] DNS issues
 
 #### Bonus Material
 ##### Additional Media Concepts
@@ -45,7 +41,6 @@ npm run-script copyServices
   - use schema design to improve findProductByFlavor in database.js
   - Save user stripe token information in database.js
   - For the individual products, combine size information / sizes / distinctSizes
-  - remove SKU from irrelevant collection
 
 ###### Mail Controller
   - Abstracted the emailing process even more (more generic methods)
