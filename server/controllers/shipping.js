@@ -3,12 +3,12 @@ const logger = require('./logger')
 
 const fromAddress = {
   name: 'NightWalker Paperwork',
-  street1: '118 2nd Street',
-  street2: '4th Floor',
-  city: 'San Francisco',
-  state: 'CA',
-  zip: '94105',
-  phone: '415-123-4567',
+  street1: '1212 SE Powell Blvd',
+  street2: '',
+  city: 'Portland',
+  state: 'OR',
+  zip: '97202',
+  phone: '484-424-9255',
   email: 'paperwork@nightwalker.clothing',
   fromName: 'NightWalker Paperwork'
 }
@@ -48,9 +48,9 @@ function createAddress (shippingDetails, callback) {
 
 function createParcel (toAddress, shippingDetails, cart, emailCallback) {
   let packageType
-  if (cart.length < 2) {
+  if (cart.length === 1) {
     packageType = 'SmallFlatRateBox'
-  } else if (cart.length < 4) {
+  } else if (cart.length < 3) {
     packageType = 'MediumFlatRateBox'
   } else {
     packageType = 'LargeFlatRateBox'
