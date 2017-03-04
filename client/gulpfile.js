@@ -21,8 +21,6 @@ const cleanCSS = require('gulp-clean-css')
 const htmlmin = require('gulp-htmlmin')
 const imagemin = require('gulp-imagemin')
 const pump = require('pump')
-const rev = require('gulp-rev')
-const revReplace = require('gulp-rev-replace')
 const uglify = require('gulp-uglify')
 const dist = '../dist/'
 
@@ -33,7 +31,7 @@ gulp.task('clean:dist', () => {
 
 gulp.task('replace', () => {
   gulp.src([path.join(dist, 'scripts', 'scripts.js')])
-    .pipe(replace('http://optonox.com:3000', 'http://nightwalker.clothing'))
+    .pipe(replace('https://optonox.com:3000', 'https://nightwalker.clothing'))
     .pipe(gulp.dest(path.join(dist, 'scripts')))
 })
 
