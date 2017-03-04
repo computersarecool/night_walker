@@ -13,21 +13,21 @@
     (copy service files to /etc/systemd/system)
     npm run-script copyServices
     
-    (from the client directory gulp)
+    (from the client directory, gulp)
     prep, cdnMin, aws tasks
 
 #### Bonus Material
 ##### Additional Media Concepts
   - Black and white stripes as background on gallery
-  - fruity background on shop images
+  - fruit background images on shop images
   
 ###### Ongoing QUESTIONS:
 - MongoDB
-  - How do enterprise sized businesses upload data
+  - How do enterprise sized businesses upload data?
 
 - Angular
   - Pages like 'About' do not need a controller - do we use a null controller?
-  - Best way to be able to reach routes when using a CDN
+  - Best way to be able to reach routes when using a CDN?
   - What does compile do in a directive?
   - Why is link returned in directive?
 
@@ -35,7 +35,7 @@
   - Updating cloudfront cache / File-rev all files?
   - Using Elastic Beanstalk
 
-##### Things I would have liked to have done better:
+##### Things I would have liked to have done better
 ###### Database
   - Database design
   - use schema design to improve findProductByFlavor in database.js
