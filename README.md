@@ -19,7 +19,7 @@
 
   NightWalker is a colorful clothing line that is trying to explore the technological future while paying homage to the (1980s) past. It is inspired by the 80s and designed in 3D.
 
-  **This is the code for the NightWalker MEAN Web App** and the rest of this README is just notes for how to get standard and notes from the its development
+  **This is the code for the NightWalker MEAN Web App** and the rest of this README is just notes for how to get standard and notes from its development
   
   To actually buy something from NightWalker go to [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website")
   
