@@ -1,12 +1,10 @@
+const winston = require('winston')
 const mongoose = require('mongoose')
-const credentials = require('../credentials')
-const developmentDb = credentials.mongoTestConnection
-const productionDb = credentials.mongoConnection
+const {databases} = require('../credentials')
 const Users = require('./schemas/users')
 const Products = require('./schemas/products')
 const Editions = require('./schemas/editions')
 const Orders = require('./schemas/orders')
-const winston = require('winston')
 
 const logger = new (winston.Logger)({
   transports: [
@@ -14,18 +12,16 @@ const logger = new (winston.Logger)({
   ]
 })
 
-// set database address to development or production
-const database = process.env.NODE_ENV === 'development' ? developmentDb : productionDb
-
 const init = callback => {
-  mongoose.connect(database)
+  // set database address to development or production
+  mongoose.connect(databases[process.env.NODE_ENV])
 
   mongoose.connection.on('error', () => {
     logger.info('Database connection error:')
   })
 
   mongoose.connection.once('open', () => {
-    logger.info('Database connection successfully opened at ' + database)
+    logger.info(`Database connection successfully opened at ${databases[process.env.NODE_ENV]}`)
     callback()
   })
 }

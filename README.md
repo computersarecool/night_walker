@@ -16,6 +16,9 @@ npm run-script copyServices
 (from the client directory) gulp 
     prep, cdnMin, aws tasks
 
+## TODO
+  - [ ] Check responsiveness when page grows
+  - [ ] DNS issues
 
 #### Bonus Material
 ##### Additional Media Concepts

@@ -1,6 +1,6 @@
 [Unit]
 Description=NightWalker Server Service
-After=network.target
+After=network.target nightwalker_mongod.service
 
 [Service]
 Restart=always
