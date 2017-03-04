@@ -1,6 +1,8 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/computersarecool/nightwalker/issues)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 
+  <img src="https://nightwalker.clothing/images/text_logo.svg" alt="NightWalker Logo" style="width: 200px;"/>
 # What is this?
 ### A Colorful MEAN App for a colorful clothing line
 
@@ -9,6 +11,16 @@
   This is the code for the NightWalker MEAN Web App and the rest of this README is just notes for how to get standard and notes from the its development
   
   To actually buy something from NightWalker go to [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website")
+  
+  *Specifics*
+  This project was written in / runs on
+  ```
+  MongoDB 3.2
+  Express 4
+  Angular 1.5 
+  Node ^6.9
+  ECMAScript 2015
+  ```
   
   This app was developed entirely with free and open source software. A huge thank you needs to be given to everybody who worked on the code this project uses including 
   
@@ -21,6 +33,8 @@
   A portion of each sale goes directly to one of those organizations. 
   
   Thank You
+  
+  <img src="https://nightwalker.clothing/images/symbol_logo.svg" alt="NightWalker Logo" style="width: 200px;"/>
 ***
 
 ### To Start
@@ -80,3 +94,7 @@
   - Used JSdoc
   - SEO Optimize
   - SPF policy / DKIM
+
+### License
+(c) Willy Nolan 2017 [MIT](http://en.wikipedia.org/wiki/MIT_License)
+
