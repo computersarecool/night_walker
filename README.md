@@ -3,7 +3,8 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 
   <img src="https://nightwalker.clothing/images/text_logo.svg" alt="NightWalker Logo" style="width: 200px;"/>
-  <div style="height: 50px; width: 50px; display:inline-block; background:#c71b39"></div>"
+  <img src="https://dummyimage.com/50/c71b39/c71b39.jpg" alt="Cherry Flavor" style="width: 50px;"/>
+
 # What is this?
 ### A Colorful MEAN App for a colorful clothing line
 
