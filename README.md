@@ -32,7 +32,7 @@
   ECMAScript 2015
   ```
   
-  This app was developed entirely with free and open source software. A huge thank you needs to be given to everybody who worked on the code this project uses including 
+  This app was developed entirely with free and open source software. A huge thank you to everybody who worked on the code this project uses including: 
   
   * [package](https://raw.githubusercontent.com/computersarecool/nightwalker/master/server/package.json "Server Package.json") [authors](https://raw.githubusercontent.com/computersarecool/nightwalker/master/server/package.json "Client Package.json")
   * [Gimp](https://www.gimp.org/ "Gimp")
