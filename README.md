@@ -96,5 +96,6 @@
   - SPF policy / DKIM
 
 ### License
-(c) Willy Nolan 2017 [MIT](http://en.wikipedia.org/wiki/MIT_License)
+(c) Willy Nolan 2017 
+[MIT](http://en.wikipedia.org/wiki/MIT_License)
 
