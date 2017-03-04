@@ -31,7 +31,7 @@ gulp.task('clean:dist', () => {
 
 gulp.task('replace', () => {
   gulp.src([path.join(dist, 'scripts', 'scripts.js')])
-    .pipe(replace('https://optonox.com:3000', 'https://nightwalker.clothing'))
+    .pipe(replace('https://api.optonox.com', 'https://api.nightwalker.clothing'))
     .pipe(gulp.dest(path.join(dist, 'scripts')))
 })
 

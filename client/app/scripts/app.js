@@ -15,7 +15,7 @@ angular
     'ngRoute',
     'ngSanitize'
   ])
-  .constant('base', 'https://api.nightwalker.clothing')
+  .constant('base', 'https://api.optonox.com')
   .config(($routeProvider, $locationProvider, $httpProvider) => {
     $routeProvider
       .when('/', {
