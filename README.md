@@ -23,7 +23,7 @@
   - Black and white stripes as background on gallery
   - fruit background images on shop images
   
-###### Ongoing QUESTIONS:
+##### Ongoing Questions
 - MongoDB
   - How do enterprise sized businesses upload data?
 
