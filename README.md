@@ -63,7 +63,7 @@
     (copy service files to /etc/systemd/system)
     npm run-script copyServices
     
-    (from the client directory run gulp:)
+    (from the client directory run with gulp:)
     prep, cdnMin, aws
 
     (Use systemctl to start / stop / monitor)
