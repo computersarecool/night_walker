@@ -1,4 +1,4 @@
-##### To start database:
+##### To start dev database:
     mongod --dbpath /data/db/nightwalker &>/dev/null &
 
 ##### To add content to database:
@@ -16,6 +16,8 @@
     (from the client directory, gulp)
     prep, cdnMin, aws tasks
 
+    (Use systemctl to start / stop / monitor)
+    
 #### Bonus Material
 ##### Additional Media Concepts
   - Black and white stripes as background on gallery
