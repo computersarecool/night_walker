@@ -147,10 +147,6 @@ gulp.task('minify:css', () => {
     .pipe(gulp.dest(dist))
 })
 
-gulp.task('replace', () => {
-
-})
-
 // add files to aws
 gulp.task('aws', () => {
   const params = {
