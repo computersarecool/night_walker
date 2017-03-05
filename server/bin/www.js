@@ -33,7 +33,7 @@ require('../app')(app => {
 
   https.createServer({
     key: fs.readFileSync(path.join(SSLPaths[env], 'privkey.pem')),
-    cert: fs.readFileSync(path.join(SSLPaths[env], 'cert.pem'))
+    cert: fs.readFileSync(path.join(SSLPaths[env], 'fullchain.pem'))
   }, app).listen(securePort, () => {
     logger.info(`${env} Express server listening on secure port ${securePort}`)
   })
