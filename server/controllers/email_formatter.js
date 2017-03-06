@@ -7,7 +7,7 @@ module.exports = (directory, renderData, subject, toAddressArray, callback) => {
   const templateDir = path.join(__dirname, '../email_templates', directory)
   cons.ejs(path.join(templateDir, 'html.ejs'), renderData)
     .then(htmlEmail => {
-      juice.juiceResources(htmlEmail, {webResources: {relativeTo: '__dirname'}}, (err, htmlEmail) => {
+      juice.juiceResources(htmlEmail, {webResources: {relativeTo: __dirname}}, (err, htmlEmail) => {
         if (err) {
           return callback(err)
         }

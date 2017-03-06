@@ -109,7 +109,7 @@ angular
       requireBase: true
     })
 
-    Stripe.setPublishableKey('pk_live_i6xHeBkW26WuJVaECTacQ6BJ')
+    Stripe.setPublishableKey('pk_live_aWomrv5odnaUqiDVeDG9QvQx')
   })
   .run(($rootScope, $location) => {
     $rootScope.$on('$routeChangeError', (event, curRoute, prevRoute, rejection) => {

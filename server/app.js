@@ -28,7 +28,7 @@ module.exports = callback => {
     app.use(subdomain('api', apiRouter))
 
     // development static file server and errors
-    if (inDevelopment) {
+    if (true) {
       app.use(express.static(path.join(__dirname, '../client/')))
       app.use(express.static(path.join(__dirname, '../client/app')))
     }
