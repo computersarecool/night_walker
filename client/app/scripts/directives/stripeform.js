@@ -14,21 +14,17 @@ angular.module('nightwalkerApp')
       link: function (scope, element, attrs) {
         const form = angular.element(element)
 
-        form.on('submit', function (e) {
-          var button = document.querySelector('#payment-submit')
-          button.disabled = true
-
-          var loading = document.querySelector('.loading-container')
+        form.on('submit', e => {
+          document.querySelector('#payment-submit').disabled = true
+          const loading = document.querySelector('.loading-container')
           loading.style.top = window.pageYoffset
           loading.classList.remove('done-loading')
 
-          $window.Stripe.createToken(form[0], function () {
-            var args = arguments
-            if (arguments[0] >= 400) {
-              button.disabled = false
-            }
-            scope.$apply(function () {
-              scope[attrs.stripeForm].apply(scope, args)
+          $window.Stripe.createToken(form[0], (...stripeResponse) => {
+            console.log('The Info')
+            console.log(stripeResponse)
+            scope.$apply(() => {
+              scope[attrs.stripeForm].apply(scope, stripeResponse)
             })
           })
         })

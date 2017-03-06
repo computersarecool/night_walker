@@ -43,6 +43,7 @@ angular.module('nightwalkerApp')
     $scope.process = (status, response) => {
       if (status >= 400) {
         document.querySelector('.loading-container').classList.add('done-loading')
+        document.querySelector('#payment-submit').disabled = false
         ModalService.showError({
           text: `We are sorry, ${response.error.message}`,
           footer: 'Please try with a different payment card'
@@ -59,10 +60,9 @@ angular.module('nightwalkerApp')
           $location.path('/congratulations')
         }, httpError => {
           document.querySelector('.loading-container').classList.add('done-loading')
-          document.querySelector('payment-submit').disabled = false
+          document.querySelector('#payment-submit').disabled = false
           ModalService.showError({
-            text: 'There was an error with your purchase.',
-            footer: 'Please contact support'
+            text: `We are sorry, ${httpError.data.error.message}`
           })
         })
       }
