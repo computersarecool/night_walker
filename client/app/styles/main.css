@@ -734,6 +734,9 @@ input.eighth {
 .electricity {
   background: #26599a;
 }
+.checkout-button.pay {
+  margin-bottom: 0.8em;
+}
 div.congrats {
   display: -webkit-flex;
   display: -ms-flexbox;

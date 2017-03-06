@@ -41,7 +41,8 @@ angular.module('nightwalkerApp')
     }
 
     $scope.process = (status, response) => {
-      if (response.error) {
+      if (status >= 400) {
+        document.querySelector('.loading-container').classList.add('done-loading')
         ModalService.showError({
           text: `We are sorry, ${response.error.message}`,
           footer: 'Please try with a different payment card'

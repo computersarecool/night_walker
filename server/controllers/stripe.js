@@ -1,11 +1,12 @@
-const stripeKey = process.env.NODE_ENV === 'production' ? require('../../credentials').stripeKey : require('../../credentials').stripeTestKey
+const stripeKey = require('../../credentials').stripeKey[process.env.NODE_ENV]
 const stripe = require('stripe')(stripeKey)
 
 module.exports = (user, amount, card, email, callback) => {
   // card is the stripe token
+  console.log(`We are in ${process.env.NODE_ENV}`)
+  console.log(`We using key ${stripeKey}`)
   const currency = 'usd'
-  const descriptionEmail = user.guest ? email : user.email
-  const description = `A NightWalker purchase for ${descriptionEmail}`
+  const description = `A NightWalker purchase for ${email}`
 
   stripe.charges.create({
     amount,
