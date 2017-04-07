@@ -4,14 +4,14 @@
 
   <img src="https://nightwalker.clothing/images/text_logo.svg" alt="NightWalker Logo" style="width: 200px;"/>
 
-  <img src="https://dummyimage.com/50/c71b39/c71b39.jpg" alt="Cherry Flavor" style="width: 50px;"/>
-  <img src="https://dummyimage.com/50/fa5132/fa5132.jpg" alt="Nectarine Flavor" style="width: 50px;"/>
-  <img src="https://dummyimage.com/50/feda60/feda60.jpg" alt="Lemon Flavor" style="width: 50px;"/>
-  <img src="https://dummyimage.com/50/005b3a/005b3a.jpg" alt="Apple Flavor" style="width: 50px;"/>
-  <img src="https://dummyimage.com/50/26599a/26599a.jpg" alt="Electricity Flavor" style="width: 50px;"/>
-  <img src="https://dummyimage.com/50/3f2c63/3f2c63.jpg" alt="Plumn Crazy Flavor" style="width: 50px;"/>
-  <img src="https://dummyimage.com/50/e45c68/e45c68.jpg" alt="Powder Flavor" style="width: 50px;"/>
-  <img src="https://dummyimage.com/50/ed243f/ed243f.jpg" alt="Proton-Powder Flavor" style="width: 50px;"/>
+  ![Cherry Flavor](https://dummyimage.com/50/c71b39/c71b39.jpg "Cherry Flavor")
+  ![Nectarine Flavor](https://dummyimage.com/50/fa5132/fa5132.jpg "Nectarine Flavor")
+  ![Lemon Flavor](https://dummyimage.com/50/feda60/feda60.jpg "Lemon Flavor")
+  ![Apple Flavor](https://dummyimage.com/50/005b3a/005b3a.jpg "Apple Flavor")
+  ![Electricity Flavor](https://dummyimage.com/50/26599a/26599a.jpg "Electricity Flavor")
+  ![Plumn Crazy](https://dummyimage.com/50/3f2c63/3f2c63.jpg "Plum Crazy Flavor")
+  ![Powder Flavor](https://dummyimage.com/50/e45c68/e45c68.jpg "Powder Flavor")
+  ![Proton-Powder](https://dummyimage.com/50/ed243f/ed243f.jpg "Proton-Powder Flavor")
   
   > The Official Color representations of NightWalker's Cherry, Nectarine, Lemon, Apple, Electricity, Plum Crazy, Powder and Proton Powder flavors
 
