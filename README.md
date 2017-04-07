@@ -12,6 +12,7 @@
   <img src="https://dummyimage.com/50/3f2c63/3f2c63.jpg" alt="Plumn Crazy Flavor" style="width: 50px;"/>
   <img src="https://dummyimage.com/50/e45c68/e45c68.jpg" alt="Powder Flavor" style="width: 50px;"/>
   <img src="https://dummyimage.com/50/ed243f/ed243f.jpg" alt="Proton-Powder Flavor" style="width: 50px;"/>
+  
   > The Official Color representations of NightWalker's Cherry, Nectarine, Lemon, Apple, Electricity, Plum Crazy, Powder and Proton Powder flavors
 
 # What is NightWalker?
@@ -44,8 +45,7 @@
   
   Thank You
   
-  <img src="https://nightwalker.clothing/images/symbol_logo.svg" alt="NightWalker Logo" style="width: 200px;"/>
-***
+  <img src="https://nightwalker.clothing/images/symbol_logo.svg" alt="NightWalker Logo" style="width: 150px;"/>
 
 ### To Start
 ##### To start dev database:
