@@ -90,7 +90,7 @@
 ##### Things I would have liked to have done (or done better)
 ###### Database
   - Database design
-  - use schema design to improve findProductByFlavor in database.js
+  - Used schema design to improve findProductByFlavor in database.js
   - Save user stripe token information in database.js
   - For the individual products, combine size information / sizes / distinctSizes
 
