@@ -15,7 +15,7 @@
   
   > The Official Color representations of NightWalker's Cherry, Nectarine, Lemon, Apple, Electricity, Plum Crazy, Powder and Proton Powder flavors
 
-*The MEAN App for NightWalker.clothing*
+*The MEAN App for [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website")*
 
 # What is NightWalker?
 ### A Colorful MEAN App for a colorful clothing line
