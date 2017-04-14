@@ -64,7 +64,7 @@
  ```  
 ##### Deployment scripts
 ```bash
-    # copy service files to /etc/systemd/system
+    # Copy service files to /etc/systemd/system
     npm run-script copyServices
     
     # From the client directory run with: gulp
