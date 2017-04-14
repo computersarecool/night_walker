@@ -54,22 +54,24 @@
     mongod --dbpath /data/db/nightwalker &>/dev/null &
 
 ##### To add content to database:
+```bash
     # From database directory
     # Test:
       mongo localhost:27017/test ./inventory.js
 
     # Production:
       mongo localhost:27017/production ./inventory.js
-      
+    ```  
 ##### Deployment scripts
+    ```bash
     # copy service files to /etc/systemd/system
     npm run-script copyServices
     
     # From the client directory run with: gulp
     prep, cdnMin, aws
 
-    #Use systemctl to start / stop / monitor
-    
+    # Use systemctl to start / stop / monitor
+    ```
 ### Bonus Material
 ##### Additional Media Concepts
   - Black and white stripes as background on gallery
