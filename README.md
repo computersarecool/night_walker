@@ -61,9 +61,9 @@
 
     # Production:
       mongo localhost:27017/production ./inventory.js
-    ```  
+ ```  
 ##### Deployment scripts
-    ```bash
+```bash
     # copy service files to /etc/systemd/system
     npm run-script copyServices
     
@@ -71,7 +71,7 @@
     prep, cdnMin, aws
 
     # Use systemctl to start / stop / monitor
-    ```
+```
 ### Bonus Material
 ##### Additional Media Concepts
   - Black and white stripes as background on gallery
