@@ -20,13 +20,15 @@
 # What is NightWalker?
 ### A Colorful MEAN App for a colorful clothing line
 
-  NightWalker is a colorful clothing line that is trying to explore the technological future while paying homage to the (1980s) past. It is inspired by the 80s and designed in 3D.
+  NightWalker is a colorful clothing line that is trying to explore the technological future while paying homage to the (1980s) past 
+  
+  It is inspired by the 80s and designed in 3D
 
-  **This is the code for the NightWalker MEAN Web App** and the rest of this README is just notes for how to get standard and notes from its development
+  **This is the code for the NightWalker MEAN Web App** - the rest of this README is just notes from development and information about how to get started.
   
   To actually buy something from NightWalker go to [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website")
   
-  This project was written in / runs on
+  This project was written in / uses:
   ```
   MongoDB 3.2
   Express 4
@@ -43,13 +45,13 @@
   * [Free Software Foundation](https://www.fsf.org "FSF")
   * [Electronic Frontier Foundation Foundation](https://www.eff.org "EFF") 
   
-  A portion of each sale goes directly to one of those organizations. 
+  A portion of each sale goes directly to one of those organizations
   
   Thank You
   
   <img src="https://nightwalker.clothing/images/symbol_logo.svg" alt="NightWalker Logo" style="width: 150px;"/>
 
-### To Start
+### How to get started:
 ##### To start dev database:
     mongod --dbpath /data/db/nightwalker &>/dev/null &
 
@@ -62,7 +64,7 @@
     # Production:
       mongo localhost:27017/production ./inventory.js
  ```  
-##### Deployment scripts
+##### Deployment scripts:
 ```bash
     # Copy service files to /etc/systemd/system
     npm run-script copyServices
@@ -74,40 +76,40 @@
 ```
 ### Bonus Material
 ##### Additional Media Concepts
-  - Black and white stripes as background on gallery
-  - fruit background images on shop images
+  - Black and white stripes for the gallery background
+  - Fruit images for the background of shop images
   
 ##### Ongoing Questions
 - MongoDB
-  - How do enterprise businesses upload data?
+  - How do enterprise businesses upload all their initial data?
 
 - Angular
-  - Pages like 'About' do not need a controller - do we use a null controller?
-  - Best way to be able to reach routes when using a CDN?
+  - Pages like `About` do not need a controller - do we use a some sort of empty controller?
+  - What is the best way to be able to reach routes when using a CDN?
   - What does compile do in a directive?
   - Why is link returned in directive?
 
 - AWS
-  - Updating cloudfront cache / File-rev all files?
-  - Using Elastic Beanstalk
+  - How to easily updating cloudfront cache and `file-rev` all files?
+  - How to use Elastic Beanstalk
 
-##### Things I would have liked to have done (or done better)
+##### Things I would have liked to have done (or done better):
 ###### Database
   - Database design
   - Used schema design to improve findProductByFlavor in database.js
   - Save user stripe token information in database.js
-  - For the individual products, combine size information / sizes / distinctSizes
+  - Combine size information / sizes / distinctSizes on individual products
 
 ###### Mail Controller
-  - Abstracted the emailing process even more (more generic methods)
+  - Abstracted the emailing process more (with more generic methods)
 
 ###### Testing
-  - Added full testing
+  - Added full unit testing
 
 ###### General
-  - Used JSdoc
+  - Use JSdoc
   - SEO Optimize
-  - SPF policy / DKIM
+  - Use an SPF policy / DKIM
 
 ### License
 :copyright: Willy Nolan 2017 
