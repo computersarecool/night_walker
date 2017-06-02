@@ -26,7 +26,7 @@
       </div>
 
       <div class="extra-detail-right">
-        <select id="select-size" class="extra-details" ng-model="pickedProduct.size" ng-change="changeSize()" ng-options="'' + productSize.waistSize + '⨉' + productSize.inseam for productSize in product.distinctSizes | orderBy: 'waistSize'"></select>
+        <select id="select-size" class="extra-details" ng-model="pickedProduct.size" ng-change="changeSize()" ng-options="'' + productSize.waistSize + 'X' + productSize.inseam for productSize in product.distinctSizes | orderBy: 'waistSize'"></select>
         <button id="add-to-cart" class="extra-details ui-button" ng-click="addToCart()">Add to Cart</button>
         <button id="checkout-now" class="extra-details ui-button hidden" ng-click="goToCheckout()">Checkout now</button>
      </div>

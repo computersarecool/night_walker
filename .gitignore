@@ -22,3 +22,4 @@ database/data/logs/*
 build
 dist
 client/.awspublish*
+letsencrypt.log
