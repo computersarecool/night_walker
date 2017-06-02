@@ -4,26 +4,31 @@
 
   <img src="https://nightwalker.clothing/images/text_logo.svg" alt="NightWalker Logo" style="width: 200px;"/>
 
-  <img src="https://dummyimage.com/50/c71b39/c71b39.jpg" alt="Cherry Flavor" style="width: 50px;"/>
-  <img src="https://dummyimage.com/50/fa5132/fa5132.jpg" alt="Nectarine Flavor" style="width: 50px;"/>
-  <img src="https://dummyimage.com/50/feda60/feda60.jpg" alt="Lemon Flavor" style="width: 50px;"/>
-  <img src="https://dummyimage.com/50/005b3a/005b3a.jpg" alt="Apple Flavor" style="width: 50px;"/>
-  <img src="https://dummyimage.com/50/26599a/26599a.jpg" alt="Electricity Flavor" style="width: 50px;"/>
-  <img src="https://dummyimage.com/50/3f2c63/3f2c63.jpg" alt="Plumn Crazy Flavor" style="width: 50px;"/>
-  <img src="https://dummyimage.com/50/e45c68/e45c68.jpg" alt="Powder Flavor" style="width: 50px;"/>
-  <img src="https://dummyimage.com/50/ed243f/ed243f.jpg" alt="Proton-Powder Flavor" style="width: 50px;"/>
+  ![Cherry Flavor](https://dummyimage.com/50/c71b39/c71b39.jpg "Cherry Flavor")
+  ![Nectarine Flavor](https://dummyimage.com/50/fa5132/fa5132.jpg "Nectarine Flavor")
+  ![Lemon Flavor](https://dummyimage.com/50/feda60/feda60.jpg "Lemon Flavor")
+  ![Apple Flavor](https://dummyimage.com/50/005b3a/005b3a.jpg "Apple Flavor")
+  ![Electricity Flavor](https://dummyimage.com/50/26599a/26599a.jpg "Electricity Flavor")
+  ![Plumn Crazy](https://dummyimage.com/50/3f2c63/3f2c63.jpg "Plum Crazy Flavor")
+  ![Powder Flavor](https://dummyimage.com/50/e45c68/e45c68.jpg "Powder Flavor")
+  ![Proton-Powder](https://dummyimage.com/50/ed243f/ed243f.jpg "Proton-Powder Flavor")
+  
   > The Official Color representations of NightWalker's Cherry, Nectarine, Lemon, Apple, Electricity, Plum Crazy, Powder and Proton Powder flavors
+
+*The MEAN App for [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website")*
 
 # What is NightWalker?
 ### A Colorful MEAN App for a colorful clothing line
 
-  NightWalker is a colorful clothing line that is trying to explore the technological future while paying homage to the (1980s) past. It is inspired by the 80s and designed in 3D.
+  NightWalker is a colorful clothing line that is trying to explore the technological future while paying homage to the (1980s) past 
+  
+  It is inspired by the 80s and designed in 3D
 
-  **This is the code for the NightWalker MEAN Web App** and the rest of this README is just notes for how to get standard and notes from its development
+  **This is the code for the NightWalker MEAN Web App** - the rest of this README is just notes from development and information about how to get started.
   
   To actually buy something from NightWalker go to [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website")
   
-  This project was written in / runs on
+  This project was written in / uses:
   ```
   MongoDB 3.2
   Express 4
@@ -40,70 +45,71 @@
   * [Free Software Foundation](https://www.fsf.org "FSF")
   * [Electronic Frontier Foundation Foundation](https://www.eff.org "EFF") 
   
-  A portion of each sale goes directly to one of those organizations. 
+  A portion of each sale goes directly to one of those organizations
   
   Thank You
   
-  <img src="https://nightwalker.clothing/images/symbol_logo.svg" alt="NightWalker Logo" style="width: 200px;"/>
-***
+  <img src="https://nightwalker.clothing/images/symbol_logo.svg" alt="NightWalker Logo" style="width: 150px;"/>
 
-### To Start
+### How to get started:
 ##### To start dev database:
     mongod --dbpath /data/db/nightwalker &>/dev/null &
 
 ##### To add content to database:
-    (From database directory)
-    Test:
+```bash
+    # From database directory
+    # Test:
       mongo localhost:27017/test ./inventory.js
 
-    Production:
+    # Production:
       mongo localhost:27017/production ./inventory.js
-      
-##### Deployment scripts
-    (copy service files to /etc/systemd/system)
+ ```  
+##### Deployment scripts:
+```bash
+    # Copy service files to /etc/systemd/system
     npm run-script copyServices
     
-    (from the client directory run with gulp:)
+    # From the client directory run with: gulp
     prep, cdnMin, aws
 
-    (Use systemctl to start / stop / monitor)
-    
+    # Use systemctl to start / stop / monitor
+```
 ### Bonus Material
 ##### Additional Media Concepts
-  - Black and white stripes as background on gallery
-  - fruit background images on shop images
+  - Black and white stripes for the gallery background
+  - Fruit images for the background of shop images
   
 ##### Ongoing Questions
 - MongoDB
-  - How do enterprise businesses upload data?
+  - How do enterprise businesses upload all their initial data?
 
 - Angular
-  - Pages like 'About' do not need a controller - do we use a null controller?
-  - Best way to be able to reach routes when using a CDN?
+  - Pages like `About` do not need a controller - do we use a some sort of empty controller?
+  - What is the best way to be able to reach routes when using a CDN?
   - What does compile do in a directive?
   - Why is link returned in directive?
 
 - AWS
-  - Updating cloudfront cache / File-rev all files?
-  - Using Elastic Beanstalk
+  - How to easily updating cloudfront cache and `file-rev` all files?
+  - How to use Elastic Beanstalk
 
-##### Things I would have liked to have done (or done better)
+##### Things I would have liked to have done (or done better):
 ###### Database
   - Database design
-  - use schema design to improve findProductByFlavor in database.js
+  - Used schema design to improve findProductByFlavor in database.js
   - Save user stripe token information in database.js
-  - For the individual products, combine size information / sizes / distinctSizes
+  - Combine size information / sizes / distinctSizes on individual products
 
 ###### Mail Controller
-  - Abstracted the emailing process even more (more generic methods)
+  - Abstracted the emailing process more (with more generic methods)
 
 ###### Testing
-  - Added full testing
+  - Added full unit testing
 
 ###### General
-  - Used JSdoc
+  - Use JSdoc
   - SEO Optimize
-  - SPF policy / DKIM
+  - Use an SPF policy / DKIM
 
 ### License
 :copyright: Willy Nolan 2017 
