@@ -28,7 +28,7 @@ var pantGenerics = {
   description: `The ${editionName} Original Chino`,
   aboutSpecific: `Designed in Portland, OR USA these are NightWalker's flagship chino pants. Only ${totalPairs} exist`,
   careInstructions: 'Machine wash cold and hang dry',
-  sizeInfo: `True to size: The model is 5'10", 150 lbs and is wearing a size 30×30. Click here for sizing information`,
+  sizeInfo: `True to size: The model is 5'10", 150 lbs and is wearing a size 30x30. Click here for sizing information`,
   details: ['Metal zippers on every pocket', 'Checkered under cuff', 'Tuxedo belt clasps', 'True to size', '97% cotton, 3% polyester', 'Free shipping']
 }
 
@@ -43,7 +43,7 @@ var edition = {
 
 var sizeInformation = [
   {
-    'Listed Size': '30×30',
+    'Listed Size': '30x30',
     'Waist': '14.5',
     'Inseam': '30',
     'Front Rise': '10',
@@ -52,7 +52,7 @@ var sizeInformation = [
     'Leg Opening': '7.5'
   },
   {
-    'Listed Size': '32×32',
+    'Listed Size': '32x32',
     'Waist': '15.5',
     'Inseam': '31',
     'Front Rise': '9.5',
@@ -61,7 +61,7 @@ var sizeInformation = [
     'Leg Opening': '8'
   },
   {
-    'Listed Size': '34×32',
+    'Listed Size': '34x32',
     'Waist': '16',
     'Inseam': '32',
     'Front Rise': '10.5',
@@ -70,7 +70,7 @@ var sizeInformation = [
     'Leg Opening': '8'
   },
   {
-    'Listed Size': '34×34',
+    'Listed Size': '34x34',
     'Waist': '18.25',
     'Inseam': '33.5',
     'Front Rise': '10.5',
@@ -79,7 +79,7 @@ var sizeInformation = [
     'Leg Opening': '8'
   },
   {
-    'Listed Size': '36×32',
+    'Listed Size': '36x32',
     'Waist': '18',
     'Inseam': '31',
     'Front Rise': '10.5',
@@ -88,7 +88,7 @@ var sizeInformation = [
     'Leg Opening': '8.5'
   },
   {
-    'Listed Size': '36×36',
+    'Listed Size': '36x36',
     'Waist': '18.7',
     'Inseam': '35',
     'Front Rise': '11',
@@ -97,7 +97,7 @@ var sizeInformation = [
     'Leg Opening': '8.5'
   },
   {
-    'Listed Size': '38×36',
+    'Listed Size': '38x36',
     'Waist': '18.8',
     'Inseam': '35',
     'Front Rise': '11',
@@ -151,7 +151,7 @@ var flavors = [
 ]
 
 var flavorsPerSize = {
-  '30×30': {
+  '30x30': {
     'waistSize': 30,
     'inseam': 30,
     'cherry': 9,
@@ -163,7 +163,7 @@ var flavorsPerSize = {
     'powder': 5,
     'proton powder': 0
   },
-  '32×32': {
+  '32x32': {
     'waistSize': 32,
     'inseam': 32,
     'cherry': 13,
@@ -175,7 +175,7 @@ var flavorsPerSize = {
     'powder': 1,
     'proton powder': 10
   },
-  '34×32': {
+  '34x32': {
     'waistSize': 34,
     'inseam': 32,
     'cherry': 14,
@@ -187,7 +187,7 @@ var flavorsPerSize = {
     'powder': 10,
     'proton powder': 4
   },
-  '34×34': {
+  '34x34': {
     'waistSize': 34,
     'inseam': 34,
     'cherry': 8,
@@ -199,7 +199,7 @@ var flavorsPerSize = {
     'powder': 25,
     'proton powder': 7
   },
-  '36×32': {
+  '36x32': {
     'waistSize': 36,
     'inseam': 32,
     'cherry': 4,
@@ -211,7 +211,7 @@ var flavorsPerSize = {
     'powder': 2,
     'proton powder': 1
   },
-  '36×36': {
+  '36x36': {
     'waistSize': 36,
     'inseam': 36,
     'cherry': 5,
@@ -223,7 +223,7 @@ var flavorsPerSize = {
     'powder': 4,
     'proton powder': 2
   },
-  '38×36': {
+  '38x36': {
     'waistSize': 38,
     'inseam': 36,
     'cherry': 3,

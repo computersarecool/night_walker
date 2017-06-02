@@ -4,11 +4,19 @@
   "private": true,
   "description": "MongoDB schemas and configuration file for NightWalker",
   "main": "index.js",
+  "scripts": {
+    "build": "babel inventory.js --out-file inventory_es5.js --presets latest"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.0",
     "mongoose": "^4.5.10",
     "winston": "^2.3.0"
   },
   "author": "Willy Nolan <willy@willynolan.com> (http://wwww.willynolan.com)",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-latest": "^6.24.1"
+  }
 }
