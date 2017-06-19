@@ -13,18 +13,18 @@
   ![Powder Flavor](https://dummyimage.com/50/e45c68/e45c68.jpg "Powder Flavor")
   ![Proton-Powder](https://dummyimage.com/50/ed243f/ed243f.jpg "Proton-Powder Flavor")
   
-  > The Official Color representations of NightWalker's Cherry, Nectarine, Lemon, Apple, Electricity, Plum Crazy, Powder and Proton Powder flavors
+  > The Official Color values of NightWalker's Cherry, Nectarine, Lemon, Apple, Electricity, Plum Crazy, Powder and Proton Powder flavors
 
 *The MEAN App for [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website")*
 
 # What is NightWalker?
-### A Colorful MEAN App for a colorful clothing line
+### A colorful clothing line
 
   NightWalker is a colorful clothing line that is trying to explore the technological future while paying homage to the (1980s) past 
   
   It is inspired by the 80s and designed in 3D
 
-  **This is the code for the NightWalker MEAN Web App** - the rest of this README is just notes from development and information about how to get started.
+  **This is the code for the NightWalker MEAN Web App**. The rest of this README is just notes from development and information about how to use the code
   
   To actually buy something from NightWalker go to [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website")
   
@@ -37,27 +37,25 @@
   ECMAScript 2015
   ```
   
-  This app was developed entirely with free and open source software. A huge thank you to everybody who worked on the code this project uses including: 
+  This app was developed entirely with free and open source software. Thank you to everybody who worked on the code this project uses including: 
   
   * [package](https://raw.githubusercontent.com/computersarecool/nightwalker/master/server/package.json "Server Package.json") [authors](https://raw.githubusercontent.com/computersarecool/nightwalker/master/server/package.json "Client Package.json")
   * [Gimp](https://www.gimp.org/ "Gimp")
   * [Inkscape](https://inkscape.org/ "Inkscape")
   * [Free Software Foundation](https://www.fsf.org "FSF")
-  * [Electronic Frontier Foundation Foundation](https://www.eff.org "EFF") 
+  * [Electronic Frontier Foundation](https://www.eff.org "EFF") 
   
-  A portion of each sale goes directly to one of those organizations
-  
-  Thank You
+  A portion of each NightWalker sale goes directly to those organizations
   
   <img src="https://nightwalker.clothing/images/symbol_logo.svg" alt="NightWalker Logo" style="width: 150px;"/>
 
 ### How to get started:
-##### To start dev database:
+##### To start the development database:
     mongod --dbpath /data/db/nightwalker &>/dev/null &
 
 ##### To add content to database:
 ```bash
-    # From database directory
+    # From the database directory
     # Test:
       mongo localhost:27017/test ./inventory.js
 
@@ -96,15 +94,15 @@
 ##### Things I would have liked to have done (or done better):
 ###### Database
   - Database design
-  - Used schema design to improve findProductByFlavor in database.js
+  - Use schema design to improve findProductByFlavor in database.js
   - Save user stripe token information in database.js
   - Combine size information / sizes / distinctSizes on individual products
 
 ###### Mail Controller
-  - Abstracted the emailing process more (with more generic methods)
+  - Abstract the emailing process more (with more generic methods)
 
 ###### Testing
-  - Added full unit testing
+  - Add full unit testing
 
 ###### General
   - Use JSdoc
@@ -113,5 +111,6 @@
 
 ### License
 :copyright: Willy Nolan 2017 
-[MIT](http://en.wikipedia.org/wiki/MIT_License)
+
+[MIT License](http://en.wikipedia.org/wiki/MIT_License)
 
