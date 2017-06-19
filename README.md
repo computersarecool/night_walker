@@ -1,6 +1,6 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/computersarecool/nightwalker/issues)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
   <img src="https://nightwalker.clothing/images/text_logo.svg" alt="NightWalker Logo" style="width: 200px;"/>
 
