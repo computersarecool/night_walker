@@ -72,7 +72,7 @@
 
     # Use systemctl to start / stop / monitor
 ```
-### Bonus Material
+### Extra Notes
 ##### Additional Media Concepts
   - Black and white stripes for the gallery background
   - Fruit images for the background of shop images
