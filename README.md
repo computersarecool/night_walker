@@ -26,7 +26,7 @@
 
   **This is the code for the NightWalker MEAN Web App**. The rest of this README is just notes from development and information about how to use the code.
   
-  To actually buy something from NightWalker go to [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website").
+  To actually buy something from NightWalker go to [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website")
   
   This project was written in / uses:
   ```
