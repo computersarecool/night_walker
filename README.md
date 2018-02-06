@@ -24,34 +24,16 @@
   
   Inspired by the 80s. Designed in 3D.
 
-  **This is the code for the NightWalker MEAN Web App**. 
+  **This is the code for the original NightWalker MEAN Web App.  The website may no longer use this code**. 
   
   The rest of this README is just notes about how to use the code.
   
   To actually buy something from NightWalker go to [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website")
   
-  This project was written in / uses:
-  ```
-  MongoDB 3.2
-  Express 4
-  Angular 1.5 
-  Node ^6.9
-  ECMAScript 2015
-  ```
+## What this repo does:
+This repo contains all of the code for the NightWalker mean APP.
   
-  This app was developed entirely with free and open source software. Thank you to everybody who worked on the code this project uses including: 
-  
-  * [package](https://raw.githubusercontent.com/computersarecool/nightwalker/master/server/package.json "Server Package.json") [authors](https://raw.githubusercontent.com/computersarecool/nightwalker/master/server/package.json "Client Package.json")
-  * [Gimp](https://www.gimp.org/ "Gimp")
-  * [Inkscape](https://inkscape.org/ "Inkscape")
-  * [Free Software Foundation](https://www.fsf.org "FSF")
-  * [Electronic Frontier Foundation](https://www.eff.org "EFF") 
-  
-  A portion of each NightWalker sale goes directly to those organizations.
-  
-  <img src="https://nightwalker.clothing/images/symbol_logo.svg" alt="NightWalker Logo" style="width: 150px;"/>
-
-### How to get started:
+### To use:
 ##### To start the development database:
     mongod --dbpath /data/db/nightwalker &>/dev/null &
 
@@ -74,6 +56,26 @@
 
     # Use systemctl to start / stop / monitor
 ```
+  
+## Extra notes:
+  This project was written in / uses:
+  ```
+  MongoDB 3.2
+  Express 4
+  Angular 1.5 
+  Node ^6.9
+  ECMAScript 2015
+  ```
+  
+  This app was developed entirely with free and open source software. Thank you to everybody who worked on the code this project uses including: 
+  
+  * [package](https://raw.githubusercontent.com/computersarecool/nightwalker/master/server/package.json "Server Package.json") [authors](https://raw.githubusercontent.com/computersarecool/nightwalker/master/server/package.json "Client Package.json")
+  * [Gimp](https://www.gimp.org/ "Gimp")
+  * [Inkscape](https://inkscape.org/ "Inkscape")
+  * [Free Software Foundation](https://www.fsf.org "FSF")
+  * [Electronic Frontier Foundation](https://www.eff.org "EFF") 
+  
+  A portion of each NightWalker sale goes directly to those organizations.
 
 ### License
 :copyright: Willy Nolan 2017 
