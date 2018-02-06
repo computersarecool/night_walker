@@ -22,14 +22,14 @@
   
   Inspired by the 80s. Designed in 3D.
 
-  **This is the code for the original NightWalker MEAN Web App.  The website may no longer use this code**. 
+  **This is the code for the original NightWalker MEAN Web App.  The website no longer uses this code**. 
   
   The rest of this README is just notes about how to use the code.
   
   To actually buy something from NightWalker go to [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website")
   
 ## What this repo does:
-This repo contains all of the code for the NightWalker mean APP.
+This repo contains all of the code for the original NightWalker web application.  The website site no longer uses this code.
   
 ### To use:
 ##### To start the development database:
