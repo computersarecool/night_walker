@@ -29,7 +29,7 @@
   To actually buy something from NightWalker go to [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website")
   
 ## What this repo does:
-This repo contains all of the code for the original NightWalker web application.  The website site no longer uses this code.
+This repo contains all of the code for the original NightWalker web application.  The current website site no longer uses this code.
   
 ### To use:
 ##### To start the development database:
