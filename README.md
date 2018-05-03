@@ -81,7 +81,7 @@ This app was developed entirely with free and open source software. Thank you to
 * [Free Software Foundation](https://www.fsf.org "FSF")
 * [Electronic Frontier Foundation](https://www.eff.org "EFF") 
 
-A portion of each NightWalker sale goes directly to those organizations.
+A portion of each NightWalker sale goes directly to those projects or organizations.
   
 ### License
 :copyright: Willy Nolan 2017 
