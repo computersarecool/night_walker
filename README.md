@@ -18,7 +18,7 @@
 ## Description
 #### What is NightWalker?
 ##### A colorful clothing line
-  NightWalker is a colorful clothing line. It that explores the future while paying homage to the past.
+  NightWalker is a colorful clothing line that explores the future while paying homage to the past.
   
 Inspired by the 80s. Designed in 3D.
 
