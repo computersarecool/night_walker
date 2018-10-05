@@ -39,10 +39,10 @@ To actually buy something from NightWalker go to [NightWalker.clothing](https://
 ```bash
     # From the database directory
     # Test:
-      mongo localhost:27017/test ./inventory.js
+    mongo localhost:27017/test ./inventory.js
 
     # Production:
-      mongo localhost:27017/production ./inventory.js
+    mongo localhost:27017/production ./inventory.js
  ```
 ##### Deployment scripts:
 ```bash
