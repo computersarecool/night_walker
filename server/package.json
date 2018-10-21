@@ -38,5 +38,5 @@
     "nodemon": "^1.11.0"
   },
   "author": "Willy Nolan <willy@willynolan.com> (http://wwww.willynolan.com)",
-  "license": "ISC"
+  "license": "MIT"
 }
