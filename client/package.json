@@ -34,7 +34,7 @@
     "wiredep": "^4.0.0"
   },
   "author": "Willy Nolan <willy@willynolan.com> (http://wwww.willynolan.com)",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {},
   "optionalDependencies": {}
 }
