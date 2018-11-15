@@ -5,17 +5,6 @@
   <img src="https://media.giphy.com/media/XKwHr6WUlAxwlKrLLn/giphy.gif" />
 </p>
 
-  ![Cherry Flavor](https://dummyimage.com/50/c71b39/c71b39.jpg "Cherrry Flavor")
-  ![Nectarine Flavor](https://dummyimage.com/50/fa5132/fa5132.jpg "Nectarine Flavor")
-  ![Lemon Flavor](https://dummyimage.com/50/feda60/feda60.jpg "Lemon Flavor")
-  ![Apple Flavor](https://dummyimage.com/50/005b3a/005b3a.jpg "Apple Flavor")
-  ![Electricity Flavor](https://dummyimage.com/50/26599a/26599a.jpg "Electricity Flavor")
-  ![Plumn Crazy](https://dummyimage.com/50/3f2c63/3f2c63.jpg "Plum Crazy Flavor")
-  ![Powder Flavor](https://dummyimage.com/50/e45c68/e45c68.jpg "Powder Flavor")
-  ![Proton-Powder](https://dummyimage.com/50/ed243f/ed243f.jpg "Proton-Powder Flavor")
-
-> The official color values of NightWalker's Cherry, Nectarine, Lemon, Apple, Electricity, Plum Crazy, Powder and Proton Powder flavors
-
 # NightWalker
 *The MEAN web app for [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website")*
 
@@ -31,6 +20,17 @@ Inspired by the 80s. Designed in 3D.
 The rest of this README is just notes about how to use the code.
 
 To actually buy something from NightWalker go to [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website")
+
+  ![Cherry Flavor](https://dummyimage.com/50/c71b39/c71b39.jpg "Cherrry Flavor")
+  ![Nectarine Flavor](https://dummyimage.com/50/fa5132/fa5132.jpg "Nectarine Flavor")
+  ![Lemon Flavor](https://dummyimage.com/50/feda60/feda60.jpg "Lemon Flavor")
+  ![Apple Flavor](https://dummyimage.com/50/005b3a/005b3a.jpg "Apple Flavor")
+  ![Electricity Flavor](https://dummyimage.com/50/26599a/26599a.jpg "Electricity Flavor")
+  ![Plumn Crazy](https://dummyimage.com/50/3f2c63/3f2c63.jpg "Plum Crazy Flavor")
+  ![Powder Flavor](https://dummyimage.com/50/e45c68/e45c68.jpg "Powder Flavor")
+  ![Proton-Powder](https://dummyimage.com/50/ed243f/ed243f.jpg "Proton-Powder Flavor")
+
+> The official color values of NightWalker's Cherry, Nectarine, Lemon, Apple, Electricity, Plum Crazy, Powder and Proton Powder flavors
 
 ## Tested On
 - Linux
