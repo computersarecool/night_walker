@@ -3,8 +3,8 @@
 
 <p align="center">
   <img src="https://media.giphy.com/media/XKwHr6WUlAxwlKrLLn/giphy.gif" />
-  <p>
-    (flavors displayed when mobile device rotated)
+  <p align="center">
+    (effect when mobile device rotated)
   </p>
 </p>
 
