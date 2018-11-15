@@ -3,9 +3,6 @@
 
 <p align="center">
   <img src="https://media.giphy.com/media/XKwHr6WUlAxwlKrLLn/giphy.gif" />
-  <p align="center">
-    (mobile device rotation)
-  </p>
 </p>
 
   ![Cherry Flavor](https://dummyimage.com/50/c71b39/c71b39.jpg "Cherrry Flavor")
