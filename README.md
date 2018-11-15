@@ -4,7 +4,7 @@
 <p align="center">
   <img src="https://media.giphy.com/media/XKwHr6WUlAxwlKrLLn/giphy.gif" />
   <p align="center">
-    (effect when mobile device rotated)
+    (mobile device rotation)
   </p>
 </p>
 
