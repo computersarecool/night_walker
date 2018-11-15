@@ -1,7 +1,7 @@
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-  ![](https://dummyimage.com/50/c71b39/c71b39.jpg "Cherry Flavor")
+  ![](https://dummyimage.com/50/c71b39/c71b39.jpg)
   ![Nectarine Flavor](https://dummyimage.com/50/fa5132/fa5132.jpg "Nectarine Flavor")
   ![Lemon Flavor](https://dummyimage.com/50/feda60/feda60.jpg "Lemon Flavor")
   ![Apple Flavor](https://dummyimage.com/50/005b3a/005b3a.jpg "Apple Flavor")
@@ -12,7 +12,9 @@
 
 > The official color values of NightWalker's Cherry, Nectarine, Lemon, Apple, Electricity, Plum Crazy, Powder and Proton Powder flavors
 
-![](https://media.giphy.com/media/XKwHr6WUlAxwlKrLLn/giphy.gif)
+<p align="center">
+  <img src="https://media.giphy.com/media/XKwHr6WUlAxwlKrLLn/giphy.gif">
+</p>
 
 # NightWalker
 *The MEAN web app for [NightWalker.clothing](https://nightwalker.clothing "The Nightwalker.clothing website")*
