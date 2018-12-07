@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 <p align="center">
-  <img src="https://media.giphy.com/media/B1SPbLDtq0ECuaZU7c/giphy.gif" title="What happens when a mobile device rotates on the NightWalker website" />
+  <img src="https://media.giphy.com/media/64aBPwSa2hK7yx8jX4/giphy.gif" title="What happens when a mobile device rotates on the NightWalker website" />
 </p>
 
 # NightWalker
