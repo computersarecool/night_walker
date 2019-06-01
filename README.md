@@ -2,10 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 <p align="center">
-  <figure>
-    <img src="https://media.giphy.com/media/SWuIGimfRJm3FqWQxT/giphy.gif" title="What happens when a mobile device rotates on the NightWalker website" />
-    <figcaption>Reveal all the flavors by rotating your device</figcaption>
-  </figure>
+    <img src="https://media.giphy.com/media/SWuIGimfRJm3FqWQxT/giphy.gif" title="All the flavors are shown by rotating your mobile device" />
 </p>
 
 # NightWalker
