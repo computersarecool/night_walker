@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.0",
-    "mongoose": "^4.5.10",
+    "mongoose": "^5.9.7",
     "winston": "^2.3.0"
   },
   "author": "Willy Nolan <willy@willynolan.com> (http://wwww.willynolan.com)",
