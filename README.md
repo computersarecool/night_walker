@@ -1,6 +1,3 @@
-[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 <p align="center">
     <img src="https://media.giphy.com/media/SWuIGimfRJm3FqWQxT/giphy.gif" title="All the flavors are shown by rotating your mobile device" />
 </p>
