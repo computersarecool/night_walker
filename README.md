@@ -12,7 +12,9 @@
   
 Inspired by the 80s. Designed in 3D.
 
-**This is the code for the original NightWalker MEAN Web App. The NightWalker website no longer uses this code. Additionally this repo is archived and for observation purposed only.** 
+**This is the code for the original NightWalker MEAN Web App. The NightWalker website no longer uses this code.**
+
+**Additionally this repo is archived and for observation purposed only.** 
 
 The rest of this README is just notes about how to use the code.
 
