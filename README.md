@@ -12,7 +12,7 @@
   
 Inspired by the 80s. Designed in 3D.
 
-**This is the code for the original NightWalker MEAN Web App. The NightWalker website no longer uses this code**. 
+**This is the code for the original NightWalker MEAN Web App. The NightWalker website no longer uses this code. Additionally this repo is archived and for observation purposed only.** 
 
 The rest of this README is just notes about how to use the code.
 
@@ -30,7 +30,7 @@ To actually buy something from NightWalker go to [NightWalker.clothing](https://
 > The official color values of NightWalker's Cherry, Nectarine, Lemon, Apple, Electricity, Plum Crazy, Powder and Proton Powder flavors
 
 ## Tested On
-- Linux
+- Ubuntu Linux 16.04
 
 ## To Use
 ##### To start the development database:
@@ -63,7 +63,7 @@ To actually buy something from NightWalker go to [NightWalker.clothing](https://
 - `database` contains the database code
 
 ## Functionality
-- This repo contains all the fullstack code
+- This repo contains all of the code required to run the entire web application (server / client / database)
 
 ## Extra Notes
 This project was written in / uses:
@@ -80,8 +80,6 @@ This app was developed entirely with free and open source software. Thank you to
 * [Gimp](https://www.gimp.org/ "Gimp")
 * [Inkscape](https://inkscape.org/ "Inkscape")
 * [Free Software Foundation](https://www.fsf.org "FSF")
-
-A portion of each NightWalker sale goes directly to those projects or organizations.
   
 ### License
 :copyright: Willy Nolan 2017 
